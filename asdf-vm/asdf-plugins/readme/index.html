@@ -1,0 +1,3435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Asdf Plugins (asdf-vm/asdf-plugins) Overview - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/asdf-vm/asdf-plugins/readme/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Asdf Plugins Overview" />
+    <meta property="og:description" content="Convenience shortname repository for asdf community plugins" />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Asdf Plugins Overview</h1>
+<p>Convenience shortname repository for asdf community plugins</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/asdf-vm/asdf-plugins/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/asdf-vm/asdf-plugins">😺 asdf-vm/asdf-plugins</a><span> · </span><span>⭐ 1.4K</span><span> · </span><span>🏷️ Computer Science</span></p>
+<p><span>[ </span><a href="/asdf-vm/asdf-plugins/">Daily</a><span> / </span><a href="/asdf-vm/asdf-plugins/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
+<h1 id="asdf-plugins-repository"><a class="anchor" aria-hidden="true" tabindex="-1" href="#asdf-plugins-repository"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>asdf plugins repository</h1><p>The purpose of the <a href="https://github.com/asdf-vm/asdf" rel="noopener noreferrer">asdf</a> plugins repository is to enable shorthand installation of plugins with:</p>
+<pre><code>asdf plugin add &lt;name&gt;</code></pre><p>The asdf core team recommend using the long-form which does not rely on this repository:</p>
+<pre><code>asdf plugin add &lt;name&gt; &lt;git_url&gt;</code></pre><p>Read each plugins code before installation and usage.</p>
+<h2 id="existing-plugins"><a class="anchor" aria-hidden="true" tabindex="-1" href="#existing-plugins"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Existing Plugins</h2><p>Plugins listed here should be <em>stable</em> and actively <em>maintained</em>. If you have issues with a specific plugin please raise them on the plugin repository first. If a deprecated plugin is listed here, please let us know and create a PR to add the most used alternative.</p>
+<h2 id="creating-a-new-plugin"><a class="anchor" aria-hidden="true" tabindex="-1" href="#creating-a-new-plugin"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Creating a new Plugin</h2><ul>
+<li>Read the <a href="https://github.com/asdf-vm/asdf/blob/master/docs/plugins/create.md" rel="noopener noreferrer">creating plugins guide</a></li>
+<li>Consider using our <a href="https://github.com/asdf-vm/asdf-plugin-template" rel="noopener noreferrer">Template</a> which has the core functionality to tools published to GitHub releases and CI for GitHub/GitLab/CircleCI out of the box.</li>
+</ul>
+<h3 id="asdf-community"><a class="anchor" aria-hidden="true" tabindex="-1" href="#asdf-community"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><code>asdf-community</code></h3><p>If you're creating a new plugin consider creating it as part of the <a href="https://github.com/asdf-community/.github" rel="noopener noreferrer"><code>asdf-community</code></a> project. This is a separate community project with consolidated maintenance.</p>
+<h2 id="contributing-a-new-plugin"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contributing-a-new-plugin"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contributing a new Plugin</h2><ul>
+<li>Install repo dependencies: <code>asdf install</code></li>
+<li>Add the plugin to the repository <code>README.md</code> <em>Plugin List</em> table.</li>
+<li>Create a file with the shortname you wish to be used by asdf in <code>plugins/&lt;name&gt;</code>. The contents should be <code>repository = &lt;your_repo&gt;</code>.<ul>
+<li>eg: <code>printf "repository = https://github.com/asdf-vm/asdf-nodejs.git\n" &gt; plugins/nodejs</code></li>
+</ul>
+</li>
+<li>Test your code : <code>scripts/test_plugin.bash --file plugins/&lt;name&gt;</code></li>
+<li>Format your code &amp; this README: <code>scripts/format.bash</code></li>
+<li>Create a PR following the instructions in the PR template.</li>
+</ul>
+<h2 id="security"><a class="anchor" aria-hidden="true" tabindex="-1" href="#security"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Security</h2><p>The <code>asdf</code> core provides a <a href="https://github.com/asdf-vm/asdf/security/policy" rel="noopener noreferrer">security policy</a> which covers the core <code>asdf</code> tool. Plugins are the responsibility of their creators and not covered by the <code>asdf</code> policy. It is the responsibility of the user to evaluate each plugin they use for security concerns, even those in the <code>asdf-community</code> repositories. You can pin a plugin to a commit of the source repo with <code>asdf plugin update &lt;name&gt; &lt;git-ref&gt;</code>, however running <code>asdf plugin update &lt;name&gt;</code> or <code>asdf plugin update --all</code> will change the <code>sha</code> you have previously set.</p>
+<h2 id="plugin-list"><a class="anchor" aria-hidden="true" tabindex="-1" href="#plugin-list"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Plugin List</h2><table>
+<thead>
+<tr>
+<th>Tool / Language</th>
+<th>Plugin Repository</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.Net</td>
+<td><a href="https://github.com/hensou/asdf-dotnet" rel="noopener noreferrer">hensou/asdf-dotnet</a></td>
+</tr>
+<tr>
+<td>.Net Core</td>
+<td><a href="https://github.com/emersonsoares/asdf-dotnet-core" rel="noopener noreferrer">emersonsoares/asdf-dotnet-core</a></td>
+</tr>
+<tr>
+<td>1password-cli</td>
+<td><a href="https://github.com/NeoHsu/asdf-1password-cli" rel="noopener noreferrer">NeoHsu/asdf-1password-cli</a></td>
+</tr>
+<tr>
+<td>AAPT2</td>
+<td><a href="https://github.com/ronnnnn/asdf-aapt2" rel="noopener noreferrer">ronnnnn/asdf-aapt2</a></td>
+</tr>
+<tr>
+<td>act</td>
+<td><a href="https://github.com/gr1m0h/asdf-act" rel="noopener noreferrer">gr1m0h/asdf-act</a></td>
+</tr>
+<tr>
+<td>action-validator</td>
+<td><a href="https://github.com/mpalmer/action-validator" rel="noopener noreferrer">mpalmer/action-validator</a></td>
+</tr>
+<tr>
+<td>actionlint</td>
+<td><a href="https://github.com/crazy-matt/asdf-actionlint" rel="noopener noreferrer">crazy-matt/asdf-actionlint</a></td>
+</tr>
+<tr>
+<td>adr-tools</td>
+<td><a href="https://gitlab.com/td7x/asdf/adr-tools" rel="noopener noreferrer">td7x/asdf/adr-tools</a></td>
+</tr>
+<tr>
+<td>ag (the_silver_searcher)</td>
+<td><a href="https://github.com/koketani/asdf-ag" rel="noopener noreferrer">koketani/asdf-ag</a></td>
+</tr>
+<tr>
+<td>age</td>
+<td><a href="https://github.com/threkk/asdf-age" rel="noopener noreferrer">threkk/asdf-age</a></td>
+</tr>
+<tr>
+<td>age-plugin-yubikey</td>
+<td><a href="https://github.com/str4d/asdf-age-plugin-yubikey" rel="noopener noreferrer">str4d/asdf-age-plugin-yubikey</a></td>
+</tr>
+<tr>
+<td>agebox</td>
+<td><a href="https://github.com/slok/asdf-agebox" rel="noopener noreferrer">slok/asdf-agebox</a></td>
+</tr>
+<tr>
+<td>air</td>
+<td><a href="https://github.com/pdemagny/asdf-air" rel="noopener noreferrer">pdemagny/asdf-air</a></td>
+</tr>
+<tr>
+<td>aks-engine</td>
+<td><a href="https://github.com/robsonpeixoto/asdf-aks-engine" rel="noopener noreferrer">robsonpeixoto/asdf-aks-engine</a></td>
+</tr>
+<tr>
+<td>alias</td>
+<td><a href="https://github.com/andrewthauer/asdf-alias" rel="noopener noreferrer">andrewthauer/asdf-alias</a></td>
+</tr>
+<tr>
+<td>alire</td>
+<td><a href="https://github.com/NyanHelsing/asdf-alire" rel="noopener noreferrer">NyanHelsing/asdf-alire</a></td>
+</tr>
+<tr>
+<td>allure</td>
+<td><a href="https://github.com/comdotlinux/asdf-allure" rel="noopener noreferrer">comdotlinux/asdf-allure</a></td>
+</tr>
+<tr>
+<td>alp</td>
+<td><a href="https://github.com/asdf-community/asdf-alp" rel="noopener noreferrer">asdf-community/asdf-alp</a></td>
+</tr>
+<tr>
+<td>amass</td>
+<td><a href="https://github.com/dhoeric/asdf-amass" rel="noopener noreferrer">dhoeric/asdf-amass</a></td>
+</tr>
+<tr>
+<td>Amazon ECR Credential Helper</td>
+<td><a href="https://github.com/dex4er/asdf-amazon-ecr-credential-helper" rel="noopener noreferrer">dex4er/asdf-amazon-ecr-credential-helper</a></td>
+</tr>
+<tr>
+<td>Ambient</td>
+<td><a href="https://github.com/jtakakura/asdf-ambient" rel="noopener noreferrer">jtakakura/asdf-ambient</a></td>
+</tr>
+<tr>
+<td>Ansible (ansible-base)</td>
+<td><a href="https://github.com/amrox/asdf-pyapp" rel="noopener noreferrer">amrox/asdf-pyapp</a></td>
+</tr>
+<tr>
+<td>ant</td>
+<td><a href="https://github.com/jackboespflug/asdf-ant" rel="noopener noreferrer">jackboespflug/asdf-ant</a></td>
+</tr>
+<tr>
+<td>Apache Jmeter</td>
+<td><a href="https://github.com/comdotlinux/asdf-jmeter" rel="noopener noreferrer">comdotlinux/asdf-jmeter</a></td>
+</tr>
+<tr>
+<td>apko</td>
+<td><a href="https://github.com/omissis/asdf-apko" rel="noopener noreferrer">omissis/asdf-apko</a></td>
+</tr>
+<tr>
+<td>apollo-ios-cli</td>
+<td><a href="https://github.com/MacPaw/asdf-apollo-ios-cli" rel="noopener noreferrer">MacPaw/asdf-apollo-ios-cli</a></td>
+</tr>
+<tr>
+<td>Apollo Router</td>
+<td><a href="https://github.com/safx/asdf-apollo-router" rel="noopener noreferrer">safx/asdf-apollo-router</a></td>
+</tr>
+<tr>
+<td>arc</td>
+<td><a href="https://github.com/ORCID/asdf-arc" rel="noopener noreferrer">ORCID/asdf-arc</a></td>
+</tr>
+<tr>
+<td>argc</td>
+<td><a href="https://github.com/rgeraskin/asdf-argc" rel="noopener noreferrer">rgeraskin/asdf-argc</a></td>
+</tr>
+<tr>
+<td>argo</td>
+<td><a href="https://github.com/sudermanjr/asdf-argo" rel="noopener noreferrer">sudermanjr/asdf-argo</a></td>
+</tr>
+<tr>
+<td>argo-rollouts</td>
+<td><a href="https://github.com/abatilo/asdf-argo-rollouts" rel="noopener noreferrer">abatilo/asdf-argo-rollouts</a></td>
+</tr>
+<tr>
+<td>argocd</td>
+<td><a href="https://github.com/beardix/asdf-argocd" rel="noopener noreferrer">beardix/asdf-argocd</a></td>
+</tr>
+<tr>
+<td>argocd-image-updater</td>
+<td><a href="https://github.com/thatmlopsguy/asdf-argocd-image-updater" rel="noopener noreferrer">thatmlopsguy/asdf-argocd-image-updater</a></td>
+</tr>
+<tr>
+<td>aria2</td>
+<td><a href="https://github.com/asdf-community/asdf-aria2" rel="noopener noreferrer">asdf-community/asdf-aria2</a></td>
+</tr>
+<tr>
+<td>asciidoctorj</td>
+<td><a href="https://github.com/gliwka/asdf-asciidoctorj" rel="noopener noreferrer">gliwka/asdf-asciidoctorj</a></td>
+</tr>
+<tr>
+<td>asdf-plugin-manager</td>
+<td><a href="https://github.com/asdf-community/asdf-plugin-manager" rel="noopener noreferrer">asdf-community/asdf-plugin-manager</a></td>
+</tr>
+<tr>
+<td>assh</td>
+<td><a href="https://github.com/zekker6/asdf-assh" rel="noopener noreferrer">zekker6/asdf-assh</a></td>
+</tr>
+<tr>
+<td>atlas</td>
+<td><a href="https://github.com/pbr0ck3r/asdf-atlas" rel="noopener noreferrer">pbr0ck3r/asdf-atlas</a></td>
+</tr>
+<tr>
+<td>atmos</td>
+<td><a href="https://github.com/cloudposse/asdf-atmos" rel="noopener noreferrer">cloudposse/atmos</a></td>
+</tr>
+<tr>
+<td>auth0-cli</td>
+<td><a href="https://github.com/gunzy83/asdf-auth0-cli" rel="noopener noreferrer">gunzy83/asdf-auth0-cli</a></td>
+</tr>
+<tr>
+<td>auto-doc</td>
+<td><a href="https://github.com/looztra/asdf-auto-doc" rel="noopener noreferrer">looztra/asdf-auto-doc</a></td>
+</tr>
+<tr>
+<td>avalanche</td>
+<td><a href="https://github.com/embtools/asdf-avalanche" rel="noopener noreferrer">embtools/asdf-avalanche</a></td>
+</tr>
+<tr>
+<td>avalanchego</td>
+<td><a href="https://github.com/embtools/asdf-avalanchego" rel="noopener noreferrer">embtools/asdf-avalanchego</a></td>
+</tr>
+<tr>
+<td>aws-copilot</td>
+<td><a href="https://github.com/NeoHsu/asdf-copilot" rel="noopener noreferrer">NeoHsu/asdf-copilot</a></td>
+</tr>
+<tr>
+<td>aws-amplify-cli</td>
+<td><a href="https://github.com/LozanoMatheus/asdf-aws-amplify-cli" rel="noopener noreferrer">LozanoMatheus/asdf-aws-amplify-cli</a></td>
+</tr>
+<tr>
+<td>AWS IAM authenticator</td>
+<td><a href="https://github.com/zekker6/asdf-aws-iam-authenticator" rel="noopener noreferrer">zekker6/asdf-aws-iam-authenticator</a></td>
+</tr>
+<tr>
+<td>aws-nuke</td>
+<td><a href="https://github.com/bersalazar/asdf-aws-nuke" rel="noopener noreferrer">bersalazar/asdf-aws-nuke</a></td>
+</tr>
+<tr>
+<td>aws-sam-cli</td>
+<td><a href="https://github.com/amrox/asdf-pyapp" rel="noopener noreferrer">amrox/asdf-pyapp</a></td>
+</tr>
+<tr>
+<td>aws-sso-cli</td>
+<td><a href="https://github.com/adamcrews/asdf-aws-sso-cli" rel="noopener noreferrer">adamcrews/asdf-aws-sso-cli</a></td>
+</tr>
+<tr>
+<td>awscli</td>
+<td><a href="https://github.com/MetricMike/asdf-awscli" rel="noopener noreferrer">MetricMike/asdf-awscli</a></td>
+</tr>
+<tr>
+<td>awscli-local</td>
+<td><a href="https://github.com/paulo-ferraz-oliveira/asdf-awscli-local" rel="noopener noreferrer">paulo-ferraz-oliveira/asdf-awscli-local</a></td>
+</tr>
+<tr>
+<td>awsebcli</td>
+<td><a href="https://github.com/amrox/asdf-pyapp" rel="noopener noreferrer">amrox/asdf-pyapp</a></td>
+</tr>
+<tr>
+<td>aws-vault</td>
+<td><a href="https://github.com/karancode/asdf-aws-vault" rel="noopener noreferrer">karancode/asdf-aws-vault</a></td>
+</tr>
+<tr>
+<td>awsls</td>
+<td><a href="https://github.com/chessmango/asdf-awsls" rel="noopener noreferrer">chessmango/asdf-awsls</a></td>
+</tr>
+<tr>
+<td>awsrm</td>
+<td><a href="https://github.com/chessmango/asdf-awsrm" rel="noopener noreferrer">chessmango/asdf-awsrm</a></td>
+</tr>
+<tr>
+<td>awsweeper</td>
+<td><a href="https://github.com/chessmango/asdf-awsweeper" rel="noopener noreferrer">chessmango/asdf-awsweeper</a></td>
+</tr>
+<tr>
+<td>azure-cli (az)</td>
+<td><a href="https://github.com/EcoMind/asdf-azure-cli" rel="noopener noreferrer">EcoMind/asdf-azure-cli</a></td>
+</tr>
+<tr>
+<td>Azure Functions Core Tools</td>
+<td><a href="https://github.com/daveneeley/asdf-azure-functions-core-tools" rel="noopener noreferrer">daveneeley/asdf-azure-functions-core-tools</a></td>
+</tr>
+<tr>
+<td>babashka</td>
+<td><a href="https://github.com/pitch-io/asdf-babashka" rel="noopener noreferrer">pitch-io/asdf-babashka</a></td>
+</tr>
+<tr>
+<td>balena-cli</td>
+<td><a href="https://github.com/boatkit-io/asdf-balena-cli" rel="noopener noreferrer">boatkit-io/asdf-balena-cli</a></td>
+</tr>
+<tr>
+<td>bashbot</td>
+<td><a href="https://github.com/mathew-fleisch/asdf-bashbot" rel="noopener noreferrer">mathew-fleisch/asdf-bashbot</a></td>
+</tr>
+<tr>
+<td>bashly</td>
+<td><a href="https://github.com/pcrockett/asdf-bashly" rel="noopener noreferrer">pcrockett/asdf-bashly</a></td>
+</tr>
+<tr>
+<td>bat</td>
+<td><a href="https://github.com/pauloedurezende/asdf-bat" rel="noopener noreferrer">pauloedurezende/asdf-bat</a></td>
+</tr>
+<tr>
+<td>bat-extras</td>
+<td><a href="https://github.com/vhdirk/asdf-bat-extras" rel="noopener noreferrer">vhdirk/asdf-bat-extras</a></td>
+</tr>
+<tr>
+<td>Batect</td>
+<td><a href="https://github.com/johnlayton/asdf-batect" rel="noopener noreferrer">johnlayton/asdf-batect</a></td>
+</tr>
+<tr>
+<td>Bats (Bash unittest)</td>
+<td><a href="https://github.com/timgluz/asdf-bats" rel="noopener noreferrer">timgluz/asdf-bats</a></td>
+</tr>
+<tr>
+<td>Bazel</td>
+<td><a href="https://github.com/rajatvig/asdf-bazel" rel="noopener noreferrer">rajatvig/asdf-bazel</a></td>
+</tr>
+<tr>
+<td>bazelisk</td>
+<td><a href="https://github.com/josephtate/asdf-bazelisk" rel="noopener noreferrer">josephtate/asdf-bazelisk</a></td>
+</tr>
+<tr>
+<td>bbr</td>
+<td><a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf" rel="noopener noreferrer">vmware-tanzu/tanzu-plug-in-for-asdf</a></td>
+</tr>
+<tr>
+<td>bbr-s3-config-validator</td>
+<td><a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf" rel="noopener noreferrer">vmware-tanzu/tanzu-plug-in-for-asdf</a></td>
+</tr>
+<tr>
+<td>benthos</td>
+<td><a href="https://github.com/benthosdev/benthos-asdf" rel="noopener noreferrer">benthosdev/benthos-asdf</a></td>
+</tr>
+<tr>
+<td>bfs</td>
+<td><a href="https://github.com/virtualroot/asdf-bfs" rel="noopener noreferrer">virtualroot/asdf-bfs</a></td>
+</tr>
+<tr>
+<td>Binaryen</td>
+<td><a href="https://github.com/cometkim/asdf-binaryen" rel="noopener noreferrer">cometkim/asdf-binaryen</a></td>
+</tr>
+<tr>
+<td>bingo</td>
+<td><a href="https://github.com/isindir/asdf-bingo" rel="noopener noreferrer">isindir/asdf-bingo</a></td>
+</tr>
+<tr>
+<td>binnacle</td>
+<td><a href="https://github.com/Traackr/asdf-binnacle" rel="noopener noreferrer">Traackr/asdf-binnacle</a></td>
+</tr>
+<tr>
+<td>Bitwarden</td>
+<td><a href="https://github.com/vixus0/asdf-bitwarden" rel="noopener noreferrer">vixus0/asdf-bitwarden</a></td>
+</tr>
+<tr>
+<td>bitwarden-secrets-manager</td>
+<td><a href="https://github.com/asdf-community/asdf-bitwarden-secrets-manager" rel="noopener noreferrer">asdf-community/asdf-bitwarden-secrets-manager</a></td>
+</tr>
+<tr>
+<td>boilerplate</td>
+<td><a href="https://github.com/gruntwork-io/asdf-boilerplate" rel="noopener noreferrer">gruntwork-io/asdf-boilerplate</a></td>
+</tr>
+<tr>
+<td>Bombardier</td>
+<td><a href="https://github.com/NeoHsu/asdf-bombardier" rel="noopener noreferrer">NeoHsu/asdf-bombardier</a></td>
+</tr>
+<tr>
+<td>borg</td>
+<td><a href="https://github.com/lwiechec/asdf-borg" rel="noopener noreferrer">lwiechec/asdf-borg</a></td>
+</tr>
+<tr>
+<td>bosh</td>
+<td><a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf" rel="noopener noreferrer">vmware-tanzu/tanzu-plug-in-for-asdf</a></td>
+</tr>
+<tr>
+<td>bottom (btm)</td>
+<td><a href="https://github.com/carbonteq/asdf-btm" rel="noopener noreferrer">carbonteq/asdf-btm</a></td>
+</tr>
+<tr>
+<td>Boundary</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>bpkg</td>
+<td><a href="https://github.com/bpkg/asdf-bpkg" rel="noopener noreferrer">bpkg/asdf-bpkg</a></td>
+</tr>
+<tr>
+<td>Brig</td>
+<td><a href="https://github.com/Ibotta/asdf-brig" rel="noopener noreferrer">Ibotta/asdf-brig</a></td>
+</tr>
+<tr>
+<td>BTrace</td>
+<td><a href="https://github.com/joschi/asdf-btrace" rel="noopener noreferrer">joschi/asdf-btrace</a></td>
+</tr>
+<tr>
+<td>Buf</td>
+<td><a href="https://github.com/truepay/asdf-buf" rel="noopener noreferrer">truepay/asdf-buf</a></td>
+</tr>
+<tr>
+<td>Buildpack</td>
+<td><a href="https://github.com/johnlayton/asdf-buildpack" rel="noopener noreferrer">johnlayton/asdf-buildpack</a></td>
+</tr>
+<tr>
+<td>Bun</td>
+<td><a href="https://github.com/cometkim/asdf-bun" rel="noopener noreferrer">cometkim/asdf-bun</a></td>
+</tr>
+<tr>
+<td>Bundler</td>
+<td><a href="https://github.com/jonathanmorley/asdf-bundler" rel="noopener noreferrer">jonathanmorley/asdf-bundler</a></td>
+</tr>
+<tr>
+<td>c3</td>
+<td><a href="https://github.com/RobLoach/asdf-c3" rel="noopener noreferrer">RobLoach/asdf-c3</a></td>
+</tr>
+<tr>
+<td>Cabal</td>
+<td><a href="https://github.com/sestrella/asdf-ghcup" rel="noopener noreferrer">sestrella/asdf-ghcup</a></td>
+</tr>
+<tr>
+<td>Caddy</td>
+<td><a href="https://github.com/salasrod/asdf-caddy" rel="noopener noreferrer">salasrod/asdf-caddy</a></td>
+</tr>
+<tr>
+<td>cairo-coverage</td>
+<td><a href="https://github.com/software-mansion/asdf-cairo-coverage" rel="noopener noreferrer">software-mansion/asdf-cairo-coverage</a></td>
+</tr>
+<tr>
+<td>cairo-profiler</td>
+<td><a href="https://github.com/software-mansion/asdf-cairo-profiler" rel="noopener noreferrer">software-mansion/asdf-cairo-profiler</a></td>
+</tr>
+<tr>
+<td>CalendarSync</td>
+<td><a href="https://github.com/FeryET/asdf-calendarsync" rel="noopener noreferrer">FeryET/asdf-calendarsync</a></td>
+</tr>
+<tr>
+<td>calicoctl</td>
+<td><a href="https://github.com/teejaded/asdf-calicoctl" rel="noopener noreferrer">teejaded/asdf-calicoctl</a></td>
+</tr>
+<tr>
+<td>Camunda Modeler</td>
+<td><a href="https://github.com/barmac/asdf-camunda-modeler" rel="noopener noreferrer">barmac/asdf-camunda-modeler</a></td>
+</tr>
+<tr>
+<td>cargo-make</td>
+<td><a href="https://github.com/mise-plugins/asdf-cargo-make" rel="noopener noreferrer">mise-plugins/asdf-cargo-make</a></td>
+</tr>
+<tr>
+<td>Carp</td>
+<td><a href="https://github.com/susurri/asdf-carp" rel="noopener noreferrer">susurri/asdf-carp</a></td>
+</tr>
+<tr>
+<td>carthage</td>
+<td><a href="https://github.com/younke/asdf-carthage" rel="noopener noreferrer">younke/asdf-carthage</a></td>
+</tr>
+<tr>
+<td>ccache</td>
+<td><a href="https://github.com/asdf-community/asdf-ccache" rel="noopener noreferrer">asdf-community/asdf-ccache</a></td>
+</tr>
+<tr>
+<td>certstrap</td>
+<td><a href="https://github.com/carnei-ro/asdf-certstrap" rel="noopener noreferrer">carnei-ro/asdf-certstrap</a></td>
+</tr>
+<tr>
+<td>cidr-merger</td>
+<td><a href="https://github.com/ORCID/asdf-cidr-merger" rel="noopener noreferrer">ORCID/asdf-cidr-merger</a></td>
+</tr>
+<tr>
+<td>cidrchk</td>
+<td><a href="https://github.com/ORCID/asdf-cidrchk" rel="noopener noreferrer">ORCID/asdf-cidrchk</a></td>
+</tr>
+<tr>
+<td>circleci-cli</td>
+<td><a href="https://github.com/ucpr/asdf-circleci-cli" rel="noopener noreferrer">ucpr/asdf-circleci-cli</a></td>
+</tr>
+<tr>
+<td>cf</td>
+<td><a href="https://github.com/mattysweeps/asdf-cf" rel="noopener noreferrer">mattysweeps/asdf-cf</a></td>
+</tr>
+<tr>
+<td>cfssl</td>
+<td><a href="https://github.com/mathew-fleisch/asdf-cfssl" rel="noopener noreferrer">mathew-fleisch/asdf-cfssl</a></td>
+</tr>
+<tr>
+<td>chamber</td>
+<td><a href="https://github.com/mintel/asdf-chamber" rel="noopener noreferrer">mintel/asdf-chamber</a></td>
+</tr>
+<tr>
+<td>changie</td>
+<td><a href="https://github.com/pdemagny/asdf-changie" rel="noopener noreferrer">pdemagny/asdf-changie</a></td>
+</tr>
+<tr>
+<td>cheat</td>
+<td><a href="https://github.com/jmoratilla/asdf-cheat-plugin" rel="noopener noreferrer">jmoratilla/asdf-cheat-plugin</a></td>
+</tr>
+<tr>
+<td>checkov</td>
+<td><a href="https://github.com/bosmak/asdf-checkov" rel="noopener noreferrer">bosmak/asdf-checkov</a></td>
+</tr>
+<tr>
+<td>chezmoi</td>
+<td><a href="https://github.com/joke/asdf-chezmoi" rel="noopener noreferrer">joke/asdf-chezmoi</a></td>
+</tr>
+<tr>
+<td>chezscheme</td>
+<td><a href="https://github.com/asdf-community/asdf-chezscheme" rel="noopener noreferrer">asdf-community/asdf-chezscheme</a></td>
+</tr>
+<tr>
+<td>CHICKEN</td>
+<td><a href="https://github.com/evhan/asdf-chicken" rel="noopener noreferrer">evhan/asdf-chicken</a></td>
+</tr>
+<tr>
+<td>chisel</td>
+<td><a href="https://github.com/lwiechec/asdf-chisel" rel="noopener noreferrer">lwiechec/asdf-chisel</a></td>
+</tr>
+<tr>
+<td>choose</td>
+<td><a href="https://github.com/carbonteq/asdf-choose" rel="noopener noreferrer">carbonteq/asdf-choose</a></td>
+</tr>
+<tr>
+<td>Chromedriver</td>
+<td><a href="https://github.com/schinckel/asdf-chromedriver" rel="noopener noreferrer">schinckel/asdf-chromedriver</a></td>
+</tr>
+<tr>
+<td>cilium-cli</td>
+<td><a href="https://github.com/carnei-ro/asdf-cilium-cli" rel="noopener noreferrer">carnei-ro/asdf-cilium-cli</a></td>
+</tr>
+<tr>
+<td>cilium-hubble</td>
+<td><a href="https://github.com/NitriKx/asdf-cilium-hubble" rel="noopener noreferrer">NitriKx/asdf-cilium-hubble</a></td>
+</tr>
+<tr>
+<td>Clarinet</td>
+<td><a href="https://github.com/alexgo-io/asdf-clarinet" rel="noopener noreferrer">alexgo-io/asdf-clarinet</a></td>
+</tr>
+<tr>
+<td>clj-kondo</td>
+<td><a href="https://github.com/rynkowsg/asdf-clj-kondo" rel="noopener noreferrer">rynkowsg/asdf-clj-kondo</a></td>
+</tr>
+<tr>
+<td>cljstyle</td>
+<td><a href="https://github.com/abogoyavlensky/asdf-cljstyle" rel="noopener noreferrer">abogoyavlensky/asdf-cljstyle</a></td>
+</tr>
+<tr>
+<td>Clojure</td>
+<td><a href="https://github.com/asdf-community/asdf-clojure" rel="noopener noreferrer">asdf-community/asdf-clojure</a></td>
+</tr>
+<tr>
+<td>Cloudflared</td>
+<td><a href="https://github.com/threkk/asdf-cloudflared" rel="noopener noreferrer">threkk/asdf-cloudflared</a></td>
+</tr>
+<tr>
+<td>cloud-sql-proxy</td>
+<td><a href="https://github.com/pbr0ck3r/asdf-cloud-sql-proxy" rel="noopener noreferrer">pbr0ck3r/asdf-cloud-sql-proxy</a></td>
+</tr>
+<tr>
+<td>Clusterawsadm</td>
+<td><a href="https://github.com/kahun/asdf-clusterawsadm" rel="noopener noreferrer">kahun/asdf-clusterawsadm</a></td>
+</tr>
+<tr>
+<td>Clusterctl</td>
+<td><a href="https://github.com/pfnet-research/asdf-clusterctl" rel="noopener noreferrer">pfnet-research/asdf-clusterctl</a></td>
+</tr>
+<tr>
+<td>cmctl</td>
+<td><a href="https://github.com/asdf-community/asdf-cmctl" rel="noopener noreferrer">asdf-community/asdf-cmctl</a></td>
+</tr>
+<tr>
+<td>CMake</td>
+<td><a href="https://github.com/asdf-community/asdf-cmake" rel="noopener noreferrer">asdf-community/asdf-cmake</a></td>
+</tr>
+<tr>
+<td>CockroachDB</td>
+<td><a href="https://github.com/salasrod/asdf-cockroach" rel="noopener noreferrer">salasrod/asdf-cockroach</a></td>
+</tr>
+<tr>
+<td>CocoaPods</td>
+<td><a href="https://github.com/ronnnnn/asdf-cocoapods" rel="noopener noreferrer">ronnnnn/asdf-cocoapods</a></td>
+</tr>
+<tr>
+<td>Codefresh</td>
+<td><a href="https://github.com/gurukulkarni/asdf-codefresh" rel="noopener noreferrer">gurukulkarni/asdf-codefresh</a></td>
+</tr>
+<tr>
+<td>CodeQL</td>
+<td><a href="https://github.com/bored-engineer/asdf-codeql" rel="noopener noreferrer">bored-engineer/asdf-codeql</a></td>
+</tr>
+<tr>
+<td>Colima</td>
+<td><a href="https://github.com/CrouchingMuppet/asdf-colima" rel="noopener noreferrer">CrouchingMuppet/asdf-colima</a></td>
+</tr>
+<tr>
+<td>coredns</td>
+<td><a href="https://github.com/s3than/asdf-coredns" rel="noopener noreferrer">s3than/asdf-coredns</a></td>
+</tr>
+<tr>
+<td>Conan</td>
+<td><a href="https://github.com/amrox/asdf-pyapp" rel="noopener noreferrer">amrox/asdf-pyapp</a></td>
+</tr>
+<tr>
+<td>Concourse</td>
+<td><a href="https://github.com/mattysweeps/asdf-concourse" rel="noopener noreferrer">mattysweeps/asdf-concourse</a></td>
+</tr>
+<tr>
+<td>Conduit</td>
+<td><a href="https://github.com/gmcabrita/asdf-conduit" rel="noopener noreferrer">gmcabrita/asdf-conduit</a></td>
+</tr>
+<tr>
+<td>Conform</td>
+<td><a href="https://github.com/skyzyx/asdf-conform" rel="noopener noreferrer">skyzyx/asdf-conform</a></td>
+</tr>
+<tr>
+<td>conftest</td>
+<td><a href="https://github.com/looztra/asdf-conftest" rel="noopener noreferrer">looztra/asdf-conftest</a></td>
+</tr>
+<tr>
+<td>Consul</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>container-diff</td>
+<td><a href="https://github.com/cgroschupp/asdf-container-diff" rel="noopener noreferrer">cgroschupp/asdf-container-diff</a></td>
+</tr>
+<tr>
+<td>container-structure-test</td>
+<td><a href="https://github.com/FeryET/asdf-container-structure-test" rel="noopener noreferrer">FeryET/asdf-container-structure-test</a></td>
+</tr>
+<tr>
+<td>cookiecutter</td>
+<td><a href="https://github.com/shawon-crosen/asdf-cookiecutter" rel="noopener noreferrer">shawon-crosen/asdf-cookiecutter</a></td>
+</tr>
+<tr>
+<td>Copier</td>
+<td><a href="https://github.com/looztra/asdf-copier" rel="noopener noreferrer">looztra/asdf-copier</a></td>
+</tr>
+<tr>
+<td>Copper</td>
+<td><a href="https://github.com/vladlosev/asdf-copper" rel="noopener noreferrer">vladlosev/asdf-copper</a></td>
+</tr>
+<tr>
+<td>Coq</td>
+<td><a href="https://github.com/gingerhot/asdf-coq" rel="noopener noreferrer">gingerhot/asdf-coq</a></td>
+</tr>
+<tr>
+<td>cosign</td>
+<td><a href="https://gitlab.com/wt0f/asdf-cosign" rel="noopener noreferrer">wt0f/asdf-cosign</a></td>
+</tr>
+<tr>
+<td>coursier</td>
+<td><a href="https://github.com/jiahuili430/asdf-coursier" rel="noopener noreferrer">jiahuili430/asdf-coursier</a></td>
+</tr>
+<tr>
+<td>crane</td>
+<td><a href="https://github.com/dmpe/asdf-crane" rel="noopener noreferrer">dmpe/asdf-crane</a></td>
+</tr>
+<tr>
+<td>crc</td>
+<td><a href="https://github.com/sqtran/asdf-crc" rel="noopener noreferrer">sqtran/asdf-crc</a></td>
+</tr>
+<tr>
+<td>credhub</td>
+<td><a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf" rel="noopener noreferrer">vmware-tanzu/tanzu-plug-in-for-asdf</a></td>
+</tr>
+<tr>
+<td>crictl</td>
+<td><a href="https://github.com/FairwindsOps/asdf-crictl" rel="noopener noreferrer">FairwindsOps/asdf-crictl</a></td>
+</tr>
+<tr>
+<td>crossplane-cli</td>
+<td><a href="https://github.com/joke/asdf-crossplane-cli" rel="noopener noreferrer">joke/asdf-crossplane-cli</a></td>
+</tr>
+<tr>
+<td>ctlptl</td>
+<td><a href="https://github.com/ezcater/asdf-ctlptl" rel="noopener noreferrer">ezcater/asdf-ctlptl</a></td>
+</tr>
+<tr>
+<td>Crystal</td>
+<td><a href="https://github.com/asdf-community/asdf-crystal" rel="noopener noreferrer">asdf-community/asdf-crystal</a></td>
+</tr>
+<tr>
+<td>ctop</td>
+<td><a href="https://github.com/NeoHsu/asdf-ctop" rel="noopener noreferrer">NeoHsu/asdf-ctop</a></td>
+</tr>
+<tr>
+<td>CUE</td>
+<td><a href="https://github.com/asdf-community/asdf-cue" rel="noopener noreferrer">asdf-community/asdf-cue</a></td>
+</tr>
+<tr>
+<td>cyclonedx</td>
+<td><a href="https://github.com/xeedio/asdf-cyclonedx" rel="noopener noreferrer">xeedio/asdf-cyclonedx</a></td>
+</tr>
+<tr>
+<td>D (DMD)</td>
+<td><a href="https://github.com/sylph01/asdf-dmd" rel="noopener noreferrer">sylph01/asdf-dmd</a></td>
+</tr>
+<tr>
+<td>dagger</td>
+<td><a href="https://github.com/virtualstaticvoid/asdf-dagger" rel="noopener noreferrer">virtualstaticvoid/asdf-dagger</a></td>
+</tr>
+<tr>
+<td>dapr</td>
+<td><a href="https://github.com/asdf-community/asdf-dapr-cli.git" rel="noopener noreferrer">asdf-community/asdf-dapr-cli</a></td>
+</tr>
+<tr>
+<td>Dart</td>
+<td><a href="https://github.com/PatOConnor43/asdf-dart" rel="noopener noreferrer">PatOConnor43/asdf-dart</a></td>
+</tr>
+<tr>
+<td>Dasel</td>
+<td><a href="https://github.com/asdf-community/asdf-dasel" rel="noopener noreferrer">asdf-community/asdf-dasel</a></td>
+</tr>
+<tr>
+<td>datree</td>
+<td><a href="https://github.com/lukeab/asdf-datree" rel="noopener noreferrer">lukeab/asdf-datree</a></td>
+</tr>
+<tr>
+<td>Daytona</td>
+<td><a href="https://github.com/CrouchingMuppet/asdf-daytona" rel="noopener noreferrer">CrouchingMuppet/asdf-daytona</a></td>
+</tr>
+<tr>
+<td>Dbmate</td>
+<td><a href="https://github.com/juusujanar/asdf-dbmate" rel="noopener noreferrer">juusujanar/asdf-dbmate</a></td>
+</tr>
+<tr>
+<td>Deck</td>
+<td><a href="https://github.com/nutellinoit/asdf-deck" rel="noopener noreferrer">nutellinoit/asdf-deck</a></td>
+</tr>
+<tr>
+<td>Delta</td>
+<td><a href="https://github.com/andweeb/asdf-delta" rel="noopener noreferrer">andweeb/asdf-delta</a></td>
+</tr>
+<tr>
+<td>Deno</td>
+<td><a href="https://github.com/asdf-community/asdf-deno" rel="noopener noreferrer">asdf-community/asdf-deno</a></td>
+</tr>
+<tr>
+<td>Dep</td>
+<td><a href="https://github.com/paxosglobal/asdf-dep" rel="noopener noreferrer">paxosglobal/asdf-dep</a></td>
+</tr>
+<tr>
+<td>depot</td>
+<td><a href="https://github.com/depot/asdf-depot" rel="noopener noreferrer">depot/asdf-depot</a></td>
+</tr>
+<tr>
+<td>Desk</td>
+<td><a href="https://github.com/endorama/asdf-desk" rel="noopener noreferrer">endorama/asdf-desk</a></td>
+</tr>
+<tr>
+<td>devpod-cli</td>
+<td><a href="https://github.com/salemgolemugoo/asdf-devpod-cli" rel="noopener noreferrer">salemgolemugoo/asdf-devpod-cli</a></td>
+</tr>
+<tr>
+<td>DevSpace</td>
+<td><a href="https://github.com/NeoHsu/asdf-devspace" rel="noopener noreferrer">NeoHsu/asdf-devspace</a></td>
+</tr>
+<tr>
+<td>DevStream</td>
+<td><a href="https://github.com/zhenyuanlau/asdf-dtm" rel="noopener noreferrer">zhenyuanlau/asdf-dtm</a></td>
+</tr>
+<tr>
+<td>dhall</td>
+<td><a href="https://github.com/aaaaninja/asdf-dhall" rel="noopener noreferrer">aaaaninja/asdf-dhall</a></td>
+</tr>
+<tr>
+<td>difftastic</td>
+<td><a href="https://github.com/volf52/asdf-difftastic" rel="noopener noreferrer">volf52/asdf-difftastic</a></td>
+</tr>
+<tr>
+<td>digdag</td>
+<td><a href="https://github.com/jtakakura/asdf-digdag" rel="noopener noreferrer">jtakakura/asdf-digdag</a></td>
+</tr>
+<tr>
+<td>direnv</td>
+<td><a href="https://github.com/asdf-community/asdf-direnv" rel="noopener noreferrer">asdf-community/asdf-direnv</a></td>
+</tr>
+<tr>
+<td>dive</td>
+<td><a href="https://github.com/looztra/asdf-dive" rel="noopener noreferrer">looztra/asdf-dive</a></td>
+</tr>
+<tr>
+<td>djinni</td>
+<td><a href="https://github.com/cross-language-cpp/asdf-djinni" rel="noopener noreferrer">cross-language-cpp/asdf-djinni</a></td>
+</tr>
+<tr>
+<td>docker-slim</td>
+<td><a href="https://github.com/xataz/asdf-docker-slim" rel="noopener noreferrer">xataz/asdf-docker-slim</a></td>
+</tr>
+<tr>
+<td>docker-compose-v1</td>
+<td><a href="https://github.com/yilas/asdf-docker-compose-v1" rel="noopener noreferrer">yilas/asdf-docker-compose-v1</a></td>
+</tr>
+<tr>
+<td>dockle</td>
+<td><a href="https://github.com/mathew-fleisch/asdf-dockle" rel="noopener noreferrer">mathew-fleisch/asdf-dockle</a></td>
+</tr>
+<tr>
+<td>doctl</td>
+<td><a href="https://github.com/bstoutenburgh/asdf-doctl" rel="noopener noreferrer">bstoutenburgh/asdf-doctl</a></td>
+</tr>
+<tr>
+<td>docToolchain</td>
+<td><a href="https://github.com/joschi/asdf-doctoolchain" rel="noopener noreferrer">joschi/asdf-doctoolchain</a></td>
+</tr>
+<tr>
+<td>docuum</td>
+<td><a href="https://github.com/bradym/asdf-docuum" rel="noopener noreferrer">bradym/asdf-docuum</a></td>
+</tr>
+<tr>
+<td>dojo</td>
+<td><a href="https://github.com/dojoengine/asdf-dojo" rel="noopener noreferrer">dojoengine/asdf-dojo</a></td>
+</tr>
+<tr>
+<td>DOME</td>
+<td><a href="https://github.com/jtakakura/asdf-dome" rel="noopener noreferrer">jtakakura/asdf-dome</a></td>
+</tr>
+<tr>
+<td>doppler</td>
+<td><a href="https://github.com/takutakahashi/asdf-doppler" rel="noopener noreferrer">takutakahashi/asdf-doppler</a></td>
+</tr>
+<tr>
+<td>dotenv-linter</td>
+<td><a href="https://github.com/wesleimp/asdf-dotenv-linter" rel="noopener noreferrer">wesleimp/asdf-dotenv-linter</a></td>
+</tr>
+<tr>
+<td>dotenvx</td>
+<td><a href="https://github.com/jgburet/asdf-dotenvx" rel="noopener noreferrer">jgburet/asdf-dotenvx</a></td>
+</tr>
+<tr>
+<td>Dotty</td>
+<td><a href="https://github.com/asdf-community/asdf-dotty" rel="noopener noreferrer">asdf-community/asdf-dotty</a></td>
+</tr>
+<tr>
+<td>dprint</td>
+<td><a href="https://github.com/asdf-community/asdf-dprint" rel="noopener noreferrer">asdf-community/asdf-dprint</a></td>
+</tr>
+<tr>
+<td>Draft</td>
+<td><a href="https://github.com/kristoflemmens/asdf-draft" rel="noopener noreferrer">kristoflemmens/asdf-draft</a></td>
+</tr>
+<tr>
+<td>Driftctl</td>
+<td><a href="https://github.com/nlamirault/asdf-driftctl" rel="noopener noreferrer">nlamirault/asdf-driftctl</a></td>
+</tr>
+<tr>
+<td>drone</td>
+<td><a href="https://github.com/virtualstaticvoid/asdf-drone" rel="noopener noreferrer">virtualstaticvoid/asdf-drone</a></td>
+</tr>
+<tr>
+<td>dst</td>
+<td><a href="https://github.com/datasprayio/asdf-dst" rel="noopener noreferrer">datasprayio/asdf-dst</a></td>
+</tr>
+<tr>
+<td>dt</td>
+<td><a href="https://github.com/so-dang-cool/asdf-dt" rel="noopener noreferrer">so-dang-cool/asdf-dt</a></td>
+</tr>
+<tr>
+<td>duf</td>
+<td><a href="https://github.com/NeoHsu/asdf-duf" rel="noopener noreferrer">NeoHsu/asdf-duf</a></td>
+</tr>
+<tr>
+<td>dust</td>
+<td><a href="https://github.com/looztra/asdf-dust" rel="noopener noreferrer">looztra/asdf-dust</a></td>
+</tr>
+<tr>
+<td>DVC</td>
+<td><a href="https://github.com/fwfurtado/asdf-dvc" rel="noopener noreferrer">fwfurtado/asdf-dvc</a></td>
+</tr>
+<tr>
+<td>dyff</td>
+<td><a href="https://gitlab.com/wt0f/asdf-dyff" rel="noopener noreferrer">wt0f/asdf-dyff</a></td>
+</tr>
+<tr>
+<td>dynatrace-monaco</td>
+<td><a href="https://github.com/nsaputro/asdf-monaco" rel="noopener noreferrer">nsaputro/asdf-monaco</a></td>
+</tr>
+<tr>
+<td>e1s</td>
+<td><a href="https://github.com/tbobm/asdf-e1s" rel="noopener noreferrer">tbobm/asdf-e1s</a></td>
+</tr>
+<tr>
+<td>earthly</td>
+<td><a href="https://github.com/YR-ZR0/asdf-earthly" rel="noopener noreferrer">YR-ZR0/asdf-earthly</a></td>
+</tr>
+<tr>
+<td>ecspresso</td>
+<td><a href="https://github.com/kayac/asdf-ecspresso" rel="noopener noreferrer">kayac/asdf-ecspresso</a></td>
+</tr>
+<tr>
+<td>editorconfig-checker</td>
+<td><a href="https://github.com/gabitchov/asdf-editorconfig-checker" rel="noopener noreferrer">gabitchov/asdf-editorconfig-checker</a></td>
+</tr>
+<tr>
+<td>ejson</td>
+<td><a href="https://github.com/cipherstash/asdf-ejson" rel="noopener noreferrer">cipherstash/asdf-ejson</a></td>
+</tr>
+<tr>
+<td>eksctl</td>
+<td><a href="https://github.com/elementalvoid/asdf-eksctl" rel="noopener noreferrer">elementalvoid/asdf-eksctl</a></td>
+</tr>
+<tr>
+<td>eks-node-viewer</td>
+<td><a href="https://github.com/haad/asdf-eks-node-viewer" rel="noopener noreferrer">haad/asdf-eks-node-viewer</a></td>
+</tr>
+<tr>
+<td>elixir-ls</td>
+<td><a href="https://github.com/juantascon/asdf-elixir-ls" rel="noopener noreferrer">juantascon/asdf-elixir-ls</a></td>
+</tr>
+<tr>
+<td>Elasticsearch</td>
+<td><a href="https://github.com/asdf-community/asdf-elasticsearch" rel="noopener noreferrer">asdf-community/asdf-elasticsearch</a></td>
+</tr>
+<tr>
+<td>Elixir</td>
+<td><a href="https://github.com/asdf-vm/asdf-elixir" rel="noopener noreferrer">asdf-vm/asdf-elixir</a></td>
+</tr>
+<tr>
+<td>Elm</td>
+<td><a href="https://github.com/asdf-community/asdf-elm" rel="noopener noreferrer">asdf-community/asdf-elm</a></td>
+</tr>
+<tr>
+<td>embulk</td>
+<td><a href="https://github.com/yuokada/asdf-embulk" rel="noopener noreferrer">yuokada/asdf-embulk</a></td>
+</tr>
+<tr>
+<td>Emscripten SDK</td>
+<td><a href="https://github.com/RobLoach/asdf-emsdk" rel="noopener noreferrer">RobLoach/asdf-emsdk</a></td>
+</tr>
+<tr>
+<td>EnvCLI</td>
+<td><a href="https://github.com/zekker6/asdf-envcli" rel="noopener noreferrer">zekker6/asdf-envcli</a></td>
+</tr>
+<tr>
+<td>envsubst</td>
+<td><a href="https://github.com/dex4er/asdf-envsubst" rel="noopener noreferrer">dex4er/asdf-envsubst</a></td>
+</tr>
+<tr>
+<td>Ephemeral Postgres</td>
+<td><a href="https://github.com/smashedtoatoms/asdf-ephemeral-postgres" rel="noopener noreferrer">smashedtoatoms/asdf-ephemeral-postgres</a></td>
+</tr>
+<tr>
+<td>Erlang</td>
+<td><a href="https://github.com/asdf-vm/asdf-erlang" rel="noopener noreferrer">asdf-vm/asdf-erlang</a></td>
+</tr>
+<tr>
+<td>esc</td>
+<td><a href="https://github.com/fxsalazar/asdf-esc" rel="noopener noreferrer">fxsalazar/asdf-esc</a></td>
+</tr>
+<tr>
+<td>esy</td>
+<td><a href="https://github.com/asdf-community/asdf-esy" rel="noopener noreferrer">asdf-community/asdf-esy</a></td>
+</tr>
+<tr>
+<td>etcd</td>
+<td><a href="https://github.com/particledecay/asdf-etcd" rel="noopener noreferrer">particledecay/asdf-etcd</a></td>
+</tr>
+<tr>
+<td>Evans</td>
+<td><a href="https://github.com/goki90210/asdf-evans" rel="noopener noreferrer">goki90210/asdf-evans</a></td>
+</tr>
+<tr>
+<td>exa</td>
+<td><a href="https://github.com/nyrst/asdf-exa" rel="noopener noreferrer">nyrst/asdf-exa</a></td>
+</tr>
+<tr>
+<td>exercism</td>
+<td><a href="https://gitlab.com/bheesham/asdf-exercism" rel="noopener noreferrer">bheesham/asdf-exercism</a></td>
+</tr>
+<tr>
+<td>eza</td>
+<td><a href="https://github.com/lwiechec/asdf-eza" rel="noopener noreferrer">lwiechec/asdf-eza</a></td>
+</tr>
+<tr>
+<td>falco</td>
+<td><a href="https://github.com/ronnnnn/asdf-falco" rel="noopener noreferrer">ronnnnn/asdf-falco</a></td>
+</tr>
+<tr>
+<td>fastlane</td>
+<td><a href="https://github.com/mollyIV/asdf-fastlane" rel="noopener noreferrer">mollyIV/asdf-fastlane</a></td>
+</tr>
+<tr>
+<td>fd</td>
+<td><a href="https://gitlab.com/wt0f/asdf-fd" rel="noopener noreferrer">wt0f/asdf-fd</a></td>
+</tr>
+<tr>
+<td>ffizer</td>
+<td><a href="https://github.com/ffizer/asdf-ffizer" rel="noopener noreferrer">ffizer/asdf-ffizer</a></td>
+</tr>
+<tr>
+<td>FFmpeg</td>
+<td><a href="https://github.com/acj/asdf-ffmpeg" rel="noopener noreferrer">acj/asdf-ffmpeg</a></td>
+</tr>
+<tr>
+<td>figma-export</td>
+<td><a href="https://github.com/younke/asdf-figma-export" rel="noopener noreferrer">younke/asdf-figma-export</a></td>
+</tr>
+<tr>
+<td>fillin</td>
+<td><a href="https://github.com/ouest/asdf-fillin" rel="noopener noreferrer">ouest/asdf-fillin</a></td>
+</tr>
+<tr>
+<td>firebase</td>
+<td><a href="https://github.com/jthegedus/asdf-firebase" rel="noopener noreferrer">jthegedus/asdf-firebase</a></td>
+</tr>
+<tr>
+<td>fission</td>
+<td><a href="https://github.com/virtualstaticvoid/asdf-fission" rel="noopener noreferrer">virtualstaticvoid/asdf-fission</a></td>
+</tr>
+<tr>
+<td>Flamingo</td>
+<td><a href="https://github.com/log2/asdf-flamingo" rel="noopener noreferrer">log2/asdf-flamingo</a></td>
+</tr>
+<tr>
+<td>flarectl</td>
+<td><a href="https://github.com/ORCID/asdf-flarectl" rel="noopener noreferrer">ORCID/asdf-flarectl</a></td>
+</tr>
+<tr>
+<td>flatc</td>
+<td><a href="https://github.com/TheOpenDictionary/asdf-flatc" rel="noopener noreferrer">TheOpenDictionary/asdf-flatc</a></td>
+</tr>
+<tr>
+<td>Flutter</td>
+<td><a href="https://github.com/oae/asdf-flutter" rel="noopener noreferrer">oae/asdf-flutter</a></td>
+</tr>
+<tr>
+<td>FlutterGen</td>
+<td><a href="https://github.com/FlutterGen/asdf-fluttergen" rel="noopener noreferrer">FlutterGen/asdf-fluttergen</a></td>
+</tr>
+<tr>
+<td>Flux2</td>
+<td><a href="https://github.com/tablexi/asdf-flux2" rel="noopener noreferrer">tablexi/asdf-flux2</a></td>
+</tr>
+<tr>
+<td>Fluxctl</td>
+<td><a href="https://github.com/stefansedich/asdf-fluxctl" rel="noopener noreferrer">stefansedich/asdf-fluxctl</a></td>
+</tr>
+<tr>
+<td>fly</td>
+<td><a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf" rel="noopener noreferrer">vmware-tanzu/tanzu-plug-in-for-asdf</a></td>
+</tr>
+<tr>
+<td>flyctl</td>
+<td><a href="https://github.com/chessmango/asdf-flyctl" rel="noopener noreferrer">chessmango/asdf-flyctl</a></td>
+</tr>
+<tr>
+<td>flyway</td>
+<td><a href="https://github.com/junminahn/asdf-flyway" rel="noopener noreferrer">junminahn/asdf-flyway</a></td>
+</tr>
+<tr>
+<td>frankenphp</td>
+<td><a href="https://github.com/theutz/asdf-frankenphp" rel="noopener noreferrer">theutz/asdf-frankenphp</a></td>
+</tr>
+<tr>
+<td>func-e</td>
+<td><a href="https://github.com/carnei-ro/asdf-func-e" rel="noopener noreferrer">carnei-ro/asdf-func-e</a></td>
+</tr>
+<tr>
+<td>Furyctl</td>
+<td><a href="https://github.com/sighupio/asdf-furyctl" rel="noopener noreferrer">sighupio/asdf-furyctl</a></td>
+</tr>
+<tr>
+<td>fx</td>
+<td><a href="https://gitlab.com/wt0f/asdf-fx" rel="noopener noreferrer">wt0f/asdf-fx</a></td>
+</tr>
+<tr>
+<td>fzf</td>
+<td><a href="https://github.com/kompiro/asdf-fzf" rel="noopener noreferrer">kompiro/asdf-fzf</a></td>
+</tr>
+<tr>
+<td>Gauche</td>
+<td><a href="https://github.com/sakuro/asdf-gauche" rel="noopener noreferrer">sakuro/asdf-gauche</a></td>
+</tr>
+<tr>
+<td>gallery-dl</td>
+<td><a href="https://github.com/iul1an/asdf-gallery-dl" rel="noopener noreferrer">iul1an/asdf-gallery-dl</a></td>
+</tr>
+<tr>
+<td>gam</td>
+<td><a href="https://github.com/offbyone/asdf-gam" rel="noopener noreferrer">offbyone/asdf-gam</a></td>
+</tr>
+<tr>
+<td>gator</td>
+<td><a href="https://github.com/MxNxPx/asdf-gator" rel="noopener noreferrer">MxNxPx/asdf-gator</a></td>
+</tr>
+<tr>
+<td>garden-cli</td>
+<td><a href="https://github.com/rynkowsg/asdf-garden-cli" rel="noopener noreferrer">rynkowsg/asdf-garden-cli</a></td>
+</tr>
+<tr>
+<td>gcc-arm-none-eabi</td>
+<td><a href="https://github.com/dlech/asdf-gcc-arm-none-eabi" rel="noopener noreferrer">dlech/asdf-gcc-arm-none-eabi</a></td>
+</tr>
+<tr>
+<td>gcloud</td>
+<td><a href="https://github.com/jthegedus/asdf-gcloud" rel="noopener noreferrer">jthegedus/asdf-gcloud</a></td>
+</tr>
+<tr>
+<td>getenvoy</td>
+<td><a href="https://github.com/asdf-community/asdf-getenvoy" rel="noopener noreferrer">asdf-community/asdf-getenvoy</a></td>
+</tr>
+<tr>
+<td>GHC</td>
+<td><a href="https://github.com/sestrella/asdf-ghcup" rel="noopener noreferrer">sestrella/asdf-ghcup</a></td>
+</tr>
+<tr>
+<td>ghidra</td>
+<td><a href="https://github.com/Honeypot95/asdf-ghidra" rel="noopener noreferrer">Honeypot95/asdf-ghidra</a></td>
+</tr>
+<tr>
+<td>ghorg</td>
+<td><a href="https://github.com/gbloquel/asdf-ghorg" rel="noopener noreferrer">gbloquel/asdf-ghorg</a></td>
+</tr>
+<tr>
+<td>ghostty</td>
+<td><a href="https://github.com/ilvez/asdf-ghostty" rel="noopener noreferrer">ilvez/asdf-ghostty</a></td>
+</tr>
+<tr>
+<td>ghq</td>
+<td><a href="https://github.com/kajisha/asdf-ghq" rel="noopener noreferrer">kajisha/asdf-ghq</a></td>
+</tr>
+<tr>
+<td>ginkgo</td>
+<td><a href="https://github.com/jimmidyson/asdf-ginkgo" rel="noopener noreferrer">jimmidyson/asdf-ginkgo</a></td>
+</tr>
+<tr>
+<td>git</td>
+<td><a href="https://gitlab.com/jcaigitlab/asdf-git" rel="noopener noreferrer">jcaigitlab/asdf-git</a></td>
+</tr>
+<tr>
+<td>git-chglog</td>
+<td><a href="https://github.com/GoodwayGroup/asdf-git-chglog" rel="noopener noreferrer">GoodwayGroup/asdf-git-chglog</a></td>
+</tr>
+<tr>
+<td>git-cliff</td>
+<td><a href="https://github.com/jylenhof/asdf-git-cliff" rel="noopener noreferrer">jylenhof/asdf-git-cliff</a></td>
+</tr>
+<tr>
+<td>git-lfs</td>
+<td><a href="https://github.com/DanieleIsoni/asdf-git-lfs" rel="noopener noreferrer">DanieleIsoni/asdf-git-lfs</a></td>
+</tr>
+<tr>
+<td>gitconfig</td>
+<td><a href="https://github.com/0ghny/asdf-gitconfig" rel="noopener noreferrer">0ghny/asdf-gitconfig</a></td>
+</tr>
+<tr>
+<td>GitHub CLI</td>
+<td><a href="https://github.com/bartlomiejdanek/asdf-github-cli" rel="noopener noreferrer">bartlomiejdanek/asdf-github-cli</a></td>
+</tr>
+<tr>
+<td>GitHub Markdown ToC</td>
+<td><a href="https://github.com/skyzyx/asdf-github-markdown-toc" rel="noopener noreferrer">skyzyx/asdf-github-markdown-toc</a></td>
+</tr>
+<tr>
+<td>Gitleaks</td>
+<td><a href="https://github.com/jmcvetta/asdf-gitleaks" rel="noopener noreferrer">jmcvetta/asdf-gitleaks</a></td>
+</tr>
+<tr>
+<td>Gitsign</td>
+<td><a href="https://github.com/spencergilbert/asdf-gitsign" rel="noopener noreferrer">spencergilbert/asdf-gitsign</a></td>
+</tr>
+<tr>
+<td>gitui</td>
+<td><a href="https://github.com/looztra/asdf-gitui" rel="noopener noreferrer">looztra/asdf-gitui</a></td>
+</tr>
+<tr>
+<td>GLab</td>
+<td><a href="https://github.com/particledecay/asdf-glab" rel="noopener noreferrer">particledecay/asdf-glab</a></td>
+</tr>
+<tr>
+<td>Gleam</td>
+<td><a href="https://github.com/vic/asdf-gleam" rel="noopener noreferrer">vic/asdf-gleam</a></td>
+</tr>
+<tr>
+<td>Glen</td>
+<td><a href="https://github.com/bradym/asdf-glen" rel="noopener noreferrer">bradym/asdf-glen</a></td>
+</tr>
+<tr>
+<td>glooctl</td>
+<td><a href="https://github.com/halilkaya/asdf-glooctl" rel="noopener noreferrer">halilkaya/asdf-glooctl</a></td>
+</tr>
+<tr>
+<td>glow</td>
+<td><a href="https://github.com/chessmango/asdf-glow" rel="noopener noreferrer">chessmango/asdf-glow</a></td>
+</tr>
+<tr>
+<td>GNU Guile</td>
+<td><a href="https://github.com/indiebrain/asdf-guile" rel="noopener noreferrer">indiebrain/asdf-guile</a></td>
+</tr>
+<tr>
+<td>GNU nano</td>
+<td><a href="https://github.com/mfakane/asdf-nano" rel="noopener noreferrer">mfakane/asdf-nano</a></td>
+</tr>
+<tr>
+<td>Go</td>
+<td><a href="https://github.com/asdf-community/asdf-golang" rel="noopener noreferrer">asdf-community/asdf-golang</a></td>
+</tr>
+<tr>
+<td>go-sdk</td>
+<td><a href="https://github.com/yacchi/asdf-go-sdk" rel="noopener noreferrer">yacchi/asdf-go-sdk</a></td>
+</tr>
+<tr>
+<td>go-containerregistry</td>
+<td><a href="https://github.com/dex4er/asdf-go-containerregistry" rel="noopener noreferrer">dex4er/asdf-go-containerregistry</a></td>
+</tr>
+<tr>
+<td>go-getter</td>
+<td><a href="https://github.com/ryodocx/asdf-go-getter" rel="noopener noreferrer">ryodocx/asdf-go-getter</a></td>
+</tr>
+<tr>
+<td>go-jsonnet</td>
+<td><a href="https://gitlab.com/craigfurman/asdf-go-jsonnet" rel="noopener noreferrer">craigfurman/asdf-go-jsonnet</a></td>
+</tr>
+<tr>
+<td>go-jira</td>
+<td><a href="https://github.com/dguihal/asdf-go-jira" rel="noopener noreferrer">dguihal/asdf-go-jira</a></td>
+</tr>
+<tr>
+<td>go-junit-report</td>
+<td><a href="https://github.com/jwillker/asdf-go-junit-report" rel="noopener noreferrer">jwillker/asdf-go-junit-report</a></td>
+</tr>
+<tr>
+<td>go-swagger</td>
+<td><a href="https://github.com/jfreeland/asdf-go-swagger" rel="noopener noreferrer">jfreeland/asdf-go-swagger</a></td>
+</tr>
+<tr>
+<td>goconvey</td>
+<td><a href="https://github.com/therounds-contrib/asdf-goconvey" rel="noopener noreferrer">therounds-contrib/asdf-goconvey</a></td>
+</tr>
+<tr>
+<td>gofumpt</td>
+<td><a href="https://github.com/looztra/asdf-gofumpt" rel="noopener noreferrer">looztra/asdf-gofumpt</a></td>
+</tr>
+<tr>
+<td>GoHugo</td>
+<td><a href="https://github.com/nklmilojevic/asdf-hugo" rel="noopener noreferrer">nklmilojevic/asdf-hugo</a></td>
+</tr>
+<tr>
+<td>gobackup</td>
+<td><a href="https://github.com/0ghny/asdf-gobackup" rel="noopener noreferrer">0ghny/asdf-gobackup</a></td>
+</tr>
+<tr>
+<td>gojq</td>
+<td><a href="https://github.com/jimmidyson/asdf-gojq" rel="noopener noreferrer">jimmidyson/asdf-gojq</a></td>
+</tr>
+<tr>
+<td>golangci-lint</td>
+<td><a href="https://github.com/hypnoglow/asdf-golangci-lint" rel="noopener noreferrer">hypnoglow/asdf-golangci-lint</a></td>
+</tr>
+<tr>
+<td>Go Migrate</td>
+<td><a href="https://github.com/joschi/asdf-gomigrate" rel="noopener noreferrer">joschi/asdf-gomigrate</a></td>
+</tr>
+<tr>
+<td>gomplate</td>
+<td><a href="https://github.com/sneakybeaky/asdf-gomplate" rel="noopener noreferrer">sneakybeaky/asdf-gomplate</a></td>
+</tr>
+<tr>
+<td>Gopass</td>
+<td><a href="https://github.com/trallnag/asdf-gopass" rel="noopener noreferrer">trallnag/asdf-gopass</a></td>
+</tr>
+<tr>
+<td>GoReleaser</td>
+<td><a href="https://github.com/kforsthoevel/asdf-goreleaser" rel="noopener noreferrer">kforsthoevel/asdf-goreleaser</a></td>
+</tr>
+<tr>
+<td>Goss</td>
+<td><a href="https://github.com/raimon49/asdf-goss" rel="noopener noreferrer">raimon49/asdf-goss</a></td>
+</tr>
+<tr>
+<td>GraalVM</td>
+<td><a href="https://github.com/asdf-community/asdf-graalvm" rel="noopener noreferrer">asdf-community/asdf-graalvm</a></td>
+</tr>
+<tr>
+<td>Gradle</td>
+<td><a href="https://github.com/rfrancis/asdf-gradle" rel="noopener noreferrer">rfrancis/asdf-gradle</a></td>
+</tr>
+<tr>
+<td>Gradle Profiler</td>
+<td><a href="https://github.com/joschi/asdf-gradle-profiler" rel="noopener noreferrer">joschi/asdf-gradle-profiler</a></td>
+</tr>
+<tr>
+<td>Grails</td>
+<td><a href="https://github.com/weibemoura/asdf-grails" rel="noopener noreferrer">weibemoura/asdf-grails</a></td>
+</tr>
+<tr>
+<td>Grain</td>
+<td><a href="https://github.com/cometkim/asdf-grain" rel="noopener noreferrer">cometkim/asdf-grain</a></td>
+</tr>
+<tr>
+<td>Granted</td>
+<td><a href="https://github.com/dex4er/asdf-granted" rel="noopener noreferrer">dex4er/asdf-granted</a></td>
+</tr>
+<tr>
+<td>grex</td>
+<td><a href="https://github.com/ouest/asdf-grex" rel="noopener noreferrer">ouest/asdf-grex</a></td>
+</tr>
+<tr>
+<td>Groovy</td>
+<td><a href="https://github.com/weibemoura/asdf-groovy" rel="noopener noreferrer">weibemoura/asdf-groovy</a></td>
+</tr>
+<tr>
+<td>grpcurl</td>
+<td><a href="https://github.com/asdf-community/asdf-grpcurl" rel="noopener noreferrer">asdf-community/asdf-grpcurl</a></td>
+</tr>
+<tr>
+<td>grpc-health-probe</td>
+<td><a href="https://github.com/DanieleIsoni/asdf-grpc-health-probe" rel="noopener noreferrer">DanieleIsoni/asdf-grpc-health-probe</a></td>
+</tr>
+<tr>
+<td>grype</td>
+<td><a href="https://github.com/poikilotherm/asdf-grype" rel="noopener noreferrer">poikilotherm/asdf-grype</a></td>
+</tr>
+<tr>
+<td>gum</td>
+<td><a href="https://github.com/lwiechec/asdf-gum" rel="noopener noreferrer">lwiechec/asdf-gum</a></td>
+</tr>
+<tr>
+<td>gwvault</td>
+<td><a href="https://github.com/GoodwayGroup/asdf-gwvault" rel="noopener noreferrer">GoodwayGroup/asdf-gwvault</a></td>
+</tr>
+<tr>
+<td>hadolint</td>
+<td><a href="https://github.com/devlincashman/asdf-hadolint" rel="noopener noreferrer">devlincashman/asdf-hadolint</a></td>
+</tr>
+<tr>
+<td>Hamler</td>
+<td><a href="https://github.com/scudelletti/asdf-hamler" rel="noopener noreferrer">scudelletti/asdf-hamler</a></td>
+</tr>
+<tr>
+<td>has</td>
+<td><a href="https://github.com/sylvainmetayer/asdf-has" rel="noopener noreferrer">sylvainmetayer/asdf-has</a></td>
+</tr>
+<tr>
+<td>Haskell</td>
+<td><a href="https://github.com/asdf-community/asdf-haskell" rel="noopener noreferrer">asdf-community/asdf-haskell</a></td>
+</tr>
+<tr>
+<td>Haskell Language Server (HLS)</td>
+<td><a href="https://github.com/sestrella/asdf-ghcup" rel="noopener noreferrer">sestrella/asdf-ghcup</a></td>
+</tr>
+<tr>
+<td>Hasura-cli</td>
+<td><a href="https://github.com/gurukulkarni/asdf-hasura" rel="noopener noreferrer">gurukulkarni/asdf-hasura</a></td>
+</tr>
+<tr>
+<td>Haxe</td>
+<td><a href="https://github.com/asdf-community/asdf-haxe" rel="noopener noreferrer">asdf-community/asdf-haxe</a></td>
+</tr>
+<tr>
+<td>hcl2json</td>
+<td><a href="https://github.com/dex4er/asdf-hcl2json" rel="noopener noreferrer">dex4er/asdf-hcl2json</a></td>
+</tr>
+<tr>
+<td>hcloud</td>
+<td><a href="https://github.com/chessmango/asdf-hcloud" rel="noopener noreferrer">chessmango/asdf-hcloud</a></td>
+</tr>
+<tr>
+<td>hcp</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>Helix Editor</td>
+<td><a href="https://github.com/CSergienko/asdf-helix" rel="noopener noreferrer">CSergienko/asdf-helix</a></td>
+</tr>
+<tr>
+<td>Helm</td>
+<td><a href="https://github.com/Antiarchitect/asdf-helm" rel="noopener noreferrer">Antiarchitect/asdf-helm</a></td>
+</tr>
+<tr>
+<td>Helm Chart Releaser</td>
+<td><a href="https://github.com/Antiarchitect/asdf-helm-cr" rel="noopener noreferrer">Antiarchitect/asdf-helm-cr</a></td>
+</tr>
+<tr>
+<td>Helm Chart Tester</td>
+<td><a href="https://github.com/tablexi/asdf-helm-ct" rel="noopener noreferrer">tablexi/asdf-helm-ct</a></td>
+</tr>
+<tr>
+<td>Helm Diff</td>
+<td><a href="https://github.com/dex4er/asdf-helm-diff" rel="noopener noreferrer">dex4er/asdf-helm-diff</a></td>
+</tr>
+<tr>
+<td>helm-docs</td>
+<td><a href="https://github.com/sudermanjr/asdf-helm-docs" rel="noopener noreferrer">sudermanjr/asdf-helm-docs</a></td>
+</tr>
+<tr>
+<td>Helmfile</td>
+<td><a href="https://github.com/feniix/asdf-helmfile" rel="noopener noreferrer">feniix/asdf-helmfile</a></td>
+</tr>
+<tr>
+<td>Helmsman</td>
+<td><a href="https://github.com/luisdavim/asdf-helmsman" rel="noopener noreferrer">luisdavim/asdf-helmsman</a></td>
+</tr>
+<tr>
+<td>Hermes</td>
+<td><a href="https://github.com/cometkim/asdf-hermes" rel="noopener noreferrer">cometkim/asdf-hermes</a></td>
+</tr>
+<tr>
+<td>heroku-cli</td>
+<td><a href="https://github.com/treilly94/asdf-heroku-cli" rel="noopener noreferrer">treilly94/asdf-heroku-cli</a></td>
+</tr>
+<tr>
+<td>hey</td>
+<td><a href="https://github.com/raimon49/asdf-hey" rel="noopener noreferrer">raimon49/asdf-hey</a></td>
+</tr>
+<tr>
+<td>hishtory</td>
+<td><a href="https://github.com/asdf-community/asdf-hishtory" rel="noopener noreferrer">asdf-community/asdf-hishtory</a></td>
+</tr>
+<tr>
+<td>hledger</td>
+<td><a href="https://github.com/airtonix/asdf-hledger" rel="noopener noreferrer">airtonix/hledger</a></td>
+</tr>
+<tr>
+<td>hledger-flow</td>
+<td><a href="https://github.com/airtonix/asdf-hledger-flow" rel="noopener noreferrer">airtonix/hledger-flow</a></td>
+</tr>
+<tr>
+<td>hostctl</td>
+<td><a href="https://github.com/svenluijten/asdf-hostctl" rel="noopener noreferrer">svenluijten/asdf-hostctl</a></td>
+</tr>
+<tr>
+<td>httpie-go</td>
+<td><a href="https://github.com/abatilo/asdf-httpie-go" rel="noopener noreferrer">abatilo/asdf-httpie-go</a></td>
+</tr>
+<tr>
+<td>Hub</td>
+<td><a href="https://github.com/claygorman/asdf-hub" rel="noopener noreferrer">claygorman/asdf-hub</a></td>
+</tr>
+<tr>
+<td>Hugo</td>
+<td><a href="https://github.com/NeoHsu/asdf-hugo" rel="noopener noreferrer">NeoHsu/asdf-hugo</a></td>
+</tr>
+<tr>
+<td>Hurl</td>
+<td><a href="https://github.com/raimon49/asdf-hurl" rel="noopener noreferrer">raimon49/asdf-hurl</a></td>
+</tr>
+<tr>
+<td>hwatch</td>
+<td><a href="https://github.com/chessmango/asdf-hwatch" rel="noopener noreferrer">chessmango/asdf-hwatch</a></td>
+</tr>
+<tr>
+<td>Hygen</td>
+<td><a href="https://github.com/brentjanderson/asdf-hygen" rel="noopener noreferrer">brentjanderson/asdf-hygen</a></td>
+</tr>
+<tr>
+<td>Hyperfine</td>
+<td><a href="https://github.com/volf52/asdf-hyperfine" rel="noopener noreferrer">volf52/asdf-hyperfine</a></td>
+</tr>
+<tr>
+<td>iamlive</td>
+<td><a href="https://github.com/chessmango/asdf-iamlive" rel="noopener noreferrer">chessmango/asdf-iamlive</a></td>
+</tr>
+<tr>
+<td>iam-policy-json-to-terraform</td>
+<td><a href="https://github.com/carlduevel/asdf-iam-policy-json-to-terraform" rel="noopener noreferrer">carlduevel/asdf-iam-policy-json-to-terraform</a></td>
+</tr>
+<tr>
+<td>IBLinter</td>
+<td><a href="https://github.com/MaticConradi/asdf-iblinter" rel="noopener noreferrer">MaticConradi/asdf-iblinter</a></td>
+</tr>
+<tr>
+<td>ibmcloud</td>
+<td><a href="https://github.com/triangletodd/asdf-ibmcloud" rel="noopener noreferrer">triangletodd/asdf-ibmcloud</a></td>
+</tr>
+<tr>
+<td>Idris</td>
+<td><a href="https://github.com/asdf-community/asdf-idris" rel="noopener noreferrer">asdf-community/asdf-idris</a></td>
+</tr>
+<tr>
+<td>Idris2</td>
+<td><a href="https://github.com/asdf-community/asdf-idris2" rel="noopener noreferrer">asdf-community/asdf-idris2</a></td>
+</tr>
+<tr>
+<td>ImageMagick</td>
+<td><a href="https://github.com/mangalakader/asdf-imagemagick" rel="noopener noreferrer">mangalakader/asdf-imagemagick</a></td>
+</tr>
+<tr>
+<td>imgpkg</td>
+<td><a href="https://github.com/vmware-tanzu/asdf-carvel" rel="noopener noreferrer">vmware-tanzu/asdf-carvel</a></td>
+</tr>
+<tr>
+<td>Infracost</td>
+<td><a href="https://github.com/dex4er/asdf-infracost" rel="noopener noreferrer">dex4er/asdf-infracost</a></td>
+</tr>
+<tr>
+<td>Inlets</td>
+<td><a href="https://github.com/nlamirault/asdf-inlets" rel="noopener noreferrer">nlamirault/asdf-inlets</a></td>
+</tr>
+<tr>
+<td>Io</td>
+<td><a href="https://github.com/mracos/asdf-io" rel="noopener noreferrer">mracos/asdf-io</a></td>
+</tr>
+<tr>
+<td>Istioctl</td>
+<td><a href="https://github.com/virtualstaticvoid/asdf-istioctl" rel="noopener noreferrer">virtualstaticvoid/asdf-istioctl</a></td>
+</tr>
+<tr>
+<td>Janet</td>
+<td><a href="https://github.com/Jakski/asdf-janet" rel="noopener noreferrer">Jakski/asdf-janet</a></td>
+</tr>
+<tr>
+<td>Java</td>
+<td><a href="https://github.com/halcyon/asdf-java" rel="noopener noreferrer">halcyon/asdf-java</a></td>
+</tr>
+<tr>
+<td>jb</td>
+<td><a href="https://github.com/beardix/asdf-jb" rel="noopener noreferrer">beardix/asdf-jb</a></td>
+</tr>
+<tr>
+<td>jbang</td>
+<td><a href="https://github.com/jbangdev/jbang-asdf" rel="noopener noreferrer">jbangdev/jbang-asdf</a></td>
+</tr>
+<tr>
+<td>jet</td>
+<td><a href="https://github.com/rynkowsg/asdf-jet" rel="noopener noreferrer">rynkowsg/asdf-jet</a></td>
+</tr>
+<tr>
+<td>jetbrains</td>
+<td><a href="https://github.com/asdf-community/asdf-jetbrains" rel="noopener noreferrer">asdf-community/asdf-jetbrains</a></td>
+</tr>
+<tr>
+<td>jfrog-cli</td>
+<td><a href="https://github.com/LozanoMatheus/asdf-jfrog-cli" rel="noopener noreferrer">LozanoMatheus/asdf-jfrog-cli</a></td>
+</tr>
+<tr>
+<td>jib</td>
+<td><a href="https://github.com/joschi/asdf-jib" rel="noopener noreferrer">joschi/asdf-jib</a></td>
+</tr>
+<tr>
+<td>jiq</td>
+<td><a href="https://github.com/chessmango/asdf-jiq" rel="noopener noreferrer">chessmango/asdf-jiq</a></td>
+</tr>
+<tr>
+<td>jless</td>
+<td><a href="https://github.com/jc00ke/asdf-jless" rel="noopener noreferrer">jc00ke/asdf-jless</a></td>
+</tr>
+<tr>
+<td>JMESPath</td>
+<td><a href="https://github.com/skyzyx/asdf-jmespath" rel="noopener noreferrer">skyzyx/asdf-jmespath</a></td>
+</tr>
+<tr>
+<td>jnv</td>
+<td><a href="https://github.com/raimon49/asdf-jnv" rel="noopener noreferrer">raimon49/asdf-jnv</a></td>
+</tr>
+<tr>
+<td>jq</td>
+<td><a href="https://github.com/lsanwick/asdf-jq" rel="noopener noreferrer">lsanwick/asdf-jq</a></td>
+</tr>
+<tr>
+<td>jqp</td>
+<td><a href="https://gitlab.com/wt0f/asdf-jqp" rel="noopener noreferrer">wt0f/asdf-jqp</a></td>
+</tr>
+<tr>
+<td>JReleaser</td>
+<td><a href="https://github.com/joschi/asdf-jreleaser" rel="noopener noreferrer">joschi/asdf-jreleaser</a></td>
+</tr>
+<tr>
+<td>json2k8s</td>
+<td><a href="https://github.com/k14s/asdf-k14s" rel="noopener noreferrer">k14s/asdf-k14s</a></td>
+</tr>
+<tr>
+<td>Jsonnet</td>
+<td><a href="https://github.com/Banno/asdf-jsonnet" rel="noopener noreferrer">Banno/asdf-jsonnet</a></td>
+</tr>
+<tr>
+<td>Julia</td>
+<td><a href="https://github.com/rkyleg/asdf-julia" rel="noopener noreferrer">rkyleg/asdf-julia</a></td>
+</tr>
+<tr>
+<td>Just</td>
+<td><a href="https://github.com/olofvndrhr/asdf-just" rel="noopener noreferrer">olofvndrhr/asdf-just</a></td>
+</tr>
+<tr>
+<td>jx</td>
+<td><a href="https://github.com/vbehar/asdf-jx" rel="noopener noreferrer">vbehar/asdf-jx</a></td>
+</tr>
+<tr>
+<td>k0sctl</td>
+<td><a href="https://github.com/Its-Alex/asdf-plugin-k0sctl" rel="noopener noreferrer">Its-Alex/asdf-plugin-k0sctl</a></td>
+</tr>
+<tr>
+<td>k2tf</td>
+<td><a href="https://github.com/carlduevel/asdf-k2tf" rel="noopener noreferrer">carlduevel/asdf-k2tf</a></td>
+</tr>
+<tr>
+<td>k3d</td>
+<td><a href="https://github.com/spencergilbert/asdf-k3d" rel="noopener noreferrer">spencergilbert/asdf-k3d</a></td>
+</tr>
+<tr>
+<td>k3kcli</td>
+<td><a href="https://github.com/xanmanning/asdf-k3kcli" rel="noopener noreferrer">xanmanning/asdf-k3kcli</a></td>
+</tr>
+<tr>
+<td>k3s</td>
+<td><a href="https://github.com/dmpe/asdf-k3s" rel="noopener noreferrer">dmpe/asdf-k3s</a></td>
+</tr>
+<tr>
+<td>k3sup</td>
+<td><a href="https://github.com/cgroschupp/asdf-k3sup" rel="noopener noreferrer">cgroschupp/asdf-k3sup</a></td>
+</tr>
+<tr>
+<td>k6</td>
+<td><a href="https://github.com/gr1m0h/asdf-k6" rel="noopener noreferrer">gr1m0h/asdf-k6</a></td>
+</tr>
+<tr>
+<td>k9s</td>
+<td><a href="https://github.com/looztra/asdf-k9s" rel="noopener noreferrer">looztra/asdf-k9s</a></td>
+</tr>
+<tr>
+<td>kafka</td>
+<td><a href="https://github.com/ueisele/asdf-kafka" rel="noopener noreferrer">ueisele/asdf-kafka</a></td>
+</tr>
+<tr>
+<td>kafkactl</td>
+<td><a href="https://github.com/anweber/asdf-kafkactl" rel="noopener noreferrer">anweber/asdf-kafkactl</a></td>
+</tr>
+<tr>
+<td>kapp</td>
+<td><a href="https://github.com/vmware-tanzu/asdf-carvel" rel="noopener noreferrer">vmware-tanzu/asdf-carvel</a></td>
+</tr>
+<tr>
+<td>kbld</td>
+<td><a href="https://github.com/vmware-tanzu/asdf-carvel" rel="noopener noreferrer">vmware-tanzu/asdf-carvel</a></td>
+</tr>
+<tr>
+<td>kcat</td>
+<td><a href="https://github.com/douglasdgoulart/asdf-kcat" rel="noopener noreferrer">douglasdgoulart/asdf-kcat</a></td>
+</tr>
+<tr>
+<td>kcctl</td>
+<td><a href="https://github.com/joschi/asdf-kcctl" rel="noopener noreferrer">joschi/asdf-kcctl</a></td>
+</tr>
+<tr>
+<td>kcl</td>
+<td><a href="https://github.com/starkers/asdf-kcl" rel="noopener noreferrer">starkers/asdf-kcl</a></td>
+</tr>
+<tr>
+<td>kconf</td>
+<td><a href="https://github.com/particledecay/asdf-kconf" rel="noopener noreferrer">particledecay/asdf-kconf</a></td>
+</tr>
+<tr>
+<td>Kind</td>
+<td><a href="https://github.com/johnlayton/asdf-kind" rel="noopener noreferrer">johnlayton/asdf-kind</a></td>
+</tr>
+<tr>
+<td>Kiota</td>
+<td><a href="https://github.com/asdf-community/asdf-kiota" rel="noopener noreferrer">asdf-community/asdf-kiota</a></td>
+</tr>
+<tr>
+<td>ki</td>
+<td><a href="https://github.com/comdotlinux/asdf-ki" rel="noopener noreferrer">comdotlinux/asdf-ki</a></td>
+</tr>
+<tr>
+<td>kn</td>
+<td><a href="https://github.com/joke/asdf-kn" rel="noopener noreferrer">joke/asdf-kn</a></td>
+</tr>
+<tr>
+<td>ko</td>
+<td><a href="https://github.com/zasdaym/asdf-ko" rel="noopener noreferrer">zasdaym/asdf-ko</a></td>
+</tr>
+<tr>
+<td>Koka</td>
+<td><a href="https://github.com/susurri/asdf-koka" rel="noopener noreferrer">susurri/asdf-koka</a></td>
+</tr>
+<tr>
+<td>Kompose</td>
+<td><a href="https://github.com/technikhil314/asdf-kompose" rel="noopener noreferrer">technikhil314/asdf-kompose</a></td>
+</tr>
+<tr>
+<td>konstraint</td>
+<td><a href="https://github.com/tapih/asdf-konstraint" rel="noopener noreferrer">tapih/asdf-konstraint</a></td>
+</tr>
+<tr>
+<td>Kops</td>
+<td><a href="https://github.com/Antiarchitect/asdf-kops" rel="noopener noreferrer">Antiarchitect/asdf-kops</a></td>
+</tr>
+<tr>
+<td>Kotlin</td>
+<td><a href="https://github.com/asdf-community/asdf-kotlin" rel="noopener noreferrer">asdf-community/asdf-kotlin</a></td>
+</tr>
+<tr>
+<td>Kpt</td>
+<td><a href="https://github.com/nlamirault/asdf-kpt" rel="noopener noreferrer">nlamirault/asdf-kpt</a></td>
+</tr>
+<tr>
+<td>kp</td>
+<td><a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf" rel="noopener noreferrer">vmware-tanzu/tanzu-plug-in-for-asdf</a></td>
+</tr>
+<tr>
+<td>kpack</td>
+<td><a href="https://github.com/asdf-community/asdf-kpack-cli" rel="noopener noreferrer">asdf-community/asdf-kpack-cli</a></td>
+</tr>
+<tr>
+<td>kscript</td>
+<td><a href="https://github.com/edgelevel/asdf-kscript" rel="noopener noreferrer">edgelevel/asdf-kscript</a></td>
+</tr>
+<tr>
+<td>krab</td>
+<td><a href="https://github.com/ohkrab/asdf-krab" rel="noopener noreferrer">ohkrab/asdf-krab</a></td>
+</tr>
+<tr>
+<td>krelay</td>
+<td><a href="https://github.com/asdf-community/asdf-krelay" rel="noopener noreferrer">asdf-community/asdf-krelay</a></td>
+</tr>
+<tr>
+<td>krew</td>
+<td><a href="https://github.com/bjw-s/asdf-krew" rel="noopener noreferrer">bjw-s/asdf-krew</a></td>
+</tr>
+<tr>
+<td>Ksonnet</td>
+<td><a href="https://github.com/Banno/asdf-ksonnet" rel="noopener noreferrer">Banno/asdf-ksonnet</a></td>
+</tr>
+<tr>
+<td>ksops</td>
+<td><a href="https://github.com/janpieper/asdf-ksops" rel="noopener noreferrer">janpieper/asdf-ksops</a></td>
+</tr>
+<tr>
+<td>ktlint</td>
+<td><a href="https://github.com/esensar/asdf-ktlint" rel="noopener noreferrer">esensar/asdf-ktlint</a></td>
+</tr>
+<tr>
+<td>kube-capacity</td>
+<td><a href="https://github.com/looztra/asdf-kube-capacity" rel="noopener noreferrer">looztra/asdf-kube-capacity</a></td>
+</tr>
+<tr>
+<td>kube-code-generator</td>
+<td><a href="https://github.com/jimmidyson/asdf-kube-code-generator" rel="noopener noreferrer">jimmidyson/asdf-kube-code-generator</a></td>
+</tr>
+<tr>
+<td>kube-controller-tools</td>
+<td><a href="https://github.com/jimmidyson/asdf-kube-controller-tools" rel="noopener noreferrer">jimmidyson/asdf-kube-controller-tools</a></td>
+</tr>
+<tr>
+<td>kube-credential-cache</td>
+<td><a href="https://github.com/ryodocx/kube-credential-cache" rel="noopener noreferrer">ryodocx/kube-credential-cache</a></td>
+</tr>
+<tr>
+<td>kube-linter</td>
+<td><a href="https://github.com/devlincashman/asdf-kube-linter" rel="noopener noreferrer">devlincashman/asdf-kube-linter</a></td>
+</tr>
+<tr>
+<td>kube-score</td>
+<td><a href="https://github.com/bageljp/asdf-kube-score" rel="noopener noreferrer">bageljp/asdf-kube-score</a></td>
+</tr>
+<tr>
+<td>kubebuilder</td>
+<td><a href="https://github.com/virtualstaticvoid/asdf-kubebuilder" rel="noopener noreferrer">virtualstaticvoid/asdf-kubebuilder</a></td>
+</tr>
+<tr>
+<td>kubecm</td>
+<td><a href="https://github.com/samhvw8/asdf-kubecm" rel="noopener noreferrer">samhvw8/asdf-kubecm</a></td>
+</tr>
+<tr>
+<td>kubecolor</td>
+<td><a href="https://github.com/dex4er/asdf-kubecolor" rel="noopener noreferrer">dex4er/asdf-kubecolor</a></td>
+</tr>
+<tr>
+<td>kubeconform</td>
+<td><a href="https://github.com/lirlia/asdf-kubeconform" rel="noopener noreferrer">lirlia/asdf-kubeconform</a></td>
+</tr>
+<tr>
+<td>Kubectl</td>
+<td><a href="https://github.com/asdf-community/asdf-kubectl" rel="noopener noreferrer">asdf-community/asdf-kubectl</a></td>
+</tr>
+<tr>
+<td>kubectl-bindrole</td>
+<td><a href="https://github.com/looztra/asdf-kubectl-bindrole" rel="noopener noreferrer">looztra/asdf-kubectl-bindrole</a></td>
+</tr>
+<tr>
+<td>kubectl-convert</td>
+<td><a href="https://github.com/iul1an/asdf-kubectl-convert" rel="noopener noreferrer">iul1an/asdf-kubectl-convert</a></td>
+</tr>
+<tr>
+<td>kubectl-kots</td>
+<td><a href="https://github.com/ganta/asdf-kubectl-kots" rel="noopener noreferrer">ganta/asdf-kubectl-kots</a></td>
+</tr>
+<tr>
+<td>kubectl-oidc_login</td>
+<td><a href="https://github.com/ezcater/asdf-kubectl-oidc_login" rel="noopener noreferrer">ezcater/asdf-kubectl-oidc_login</a></td>
+</tr>
+<tr>
+<td>kubectx</td>
+<td><a href="https://gitlab.com/wt0f/asdf-kubectx" rel="noopener noreferrer">wt0f/asdf-kubectx</a></td>
+</tr>
+<tr>
+<td>Kubefedctl</td>
+<td><a href="https://github.com/kvokka/asdf-kubefedctl" rel="noopener noreferrer">kvokka/asdf-kubefedctl</a></td>
+</tr>
+<tr>
+<td>Kubefirst</td>
+<td><a href="https://github.com/Claywd/asdf-kubefirst" rel="noopener noreferrer">Claywd/asdf-kubefirst</a></td>
+</tr>
+<tr>
+<td>Kubelogin</td>
+<td><a href="https://github.com/sechmann/asdf-kubelogin" rel="noopener noreferrer">sechmann/asdf-kubelogin</a></td>
+</tr>
+<tr>
+<td>Kubemqctl</td>
+<td><a href="https://github.com/johnlayton/asdf-kubemqctl" rel="noopener noreferrer">johnlayton/asdf-kubemqctl</a></td>
+</tr>
+<tr>
+<td>kubent</td>
+<td><a href="https://github.com/virtualstaticvoid/asdf-kubent" rel="noopener noreferrer">virtualstaticvoid/asdf-kubent</a></td>
+</tr>
+<tr>
+<td>kubeone</td>
+<td><a href="https://github.com/PandaScience/asdf-kubeone" rel="noopener noreferrer">PandaScience/asdf-kubeone</a></td>
+</tr>
+<tr>
+<td>Kubergrunt</td>
+<td><a href="https://github.com/NeoHsu/asdf-kubergrunt" rel="noopener noreferrer">NeoHsu/asdf-kubergrunt</a></td>
+</tr>
+<tr>
+<td>Kubeseal</td>
+<td><a href="https://github.com/stefansedich/asdf-kubeseal" rel="noopener noreferrer">stefansedich/asdf-kubeseal</a></td>
+</tr>
+<tr>
+<td>Kubesec</td>
+<td><a href="https://github.com/vitalis/asdf-kubesec" rel="noopener noreferrer">vitalis/asdf-kubesec</a></td>
+</tr>
+<tr>
+<td>kubeshark</td>
+<td><a href="https://github.com/carnei-ro/asdf-kubeshark" rel="noopener noreferrer">carnei-ro/asdf-kubeshark</a></td>
+</tr>
+<tr>
+<td>kubespy</td>
+<td><a href="https://github.com/jfreeland/asdf-kubespy" rel="noopener noreferrer">jfreeland/asdf-kubespy</a></td>
+</tr>
+<tr>
+<td>Kubeval</td>
+<td><a href="https://github.com/stefansedich/asdf-kubeval" rel="noopener noreferrer">stefansedich/asdf-kubeval</a></td>
+</tr>
+<tr>
+<td>KubeVela</td>
+<td><a href="https://github.com/gustavclausen/asdf-kubevela" rel="noopener noreferrer">gustavclausen/asdf-kubevela</a></td>
+</tr>
+<tr>
+<td>Kubie</td>
+<td><a href="https://github.com/johnhamelink/asdf-kubie" rel="noopener noreferrer">johnhamelink/asdf-kubie</a></td>
+</tr>
+<tr>
+<td>Kustomize</td>
+<td><a href="https://github.com/Banno/asdf-kustomize" rel="noopener noreferrer">Banno/asdf-kustomize</a></td>
+</tr>
+<tr>
+<td>kuttl</td>
+<td><a href="https://github.com/jimmidyson/asdf-kuttl" rel="noopener noreferrer">jimmidyson/asdf-kuttl</a></td>
+</tr>
+<tr>
+<td>kwt</td>
+<td><a href="https://github.com/vmware-tanzu/asdf-carvel" rel="noopener noreferrer">vmware-tanzu/asdf-carvel</a></td>
+</tr>
+<tr>
+<td>lab</td>
+<td><a href="https://github.com/particledecay/asdf-lab" rel="noopener noreferrer">particledecay/asdf-lab</a></td>
+</tr>
+<tr>
+<td>lane</td>
+<td><a href="https://github.com/CodeReaper/asdf-lane" rel="noopener noreferrer">CodeReaper/asdf-lane</a></td>
+</tr>
+<tr>
+<td>launchpad</td>
+<td><a href="https://github.com/surskitt/asdf-launchpad" rel="noopener noreferrer">surskitt/asdf-launchpad</a></td>
+</tr>
+<tr>
+<td>lazygit</td>
+<td><a href="https://github.com/nklmilojevic/asdf-lazygit" rel="noopener noreferrer">nklmilojevic/asdf-lazygit</a></td>
+</tr>
+<tr>
+<td>Lean</td>
+<td><a href="https://github.com/asdf-community/asdf-lean" rel="noopener noreferrer">asdf-community/asdf-lean</a></td>
+</tr>
+<tr>
+<td>Leiningen</td>
+<td><a href="https://github.com/miorimmax/asdf-lein" rel="noopener noreferrer">miorimmax/asdf-lein</a></td>
+</tr>
+<tr>
+<td>Lefthook</td>
+<td><a href="https://github.com/jtzero/asdf-lefthook" rel="noopener noreferrer">jtzero/asdf-lefthook</a></td>
+</tr>
+<tr>
+<td>Levant</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>LFE</td>
+<td><a href="https://github.com/asdf-community/asdf-lfe" rel="noopener noreferrer">asdf-community/asdf-lfe</a></td>
+</tr>
+<tr>
+<td>libsql-server</td>
+<td><a href="https://github.com/jonasb/asdf-libsql-server" rel="noopener noreferrer">jonasb/asdf-libsql-server</a></td>
+</tr>
+<tr>
+<td>Lima</td>
+<td><a href="https://github.com/CrouchingMuppet/asdf-lima" rel="noopener noreferrer">CrouchingMuppet/asdf-lima</a></td>
+</tr>
+<tr>
+<td>Link (system tools)</td>
+<td><a href="https://github.com/asdf-community/asdf-link" rel="noopener noreferrer">asdf-community/asdf-link</a></td>
+</tr>
+<tr>
+<td>Linkerd</td>
+<td><a href="https://github.com/kforsthoevel/asdf-linkerd" rel="noopener noreferrer">kforsthoevel/asdf-linkerd</a></td>
+</tr>
+<tr>
+<td>liqoctl</td>
+<td><a href="https://github.com/pdemagny/asdf-liqoctl" rel="noopener noreferrer">pdemagny/asdf-liqoctl</a></td>
+</tr>
+<tr>
+<td>liquibase</td>
+<td><a href="https://github.com/saliougaye/asdf-liquibase" rel="noopener noreferrer">saliougaye/asdf-liquibase</a></td>
+</tr>
+<tr>
+<td>Litestream</td>
+<td><a href="https://github.com/threkk/asdf-litestream" rel="noopener noreferrer">threkk/asdf-litestream</a></td>
+</tr>
+<tr>
+<td>Logtalk</td>
+<td><a href="https://github.com/LogtalkDotOrg/asdf-logtalk" rel="noopener noreferrer">LogtalkDotOrg/asdf-logtalk</a></td>
+</tr>
+<tr>
+<td>Loki-Logcli</td>
+<td><a href="https://github.com/comdotlinux/asdf-loki-logcli" rel="noopener noreferrer">comdotlinux/asdf-loki-logcli</a></td>
+</tr>
+<tr>
+<td>lq</td>
+<td><a href="https://github.com/jylenhof/asdf-lq" rel="noopener noreferrer">jylenhof/asdf-lq</a></td>
+</tr>
+<tr>
+<td>ls-lint</td>
+<td><a href="https://github.com/ameausoone/asdf-ls-lint" rel="noopener noreferrer">ameausoone/asdf-ls-lint</a></td>
+</tr>
+<tr>
+<td>Lua</td>
+<td><a href="https://github.com/Stratus3D/asdf-lua" rel="noopener noreferrer">Stratus3D/asdf-lua</a></td>
+</tr>
+<tr>
+<td>LuaJIT</td>
+<td><a href="https://github.com/smashedtoatoms/asdf-luaJIT" rel="noopener noreferrer">smashedtoatoms/asdf-luaJIT</a></td>
+</tr>
+<tr>
+<td>lua-language-server</td>
+<td><a href="https://github.com/bellini666/asdf-lua-language-server" rel="noopener noreferrer">bellini666/asdf-lua-language-server</a></td>
+</tr>
+<tr>
+<td>Lucy</td>
+<td><a href="https://github.com/cometkim/asdf-lucy" rel="noopener noreferrer">cometkim/asdf-lucy</a></td>
+</tr>
+<tr>
+<td>maestro</td>
+<td><a href="https://github.com/dotanuki-labs/asdf-maestro" rel="noopener noreferrer">dotanuki-labs/asdf-maestro</a></td>
+</tr>
+<tr>
+<td>mage</td>
+<td><a href="https://github.com/mathew-fleisch/asdf-mage" rel="noopener noreferrer">mathew-fleisch/asdf-mage</a></td>
+</tr>
+<tr>
+<td>make</td>
+<td><a href="https://github.com/yacchi/asdf-make" rel="noopener noreferrer">yacchi/asdf-make</a></td>
+</tr>
+<tr>
+<td>mani</td>
+<td><a href="https://github.com/anweber/asdf-mani" rel="noopener noreferrer">anweber/asdf-mani</a></td>
+</tr>
+<tr>
+<td>mark</td>
+<td><a href="https://github.com/jfreeland/asdf-mark" rel="noopener noreferrer">jfreeland/asdf-mark</a></td>
+</tr>
+<tr>
+<td>markdownlint-cli2</td>
+<td><a href="https://github.com/paulo-ferraz-oliveira/asdf-markdownlint-cli2" rel="noopener noreferrer">paulo-ferraz-oliveira/asdf-markdownlint-cli2</a></td>
+</tr>
+<tr>
+<td>marp-cli</td>
+<td><a href="https://github.com/xataz/asdf-marp-cli" rel="noopener noreferrer">xataz/asdf-marp-cli</a></td>
+</tr>
+<tr>
+<td>mask</td>
+<td><a href="https://github.com/aaaaninja/asdf-mask" rel="noopener noreferrer">aaaaninja/asdf-mask</a></td>
+</tr>
+<tr>
+<td>Maven</td>
+<td><a href="https://github.com/halcyon/asdf-maven" rel="noopener noreferrer">halcyon/asdf-maven</a></td>
+</tr>
+<tr>
+<td>mdbook</td>
+<td><a href="https://github.com/hashemi-soroush/asdf-mdbook" rel="noopener noreferrer">hashemi-soroush/asdf-mdbook</a></td>
+</tr>
+<tr>
+<td>mdbook-linkcheck</td>
+<td><a href="https://github.com/cipherstash/asdf-mdbook-linkcheck" rel="noopener noreferrer">cipherstash/asdf-mdbook-linkcheck</a></td>
+</tr>
+<tr>
+<td>melange</td>
+<td><a href="https://github.com/omissis/asdf-melange" rel="noopener noreferrer">omissis/asdf-melange</a></td>
+</tr>
+<tr>
+<td>melt</td>
+<td><a href="https://github.com/chessmango/asdf-melt" rel="noopener noreferrer">chessmango/asdf-melt</a></td>
+</tr>
+<tr>
+<td>Memcached</td>
+<td><a href="https://github.com/furkanural/asdf-memcached" rel="noopener noreferrer">furkanural/asdf-memcached</a></td>
+</tr>
+<tr>
+<td>Mercury</td>
+<td><a href="https://github.com/susurri/asdf-mercury" rel="noopener noreferrer">susurri/asdf-mercury</a></td>
+</tr>
+<tr>
+<td>Meson</td>
+<td><a href="https://github.com/asdf-community/asdf-meson" rel="noopener noreferrer">asdf-community/asdf-meson</a></td>
+</tr>
+<tr>
+<td>Micronaut</td>
+<td><a href="https://github.com/xafarr/asdf-micronaut" rel="noopener noreferrer">xafarr/asdf-micronaut</a></td>
+</tr>
+<tr>
+<td>Mill</td>
+<td><a href="https://github.com/asdf-community/asdf-mill" rel="noopener noreferrer">asdf-community/asdf-mill</a></td>
+</tr>
+<tr>
+<td>mimirtool</td>
+<td><a href="https://github.com/asdf-community/asdf-mimirtool" rel="noopener noreferrer">asdf-community/asdf-mimirtool</a></td>
+</tr>
+<tr>
+<td>minify</td>
+<td><a href="https://github.com/axilleas/asdf-minify" rel="noopener noreferrer">axilleas/asdf-minify</a></td>
+</tr>
+<tr>
+<td>Minikube</td>
+<td><a href="https://github.com/alvarobp/asdf-minikube" rel="noopener noreferrer">alvarobp/asdf-minikube</a></td>
+</tr>
+<tr>
+<td>Minio</td>
+<td><a href="https://github.com/aeons/asdf-minio" rel="noopener noreferrer">aeons/asdf-minio</a></td>
+</tr>
+<tr>
+<td>Minio Client</td>
+<td><a href="https://github.com/penpyt/asdf-mc" rel="noopener noreferrer">penpyt/asdf-mc</a></td>
+</tr>
+<tr>
+<td>Minishift</td>
+<td><a href="https://github.com/sqtran/asdf-minishift" rel="noopener noreferrer">sqtran/asdf-minishift</a></td>
+</tr>
+<tr>
+<td>Mint</td>
+<td><a href="https://github.com/mint-lang/asdf-mint" rel="noopener noreferrer">mint-lang/asdf-mint</a></td>
+</tr>
+<tr>
+<td>mirrord</td>
+<td><a href="https://github.com/metalbear-co/asdf-mirrord" rel="noopener noreferrer">metalbear-co/asdf-mirrord</a></td>
+</tr>
+<tr>
+<td>mitmproxy</td>
+<td><a href="https://github.com/NeoHsu/asdf-mitmproxy" rel="noopener noreferrer">NeoHsu/asdf-mitmproxy</a></td>
+</tr>
+<tr>
+<td>mkcert</td>
+<td><a href="https://github.com/salasrod/asdf-mkcert" rel="noopener noreferrer">salasrod/asdf-mkcert</a></td>
+</tr>
+<tr>
+<td>mlton</td>
+<td><a href="https://github.com/asdf-community/asdf-mlton" rel="noopener noreferrer">asdf-community/asdf-mlton</a></td>
+</tr>
+<tr>
+<td>mockery</td>
+<td><a href="https://github.com/cabify/asdf-mockery" rel="noopener noreferrer">cabify/asdf-mockery</a></td>
+</tr>
+<tr>
+<td>mockolo</td>
+<td><a href="https://github.com/MontakOleg/asdf-mockolo" rel="noopener noreferrer">MontakOleg/asdf-mockolo</a></td>
+</tr>
+<tr>
+<td>Monarch</td>
+<td><a href="https://github.com/nyuyuyu/asdf-monarch" rel="noopener noreferrer">nyuyuyu/asdf-monarch</a></td>
+</tr>
+<tr>
+<td>mongo-tools</td>
+<td><a href="https://github.com/itspngu/asdf-mongo-tools" rel="noopener noreferrer">itspngu/asdf-mongo-tools</a></td>
+</tr>
+<tr>
+<td>MongoDB</td>
+<td><a href="https://github.com/sylph01/asdf-mongodb" rel="noopener noreferrer">sylph01/asdf-mongodb</a></td>
+</tr>
+<tr>
+<td>mongodb-database-tools</td>
+<td><a href="https://github.com/egose/asdf-database-tools" rel="noopener noreferrer">egose/database-tools</a></td>
+</tr>
+<tr>
+<td>mongosh</td>
+<td><a href="https://github.com/itspngu/asdf-mongosh" rel="noopener noreferrer">itspngu/asdf-mongosh</a></td>
+</tr>
+<tr>
+<td>mutanus</td>
+<td><a href="https://github.com/SoriUR/asdf-mutanus" rel="noopener noreferrer">SoriUR/asdf-mutanus</a></td>
+</tr>
+<tr>
+<td>mvnd</td>
+<td><a href="https://github.com/joschi/asdf-mvnd" rel="noopener noreferrer">joschi/asdf-mvnd</a></td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td><a href="https://github.com/iroddis/asdf-mysql" rel="noopener noreferrer">iroddis/asdf-mysql</a></td>
+</tr>
+<tr>
+<td>nancy</td>
+<td><a href="https://github.com/iilyak/asdf-nancy" rel="noopener noreferrer">iilyak/asdf-nancy</a></td>
+</tr>
+<tr>
+<td>nasm</td>
+<td><a href="https://github.com/Dpbm/asdf-nasm" rel="noopener noreferrer">Dpbm/asdf-nasm</a></td>
+</tr>
+<tr>
+<td>Neko Virtual Machine</td>
+<td><a href="https://github.com/asdf-community/asdf-neko" rel="noopener noreferrer">asdf-community/asdf-neko</a></td>
+</tr>
+<tr>
+<td>Neovim</td>
+<td><a href="https://github.com/richin13/asdf-neovim" rel="noopener noreferrer">richin13/asdf-neovim</a></td>
+</tr>
+<tr>
+<td>Nerves Toolchain</td>
+<td><a href="https://github.com/nerves-project/asdf-plugin-nerves-toolchain" rel="noopener noreferrer">nerves-project/asdf-plugin-nerves-toolchain</a></td>
+</tr>
+<tr>
+<td>nerdctl</td>
+<td><a href="https://github.com/dmpe/asdf-nerdctl" rel="noopener noreferrer">dmpe/asdf-nerdctl</a></td>
+</tr>
+<tr>
+<td>newrelic-cli</td>
+<td><a href="https://github.com/NeoHsu/asdf-newrelic-cli" rel="noopener noreferrer">NeoHsu/asdf-newrelic-cli</a></td>
+</tr>
+<tr>
+<td>nfpm</td>
+<td><a href="https://github.com/ORCID/asdf-nfpm" rel="noopener noreferrer">ORCID/asdf-nfpm</a></td>
+</tr>
+<tr>
+<td>Nim</td>
+<td><a href="https://github.com/asdf-community/asdf-nim" rel="noopener noreferrer">asdf-community/asdf-nim</a></td>
+</tr>
+<tr>
+<td>Ninja</td>
+<td><a href="https://github.com/asdf-community/asdf-ninja" rel="noopener noreferrer">asdf-community/asdf-ninja</a></td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td><a href="https://github.com/asdf-vm/asdf-nodejs" rel="noopener noreferrer">asdf-vm/asdf-nodejs</a></td>
+</tr>
+<tr>
+<td>Nomad</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>nomad-pack</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>notation</td>
+<td><a href="https://github.com/bodgit/asdf-notation" rel="noopener noreferrer">bodgit/asdf-notation</a></td>
+</tr>
+<tr>
+<td>nova</td>
+<td><a href="https://github.com/elementalvoid/asdf-nova" rel="noopener noreferrer">elementalvoid/asdf-nova</a></td>
+</tr>
+<tr>
+<td>NSC</td>
+<td><a href="https://github.com/dex4er/asdf-nsc" rel="noopener noreferrer">dex4er/asdf-nsc</a></td>
+</tr>
+<tr>
+<td>oapi-codegen</td>
+<td><a href="https://github.com/dylanrayboss/asdf-oapi-codegen" rel="noopener noreferrer">dylanrayboss/asdf-oapi-codegen</a></td>
+</tr>
+<tr>
+<td>oc</td>
+<td><a href="https://github.com/sqtran/asdf-oc" rel="noopener noreferrer">sqtran/asdf-oc</a></td>
+</tr>
+<tr>
+<td>oci</td>
+<td><a href="https://github.com/yasn77/asdf-oci" rel="noopener noreferrer">yasn77/asdf-oci</a></td>
+</tr>
+<tr>
+<td>OCaml</td>
+<td><a href="https://github.com/asdf-community/asdf-ocaml" rel="noopener noreferrer">asdf-community/asdf-ocaml</a></td>
+</tr>
+<tr>
+<td>Odin</td>
+<td><a href="https://github.com/jtakakura/asdf-odin" rel="noopener noreferrer">jtakakura/asdf-odin</a></td>
+</tr>
+<tr>
+<td>odo</td>
+<td><a href="https://github.com/rm3l/asdf-odo" rel="noopener noreferrer">rm3l/asdf-odo</a></td>
+</tr>
+<tr>
+<td>okta-aws-cli</td>
+<td><a href="https://github.com/bennythejudge/asdf-plugin-okta-aws-cli" rel="noopener noreferrer">bennythejudge/asdf-plugin-okta-aws-cli</a></td>
+</tr>
+<tr>
+<td>Okteto</td>
+<td><a href="https://github.com/BradenM/asdf-okteto" rel="noopener noreferrer">BradenM/asdf-okteto</a></td>
+</tr>
+<tr>
+<td>ollama</td>
+<td><a href="https://github.com/virtualstaticvoid/asdf-ollama" rel="noopener noreferrer">virtualstaticvoid/asdf-ollama</a></td>
+</tr>
+<tr>
+<td>om</td>
+<td><a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf" rel="noopener noreferrer">vmware-tanzu/tanzu-plug-in-for-asdf</a></td>
+</tr>
+<tr>
+<td>Onyx</td>
+<td><a href="https://github.com/jtakakura/asdf-onyx" rel="noopener noreferrer">jtakakura/asdf-onyx</a></td>
+</tr>
+<tr>
+<td>OPA</td>
+<td><a href="https://github.com/tochukwuvictor/asdf-opa" rel="noopener noreferrer">tochukwuvictor/asdf-opa</a></td>
+</tr>
+<tr>
+<td>Opam</td>
+<td><a href="https://github.com/asdf-community/asdf-opam" rel="noopener noreferrer">asdf-community/asdf-opam</a></td>
+</tr>
+<tr>
+<td>openfaas-faas-cli</td>
+<td><a href="https://github.com/zekker6/asdf-faas-cli" rel="noopener noreferrer">zekker6/asdf-faas-cli</a></td>
+</tr>
+<tr>
+<td>OpenResty</td>
+<td><a href="https://github.com/smashedtoatoms/asdf-openresty" rel="noopener noreferrer">smashedtoatoms/asdf-openresty</a></td>
+</tr>
+<tr>
+<td>opensearch</td>
+<td><a href="https://github.com/randikabanura/asdf-opensearch" rel="noopener noreferrer">randikabanura/asdf-opensearch</a></td>
+</tr>
+<tr>
+<td>opensearch-cli</td>
+<td><a href="https://github.com/iul1an/asdf-opensearch-cli" rel="noopener noreferrer">iul1an/asdf-opensearch-cli</a></td>
+</tr>
+<tr>
+<td>openshift-install</td>
+<td><a href="https://github.com/hhemied/asdf-openshift-install" rel="noopener noreferrer">hhemied/asdf-openshift-install</a></td>
+</tr>
+<tr>
+<td>opentofu</td>
+<td><a href="https://github.com/virtualroot/asdf-opentofu" rel="noopener noreferrer">virtualroot/asdf-opentofu</a></td>
+</tr>
+<tr>
+<td>Operator SDK</td>
+<td><a href="https://github.com/Medium/asdf-operator-sdk" rel="noopener noreferrer">Medium/asdf-operator-sdk</a></td>
+</tr>
+<tr>
+<td>Opsgenie-lamp</td>
+<td><a href="https://github.com/ORCID/asdf-opsgenie-lamp" rel="noopener noreferrer">ORCID/asdf-opsgenie-lamp</a></td>
+</tr>
+<tr>
+<td>oras</td>
+<td><a href="https://github.com/bodgit/asdf-oras" rel="noopener noreferrer">bodgit/asdf-oras</a></td>
+</tr>
+<tr>
+<td>Osm</td>
+<td><a href="https://github.com/nlamirault/asdf-osm" rel="noopener noreferrer">nlamirault/asdf-osm</a></td>
+</tr>
+<tr>
+<td>osqueryi</td>
+<td><a href="https://github.com/davidecavestro/asdf-osqueryi" rel="noopener noreferrer">davidecavestro/asdf-osqueryi</a></td>
+</tr>
+<tr>
+<td>pachctl</td>
+<td><a href="https://github.com/abatilo/asdf-pachctl" rel="noopener noreferrer">abatilo/asdf-pachctl</a></td>
+</tr>
+<tr>
+<td>Packer</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>Pandoc</td>
+<td><a href="https://github.com/Fbrisset/asdf-pandoc" rel="noopener noreferrer">Fbrisset/asdf-pandoc</a></td>
+</tr>
+<tr>
+<td>pandoc-crossref</td>
+<td><a href="https://github.com/sys9kdr/asdf-pandoc-crossref" rel="noopener noreferrer">sys9kdr/asdf-pandoc-crossref</a></td>
+</tr>
+<tr>
+<td>patat</td>
+<td><a href="https://github.com/airtonix/asdf-patat" rel="noopener noreferrer">airtonix/asdf-patat</a></td>
+</tr>
+<tr>
+<td>peco</td>
+<td><a href="https://github.com/asdf-community/asdf-peco" rel="noopener noreferrer">asdf-community/asdf-peco</a></td>
+</tr>
+<tr>
+<td>pdm</td>
+<td><a href="https://github.com/1oglop1/asdf-pdm" rel="noopener noreferrer">1oglop1/asdf-pdm</a></td>
+</tr>
+<tr>
+<td>Perl</td>
+<td><a href="https://github.com/ouest/asdf-perl" rel="noopener noreferrer">ouest/asdf-perl</a></td>
+</tr>
+<tr>
+<td>PHP</td>
+<td><a href="https://github.com/asdf-community/asdf-php" rel="noopener noreferrer">asdf-community/asdf-php</a></td>
+</tr>
+<tr>
+<td>Phrase</td>
+<td><a href="https://github.com/bitfrost/asdf-phrase" rel="noopener noreferrer">bitfrost/asdf-phrase</a></td>
+</tr>
+<tr>
+<td>pint</td>
+<td><a href="https://github.com/sam-burrell/asdf-pint" rel="noopener noreferrer">sam-burrell/asdf-pint</a></td>
+</tr>
+<tr>
+<td>pipectl</td>
+<td><a href="https://github.com/pipe-cd/asdf-pipectl" rel="noopener noreferrer">pipe-cd/asdf-pipectl</a></td>
+</tr>
+<tr>
+<td>pipelight</td>
+<td><a href="https://github.com/kogeletey/asdf-pipelight" rel="noopener noreferrer">kogeletey/asdf-pipelight</a></td>
+</tr>
+<tr>
+<td>pipx</td>
+<td><a href="https://github.com/yozachar/asdf-pipx" rel="noopener noreferrer">yozachar/asdf-pipx</a></td>
+</tr>
+<tr>
+<td>pivnet</td>
+<td><a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf" rel="noopener noreferrer">vmware-tanzu/tanzu-plug-in-for-asdf</a></td>
+</tr>
+<tr>
+<td>pixi</td>
+<td><a href="https://github.com/pavelzw/asdf-pixi" rel="noopener noreferrer">pavelzw/pixi</a></td>
+</tr>
+<tr>
+<td>pkl</td>
+<td><a href="https://github.com/mise-plugins/asdf-pkl" rel="noopener noreferrer">mise-plugins/asdf-pkl</a></td>
+</tr>
+<tr>
+<td>PlantScale CLI</td>
+<td><a href="https://github.com/kota65535/asdf-planetscale-cli" rel="noopener noreferrer">kota65535/asdf-planetscale-cli</a></td>
+</tr>
+<tr>
+<td>Please</td>
+<td><a href="https://github.com/asdf-community/asdf-please" rel="noopener noreferrer">asdf-community/asdf-please</a></td>
+</tr>
+<tr>
+<td>Pluto</td>
+<td><a href="https://github.com/FairwindsOps/asdf-pluto" rel="noopener noreferrer">FairwindsOps/asdf-pluto</a></td>
+</tr>
+<tr>
+<td>pnpm</td>
+<td><a href="https://github.com/jonathanmorley/asdf-pnpm" rel="noopener noreferrer">jonathanmorley/asdf-pnpm</a></td>
+</tr>
+<tr>
+<td>Poetry</td>
+<td><a href="https://github.com/asdf-community/asdf-poetry" rel="noopener noreferrer">asdf-community/asdf-poetry</a></td>
+</tr>
+<tr>
+<td>Polaris</td>
+<td><a href="https://github.com/particledecay/asdf-polaris" rel="noopener noreferrer">particledecay/asdf-polaris</a></td>
+</tr>
+<tr>
+<td>Popeye</td>
+<td><a href="https://github.com/nlamirault/asdf-popeye" rel="noopener noreferrer">nlamirault/asdf-popeye</a></td>
+</tr>
+<tr>
+<td>Postgres</td>
+<td><a href="https://github.com/smashedtoatoms/asdf-postgres" rel="noopener noreferrer">smashedtoatoms/asdf-postgres</a></td>
+</tr>
+<tr>
+<td>powerpipe</td>
+<td><a href="https://github.com/vmdude/asdf-powerpipe" rel="noopener noreferrer">vmdude/asdf-powerpipe</a></td>
+</tr>
+<tr>
+<td>powerline-go</td>
+<td><a href="https://github.com/dex4er/asdf-powerline-go" rel="noopener noreferrer">dex4er/asdf-powerline-go</a></td>
+</tr>
+<tr>
+<td>PowerShell</td>
+<td><a href="https://github.com/daveneeley/asdf-powershell-core" rel="noopener noreferrer">daveneeley/asdf-powershell-core</a></td>
+</tr>
+<tr>
+<td>pre-commit</td>
+<td><a href="https://github.com/jonathanmorley/asdf-pre-commit" rel="noopener noreferrer">jonathanmorley/asdf-pre-commit</a></td>
+</tr>
+<tr>
+<td>process-compose</td>
+<td><a href="https://github.com/martino/asdf-process-compose" rel="noopener noreferrer">martino/asdf-process-compose</a></td>
+</tr>
+<tr>
+<td>promtool</td>
+<td><a href="https://github.com/asdf-community/asdf-promtool" rel="noopener noreferrer">asdf-community/asdf-promtool</a></td>
+</tr>
+<tr>
+<td>protoc</td>
+<td><a href="https://github.com/paxosglobal/asdf-protoc" rel="noopener noreferrer">paxosglobal/asdf-protoc</a></td>
+</tr>
+<tr>
+<td>protoc-gen-connect-go</td>
+<td><a href="https://github.com/dylanrayboss/asdf-protoc-gen-connect-go" rel="noopener noreferrer">dylanrayboss/asdf-protoc-gen-connect-go</a></td>
+</tr>
+<tr>
+<td>protoc-gen-grpc-web</td>
+<td><a href="https://github.com/pbr0ck3r/asdf-protoc-gen-grpc-web" rel="noopener noreferrer">pbr0ck3r/asdf-protoc-gen-grpc-web</a></td>
+</tr>
+<tr>
+<td>protoc-gen-go-grpc</td>
+<td><a href="https://github.com/pbr0ck3r/asdf-protoc-gen-go-grpc" rel="noopener noreferrer">pbr0ck3r/asdf-protoc-gen-go-grpc</a></td>
+</tr>
+<tr>
+<td>protoc-gen-go</td>
+<td><a href="https://github.com/pbr0ck3r/asdf-protoc-gen-go" rel="noopener noreferrer">pbr0ck3r/asdf-protoc-gen-go</a></td>
+</tr>
+<tr>
+<td>protoc-gen-js</td>
+<td><a href="https://github.com/pbr0ck3r/asdf-protoc-gen-js" rel="noopener noreferrer">pbr0ck3r/asdf-protoc-gen-js</a></td>
+</tr>
+<tr>
+<td>protolint</td>
+<td><a href="https://github.com/spencergilbert/asdf-protolint" rel="noopener noreferrer">spencergilbert/asdf-protolint</a></td>
+</tr>
+<tr>
+<td>Proton GE</td>
+<td><a href="https://github.com/augustobmoura/asdf-protonge" rel="noopener noreferrer">augustobmoura/asdf-protonge</a></td>
+</tr>
+<tr>
+<td>psc-package</td>
+<td><a href="https://github.com/nsaunders/asdf-psc-package" rel="noopener noreferrer">nsaunders/asdf-psc-package</a></td>
+</tr>
+<tr>
+<td>Pulumi</td>
+<td><a href="https://github.com/canha/asdf-pulumi" rel="noopener noreferrer">canha/asdf-pulumi</a></td>
+</tr>
+<tr>
+<td>purerl</td>
+<td><a href="https://github.com/GoNZooo/asdf-purerl" rel="noopener noreferrer">GoNZooo/asdf-purerl</a></td>
+</tr>
+<tr>
+<td>PureScript</td>
+<td><a href="https://github.com/jrrom/asdf-purescript" rel="noopener noreferrer">jrrom/asdf-purescript</a></td>
+</tr>
+<tr>
+<td>Purty</td>
+<td><a href="https://github.com/nsaunders/asdf-purty" rel="noopener noreferrer">nsaunders/asdf-purty</a></td>
+</tr>
+<tr>
+<td>Python</td>
+<td><a href="https://github.com/danhper/asdf-python" rel="noopener noreferrer">danhper/asdf-python</a></td>
+</tr>
+<tr>
+<td>q</td>
+<td><a href="https://github.com/moritz-makandra/asdf-plugin-qdns" rel="noopener noreferrer">moritz-makandra/asdf-plugin-qdns</a></td>
+</tr>
+<tr>
+<td>qsv</td>
+<td><a href="https://github.com/vjda/asdf-qsv" rel="noopener noreferrer">vjda/asdf-qsv</a></td>
+</tr>
+<tr>
+<td>Quarkus CLI</td>
+<td><a href="https://github.com/asdf-community/asdf-quarkus" rel="noopener noreferrer">asdf-community/asdf-quarkus</a></td>
+</tr>
+<tr>
+<td>R</td>
+<td><a href="https://github.com/asdf-community/asdf-r" rel="noopener noreferrer">asdf-community/asdf-r</a></td>
+</tr>
+<tr>
+<td>RabbitMQ</td>
+<td><a href="https://github.com/w-sanches/asdf-rabbitmq" rel="noopener noreferrer">w-sanches/asdf-rabbitmq</a></td>
+</tr>
+<tr>
+<td>Racket</td>
+<td><a href="https://github.com/asdf-community/asdf-racket" rel="noopener noreferrer">asdf-community/asdf-racket</a></td>
+</tr>
+<tr>
+<td>Raku</td>
+<td><a href="https://github.com/m-dango/asdf-raku" rel="noopener noreferrer">m-dango/asdf-raku</a></td>
+</tr>
+<tr>
+<td>Rancher</td>
+<td><a href="https://github.com/abinet/asdf-rancher" rel="noopener noreferrer">abinet/asdf-rancher</a></td>
+</tr>
+<tr>
+<td>Rbac-lookup</td>
+<td><a href="https://github.com/looztra/asdf-rbac-lookup" rel="noopener noreferrer">looztra/asdf-rbac-lookup</a></td>
+</tr>
+<tr>
+<td>Rclone</td>
+<td><a href="https://github.com/johnlayton/asdf-rclone" rel="noopener noreferrer">johnlayton/asdf-rclone</a></td>
+</tr>
+<tr>
+<td>Rebar</td>
+<td><a href="https://github.com/Stratus3D/asdf-rebar" rel="noopener noreferrer">Stratus3D/asdf-rebar</a></td>
+</tr>
+<tr>
+<td>Reckoner</td>
+<td><a href="https://github.com/FairwindsOps/asdf-reckoner" rel="noopener noreferrer">FairwindsOps/asdf-reckoner</a></td>
+</tr>
+<tr>
+<td>Redis</td>
+<td><a href="https://github.com/smashedtoatoms/asdf-redis" rel="noopener noreferrer">smashedtoatoms/asdf-redis</a></td>
+</tr>
+<tr>
+<td>Redis-cli</td>
+<td><a href="https://github.com/NeoHsu/asdf-redis-cli" rel="noopener noreferrer">NeoHsu/asdf-redis-cli</a></td>
+</tr>
+<tr>
+<td>redo</td>
+<td><a href="https://github.com/chessmango/asdf-redo" rel="noopener noreferrer">chessmango/asdf-redo</a></td>
+</tr>
+<tr>
+<td>redskyctl</td>
+<td><a href="https://github.com/sudermanjr/asdf-redskyctl" rel="noopener noreferrer">sudermanjr/asdf-redskyctl</a></td>
+</tr>
+<tr>
+<td>Reg</td>
+<td><a href="https://github.com/looztra/asdf-reg" rel="noopener noreferrer">looztra/asdf-reg</a></td>
+</tr>
+<tr>
+<td>regal</td>
+<td><a href="https://github.com/asdf-community/asdf-regal" rel="noopener noreferrer">asdf-community/asdf-regal</a></td>
+</tr>
+<tr>
+<td>regctl</td>
+<td><a href="https://github.com/ORCID/asdf-regctl" rel="noopener noreferrer">ORCID/asdf-regctl</a></td>
+</tr>
+<tr>
+<td>regsync</td>
+<td><a href="https://github.com/rsrchboy/asdf-regsync" rel="noopener noreferrer">rsrchboy/asdf-regsync</a></td>
+</tr>
+<tr>
+<td>restic</td>
+<td><a href="https://github.com/xataz/asdf-restic" rel="noopener noreferrer">xataz/asdf-restic</a></td>
+</tr>
+<tr>
+<td>resticprofile</td>
+<td><a href="https://github.com/olofvndrhr/asdf-resticprofile" rel="noopener noreferrer">olofvndrhr/asdf-resticprofile</a></td>
+</tr>
+<tr>
+<td>restish</td>
+<td><a href="https://github.com/polds/asdf-restish" rel="noopener noreferrer">polds/asdf-restish</a></td>
+</tr>
+<tr>
+<td>revive</td>
+<td><a href="https://github.com/bjw-s/asdf-revive" rel="noopener noreferrer">bjw-s/asdf-revive</a></td>
+</tr>
+<tr>
+<td>richgo</td>
+<td><a href="https://github.com/paxosglobal/asdf-richgo" rel="noopener noreferrer">paxosglobal/asdf-richgo</a></td>
+</tr>
+<tr>
+<td>Riff</td>
+<td><a href="https://github.com/abinet/asdf-riff" rel="noopener noreferrer">abinet/asdf-riff</a></td>
+</tr>
+<tr>
+<td>ripgrep</td>
+<td><a href="https://gitlab.com/wt0f/asdf-ripgrep" rel="noopener noreferrer">wt0f/asdf-ripgrep</a></td>
+</tr>
+<tr>
+<td>RKE</td>
+<td><a href="https://github.com/particledecay/asdf-rke" rel="noopener noreferrer">particledecay/asdf-rke</a></td>
+</tr>
+<tr>
+<td>rome</td>
+<td><a href="https://github.com/kichiemon/asdf-rome" rel="noopener noreferrer">kichiemon/asdf-rome</a></td>
+</tr>
+<tr>
+<td>Redpanda RPK</td>
+<td><a href="https://github.com/jleight/asdf-rpk" rel="noopener noreferrer">jleight/asdf-rpk</a></td>
+</tr>
+<tr>
+<td>rstash</td>
+<td><a href="https://github.com/carlduevel/asdf-rstash" rel="noopener noreferrer">carlduevel/asdf-rstash</a></td>
+</tr>
+<tr>
+<td>rlwrap</td>
+<td><a href="https://github.com/asdf-community/asdf-rlwrap" rel="noopener noreferrer">asdf-community/asdf-rlwrap</a></td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td><a href="https://github.com/asdf-vm/asdf-ruby" rel="noopener noreferrer">asdf-vm/asdf-ruby</a></td>
+</tr>
+<tr>
+<td>ruff</td>
+<td><a href="https://github.com/simhem/asdf-ruff" rel="noopener noreferrer">simhem/asdf-ruff</a></td>
+</tr>
+<tr>
+<td>Rust</td>
+<td><a href="https://github.com/code-lever/asdf-rust" rel="noopener noreferrer">code-lever/asdf-rust</a></td>
+</tr>
+<tr>
+<td>rust-analyzer</td>
+<td><a href="https://github.com/Xyven1/asdf-rust-analyzer" rel="noopener noreferrer">Xyven1/asdf-rust-analyzer</a></td>
+</tr>
+<tr>
+<td>rustic</td>
+<td><a href="https://github.com/jahands/asdf-rustic" rel="noopener noreferrer">jahands/asdf-rustic</a></td>
+</tr>
+<tr>
+<td>rye</td>
+<td><a href="https://github.com/Azuki-bar/asdf-rye" rel="noopener noreferrer">Azuki-bar/asdf-rye</a></td>
+</tr>
+<tr>
+<td>saml2aws</td>
+<td><a href="https://github.com/elementalvoid/asdf-saml2aws" rel="noopener noreferrer">elementalvoid/asdf-saml2aws</a></td>
+</tr>
+<tr>
+<td>SBT</td>
+<td><a href="https://github.com/bram2000/asdf-sbt" rel="noopener noreferrer">bram2000/asdf-sbt</a></td>
+</tr>
+<tr>
+<td>scaffold</td>
+<td><a href="https://github.com/particledecay/asdf-scaffold" rel="noopener noreferrer">particledecay/asdf-scaffold</a></td>
+</tr>
+<tr>
+<td>Scala</td>
+<td><a href="https://github.com/asdf-community/asdf-scala" rel="noopener noreferrer">asdf-community/asdf-scala</a></td>
+</tr>
+<tr>
+<td>Scala CLI</td>
+<td><a href="https://github.com/asdf-community/asdf-scala-cli" rel="noopener noreferrer">asdf-community/asdf-scala-cli</a></td>
+</tr>
+<tr>
+<td>scaleway-cli</td>
+<td><a href="https://github.com/albarralnunez/asdf-plugin-scaleway-cli" rel="noopener noreferrer">albarralnunez/asdf-plugin-scaleway-cli</a></td>
+</tr>
+<tr>
+<td>scalingo-cli</td>
+<td><a href="https://github.com/brandon-welsch/asdf-scalingo-cli" rel="noopener noreferrer">brandon-welsch/asdf-scalingo-cli</a></td>
+</tr>
+<tr>
+<td>Scarb</td>
+<td><a href="https://github.com/software-mansion/asdf-scarb" rel="noopener noreferrer">software-mansion/asdf-scarb</a></td>
+</tr>
+<tr>
+<td>sccache</td>
+<td><a href="https://github.com/emersonmx/asdf-sccache" rel="noopener noreferrer">emersonmx/asdf-sccache</a></td>
+</tr>
+<tr>
+<td>Scenery</td>
+<td><a href="https://github.com/skyzyx/asdf-scenery" rel="noopener noreferrer">skyzyx/asdf-scenery</a></td>
+</tr>
+<tr>
+<td>schemacrawler</td>
+<td><a href="https://github.com/davidecavestro/asdf-schemacrawler" rel="noopener noreferrer">davidecavestro/asdf-schemacrawler</a></td>
+</tr>
+<tr>
+<td>scie-pants</td>
+<td><a href="https://github.com/robzr/asdf-scie-pants" rel="noopener noreferrer">robzr/asdf-scie-pants</a></td>
+</tr>
+<tr>
+<td>Seed7</td>
+<td><a href="https://github.com/susurri/asdf-seed7" rel="noopener noreferrer">susurri/asdf-seed7</a></td>
+</tr>
+<tr>
+<td>Semgrep</td>
+<td><a href="https://github.com/brentjanderson/asdf-semgrep" rel="noopener noreferrer">brentjanderson/asdf-semgrep</a></td>
+</tr>
+<tr>
+<td>semtag</td>
+<td><a href="https://github.com/junminahn/asdf-semtag" rel="noopener noreferrer">junminahn/asdf-semtag</a></td>
+</tr>
+<tr>
+<td>semver</td>
+<td><a href="https://github.com/mathew-fleisch/asdf-semver" rel="noopener noreferrer">mathew-fleisch/asdf-semver</a></td>
+</tr>
+<tr>
+<td>Sentinel</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>sentry-cli</td>
+<td><a href="https://github.com/MacPaw/asdf-sentry-cli" rel="noopener noreferrer">MacPaw/asdf-sentry-cli</a></td>
+</tr>
+<tr>
+<td>Serf</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>serverless</td>
+<td><a href="https://github.com/pdemagny/asdf-serverless" rel="noopener noreferrer">pdemagny/asdf-serverless</a></td>
+</tr>
+<tr>
+<td>shell2http</td>
+<td><a href="https://github.com/ORCID/asdf-shell2http" rel="noopener noreferrer">ORCID/asdf-shell2http</a></td>
+</tr>
+<tr>
+<td>Shellcheck</td>
+<td><a href="https://github.com/luizm/asdf-shellcheck" rel="noopener noreferrer">luizm/asdf-shellcheck</a></td>
+</tr>
+<tr>
+<td>Shellspec</td>
+<td><a href="https://github.com/poikilotherm/asdf-shellspec" rel="noopener noreferrer">poikilotherm/asdf-shellspec</a></td>
+</tr>
+<tr>
+<td>Shfmt</td>
+<td><a href="https://github.com/luizm/asdf-shfmt" rel="noopener noreferrer">luizm/asdf-shfmt</a></td>
+</tr>
+<tr>
+<td>Shorebird</td>
+<td><a href="https://github.com/valian-ca/asdf-shorebird" rel="noopener noreferrer">valian-ca/asdf-shorebird</a></td>
+</tr>
+<tr>
+<td>signal-cli</td>
+<td><a href="https://github.com/ehsash/asdf-signal-cli" rel="noopener noreferrer">ehsash/asdf-signal-cli</a></td>
+</tr>
+<tr>
+<td>Sinker</td>
+<td><a href="https://github.com/elementalvoid/asdf-sinker" rel="noopener noreferrer">elementalvoid/asdf-sinker</a></td>
+</tr>
+<tr>
+<td>Skaffold</td>
+<td><a href="https://github.com/nklmilojevic/asdf-skaffold" rel="noopener noreferrer">nklmilojevic/asdf-skaffold</a></td>
+</tr>
+<tr>
+<td>skate</td>
+<td><a href="https://github.com/chessmango/asdf-skate" rel="noopener noreferrer">chessmango/asdf-skate</a></td>
+</tr>
+<tr>
+<td>Sloth</td>
+<td><a href="https://github.com/slok/asdf-sloth" rel="noopener noreferrer">slok/asdf-sloth</a></td>
+</tr>
+<tr>
+<td>smithy</td>
+<td><a href="https://github.com/aws/asdf-smithy" rel="noopener noreferrer">aws/asdf-smithy</a></td>
+</tr>
+<tr>
+<td>SML/NJ</td>
+<td><a href="https://github.com/samontea/asdf-smlnj" rel="noopener noreferrer">samontea/asdf-smlnj</a></td>
+</tr>
+<tr>
+<td>Snyk</td>
+<td><a href="https://github.com/nirfuchs/asdf-snyk" rel="noopener noreferrer">nirfuchs/asdf-snyk</a></td>
+</tr>
+<tr>
+<td>soft-serve</td>
+<td><a href="https://github.com/chessmango/asdf-soft-serve" rel="noopener noreferrer">chessmango/asdf-soft-serve</a></td>
+</tr>
+<tr>
+<td>Solidity</td>
+<td><a href="https://github.com/diegodorado/asdf-solidity" rel="noopener noreferrer">diegodorado/asdf-solidity</a></td>
+</tr>
+<tr>
+<td>Sonobuoy</td>
+<td><a href="https://github.com/Nick-Triller/asdf-sonobuoy" rel="noopener noreferrer">Nick-Triller/asdf-sonobuoy</a></td>
+</tr>
+<tr>
+<td>Sops</td>
+<td><a href="https://github.com/feniix/asdf-sops" rel="noopener noreferrer">feniix/asdf-sops</a></td>
+</tr>
+<tr>
+<td>sopstool</td>
+<td><a href="https://github.com/elementalvoid/asdf-sopstool" rel="noopener noreferrer">elementalvoid/asdf-sopstool</a></td>
+</tr>
+<tr>
+<td>soracom-cli</td>
+<td><a href="https://github.com/gr1m0h/asdf-soracom" rel="noopener noreferrer">gr1m0h/asdf-soracom</a></td>
+</tr>
+<tr>
+<td>Sourcery</td>
+<td><a href="https://github.com/younke/asdf-sourcery" rel="noopener noreferrer">younke/asdf-sourcery</a></td>
+</tr>
+<tr>
+<td>spacectl</td>
+<td><a href="https://github.com/bodgit/asdf-spacectl" rel="noopener noreferrer">bodgit/asdf-spacectl</a></td>
+</tr>
+<tr>
+<td>Spago</td>
+<td><a href="https://github.com/jrrom/asdf-spago" rel="noopener noreferrer">jrrom/asdf-spago</a></td>
+</tr>
+<tr>
+<td>Spark</td>
+<td><a href="https://github.com/jeffryang24/asdf-spark" rel="noopener noreferrer">jeffryang24/asdf-spark</a></td>
+</tr>
+<tr>
+<td>Spectral</td>
+<td><a href="https://github.com/vbyrd/asdf-spectral" rel="noopener noreferrer">vbyrd/asdf-spectral</a></td>
+</tr>
+<tr>
+<td>Spin</td>
+<td><a href="https://github.com/pavloos/asdf-spin" rel="noopener noreferrer">pavloos/asdf-spin</a></td>
+</tr>
+<tr>
+<td>spotbugs</td>
+<td><a href="https://github.com/jiahuili430/asdf-spotbugs" rel="noopener noreferrer">jiahuili430/asdf-spotbugs</a></td>
+</tr>
+<tr>
+<td>Spring Boot CLI</td>
+<td><a href="https://github.com/joschi/asdf-spring-boot" rel="noopener noreferrer">joschi/asdf-spring-boot</a></td>
+</tr>
+<tr>
+<td>Spruce</td>
+<td><a href="https://github.com/woneill/asdf-spruce" rel="noopener noreferrer">woneill/asdf-spruce</a></td>
+</tr>
+<tr>
+<td>sqlc</td>
+<td><a href="https://github.com/dylanrayboss/asdf-sqlc" rel="noopener noreferrer">dylanrayboss/asdf-sqlc</a></td>
+</tr>
+<tr>
+<td>sqldef</td>
+<td><a href="https://github.com/cometkim/asdf-sqldef" rel="noopener noreferrer">cometkim/asdf-sqldef</a></td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td><a href="https://github.com/cLupus/asdf-sqlite" rel="noopener noreferrer">cLupus/asdf-sqlite</a></td>
+</tr>
+<tr>
+<td>sshuttle</td>
+<td><a href="https://github.com/xanmanning/asdf-sshuttle" rel="noopener noreferrer">xanmanning/asdf-sshuttle</a></td>
+</tr>
+<tr>
+<td>sst</td>
+<td><a href="https://github.com/nurulhudaapon/asdf-sst" rel="noopener noreferrer">nurulhudaapon/asdf-sst</a></td>
+</tr>
+<tr>
+<td>Stack</td>
+<td><a href="https://github.com/sestrella/asdf-ghcup" rel="noopener noreferrer">sestrella/asdf-ghcup</a></td>
+</tr>
+<tr>
+<td>starboard</td>
+<td><a href="https://github.com/zufardhiyaulhaq/asdf-starboard" rel="noopener noreferrer">zufardhiyaulhaq/asdf-starboard</a></td>
+</tr>
+<tr>
+<td>Starkli</td>
+<td><a href="https://github.com/ptisserand/asdf-starkli" rel="noopener noreferrer">ptisserand/asdf-starkli</a></td>
+</tr>
+<tr>
+<td>Starknet Devnet</td>
+<td><a href="https://github.com/ptisserand/asdf-starknet-devnet" rel="noopener noreferrer">ptisserand/asdf-starknet-devnet</a></td>
+</tr>
+<tr>
+<td>Starknet Foundry</td>
+<td><a href="https://github.com/foundry-rs/asdf-starknet-foundry" rel="noopener noreferrer">foundry-rs/asdf-starknet-foundry</a></td>
+</tr>
+<tr>
+<td>starport</td>
+<td><a href="https://github.com/nikever/asdf-starport" rel="noopener noreferrer">nikever/asdf-starport</a></td>
+</tr>
+<tr>
+<td>starship</td>
+<td><a href="https://github.com/gr1m0h/asdf-starship" rel="noopener noreferrer">gr1m0h/asdf-starship</a></td>
+</tr>
+<tr>
+<td>Staticcheck</td>
+<td><a href="https://github.com/pbr0ck3r/asdf-staticcheck" rel="noopener noreferrer">pbr0ck3r/asdf-staticcheck</a></td>
+</tr>
+<tr>
+<td>steampipe</td>
+<td><a href="https://github.com/carnei-ro/asdf-steampipe" rel="noopener noreferrer">carnei-ro/asdf-steampipe</a></td>
+</tr>
+<tr>
+<td>Steel Bank Common Lisp (sbcl)</td>
+<td><a href="https://github.com/smashedtoatoms/asdf-sbcl" rel="noopener noreferrer">smashedtoatoms/asdf-sbcl</a></td>
+</tr>
+<tr>
+<td>step</td>
+<td><a href="https://github.com/log2/asdf-step" rel="noopener noreferrer">log2/asdf-step</a></td>
+</tr>
+<tr>
+<td>Stern</td>
+<td><a href="https://github.com/looztra/asdf-stern" rel="noopener noreferrer">looztra/asdf-stern</a></td>
+</tr>
+<tr>
+<td>stratus-red-team</td>
+<td><a href="https://github.com/asdf-community/asdf-stratus-red-team" rel="noopener noreferrer">asdf-community/asdf-stratus-red-team</a></td>
+</tr>
+<tr>
+<td>stripe-cli</td>
+<td><a href="https://github.com/offbyone/asdf-stripe" rel="noopener noreferrer">offbyone/asdf-stripe</a></td>
+</tr>
+<tr>
+<td>stylua</td>
+<td><a href="https://github.com/jc00ke/asdf-stylua" rel="noopener noreferrer">jc00ke/asdf-stylua</a></td>
+</tr>
+<tr>
+<td>sui</td>
+<td><a href="https://github.com/placeholder-soft/asdf-sui" rel="noopener noreferrer">placeholder-soft/asdf-sui</a></td>
+</tr>
+<tr>
+<td>supabase-cli</td>
+<td><a href="https://github.com/gavinying/asdf-supabase-cli" rel="noopener noreferrer">gavinying/asdf-supabase-cli</a></td>
+</tr>
+<tr>
+<td>sver</td>
+<td><a href="https://github.com/robzr/asdf-sver" rel="noopener noreferrer">robzr/asdf-sver</a></td>
+</tr>
+<tr>
+<td>svu</td>
+<td><a href="https://github.com/asdf-community/asdf-svu" rel="noopener noreferrer">asdf-community/asdf-svu</a></td>
+</tr>
+<tr>
+<td>swag</td>
+<td><a href="https://github.com/behoof4mind/asdf-swag" rel="noopener noreferrer">behoof4mind/asdf-swag</a></td>
+</tr>
+<tr>
+<td>Swift</td>
+<td><a href="https://github.com/fcrespo82/asdf-swift" rel="noopener noreferrer">fcrespo82/asdf-swift</a></td>
+</tr>
+<tr>
+<td>SwiftFormat</td>
+<td><a href="https://github.com/younke/asdf-swiftformat" rel="noopener noreferrer">younke/asdf-swiftformat</a></td>
+</tr>
+<tr>
+<td>SwiftGen</td>
+<td><a href="https://github.com/younke/asdf-swiftgen" rel="noopener noreferrer">younke/asdf-swiftgen</a></td>
+</tr>
+<tr>
+<td>Swiftlint</td>
+<td><a href="https://github.com/klundberg/asdf-swiftlint" rel="noopener noreferrer">klundberg/asdf-swiftlint</a></td>
+</tr>
+<tr>
+<td>SWIProlog</td>
+<td><a href="https://github.com/mracos/asdf-swiprolog" rel="noopener noreferrer">mracos/asdf-swiprolog</a></td>
+</tr>
+<tr>
+<td>syft</td>
+<td><a href="https://github.com/davidgp1701/asdf-syft" rel="noopener noreferrer">davidgp1701/asdf-syft</a></td>
+</tr>
+<tr>
+<td>sync</td>
+<td><a href="https://github.com/robzr/asdf-sync" rel="noopener noreferrer">robzr/asdf-sync</a></td>
+</tr>
+<tr>
+<td>syncher</td>
+<td><a href="https://github.com/nwillc/syncher" rel="noopener noreferrer">nwillc/syncher</a></td>
+</tr>
+<tr>
+<td>talhelper</td>
+<td><a href="https://github.com/bjw-s/asdf-talhelper" rel="noopener noreferrer">bjw-s/asdf-talhelper</a></td>
+</tr>
+<tr>
+<td>Talos</td>
+<td><a href="https://github.com/particledecay/asdf-talos" rel="noopener noreferrer">particledecay/asdf-talos</a></td>
+</tr>
+<tr>
+<td>talosctl</td>
+<td><a href="https://github.com/bjw-s/asdf-talosctl" rel="noopener noreferrer">bjw-s/asdf-talosctl</a></td>
+</tr>
+<tr>
+<td>Tanka</td>
+<td><a href="https://github.com/trotttrotttrott/asdf-tanka" rel="noopener noreferrer">trotttrotttrott/asdf-tanka</a></td>
+</tr>
+<tr>
+<td>Tanzu CLI (tanzu)</td>
+<td><a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf" rel="noopener noreferrer">vmware-tanzu/tanzu-plug-in-for-asdf</a></td>
+</tr>
+<tr>
+<td>Task</td>
+<td><a href="https://github.com/particledecay/asdf-task" rel="noopener noreferrer">particledecay/asdf-task</a></td>
+</tr>
+<tr>
+<td>tctl</td>
+<td><a href="https://github.com/eko/asdf-tctl" rel="noopener noreferrer">eko/asdf-tctl</a></td>
+</tr>
+<tr>
+<td>Tekton-cli</td>
+<td><a href="https://github.com/johnhamelink/asdf-tekton-cli" rel="noopener noreferrer">johnhamelink/asdf-tekton-cli</a></td>
+</tr>
+<tr>
+<td>Tekton pipeline-as-code CLI</td>
+<td><a href="https://github.com/ifireball/asdf-tekton-pac-cli" rel="noopener noreferrer">ifireball/asdf-tekton-pac-cli</a></td>
+</tr>
+<tr>
+<td>Teleport Enterprise</td>
+<td><a href="https://github.com/highb/asdf-teleport-ent" rel="noopener noreferrer">highb/asdf-teleport-ent</a></td>
+</tr>
+<tr>
+<td>Teleport Community</td>
+<td><a href="https://github.com/MaloPolese/asdf-teleport-community" rel="noopener noreferrer">MaloPolese/asdf-teleport-community</a></td>
+</tr>
+<tr>
+<td>telepresence</td>
+<td><a href="https://github.com/pirackr/asdf-telepresence" rel="noopener noreferrer">pirackr/asdf-telepresence</a></td>
+</tr>
+<tr>
+<td>teller</td>
+<td><a href="https://github.com/pdemagny/asdf-teller" rel="noopener noreferrer">pdemagny/asdf-teller</a></td>
+</tr>
+<tr>
+<td>temporal</td>
+<td><a href="https://github.com/asdf-community/asdf-temporal" rel="noopener noreferrer">asdf-community/asdf-temporal</a></td>
+</tr>
+<tr>
+<td>temporalite</td>
+<td><a href="https://github.com/eko/asdf-temporalite" rel="noopener noreferrer">eko/asdf-temporalite</a></td>
+</tr>
+<tr>
+<td>terradozer</td>
+<td><a href="https://github.com/chessmango/asdf-terradozer" rel="noopener noreferrer">chessmango/asdf-terradozer</a></td>
+</tr>
+<tr>
+<td>Terraform</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>Terraform-docs</td>
+<td><a href="https://github.com/looztra/asdf-terraform-docs" rel="noopener noreferrer">looztra/asdf-terraform-docs</a></td>
+</tr>
+<tr>
+<td>terraform-ls</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>terraform-lsp</td>
+<td><a href="https://github.com/bartlomiejdanek/asdf-terraform-lsp" rel="noopener noreferrer">bartlomiejdanek/asdf-terraform-lsp</a></td>
+</tr>
+<tr>
+<td>Terraform-validator</td>
+<td><a href="https://github.com/looztra/asdf-terraform-validator" rel="noopener noreferrer">looztra/asdf-terraform-validator</a></td>
+</tr>
+<tr>
+<td>Terraformer</td>
+<td><a href="https://github.com/gr1m0h/asdf-terraformer" rel="noopener noreferrer">gr1m0h/asdf-terraformer</a></td>
+</tr>
+<tr>
+<td>Terragrunt</td>
+<td><a href="https://github.com/gruntwork-io/asdf-terragrunt" rel="noopener noreferrer">gruntwork-io/asdf-terragrunt</a></td>
+</tr>
+<tr>
+<td>Terramate</td>
+<td><a href="https://github.com/martinlindner/asdf-terramate" rel="noopener noreferrer">martinlindner/asdf-terramate</a></td>
+</tr>
+<tr>
+<td>Terrascan</td>
+<td><a href="https://github.com/hpdobrica/asdf-terrascan" rel="noopener noreferrer">hpdobrica/asdf-terrascan</a></td>
+</tr>
+<tr>
+<td>tf (hashi terraform wrapper)</td>
+<td><a href="https://github.com/dex4er/asdf-tf" rel="noopener noreferrer">dex4er/asdf-tf</a></td>
+</tr>
+<tr>
+<td>tfcmt</td>
+<td><a href="https://github.com/nasa9084/asdf-tfcmt" rel="noopener noreferrer">nasa9084/asdf-tfcmt</a></td>
+</tr>
+<tr>
+<td>tfctl</td>
+<td><a href="https://github.com/deas/asdf-tfctl" rel="noopener noreferrer">deas/asdf-tfctl</a></td>
+</tr>
+<tr>
+<td>tfc-agent</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>tfenv</td>
+<td><a href="https://github.com/carlduevel/asdf-tfenv" rel="noopener noreferrer">carlduevel/asdf-tfenv</a></td>
+</tr>
+<tr>
+<td>TFLint</td>
+<td><a href="https://github.com/skyzyx/asdf-tflint" rel="noopener noreferrer">skyzyx/asdf-tflint</a></td>
+</tr>
+<tr>
+<td>tfmigrate</td>
+<td><a href="https://github.com/dex4er/asdf-tfmigrate" rel="noopener noreferrer">dex4er/asdf-tfmigrate</a></td>
+</tr>
+<tr>
+<td>tfnotify</td>
+<td><a href="https://github.com/jnavarrof/asdf-tfnotify" rel="noopener noreferrer">jnavarrof/asdf-tfnotify</a></td>
+</tr>
+<tr>
+<td>TFSec</td>
+<td><a href="https://github.com/woneill/asdf-tfsec" rel="noopener noreferrer">woneill/asdf-tfsec</a></td>
+</tr>
+<tr>
+<td>tfstate-lookup</td>
+<td><a href="https://github.com/carnei-ro/asdf-tfstate-lookup" rel="noopener noreferrer">carnei-ro/asdf-tfstate-lookup</a></td>
+</tr>
+<tr>
+<td>tfswitch</td>
+<td><a href="https://github.com/iul1an/asdf-tfswitch" rel="noopener noreferrer">iul1an/asdf-tfswitch</a></td>
+</tr>
+<tr>
+<td>tfupdate</td>
+<td><a href="https://github.com/yuokada/asdf-tfupdate" rel="noopener noreferrer">yuokada/asdf-tfupdate</a></td>
+</tr>
+<tr>
+<td>tf-summarize</td>
+<td><a href="https://github.com/adamcrews/asdf-tf-summarize" rel="noopener noreferrer">adamcrews/asdf-tf-summarize</a></td>
+</tr>
+<tr>
+<td>Thrift</td>
+<td><a href="https://github.com/alisaifee/asdf-thrift" rel="noopener noreferrer">alisaifee/asdf-thrift</a></td>
+</tr>
+<tr>
+<td>Tilt</td>
+<td><a href="https://github.com/eaceaser/asdf-tilt" rel="noopener noreferrer">eaceaser/asdf-tilt</a></td>
+</tr>
+<tr>
+<td>Timoni</td>
+<td><a href="https://github.com/Smana/asdf-timoni" rel="noopener noreferrer">Smana/asdf-timoni</a></td>
+</tr>
+<tr>
+<td>Tinytex</td>
+<td><a href="https://github.com/Fbrisset/asdf-tinytex" rel="noopener noreferrer">Fbrisset/asdf-tinytex</a></td>
+</tr>
+<tr>
+<td>Titan</td>
+<td><a href="https://github.com/gabitchov/asdf-titan" rel="noopener noreferrer">gabitchov/asdf-titan</a></td>
+</tr>
+<tr>
+<td>tlsg-cli</td>
+<td><a href="https://github.com/0ghny/asdf-tlsgcli" rel="noopener noreferrer">0ghny/asdf-tlsgcli</a></td>
+</tr>
+<tr>
+<td>Tmux</td>
+<td><a href="https://github.com/pauloedurezende/asdf-tmux" rel="noopener noreferrer">pauloedurezende/asdf-tmux</a></td>
+</tr>
+<tr>
+<td>Tokei</td>
+<td><a href="https://github.com/gasuketsu/asdf-tokei" rel="noopener noreferrer">gasuketsu/asdf-tokei</a></td>
+</tr>
+<tr>
+<td>tomcat</td>
+<td><a href="https://github.com/asdf-community/asdf-tomcat" rel="noopener noreferrer">asdf-community/asdf-tomcat</a></td>
+</tr>
+<tr>
+<td>tonnage</td>
+<td><a href="https://github.com/elementalvoid/asdf-tonnage" rel="noopener noreferrer">elementalvoid/asdf-tonnage</a></td>
+</tr>
+<tr>
+<td>tool-versions-to-env</td>
+<td><a href="https://github.com/smartcontractkit/tool-versions-to-env-action" rel="noopener noreferrer">smartcontractkit/tool-versions-to-env-action</a></td>
+</tr>
+<tr>
+<td>Traefik</td>
+<td><a href="https://github.com/Dabolus/asdf-traefik" rel="noopener noreferrer">Dabolus/asdf-traefik</a></td>
+</tr>
+<tr>
+<td>Trdsql</td>
+<td><a href="https://github.com/johnlayton/asdf-trdsql" rel="noopener noreferrer">johnlayton/asdf-trdsql</a></td>
+</tr>
+<tr>
+<td>tree-sitter</td>
+<td><a href="https://github.com/ivanvc/asdf-tree-sitter" rel="noopener noreferrer">ivanvc/asdf-tree-sitter</a></td>
+</tr>
+<tr>
+<td>tridentctl</td>
+<td><a href="https://github.com/asdf-community/asdf-tridentctl" rel="noopener noreferrer">asdf-community/asdf-tridentctl</a></td>
+</tr>
+<tr>
+<td>Trivy</td>
+<td><a href="https://github.com/zufardhiyaulhaq/asdf-trivy" rel="noopener noreferrer">zufardhiyaulhaq/asdf-trivy</a></td>
+</tr>
+<tr>
+<td>tsuru</td>
+<td><a href="https://github.com/virtualstaticvoid/asdf-tsuru" rel="noopener noreferrer">virtualstaticvoid/asdf-tsuru</a></td>
+</tr>
+<tr>
+<td>tttyd</td>
+<td><a href="https://github.com/ivanvc/asdf-ttyd" rel="noopener noreferrer">ivanvc/asdf-ttyd</a></td>
+</tr>
+<tr>
+<td>tuist</td>
+<td><a href="https://github.com/asdf-community/asdf-tuist" rel="noopener noreferrer">asdf-community/asdf-tuist</a></td>
+</tr>
+<tr>
+<td>tx</td>
+<td><a href="https://github.com/ORCID/asdf-transifex" rel="noopener noreferrer">ORCID/asdf-transifex</a></td>
+</tr>
+<tr>
+<td>typos</td>
+<td><a href="https://github.com/aschiavon91/asdf-typos" rel="noopener noreferrer">aschiavon91/asdf-typos</a></td>
+</tr>
+<tr>
+<td>typst</td>
+<td><a href="https://github.com/stephane-klein/asdf-typst" rel="noopener noreferrer">stephane-klein/asdf-typst</a></td>
+</tr>
+<tr>
+<td>uaa-cli</td>
+<td><a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf" rel="noopener noreferrer">vmware-tanzu/tanzu-plug-in-for-asdf</a></td>
+</tr>
+<tr>
+<td>Unison</td>
+<td><a href="https://github.com/susurri/asdf-unison" rel="noopener noreferrer">susurri/asdf-unison</a></td>
+</tr>
+<tr>
+<td>updatecli</td>
+<td><a href="https://github.com/updatecli/asdf-updatecli" rel="noopener noreferrer">updatecli/asdf-updatecli</a></td>
+</tr>
+<tr>
+<td>upt</td>
+<td><a href="https://github.com/ORCID/asdf-upt" rel="noopener noreferrer">ORCID/asdf-upt</a></td>
+</tr>
+<tr>
+<td>upx</td>
+<td><a href="https://github.com/jimmidyson/asdf-upx" rel="noopener noreferrer">jimmidyson/asdf-upx</a></td>
+</tr>
+<tr>
+<td>usql</td>
+<td><a href="https://github.com/itspngu/asdf-usql" rel="noopener noreferrer">itspngu/asdf-usql</a></td>
+</tr>
+<tr>
+<td>uv</td>
+<td><a href="https://github.com/asdf-community/asdf-uv" rel="noopener noreferrer">asdf-community/asdf-uv</a></td>
+</tr>
+<tr>
+<td>V</td>
+<td><a href="https://github.com/jthegedus/asdf-v" rel="noopener noreferrer">jthegedus/asdf-v</a></td>
+</tr>
+<tr>
+<td>vale</td>
+<td><a href="https://github.com/pdemagny/asdf-vale" rel="noopener noreferrer">pdemagny/asdf-vale</a></td>
+</tr>
+<tr>
+<td>vals</td>
+<td><a href="https://github.com/dex4er/asdf-vals" rel="noopener noreferrer">dex4er/asdf-vals</a></td>
+</tr>
+<tr>
+<td>Vault</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>Velero</td>
+<td><a href="https://github.com/looztra/asdf-velero" rel="noopener noreferrer">looztra/asdf-velero</a></td>
+</tr>
+<tr>
+<td>vendir</td>
+<td><a href="https://github.com/vmware-tanzu/asdf-carvel" rel="noopener noreferrer">vmware-tanzu/asdf-carvel</a></td>
+</tr>
+<tr>
+<td>Venom</td>
+<td><a href="https://github.com/aabouzaid/asdf-venom" rel="noopener noreferrer">aabouzaid/asdf-venom</a></td>
+</tr>
+<tr>
+<td>versio</td>
+<td><a href="https://github.com/pdemagny/asdf-versio" rel="noopener noreferrer">pdemagny/asdf-versio</a></td>
+</tr>
+<tr>
+<td>vcluster</td>
+<td><a href="https://gitlab.com/wt0f/asdf-vcluster" rel="noopener noreferrer">wt0f/asdf-vcluster</a></td>
+</tr>
+<tr>
+<td>vela</td>
+<td><a href="https://github.com/pdemagny/asdf-vela" rel="noopener noreferrer">pdemagny/asdf-vela</a></td>
+</tr>
+<tr>
+<td>velad</td>
+<td><a href="https://github.com/pdemagny/asdf-velad" rel="noopener noreferrer">pdemagny/asdf-velad</a></td>
+</tr>
+<tr>
+<td>vhs</td>
+<td><a href="https://github.com/chessmango/asdf-vhs" rel="noopener noreferrer">chessmango/asdf-vhs</a></td>
+</tr>
+<tr>
+<td>Viddy</td>
+<td><a href="https://github.com/ryodocx/asdf-viddy" rel="noopener noreferrer">ryodocx/asdf-viddy</a></td>
+</tr>
+<tr>
+<td>Vim</td>
+<td><a href="https://github.com/tsuyoshicho/asdf-vim" rel="noopener noreferrer">tsuyoshicho/asdf-vim</a></td>
+</tr>
+<tr>
+<td>vlt</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>vultr-cli</td>
+<td><a href="https://github.com/ikuradon/asdf-vultr-cli" rel="noopener noreferrer">ikuradon/asdf-vultr-cli</a></td>
+</tr>
+<tr>
+<td>watchexec</td>
+<td><a href="https://github.com/nyrst/asdf-watchexec" rel="noopener noreferrer">nyrst/asdf-watchexec</a></td>
+</tr>
+<tr>
+<td>WASI SDK</td>
+<td><a href="https://github.com/coolreader18/asdf-wasi-sdk" rel="noopener noreferrer">coolreader18/asdf-wasi-sdk</a></td>
+</tr>
+<tr>
+<td>WASM-4</td>
+<td><a href="https://github.com/jtakakura/asdf-wasm4" rel="noopener noreferrer">jtakakura/asdf-wasm4</a></td>
+</tr>
+<tr>
+<td>wasm3</td>
+<td><a href="https://github.com/tachyonicbytes/asdf-wasm3" rel="noopener noreferrer">tachyonicbytes/asdf-wasm3</a></td>
+</tr>
+<tr>
+<td>wasmer</td>
+<td><a href="https://github.com/tachyonicbytes/asdf-wasmer" rel="noopener noreferrer">tachyonicbytes/asdf-wasmer</a></td>
+</tr>
+<tr>
+<td>wasmtime</td>
+<td><a href="https://github.com/tachyonicbytes/asdf-wasmtime" rel="noopener noreferrer">tachyonicbytes/asdf-wasmtime</a></td>
+</tr>
+<tr>
+<td>Waypoint</td>
+<td><a href="https://github.com/asdf-community/asdf-hashicorp" rel="noopener noreferrer">asdf-community/asdf-hashicorp</a></td>
+</tr>
+<tr>
+<td>weave-gitops</td>
+<td><a href="https://github.com/deas/asdf-weave-gitops" rel="noopener noreferrer">deas/asdf-weave-gitops</a></td>
+</tr>
+<tr>
+<td>Websocat</td>
+<td><a href="https://github.com/bdellegrazie/asdf-websocat" rel="noopener noreferrer">bdellegrazie/asdf-websocat</a></td>
+</tr>
+<tr>
+<td>woodpecker-cli</td>
+<td><a href="https://github.com/ivanvc/asdf-woodpecker" rel="noopener noreferrer">ivanvc/asdf-woodpecker</a></td>
+</tr>
+<tr>
+<td>Wren CLI</td>
+<td><a href="https://github.com/jtakakura/asdf-wren-cli" rel="noopener noreferrer">jtakakura/asdf-wren-cli</a></td>
+</tr>
+<tr>
+<td>wrk</td>
+<td><a href="https://github.com/ivanvc/asdf-wrk" rel="noopener noreferrer">ivanvc/asdf-wrk</a></td>
+</tr>
+<tr>
+<td>Wtfutil</td>
+<td><a href="https://github.com/NeoHsu/asdf-wtfutil" rel="noopener noreferrer">NeoHsu/asdf-wtfutil</a></td>
+</tr>
+<tr>
+<td>XCTestHTMLReport</td>
+<td><a href="https://github.com/younke/asdf-xchtmlreport" rel="noopener noreferrer">younke/asdf-xchtmlreport</a></td>
+</tr>
+<tr>
+<td>XcodeGen</td>
+<td><a href="https://github.com/younke/asdf-xcodegen" rel="noopener noreferrer">younke/asdf-xcodegen</a></td>
+</tr>
+<tr>
+<td>xc</td>
+<td><a href="https://github.com/airtonix/asdf-xc" rel="noopener noreferrer">airtonix/asdf-xc</a></td>
+</tr>
+<tr>
+<td>xcbeautify</td>
+<td><a href="https://github.com/MacPaw/asdf-xcbeautify" rel="noopener noreferrer">MacPaw/asdf-xcbeautify</a></td>
+</tr>
+<tr>
+<td>xcodes</td>
+<td><a href="https://github.com/younke/asdf-xcodes" rel="noopener noreferrer">younke/asdf-xcodes</a></td>
+</tr>
+<tr>
+<td>xcresultparser</td>
+<td><a href="https://github.com/MacPaw/asdf-xcresultparser" rel="noopener noreferrer">MacPaw/asdf-xcresultparser</a></td>
+</tr>
+<tr>
+<td>xh</td>
+<td><a href="https://github.com/NeoHsu/asdf-xh" rel="noopener noreferrer">NeoHsu/asdf-xh</a></td>
+</tr>
+<tr>
+<td>yadm</td>
+<td><a href="https://github.com/particledecay/asdf-yadm" rel="noopener noreferrer">particledecay/asdf-yadm</a></td>
+</tr>
+<tr>
+<td>yamlfmt</td>
+<td><a href="https://github.com/mise-plugins/asdf-yamlfmt" rel="noopener noreferrer">mise-plugins/asdf-yamlfmt</a></td>
+</tr>
+<tr>
+<td>yamllint</td>
+<td><a href="https://github.com/ericcornelissen/asdf-yamllint" rel="noopener noreferrer">ericcornelissen/asdf-yamllint</a></td>
+</tr>
+<tr>
+<td>yamlscript</td>
+<td><a href="https://github.com/FeryET/asdf-yamlscript" rel="noopener noreferrer">FeryET/asdf-yamlscript</a></td>
+</tr>
+<tr>
+<td>Yarn</td>
+<td><a href="https://github.com/twuni/asdf-yarn" rel="noopener noreferrer">twuni/asdf-yarn</a></td>
+</tr>
+<tr>
+<td>Yasm</td>
+<td><a href="https://github.com/kkHAIKE/asdf-yasm" rel="noopener noreferrer">kkHAIKE/asdf-yasm</a></td>
+</tr>
+<tr>
+<td>yay</td>
+<td><a href="https://github.com/aaaaninja/asdf-yay" rel="noopener noreferrer">aaaaninja/asdf-yay</a></td>
+</tr>
+<tr>
+<td>Yor</td>
+<td><a href="https://github.com/ordinaryexperts/asdf-yor" rel="noopener noreferrer">ordinaryexperts/asdf-yor</a></td>
+</tr>
+<tr>
+<td>youtube-dl</td>
+<td><a href="https://github.com/iul1an/asdf-youtube-dl" rel="noopener noreferrer">iul1an/asdf-youtube-dl</a></td>
+</tr>
+<tr>
+<td>yj</td>
+<td><a href="https://github.com/ryodocx/asdf-yj" rel="noopener noreferrer">ryodocx/asdf-yj</a></td>
+</tr>
+<tr>
+<td>yq</td>
+<td><a href="https://github.com/sudermanjr/asdf-yq" rel="noopener noreferrer">sudermanjr/asdf-yq</a></td>
+</tr>
+<tr>
+<td>yt-dlp</td>
+<td><a href="https://github.com/duhow/asdf-yt-dlp" rel="noopener noreferrer">duhow/asdf-yt-dlp</a></td>
+</tr>
+<tr>
+<td>ytt</td>
+<td><a href="https://github.com/vmware-tanzu/asdf-carvel" rel="noopener noreferrer">vmware-tanzu/asdf-carvel</a></td>
+</tr>
+<tr>
+<td>zbctl</td>
+<td><a href="https://github.com/camunda-community-hub/asdf-zbctl" rel="noopener noreferrer">camunda-community-hub/asdf-zbctl</a></td>
+</tr>
+<tr>
+<td>zellij</td>
+<td><a href="https://github.com/chessmango/asdf-zellij" rel="noopener noreferrer">chessmango/asdf-zellij</a></td>
+</tr>
+<tr>
+<td>Zephyr</td>
+<td><a href="https://github.com/nsaunders/asdf-zephyr" rel="noopener noreferrer">nsaunders/asdf-zephyr</a></td>
+</tr>
+<tr>
+<td>Zig</td>
+<td><a href="https://github.com/cheetah/asdf-zig" rel="noopener noreferrer">cheetah/asdf-zig</a></td>
+</tr>
+<tr>
+<td>zigmod</td>
+<td><a href="https://github.com/mise-plugins/asdf-zigmod" rel="noopener noreferrer">mise-plugins/asdf-zigmod</a></td>
+</tr>
+<tr>
+<td>zls</td>
+<td><a href="https://github.com/m1ome/asdf-zls" rel="noopener noreferrer">miome/asdf-zls</a></td>
+</tr>
+<tr>
+<td>Zola</td>
+<td><a href="https://github.com/salasrod/asdf-zola" rel="noopener noreferrer">salasrod/asdf-zola</a></td>
+</tr>
+<tr>
+<td>zoxide</td>
+<td><a href="https://github.com/nyrst/asdf-zoxide" rel="noopener noreferrer">nyrst/asdf-zoxide</a></td>
+</tr>
+<tr>
+<td>zprint</td>
+<td><a href="https://github.com/carlduevel/asdf-zprint" rel="noopener noreferrer">carlduevel/asdf-zprint</a></td>
+</tr>
+</tbody></table>
+
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Track Awesome Geojson (tmcw/awesome-geojson) Updates Daily - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/tmcw/awesome-geojson/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Track Awesome Geojson Updates Daily" />
+    <meta property="og:description" content="GeoJSON utilities that will make your life easier." />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Track Awesome Geojson Updates Daily</h1>
+<p>GeoJSON utilities that will make your life easier.</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/tmcw/awesome-geojson/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/tmcw/awesome-geojson">😺 tmcw/awesome-geojson</a><span> · </span><span>⭐ 2.4K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><span>[ </span><span>Daily</span><span> / </span><a href="/tmcw/awesome-geojson/week/">Weekly</a><span> / </span><a href="/tmcw/awesome-geojson/readme/">Overview</a><span> ]</span></p>
+
+<h2><a href="https://www.trackawesomelist.com/2025/05/09/">May 09, 2025</a></h2><h3><p>data</p>
+</h3>
+<ul>
+<li><a href="https://data.zagreb.hr/dataset/zg3d-2022-3d-model-gz" rel="noopener noreferrer">zg3d</a>: 3D models of existing buildings in the City of Zagreb, Croatia in GeoJSON (CSV and Excel also available).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/04/15/">Apr 15, 2025</a></h2><h3><p>validation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/developmentseed/geojson-pydantic" rel="noopener noreferrer">geojson-pydantic (⭐263)</a>: <a href="https://docs.pydantic.dev/latest/" rel="noopener noreferrer">Pydantic</a> models for GeoJSON</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/02/14/">Feb 14, 2025</a></h2><h3><p>editors &amp; viewers</p>
+</h3>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=swallow.geojson-io-for-vscode" rel="noopener noreferrer">geojson.io-for-vscode</a>: create, edit, and preview GeoJSON data in VSCode, just like <a href="http://geojson.io/" rel="noopener noreferrer">geojson.io</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/07/11/">Jul 11, 2024</a></h2><h3><p>editors &amp; viewers</p>
+</h3>
+<ul>
+<li><a href="https://play.placemark.io/" rel="noopener noreferrer">play.placemark.io</a>: web-based editor, supports many filetype imports &amp; exports, operations</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/06/11/">Jun 11, 2024</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ben-n93/geojson-shave" rel="noopener noreferrer">geojson-shave (⭐74)</a>: a Python command-line tool for reducing the size of GeoJSON files.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/05/22/">May 22, 2024</a></h2><h3><p>editors &amp; viewers</p>
+</h3>
+<ul>
+<li><a href="https://zverik.github.io/point_ed/" rel="noopener noreferrer">point_ed</a>: click on map to add points, download those as GeoJSON file</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/12/07/">Dec 07, 2023</a></h2><h3><p>validation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/gadomski/antimeridian" rel="noopener noreferrer">antimeridian (⭐81)</a>: Fix GeoJSON polygons that cross the antimeridian (Python package)</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/07/18/">Jul 18, 2023</a></h2><h3><p>services</p>
+</h3>
+<ul>
+<li><a href="https://open-innovations.github.io/geojson-minify/" rel="noopener noreferrer">geojson minify</a>: Minifier (compressor) to reduce file sizes</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/04/14/">Apr 14, 2023</a></h2><h3><p>conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mattijn/topojson" rel="noopener noreferrer">topojson for Python (⭐192)</a>: Topojson is a library that is capable of creating a topojson encoded format of merely any spatial object in Python.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/geomet/geomet" rel="noopener noreferrer">geomet (⭐172)</a>: Pure Python conversion library for common geospatial data formats</li>
+</ul>
+<h3><p>data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/gregoiredavid/france-geojson" rel="noopener noreferrer">france-geojson (⭐772)</a>: Outlines of regions, departments, arrondissements, cantons and communes of France (mainland and overseas departments) in GeoJSON format</li>
+</ul>
+<h3><p>resources</p>
+</h3>
+<ul>
+<li><a href="https://github.com/chrieke/geojson-invalid-geometry" rel="noopener noreferrer">geojson-invalid-geometry (⭐44)</a>: List of GeoJSON invalid geometry issues with example files.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/01/17/">Jan 17, 2023</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/armanjr/geojson-indoor-tools" rel="noopener noreferrer">geojson-indoor-tools (⭐9)</a>: Python tools for editing indoor GeoJSON features: adding room heights, building walls and creating doors</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/11/25/">Nov 25, 2022</a></h2><h3><p>conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/placemark/betterknown" rel="noopener noreferrer">betterknown (⭐48)</a>: convert WKT to GeoJSON (successor to wellknown)</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/08/02/">Aug 02, 2022</a></h2><h3><p>editors &amp; viewers</p>
+</h3>
+<ul>
+<li><a href="https://caseymm.github.io/img2geojson/" rel="noopener noreferrer">img2geojson</a>: digitize images by overlaying on a web map and drawing</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/06/07/">Jun 07, 2022</a></h2><h3><p>validation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/M-Scott-Lassiter/jest-geojson" rel="noopener noreferrer">Jest-GeoJSON (⭐9)</a>: an extended set of matcher functions for the Jest Javascript unit testing framework tailored to evaluating GeoJSON data</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/05/21/">May 21, 2022</a></h2><h3><p>data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/TimMcCauley/nintynine-boundaries" rel="noopener noreferrer">99boundaries (⭐14)</a>: Generate any maritime &amp; land boundary in GeoJSON and other file formats or <a href="https://99boundaries.com" rel="noopener noreferrer">download directly from the web</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/05/02/">May 02, 2022</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Turfjs/turf" rel="noopener noreferrer">turf (⭐9.8k)</a>: collection of functions for spatial operations and analysi</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dartclub/turf_dart" rel="noopener noreferrer">turf_dart (⭐81)</a>: a turf.js port for Dart and Flutter</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/01/08/">Jan 08, 2022</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dpmcmlxxvi/de9im" rel="noopener noreferrer">de9im (⭐30)</a>: collection of fast functions for spatial javascript operations</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/12/04/">Dec 04, 2021</a></h2><h3><p>conversion</p>
+</h3>
+<ul>
+<li><strong>OpenStreetMap</strong><ul>
+<li><a href="https://github.com/tyrasd/osmtogeojson" rel="noopener noreferrer">osmtogeojson (⭐728)</a>: convert OpenStreetMap data to GeoJSON</li>
+<li><a href="https://github.com/rclark/osm2geojson" rel="noopener noreferrer">osm2geojson (⭐12)</a>: converts OSM XML to GeoJSON</li>
+<li><a href="https://github.com/aspectumapp/osm2geojson" rel="noopener noreferrer">osm2geojson (⭐107)</a>: (Python) converts OSM XML and Overpass XML/JSON to GeoJSON</li>
+<li><a href="https://github.com/mapbox/minjur" rel="noopener noreferrer">minjur (⭐59)</a>: converts OpenStreetMap data to GeoJSON faster than anything else</li>
+<li><a href="https://github.com/tyrasd/geojsontoosm" rel="noopener noreferrer">geojsontoosm (⭐24)</a>: convert GeoJSON to OSM XML</li>
+<li><a href="https://github.com/Rub21/geojson2osm" rel="noopener noreferrer">geojson2osm (⭐6)</a>: convert GeoJSON to OSM XML</li>
+<li><a href="https://github.com/aaronlidman/osm-and-geojson" rel="noopener noreferrer">osm-and-geojson (⭐91)</a>: convert GeoJSON to OSM XML and OSM XML to GeoJSON</li>
+<li><a href="https://github.com/DenisCarriere/geojson2osm-es6/" rel="noopener noreferrer">geojson2osm-es6 (⭐1)</a>: convert GeoJSON to OSM XML</li>
+<li><a href="https://github.com/perliedman/query-overpass" rel="noopener noreferrer">query-overpass (⭐158)</a> CLI to make Overpass query and transform result to GeoJSON. Based on <a href="https://github.com/tyrasd/osmtogeojson" rel="noopener noreferrer">osmtogeojson (⭐728)</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/10/20/">Oct 20, 2021</a></h2><h3><p>validation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/placemark/check-geojson" rel="noopener noreferrer">check-geojson (⭐79)</a>: alternative to geojsonhint</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/09/05/">Sep 05, 2021</a></h2><h3><p>data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/aourednik/historical-basemaps" rel="noopener noreferrer">historical-basemaps (⭐579)</a>: Collection of georeferenced boundaries of world countries and cultural regions for use in mapping historical data on the world scale.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/06/24/">Jun 24, 2021</a></h2><h3><p>validation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/yazeed44/gjf" rel="noopener noreferrer">gjf (⭐103)</a>: A tool to fix invalid GeoJSON objects</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/06/21/">Jun 21, 2021</a></h2><h3><p>serialization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ancore/geojson-serializer" rel="noopener noreferrer">geojson-serializer (⭐6)</a>: serialize Java with annotations as GeoJSON</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/04/19/">Apr 19, 2020</a></h2><h3><p>data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/hyperknot/country-levels-export" rel="noopener noreferrer">country-levels (⭐26)</a> Full planet GeoJSON extracts, based on ISO and FIPS codes.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/03/18/">Mar 18, 2020</a></h2><h3><p>editors &amp; viewers</p>
+</h3>
+<ul>
+<li><a href="https://drewweth.github.io/geodebugger" rel="noopener noreferrer">Web GIS</a>: tools to view, inspect, and manipulate geospatial data</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/04/17/">Apr 17, 2019</a></h2><h3><p>validation</p>
+</h3>
+<ul>
+<li><a href="https://www.npmjs.com/package/geojson-validation" rel="noopener noreferrer">geojson-validation</a>: many validation functions, plus simple gjv command line tool</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/03/03/">Mar 03, 2019</a></h2><h3><p>conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tmcw/togeojson" rel="noopener noreferrer">togeojson (⭐428)</a>: convert GPX &amp; KML to geojson</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/02/03/">Feb 03, 2019</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tyrasd/rfc7946-to-d3" rel="noopener noreferrer">rfc7946-to-d3 (⭐11)</a>: Converts polygon winding order between rfc7946 and <a href="https://github.com/d3/d3-geo#d3-geo" rel="noopener noreferrer">d3 compatible (⭐1.1k)</a> conventions.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/micolous/geojsontools" rel="noopener noreferrer">geojsontools (⭐18)</a>: Python tools for manipulating GeoJSON files</li>
+</ul>
+<h3><p>conversion</p>
+</h3>
+<ul>
+<li><strong>CSV</strong><ul>
+<li><a href="https://github.com/mapbox/csv2geojson" rel="noopener noreferrer">csv2geojson (⭐370)</a>: convert CSV to geojson</li>
+<li><a href="https://github.com/tmcw/geojson2dsv" rel="noopener noreferrer">geojson2dsv (⭐8)</a>: convert geojson to CSV and TSV</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/developmentseed/vt-geojson" rel="noopener noreferrer">vt-geojson (⭐60)</a>: Extract GeoJSON from Mapbox vector tiles</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mapbox/tokml" rel="noopener noreferrer">tokml (⭐190)</a>: convert GeoJSON to KML</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mapbox/wellknown" rel="noopener noreferrer">wellknown (⭐270)</a>: convert WKT to GeoJSON</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/koopjs/geoxform" rel="noopener noreferrer">geoxform (⭐16)</a>: convert any size stream of geojson into a streaming CSV, Shapefile or KML, etc.</li>
+</ul>
+
+<ul>
+<li><strong>SVG</strong><ul>
+<li><a href="https://github.com/gagan-bansal/geojson2svg" rel="noopener noreferrer">geojson2svg (⭐242)</a>: Converts GeoJSON to SVG string given SVG view port size and maps extent.</li>
+<li><a href="https://github.com/juliuste/geojson-svgify" rel="noopener noreferrer">geojson-svgify (⭐17)</a>: Convert GeoJSON geometry paths to SVG polyline elements.</li>
+<li><a href="https://github.com/derhuerst/geojson-to-svg-cli" rel="noopener noreferrer">geojson-to-svg-cli (⭐27)</a>: Command line tool to convert GeoJSON to SVG.</li>
+<li><a href="https://github.com/mapbox/svg-to-geojson" rel="noopener noreferrer">svg-to-geojson (⭐117)</a>: Drag and drop SVG on the map and it returns GeoJSON back to you.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><a href="https://www.npmjs.com/package/geojson2ndjson" rel="noopener noreferrer">geojson2ndjson</a>: convert GeoJSON to/from newline-delimited GeoJSON</li>
+</ul>
+
+<ul>
+<li><a href="https://www.npmjs.com/package/geobuf/v/0.2.1" rel="noopener noreferrer">geobuf</a>: convert GeoJSON to/from GeoBuf</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/01/23/">Jan 23, 2019</a></h2><h3><p>editors &amp; viewers</p>
+</h3>
+<ul>
+<li><a href="http://geojson.tools/" rel="noopener noreferrer">geojson.tools</a>: web-based editor from HERE XYZ</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/10/26/">Oct 26, 2018</a></h2><h3><p>data</p>
+</h3>
+<ul>
+<li><a href="http://ustroetz.github.io/gimmeOSM/" rel="noopener noreferrer">gimme OSM</a>: Fetch geojson file by openstreetmap id</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/04/18/">Apr 18, 2018</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/andrewharvey/geojson-id-streaming" rel="noopener noreferrer">geojson-id-streaming (⭐2)</a>: Add a unique id to each Feature</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/andrewharvey/geojson-mesh" rel="noopener noreferrer">geojson-mesh (⭐13)</a>: extract shared borders of Polygons in a GeoJSON</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/andrewharvey/geojson-polygon-labels" rel="noopener noreferrer">geojson-polygon-labels (⭐87)</a>: generate point labels from GeoJSON polygons</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/11/20/">Nov 20, 2017</a></h2><h3><p>data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/simonepri/geo-maps" rel="noopener noreferrer">geo-maps (⭐1.3k)</a>: High Quality GeoJSON maps programmatically generated.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/09/28/">Sep 28, 2017</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/stadt-karlsruhe/geo_assigner" rel="noopener noreferrer">geo_assigner (⭐2)</a>: Copy a property to all intersecting features</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/09/14/">Sep 14, 2017</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/berlinermorgenpost/cogran" rel="noopener noreferrer">CoGran (⭐113)</a>: Resample statistics from one set of GeoJSON polygons to another</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/03/11/">Mar 11, 2017</a></h2><h3><p>editors &amp; viewers</p>
+</h3>
+<ul>
+<li><a href="http://dropchop.io/" rel="noopener noreferrer">dropchop</a>: browser-based GIS based on Turf.js</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/03/09/">Mar 09, 2017</a></h2><h3><p>serialization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/opendatalab-de/geojson-jackson" rel="noopener noreferrer">geojson-jackson (⭐268)</a>: serialize GeoJSON to and from Java datatypes (based on <a href="http://wiki.fasterxml.com/JacksonHome" rel="noopener noreferrer">Jackson</a>)</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mapbox/mapbox-java" rel="noopener noreferrer">mapbox-java (⭐433)</a>: serialize GeoJSON to and from Java datatypes (based on <a href="https://github.com/google/gson" rel="noopener noreferrer">Gson (⭐24k)</a>)</li>
+</ul>
+<h3><p>resources</p>
+</h3>
+<ul>
+<li><a href="https://tools.ietf.org/html/rfc7946" rel="noopener noreferrer">RFC 7946 – The GeoJSON Format</a>: the current GeoJSON standard by IETF</li>
+</ul>
+
+<ul>
+<li><a href="http://geojson.org/" rel="noopener noreferrer">GeoJSON.org</a>: the first specification, defining all the rules for GeoJSON structures</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/02/17/">Feb 17, 2017</a></h2><h3><p>conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mapbox/supercluster" rel="noopener noreferrer">supercluster (⭐2.2k)</a>: A fast GeoJSON clustering library for browsers and Node.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/02/11/">Feb 11, 2017</a></h2><h3><p>services</p>
+</h3>
+<ul>
+<li><a href="https://github.com/featureserver/featureserver" rel="noopener noreferrer">featureserver (⭐104)</a>: An open source Esri-Style Feature Server</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/01/28/">Jan 28, 2017</a></h2><h3><p>editors &amp; viewers</p>
+</h3>
+<ul>
+<li><a href="https://github.com/brycejohnston/geojson2image" rel="noopener noreferrer">geojson2image (⭐13)</a>: library for generating images from GeoJSON</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/12/05/">Dec 05, 2016</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tmcw/geojson-flatten" rel="noopener noreferrer">geojson-flatten (⭐52)</a>: flatten multi geometries into normal geometries</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tmcw/geojson-random" rel="noopener noreferrer">geojson-random (⭐75)</a>: generate random geojson points, lines, and polygons</li>
+</ul>
+<h3><p>editors &amp; viewers</p>
+</h3>
+<ul>
+<li><a href="https://tomscholz.github.io/geojson-editor/" rel="noopener noreferrer">GeoJSON editor</a>: a modified version of Google's simple geojson editor</li>
+</ul>
+<h3><p>conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/topojson/topojson" rel="noopener noreferrer">topojson (⭐4.8k)</a>: convert GeoJSON to &amp; from TopoJSON, join data from CSV</li>
+</ul>
+<h3><p>data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/topojson/world-atlas" rel="noopener noreferrer">world-atlas (⭐1.1k)</a>: customizable simplified versions of natural earth data</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/topojson/us-atlas" rel="noopener noreferrer">us-atlas (⭐910)</a>: geojson &amp; topojson for United States features</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/07/21/">Jul 21, 2016</a></h2><h3><p>resources</p>
+</h3>
+<ul>
+<li><a href="http://www.macwright.org/2015/03/23/geojson-second-bite.html" rel="noopener noreferrer">More than you ever wanted to know about GeoJSON</a>: a review of the concepts behind the specification in a more narrative format.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/05/06/">May 06, 2016</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/haoliangyu/geojson-multiply" rel="noopener noreferrer">geojson-multiply (⭐3)</a>:  merge normal geojson features into one multi geometry type feature</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/02/27/">Feb 27, 2016</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dmfenton/winnow" rel="noopener noreferrer">winnow (⭐88)</a>: run sql queries against geojson with javascript</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/02/20/">Feb 20, 2016</a></h2><h3><p>editors &amp; viewers</p>
+</h3>
+<ul>
+<li><a href="https://github.com/anandthakker/gjv" rel="noopener noreferrer">gjv (⭐76)</a>: electron app enables viewing GeoJSON locally and hack on it with turf; works offline</li>
+</ul>
+<h3><p>data</p>
+</h3>
+<ul>
+<li><a href="https://mapzen.com/data/metro-extracts/" rel="noopener noreferrer">metro-extracts</a>: regional OpenStreetMap data as GeoJSON</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/02/01/">Feb 01, 2016</a></h2><h3><p>services</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mapbox/geojsonio-cli" rel="noopener noreferrer">geojsonio-cli (⭐169)</a>: send geojson features to geojson.io from your command line</li>
+</ul>
+<h3><p>data</p>
+</h3>
+<ul>
+<li><a href="http://geojson.xyz/" rel="noopener noreferrer">geojson.xyz</a>: natural earth data in web-friendly sizes with hotlinking</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/01/28/">Jan 28, 2016</a></h2><h3><p>serialization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/rgeo/rgeo-geojson" rel="noopener noreferrer">rgeo-geojson (⭐189)</a>: serialize geojson to/from ruby RGeo datatypes</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/11/30/">Nov 30, 2015</a></h2><h3><p>services</p>
+</h3>
+<ul>
+<li><a href="https://koopjs.github.io" rel="noopener noreferrer">koop</a>: Server with plugins that recast Esri, GitHub, Socrata and other services as GeoJSON endpoints</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/10/26/">Oct 26, 2015</a></h2><h3><p>conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tmcw/gtfs2geojson" rel="noopener noreferrer">gtfs2geojson (⭐25)</a>: convert GTFS transit data to GeoJSON</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/09/22/">Sep 22, 2015</a></h2><h3><p>editors &amp; viewers</p>
+</h3>
+<ul>
+<li><a href="http://geojson.io/" rel="noopener noreferrer">geojson.io</a>: web-based editor, supports many filetype imports &amp; exports, operations, sharing via GitHub</li>
+</ul>
+
+<ul>
+<li><a href="http://umap.openstreetmap.fr/en/" rel="noopener noreferrer">umap</a>: web-based editor, supports sharing on-site</li>
+</ul>
+
+<ul>
+<li><a href="http://mapstarter.com/" rel="noopener noreferrer">mapstarter</a>: helps generate svg, images, and code from GeoJSON</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/07/23/">Jul 23, 2015</a></h2><h3><p>conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/project-open-data/esri2open" rel="noopener noreferrer">esri2open (⭐262)</a> converts proprietary Esri formats to GeoJSON</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/06/10/">Jun 10, 2015</a></h2><h3><p>data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tmcw/strava-geojson" rel="noopener noreferrer">strava-geojson (⭐26)</a>: export <em>all</em> strava data to geojson, in node &amp; <a href="http://www.macwright.org/strava-geojson/" rel="noopener noreferrer">on the web</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/06/02/">Jun 02, 2015</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tmcw/geojson-join" rel="noopener noreferrer">geojson-join (⭐36)</a>: join geojson against json, dbf, and csv files</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/06/01/">Jun 01, 2015</a></h2><h3><p>services</p>
+</h3>
+<ul>
+<li><a href="http://mapshaper.org/" rel="noopener noreferrer">mapshaper</a>: Simple interface for simplification and conversion of GeoJSON and TopoJSON</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/05/31/">May 31, 2015</a></h2><h3><p>data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/taketime/strava-to-geojsonio" rel="noopener noreferrer">strava-to-geojsonio (⭐7)</a>: export runs &amp; rides from Strava to GeoJSON</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/05/30/">May 30, 2015</a></h2><h3><p>data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/straup/whereonearth-airport" rel="noopener noreferrer">whereonearth-airport (⭐14)</a>: outlines of every airport</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/straup/whereonearth-building/" rel="noopener noreferrer">whereonearth-building (⭐11)</a>: building outlines</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/search?q=user%3Astraup+whereonearth" rel="noopener noreferrer">whereonearth repos</a>: other features output from GeoPlanet by Aaron Straup Cope</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/straup/tgn-geojson" rel="noopener noreferrer">tgn-geojson (⭐15)</a>: The Getty Thesaurus of Geographic Names (TGN) As GeoJSON.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/05/29/">May 29, 2015</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mapbox/geojson-coords" rel="noopener noreferrer">geojson-coords (⭐32)</a>: Extract coordinates from GeoJSON</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/maxogden/geojson-js-utils" rel="noopener noreferrer">geojson-js-utils (⭐403)</a>: JavaScript helper functions for manipulating GeoJSON</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mapbox/geojson-merge" rel="noopener noreferrer">geojson-merge (⭐241)</a>: Merge multiple GeoJSON files into one FeatureCollection.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mapbox/geojson-normalize" rel="noopener noreferrer">geojson-normalize (⭐33)</a>: normalize any geojson object into a geojson featurecollection</li>
+</ul>
+
+<ul>
+<li><a href="https://www.npmjs.com/package/geojson-pick" rel="noopener noreferrer">geojson-pick</a>: remove all but specified properties from features in a geojson featurecollection</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mapbox/geojson-summary" rel="noopener noreferrer">geojson-summary (⭐34)</a>: get a plain-english summary of what's in a geojson file</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/substack/point-grouper" rel="noopener noreferrer">point-grouper</a>: group geojson points into containing polygons</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/maxogden/simplify-geojson" rel="noopener noreferrer">simplify-geojson (⭐182)</a>: apply the ramer-douglas-peucker line simplification to geojson features or feature collections in JS or on the CLI</li>
+</ul>
+<h3><p>services</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mapbox/geojsonio-extension" rel="noopener noreferrer">geojsonio-extension (⭐1)</a>: chrome extension for editing github files in geojson.io</li>
+</ul>
+
+<ul>
+<li><a href="http://geojsonlint.com/" rel="noopener noreferrer">geojsonlint</a>: REST interface for GeoJSON validation</li>
+</ul>
+<h3><p>conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mapbox/geojson-mapnikify" rel="noopener noreferrer">geojson-mapnikify (⭐41)</a>: Transform GeoJSON objects into Mapnik XML stylesheets with embedded GeoJSON data and simplestyle-spec-derived styles.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mapbox/geojson-vt" rel="noopener noreferrer">geojson-vt (⭐2k)</a>: Slice GeoJSON into vector tiles on the fly in the browser</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/maxogden/geojson2rtree" rel="noopener noreferrer">geojson2rtree (⭐9)</a>: generate a static rtree (using terraformer) from a set of geojson features</li>
+</ul>
+
+<ul>
+<li><a href="http://www.gdal.org/ogr2ogr.html" rel="noopener noreferrer">ogr2ogr</a>: convert anything to anything<ul>
+<li><a href="https://github.com/toblerity/fiona" rel="noopener noreferrer">fiona (⭐1.2k)</a>: nice python interface on top of ogr</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/substack/shp2json" rel="noopener noreferrer">shp2json</a>: convert shapefile zip archives to streaming GeoJSON</li>
+</ul>
+<h3><p>data</p>
+</h3>
+<ul>
+<li><a href="http://www.naturalearthdata.com/" rel="noopener noreferrer">natural earth</a>: country, province, and geographical data</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tmcw/openflights-geojson" rel="noopener noreferrer">openflights-geojson (⭐28)</a>: <a href="http://openflights.org/" rel="noopener noreferrer">openflights</a> airports &amp; airplane routes</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/05/28/">May 28, 2015</a></h2><h3><p>operations</p>
+</h3>
+<ul>
+<li><a href="https://www.npmjs.com/package/geojson-extent" rel="noopener noreferrer">geojson-extent</a>: compute the bounding box of geojson features</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mapbox/geojson-rewind" rel="noopener noreferrer">geojson-rewind (⭐132)</a>: enforce ring winding order</li>
+</ul>
+<h3><p>validation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mapbox/geojsonhint" rel="noopener noreferrer">geojsonhint (⭐259)</a>: find errors in your geojson files</li>
+</ul>
+<h3><p>serialization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/frewsxcv/python-geojson" rel="noopener noreferrer">python-geojson (⭐969)</a>: serialize geojson to/from python datatypes</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/georust/rust-geojson" rel="noopener noreferrer">rust-geojson (⭐312)</a>: serialize geojson to/from rust datatypes</li>
+</ul>
+
+    </main>
+  </body>
+</html>

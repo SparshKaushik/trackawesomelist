@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Awesome Scala (lauris/awesome-scala) Overview - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/lauris/awesome-scala/readme/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Awesome Scala Overview" />
+    <meta property="og:description" content="A community driven list of useful Scala libraries, frameworks and software." />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Awesome Scala Overview</h1>
+<p>A community driven list of useful Scala libraries, frameworks and software.</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/lauris/awesome-scala/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/lauris/awesome-scala">😺 lauris/awesome-scala</a><span> · </span><span>⭐ 9.1K</span><span> · </span><span>🏷️ Programming Languages</span></p>
+<p><span>[ </span><a href="/lauris/awesome-scala/">Daily</a><span> / </span><a href="/lauris/awesome-scala/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
+
+
+<h1 id="awesome-scala-awesome"><a class="anchor" aria-hidden="true" tabindex="-1" href="#awesome-scala-awesome"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Awesome Scala <a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer"><img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome" /></a></h1><p>A community driven list of useful Scala libraries, frameworks and software. This is not a catalog of all the libraries, just a starting point for your explorations. Inspired by <a href="https://github.com/vinta/awesome-python" rel="noopener noreferrer">awesome-python</a>. Other amazingly awesome lists can be found in the <a href="https://github.com/bayandin/awesome-awesomeness" rel="noopener noreferrer">awesome-awesomeness</a> list.</p>
+<p>Also awesome is <a href="https://index.scala-lang.org/" rel="noopener noreferrer">Scaladex</a>, the searchable, tagged, and centralized index of Scala libraries.</p>
+<p>Projects with over 500 stargazers are in bold.</p>
+<h2 id="contributing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contributing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contributing</h2><p>Your contributions are always welcome! Please submit a pull request or create an issue to add a new framework, library or software to the list. Do not submit a project that hasn’t been updated in the past 6 months or is not awesome.</p>
+<p>Don't modify <code>README.md</code> in your pull request. It is automatically generated. Modify <code>template.md</code> instead.</p>
+<h2 id="table-of-contents"><a class="anchor" aria-hidden="true" tabindex="-1" href="#table-of-contents"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Table of Contents</h2><ul>
+<li><a href="#learning-scala">Learning Scala</a></li>
+<li><a href="#projects">Projects</a><ul>
+<li><a href="#android">Android</a></li>
+<li><a href="#archive-and-compression">Archive and Compression</a></li>
+<li><a href="#artificial-intelligence">Artificial Intelligence</a></li>
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#authorization">Authorization</a></li>
+<li><a href="#big-data">Big Data</a></li>
+<li><a href="#command-line-interfaces">Command Line Interfaces</a></li>
+<li><a href="#cryptography">Cryptography</a></li>
+<li><a href="#csv">CSV</a></li>
+<li><a href="#data-binding-and-validation">Data Binding and Validation</a></li>
+<li><a href="#database">Database</a></li>
+<li><a href="#devops">DevOps</a></li>
+<li><a href="#distributed-systems">Distributed Systems</a></li>
+<li><a href="#extensions">Extensions</a></li>
+<li><a href="#functional-reactive-programming">Functional Reactive Programming</a></li>
+<li><a href="#geospatial">Geospatial</a></li>
+<li><a href="#graphical-user-interfaces">Graphical User Interfaces</a></li>
+<li><a href="#http">HTTP</a></li>
+<li><a href="#i18n">i18n</a></li>
+<li><a href="#image-processing-and-image-analysis">Image processing and image analysis</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#json">JSON</a></li>
+<li><a href="#markdown">Markdown</a></li>
+<li><a href="#metrics-and-monitoring">Metrics and Monitoring</a></li>
+<li><a href="#misc">Misc</a></li>
+<li><a href="#modularization-and-dependency-injection">Modularization and Dependency Injection</a></li>
+<li><a href="#parsing">Parsing</a></li>
+<li><a href="#reactive-web-frameworks">Reactive Web Frameworks</a></li>
+<li><a href="#sbt-plugins">Sbt plugins</a></li>
+<li><a href="#science-and-data-analysis">Science and Data Analysis</a></li>
+<li><a href="#scheduling">Scheduling</a></li>
+<li><a href="#semantic-web">Semantic Web</a></li>
+<li><a href="#serialization">Serialization</a></li>
+<li><a href="#templating">Templating</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="#web-frameworks">Web Frameworks</a></li>
+<li><a href="#xml--html">XML / HTML</a></li>
+<li><a href="#yaml">YAML</a></li>
+</ul>
+</li>
+<li><a href="#learning-scala">Learning Scala</a><ul>
+<li><a href="#books">Books</a></li>
+<li><a href="#exercises">Exercises</a></li>
+<li><a href="#tutorials-and-courses">Tutorials and courses</a></li>
+<li><a href="#commercial-courses">Commercial courses</a></li>
+<li><a href="#community-members-blogs">Community members' blogs</a></li>
+<li><a href="#company-blogs">Company Blogs</a></li>
+<li><a href="#podcasts">Podcasts</a></li>
+</ul>
+</li>
+<li><a href="#contributing">Contributing</a></li>
+</ul>
+<h3 id="archive-and-compression"><a class="anchor" aria-hidden="true" tabindex="-1" href="#archive-and-compression"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Archive and Compression</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+</table>
+<h3 id="artificial-intelligence"><a class="anchor" aria-hidden="true" tabindex="-1" href="#artificial-intelligence"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Artificial Intelligence</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+</table>
+<h3 id="database"><a class="anchor" aria-hidden="true" tabindex="-1" href="#database"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Database</h3><p><em>Database access libraries in Scala.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/innFactory/akka-persistence-gcp-datastore" rel="noopener noreferrer">akka-persistence-gcp-datastore</a></td>
+<td>akka-persistence-gcp-datastore is a journal and snapshot store plugin for akka-persistence using google cloud firestore in datastore mode.</td>
+<td><img src="https://img.shields.io/github/stars/innFactory/akka-persistence-gcp-datastore" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/innFactory/akka-persistence-gcp-datastore" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/playframework/anorm" rel="noopener noreferrer">anorm</a></td>
+<td>The Anorm database library</td>
+<td><img src="https://img.shields.io/github/stars/playframework/anorm" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/playframework/anorm" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/crobox/clickhouse-scala-client" rel="noopener noreferrer">clickhouse-scala-client</a></td>
+<td>Clickhouse Scala Client with Reactive Streams support</td>
+<td><img src="https://img.shields.io/github/stars/crobox/clickhouse-scala-client" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/crobox/clickhouse-scala-client" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/couchbase/couchbase-jvm-clients" rel="noopener noreferrer">couchbase-jvm-clients</a></td>
+<td>The Couchbase Monorepo for JVM Clients: Java, Scala, io-core…</td>
+<td><img src="https://img.shields.io/github/stars/couchbase/couchbase-jvm-clients" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/couchbase/couchbase-jvm-clients" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/typelevel/doobie" rel="noopener noreferrer"><strong>doobie</strong></a></td>
+<td>Functional JDBC layer for Scala.</td>
+<td><img src="https://img.shields.io/github/stars/typelevel/doobie" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/typelevel/doobie" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/Philippus/elastic4s" rel="noopener noreferrer"><strong>elastic4s</strong></a></td>
+<td>🔍 Elasticsearch Scala Client - Reactive, Non Blocking, Type Safe, HTTP Client</td>
+<td><img src="https://img.shields.io/github/stars/Philippus/elastic4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/Philippus/elastic4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/mingchuno/etcd4s" rel="noopener noreferrer">etcd4s</a></td>
+<td>Scala etcd client implementing V3 APIs</td>
+<td><img src="https://img.shields.io/github/stars/mingchuno/etcd4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/mingchuno/etcd4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/laserdisc-io/laserdisc" rel="noopener noreferrer">laserdisc</a></td>
+<td>A Future-free Fs2 native pure FP Redis client</td>
+<td><img src="https://img.shields.io/github/stars/laserdisc-io/laserdisc" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/laserdisc-io/laserdisc" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/laserdisc-io/mysql-binlog-stream" rel="noopener noreferrer">mysql-binlog-stream</a></td>
+<td>None</td>
+<td><img src="https://img.shields.io/github/stars/laserdisc-io/mysql-binlog-stream" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/laserdisc-io/mysql-binlog-stream" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/neotypes/neotypes" rel="noopener noreferrer">neotypes</a></td>
+<td>Scala lightweight, type-safe, asynchronous driver for neo4j</td>
+<td><img src="https://img.shields.io/github/stars/neotypes/neotypes" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/neotypes/neotypes" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/CleverCloud/pulsar4s" rel="noopener noreferrer">pulsar4s</a></td>
+<td>Idiomatic, typesafe, and reactive Scala client for Apache Pulsar</td>
+<td><img src="https://img.shields.io/github/stars/CleverCloud/pulsar4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/CleverCloud/pulsar4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/zio/zio-quill" rel="noopener noreferrer"><strong>zio-quill</strong></a></td>
+<td>Compile-time Language Integrated Queries for Scala</td>
+<td><img src="https://img.shields.io/github/stars/zio/zio-quill" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/zio/zio-quill" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ReactiveMongo/ReactiveMongo" rel="noopener noreferrer"><strong>ReactiveMongo</strong></a></td>
+<td>🍃 Non-blocking, Reactive MongoDB Driver for Scala</td>
+<td><img src="https://img.shields.io/github/stars/ReactiveMongo/ReactiveMongo" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/ReactiveMongo/ReactiveMongo" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/etaty/rediscala" rel="noopener noreferrer"><strong>rediscala</strong></a></td>
+<td>Non-blocking, Reactive Redis driver for Scala (with Sentinel support)</td>
+<td><img src="https://img.shields.io/github/stars/etaty/rediscala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/etaty/rediscala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/lucidsoftware/relate" rel="noopener noreferrer">relate</a></td>
+<td>Performant database access in Scala</td>
+<td><img src="https://img.shields.io/github/stars/lucidsoftware/relate" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/lucidsoftware/relate" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sangria-graphql/sangria" rel="noopener noreferrer"><strong>sangria</strong></a></td>
+<td>Scala GraphQL implementation</td>
+<td><img src="https://img.shields.io/github/stars/sangria-graphql/sangria" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sangria-graphql/sangria" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/lastland/scala-forklift" rel="noopener noreferrer">scala-forklift</a></td>
+<td>Type-safe data migration tool for Slick, Git and beyond.</td>
+<td><img src="https://img.shields.io/github/stars/lastland/scala-forklift" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/lastland/scala-forklift" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/outr/scalarelational" rel="noopener noreferrer">scalarelational</a></td>
+<td>Type-Safe framework for defining, modifying, and querying SQL databases</td>
+<td><img src="https://img.shields.io/github/stars/outr/scalarelational" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/outr/scalarelational" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalikejdbc/scalikejdbc" rel="noopener noreferrer"><strong>scalikejdbc</strong></a></td>
+<td>A tidy SQL-based DB access library for Scala developers. This library naturally wraps JDBC APIs and provides you easy-to-use APIs.</td>
+<td><img src="https://img.shields.io/github/stars/scalikejdbc/scalikejdbc" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalikejdbc/scalikejdbc" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scanamo/scanamo" rel="noopener noreferrer">scanamo</a></td>
+<td>Simpler DynamoDB access for Scala</td>
+<td><img src="https://img.shields.io/github/stars/scanamo/scanamo" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scanamo/scanamo" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/slick/slick" rel="noopener noreferrer"><strong>slick</strong></a></td>
+<td>Slick (Scala Language Integrated Connection Kit) is a modern database query and access library for Scala</td>
+<td><img src="https://img.shields.io/github/stars/slick/slick" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/slick/slick" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tminglei/slick-pg" rel="noopener noreferrer"><strong>slick-pg</strong></a></td>
+<td>Slick extensions for PostgreSQL</td>
+<td><img src="https://img.shields.io/github/stars/tminglei/slick-pg" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/tminglei/slick-pg" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sake92/squery" rel="noopener noreferrer">squery</a></td>
+<td>Simple SQL queries in Scala 3</td>
+<td><img src="https://img.shields.io/github/stars/sake92/squery" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sake92/squery" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/squeryl/squeryl" rel="noopener noreferrer"><strong>squeryl</strong></a></td>
+<td>A Scala DSL for talking with databases with minimum verbosity and maximum type safety</td>
+<td><img src="https://img.shields.io/github/stars/squeryl/squeryl" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/squeryl/squeryl" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalamolecule/molecule" rel="noopener noreferrer">molecule</a></td>
+<td>Molecule translates custom Scala code to database queries for multiple databases.</td>
+<td><img src="https://img.shields.io/github/stars/scalamolecule/molecule" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalamolecule/molecule" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/zio/zio-redis" rel="noopener noreferrer">zio-redis</a></td>
+<td>A ZIO-based redis client</td>
+<td><img src="https://img.shields.io/github/stars/zio/zio-redis" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/zio/zio-redis" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/typelevel/skunk" rel="noopener noreferrer"><strong>skunk</strong></a></td>
+<td>A data access library for Scala + Postgres.</td>
+<td><img src="https://img.shields.io/github/stars/typelevel/skunk" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/typelevel/skunk" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/zero-deps/kvs" rel="noopener noreferrer">kvs</a></td>
+<td>Highly available distributed strong eventual consistent and sequentially consistent storage with feeds, sorting and search</td>
+<td><img src="https://img.shields.io/github/stars/zero-deps/kvs" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/zero-deps/kvs" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="messaging"><a class="anchor" aria-hidden="true" tabindex="-1" href="#messaging"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Messaging</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+</table>
+<h3 id="graphical-user-interfaces"><a class="anchor" aria-hidden="true" tabindex="-1" href="#graphical-user-interfaces"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Graphical User Interfaces</h3><p><em>Libraries for creation of graphical user interfaces</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/scalafx/scalafx" rel="noopener noreferrer"><strong>scalafx</strong></a></td>
+<td>ScalaFX simplifies creation of JavaFX-based user interfaces in Scala</td>
+<td><img src="https://img.shields.io/github/stars/scalafx/scalafx" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalafx/scalafx" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="web-frameworks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web-frameworks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web Frameworks</h3><p><em>Scala frameworks for web development.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/analogweb/analogweb-scala" rel="noopener noreferrer">analogweb-scala</a></td>
+<td>Tiny High Performance HTTP Server for Scala</td>
+<td><img src="https://img.shields.io/github/stars/analogweb/analogweb-scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/analogweb/analogweb-scala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/com-lihaoyi/cask" rel="noopener noreferrer"><strong>cask</strong></a></td>
+<td>Cask: a Scala HTTP micro-framework. Cask makes it easy to set up a website, backend server, or REST API using Scala</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/cask" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/cask" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/twitter/finatra" rel="noopener noreferrer"><strong>finatra</strong></a></td>
+<td>Fast, testable, Scala services built on TwitterServer and Finagle</td>
+<td><img src="https://img.shields.io/github/stars/twitter/finatra" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/twitter/finatra" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/lift/framework" rel="noopener noreferrer"><strong>framework</strong></a></td>
+<td>Lift Framework</td>
+<td><img src="https://img.shields.io/github/stars/lift/framework" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/lift/framework" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/playframework/playframework" rel="noopener noreferrer"><strong>playframework</strong></a></td>
+<td>The Community Maintained High Velocity Web Framework For Java and Scala.</td>
+<td><img src="https://img.shields.io/github/stars/playframework/playframework" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/playframework/playframework" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/japgolly/scalajs-react" rel="noopener noreferrer"><strong>scalajs-react</strong></a></td>
+<td>Facebook's React on Scala.JS</td>
+<td><img src="https://img.shields.io/github/stars/japgolly/scalajs-react" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/japgolly/scalajs-react" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalatra/scalatra" rel="noopener noreferrer"><strong>scalatra</strong></a></td>
+<td>Tiny Scala high-performance, async web framework, inspired by Sinatra</td>
+<td><img src="https://img.shields.io/github/stars/scalatra/scalatra" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalatra/scalatra" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sake92/sharaf" rel="noopener noreferrer">sharaf</a></td>
+<td>Minimalistic Scala 3 web framework</td>
+<td><img src="https://img.shields.io/github/stars/sake92/sharaf" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sake92/sharaf" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/unfiltered/unfiltered" rel="noopener noreferrer"><strong>unfiltered</strong></a></td>
+<td>A toolkit for servicing HTTP requests in Scala</td>
+<td><img src="https://img.shields.io/github/stars/unfiltered/unfiltered" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/unfiltered/unfiltered" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/outr/youi" rel="noopener noreferrer">youi</a></td>
+<td>Next generation user interface and application development in Scala and Scala.js for web, mobile, and desktop.</td>
+<td><img src="https://img.shields.io/github/stars/outr/youi" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/outr/youi" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="reactive-web-frameworks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#reactive-web-frameworks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Reactive Web Frameworks</h3><p><em>Scala libraries for Reactive Web development</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/ThoughtWorksInc/Binding.scala" rel="noopener noreferrer"><strong>Binding.scala</strong></a></td>
+<td>Reactive data-binding for Scala</td>
+<td><img src="https://img.shields.io/github/stars/ThoughtWorksInc/Binding.scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/ThoughtWorksInc/Binding.scala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/UdashFramework/udash-core" rel="noopener noreferrer">udash-core</a></td>
+<td>Scala framework for building beautiful and maintainable web applications.</td>
+<td><img src="https://img.shields.io/github/stars/UdashFramework/udash-core" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/UdashFramework/udash-core" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/vert-x3/vertx-lang-scala" rel="noopener noreferrer">vertx-lang-scala</a></td>
+<td>Vert.x for Scala</td>
+<td><img src="https://img.shields.io/github/stars/vert-x3/vertx-lang-scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/vert-x3/vertx-lang-scala" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="data-binding-and-validation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#data-binding-and-validation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Data Binding and Validation</h3><p><em>Scala libraries for data binding and validation</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/yakivy/dupin" rel="noopener noreferrer">dupin</a></td>
+<td>Minimal, idiomatic, customizable validation Scala library.</td>
+<td><img src="https://img.shields.io/github/stars/yakivy/dupin" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/yakivy/dupin" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/krzemin/octopus" rel="noopener noreferrer">octopus</a></td>
+<td>Scala library for boilerplate-free validation</td>
+<td><img src="https://img.shields.io/github/stars/krzemin/octopus" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/krzemin/octopus" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="i18n"><a class="anchor" aria-hidden="true" tabindex="-1" href="#i18n"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>i18n</h3><p><em>Scala libraries for i18n.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/xitrum-framework/scaposer" rel="noopener noreferrer">scaposer</a></td>
+<td>GNU Gettext .po file loader for Scala</td>
+<td><img src="https://img.shields.io/github/stars/xitrum-framework/scaposer" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/xitrum-framework/scaposer" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="authentication"><a class="anchor" aria-hidden="true" tabindex="-1" href="#authentication"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Authentication</h3><p><em>Libraries for implementing authentications schemes.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/guardian/play-googleauth" rel="noopener noreferrer">play-googleauth</a></td>
+<td>Simple play module for authenticating against Google</td>
+<td><img src="https://img.shields.io/github/stars/guardian/play-googleauth" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/guardian/play-googleauth" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/pac4j/play-pac4j" rel="noopener noreferrer">play-pac4j</a></td>
+<td>Security library for Play framework 2 in Java and Scala: OAuth, CAS, SAML, OpenID Connect, LDAP, JWT...</td>
+<td><img src="https://img.shields.io/github/stars/pac4j/play-pac4j" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/pac4j/play-pac4j" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/nulab/scala-oauth2-provider" rel="noopener noreferrer"><strong>scala-oauth2-provider</strong></a></td>
+<td>OAuth 2.0 server-side implementation written in Scala</td>
+<td><img src="https://img.shields.io/github/stars/nulab/scala-oauth2-provider" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/nulab/scala-oauth2-provider" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="cryptography"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cryptography"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Cryptography</h3><p><em>Cryptography and Encryption Libraries.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/input-output-hk/scrypto" rel="noopener noreferrer">scrypto</a></td>
+<td>Cryptographic primitives for Scala</td>
+<td><img src="https://img.shields.io/github/stars/input-output-hk/scrypto" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/input-output-hk/scrypto" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/blackdoor/jose" rel="noopener noreferrer">jose</a></td>
+<td>Extensible JOSE library for Scala</td>
+<td><img src="https://img.shields.io/github/stars/blackdoor/jose" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/blackdoor/jose" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="testing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#testing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Testing</h3><p><em>Libraries for code testing.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/bencherdev/bencher" rel="noopener noreferrer"><strong>bencher</strong></a></td>
+<td>🐰 Bencher - Continuous Benchmarking</td>
+<td><img src="https://img.shields.io/github/stars/bencherdev/bencher" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/bencherdev/bencher" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/agourlay/cornichon" rel="noopener noreferrer">cornichon</a></td>
+<td>Testing tool in Scala for HTTP JSON API</td>
+<td><img src="https://img.shields.io/github/stars/agourlay/cornichon" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/agourlay/cornichon" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/gatling/gatling" rel="noopener noreferrer"><strong>gatling</strong></a></td>
+<td>Modern Load Testing as Code</td>
+<td><img src="https://img.shields.io/github/stars/gatling/gatling" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/gatling/gatling" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/monix/minitest" rel="noopener noreferrer">minitest</a></td>
+<td>The super light testing library for Scala and Scala.js</td>
+<td><img src="https://img.shields.io/github/stars/monix/minitest" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/monix/minitest" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/mockito/mockito-scala" rel="noopener noreferrer">mockito-scala</a></td>
+<td>Mockito for Scala language</td>
+<td><img src="https://img.shields.io/github/stars/mockito/mockito-scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/mockito/mockito-scala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalameta/munit" rel="noopener noreferrer">munit</a></td>
+<td>Scala testing library with actionable errors and extensible APIs</td>
+<td><img src="https://img.shields.io/github/stars/scalameta/munit" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalameta/munit" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/typelevel/scalacheck" rel="noopener noreferrer"><strong>scalacheck</strong></a></td>
+<td>Property-based testing for Scala</td>
+<td><img src="https://img.shields.io/github/stars/typelevel/scalacheck" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/typelevel/scalacheck" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/paulbutcher/ScalaMock" rel="noopener noreferrer"><strong>ScalaMock</strong></a></td>
+<td>Native Scala mocking framework</td>
+<td><img src="https://img.shields.io/github/stars/paulbutcher/ScalaMock" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/paulbutcher/ScalaMock" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalaprops/scalaprops" rel="noopener noreferrer">scalaprops</a></td>
+<td>property based testing library for Scala</td>
+<td><img src="https://img.shields.io/github/stars/scalaprops/scalaprops" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalaprops/scalaprops" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalatest/scalatest" rel="noopener noreferrer"><strong>scalatest</strong></a></td>
+<td>A testing tool for Scala and Java developers</td>
+<td><img src="https://img.shields.io/github/stars/scalatest/scalatest" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalatest/scalatest" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/etorreborre/specs2" rel="noopener noreferrer"><strong>specs2</strong></a></td>
+<td>Software Specifications for Scala</td>
+<td><img src="https://img.shields.io/github/stars/etorreborre/specs2" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/etorreborre/specs2" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/stryker-mutator/stryker4s" rel="noopener noreferrer">stryker4s</a></td>
+<td>Mutation testing for Scala</td>
+<td><img src="https://img.shields.io/github/stars/stryker-mutator/stryker4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/stryker-mutator/stryker4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/disneystreaming/weaver-test" rel="noopener noreferrer">weaver-test</a></td>
+<td>A test framework that runs everything in parallel.</td>
+<td><img src="https://img.shields.io/github/stars/disneystreaming/weaver-test" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/disneystreaming/weaver-test" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/testcontainers/testcontainers-scala" rel="noopener noreferrer"><strong>testcontainers-scala</strong></a></td>
+<td>Docker containers for testing in scala</td>
+<td><img src="https://img.shields.io/github/stars/testcontainers/testcontainers-scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/testcontainers/testcontainers-scala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/com-lihaoyi/utest" rel="noopener noreferrer">utest</a></td>
+<td>A simple testing framework for Scala</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/utest" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/utest" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="json"><a class="anchor" aria-hidden="true" tabindex="-1" href="#json"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>JSON</h3><p><em>Libraries for work with json.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/argonaut-io/argonaut" rel="noopener noreferrer"><strong>argonaut</strong></a></td>
+<td>Purely functional JSON parser and library in scala.</td>
+<td><img src="https://img.shields.io/github/stars/argonaut-io/argonaut" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/argonaut-io/argonaut" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sirthias/borer" rel="noopener noreferrer">borer</a></td>
+<td>Efficient CBOR and JSON (de)serialization in Scala</td>
+<td><img src="https://img.shields.io/github/stars/sirthias/borer" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sirthias/borer" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/circe/circe" rel="noopener noreferrer"><strong>circe</strong></a></td>
+<td>Yet another JSON library for Scala</td>
+<td><img src="https://img.shields.io/github/stars/circe/circe" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/circe/circe" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/gnieh/diffson" rel="noopener noreferrer">diffson</a></td>
+<td>A scala diff/patch library for Json</td>
+<td><img src="https://img.shields.io/github/stars/gnieh/diffson" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/gnieh/diffson" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/FasterXML/jackson-module-scala" rel="noopener noreferrer"><strong>jackson-module-scala</strong></a></td>
+<td>Add-on module for Jackson (<a href="https://github.com/FasterXML/jackson" rel="noopener noreferrer">https://github.com/FasterXML/jackson</a>) to support Scala-specific datatypes</td>
+<td><img src="https://img.shields.io/github/stars/FasterXML/jackson-module-scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/FasterXML/jackson-module-scala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/typelevel/jawn" rel="noopener noreferrer">jawn</a></td>
+<td>Jawn is for parsing jay-sawn (JSON)</td>
+<td><img src="https://img.shields.io/github/stars/typelevel/jawn" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/typelevel/jawn" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/json4s/json4s" rel="noopener noreferrer"><strong>json4s</strong></a></td>
+<td>JSON library</td>
+<td><img src="https://img.shields.io/github/stars/json4s/json4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/json4s/json4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/plokhotnyuk/jsoniter-scala" rel="noopener noreferrer"><strong>jsoniter-scala</strong></a></td>
+<td>Scala macros for compile-time generation of safe and ultra-fast JSON codecs + circe booster</td>
+<td><img src="https://img.shields.io/github/stars/plokhotnyuk/jsoniter-scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/plokhotnyuk/jsoniter-scala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/nrktkt/ninny-json" rel="noopener noreferrer">ninny-json</a></td>
+<td>JSON typeclasses that know the difference between null and absent fields</td>
+<td><img src="https://img.shields.io/github/stars/nrktkt/ninny-json" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/nrktkt/ninny-json" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/playframework/play-json" rel="noopener noreferrer">play-json</a></td>
+<td>The Play JSON library</td>
+<td><img src="https://img.shields.io/github/stars/playframework/play-json" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/playframework/play-json" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/gzoller/ScalaJack" rel="noopener noreferrer">ScalaJack</a></td>
+<td>Fast JSON parser/generator for Scala</td>
+<td><img src="https://img.shields.io/github/stars/gzoller/ScalaJack" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/gzoller/ScalaJack" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/spray/spray-json" rel="noopener noreferrer"><strong>spray-json</strong></a></td>
+<td>A lightweight, clean and simple JSON implementation in Scala</td>
+<td><img src="https://img.shields.io/github/stars/spray/spray-json" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/spray/spray-json" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sake92/tupson" rel="noopener noreferrer">tupson</a></td>
+<td>Stupid simple Scala 3 library for writing and reading JSON</td>
+<td><img src="https://img.shields.io/github/stars/sake92/tupson" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sake92/tupson" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/zio/zio-json" rel="noopener noreferrer">zio-json</a></td>
+<td>Fast, secure JSON library with tight ZIO integration.</td>
+<td><img src="https://img.shields.io/github/stars/zio/zio-json" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/zio/zio-json" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="yaml"><a class="anchor" aria-hidden="true" tabindex="-1" href="#yaml"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>YAML</h3><p><em>Libraries for work with YAML.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+</table>
+<h3 id="csv"><a class="anchor" aria-hidden="true" tabindex="-1" href="#csv"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>CSV</h3><p><em>Libraries for work with CSV.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/nrinaudo/kantan.csv" rel="noopener noreferrer">kantan.csv</a></td>
+<td>CSV handling library for Scala</td>
+<td><img src="https://img.shields.io/github/stars/nrinaudo/kantan.csv" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/nrinaudo/kantan.csv" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tototoshi/scala-csv" rel="noopener noreferrer"><strong>scala-csv</strong></a></td>
+<td>CSV Reader/Writer for Scala</td>
+<td><img src="https://img.shields.io/github/stars/tototoshi/scala-csv" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/tototoshi/scala-csv" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/fingo/spata" rel="noopener noreferrer">spata</a></td>
+<td>Functional, stream-based CSV processor for Scala</td>
+<td><img src="https://img.shields.io/github/stars/fingo/spata" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/fingo/spata" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="serialization"><a class="anchor" aria-hidden="true" tabindex="-1" href="#serialization"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Serialization</h3><p><em>Libraries for serializing and deserializing data for storage or transport.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/sirthias/borer" rel="noopener noreferrer">borer</a></td>
+<td>Efficient CBOR and JSON (de)serialization in Scala</td>
+<td><img src="https://img.shields.io/github/stars/sirthias/borer" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sirthias/borer" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sksamuel/avro4s" rel="noopener noreferrer"><strong>avro4s</strong></a></td>
+<td>Avro schema generation and serialization / deserialization for Scala</td>
+<td><img src="https://img.shields.io/github/stars/sksamuel/avro4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sksamuel/avro4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/twitter/chill" rel="noopener noreferrer"><strong>chill</strong></a></td>
+<td>Scala extensions for the Kryo serialization library</td>
+<td><img src="https://img.shields.io/github/stars/twitter/chill" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/twitter/chill" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalapb/ScalaPB" rel="noopener noreferrer"><strong>ScalaPB</strong></a></td>
+<td>Protocol buffer compiler for Scala.</td>
+<td><img src="https://img.shields.io/github/stars/scalapb/ScalaPB" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalapb/ScalaPB" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scodec/scodec" rel="noopener noreferrer"><strong>scodec</strong></a></td>
+<td>Scala combinator library for working with binary data</td>
+<td><img src="https://img.shields.io/github/stars/scodec/scodec" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scodec/scodec" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/twitter/scrooge" rel="noopener noreferrer"><strong>scrooge</strong></a></td>
+<td>A Thrift parser/generator</td>
+<td><img src="https://img.shields.io/github/stars/twitter/scrooge" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/twitter/scrooge" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/com-lihaoyi/upickle" rel="noopener noreferrer"><strong>upickle</strong></a></td>
+<td>uPickle: a simple, fast, dependency-free JSON &amp; Binary (MessagePack) serialization library for Scala</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/upickle" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/upickle" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/zero-deps/proto" rel="noopener noreferrer">proto</a></td>
+<td>Lightweight and fast serialization library for Scala 2/3 based on Protocol Buffers with macros</td>
+<td><img src="https://img.shields.io/github/stars/zero-deps/proto" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/zero-deps/proto" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="science-and-data-analysis"><a class="anchor" aria-hidden="true" tabindex="-1" href="#science-and-data-analysis"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Science and Data Analysis</h3><p><em>Libraries for scientific computing, data analysis and numerical processing.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/twitter/algebird" rel="noopener noreferrer"><strong>algebird</strong></a></td>
+<td>Abstract Algebra for Scala</td>
+<td><img src="https://img.shields.io/github/stars/twitter/algebird" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/twitter/algebird" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/intel-analytics/ipex-llm" rel="noopener noreferrer"><strong>ipex-llm</strong></a></td>
+<td>Accelerate local LLM inference and finetuning (LLaMA, Mistral, ChatGLM, Qwen, Baichuan, Mixtral, Gemma, Phi, MiniCPM, etc.) on Intel XPU (e.g., local PC with iGPU and NPU, discrete GPU such as Arc, Flex and Max); seamlessly integrate with llama.cpp, Ollama, HuggingFace, LangChain, LlamaIndex, GraphRAG, DeepSpeed, vLLM, FastChat, Axolotl, etc.</td>
+<td><img src="https://img.shields.io/github/stars/intel-analytics/ipex-llm" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/intel-analytics/ipex-llm" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalanlp/breeze" rel="noopener noreferrer"><strong>breeze</strong></a></td>
+<td>Breeze is/was a numerical processing library for Scala.</td>
+<td><img src="https://img.shields.io/github/stars/scalanlp/breeze" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalanlp/breeze" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/picnicml/doddle-model" rel="noopener noreferrer">doddle-model</a></td>
+<td>🍰 doddle-model: machine learning in Scala.</td>
+<td><img src="https://img.shields.io/github/stars/picnicml/doddle-model" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/picnicml/doddle-model" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/to-ithaca/libra" rel="noopener noreferrer">libra</a></td>
+<td>A dimensional analysis library based on dependent types</td>
+<td><img src="https://img.shields.io/github/stars/to-ithaca/libra" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/to-ithaca/libra" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/anskarl/LoMRF" rel="noopener noreferrer">LoMRF</a></td>
+<td>LoMRF is an open-source implementation of Markov Logic Networks</td>
+<td><img src="https://img.shields.io/github/stars/anskarl/LoMRF" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/anskarl/LoMRF" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/openmole/mgo" rel="noopener noreferrer">mgo</a></td>
+<td>Purely functional genetic algorithms for multi-objective optimisation</td>
+<td><img src="https://img.shields.io/github/stars/openmole/mgo" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/openmole/mgo" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://spark.apache.org/mllib/" rel="noopener noreferrer">MLLib</a></td>
+<td>Machine Learning framework for Spark</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/botkop/numsca" rel="noopener noreferrer">numsca</a></td>
+<td>numsca is numpy for scala</td>
+<td><img src="https://img.shields.io/github/stars/botkop/numsca" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/botkop/numsca" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/EmergentOrder/onnx-scala" rel="noopener noreferrer">onnx-scala</a></td>
+<td>An ONNX (Open Neural Network eXchange) API and backend for typeful, functional deep learning and classical machine learning in Scala 3</td>
+<td><img src="https://img.shields.io/github/stars/EmergentOrder/onnx-scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/EmergentOrder/onnx-scala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/openmole/openmole" rel="noopener noreferrer">openmole</a></td>
+<td>Workflow engine for exploration of simulation models using high throughput computing</td>
+<td><img src="https://img.shields.io/github/stars/openmole/openmole" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/openmole/openmole" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/vagmcs/Optimus" rel="noopener noreferrer">Optimus</a></td>
+<td>Optimus is a mathematical programming library for Scala.</td>
+<td><img src="https://img.shields.io/github/stars/vagmcs/Optimus" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/vagmcs/Optimus" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://bitbucket.org/oscarlib/oscar/wiki/Home" rel="noopener noreferrer">OscaR</a></td>
+<td>a Scala toolkit for solving Operations Research problems</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/PoslavskySV/rings" rel="noopener noreferrer">rings</a></td>
+<td>Rings: efficient JVM library for polynomial rings</td>
+<td><img src="https://img.shields.io/github/stars/PoslavskySV/rings" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/PoslavskySV/rings" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/haifengl/smile" rel="noopener noreferrer"><strong>smile</strong></a></td>
+<td>Statistical Machine Intelligence &amp; Learning Engine</td>
+<td><img src="https://img.shields.io/github/stars/haifengl/smile" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/haifengl/smile" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/typelevel/spire" rel="noopener noreferrer"><strong>spire</strong></a></td>
+<td>Powerful new number types and numeric abstractions for Scala.</td>
+<td><img src="https://img.shields.io/github/stars/typelevel/spire" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/typelevel/spire" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/typelevel/squants" rel="noopener noreferrer"><strong>squants</strong></a></td>
+<td>The Scala API for Quantities, Units of Measure and Dimensional Analysis</td>
+<td><img src="https://img.shields.io/github/stars/typelevel/squants" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/typelevel/squants" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/apache/zeppelin" rel="noopener noreferrer"><strong>zeppelin</strong></a></td>
+<td>Web-based notebook that enables data-driven, interactive data analytics and collaborative documents with SQL, Scala and more.</td>
+<td><img src="https://img.shields.io/github/stars/apache/zeppelin" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/apache/zeppelin" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/JohnSnowLabs/spark-nlp" rel="noopener noreferrer"><strong>spark-nlp</strong></a></td>
+<td>State of the Art Natural Language Processing</td>
+<td><img src="https://img.shields.io/github/stars/JohnSnowLabs/spark-nlp" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/JohnSnowLabs/spark-nlp" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ScalaMath/VecMatLib" rel="noopener noreferrer">VecMatLib</a></td>
+<td>Open source Scala library that provides data structures for vectors and matrices</td>
+<td><img src="https://img.shields.io/github/stars/ScalaMath/VecMatLib" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/ScalaMath/VecMatLib" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="big-data"><a class="anchor" aria-hidden="true" tabindex="-1" href="#big-data"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Big Data</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/apache/flink" rel="noopener noreferrer"><strong>flink</strong></a></td>
+<td>Apache Flink</td>
+<td><img src="https://img.shields.io/github/stars/apache/flink" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/apache/flink" alt="GitHub commit activity" /></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/openmole/gridscale" rel="noopener noreferrer">gridscale</a></td>
+<td>Scala library for accessing various file, batch systems, job schedulers and grid middlewares.</td>
+<td><img src="https://img.shields.io/github/stars/openmole/gridscale" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/openmole/gridscale" alt="GitHub commit activity" /></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/apache/kafka" rel="noopener noreferrer"><strong>kafka</strong></a></td>
+<td>Mirror of Apache Kafka</td>
+<td><img src="https://img.shields.io/github/stars/apache/kafka" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/apache/kafka" alt="GitHub commit activity" /></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/akka/alpakka-kafka" rel="noopener noreferrer"><strong>alpakka-kafka</strong></a></td>
+<td>Alpakka Kafka connector - Alpakka is a Reactive Enterprise Integration library for Java and Scala, based on Reactive Streams and Akka.</td>
+<td><img src="https://img.shields.io/github/stars/akka/alpakka-kafka" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/akka/alpakka-kafka" alt="GitHub commit activity" /></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/spotify/scio" rel="noopener noreferrer"><strong>scio</strong></a></td>
+<td>A Scala API for Apache Beam and Google Cloud Dataflow.</td>
+<td><img src="https://img.shields.io/github/stars/spotify/scio" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/spotify/scio" alt="GitHub commit activity" /></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://crunch.apache.org/scrunch.html" rel="noopener noreferrer">Scrunch</a></td>
+<td>A Scala wrapper for <a href="http://crunch.apache.org/index.html" rel="noopener noreferrer">Apache Crunch</a> which provides a framework for writing, testing, and running MapReduce pipelines.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/apache/spark" rel="noopener noreferrer"><strong>spark</strong></a></td>
+<td>Apache Spark - A unified analytics engine for large-scale data processing</td>
+<td><img src="https://img.shields.io/github/stars/apache/spark" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/apache/spark" alt="GitHub commit activity" /></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/galliaproject/gallia-core" rel="noopener noreferrer">gallia-core</a></td>
+<td>A schema-aware Scala library for data transformation</td>
+<td><img src="https://img.shields.io/github/stars/galliaproject/gallia-core" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/galliaproject/gallia-core" alt="GitHub commit activity" /></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/TouK/nussknacker" rel="noopener noreferrer"><strong>nussknacker</strong></a></td>
+<td>Low-code tool for automating actions on real time data</td>
+<td>Stream processing for the users.</td>
+<td><img src="https://img.shields.io/github/stars/TouK/nussknacker" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/TouK/nussknacker" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="command-line-interfaces"><a class="anchor" aria-hidden="true" tabindex="-1" href="#command-line-interfaces"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Command Line Interfaces</h3><p><em>Libraries for creation of command line interfaces</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/bkirwi/decline" rel="noopener noreferrer"><strong>decline</strong></a></td>
+<td>A composable command-line parser for Scala.</td>
+<td><img src="https://img.shields.io/github/stars/bkirwi/decline" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/bkirwi/decline" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/com-lihaoyi/mainargs" rel="noopener noreferrer">mainargs</a></td>
+<td>A small, convenient, dependency-free library for command-line argument parsing in Scala</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/mainargs" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/mainargs" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scallop/scallop" rel="noopener noreferrer"><strong>scallop</strong></a></td>
+<td>a simple Scala CLI parsing library</td>
+<td><img src="https://img.shields.io/github/stars/scallop/scallop" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scallop/scallop" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scopt/scopt" rel="noopener noreferrer"><strong>scopt</strong></a></td>
+<td>command line options parsing for Scala</td>
+<td><img src="https://img.shields.io/github/stars/scopt/scopt" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scopt/scopt" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="image-processing-and-image-analysis"><a class="anchor" aria-hidden="true" tabindex="-1" href="#image-processing-and-image-analysis"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Image processing and image analysis</h3><p><em>2D and 3D image processing and image analysis</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/unibas-gravis/scalismo" rel="noopener noreferrer">scalismo</a></td>
+<td>Scalable Image Analysis and Shape Modelling</td>
+<td><img src="https://img.shields.io/github/stars/unibas-gravis/scalismo" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/unibas-gravis/scalismo" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sksamuel/scrimage" rel="noopener noreferrer"><strong>scrimage</strong></a></td>
+<td>JVM - Java, Kotlin, Scala image processing library</td>
+<td><img src="https://img.shields.io/github/stars/sksamuel/scrimage" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sksamuel/scrimage" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="sound-processing-and-music"><a class="anchor" aria-hidden="true" tabindex="-1" href="#sound-processing-and-music"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Sound processing and music</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+</table>
+<h3 id="functional-reactive-programming"><a class="anchor" aria-hidden="true" tabindex="-1" href="#functional-reactive-programming"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Functional Reactive Programming</h3><p><em>Event streams, signals, observables, etc.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/typelevel/fs2" rel="noopener noreferrer"><strong>fs2</strong></a></td>
+<td>Compositional, streaming I/O library for Scala</td>
+<td><img src="https://img.shields.io/github/stars/typelevel/fs2" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/typelevel/fs2" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/travisbrown/iteratee" rel="noopener noreferrer">iteratee</a></td>
+<td>Iteratees for Cats</td>
+<td><img src="https://img.shields.io/github/stars/travisbrown/iteratee" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/travisbrown/iteratee" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/monix/monix" rel="noopener noreferrer"><strong>monix</strong></a></td>
+<td>Asynchronous, Reactive Programming for Scala and Scala.js.</td>
+<td><img src="https://img.shields.io/github/stars/monix/monix" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/monix/monix" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rescala-lang/REScala" rel="noopener noreferrer">REScala</a></td>
+<td>REScala - distributed and reactive programming embedded in OO and FP programs.</td>
+<td><img src="https://img.shields.io/github/stars/rescala-lang/REScala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/rescala-lang/REScala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/zio/zio" rel="noopener noreferrer"><strong>zio</strong></a></td>
+<td>ZIO — A type-safe, composable library for async and concurrent programming in Scala</td>
+<td><img src="https://img.shields.io/github/stars/zio/zio" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/zio/zio" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/vert-x3/vertx-lang-scala" rel="noopener noreferrer">vertx-lang-scala</a></td>
+<td>Vert.x for Scala</td>
+<td><img src="https://img.shields.io/github/stars/vert-x3/vertx-lang-scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/vert-x3/vertx-lang-scala" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="modularization-and-dependency-injection"><a class="anchor" aria-hidden="true" tabindex="-1" href="#modularization-and-dependency-injection"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Modularization and Dependency Injection</h3><p><em>Modularization of applications, dependency injection, etc.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/wvlet/airframe" rel="noopener noreferrer"><strong>airframe</strong></a></td>
+<td>Essential Building Blocks for Scala</td>
+<td><img src="https://img.shields.io/github/stars/wvlet/airframe" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/wvlet/airframe" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/7mind/izumi" rel="noopener noreferrer"><strong>izumi</strong></a></td>
+<td>Productivity-oriented collection of lightweight fancy stuff for Scala toolchain</td>
+<td><img src="https://img.shields.io/github/stars/7mind/izumi" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/7mind/izumi" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/softwaremill/macwire" rel="noopener noreferrer"><strong>macwire</strong></a></td>
+<td>Zero-cost, compile-time, type-safe dependency injection library.</td>
+<td><img src="https://img.shields.io/github/stars/softwaremill/macwire" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/softwaremill/macwire" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scaldi/scaldi" rel="noopener noreferrer">scaldi</a></td>
+<td>Lightweight Scala Dependency Injection Library</td>
+<td><img src="https://img.shields.io/github/stars/scaldi/scaldi" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scaldi/scaldi" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/yakivy/jam" rel="noopener noreferrer">jam</a></td>
+<td>Incredibly simple DI Scala library.</td>
+<td><img src="https://img.shields.io/github/stars/yakivy/jam" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/yakivy/jam" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="distributed-systems"><a class="anchor" aria-hidden="true" tabindex="-1" href="#distributed-systems"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Distributed Systems</h3><p><em>Libraries and frameworks for writing distributed applications.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/akka/akka" rel="noopener noreferrer"><strong>akka</strong></a></td>
+<td>Build highly concurrent, distributed, and resilient message-driven applications on the JVM</td>
+<td><img src="https://img.shields.io/github/stars/akka/akka" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/akka/akka" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/annetteplatform/annette" rel="noopener noreferrer">annette</a></td>
+<td>Platform to build distributed, scalable, enterprise-wide business applications</td>
+<td><img src="https://img.shields.io/github/stars/annetteplatform/annette" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/annetteplatform/annette" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/twitter/finagle" rel="noopener noreferrer"><strong>finagle</strong></a></td>
+<td>A fault tolerant, protocol-agnostic RPC system</td>
+<td><img src="https://img.shields.io/github/stars/twitter/finagle" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/twitter/finagle" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/yakivy/poppet" rel="noopener noreferrer">poppet</a></td>
+<td>Minimal, type-safe RPC Scala library.</td>
+<td><img src="https://img.shields.io/github/stars/yakivy/poppet" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/yakivy/poppet" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/automorph-org/automorph" rel="noopener noreferrer">automorph</a></td>
+<td>RPC client and server library for Scala</td>
+<td><img src="https://img.shields.io/github/stars/automorph-org/automorph" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/automorph-org/automorph" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="extensions"><a class="anchor" aria-hidden="true" tabindex="-1" href="#extensions"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Extensions</h3><p><em>Scala extensions.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/com-lihaoyi/Ammonite" rel="noopener noreferrer"><strong>Ammonite</strong></a></td>
+<td>Scala Scripting</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/Ammonite" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/Ammonite" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/pathikrit/better-files" rel="noopener noreferrer"><strong>better-files</strong></a></td>
+<td>Simple, safe and intuitive Scala I/O</td>
+<td><img src="https://img.shields.io/github/stars/pathikrit/better-files" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/pathikrit/better-files" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tersesystems/blindsight" rel="noopener noreferrer">blindsight</a></td>
+<td>Blindsight is a Scala logging API with DSL based structured logging, fluent logging, semantic logging, flow logging, and context aware logging.</td>
+<td><img src="https://img.shields.io/github/stars/tersesystems/blindsight" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/tersesystems/blindsight" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/typelevel/cats" rel="noopener noreferrer"><strong>cats</strong></a></td>
+<td>Lightweight, modular, and extensible library for functional programming.</td>
+<td><img src="https://img.shields.io/github/stars/typelevel/cats" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/typelevel/cats" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalalandio/chimney" rel="noopener noreferrer"><strong>chimney</strong></a></td>
+<td>Scala library for boilerplate-free, type-safe data transformations</td>
+<td><img src="https://img.shields.io/github/stars/scalalandio/chimney" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalalandio/chimney" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/chronoscala/chronoscala" rel="noopener noreferrer">chronoscala</a></td>
+<td>A JSR-310 port of nscala_time</td>
+<td><img src="https://img.shields.io/github/stars/chronoscala/chronoscala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/chronoscala/chronoscala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ThoughtWorksInc/Dsl.scala" rel="noopener noreferrer">Dsl.scala</a></td>
+<td>A framework to create embedded Domain-Specific Languages in Scala</td>
+<td><img src="https://img.shields.io/github/stars/ThoughtWorksInc/Dsl.scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/ThoughtWorksInc/Dsl.scala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ThoughtWorksInc/each" rel="noopener noreferrer">each</a></td>
+<td>A macro library that converts native imperative syntax to scalaz's monadic expressions</td>
+<td><img src="https://img.shields.io/github/stars/ThoughtWorksInc/each" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/ThoughtWorksInc/each" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/atnos-org/eff" rel="noopener noreferrer"><strong>eff</strong></a></td>
+<td>Eff monad for cats - <a href="https://atnos-org.github.io/eff" rel="noopener noreferrer">https://atnos-org.github.io/eff</a></td>
+<td><img src="https://img.shields.io/github/stars/atnos-org/eff" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/atnos-org/eff" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ThoughtWorksInc/enableIf.scala" rel="noopener noreferrer">enableIf.scala</a></td>
+<td>A library that toggles Scala code at compile-time, like #if in C/C++</td>
+<td><img src="https://img.shields.io/github/stars/ThoughtWorksInc/enableIf.scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/ThoughtWorksInc/enableIf.scala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/lloydmeta/enumeratum" rel="noopener noreferrer"><strong>enumeratum</strong></a></td>
+<td>A type-safe, reflection-free, powerful enumeration implementation for Scala with exhaustive pattern match warnings and helpful integrations.</td>
+<td><img src="https://img.shields.io/github/stars/lloydmeta/enumeratum" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/lloydmeta/enumeratum" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/Log4s/log4s" rel="noopener noreferrer">log4s</a></td>
+<td>High-performance SLF4J wrapper for Scala.</td>
+<td><img src="https://img.shields.io/github/stars/Log4s/log4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/Log4s/log4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/7mind/izumi" rel="noopener noreferrer"><strong>izumi</strong></a></td>
+<td>Productivity-oriented collection of lightweight fancy stuff for Scala toolchain</td>
+<td><img src="https://img.shields.io/github/stars/7mind/izumi" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/7mind/izumi" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/optics-dev/Monocle" rel="noopener noreferrer"><strong>Monocle</strong></a></td>
+<td>Optics library for Scala</td>
+<td><img src="https://img.shields.io/github/stars/optics-dev/Monocle" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/optics-dev/Monocle" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/nscala-time/nscala-time" rel="noopener noreferrer"><strong>nscala-time</strong></a></td>
+<td>A new Scala wrapper for Joda Time based on scala-time</td>
+<td><img src="https://img.shields.io/github/stars/nscala-time/nscala-time" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/nscala-time/nscala-time" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/softwaremill/quicklens" rel="noopener noreferrer"><strong>quicklens</strong></a></td>
+<td>Modify deeply nested case class fields</td>
+<td><img src="https://img.shields.io/github/stars/softwaremill/quicklens" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/softwaremill/quicklens" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/fthomas/refined" rel="noopener noreferrer"><strong>refined</strong></a></td>
+<td>Refinement types for Scala</td>
+<td><img src="https://img.shields.io/github/stars/fthomas/refined" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/fthomas/refined" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scala/scala-async" rel="noopener noreferrer"><strong>scala-async</strong></a></td>
+<td>An asynchronous programming facility for Scala</td>
+<td><img src="https://img.shields.io/github/stars/scala/scala-async" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scala/scala-async" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scala-graph/scala-graph" rel="noopener noreferrer"><strong>scala-graph</strong></a></td>
+<td>Graph for Scala is intended to provide basic graph functionality seamlessly fitting into the Scala Collection Library. Like the well known members of scala.collection, Graph for Scala is an in-memory graph library aiming at editing and traversing graphs, finding cycles etc. in a user-friendly way.</td>
+<td><img src="https://img.shields.io/github/stars/scala-graph/scala-graph" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scala-graph/scala-graph" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/lightbend-labs/scala-logging" rel="noopener noreferrer"><strong>scala-logging</strong></a></td>
+<td>Convenient and performant logging library for Scala wrapping SLF4J.</td>
+<td><img src="https://img.shields.io/github/stars/lightbend-labs/scala-logging" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/lightbend-labs/scala-logging" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalameta/scalameta" rel="noopener noreferrer"><strong>scalameta</strong></a></td>
+<td>Library to read, analyze, transform and generate Scala programs</td>
+<td><img src="https://img.shields.io/github/stars/scalameta/scalameta" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalameta/scalameta" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalaz/scalaz" rel="noopener noreferrer"><strong>scalaz</strong></a></td>
+<td>Principled Functional Programming in Scala</td>
+<td><img src="https://img.shields.io/github/stars/scalaz/scalaz" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalaz/scalaz" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/outr/scribe" rel="noopener noreferrer"><strong>scribe</strong></a></td>
+<td>The fastest logging library in the world. Built from scratch in Scala and programmatically configurable.</td>
+<td><img src="https://img.shields.io/github/stars/outr/scribe" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/outr/scribe" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/milessabin/shapeless" rel="noopener noreferrer"><strong>shapeless</strong></a></td>
+<td>Generic programming for Scala</td>
+<td><img src="https://img.shields.io/github/stars/milessabin/shapeless" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/milessabin/shapeless" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/typelevel/simulacrum" rel="noopener noreferrer"><strong>simulacrum</strong></a></td>
+<td>First class syntax support for type classes in Scala</td>
+<td><img src="https://img.shields.io/github/stars/typelevel/simulacrum" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/typelevel/simulacrum" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/epfldata/squid" rel="noopener noreferrer">squid</a></td>
+<td>Squid – type-safe metaprogramming and compilation framework for Scala</td>
+<td><img src="https://img.shields.io/github/stars/epfldata/squid" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/epfldata/squid" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tinylog-org/tinylog" rel="noopener noreferrer"><strong>tinylog</strong></a></td>
+<td>tinylog is a lightweight logging framework for Java, Kotlin, Scala, and Android</td>
+<td><img src="https://img.shields.io/github/stars/tinylog-org/tinylog" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/tinylog-org/tinylog" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/twitter/util" rel="noopener noreferrer"><strong>util</strong></a></td>
+<td>Wonderful reusable code from Twitter</td>
+<td><img src="https://img.shields.io/github/stars/twitter/util" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/twitter/util" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="misc"><a class="anchor" aria-hidden="true" tabindex="-1" href="#misc"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Misc</h3><p><em>Projects that don't fit into any specific category.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/com-lihaoyi/Ammonite" rel="noopener noreferrer"><strong>Ammonite</strong></a></td>
+<td>Scala Scripting</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/Ammonite" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/Ammonite" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/softwaremill/bootzooka" rel="noopener noreferrer"><strong>bootzooka</strong></a></td>
+<td>Simple project to quickly start developing a Scala-based microservice or web application, without the need to write login, user registration etc.</td>
+<td><img src="https://img.shields.io/github/stars/softwaremill/bootzooka" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/softwaremill/bootzooka" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ACINQ/eclair" rel="noopener noreferrer"><strong>eclair</strong></a></td>
+<td>A scala implementation of the Lightning Network.</td>
+<td><img src="https://img.shields.io/github/stars/ACINQ/eclair" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/ACINQ/eclair" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/com-lihaoyi/fansi" rel="noopener noreferrer">fansi</a></td>
+<td>Scala/Scala.js library for manipulating Fancy Ansi colored strings</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/fansi" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/fansi" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/laserdisc-io/fs2-aws" rel="noopener noreferrer">fs2-aws</a></td>
+<td>fs2 utilities to interact with AWS</td>
+<td><img src="https://img.shields.io/github/stars/laserdisc-io/fs2-aws" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/laserdisc-io/fs2-aws" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/outr/mailgun4s" rel="noopener noreferrer">mailgun4s</a></td>
+<td>Mailgun API implementation in Scala</td>
+<td><img src="https://img.shields.io/github/stars/outr/mailgun4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/outr/mailgun4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/dvgica/managerial" rel="noopener noreferrer">managerial</a></td>
+<td>A zero-dependency Scala library for managing resources monadically</td>
+<td><img src="https://img.shields.io/github/stars/dvgica/managerial" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/dvgica/managerial" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/outr/media4s" rel="noopener noreferrer">media4s</a></td>
+<td>Scala command-line wrapper around ffmpeg, ffprobe, ImageMagick, and other tools relating to media.</td>
+<td><img src="https://img.shields.io/github/stars/outr/media4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/outr/media4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/iheartradio/play-swagger" rel="noopener noreferrer">play-swagger</a></td>
+<td>Swagger spec generator for play framework</td>
+<td><img src="https://img.shields.io/github/stars/iheartradio/play-swagger" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/iheartradio/play-swagger" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/com-lihaoyi/PPrint" rel="noopener noreferrer">PPrint</a></td>
+<td>Pretty-printing value, types and type-signatures in Scala</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/PPrint" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/PPrint" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/pureconfig/pureconfig" rel="noopener noreferrer"><strong>pureconfig</strong></a></td>
+<td>A boilerplate-free library for loading configuration files</td>
+<td><img src="https://img.shields.io/github/stars/pureconfig/pureconfig" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/pureconfig/pureconfig" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/allawala/service-chassis" rel="noopener noreferrer">service-chassis</a></td>
+<td>A scala chassis to get your applications and services bootstrapped quickly</td>
+<td><img src="https://img.shields.io/github/stars/allawala/service-chassis" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/allawala/service-chassis" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sirthias/spliff" rel="noopener noreferrer">spliff</a></td>
+<td>Efficient diffing in Scala</td>
+<td><img src="https://img.shields.io/github/stars/sirthias/spliff" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sirthias/spliff" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/lambdaworks/scountries" rel="noopener noreferrer">scountries</a></td>
+<td>Scala library that provides an enumeration of ISO 3166 codes for countries, along with their subdivisions.</td>
+<td><img src="https://img.shields.io/github/stars/lambdaworks/scountries" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/lambdaworks/scountries" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/lambdaworks/scurl-detector" rel="noopener noreferrer">scurl-detector</a></td>
+<td>Scala library that detects and extracts URLs from text.</td>
+<td><img src="https://img.shields.io/github/stars/lambdaworks/scurl-detector" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/lambdaworks/scurl-detector" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/aptusproject/aptus-core" rel="noopener noreferrer">aptus-core</a></td>
+<td>A utility library aiming to simplify the Scala coding experience.</td>
+<td><img src="https://img.shields.io/github/stars/aptusproject/aptus-core" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/aptusproject/aptus-core" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="android"><a class="anchor" aria-hidden="true" tabindex="-1" href="#android"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Android</h3><p><em>Scala libraries and wrappers for Android development.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/pocorall/scaloid" rel="noopener noreferrer"><strong>scaloid</strong></a></td>
+<td>Scaloid makes your Android code easy to understand and maintain.</td>
+<td><img src="https://img.shields.io/github/stars/pocorall/scaloid" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/pocorall/scaloid" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="http"><a class="anchor" aria-hidden="true" tabindex="-1" href="#http"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>HTTP</h3><p><em>Scala libraries and wrappers for HTTP clients.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/akka/akka-http" rel="noopener noreferrer"><strong>akka-http</strong></a></td>
+<td>The Streaming-first HTTP server/module of Akka</td>
+<td><img src="https://img.shields.io/github/stars/akka/akka-http" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/akka/akka-http" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/dispatch/reboot" rel="noopener noreferrer">reboot</a></td>
+<td>Scala wrapper for the Java AsyncHttpClient.</td>
+<td><img src="https://img.shields.io/github/stars/dispatch/reboot" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/dispatch/reboot" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/finagle/finch" rel="noopener noreferrer"><strong>finch</strong></a></td>
+<td>Scala combinator library for building Finagle HTTP services</td>
+<td><img src="https://img.shields.io/github/stars/finagle/finch" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/finagle/finch" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/http4s/http4s" rel="noopener noreferrer"><strong>http4s</strong></a></td>
+<td>A minimal, idiomatic Scala interface for HTTP</td>
+<td><img src="https://img.shields.io/github/stars/http4s/http4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/http4s/http4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/criteo/lolhttp" rel="noopener noreferrer">lolhttp</a></td>
+<td>An HTTP Server and Client library for Scala.</td>
+<td><img src="https://img.shields.io/github/stars/criteo/lolhttp" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/criteo/lolhttp" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/com-lihaoyi/requests-scala" rel="noopener noreferrer"><strong>requests-scala</strong></a></td>
+<td>A Scala port of the popular Python Requests HTTP client: flexible, intuitive, and straightforward to use.</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/requests-scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/requests-scala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/eed3si9n/scalaxb" rel="noopener noreferrer">scalaxb</a></td>
+<td>scalaxb is an XML data binding tool for Scala.</td>
+<td><img src="https://img.shields.io/github/stars/eed3si9n/scalaxb" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/eed3si9n/scalaxb" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/softwaremill/sttp" rel="noopener noreferrer"><strong>sttp</strong></a></td>
+<td>The Scala HTTP client you always wanted!</td>
+<td><img src="https://img.shields.io/github/stars/softwaremill/sttp" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/softwaremill/sttp" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/softwaremill/tapir" rel="noopener noreferrer"><strong>tapir</strong></a></td>
+<td>Rapid development of self-documenting APIs</td>
+<td><img src="https://img.shields.io/github/stars/softwaremill/tapir" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/softwaremill/tapir" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/endpoints4s/endpoints4s" rel="noopener noreferrer">endpoints4s</a></td>
+<td>Describe HTTP endpoints in Scala and derive clients, servers, and documentation</td>
+<td><img src="https://img.shields.io/github/stars/endpoints4s/endpoints4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/endpoints4s/endpoints4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/zero-deps/frontier" rel="noopener noreferrer">frontier</a></td>
+<td>A lightweight HTTP/WebSocket server built with ZIO</td>
+<td><img src="https://img.shields.io/github/stars/zero-deps/frontier" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/zero-deps/frontier" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="semantic-web"><a class="anchor" aria-hidden="true" tabindex="-1" href="#semantic-web"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Semantic Web</h3><p><em>Scala libraries for interactions with the Web of Data, and other RDF tools.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/phenoscape/scowl" rel="noopener noreferrer">scowl</a></td>
+<td>A Scala DSL for programming with the OWL API.</td>
+<td><img src="https://img.shields.io/github/stars/phenoscape/scowl" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/phenoscape/scowl" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="metrics-and-monitoring"><a class="anchor" aria-hidden="true" tabindex="-1" href="#metrics-and-monitoring"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Metrics and Monitoring</h3><p><em>Scala libraries for gathering metrics and monitoring applications.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/erikvanoosten/metrics-scala" rel="noopener noreferrer">metrics-scala</a></td>
+<td>The scala API for Dropwizard's Metrics.</td>
+<td><img src="https://img.shields.io/github/stars/erikvanoosten/metrics-scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/erikvanoosten/metrics-scala" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="parsing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#parsing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Parsing</h3><p><em>Scala libraries for creating parsers.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/tpolecat/atto" rel="noopener noreferrer">atto</a></td>
+<td>friendly little parsers</td>
+<td><img src="https://img.shields.io/github/stars/tpolecat/atto" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/tpolecat/atto" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/com-lihaoyi/fastparse" rel="noopener noreferrer"><strong>fastparse</strong></a></td>
+<td>Writing Fast Parsers Fast in Scala</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/fastparse" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/fastparse" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sirthias/parboiled2" rel="noopener noreferrer"><strong>parboiled2</strong></a></td>
+<td>A macro-based PEG parser generator for Scala 2.10+</td>
+<td><img src="https://img.shields.io/github/stars/sirthias/parboiled2" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sirthias/parboiled2" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scala/scala-parser-combinators" rel="noopener noreferrer"><strong>scala-parser-combinators</strong></a></td>
+<td>simple combinator-based parsing for Scala. formerly part of the Scala standard library, now a separate community-maintained module</td>
+<td><img src="https://img.shields.io/github/stars/scala/scala-parser-combinators" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scala/scala-parser-combinators" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/typelevel/cats-parse" rel="noopener noreferrer">cats-parse</a></td>
+<td>A parsing library for the cats ecosystem</td>
+<td><img src="https://img.shields.io/github/stars/typelevel/cats-parse" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/typelevel/cats-parse" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="sbt-plugins"><a class="anchor" aria-hidden="true" tabindex="-1" href="#sbt-plugins"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Sbt plugins</h3><p><em>Sbt plugins to make your life easier.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/oleg-py/better-monadic-for" rel="noopener noreferrer"><strong>better-monadic-for</strong></a></td>
+<td>Desugaring scala <code>for</code> without implicit <code>withFilter</code>s</td>
+<td><img src="https://img.shields.io/github/stars/oleg-py/better-monadic-for" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/oleg-py/better-monadic-for" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/coursier/coursier" rel="noopener noreferrer"><strong>coursier</strong></a></td>
+<td>Pure Scala Artifact Fetching</td>
+<td><img src="https://img.shields.io/github/stars/coursier/coursier" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/coursier/coursier" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalameta/mdoc" rel="noopener noreferrer">mdoc</a></td>
+<td>Typechecked markdown documentation for Scala</td>
+<td><img src="https://img.shields.io/github/stars/scalameta/mdoc" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalameta/mdoc" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ThoughtWorksInc/sbt-api-mappings" rel="noopener noreferrer">sbt-api-mappings</a></td>
+<td>An Sbt plugin that fills apiMappings for common Scala libraries.</td>
+<td><img src="https://img.shields.io/github/stars/ThoughtWorksInc/sbt-api-mappings" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/ThoughtWorksInc/sbt-api-mappings" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-assembly" rel="noopener noreferrer"><strong>sbt-assembly</strong></a></td>
+<td>Deploy über-JARs. Restart processes. (port of codahale/assembly-sbt)</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-assembly" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-assembly" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-buildinfo" rel="noopener noreferrer"><strong>sbt-buildinfo</strong></a></td>
+<td>I know this because build.sbt knows this.</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-buildinfo" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-buildinfo" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-ci-release" rel="noopener noreferrer">sbt-ci-release</a></td>
+<td>sbt plugin to automate Sonatype releases from GitHub Actions</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-ci-release" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-ci-release" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/albuch/sbt-dependency-check" rel="noopener noreferrer">sbt-dependency-check</a></td>
+<td>SBT Plugin for OWASP DependencyCheck. Monitor your dependencies and report if there are any publicly known vulnerabilities (e.g. CVEs). 🌈</td>
+<td><img src="https://img.shields.io/github/stars/albuch/sbt-dependency-check" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/albuch/sbt-dependency-check" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/marcuslonnberg/sbt-docker" rel="noopener noreferrer"><strong>sbt-docker</strong></a></td>
+<td>Create Docker images directly from sbt</td>
+<td><img src="https://img.shields.io/github/stars/marcuslonnberg/sbt-docker" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/marcuslonnberg/sbt-docker" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tkawachi/sbt-doctest" rel="noopener noreferrer">sbt-doctest</a></td>
+<td>Doctest for scala</td>
+<td><img src="https://img.shields.io/github/stars/tkawachi/sbt-doctest" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/tkawachi/sbt-doctest" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-ghpages" rel="noopener noreferrer">sbt-ghpages</a></td>
+<td>git, site and ghpages support for sbt projects.</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-ghpages" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-ghpages" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-header" rel="noopener noreferrer">sbt-header</a></td>
+<td>sbt-header is an sbt plugin for creating file headers, e.g. copyright headers</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-header" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-header" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sake92/sbt-hepek" rel="noopener noreferrer">sbt-hepek</a></td>
+<td>Sbt plugin for rendering Scala objects to files. And more!</td>
+<td><img src="https://img.shields.io/github/stars/sake92/sbt-hepek" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sake92/sbt-hepek" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/JetBrains/sbt-ide-settings" rel="noopener noreferrer">sbt-ide-settings</a></td>
+<td>SBT plugin for tweaking various IDE settings</td>
+<td><img src="https://img.shields.io/github/stars/JetBrains/sbt-ide-settings" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/JetBrains/sbt-ide-settings" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-jmh" rel="noopener noreferrer"><strong>sbt-jmh</strong></a></td>
+<td>"Trust no one, bench everything." - sbt plugin for JMH (Java Microbenchmark Harness)</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-jmh" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-jmh" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/47degrees/sbt-microsites" rel="noopener noreferrer">sbt-microsites</a></td>
+<td>An sbt plugin to create awesome microsites for your project</td>
+<td><img src="https://img.shields.io/github/stars/47degrees/sbt-microsites" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/47degrees/sbt-microsites" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/lightbend-labs/mima" rel="noopener noreferrer">mima</a></td>
+<td>A tool for catching binary incompatibility in Scala</td>
+<td><img src="https://img.shields.io/github/stars/lightbend-labs/mima" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/lightbend-labs/mima" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-native-packager" rel="noopener noreferrer"><strong>sbt-native-packager</strong></a></td>
+<td>sbt Native Packager</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-native-packager" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-native-packager" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/xerial/sbt-pack" rel="noopener noreferrer">sbt-pack</a></td>
+<td>A sbt plugin for creating distributable Scala packages.</td>
+<td><img src="https://img.shields.io/github/stars/xerial/sbt-pack" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/xerial/sbt-pack" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-pgp" rel="noopener noreferrer">sbt-pgp</a></td>
+<td>PGP plugin for sbt</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-pgp" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-pgp" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-release" rel="noopener noreferrer"><strong>sbt-release</strong></a></td>
+<td>A release plugin for sbt</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-release" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-release" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ThoughtWorksInc/sbt-scala-js-map" rel="noopener noreferrer">sbt-scala-js-map</a></td>
+<td>A Sbt plugin that configures source mapping for Scala.js projects hosted on Github</td>
+<td><img src="https://img.shields.io/github/stars/ThoughtWorksInc/sbt-scala-js-map" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/ThoughtWorksInc/sbt-scala-js-map" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalameta/sbt-scalafmt" rel="noopener noreferrer">sbt-scalafmt</a></td>
+<td>sbt plugin for Scalafmt</td>
+<td><img src="https://img.shields.io/github/stars/scalameta/sbt-scalafmt" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalameta/sbt-scalafmt" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scoverage/sbt-scoverage" rel="noopener noreferrer"><strong>sbt-scoverage</strong></a></td>
+<td>sbt plugin for scoverage</td>
+<td><img src="https://img.shields.io/github/stars/scoverage/sbt-scoverage" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scoverage/sbt-scoverage" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-site" rel="noopener noreferrer">sbt-site</a></td>
+<td>Site generation for sbt</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-site" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-site" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/xerial/sbt-sonatype" rel="noopener noreferrer">sbt-sonatype</a></td>
+<td>A sbt plugin for publishing Scala/Java projects to the Maven central.</td>
+<td><img src="https://img.shields.io/github/stars/xerial/sbt-sonatype" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/xerial/sbt-sonatype" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-unidoc" rel="noopener noreferrer">sbt-unidoc</a></td>
+<td>sbt plugin to create a unified Scaladoc or Javadoc API document across multiple subprojects.</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-unidoc" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-unidoc" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rtimush/sbt-updates" rel="noopener noreferrer"><strong>sbt-updates</strong></a></td>
+<td>sbt plugin that can check Maven and Ivy repositories for dependency updates</td>
+<td><img src="https://img.shields.io/github/stars/rtimush/sbt-updates" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/rtimush/sbt-updates" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-eclipse" rel="noopener noreferrer"><strong>sbt-eclipse</strong></a></td>
+<td>Plugin for sbt to create Eclipse project definitions</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-eclipse" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-eclipse" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tek/splain" rel="noopener noreferrer">splain</a></td>
+<td>better implicit errors for scala</td>
+<td><img src="https://img.shields.io/github/stars/tek/splain" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/tek/splain" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/earldouglas/xsbt-web-plugin" rel="noopener noreferrer">xsbt-web-plugin</a></td>
+<td>Servlet support for sbt</td>
+<td><img src="https://img.shields.io/github/stars/earldouglas/xsbt-web-plugin" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/earldouglas/xsbt-web-plugin" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt-git" rel="noopener noreferrer">sbt-git</a></td>
+<td>A git plugin for sbt</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt-git" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt-git" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="xml--html"><a class="anchor" aria-hidden="true" tabindex="-1" href="#xml--html"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>XML / HTML</h3><p><em>XML and HTML generation and processing</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/ruippeixotog/scala-scraper" rel="noopener noreferrer"><strong>scala-scraper</strong></a></td>
+<td>A Scala library for scraping content from HTML pages</td>
+<td><img src="https://img.shields.io/github/stars/ruippeixotog/scala-scraper" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/ruippeixotog/scala-scraper" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ScalaWilliam/xs4s" rel="noopener noreferrer">xs4s</a></td>
+<td>XML Streaming for Scala including FS2/cats support</td>
+<td><img src="https://img.shields.io/github/stars/ScalaWilliam/xs4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/ScalaWilliam/xs4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/valentiay/phobos" rel="noopener noreferrer">phobos</a></td>
+<td>Efficient and expressive XML data-binding library for Scala</td>
+<td><img src="https://img.shields.io/github/stars/valentiay/phobos" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/valentiay/phobos" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="markdown"><a class="anchor" aria-hidden="true" tabindex="-1" href="#markdown"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Markdown</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/typelevel/Laika" rel="noopener noreferrer">Laika</a></td>
+<td>Site and E-book Generator and Customizable Text Markup Transformer for sbt, Scala and Scala.js</td>
+<td><img src="https://img.shields.io/github/stars/typelevel/Laika" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/typelevel/Laika" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="javascript"><a class="anchor" aria-hidden="true" tabindex="-1" href="#javascript"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>JavaScript</h3><p><em>JavaScript generation and interop libraries.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/scala-js/scala-js" rel="noopener noreferrer"><strong>scala-js</strong></a></td>
+<td>Scala.js, the Scala to JavaScript compiler</td>
+<td><img src="https://img.shields.io/github/stars/scala-js/scala-js" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scala-js/scala-js" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="scheduling"><a class="anchor" aria-hidden="true" tabindex="-1" href="#scheduling"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Scheduling</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/enragedginger/akka-quartz-scheduler" rel="noopener noreferrer"><strong>akka-quartz-scheduler</strong></a></td>
+<td>Quartz Extension and utilities for cron-style scheduling in Akka</td>
+<td><img src="https://img.shields.io/github/stars/enragedginger/akka-quartz-scheduler" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/enragedginger/akka-quartz-scheduler" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="templating"><a class="anchor" aria-hidden="true" tabindex="-1" href="#templating"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Templating</h3><p><em>Web templating engines.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/com-lihaoyi/scalatags" rel="noopener noreferrer"><strong>scalatags</strong></a></td>
+<td>ScalaTags is a small XML/HTML construction library for Scala.</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/scalatags" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/scalatags" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalate/scalate" rel="noopener noreferrer"><strong>scalate</strong></a></td>
+<td>Scalate is a Scala based template engine which supports HAML, Mustache and JSP, Erb and Velocity style syntaxes.</td>
+<td><img src="https://img.shields.io/github/stars/scalate/scalate" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalate/scalate" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/playframework/twirl" rel="noopener noreferrer"><strong>twirl</strong></a></td>
+<td>Twirl is Play's default template engine</td>
+<td><img src="https://img.shields.io/github/stars/playframework/twirl" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/playframework/twirl" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sake92/hepek" rel="noopener noreferrer">hepek</a></td>
+<td>Typesafe HTML templates and static site generator in pure Scala</td>
+<td><img src="https://img.shields.io/github/stars/sake92/hepek" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sake92/hepek" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tools</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/scalacenter/bloop" rel="noopener noreferrer"><strong>bloop</strong></a></td>
+<td>Bloop is a build server and CLI tool to compile, test and run Scala fast from any editor or build tool.</td>
+<td><img src="https://img.shields.io/github/stars/scalacenter/bloop" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalacenter/bloop" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/coursier/coursier" rel="noopener noreferrer"><strong>coursier</strong></a></td>
+<td>Pure Scala Artifact Fetching</td>
+<td><img src="https://img.shields.io/github/stars/coursier/coursier" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/coursier/coursier" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/marianobarrios/dregex" rel="noopener noreferrer">dregex</a></td>
+<td>dregex is a Java library that implements a regular expression engine using deterministic finite automata (DFA). It supports some Perl-style features and yet retains linear matching time, and also offers set operations.</td>
+<td><img src="https://img.shields.io/github/stars/marianobarrios/dregex" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/marianobarrios/dregex" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/plokhotnyuk/fast-string-interpolator" rel="noopener noreferrer">fast-string-interpolator</a></td>
+<td>Scala macro that generates ultra-fast string interpolators.</td>
+<td><img src="https://img.shields.io/github/stars/plokhotnyuk/fast-string-interpolator" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/plokhotnyuk/fast-string-interpolator" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/Atry/fastring" rel="noopener noreferrer">fastring</a></td>
+<td>Extremely fast string formatting</td>
+<td><img src="https://img.shields.io/github/stars/Atry/fastring" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/Atry/fastring" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/gitbucket/gitbucket" rel="noopener noreferrer"><strong>gitbucket</strong></a></td>
+<td>A Git platform powered by Scala with easy installation, high extensibility &amp; GitHub API compatibility</td>
+<td><img src="https://img.shields.io/github/stars/gitbucket/gitbucket" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/gitbucket/gitbucket" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/foundweekends/giter8" rel="noopener noreferrer"><strong>giter8</strong></a></td>
+<td>a command line tool to apply templates defined on GitHub</td>
+<td><img src="https://img.shields.io/github/stars/foundweekends/giter8" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/foundweekends/giter8" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalameta/metals" rel="noopener noreferrer"><strong>metals</strong></a></td>
+<td>Scala language server with rich IDE features 🚀</td>
+<td><img src="https://img.shields.io/github/stars/scalameta/metals" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalameta/metals" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/com-lihaoyi/mill" rel="noopener noreferrer"><strong>mill</strong></a></td>
+<td>Mill is a fast JVM build tool that supports Java and Scala. 2-3x faster than Gradle and 5-10x faster than Maven for common workflows, Mill aims to make your project’s build process performant, maintainable, and flexible</td>
+<td><img src="https://img.shields.io/github/stars/com-lihaoyi/mill" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/com-lihaoyi/mill" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sbt/sbt" rel="noopener noreferrer"><strong>sbt</strong></a></td>
+<td>sbt, the interactive build tool</td>
+<td><img src="https://img.shields.io/github/stars/sbt/sbt" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/sbt/sbt" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scalacenter/scalafix" rel="noopener noreferrer"><strong>scalafix</strong></a></td>
+<td>Refactoring and linting tool for Scala</td>
+<td><img src="https://img.shields.io/github/stars/scalacenter/scalafix" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scalacenter/scalafix" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://scalameta.org/scalafmt/" rel="noopener noreferrer">Scalafmt</a></td>
+<td>Code formatter for Scala</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scala-ide/scalariform" rel="noopener noreferrer"><strong>scalariform</strong></a></td>
+<td>Scala source code formatter</td>
+<td><img src="https://img.shields.io/github/stars/scala-ide/scalariform" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scala-ide/scalariform" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scapegoat-scala/scapegoat" rel="noopener noreferrer"><strong>scapegoat</strong></a></td>
+<td>Scala compiler plugin for static code analysis</td>
+<td><img src="https://img.shields.io/github/stars/scapegoat-scala/scapegoat" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/scapegoat-scala/scapegoat" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/wartremover/wartremover" rel="noopener noreferrer"><strong>wartremover</strong></a></td>
+<td>Flexible Scala code linting tool</td>
+<td><img src="https://img.shields.io/github/stars/wartremover/wartremover" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/wartremover/wartremover" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/BotTech/scala2plantuml" rel="noopener noreferrer">scala2plantuml</a></td>
+<td>Scala2PlantUML generates PlantUML diagrams from Scala code.</td>
+<td><img src="https://img.shields.io/github/stars/BotTech/scala2plantuml" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/BotTech/scala2plantuml" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="geospatial"><a class="anchor" aria-hidden="true" tabindex="-1" href="#geospatial"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Geospatial</h3><p><em>Libraries to aid with geospatial calculations and artifacts.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/locationtech/geotrellis" rel="noopener noreferrer"><strong>geotrellis</strong></a></td>
+<td>GeoTrellis is a geographic data processing engine for high performance applications.</td>
+<td><img src="https://img.shields.io/github/stars/locationtech/geotrellis" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/locationtech/geotrellis" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/simplexspatial/osm4scala" rel="noopener noreferrer">osm4scala</a></td>
+<td>Scala and Spark library focused on reading OpenStreetMap Pbf files.</td>
+<td><img src="https://img.shields.io/github/stars/simplexspatial/osm4scala" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/simplexspatial/osm4scala" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/plokhotnyuk/rtree2d" rel="noopener noreferrer">rtree2d</a></td>
+<td>RTree2D is a 2D immutable R-tree for ultra-fast nearest and intersection queries in plane and spherical coordinates</td>
+<td><img src="https://img.shields.io/github/stars/plokhotnyuk/rtree2d" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/plokhotnyuk/rtree2d" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/stac-utils/stac4s" rel="noopener noreferrer">stac4s</a></td>
+<td>a scala library with primitives to build applications using the SpatioTemporal Asset Catalogs specification</td>
+<td><img src="https://img.shields.io/github/stars/stac-utils/stac4s" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/stac-utils/stac4s" alt="GitHub commit activity" /></td>
+</tr>
+<tr>
+<td><a href="https://github.com/azavea/franklin" rel="noopener noreferrer">franklin</a></td>
+<td>A STAC/OGC API Features Web Service</td>
+<td><img src="https://img.shields.io/github/stars/azavea/franklin" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/azavea/franklin" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h3 id="devops"><a class="anchor" aria-hidden="true" tabindex="-1" href="#devops"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Devops</h3><p><em>DevOps related tools and libraries.</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>GitHub Activity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/hagay3/skuber" rel="noopener noreferrer">skuber</a></td>
+<td>A Scala Kubernetes client library</td>
+<td><img src="https://img.shields.io/github/stars/hagay3/skuber" alt="GitHub stars" /> <img src="https://img.shields.io/github/commit-activity/y/hagay3/skuber" alt="GitHub commit activity" /></td>
+</tr>
+</tbody></table>
+<h1 id="learning-scala"><a class="anchor" aria-hidden="true" tabindex="-1" href="#learning-scala"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Learning Scala</h1><p><em>Nice books, blogs and other resources to learn Scala</em></p>
+<h2 id="books"><a class="anchor" aria-hidden="true" tabindex="-1" href="#books"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Books</h2><ul>
+<li><a href="https://underscore.io/books/essential-scala/" rel="noopener noreferrer">Essential Scala</a> by Noel Welsh and Dave Gurnell - Essential Scala is aimed at experienced developers who are encountering Scala for the first time.</li>
+<li><a href="https://www.manning.com/books/functional-and-reactive-domain-modeling" rel="noopener noreferrer">Functional and Reactive Domain Modeling</a> by Debasish Ghosh</li>
+<li><a href="https://leanpub.com/fpmortals/read" rel="noopener noreferrer">Functional Programming for Mortals</a> by Sam Halliday</li>
+<li><a href="https://www.manning.com/books/functional-programming-in-scala" rel="noopener noreferrer">Functional Programming in Scala</a> by Paul Chiusano and Runar Bjarnason</li>
+<li><a href="https://alvinalexander.com/scala/fp-book/learning-functional-programming-in-scala/" rel="noopener noreferrer">Functional Programming, Simplified (Scala edition)</a> by Alvin Alexander</li>
+<li><a href="https://www.manning.com/books/get-programming-with-scala" rel="noopener noreferrer">Get Programming with Scala</a> by Daniela Sfregola - Tutorial-driven introduction to Scala</li>
+<li><a href="https://leanpub.com/pfp-scala" rel="noopener noreferrer">Practical FP in Scala: A hands-on approach</a> by Gabriel Volpe</li>
+<li><a href="https://www.artima.com/shop/programming_in_scala_4ed" rel="noopener noreferrer">Programming in Scala</a> by Martin Odersky, Lex Spoon, and Bill Venners</li>
+<li><a href="https://leanpub.com/pfhais" rel="noopener noreferrer">Pure functional HTTP APIs in Scala</a> by Jens Grassel</li>
+<li><a href="https://www.amazon.com/Reactive-Programming-Scala-Akka/dp/1783984341" rel="noopener noreferrer">Reactive Programming with Scala and Akka</a> - Use the concepts of reactive programming to build distributed systems running on multiple nodes</li>
+<li><a href="http://scalacookbook.com" rel="noopener noreferrer">Scala Cookbook</a> by Alvin Alexander</li>
+<li><a href="https://horstmann.com/scala/" rel="noopener noreferrer">Scala for the Impatient</a> by Cay Horstmann - Covers most Scala features with short and easy to understand explainations.</li>
+<li><a href="https://underscore.io/books/scala-with-cats/" rel="noopener noreferrer">Scala With Cats</a> by Noel Welsh and Dave Gurnell - Learn system architecture and design using the techniques of modern functional programming with <a href="https://typelevel.org/cats/" rel="noopener noreferrer">Cats</a></li>
+<li><a href="https://underscore.io/books/shapeless-guide/" rel="noopener noreferrer">The Type Astronaut's Guide to Shapeless</a> by Dave Gurnell</li>
+<li><a href="https://www.zionomicon.com" rel="noopener noreferrer">Zionomicon</a> by John A. De Goes, Adam Fraser - Master the dark art of creating scalable, type-safe, concurrent apps with ZIO</li>
+</ul>
+<h2 id="exercises"><a class="anchor" aria-hidden="true" tabindex="-1" href="#exercises"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Exercises</h2><ul>
+<li><a href="http://aperiodic.net/phil/scala/s-99" rel="noopener noreferrer">S-99</a> - Ninety-Nine Scala Problems</li>
+<li><a href="http://scala-exercises.47deg.com/" rel="noopener noreferrer">Scala Exercises</a> - Brings the popular Scala Koans to the web. Offering hundreds of solvable exercises organized into 42 categories covering the basics of the Scala language.</li>
+<li><a href="https://exercism.org/tracks/scala/exercises" rel="noopener noreferrer">Exercism - Scala Exercises</a> - Community-driven Scala exercises.</li>
+<li><a href="https://github.com/dehun/learn-fp/" rel="noopener noreferrer">Learn-by-doing functional programming course on Scala</a> - Covers type classes, functors, applicatives, monads, monad transformers, free monad</li>
+</ul>
+<h2 id="tutorials-and-courses"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tutorials-and-courses"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tutorials and courses</h2><ul>
+<li><a href="http://docs.scala-lang.org/tour/tour-of-scala.html" rel="noopener noreferrer">A Tour of Scala</a> - Bite-sized introductions to some of the core language concepts.</li>
+<li><a href="https://www.coursera.org/specializations/scala" rel="noopener noreferrer">Functional Programming in Scala</a> - Coursera Specialization (5 courses) created by  Martin Odersky et al. at the EPFL (Ecole polytechnique fédérale de Lausanne).</li>
+<li>Resources by <a href="http://www.cs.trinity.edu/~mlewis/" rel="noopener noreferrer">Dr. Mark Lewis</a> &gt;&gt; <a href="http://www.programmingusingscala.net/" rel="noopener noreferrer">Website</a> | <a href="https://www.youtube.com/user/DrMarkCLewis/playlists" rel="noopener noreferrer">Youtube Playlists</a></li>
+<li><strong><a href="https://github.com/jacksu/utils4s" rel="noopener noreferrer">Demos and Examples in Scala (Chinese) ★ 923 ⧗ 2</a></strong> - repo of sample Scala library usage, written in Chinese</li>
+<li><a href="https://stepik.org/course/2294/" rel="noopener noreferrer">Introduction to programming with dependent types in Scala</a> - Video Course by Dmytro Mitin</li>
+<li><a href="http://colobu.com/ScalaCollectionsCookbook/" rel="noopener noreferrer">Scala Collections Cookbook</a> - Scala collections introduction. written in Chinese.</li>
+<li><a href="https://skillcombo.com/topic/scala/free/" rel="noopener noreferrer">Free Scala Courses</a> - A curated list of free Scala courses.</li>
+<li><a href="https://github.com/SaeidDadkhah/clean-arch-example" rel="noopener noreferrer">Clean Architecture Example</a> - A step-by-step guide to develop an application using Clean Architecture in Scala.</li>
+</ul>
+<h2 id="commercial-courses"><a class="anchor" aria-hidden="true" tabindex="-1" href="#commercial-courses"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Commercial courses</h2><ul>
+<li><a href="https://www.fp-tower.com/courses/foundations" rel="noopener noreferrer">Foundations of Functional Programming in Scala</a> - a professional video course with exercises covering covers functional principles, custom IO (effects) and functional design.</li>
+<li><a href="https://www.scala-algorithms.com/" rel="noopener noreferrer">Scala Algorithms</a> - a collection of nearly 100 algorithms in pure-functional Scala with test cases, explanations and a web-based IDE. Built with http4s &amp; Scala.js.</li>
+</ul>
+<h2 id="community-members-blogs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#community-members-blogs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Community Members' Blogs</h2><ul>
+<li><a href="http://lihaoyi.com" rel="noopener noreferrer">http://lihaoyi.com</a></li>
+<li><a href="http://warski.org/blog" rel="noopener noreferrer">http://warski.org/blog</a></li>
+<li><a href="https://degoes.net/articles" rel="noopener noreferrer">https://degoes.net/articles</a></li>
+<li><a href="http://eed3si9n.com/category/tags/scala" rel="noopener noreferrer">http://eed3si9n.com/category/tags/scala</a></li>
+<li><a href="https://danielwestheide.com/tags/scala" rel="noopener noreferrer">https://danielwestheide.com/tags/scala</a></li>
+<li><a href="https://kubuszok.com/tags/#scala" rel="noopener noreferrer">https://kubuszok.com/tags/#scala</a></li>
+<li><a href="http://debasishg.blogspot.com" rel="noopener noreferrer">http://debasishg.blogspot.com</a></li>
+<li><a href="http://appliedscala.com/blog" rel="noopener noreferrer">http://appliedscala.com/blog</a></li>
+<li><a href="http://blog.higher-order.com" rel="noopener noreferrer">http://blog.higher-order.com</a></li>
+<li><a href="http://ktoso.github.io/scala-types-of-types" rel="noopener noreferrer">http://ktoso.github.io/scala-types-of-types</a></li>
+<li><a href="http://scalaprof.blogspot.com" rel="noopener noreferrer">http://scalaprof.blogspot.com</a></li>
+<li><a href="http://torre.me.uk/docs/scala" rel="noopener noreferrer">http://torre.me.uk/docs/scala</a></li>
+<li><a href="https://alvinalexander.com" rel="noopener noreferrer">https://alvinalexander.com</a></li>
+<li><a href="https://blog.bruchez.name/search/label/scala" rel="noopener noreferrer">https://blog.bruchez.name/search/label/scala</a></li>
+<li><a href="https://github.com/lemastero/scala_typeclassopedia" rel="noopener noreferrer">https://github.com/lemastero/scala_typeclassopedia</a></li>
+<li><a href="https://pchiusano.github.io" rel="noopener noreferrer">https://pchiusano.github.io</a></li>
+<li><a href="https://beyondthelines.net" rel="noopener noreferrer">https://beyondthelines.net</a></li>
+<li><a href="https://manuel.bernhardt.io/blog" rel="noopener noreferrer">https://manuel.bernhardt.io/blog</a></li>
+</ul>
+<h2 id="company-blogs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#company-blogs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Company Blogs</h2><ul>
+<li><a href="https://functional.works-hub.com/learn/" rel="noopener noreferrer">Functional Works / Learn</a> - Quality resources maintained by functional works</li>
+<li><a href="http://allaboutscala.com/" rel="noopener noreferrer">http://allaboutscala.com/</a></li>
+<li><a href="http://enear.github.io/" rel="noopener noreferrer">http://enear.github.io/</a></li>
+<li><a href="https://blog.knoldus.com/tag/scala/" rel="noopener noreferrer">https://blog.knoldus.com/tag/scala/</a></li>
+<li><a href="https://blog.scalac.io/tags/Scala/" rel="noopener noreferrer">https://blog.scalac.io/tags/Scala/</a></li>
+<li><a href="https://blog.softwaremill.com/tagged/scala" rel="noopener noreferrer">https://blog.softwaremill.com/tagged/scala</a></li>
+<li><a href="https://medium.com/disney-streaming/tagged/thisweekinscala" rel="noopener noreferrer">https://medium.com/disney-streaming/tagged/thisweekinscala</a></li>
+<li><a href="https://www.codacy.com/blog/" rel="noopener noreferrer">https://www.codacy.com/blog/</a></li>
+<li><a href="https://scalatimes.com/" rel="noopener noreferrer">Scala Times</a> - Weekly newsletter about scala</li>
+<li><a href="https://www.47deg.com/blog/" rel="noopener noreferrer">47 Degrees</a> - Functional Programming news, updates, and more.</li>
+</ul>
+<h2 id="podcasts"><a class="anchor" aria-hidden="true" tabindex="-1" href="#podcasts"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Podcasts</h2><ul>
+<li><a href="https://twitter.com/thescalalogs" rel="noopener noreferrer">The Scala Logs</a> - Interviewing developers, open source contributors, subject matter experts, and the like to talk about FP, Scala, open source, and their interests.</li>
+<li><a href="https://scala.love/" rel="noopener noreferrer">Scala Love</a> - Podcast about the Scala Programming Language and its community</li>
+<li><a href="https://corecursive.com/" rel="noopener noreferrer">CoRecursive Interviews</a> - In-depth Interviews with software developers, often on the subject of scala libraries and functional programming.</li>
+<li><a href="https://podcasters.spotify.com/pod/show/julien-truffaut" rel="noopener noreferrer">Scala for Fun &amp; Profit</a> - Interviewing Scala users and companies.</li>
+</ul>
+<h2 id="communities"><a class="anchor" aria-hidden="true" tabindex="-1" href="#communities"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Communities</h2><ul>
+<li><a href="https://t.me/scala_ukraine" rel="noopener noreferrer">Scala Ukraine</a> - Telegram chat of Ukrainian Scala Community</li>
+</ul>
+<h2 id="misc-1"><a class="anchor" aria-hidden="true" tabindex="-1" href="#misc-1"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Misc.</h2><ul>
+<li><a href="https://hackr.io/tutorials/learn-scala" rel="noopener noreferrer">Programming Community Curated Resources for Learning Scala</a></li>
+<li><a href="http://www.scalera.es" rel="noopener noreferrer">Scalera Blog</a> - Blog about Scala language and its environment (howto's, good practices, tips,...). Weekly posts written in both spanish and english</li>
+<li><a href="https://scala.libhunt.com" rel="noopener noreferrer">Scala @LibHunt</a> - A community driven list of useful Scala libraries, frameworks and software</li>
+<li><a href="https://classpert.com/scala-programming" rel="noopener noreferrer">List of Scala Online Courses</a> - A list of free and paid Scala online courses by Classpert, An online course search and comparison website</li>
+<li><a href="https://www.youtube.com/channel/UCOHg8YCiyMVRRxb3mJT_0Mg" rel="noopener noreferrer">Scala Days Conferences</a> -  A youtube channel that provides full fledged videos, recorded at Scala Days Conferences</li>
+<li><a href="https://github.com/makingthematrix/ca_art" rel="noopener noreferrer">CA Art</a> - A small project aimed at learning Scala on intermediate level by experimenting with Cellular Automata</li>
+</ul>
+
+
+    </main>
+  </body>
+</html>

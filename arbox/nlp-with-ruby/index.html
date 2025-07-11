@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Track Nlp with Ruby (arbox/nlp-with-ruby) Updates Daily - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/arbox/nlp-with-ruby/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Track Nlp with Ruby Updates Daily" />
+    <meta property="og:description" content="Curated List: Practical Natural Language Processing done in Ruby" />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Track Nlp with Ruby Updates Daily</h1>
+<p>Curated List: Practical Natural Language Processing done in Ruby</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/arbox/nlp-with-ruby/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/arbox/nlp-with-ruby">😺 arbox/nlp-with-ruby</a><span> · </span><span>⭐ 1.1K</span><span> · </span><span>🏷️ Computer Science</span></p>
+<p><span>[ </span><span>Daily</span><span> / </span><a href="/arbox/nlp-with-ruby/week/">Weekly</a><span> / </span><a href="/arbox/nlp-with-ruby/readme/">Overview</a><span> ]</span></p>
+
+<h2><a href="https://www.trackawesomelist.com/2022/08/27/">Aug 27, 2022</a></h2><h3><p>Multipurpose Engines</p>
+</h3>
+<ul>
+<li><a href="https://github.com/yohasebe/ruby-spacy" rel="noopener noreferrer">ruby-spacy (⭐65)</a> —
+Wrapper module for spaCy NLP library via <a href="https://github.com/mrkn/pycall.rb" rel="noopener noreferrer">PyCall (⭐1.1k)</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/03/30/">Mar 30, 2021</a></h2><h3><p>Language Aware String Manipulation / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/adnikiforov/iuliia-rb" rel="noopener noreferrer">iuliia (⭐10)</a> —
+transliteration Cyrillic to Latin in many possible ways (defined by the <a href="https://github.com/nalgeon/iuliia" rel="noopener noreferrer">reference implementation (⭐72)</a>).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/01/17/">Jan 17, 2019</a></h2><h3><p>Spelling and Error Correction / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/subosito/gingerice" rel="noopener noreferrer">gingerice (⭐478)</a> -
+Spelling and Grammar corrections via the <a href="https://www.gingersoftware.com/" rel="noopener noreferrer">Ginger</a> API.</li>
+</ul>
+<h3><p>Articles, Posts, Talks, and Presentations / Constituency Parsing</p>
+</h3>
+<ul>
+<li>2019<ul>
+<li><em>Extracting Text From Images Using Ruby</em> by <a href="https://twitter.com/aonemd" rel="noopener noreferrer">aonemd</a> <sup>[<a href="https://aonemd.github.io/blog/extracting-text-from-images-using-ruby" rel="noopener noreferrer">post</a> |
+<a href="https://gist.github.com/aonemd/7bb3c4760d9e47a9ce8e270198cb40a0" rel="noopener noreferrer">code</a>]</sup></li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>2018<ul>
+<li><em>Natural Language Processing and Tweet Sentiment Analysis</em> by <a href="https://twitter.com/casita305" rel="noopener noreferrer">Cassandra Corrales</a> <sup>[<a href="https://medium.com/@cmcorrales3/natural-language-processing-and-tweet-sentiment-analysis-fa1edbb5ddd5" rel="noopener noreferrer">post</a>]</sup></li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>2017<ul>
+<li><em>The Google NLP API Meets Ruby</em> by <a href="https://twitter.com/the_thagomizer" rel="noopener noreferrer">Aja Hammerly</a> <sup>[<a href="http://www.thagomizer.com/blog/2017/04/13/the-google-nlp-api-meets-ruby.html" rel="noopener noreferrer">post</a>]</sup></li>
+<li><em>Syntax Isn't Everything: NLP For Rubyists</em> by <a href="https://twitter.com/the_thagomizer" rel="noopener noreferrer">Aja Hammerly</a> <sup>[<a href="http://www.thagomizer.com/files/NLP_RailsConf2017.pdf" rel="noopener noreferrer">slides</a>]</sup></li>
+<li><em>Scientific Computing on JRuby</em> by <a href="https://twitter.com/prasun_anand" rel="noopener noreferrer">Prasun Anand</a> <sup>[<a href="https://www.slideshare.net/PrasunAnand2/fosdem2017-scientific-computing-on-jruby" rel="noopener noreferrer">slides</a> |
+<a href="https://ftp.fau.de/fosdem/2017/K.4.201/ruby_scientific_computing_on_jruby.mp4" rel="noopener noreferrer">video</a> |
+<a href="https://www.slideshare.net/PrasunAnand2/scientific-computing-on-jruby" rel="noopener noreferrer">slides</a> |
+<a href="https://www.slideshare.net/PrasunAnand2/scientific-computation-on-jruby" rel="noopener noreferrer">slides</a>]</sup></li>
+<li><em>Unicode Normalization in Ruby</em> by <a href="https://twitter.com/starrhorne" rel="noopener noreferrer">Starr Horne</a> <sup>[<a href="https://blog.honeybadger.io/ruby_unicode_normalization/" rel="noopener noreferrer">post</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h3><p>Related Resources / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a></a>
+<a href="https://imagemagick.org/index.php" rel="noopener noreferrer">ImageMagick</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/09/02/">Sep 02, 2017</a></h2><h3><p>Machine Learning Libraries / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/himkt/rblearn" rel="noopener noreferrer">rblearn (⭐2)</a> - Feature Extraction and Crossvalidation library.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/07/27/">Jul 27, 2017</a></h2><h3><p>Language Aware String Manipulation / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mochizukikotaro/regex_sample" rel="noopener noreferrer">regex_sample</a> -
+sample string generation from a given Regular Expression.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/07/24/">Jul 24, 2017</a></h2><h3><p>Language Aware String Manipulation / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/AnalyzePlatypus/TranslitKit" rel="noopener noreferrer">translit_kit (⭐7)</a> -
+Transliterate Hebrew &amp; Yiddish text into Latin characters.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mudge/re2" rel="noopener noreferrer">re2 (⭐146)</a> -
+hight-speed Regular Expression library for Text Mining and Text Extraction.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/06/14/">Jun 14, 2017</a></h2><h3><p>Related Resources / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jonsafari/nmt-list" rel="noopener noreferrer">Neural Machine Translation Implementations (⭐363)</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/05/24/">May 24, 2017</a></h2><h3><p>Community / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://stackoverflow.com/search?q=%5Bnlp%5D+and+%5Bruby%5D" rel="noopener noreferrer">Stack Overflow</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/05/19/">May 19, 2017</a></h2><h3><p>Dialog Agents, Assistants, and Chatbots / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/muffinista/chatterbot" rel="noopener noreferrer">chatterbot (⭐490)</a> -
+Straightforward ruby-based Twitter Bot Framework, using OAuth to authenticate.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/litaio/lita" rel="noopener noreferrer">lita (⭐1.7k)</a> -
+Highly extensible chat operation bot framework written with persistent storage on <a href="https://redis.io/" rel="noopener noreferrer">Redis</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/05/17/">May 17, 2017</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Constituency Parsing</p>
+</h3>
+<ul>
+<li>2011<ul>
+<li><em>Ruby one-liners</em> by <a href="https://twitter.com/benoithamelin" rel="noopener noreferrer">Benoit Hamelin</a> <sup>[<a href="http://benoithamelin.tumblr.com/ruby1line" rel="noopener noreferrer">post</a>]</sup></li>
+<li><em>Clustering in Ruby</em> by <a href="https://twitter.com/colinfdrake" rel="noopener noreferrer">Colin Drake</a> <sup>[<a href="https://colindrake.me/post/k-means-clustering-in-ruby/" rel="noopener noreferrer">post</a>/)]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/05/16/">May 16, 2017</a></h2><h3><p>Multipurpose Engines / On-line APIs</p>
+</h3>
+<ul>
+<li><a href="https://github.com/googleapis/google-cloud-ruby/tree/master/google-cloud-language" rel="noopener noreferrer">google-cloud-language (⭐1.4k)</a> -
+Google's Natural Language service API for Ruby.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/05/07/">May 07, 2017</a></h2><h3><p>Pipeline Generation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/grosser/parallel" rel="noopener noreferrer">parallel (⭐4.2k)</a> -
+Supervisor for parallel execution on multiple CPUs or in many threads.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/masa16/pwrake" rel="noopener noreferrer">pwrake (⭐57)</a> -
+Rake extensions to run local and remote tasks in parallel.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/05/02/">May 02, 2017</a></h2><h3><p>Projects and Code Examples / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://yohasebe.com/rsyntaxtree/" rel="noopener noreferrer">RSyntaxTree</a> -
+Web based demonstration of the syntactic tree visualization.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/04/21/">Apr 21, 2017</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Constituency Parsing</p>
+</h3>
+<ul>
+<li>2006<ul>
+<li><em>Speak My Language: Natural Language Processing With Ruby</em> by <a href="https://deveiate.org/resume.html" rel="noopener noreferrer">Michael Granger</a> <sup>[<a href="https://deveiate.org/misc/Speak-My-Language.pdf" rel="noopener noreferrer">slides</a> |
+<a href="http://blog.nicksieger.com/articles/2006/10/22/rubyconf-natural-language-generation-and-processing-in-ruby/" rel="noopener noreferrer">write-up</a> |
+<a href="http://juixe.com/papers/RubyConf2006.pdf" rel="noopener noreferrer">write-up</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/04/16/">Apr 16, 2017</a></h2><h3><p>Lexical Processing / Lexical Statistics: Counting Types and Tokens</p>
+</h3>
+<ul>
+<li><a href="https://github.com/abitdodgy/words_counted" rel="noopener noreferrer">words_counted (⭐162)</a> -
+Pure Ruby library counting word statistics with different custom options.</li>
+</ul>
+<h3><p>Full Text Search, Information Retrieval, Indexing / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/googleapis/google-api-ruby-client" rel="noopener noreferrer">google-api-client (⭐2.8k)</a> -
+Ruby API library for <a href="https://developers.google.com/api-client-library/ruby/" rel="noopener noreferrer">Google</a> services.</li>
+</ul>
+<h3><p>Machine Translation / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/pks/zipf" rel="noopener noreferrer">zipf (⭐3)</a> -
+implementation of BLEU and other base algorithms.</li>
+</ul>
+<h3><p>Text Extraction / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/yomurb/yomu" rel="noopener noreferrer">yomu (⭐502)</a> -
+library for extracting text and metadata from files and documents
+using the <a href="https://tika.apache.org/" rel="noopener noreferrer">Apache Tika</a> content analysis toolkit.</li>
+</ul>
+<h3><p>Projects and Code Examples / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="http://rubywordcount.com/" rel="noopener noreferrer">Words Counted</a> -
+examples of customizable word statistics powered by
+<a href="https://github.com/abitdodgy/words_counted" rel="noopener noreferrer">words_counted (⭐162)</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/04/14/">Apr 14, 2017</a></h2><h3><p>Optical Character Recognition / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/meh/ruby-tesseract-ocr" rel="noopener noreferrer">tesseract-ocr (⭐630)</a> -
+FFI based wrapper over the <a href="https://github.com/tesseract-ocr/tesseract" rel="noopener noreferrer">Tesseract OCR Engine (⭐68k)</a>.</li>
+</ul>
+<h3><p>Language Aware String Manipulation / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/seamusabshere/fuzzy_match" rel="noopener noreferrer">fuzzy_match (⭐680)</a> -
+Fuzzy string comparison with Distance measures and Regular Expression.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/brianhempel/fuzzy_tools" rel="noopener noreferrer">fuzzy_tools (⭐23)</a> -
+Toolset for fuzzy searches in Ruby tuned for accuracy.</li>
+</ul>
+<h3><p>Needs your Help! / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ssoper/summarize" rel="noopener noreferrer">summarize (⭐205)</a> -
+Ruby native wrapper for <a href="https://github.com/neopunisher/Open-Text-Summarizer" rel="noopener noreferrer">Open Text Summarizer (⭐243)</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/04/11/">Apr 11, 2017</a></h2><h3><p>Machine Learning Libraries / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tangledpath/ruby-fann" rel="noopener noreferrer">ruby-fann (⭐505)</a> -
+Ruby bindings to the <a href="http://leenissen.dk/fann/wp/" rel="noopener noreferrer">Fast Artificial Neural Network Library (FANN)</a>.</li>
+</ul>
+<h3><p>Full Text Search, Information Retrieval, Indexing / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/rsolr/rsolr" rel="noopener noreferrer">rsolr (⭐420)</a> -
+Ruby and Rails client library for <a href="http://lucene.apache.org/solr/" rel="noopener noreferrer">Apache Solr</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/sunspot/sunspot" rel="noopener noreferrer">sunspot (⭐3k)</a> -
+Rails centric client for <a href="http://lucene.apache.org/solr/" rel="noopener noreferrer">Apache Solr</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pat/thinking-sphinx" rel="noopener noreferrer">thinking-sphinx (⭐1.6k)</a> -
+<a href="https://guides.rubyonrails.org/active_record_basics.html" rel="noopener noreferrer">Active Record</a>
+plugin for using <a href="http://sphinxsearch.com/" rel="noopener noreferrer">Sphinx</a> in (not only) Rails based projects.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/elastic/elasticsearch-ruby/tree/master/elasticsearch" rel="noopener noreferrer">elasticsearch (⭐2k)</a> -
+Ruby client and API for <a href="https://www.elastic.co/" rel="noopener noreferrer">Elasticsearch</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/elastic/elasticsearch-rails" rel="noopener noreferrer">elasticsearch-rails (⭐3.1k)</a> -
+Ruby and Rails integrations for <a href="https://www.elastic.co/" rel="noopener noreferrer">Elasticsearch</a>.</li>
+</ul>
+<h3><p>Articles, Posts, Talks, and Presentations / Constituency Parsing</p>
+</h3>
+<ul>
+<li>2009<ul>
+<li><em>Porting the UEA-Lite Stemmer to Ruby</em> by <a href="https://twitter.com/ealdent" rel="noopener noreferrer">Jason Adams</a> <sup>[<a href="https://ealdent.wordpress.com/2009/07/16/porting-the-uea-lite-stemmer-to-ruby/" rel="noopener noreferrer">post</a>]</sup></li>
+<li><em>NLP Resources for Ruby</em> by <a href="https://twitter.com/ealdent" rel="noopener noreferrer">Jason Adams</a> <sup>[<a href="https://ealdent.wordpress.com/2009/09/13/nlp-resources-for-ruby/" rel="noopener noreferrer">post</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h3><p>Projects and Code Examples / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/schneems/going_the_distance" rel="noopener noreferrer">Going the Distance (⭐61)</a> -
+Implementations of various distance algorithms with example calculations.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mblongii/ruby-ner" rel="noopener noreferrer">Named entity recognition with Stanford NER and Ruby (⭐20)</a> -
+NER Examples in Ruby and Java with some <a href="https://web.archive.org/web/20120722225402/http://mblongii.com/2012/04/15/named-entity-recognition-with-stanford-ner-and-ruby/" rel="noopener noreferrer">explanations</a>.</li>
+</ul>
+<h3><p>Needs your Help! / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dbalmain/ferret" rel="noopener noreferrer">ferret (⭐280)</a> -
+Information Retrieval in C and Ruby.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/04/10/">Apr 10, 2017</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Constituency Parsing</p>
+</h3>
+<ul>
+<li>2016<ul>
+<li><em>Quickly Create a Telegram Bot in Ruby</em> by <a href="https://twitter.com/ArdianHaxha" rel="noopener noreferrer">Ardian Haxha</a> <sup>[<a href="https://www.sitepoint.com/quickly-create-a-telegram-bot-in-ruby/" rel="noopener noreferrer">tutorial</a>]</sup></li>
+<li><em>Deep Learning: An Introduction for Ruby Developers</em> by <a href="https://twitter.com/geoffreylitt" rel="noopener noreferrer">Geoffrey Litt</a> <sup>[<a href="https://speakerdeck.com/geoffreylitt/deep-learning-an-introduction-for-ruby-developers" rel="noopener noreferrer">slides</a>]</sup></li>
+<li><em>How I made a pure-Ruby word2vec program more than 3x faster</em> by <a href="https://twitter.com/remore" rel="noopener noreferrer">Kei Sawada</a> <sup>[<a href="https://speakerdeck.com/remore/how-i-made-a-pure-ruby-word2vec-program-more-than-3x-faster" rel="noopener noreferrer">slides</a>]</sup></li>
+<li><em>Dōmo arigatō, Mr. Roboto: Machine Learning with Ruby</em> by <a href="https://twitter.com/ericqweinstein" rel="noopener noreferrer">Eric Weinstein</a> <sup>[<a href="https://speakerdeck.com/ericqweinstein/domo-arigato-mr-roboto-machine-learning-with-ruby" rel="noopener noreferrer">slides</a> | <a href="https://www.youtube.com/watch?v=T1nFQ49TyeA" rel="noopener noreferrer">video</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/04/06/">Apr 06, 2017</a></h2><h3><p>Machine Learning Libraries / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/igrigorik/decisiontree" rel="noopener noreferrer">decisiontree (⭐1.5k)</a> -
+Decision Tree ID3 Algorithm in pure Ruby <sup>[<a href="https://www.igvita.com/2007/04/16/decision-tree-learning-in-ruby/" rel="noopener noreferrer">post</a>]</sup>.</li>
+</ul>
+<h3><p>Articles, Posts, Talks, and Presentations / Constituency Parsing</p>
+</h3>
+<ul>
+<li>2007<ul>
+<li><em>Decision Tree Learning in Ruby</em> by <a href="https://twitter.com/igrigorik" rel="noopener noreferrer">Ilya Grigorik</a> <sup>[<a href="https://www.igvita.com/2007/04/16/decision-tree-learning-in-ruby/" rel="noopener noreferrer">post</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/04/05/">Apr 05, 2017</a></h2><h3><p>Multipurpose Engines / On-line APIs</p>
+</h3>
+<ul>
+<li><a href="https://github.com/arbox/wlapi" rel="noopener noreferrer">wlapi (⭐19)</a> - Ruby client library for
+<a href="http://wortschatz.uni-leipzig.de/de" rel="noopener noreferrer">Wortschatz Leipzig</a> web services.</li>
+</ul>
+<h3><p>Lexical Processing / Filtering Stop Words</p>
+</h3>
+<ul>
+<li><a href="https://github.com/brenes/stopwords-filter" rel="noopener noreferrer">stopwords-filter (⭐78)</a> - Filter and
+Stop Word Lexicon based on the SnowBall lemmatizer.</li>
+</ul>
+<h3><p>Sentiment Analysis / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/pachacamac/stimmung" rel="noopener noreferrer">stimmung (⭐20)</a> -
+Semantic Polarity based on the
+<a href="http://wortschatz.uni-leipzig.de/en/download" rel="noopener noreferrer">SentiWS</a> lexicon.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/03/03/">Mar 03, 2017</a></h2><h3><p>Numbers, Dates, and Time Parsing / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jduff/numerizer" rel="noopener noreferrer">numerizer (⭐38)</a> -
+Ruby parser for English number expressions.</li>
+</ul>
+<h3><p>Articles, Posts, Talks, and Presentations / Constituency Parsing</p>
+</h3>
+<ul>
+<li>2015<ul>
+<li><em>N-gram Analysis for Fun and Profit</em> by <a href="https://github.com/matugm" rel="noopener noreferrer">Jesus Castello</a> <sup>[<a href="https://www.rubyguides.com/2015/09/ngram-analysis-ruby/" rel="noopener noreferrer">tutorial</a>]</sup></li>
+<li><em>Machine Learning made simple with Ruby</em> by <a href="https://github.com/rugginoso" rel="noopener noreferrer">Lorenzo Masini</a> <sup>[<a href="https://www.leanpanda.com/blog/2015/08/24/machine-learning-automatic-classification/" rel="noopener noreferrer">tutorial</a>]</sup></li>
+<li><em>Using Ruby Machine Learning to Find Paris Hilton Quotes</em> by <a href="https://github.com/RickCarlino" rel="noopener noreferrer">Rick Carlino</a> <sup>[<a href="http://web.archive.org/web/20160414072324/http://datamelon.io/blog/2015/using-ruby-machine-learning-id-paris-hilton-quotes.html" rel="noopener noreferrer">tutorial</a>]</sup></li>
+<li><em>Exploring Natural Language Processing in Ruby</em> by <a href="https://github.com/diasks2" rel="noopener noreferrer">Kevin Dias</a> <sup>[<a href="https://www.slideshare.net/diasks2/exploring-natural-language-processing-in-ruby" rel="noopener noreferrer">slides</a>]</sup></li>
+<li><em>Machine Learning made simple with Ruby</em> by <a href="https://twitter.com/rugginoso" rel="noopener noreferrer">Lorenzo Masini</a> <sup>[<a href="https://www.leanpanda.com/blog/2015/08/24/machine-learning-automatic-classification/" rel="noopener noreferrer">post</a>]</sup></li>
+<li><em>Practical Data Science in Ruby</em> by Bobby Grayson <sup>[<a href="http://slides.com/bobbygrayson/p#/" rel="noopener noreferrer">slides</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/02/24/">Feb 24, 2017</a></h2><h3><p>Spelling and Error Correction / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/romanbsd/hunspell" rel="noopener noreferrer">hunspell-i18n (⭐4)</a> -
+Ruby bindings to the standard <a href="https://hunspell.github.io/" rel="noopener noreferrer">Hunspell</a> Spell Checker.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/postmodern/ffi-hunspell" rel="noopener noreferrer">ffi-hunspell (⭐49)</a> -
+FFI based Ruby bindings for <a href="https://hunspell.github.io/" rel="noopener noreferrer">Hunspell</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/segabor/Hunspell" rel="noopener noreferrer">hunspell (⭐35)</a> -
+Ruby bindings to <a href="https://hunspell.github.io/" rel="noopener noreferrer">Hunspell</a> via Ruby C API.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/02/17/">Feb 17, 2017</a></h2><h3><p>Pipeline Generation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/phobos/phobos" rel="noopener noreferrer">phobos (⭐219)</a> -
+Simplified Ruby Client for <a href="https://kafka.apache.org/" rel="noopener noreferrer">Apache Kafka</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/02/15/">Feb 15, 2017</a></h2><h3><p>Language Identification / On-line APIs</p>
+</h3>
+<ul>
+<li><a href="https://github.com/hashwin/scylla" rel="noopener noreferrer">scylla (⭐36)</a> -
+Language Categorization and Identification.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/02/10/">Feb 10, 2017</a></h2><h3><p>Linguistic Resources / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/doches/rwordnet" rel="noopener noreferrer">rwordnet (⭐90)</a> -
+Pure Ruby self contained API library for the <a href="https://wordnet.princeton.edu/" rel="noopener noreferrer">Princeton WordNet®</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ged/ruby-wordnet/blob/master/README.rdoc" rel="noopener noreferrer">wordnet (⭐138)</a> -
+Performance tuned bindings for the <a href="https://wordnet.princeton.edu/" rel="noopener noreferrer">Princeton WordNet®</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/02/03/">Feb 03, 2017</a></h2><h3><p>Multipurpose Engines</p>
+</h3>
+<ul>
+<li><a href="https://github.com/hck/open_nlp" rel="noopener noreferrer">open_nlp (⭐11)</a> -
+JRuby Bindings for the <a href="https://opennlp.apache.org/" rel="noopener noreferrer">OpenNLP</a> Toolkit.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/01/29/">Jan 29, 2017</a></h2><h3><p>Multipurpose Engines</p>
+</h3>
+<ul>
+<li><a href="https://github.com/LeFnord/nlp_toolz" rel="noopener noreferrer">nlp_toolz (⭐2)</a> -
+Wrapper over some <a href="https://opennlp.apache.org/" rel="noopener noreferrer">OpenNLP</a> classes and
+the original <a href="https://github.com/slavpetrov/berkeleyparser" rel="noopener noreferrer">Berkeley Parser (⭐182)</a>.</li>
+</ul>
+<h3><p>Machine Learning Libraries / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ealdent/lda-ruby" rel="noopener noreferrer">lda-ruby (⭐133)</a> -
+Ruby implementation of the <a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation" rel="noopener noreferrer">LDA</a>
+(Latent Dirichlet Allocation) for automatic Topic Modelling and Document Clustering.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/01/23/">Jan 23, 2017</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Constituency Parsing</p>
+</h3>
+<ul>
+<li>2010<ul>
+<li><em>bayes_motel – Bayesian classification for Ruby</em> by <a href="https://twitter.com/mperham" rel="noopener noreferrer">Mike Perham</a> <sup>[<a href="http://www.mikeperham.com/2010/04/28/bayes_motel-bayesian-classification-for-ruby/" rel="noopener noreferrer">post</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/01/10/">Jan 10, 2017</a></h2><h3><p>Multipurpose Engines / On-line APIs</p>
+</h3>
+<ul>
+<li><a href="https://github.com/monkeylearn/monkeylearn-ruby" rel="noopener noreferrer">monkeylearn-ruby (⭐80)</a> - Sentiment
+Analysis, Topic Modelling, Language Detection, Named Entity Recognition via
+a Ruby based Web API client.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/01/09/">Jan 09, 2017</a></h2><h3><p>Multipurpose Engines</p>
+</h3>
+<ul>
+<li><a href="https://github.com/louismullie/open-nlp" rel="noopener noreferrer">open-nlp (⭐91)</a> -
+Ruby Bindings for the <a href="https://opennlp.apache.org/" rel="noopener noreferrer">OpenNLP</a> Toolkit.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/louismullie/stanford-core-nlp" rel="noopener noreferrer">stanford-core-nlp (⭐434)</a> -
+Ruby Bindings for the Stanford <a href="https://github.com/stanfordnlp/CoreNLP" rel="noopener noreferrer">CoreNLP (⭐9.9k)</a> tools.</li>
+</ul>
+<h3><p>Numbers, Dates, and Time Parsing / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mojombo/chronic" rel="noopener noreferrer">chronic (⭐3.2k)</a> -
+Pure Ruby natural language date parser.</li>
+</ul>
+<h3><p>Articles, Posts, Talks, and Presentations / Constituency Parsing</p>
+</h3>
+<ul>
+<li>2014<ul>
+<li><em>Natural Language Parsing with Ruby</em> by <a href="https://github.com/glaucocustodio" rel="noopener noreferrer">Glauco Custódio</a> <sup>[<a href="http://glaucocustodio.github.io/2014/11/10/natural-language-parsing-with-ruby/" rel="noopener noreferrer">tutorial</a>]</sup></li>
+<li><em>Demystifying Data Science: Analyzing Conference Talks with Rails and Ngrams</em> by
+<a href="https://github.com/toddwschneider" rel="noopener noreferrer">Todd Schneider</a> <sup>[<a href="https://www.youtube.com/watch?v=2ZDCxwB29Bg" rel="noopener noreferrer">video</a> | <a href="https://github.com/Genius/abstractogram" rel="noopener noreferrer">code (⭐34)</a>]</sup></li>
+<li><em>Natural Language Processing with Ruby</em> by <a href="https://github.com/t6d" rel="noopener noreferrer">Konstantin Tennhard</a> <sup>[<a href="https://www.youtube.com/watch?v=5u86qVh8r0M" rel="noopener noreferrer">video</a> | <a href="https://www.youtube.com/watch?v=oFmy_QBQ5DU" rel="noopener noreferrer">video</a> |
+<a href="https://www.youtube.com/watch?v=sPkeeWnsMn0" rel="noopener noreferrer">video</a> |
+<a href="http://euruko2013.org/speakers/presentations/natural_language_processing_with_ruby_and_opennlp-tennhard.pdf" rel="noopener noreferrer">slides</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/01/06/">Jan 06, 2017</a></h2><h3><p>Multipurpose Engines</p>
+</h3>
+<ul>
+<li><a href="https://github.com/louismullie/treat" rel="noopener noreferrer">treat (⭐1.4k)</a> -
+Natural Language Processing framework for Ruby (like <a href="http://www.nltk.org/" rel="noopener noreferrer">NLTK</a> for Python).</li>
+</ul>
+<h3><p>Multipurpose Engines / On-line APIs</p>
+</h3>
+<ul>
+<li><a href="https://github.com/wit-ai/wit-ruby" rel="noopener noreferrer">wit-ruby (⭐282)</a> -
+Ruby client library for the <a href="https://wit.ai/" rel="noopener noreferrer">Wit.ai</a> Language Understanding Platform.</li>
+</ul>
+<h3><p>Related Resources / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jtoy/awesome-tensorflow" rel="noopener noreferrer">Awesome TensorFlow (⭐17k)</a> -
+Machine Learning with TensorFlow libraries.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/01/04/">Jan 04, 2017</a></h2><h3><p>Multipurpose Engines / On-line APIs</p>
+</h3>
+<ul>
+<li><a href="https://github.com/alchemyapi/alchemyapi_ruby" rel="noopener noreferrer">alchemyapi_ruby (⭐36)</a> -
+Legacy Ruby SDK for AlchemyAPI/Bluemix.</li>
+</ul>
+<h3><p>Related Resources / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/markets/awesome-ruby#natural-language-processing" rel="noopener noreferrer">Awesome Ruby (⭐14k)</a> -
+Among other awesome items a short list of NLP related projects.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kba/awesome-ocr" rel="noopener noreferrer">Awesome OCR (⭐3k)</a> -
+Multitude of OCR (Optical Character Recognition) resources.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/12/19/">Dec 19, 2016</a></h2><h3><p>Pipeline Generation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ondra-m/ruby-spark" rel="noopener noreferrer">ruby-spark (⭐227)</a> -
+Spark bindings with an easy to understand DSL.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/12/12/">Dec 12, 2016</a></h2><h3><p>Pipeline Generation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/t6d/composable_operations" rel="noopener noreferrer">composable_operations (⭐46)</a> -
+Definition framework for operation pipelines.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/12/08/">Dec 08, 2016</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Constituency Parsing</p>
+</h3>
+<ul>
+<li>2012<ul>
+<li><em>Machine Learning with Ruby, Part One</em> by <a href="https://twitter.com/vasinov" rel="noopener noreferrer">Vasily Vasinov</a> <sup>[<a href="http://www.vasinov.com/blog/machine-learning-with-ruby-part-one/" rel="noopener noreferrer">tutorial</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/12/07/">Dec 07, 2016</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Constituency Parsing</p>
+</h3>
+<ul>
+<li>2013<ul>
+<li><em>How to parse 'go' - Natural Language Processing in Ruby</em> by
+<a href="https://twitter.com/tomcartwrightuk" rel="noopener noreferrer">Tom Cartwright</a> <sup>[<a href="https://www.slideshare.net/TomCartwright/natual-language-processing-in-ruby" rel="noopener noreferrer">slides</a> |
+<a href="https://skillsmatter.com/skillscasts/4883-how-to-parse-go" rel="noopener noreferrer">video</a>]</sup></li>
+<li><em>Natural Language Processing in Ruby</em> by <a href="https://twitter.com/brandonmblack" rel="noopener noreferrer">Brandon Black</a> <sup>[<a href="https://speakerdeck.com/brandonblack/natural-language-processing-in-ruby" rel="noopener noreferrer">slides</a> |
+<a href="http://confreaks.tv/videos/railsconf2013-natural-language-processing-with-ruby" rel="noopener noreferrer">video</a>]</sup></li>
+<li><em>Natural Language Processing with Ruby: n-grams</em> by <a href="https://github.com/nathankleyn" rel="noopener noreferrer">Nathan Kleyn</a> <sup>[<a href="https://www.sitepoint.com/natural-language-processing-ruby-n-grams/" rel="noopener noreferrer">tutorial</a> |
+<a href="https://github.com/nathankleyn/ruby-nlp" rel="noopener noreferrer">code (⭐33)</a>]</sup></li>
+<li><em>Seeking Lovecraft, Part 1: An introduction to NLP and the Treat Gem</em> by
+<a href="https://github.com/rlqualls" rel="noopener noreferrer">Robert Qualls</a> <sup>[<a href="https://www.sitepoint.com/seeking-lovecraft-part-1-an-introduction-to-nlp-and-the-treat-gem/" rel="noopener noreferrer">tutorial</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h3><p>Related Resources / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/edobashira/speech-language-processing" rel="noopener noreferrer">Speech and Natural Language Processing (⭐2.2k)</a> -
+General List of NLP related resources (mostly not for Ruby programmers).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/12/06/">Dec 06, 2016</a></h2><h3><p>Related Resources / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/diasks2/ruby-nlp" rel="noopener noreferrer">Ruby NLP (⭐1.3k)</a> -
+State-of-Art collection of Ruby libraries for NLP.</li>
+</ul>
+
+<ul>
+<li><a href="http://sciruby.com/" rel="noopener noreferrer">Scientific Ruby</a> -
+Linear Algebra, Visualization and Scientific Computing for Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/SciRuby/iruby" rel="noopener noreferrer">iRuby (⭐917)</a> - IRuby kernel for Jupyter (formelly IPython).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/11/30/">Nov 30, 2016</a></h2><h3><p>Community / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://www.reddit.com/r/LanguageTechnology/search?q=ruby&amp;restrict_sr=on" rel="noopener noreferrer">Reddit</a></li>
+</ul>
+
+<ul>
+<li><a href="https://twitter.com/search?q=Ruby%20NLP%20%23ruby%20OR%20%23nlproc%20OR%20%23rubynlp%20OR%20%23nlp&amp;src=typd&amp;lang=en" rel="noopener noreferrer">Twitter</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/11/29/">Nov 29, 2016</a></h2><h3><p>Language Aware String Manipulation / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/rails/rails/tree/master/activesupport/lib/active_support" rel="noopener noreferrer">active_support (⭐57k)</a> -
+RoR <code>ActiveSupport</code> gem has various string extensions that can handle case.</li>
+</ul>
+<h3><p>Books / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://twitter.com/robmil/" rel="noopener noreferrer">Miller, Rob</a>.
+<em>Text Processing with Ruby: Extract Value from the Data That Surrounds You.</em>
+Pragmatic Programmers, 2015. <sup>[<a href="https://www.amazon.com/Text-Processing-Ruby-Extract-Surrounds/dp/1680500708" rel="noopener noreferrer">link</a>]</sup></li>
+</ul>
+
+<ul>
+<li><a href="https://twitter.com/mark_l_watson" rel="noopener noreferrer">Watson, Mark</a>.
+<em>Practical Semantic Web and Linked Data Applications.</em> Lulu, 2010. <sup>[<a href="http://www.lulu.com/shop/mark-watson/practical-semantic-web-and-linked-data-applications-java-edition/paperback/product-10915016.html" rel="noopener noreferrer">link</a>]</sup></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/11/27/">Nov 27, 2016</a></h2><h3><p>Segmentation / On-line APIs</p>
+</h3>
+<ul>
+<li><a href="https://github.com/arbox/tokenizer" rel="noopener noreferrer">tokenizer (⭐45)</a> -
+Simple multilingual tokenizer. <sup>[<a href="https://github.com/arbox/nlp-with-ruby/blob/master/readme.md/tutorials/tokenizer.md" rel="noopener noreferrer">tutorial</a>]</sup></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/diasks2/pragmatic_tokenizer" rel="noopener noreferrer">pragmatic_tokenizer (⭐91)</a> -
+Multilingual tokenizer to split a string into tokens.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/manorie/textoken" rel="noopener noreferrer">textoken (⭐31)</a> -
+Simple and customizable text tokenization library.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/diasks2/pragmatic_segmenter" rel="noopener noreferrer">pragmatic_segmenter (⭐572)</a> -
+Word Boundary Disambiguation with many cookies.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/lfcipriani/punkt-segmenter" rel="noopener noreferrer">punkt-segmenter (⭐92)</a> -
+Pure Ruby implementation of the Punkt Segmenter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/zencephalon/Tactful_Tokenizer" rel="noopener noreferrer">tactful_tokenizer (⭐80)</a> -
+RegExp based tokenizer for different languages.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/louismullie/scalpel" rel="noopener noreferrer">scapel (⭐51)</a> -
+Sentence Boundary Disambiguation tool.</li>
+</ul>
+<h3><p>Lexical Processing / Stemming</p>
+</h3>
+<ul>
+<li><a href="https://github.com/aurelian/ruby-stemmer" rel="noopener noreferrer">ruby-stemmer (⭐250)</a> -
+Ruby-Stemmer exposes the SnowBall API to Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ealdent/uea-stemmer" rel="noopener noreferrer">uea-stemmer (⭐54)</a> -
+Conservative stemmer for search and indexing.</li>
+</ul>
+<h3><p>Lexical Processing / Lemmatization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/yohasebe/lemmatizer" rel="noopener noreferrer">lemmatizer (⭐108)</a> -
+WordNet based Lemmatizer for English texts.</li>
+</ul>
+<h3><p>Lexical Processing / Lexical Statistics: Counting Types and Tokens</p>
+</h3>
+<ul>
+<li><a href="https://github.com/thesp0nge/wc" rel="noopener noreferrer">wc (⭐6)</a> -
+Facilities to count word occurrences in a text.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/AtelierConvivialite/word_count" rel="noopener noreferrer">word_count (⭐5)</a> -
+Word counter for <code>String</code> and <code>Hash</code> objects.</li>
+</ul>
+<h3><p>Phrasal Level Processing / Filtering Stop Words</p>
+</h3>
+<ul>
+<li><a href="https://github.com/reddavis/N-Gram" rel="noopener noreferrer">n_gram (⭐37)</a> -
+N-Gram generator.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tkellen/ruby-ngram" rel="noopener noreferrer">ruby-ngram (⭐12)</a> -
+Break words and phrases into ngrams.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/postmodern/raingrams" rel="noopener noreferrer">raingrams (⭐69)</a> -
+Flexible and general-purpose ngrams library written in pure Ruby.</li>
+</ul>
+<h3><p>Semantic Analysis / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/flori/amatch" rel="noopener noreferrer">amatch (⭐384)</a> -
+Set of five distance types between strings (including Levenshtein, Sellers, Jaro-Winkler, 'pair distance').</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/GlobalNamesArchitecture/damerau-levenshtein" rel="noopener noreferrer">damerau-levenshtein (⭐146)</a> -
+Calculates edit distance using the Damerau-Levenshtein algorithm.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/colinsurprenant/hotwater" rel="noopener noreferrer">hotwater (⭐80)</a> -
+Fast Ruby FFI string edit distance algorithms.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dbalatero/levenshtein-ffi" rel="noopener noreferrer">levenshtein-ffi (⭐151)</a> -
+Fast string edit distance computation, using the Damerau-Levenshtein algorithm.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/reddavis/TF-IDF" rel="noopener noreferrer">tf_idf (⭐35)</a> -
+Term Frequency / Inverse Document Frequency in pure Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jpmckinney/tf-idf-similarity" rel="noopener noreferrer">tf-idf-similarity (⭐765)</a> -
+Calculate the similarity between texts using TF/IDF.</li>
+</ul>
+<h3><p>Pragmatical Analysis / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nzaillian/sentiment_lib" rel="noopener noreferrer">SentimentLib (⭐14)</a> -
+Simple extensible sentiment analysis gem.</li>
+</ul>
+<h3><p>Text Alignment / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/povilasjurcys/alignment" rel="noopener noreferrer">alignment (⭐1)</a> -
+Alignment routines for bilingual texts (Gale-Church implementation).</li>
+</ul>
+<h3><p>Machine Translation / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ikayzo/microsoft_translator" rel="noopener noreferrer">microsoft_translator (⭐21)</a> -
+Ruby client for the microsoft translator API.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pawurb/termit" rel="noopener noreferrer">termit (⭐508)</a> -
+Google Translate with speech synthesis in your terminal.</li>
+</ul>
+<h3><p>Numbers, Dates, and Time Parsing / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jrobertson/chronic_between" rel="noopener noreferrer">chronic_between (⭐28)</a> -
+Simple Ruby natural language parser for date and time ranges.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/henrypoydar/chronic_duration" rel="noopener noreferrer">chronic_duration (⭐355)</a> -
+Pure Ruby parser for elapsed time.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/xaviershay/kronic" rel="noopener noreferrer">kronic (⭐149)</a> -
+Methods for parsing and formatting human readable dates.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/iainbeeston/nickel" rel="noopener noreferrer">nickel (⭐117)</a> -
+Extracts date, time, and message information from naturally worded text.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/yb66/tickle" rel="noopener noreferrer">tickle (⭐82)</a> -
+Parser for recurring and repeating events.</li>
+</ul>
+<h3><p>Named Entity Recognition / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mblongii/ruby-ner" rel="noopener noreferrer">ruby-ner (⭐20)</a> -
+Named Entity Recognition with Stanford NER and Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tiendung/ruby-nlp" rel="noopener noreferrer">ruby-nlp (⭐92)</a> -
+Ruby Binding for Stanford Pos-Tagger and Name Entity Recognizer.</li>
+</ul>
+<h3><p>Text-to-Speech-to-Text / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dejan/espeak-ruby" rel="noopener noreferrer">espeak-ruby (⭐196)</a> -
+Small Ruby API for utilizing 'espeak' and 'lame' to create text-to-speech mp3 files.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/c2h2/tts" rel="noopener noreferrer">tts (⭐94)</a> -
+Text-to-Speech conversion using the Google translate service.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/adhearsion/att_speech" rel="noopener noreferrer">att_speech (⭐20)</a> -
+Ruby wrapper over the AT&amp;T Speech API for speech to text.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/watsonbox/pocketsphinx-ruby" rel="noopener noreferrer">pocketsphinx-ruby (⭐258)</a> -
+Pocketsphinx bindings.</li>
+</ul>
+<h3><p>Machine Learning Libraries / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/febeling/rb-libsvm" rel="noopener noreferrer">rb-libsvm (⭐278)</a> -
+Support Vector Machines with Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/maspwr/rtimbl" rel="noopener noreferrer">rtimbl (⭐5)</a> -
+Memory based learners from the Timbl framework.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jekyll/classifier-reborn" rel="noopener noreferrer">classifier-reborn (⭐555)</a> -
+General classifier module to allow Bayesian and other types of classifications.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tomz/liblinear-ruby-swig" rel="noopener noreferrer">liblinear-ruby-swig (⭐83)</a> -
+Ruby interface to LIBLINEAR (much more efficient than LIBSVM for text classification).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/djcp/linnaeus" rel="noopener noreferrer">linnaeus (⭐38)</a> -
+Redis-backed Bayesian classifier.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mccraigmccraig/maxent_string_classifier" rel="noopener noreferrer">maxent_string_classifier (⭐9)</a> -
+JRuby maximum entropy classifier for string data, based on the OpenNLP Maxent framework.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/reddavis/Naive-Bayes" rel="noopener noreferrer">naive_bayes (⭐49)</a> -
+Simple Naive Bayes classifier.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/oasic/nbayes" rel="noopener noreferrer">nbayes (⭐154)</a> -
+Full-featured, Ruby implementation of Naive Bayes.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mustafaturan/omnicat" rel="noopener noreferrer">omnicat (⭐11)</a> -
+Generalized rack framework for text classifications.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mustafaturan/omnicat-bayes" rel="noopener noreferrer">omnicat-bayes (⭐31)</a> -
+Naive Bayes text classification implementation as an OmniCat classifier strategy.</li>
+</ul>
+<h3><p>Language Aware String Manipulation / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/kiyoka/fuzzy-string-match" rel="noopener noreferrer">fuzzy-string-match (⭐284)</a> -
+Fuzzy string matching library for Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="http://disu.se/software/u-1.0/" rel="noopener noreferrer">u</a> -
+U extends Ruby’s Unicode support.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/blackwinter/unicode" rel="noopener noreferrer">unicode (⭐81)</a> -
+Unicode normalization library.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/talyssonoc/CommonRegexRuby" rel="noopener noreferrer">CommonRegexRuby (⭐80)</a> -
+Find a lot of kinds of common information in a string.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tom-lord/regexp-examples" rel="noopener noreferrer">regexp-examples (⭐521)</a> -
+Generate strings that match a given regular expression.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ryan-endacott/verbal_expressions" rel="noopener noreferrer">verbal_expressions (⭐571)</a> -
+Make difficult regular expressions easy.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/04/22/">Apr 22, 2016</a></h2><h3><p>Segmentation / On-line APIs</p>
+</h3>
+<ul>
+<li><a href="https://github.com/parhamr/nlp-pure" rel="noopener noreferrer">nlp-pure (⭐20)</a> -
+Natural language processing algorithms implemented in pure Ruby with minimal dependencies.</li>
+</ul>
+<h3><p>Machine Learning Libraries / Constituency Parsing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/paulgoetze/weka-jruby" rel="noopener noreferrer">weka (⭐64)</a> -
+JRuby bindings for Weka, different ML algorithms implemented through Weka.</li>
+</ul>
+
+    </main>
+  </body>
+</html>

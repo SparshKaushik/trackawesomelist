@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Awesome D (dlang-community/awesome-d) Overview - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/dlang-community/awesome-d/readme/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Awesome D Overview" />
+    <meta property="og:description" content="  A curated list of awesome D documents, frameworks, libraries and software. Inspired by awesome-python." />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Awesome D Overview</h1>
+<p>  A curated list of awesome D documents, frameworks, libraries and software. Inspired by awesome-python.</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/dlang-community/awesome-d/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/dlang-community/awesome-d">😺 dlang-community/awesome-d</a><span> · </span><span>⭐ 706</span><span> · </span><span>🏷️ Programming Languages</span></p>
+<p><span>[ </span><a href="/dlang-community/awesome-d/">Daily</a><span> / </span><a href="/dlang-community/awesome-d/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
+<h1 id="awesome-d-awesome"><a class="anchor" aria-hidden="true" tabindex="-1" href="#awesome-d-awesome"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Awesome D <a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/sindresorhus/awesome@d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome" /></a></h1><p>A curated list of awesome D frameworks, libraries and software. Inspired by <a href="https://github.com/vinta/awesome-python" rel="noopener noreferrer">awesome-python</a>.</p>
+<p>Most documents and links are collected from the <a href="https://forum.dlang.org" rel="noopener noreferrer">D forum</a>, the <a href="https://wiki.dlang.org" rel="noopener noreferrer">D wiki</a>, and the <a href="https://code.dlang.org" rel="noopener noreferrer">D package repository</a>. Exploring GitHub is also helpful, as many libraries are hosted there. If you know of an interesting D project, please let us know via <a href="https://github.com/dlang-community/awesome-d/issues" rel="noopener noreferrer">GitHub issues</a> or by <a href="https://github.com/dlang-community/awesome-d/edit/master/README.md" rel="noopener noreferrer">editing this file</a>.</p>
+<h1 id="contents"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contents"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contents</h1><ul>
+<li>Basic Information<ul>
+<li><a href="#official-website">Official Website</a></li>
+<li><a href="#getting-help">Getting Help</a></li>
+<li><a href="#people">People</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#organizations">Organizations</a></li>
+</ul>
+</li>
+<li>Documents<ul>
+<li><a href="#books">Books</a></li>
+<li><a href="#tutorials">Tutorials</a></li>
+<li><a href="#blogs">Blogs</a></li>
+<li><a href="#articles">Articles</a></li>
+</ul>
+</li>
+<li>Language Related<ul>
+<li><a href="#package-management">Package Management</a></li>
+<li><a href="#compilers">Compilers</a></li>
+<li><a href="#wip-compilers">WIP Compilers</a></li>
+<li><a href="#dev-tools">Dev Tools</a></li>
+<li><a href="#build-tools">Build Tools</a></li>
+<li><a href="#ides--editors">IDEs &amp; Editors</a></li>
+<li><a href="#lexers-parsers-parser-generators">Lexers, Parsers, Generators</a></li>
+<li><a href="#preprocessors">Preprocessors</a></li>
+<li><a href="#version-managers">Version Managers</a></li>
+</ul>
+</li>
+<li>Continuous Integration<ul>
+<li><a href="#github-actions">GitHub Actions</a></li>
+<li><a href="#testing-frameworks">Testing Frameworks</a></li>
+</ul>
+</li>
+<li>Compiler for Other Languages<ul>
+<li><a href="#javascript">Javascript</a></li>
+</ul>
+</li>
+<li>OS<ul>
+<li><a href="#operating-systems">Operating Systems</a></li>
+<li><a href="#bare-metalkernel-development">Bare Metal/Kernel Development</a></li>
+</ul>
+</li>
+<li>Common<ul>
+<li><a href="#general-containers">General Containers</a></li>
+<li><a href="#core-utilities">Core Utilities</a></li>
+</ul>
+</li>
+<li>Networking/Web<ul>
+<li><a href="#web-frameworks">Web Frameworks</a></li>
+<li><a href="#data-serialization">Data Serialization</a></li>
+</ul>
+</li>
+<li>Database<ul>
+<li><a href="#database-clients">Database Clients</a></li>
+</ul>
+</li>
+<li>CLI<ul>
+<li><a href="#cli-libraries">CLI Libraries</a></li>
+<li><a href="#cli-applications">CLI Applications</a></li>
+</ul>
+</li>
+<li>GUI<ul>
+<li><a href="#gui-libraries">GUI Libraries</a></li>
+<li><a href="#gui-applications">GUI Applications</a></li>
+</ul>
+</li>
+<li>Game Development<ul>
+<li><a href="#game-bindings">Game Bindings</a></li>
+<li><a href="#game-libraries">Game Libraries</a></li>
+<li><a href="#games">Games</a></li>
+</ul>
+</li>
+<li>Internationalization (i18n) / Globalization<ul>
+<li><a href="#internationalization">Internationalization</a></li>
+</ul>
+</li>
+<li>Image Processing<ul>
+<li><a href="#image-processing">Image Processing</a></li>
+</ul>
+</li>
+<li>Machine Learning<ul>
+<li><a href="#machine-learning">Machine Learning</a></li>
+<li><a href="#parallel-computing">Parallel Computing</a></li>
+</ul>
+</li>
+<li>Scientific<ul>
+<li><a href="#scientific">Scientific</a></li>
+<li><a href="#language-processing">Language Processing</a></li>
+</ul>
+</li>
+<li>Others<ul>
+<li><a href="#text-processing">Text Processing</a></li>
+<li><a href="#logging">Logging</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#blog-engine">BlogEngine</a></li>
+<li><a href="#dependency-injection">Dependency Injection</a></li>
+<li><a href="#unmaintained">Unmaintained</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="official-website"><a class="anchor" aria-hidden="true" tabindex="-1" href="#official-website"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Official Website</h2><p><em>Official Website URLs.</em></p>
+<ul>
+<li><a href="https://dlang.org" rel="noopener noreferrer">dlang.org</a> - Official website for D.</li>
+<li><a href="https://wiki.dlang.org" rel="noopener noreferrer">wiki.dlang.org</a> - Official Wiki for D.</li>
+<li><a href="https://code.dlang.org" rel="noopener noreferrer">code.dlang.org</a> - Offical Library/Module Registry for D.</li>
+<li><a href="https://github.com/dlang" rel="noopener noreferrer">Github Organization</a> - Official GitHub organization for D. Repo for all official D tools &amp; code.</li>
+<li><a href="https://forum.dlang.org/" rel="noopener noreferrer">forum.dlang.org</a> - Official forum. Many interesting discussions occurring on a daily basis.</li>
+<li><a href="https://dlang.org/blog/" rel="noopener noreferrer">blog.dlang.org</a> - Official blog.</li>
+<li><a href="https://dlang.org/spec/spec.html" rel="noopener noreferrer">Language Specification</a> - D programming language specification.</li>
+<li><a href="https://issues.dlang.org/" rel="noopener noreferrer">Issue tracking</a> - Official issue tracking/reporting system for D. If you find bugs in the D compiler and/or libraries, please come and report them!</li>
+</ul>
+<h2 id="getting-help"><a class="anchor" aria-hidden="true" tabindex="-1" href="#getting-help"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Getting Help</h2><p><em>For when you're stuck.</em></p>
+<ul>
+<li><a href="https://forum.dlang.org/group/learn" rel="noopener noreferrer">Official D Forum Learn Group</a> - Highest traffic site for answering D questions.</li>
+<li><a href="https://stackoverflow.com/questions/tagged/d" rel="noopener noreferrer">D on Stack Overflow</a> - Less traffic than forums but possibly easier to search.</li>
+<li><a href="https://rosettacode.org/wiki/Category:D" rel="noopener noreferrer">D on Rosetta Code</a> - Examples of how to do many basic things in D.</li>
+<li><a href="https://discord.gg/invite/bMZk9Q4" rel="noopener noreferrer">D on Discord</a> - Another very active community for D conversations and question.</li>
+</ul>
+<h2 id="people"><a class="anchor" aria-hidden="true" tabindex="-1" href="#people"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>People</h2><p><em>The people that made D the language it is.</em></p>
+<ul>
+<li><a href="https://www.walterbright.com/" rel="noopener noreferrer">Walter Bright</a> - Father of D. Walter Bright is the creator and first implementer of the D programming language and has implemented compilers for several other languages.</li>
+<li><a href="http://erdani.com/" rel="noopener noreferrer">Andrei Alexandrescu, PhD</a> - C++ guru. Author of <em>The D Programming Language</em> and <em>Modern C++ Design</em>. With Walter Bright, Andrei co-designed many important features of D and authored a large part of D's standard library. Andrei works as a trainer in advanced C++ programming and algorithms and is now actively evangelizing D in the organization.</li>
+<li><a href="https://atilaoncode.blog/" rel="noopener noreferrer">Átila Neves</a> - <a href="https://dlang.org/blog/2019/10/15/my-vision-of-ds-future/" rel="noopener noreferrer">Deputy Leader of D</a>.</li>
+<li><strong>YOU</strong> - Please add your information if you've done something interesting in D. It is you, the awesome people that made D awesome.</li>
+</ul>
+<h2 id="events"><a class="anchor" aria-hidden="true" tabindex="-1" href="#events"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Events</h2><ul>
+<li><a href="https://dconf.org/" rel="noopener noreferrer">DConf</a> - the premier event where D luminaries exchange knowledge, insight, and inspiration on everything related to the D language and its ecosystem.</li>
+</ul>
+<h2 id="organizations"><a class="anchor" aria-hidden="true" tabindex="-1" href="#organizations"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Organizations</h2><p><em>Organizations that contribute to D projects.</em></p>
+<ul>
+<li><a href="https://github.com/dlang" rel="noopener noreferrer">D Programming Language</a> - Official Organization, hosts DMD, Phobos and other official tools and libs.</li>
+<li><a href="https://github.com/ldc-developers" rel="noopener noreferrer">LDC Developers</a> - LDC releated projects.</li>
+<li><a href="https://github.com/DerelictOrg" rel="noopener noreferrer">DerelictOrg</a> - A GitHub organization hosting all Derelict bindings including OpenGL and other multimedia/game related library bindings. (OpenGL 3, Bgfx, ENet,  SDL 2, GLFW 3，OpenGLES, Free Image, Assimp3, libtheora, libogg, libvorbis, SFML 2, libpq, PhysicsFS, Open Dynamics Engine, Lua, DevIL, OpenAL, ALURE).</li>
+<li><a href="https://github.com/DlangScience" rel="noopener noreferrer">DlangScience</a> -A focal point and first port of call for scientific libraries and tooling for D.</li>
+<li><a href="https://github.com/Circular-Studios" rel="noopener noreferrer">Circular Studios</a> - We are a group of game developers at Rochester Institute of Technology building games and game tech. Hosts <a href="https://github.com/Circular-Studios/Dash" rel="noopener noreferrer">Dash</a>, a 3D game engine written in D, and other related libs.</li>
+<li><a href="https://github.com/economicmodeling" rel="noopener noreferrer">EMSI</a> - A Career building company that uses D as their main language. Hosts their opensource projects.</li>
+<li><a href="http://www.infognition.com/company.html" rel="noopener noreferrer">infognition</a> - Infognition is a self-funded and self-sustained company specializing in video processing and compression technologies for end-users and developers. They provide several opensource video related applications &amp; tools written in D, hosted on <a href="https://bitbucket.org/infognition/" rel="noopener noreferrer">bitbucket</a>. They are also porting their main product--<a href="http://www.infognition.com/VideoEnhancer/" rel="noopener noreferrer">Video Enchanser</a> from C/C++ to D.</li>
+<li><a href="https://github.com/libmir" rel="noopener noreferrer">libmir</a> - D's numeric library development team</li>
+<li><a href="https://www.sociomantic.com" rel="noopener noreferrer">sociomantic labs</a> - Berlin based company specializing in real-time bidding for online advertising. Main sponsor of the <a href="http://dconf.org" rel="noopener noreferrer">annual D language conference</a>. Has open-sourced large parts of their codebase as part of the <a href="https://github.com/sociomantic-tsunami" rel="noopener noreferrer">tsunami</a> organization.</li>
+<li><a href="https://symmetryinvestments.com/" rel="noopener noreferrer">Symmetry Investments</a> - Symmetry Investments LP is an investment management company with approximately US$4.7 billion in assets under management as of 31 December 2018. Main sponsor of the <a href="https://dlang.org/blog/symmetry-autumn-of-code/" rel="noopener noreferrer">Symmetry Autumn of Code</a>. Have sponsored the development of <a href="https://dlang.org/blog/2017/05/31/project-highlight-excel-d/" rel="noopener noreferrer">excel-d</a>, <a href="https://github.com/atilaneves/dpp" rel="noopener noreferrer">dpp</a>, <a href="https://github.com/symmetryinvestments/autowrap" rel="noopener noreferrer">autowrap</a>, <a href="https://github.com/libmir/mir-algorithm" rel="noopener noreferrer">mir-algorithm</a>, and various other projects.</li>
+<li><a href="https://www.huntlabs.net" rel="noopener noreferrer">HuntLabs</a> - A technology group using DLang. Have pure D language implementation of quickly develop server-side applications and build distributed system services.</li>
+</ul>
+<h2 id="books"><a class="anchor" aria-hidden="true" tabindex="-1" href="#books"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Books</h2><p><em>D related books.</em> You can find another list of books on the <a href="https://wiki.dlang.org/Books" rel="noopener noreferrer">Books</a> D wiki page.</p>
+<ul>
+<li><a href="https://www.amazon.com/The-Programming-Language-Andrei-Alexandrescu/dp/0321635361/" rel="noopener noreferrer">TDPL</a> - <em>The D Programming Language</em> by Andrei Alexandrescu.</li>
+<li><a href="https://ddili.org/ders/d.en/index.html" rel="noopener noreferrer">Programming in D</a> - A very detailed book about programming in D by Ali Çehreli  covering many areas of the language. Has a free online version and is suitable for beginners.</li>
+<li><a href="https://www.packtpub.com/product/d-cookbook/9781783287215" rel="noopener noreferrer">D Cookbook</a> - A recipe-packed reference guide filled with practical tasks that are concisely explained to develop and broaden the user's abilities with the D programming language. by Adam D. Ruppe. Here is an interesting <a href="https://www.cppstories.com/2014/08/review-of-d-cookbook/" rel="noopener noreferrer">review of the book</a>.</li>
+<li><a href="https://www.packtpub.com/product/learning-d/9781783552481" rel="noopener noreferrer">Learning D</a> - This book is intended for those with some background in a C-family language who want to learn how to apply their knowledge and experience to D. (...) This book will help you get up to speed with the language and avoid common pitfalls that arise when translating C-family experience to D.</li>
+<li><a href="https://www.packtpub.com/product/d-web-development/9781785288890" rel="noopener noreferrer">D Web Development</a> - Whether you are new to the world of D, or already have developed applications in D, or if you want to leverage the power of D for web development, then this book is ideal for you.</li>
+</ul>
+<h2 id="tutorials"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tutorials"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tutorials</h2><p><em>D related tutorials.</em></p>
+<ul>
+<li><a href="https://tour.dlang.org/" rel="noopener noreferrer">The Dlang Tour</a> - An interactive tutorial for D, inspired by Golang Tour.</li>
+<li><a href="https://www.youtube.com/watch?v=HS7X9ERdjM4&amp;list=PLvv0ScY6vfd9Fso-3cB4CGnSlW0E4btJV&amp;ab_channel=MikeShah" rel="noopener noreferrer">Programming in Dlang</a> - An introductory video series about programming in D.</li>
+<li><a href="https://qznc.github.io/d-tut/index.html" rel="noopener noreferrer">Pragmatic D tutorial</a> - This is a pragmatic introduction to the D Programming Language. by Andreas Zwinkau.</li>
+<li><a href="https://github.com/PhilippeSigaud/D-templates-tutorial" rel="noopener noreferrer">D Template Tutorial</a> - A tutorial dedicated to D Templates. Very good explanation about templates. Has pdf version. by Philippe Sigaud.</li>
+<li><a href="https://www.drdobbs.com/architecture-and-design/component-programming-in-d/240008321" rel="noopener noreferrer">Component programming in D</a> - An article written by Walter Bright that details how D's functional support leads to a flexible and beautiful component programming style.</li>
+<li><a href="https://wiki.dlang.org/Component_programming_with_ranges" rel="noopener noreferrer">Component programming with ranges</a> - A detailed blog post about how to do component programming in a idiomatic D way with ranges, with a full working example.</li>
+<li><a href="https://blog.cy.md/2014/03/21/functional-image-processing-in-d/" rel="noopener noreferrer">Functional image processing in D</a> - A very interesting tutorial about writing an image processing lib in D. Shows the power of D's templates/CTFE/Ranges/UFCS for functional style programming.</li>
+<li><a href="https://github.com/d-gamedev-team/opengl-tutorials" rel="noopener noreferrer">OpenGL tutorials</a> - OpenGL tutorials in D.</li>
+<li><a href="https://bradley.chatha.dev/BlogPost/JsonSerialiser/0" rel="noopener noreferrer">Creating a simple JSON serialiser in D</a> - D metaprogramming tutorial series</li>
+<li><a href="https://www.youtube.com/watch?v=j-Zm1zgSxMQ&amp;list=PLgM-lc_kSqFQPF0UXgmFZpZalqcrSofe-&amp;ab_channel=KiRill" rel="noopener noreferrer">Let's learn D programming Game Dev!</a> - A video series on learning game development with D from Ki Rill. <a href="https://www.youtube.com/@rillki-dev/" rel="noopener noreferrer">His channel</a> also posts other videos related to D programming.</li>
+<li><a href="https://www.youtube.com/playlist?list=PLvv0ScY6vfd9Fso-3cB4CGnSlW0E4btJV" rel="noopener noreferrer">DLang YouTube Tutorials from Mike Shah</a> - Series of tutorials covering basic to advanced features of the D programming language and standard library.</li>
+</ul>
+<h2 id="blogs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#blogs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Blogs</h2><p><em>D related blogs.</em></p>
+<ul>
+<li><a href="https://dlang.org/blog/" rel="noopener noreferrer">blog.dlang.org</a> - Official blog.</li>
+<li><a href="https://www.reddit.com/r/d_language/" rel="noopener noreferrer">/r/d_language on Reddit</a> - A feed of news and blog posts about D.</li>
+<li><a href="https://dpldocs.info/this-week-in-d/Blog.html" rel="noopener noreferrer">This week in D</a> - A weekly overview of activity in the D community and brief advice columns to help you get the most out of the D Programming Language.</li>
+<li><a href="http://planet.dsource.org" rel="noopener noreferrer">Planet D</a> - A repository of co-authored D-specific blogs maintained by Vladimir Panteleev.</li>
+<li><a href="https://p0nce.github.io/d-idioms/" rel="noopener noreferrer">D Idioms</a> - A great blog for many useful idioms with D programming.</li>
+<li><a href="https://gtkdcoding.com/" rel="noopener noreferrer">GTK-D coding</a> - Simple examples of how to use GtkD to build GUI applications.</li>
+<li><a href="https://tastyminerals.github.io/tasty-blog/" rel="noopener noreferrer">Tasty D</a> - A blog about learning the D programming language and various D language trivia.</li>
+</ul>
+<h2 id="articles"><a class="anchor" aria-hidden="true" tabindex="-1" href="#articles"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Articles</h2><p><em>D related Articles.</em></p>
+<ul>
+<li><a href="https://dl.acm.org/doi/pdf/10.1145/3386323" rel="noopener noreferrer">Origins of the D programming language</a> - By Walter Bright, Andrei Alexandrescu, Michael Parker. The history and development of D language.</li>
+<li><a href="https://klickverbot.at/blog/2012/05/purity-in-d/" rel="noopener noreferrer">Purity in D</a> - An article that explains the design principles behind D's purity feature.</li>
+<li><a href="https://web.archive.org/web/20171119072212/http://nomad.so/2014/08/hidden-treasure-in-the-d-standard-library/" rel="noopener noreferrer">Hidden treasures in the D standard library</a> - An article talking about several useful functions and templates in Phobos.</li>
+<li><a href="https://github.com/JinShil/D_Runtime_ARM_Cortex-M_study" rel="noopener noreferrer">Porting D Runtime to ARM</a> - A study about porting a minimal D runtime to ARM Cortex-M preprocessors.</li>
+<li><a href="https://tech.nextroll.com/blog/data/2014/11/17/d-is-for-data-science.html" rel="noopener noreferrer">D is for Data Science</a> - A great post about how D is suitable for data science, particularly, replacing the role of python scripts for fast prototyping.</li>
+<li><a href="https://garden.dlang.io/" rel="noopener noreferrer">D Functional Garden</a></li>
+</ul>
+<h2 id="package-management"><a class="anchor" aria-hidden="true" tabindex="-1" href="#package-management"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Package Management</h2><p><em>Libraries for package and dependency management.</em></p>
+<ul>
+<li><a href="https://code.dlang.org/" rel="noopener noreferrer">code.dlang.org</a> - Official D library repository. Backed by dub.</li>
+<li><a href="https://github.com/dlang/dub" rel="noopener noreferrer">dub</a> - Official package and build management system for D.</li>
+</ul>
+<h2 id="compilers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#compilers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Compilers</h2><p><em>Compile software from source code.</em></p>
+<ul>
+<li><a href="https://github.com/dlang/dmd" rel="noopener noreferrer">dmd</a> - The reference compiler for the D programming language. Stable, builds insanely fast, very good for learning and rapid prototyping/development. Currently the frontend is implemented in D, and shared between dmd, ldc and gdc, the backend is implemented in C++.</li>
+<li><a href="https://github.com/ldc-developers/ldc" rel="noopener noreferrer">ldc</a> - The LLVM-based D compiler. Uses the DMD frontend and LLVM backend. Builds slower than dmd, but generates more optimized code than DMD. It supports all the target platforms of LLVM.</li>
+<li><a href="https://github.com/D-Programming-GDC/GDC" rel="noopener noreferrer">gdc</a> - GNU D Compiler. Use DMD frontend and GCC backend. Currently targets the most platforms due to the use of GCC. Generated code runs faster than DMD in most cases, on par with LDC. In the process of integration with the official GCC toolchain.</li>
+</ul>
+<h2 id="wip-compilers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#wip-compilers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>WIP Compilers</h2><ul>
+<li><a href="https://github.com/snazzy-d/SDC" rel="noopener noreferrer">sdc</a> - The Snazzy D Compiler. Written in D. Grows Smarter every day.</li>
+</ul>
+<h2 id="dev-tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#dev-tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Dev Tools</h2><p><em>Tools for more productive D development.</em></p>
+<ul>
+<li><a href="https://github.com/dlang-community/D-Scanner" rel="noopener noreferrer">D-Scanner</a> - Swiss-army knife for D source code (linting, static analysis, D code parsing, etc.)</li>
+<li><a href="https://github.com/dlang-community/dfmt" rel="noopener noreferrer">dfmt</a> - formatter for D source code</li>
+</ul>
+<h2 id="build-tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#build-tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Build Tools</h2><p><em>Manage projects and compile software from source code.</em></p>
+<ul>
+<li><a href="https://github.com/dlang/dub" rel="noopener noreferrer">dub</a> - De facto official package and build management system for D. Will be included officially soon.</li>
+<li><a href="https://scons.org/" rel="noopener noreferrer">scons-d</a> - Scons has built-in support for building D projects, thanks to Russel Winder.</li>
+<li><a href="https://github.com/premake/premake-dlang" rel="noopener noreferrer">premake</a> - Premake has built-in support for D projects</li>
+<li><a href="https://github.com/atilaneves/reggae" rel="noopener noreferrer">reggae</a> - meta build system in D</li>
+<li><a href="https://github.com/bioinfornatics/MakefileForD" rel="noopener noreferrer">Makefile</a> - Makefile template for D projects</li>
+<li><a href="https://github.com/dcarp/cmake-d" rel="noopener noreferrer">cmake-d</a> - CMake D Projects</li>
+<li><a href="https://github.com/gecko0307/Cook2" rel="noopener noreferrer">cook2</a> - Fast incremental build tool intended for projects in D</li>
+<li><a href="https://jasonwhite.io/button/" rel="noopener noreferrer">button</a> - A universal build system to build your software at the push of a button.</li>
+<li><a href="https://github.com/Vild/Wild" rel="noopener noreferrer">wild</a> - Wild build system, used to build the <a href="https://github.com/PowerNex/PowerNex" rel="noopener noreferrer">PowerNex</a> kernel</li>
+<li><a href="https://xmake.io" rel="noopener noreferrer">XMake</a> - XMake is a crossplatform build system, that incorporated the D language and also has support for DUB repositories.</li>
+<li><a href="https://github.com/redthing1/wox" rel="noopener noreferrer">wox</a> - A highly flexible recipe build system inspired by Make</li>
+</ul>
+<h2 id="ides--editors"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ides--editors"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>IDEs &amp; Editors</h2><p><em>Integrated Development Environment.</em></p>
+<ul>
+<li><a href="https://github.com/dlang/visuald" rel="noopener noreferrer">Visual D</a> - Visual Studio extension for the D programming language.</li>
+<li><a href="https://intellij-dlanguage.github.io/" rel="noopener noreferrer">IntelliJ D Language</a> - Support for the D programming language within IntelliJ IDEA.</li>
+<li><a href="https://gitlab.com/basile.b/dexed" rel="noopener noreferrer">Dexed</a> - IDE for the D programming language, its compilers, tools and libraries.</li>
+<li><a href="https://github.com/idanarye/vim-dutyl" rel="noopener noreferrer">Dutyl</a> - Vim plugin that integrates various D development tools</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=webfreak.code-d" rel="noopener noreferrer">code-d</a> <sup>[<a href="https://open-vsx.org/extension/webfreak/code-d" rel="noopener noreferrer">open-vsx</a>]</sup> - Visual Studio Code extension using serve-d</li>
+<li><a href="https://atom.io/packages/ide-d" rel="noopener noreferrer">ide-d</a> - Atom extension for D using serve-d</li>
+<li><a href="https://github.com/dlang-community/DCD" rel="noopener noreferrer">DCD</a> - Independent auto-complete program for the D programming language. Could be used with editors like vim, emacs, sublime text, textadept, and zeus. See <a href="https://github.com/dlang-community/DCD/wiki/IDEs-and-Editors-with-DCD-support" rel="noopener noreferrer">editors support</a>.</li>
+<li><a href="https://github.com/Pure-D/serve-d" rel="noopener noreferrer">serve-d</a> - Language Server Protocol (LSP) implementation for D.  Adds modern IDE features to any editor with LSP support (VSCode, Atom, Vim/Neovim and others)</li>
+</ul>
+<h2 id="lexers-parsers-parser-generators"><a class="anchor" aria-hidden="true" tabindex="-1" href="#lexers-parsers-parser-generators"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Lexers, Parsers, Parser Generators</h2><ul>
+<li><a href="https://github.com/dlang-community/libdparse" rel="noopener noreferrer">libdparse</a> - A D language lexer and parser, (possibly) future standard D parser/lexer.</li>
+<li><a href="https://github.com/MartinNowak/lexer" rel="noopener noreferrer">Martin Nowak's Lexer</a> - A lexer generator.</li>
+<li><a href="https://github.com/aBothe/D_Parser" rel="noopener noreferrer">Mono-D's DParser</a> - A D parser written in C# and used in Mono-D.</li>
+<li><a href="https://github.com/PhilippeSigaud/Pegged" rel="noopener noreferrer">Pegged</a> - A Parsing Expression Grammar (PEG) module written in D.</li>
+<li><a href="https://bitbucket.org/Abscissa/goldie/wiki/Home" rel="noopener noreferrer">Goldie</a> - Goldie Parsing System.</li>
+<li><a href="https://github.com/youxkei/ctpg" rel="noopener noreferrer">ctpg</a> - Compile-Time Parser (with converter) Generator written in D.</li>
+<li><a href="https://github.com/pwil3058/dunnart" rel="noopener noreferrer">dunnart</a> - LALR(1) Parser Generator written in D.</li>
+</ul>
+<h2 id="preprocesors"><a class="anchor" aria-hidden="true" tabindex="-1" href="#preprocesors"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Preprocesors</h2><ul>
+<li><a href="https://github.com/facebookarchive/warp" rel="noopener noreferrer">warp</a> - A fast preprocessor for C and C++ used in Facebook infrastructure. Written by Walter Bright.</li>
+</ul>
+<h2 id="version-managers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#version-managers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Version Managers</h2><ul>
+<li><a href="https://github.com/jacob-carlborg/dvm" rel="noopener noreferrer">dvm</a> - A small tool to install and manage DMD (self-hosting) compiler.</li>
+<li><a href="https://github.com/kassane/ldcup" rel="noopener noreferrer">ldcup</a> - A small tool to install and manage LDC2 (LLVM backend) compiler.</li>
+</ul>
+<h2 id="github-actions"><a class="anchor" aria-hidden="true" tabindex="-1" href="#github-actions"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>GitHub Actions</h2><ul>
+<li><a href="https://github.com/dlang-community/setup-dlang" rel="noopener noreferrer">setup-dlang</a> - Install D compilers &amp; DUB inside GitHub Actions</li>
+<li><a href="https://github.com/WebFreak001/dub-upgrade" rel="noopener noreferrer">dub-upgrade</a> - Run <code>dub upgrade</code> trying to repeat on network failure and using package cache on GitHub Actions</li>
+</ul>
+<h2 id="testing-frameworks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#testing-frameworks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Testing Frameworks</h2><ul>
+<li><a href="https://github.com/atilaneves/unit-threaded" rel="noopener noreferrer">unit-threaded</a> - Multi-threaded unit test framework</li>
+<li><a href="https://gitlab.com/AntonMeep/silly" rel="noopener noreferrer">silly</a> - Better test runner for the D programming language. No nonsense.</li>
+</ul>
+<h2 id="javascript"><a class="anchor" aria-hidden="true" tabindex="-1" href="#javascript"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Javascript</h2><ul>
+<li><a href="https://github.com/higgsjs/Higgs" rel="noopener noreferrer">higgs</a> -  Higgs JavaScript Virtual Machine, implemented in D.</li>
+</ul>
+<h2 id="operating-systems"><a class="anchor" aria-hidden="true" tabindex="-1" href="#operating-systems"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Operating Systems</h2><p><em>Operating Systems written in D.</em></p>
+<ul>
+<li><a href="https://github.com/PowerNex/PowerNex" rel="noopener noreferrer">PowerNex</a> -  A kernel written in D</li>
+<li><a href="https://serpentos.com/" rel="noopener noreferrer">SerpentOS</a> - Snek factory (<a href="https://gitlab.com/serpent-os" rel="noopener noreferrer">source code</a>)</li>
+<li><a href="https://github.com/Rikarin/Trinix" rel="noopener noreferrer">Trinix</a> -  Hybrid operating system for x64 PC written in D</li>
+<li><a href="https://github.com/xomboverlord/xomb" rel="noopener noreferrer">XOmB</a> - An exokernel operating system written in D</li>
+</ul>
+<h2 id="bare-metalkernel-development"><a class="anchor" aria-hidden="true" tabindex="-1" href="#bare-metalkernel-development"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Bare Metal/Kernel Development</h2><ul>
+<li><a href="https://wiki.osdev.org/D_Bare_Bones" rel="noopener noreferrer">D Bare bones</a> - kernel hello world in D (using GDC compiler)</li>
+<li><a href="https://wiki.osdev.org/D_barebone_with_ldc2" rel="noopener noreferrer">D barebone with ldc2</a> - another kernel hello world in D (using LDC compiler)</li>
+<li><a href="https://web.archive.org/web/20161214232759/http://wiki.xomb.org/index.php?title=XOmB_Bare_Bones" rel="noopener noreferrer">XOmB bare bones</a> - an exokernel operating system written in D. <a href="https://web.archive.org/web/20161201061242/http://wiki.xomb.org/index.php?title=Main_Page" rel="noopener noreferrer">Main page</a>, <a href="https://github.com/xomboverlord/xomb/tree/unborn" rel="noopener noreferrer">github</a>.</li>
+<li><a href="https://wiki.dlang.org/Bare_Metal_ARM_Cortex-M_GDC_Cross_Compiler" rel="noopener noreferrer">Bare Metal ARM Cortex-M GDC Cross Compiler</a> - building a bare metal ARM Cortex-M (arm-none-eabi) GDC cross compiler for a Linux host.</li>
+</ul>
+<h2 id="general-containers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#general-containers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>General Containers</h2><p><em>Data structures and container libraries.</em></p>
+<ul>
+<li><a href="https://github.com/dlang-community/containers" rel="noopener noreferrer">EMSI containers</a> - Containers that do not use the GC</li>
+<li><a href="https://github.com/etcimon/memutils" rel="noopener noreferrer">memutils</a> - Overhead allocators, allocator-aware containers and lifetime management for D objects</li>
+<li><a href="https://github.com/gecko0307/dlib" rel="noopener noreferrer">dlib.container</a> - generic data structures (GC-free dynamic and associative arrays and more)</li>
+<li><a href="https://github.com/burner/std.rcstring" rel="noopener noreferrer">std.rcstring</a> - A reference counted string implementation for D's build in string construct</li>
+</ul>
+<h2 id="core-utilities"><a class="anchor" aria-hidden="true" tabindex="-1" href="#core-utilities"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Core Utilities</h2><p><em>General-purpose utility libraries.</em></p>
+<ul>
+<li><a href="https://github.com/Inochi2D/numem" rel="noopener noreferrer">NuMem</a> - No-GC memory managment utilities for DLang.</li>
+<li><a href="https://github.com/Inochi2D/nulib" rel="noopener noreferrer">NuLib</a> - D "standard" library built ontop of numem.</li>
+<li><a href="https://github.com/Kapendev/joka" rel="noopener noreferrer">Joka</a> - A nogc utility library.</li>
+</ul>
+<h2 id="web-frameworks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web-frameworks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web Frameworks</h2><p><em>Networking libraries.</em></p>
+<ul>
+<li><a href="https://github.com/ikod/dlang-requests" rel="noopener noreferrer">dlang-requests</a> - HTTP client library inspired by python-requests</li>
+<li><a href="https://github.com/andrewlalis/handy-httpd" rel="noopener noreferrer">Handy-Httpd</a> - A simple, lightweight, and well-documented HTTP server that lets you bootstrap ideas and have something up and running in minutes.</li>
+<li><a href="https://github.com/trikko/serverino" rel="noopener noreferrer">serverino</a> - Small and ready-to-go http server, in D</li>
+<li><a href="https://github.com/etcimon/libasync" rel="noopener noreferrer">libasync</a> -  Cross-platform event loop library of asynchronous objects</li>
+<li><a href="https://github.com/etcimon/libhttp2" rel="noopener noreferrer">libhttp2</a> -  HTTP/2 library in D, translated from nghttp2</li>
+</ul>
+<p><em>Full stack web frameworks.</em></p>
+<ul>
+<li><a href="https://vibed.org/" rel="noopener noreferrer">vibe.d</a> - Asynchronous I/O Web Framework that doesn’t get in your way, written in D.</li>
+<li><a href="https://github.com/adamdruppe/arsd" rel="noopener noreferrer">arsd</a> - Adam D. Ruppe's web framework.</li>
+<li><a href="https://github.com/rikkimax/Cmsed" rel="noopener noreferrer">cmsed</a> - A component library for Vibe that functions as a CMS.</li>
+</ul>
+<p><em>RPC libraries.</em></p>
+<ul>
+<li><a href="https://code.dlang.org/packages/apache-thrift" rel="noopener noreferrer">Apache Thrift</a> - A lightweight, language-independent, featureful RPC framework.  Thrift provides clean abstractions for data transport, data serialization, code generation, and application level processing. <a href="https://thrift.apache.org/" rel="noopener noreferrer">Apache Thrift Page</a></li>
+<li><a href="https://github.com/hprose/hprose-d" rel="noopener noreferrer">Hprose</a> - A very newbility RPC Library for D, and it support 25+ languages now.</li>
+</ul>
+<p><em>Static Site Generator.</em></p>
+<ul>
+<li><a href="https://github.com/kambrium/dssg" rel="noopener noreferrer">DSSG</a> - A static site generator with a different approach.</li>
+</ul>
+<h2 id="data-serialization"><a class="anchor" aria-hidden="true" tabindex="-1" href="#data-serialization"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Data Serialization</h2><p><em>JSON, XML, protobuf and other data serialization libraries.</em></p>
+<ul>
+<li><a href="https://github.com/atilaneves/cerealed" rel="noopener noreferrer">cerealed</a>  - Serialisation library for D</li>
+<li><a href="https://github.com/msoucy/dproto" rel="noopener noreferrer">dproto</a> - Google Protocol Buffer support in D.</li>
+</ul>
+<p><em>JSON libraries.</em></p>
+<ul>
+<li><a href="https://vibed.org/api/vibe.data.json/" rel="noopener noreferrer">vibe.data.json</a> - JSON functions in Vibe.d. Currently the best implementation I used.</li>
+<li><a href="https://github.com/etcimon/fast" rel="noopener noreferrer">fast.json</a> -  A library for D that aims to provide the fastest possible implementation of some every day routines.</li>
+<li><a href="https://dlang.org/phobos/std_json.html" rel="noopener noreferrer">std.json</a> - D's standard library JSON module. Needs refinement.</li>
+<li><a href="https://github.com/BlackEdder/painlessjson" rel="noopener noreferrer">painlessjson</a> - Convert between D types and std.json.</li>
+<li><a href="https://github.com/dlang-community/std_data_json" rel="noopener noreferrer">std.data.json</a> - Phobos candidate for JSON serialization (based on Vibed)</li>
+<li><a href="https://github.com/libmir/asdf" rel="noopener noreferrer">asdf</a> - Cache oriented string based JSON representation for fast read &amp; writes and serialisation.</li>
+</ul>
+<p><em>XML libraries.</em></p>
+<ul>
+<li><a href="https://github.com/jacob-carlborg/orange" rel="noopener noreferrer">orange</a> - General purpose serializer (currently only supports XML)</li>
+<li><a href="https://github.com/lodo1995/experimental.xml" rel="noopener noreferrer">std.experimental.xml</a> - Phobos candidate for a XML serialization</li>
+<li>arsd <a href="https://github.com/adamdruppe/arsd/blob/master/dom.d" rel="noopener noreferrer">dom.d</a> - an xml/html DOM based on what Javascript provides in browsers</li>
+<li><a href="https://github.com/ZILtoid1991/newxml" rel="noopener noreferrer">newxml</a> - Successor of std.experimental.xml. DOM compatible, and also has a SAX parser.</li>
+</ul>
+<h2 id="database-clients"><a class="anchor" aria-hidden="true" tabindex="-1" href="#database-clients"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Database Clients</h2><p><em>Clients and bindings to C bliencts for relational and nosql databases.</em></p>
+<ul>
+<li><a href="https://github.com/vibe-d/vibe.d" rel="noopener noreferrer">vibe.d</a> - Vibe.d has internal support for Redis and MongoDB, which are very stable. Soon, the database drivers will be separated into independent projects.</li>
+<li><a href="https://github.com/adamdruppe/arsd" rel="noopener noreferrer">arsd</a> - Adam D. Ruppe's library; in addition to a Web backend, it also has support for database access with database.d, sqlite.d, mysql.d and postgres.d.</li>
+<li><a href="https://github.com/buggins/hibernated" rel="noopener noreferrer">hibernated</a> - HibernateD is an ORM for D (similar to <a href="https://hibernate.org/" rel="noopener noreferrer">Hibernate</a>).</li>
+<li><a href="https://github.com/mysql-d/mysql-native" rel="noopener noreferrer">mysql-native</a> - A MySQL client implemented in native D.</li>
+<li><a href="https://github.com/pszturmaj/ddb" rel="noopener noreferrer">ddb</a> - Database access for D2. Currently only supports PostgreSQL.</li>
+<li><a href="https://github.com/buggins/ddbc" rel="noopener noreferrer">ddbc</a> - DDBC is a DB Connector for D language (similar to JDBC). HibernateD (see below) uses ddbc for database abstraction.</li>
+<li><a href="https://github.com/rikkimax/Dvorm" rel="noopener noreferrer">dvorm</a> - An ORM for D with Vibe support. Works with vibe.d and mysql-d, giving it the ability to access MongoDB and MySQL.</li>
+<li><a href="http://adilbaig.github.io/Tiny-Redis/" rel="noopener noreferrer">Tiny Redis</a> - Redis driver for D. Fast, Simple, Stable. Has no dependencies.</li>
+<li><a href="https://github.com/Hax-io/libpb" rel="noopener noreferrer">libpb</a> - INteract with a PocketBase database</li>
+</ul>
+<h2 id="cli-libraries"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cli-libraries"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>CLI Libraries</h2><ul>
+<li><a href="https://github.com/adamdruppe/arsd/blob/master/terminal.d" rel="noopener noreferrer">terminal.d</a> - Part of Adam Ruppe's <a href="https://github.com/adamdruppe/arsd" rel="noopener noreferrer">arsd</a> library supporting cursor and color manipulation on the console.</li>
+<li><a href="https://github.com/robik/commandr" rel="noopener noreferrer">commandr</a> - A modern, powerful commmand line argument parser.</li>
+<li><a href="https://github.com/burner/argsd" rel="noopener noreferrer">argsd</a> - A command line and config file parser for DLang</li>
+<li><a href="https://github.com/fbeline/luneta" rel="noopener noreferrer">luneta</a> - A command-line fuzzy finder.</li>
+<li><a href="https://code.dlang.org/packages/argparse" rel="noopener noreferrer">argparse</a> - Flexible parser of command line arguments.</li>
+<li><a href="https://github.com/deavmi/gogga" rel="noopener noreferrer">gogga</a> - simple easy-to-use colorful logger for command-line applications</li>
+<li><a href="https://github.com/Abscissa/scriptlike" rel="noopener noreferrer">scriptlike</a> - Utility library to aid writing script-like programs in D.</li>
+<li><a href="https://code.dlang.org/packages/colorize" rel="noopener noreferrer">d-colorize</a> - A port of the ruby library <a href="https://github.com/fazibear/colorize" rel="noopener noreferrer">colorize</a>. It add some methods to set color, background color and text effect on console easier using ANSI escape sequences.</li>
+<li><a href="https://github.com/grogancolin/dexpect/" rel="noopener noreferrer">dexpect</a> -  A D implementation of the expect framework. Handy for bash emulation.</li>
+<li><a href="https://github.com/markuslaker/Argon" rel="noopener noreferrer">Argon</a> -  A processor for command-line arguments, an alternative to Getopt, written in D.</li>
+</ul>
+<h2 id="cli-applications"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cli-applications"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>CLI Applications</h2><ul>
+<li><a href="https://github.com/zyedidia/Literate" rel="noopener noreferrer">Literate</a> - A literate programming tool for any language.</li>
+<li><a href="https://github.com/abraunegg/onedrive" rel="noopener noreferrer">onedrive</a> - #1 Free OneDrive Client for Linux.</li>
+<li><a href="https://github.com/trikko/tshare" rel="noopener noreferrer">tshare</a> - Fast file sharing from cli, using transfer.sh.</li>
+<li><a href="https://github.com/BlackEdder/todod" rel="noopener noreferrer">todod</a> - Todod is a command line based todo list manager. It also has support for shell interaction based on <a href="https://github.com/antirez/linenoise" rel="noopener noreferrer">linenoise</a>.</li>
+</ul>
+<h2 id="gui-libraries"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gui-libraries"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>GUI Libraries</h2><p><em>Libraries for working with graphical user interface applications.</em></p>
+<ul>
+<li><a href="https://github.com/Kymorphia/gid" rel="noopener noreferrer">giD</a> - GObject Introspection D Package Repository.</li>
+<li><a href="https://git.samerion.com/Samerion/Fluid" rel="noopener noreferrer">Fluid</a> - A declarative cross-platform user interface library for D.</li>
+<li><a href="https://github.com/buggins/dlangui" rel="noopener noreferrer">DLangUI</a> - Cross Platform GUI for D programming language. My personal favorate, because it is written in D(not a binding), and is cross platform. DLangUI also has a good showcase in the IDE <a href="https://github.com/buggins/dlangide" rel="noopener noreferrer">DLangIDE</a>.</li>
+<li><a href="https://github.com/gtkd-developers/GtkD" rel="noopener noreferrer">GtkD</a> - GtkD is a D binding and OO wrapper of GTK+. GtkD is actively maintained and is currently the most stable GUI lib for D.</li>
+<li><a href="https://github.com/nomad-software/tkd" rel="noopener noreferrer">tkD</a> - GUI toolkit for the D programming language based on Tcl/Tk.</li>
+<li><a href="https://github.com/filcuc/dqml" rel="noopener noreferrer">dqml</a> -  Qt Qml bindings for the D programming language.</li>
+<li><a href="https://github.com/sciter-sdk/Sciter-Dport" rel="noopener noreferrer">Sciter-Dport</a> - D bindings for the <a href="https://sciter.com" rel="noopener noreferrer">Sciter</a> - crossplatform HTML/CSS/script desktop UI toolkit.</li>
+</ul>
+<p><em>Note</em>: You can also find a list of GUI libs on <a href="https://wiki.dlang.org/Libraries_and_Frameworks#GUI_Libraries" rel="noopener noreferrer">wiki.dlang.org</a>, but not all of the libraries are actively maintained now.</p>
+<h2 id="gui-applications"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gui-applications"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>GUI Applications</h2><ul>
+<li><a href="https://github.com/gnunn1/tilix" rel="noopener noreferrer">tilix</a> - A tiling terminal emulator for Linux using GTK+ 3.</li>
+<li><a href="https://github.com/Inochi2D/inochi-creator" rel="noopener noreferrer">Inochi Creator</a> - Inochi2D Rigging Application.</li>
+<li><a href="https://github.com/Inochi2D/inochi-session" rel="noopener noreferrer">Inochi Session</a> - Application that allows streaming with Inochi2D puppets.</li>
+</ul>
+<h2 id="game-bindings"><a class="anchor" aria-hidden="true" tabindex="-1" href="#game-bindings"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Game Bindings</h2><p><em>Bindings to game development related libraries in C, C++, and other languages.</em></p>
+<ul>
+<li><a href="https://github.com/schveiguy/raylib-d" rel="noopener noreferrer">raylib-d</a> - D bindings for raylib.</li>
+<li><a href="https://github.com/kassane/sokol-d" rel="noopener noreferrer">sokol-d</a> - D bindings for the sokol headers.</li>
+<li><a href="https://github.com/SiegeLord/DAllegro5" rel="noopener noreferrer">DAllegro5</a> - D binding/wrapper to Allegro 5, a modern game programming library.</li>
+<li><a href="https://github.com/Jebbs/DSFML" rel="noopener noreferrer">DSFML</a> - A static binding of SFML in a way that makes sense for D. See <a href="http://dsfml.com/" rel="noopener noreferrer">http://dsfml.com/</a>.</li>
+<li><a href="https://github.com/godot-d/godot-d" rel="noopener noreferrer">Godot-D</a> - D language bindings for the Godot Engine's GDNative API.</li>
+<li><a href="https://github.com/BindBC" rel="noopener noreferrer">BindBC</a> - Bindings compatible with <code>-betterC</code> and <code>@nogc</code>, using <a href="https://github.com/BindBC/bindbc-loader" rel="noopener noreferrer">bindbc-loader</a>.<ul>
+<li><a href="https://github.com/BindBC/bindbc-opengl" rel="noopener noreferrer">OpenGL</a> - Graphics API</li>
+<li><a href="https://github.com/BindBC/bindbc-glfw" rel="noopener noreferrer">GLFW 3</a> - Window/Input library</li>
+<li><a href="https://github.com/BindBC/bindbc-sdl" rel="noopener noreferrer">SDL 2</a> - Multimedia library</li>
+<li><a href="https://github.com/aferust/bindbc-sdlgfx" rel="noopener noreferrer">SDL2_gfx</a> - Drawing primitives for SDL2</li>
+<li><a href="https://github.com/BindBC/bindbc-sfml" rel="noopener noreferrer">SFML 2</a> - Multimedia library</li>
+<li><a href="https://github.com/Inochi2D/bindbc-imgui" rel="noopener noreferrer">Imgui</a> - Immediate mode GUI</li>
+<li><a href="https://github.com/Timu5/bindbc-nuklear" rel="noopener noreferrer">Nuklear</a> - Immediate mode GUI</li>
+<li><a href="https://github.com/o3o/bindbc-raylib3" rel="noopener noreferrer">raylib3</a> - Game library</li>
+<li><a href="https://github.com/GoaLitiuM/bindbc-bgfx" rel="noopener noreferrer">bgfx</a> - Cross-Platform renderer</li>
+<li><a href="https://github.com/gecko0307/bindbc-wgpu" rel="noopener noreferrer">WebGPU</a> - Modern GPU API</li>
+<li><a href="https://github.com/ZILtoid1991/bindbc-zstandard" rel="noopener noreferrer">Zstandard</a> - Fast compression</li>
+<li><a href="https://github.com/darkridder/bindbc-nng" rel="noopener noreferrer">nanomsg-next-gen</a> - Messaging library</li>
+<li><a href="https://github.com/BindBC/bindbc-openal" rel="noopener noreferrer">OpenAL</a> - Audio library</li>
+<li><a href="https://github.com/gecko0307/bindbc-soloud" rel="noopener noreferrer">SoLoud</a> - Audio library</li>
+<li><a href="https://github.com/aferust/bindbc-kiwi" rel="noopener noreferrer">KiWi</a> - UI widget toolkit</li>
+<li><a href="https://github.com/aferust/bindbc-nanovg" rel="noopener noreferrer">NanoVG</a> - Vector graphics</li>
+<li><a href="https://github.com/kdmult/bindbc-blend2d" rel="noopener noreferrer">Blend2D</a> - Vector graphics</li>
+<li><a href="https://github.com/BindBC/bindbc-lua" rel="noopener noreferrer">Lua</a> - Scripting language</li>
+<li><a href="https://github.com/ZILtoid1991/bindbc-JSL" rel="noopener noreferrer">JoyShockLibrary</a> - Gamepad/Gyro input</li>
+<li><a href="https://github.com/gecko0307/bindbc-newton" rel="noopener noreferrer">Newton Dynamics</a> - Physics library</li>
+<li><a href="https://github.com/BindBC/bindbc-freeimage" rel="noopener noreferrer">FreeImage</a> - Image loading</li>
+<li><a href="https://github.com/BindBC/bindbc-freetype" rel="noopener noreferrer">FreeType</a> - Font rendering</li>
+<li><a href="https://github.com/DlangGraphicsWG/bindbc-harfbuzz" rel="noopener noreferrer">HarfBuzz</a> - Text shaping</li>
+</ul>
+</li>
+<li><a href="https://github.com/DerelictOrg" rel="noopener noreferrer">DerelictOrg</a> - Bindings, now largely outdated. BindBC is its modern successor.<ul>
+<li><a href="https://github.com/DerelictOrg/DerelictGLES" rel="noopener noreferrer">OpenGLES</a> - Graphics API</li>
+<li><a href="https://github.com/DerelictOrg/DerelictENet" rel="noopener noreferrer">ENet</a> - Networking library</li>
+<li><a href="https://github.com/DerelictOrg/DerelictTheora" rel="noopener noreferrer">libtheora</a> - Video codec</li>
+<li><a href="https://github.com/DerelictOrg/DerelictOgg" rel="noopener noreferrer">libogg</a> - Audio codec</li>
+<li><a href="https://github.com/DerelictOrg/DerelictVorbis" rel="noopener noreferrer">libvorbis</a> - Audio codec</li>
+<li><a href="https://github.com/DerelictOrg/DerelictPQ" rel="noopener noreferrer">libpq</a> - PostgreSQL library</li>
+<li><a href="https://github.com/DerelictOrg/DerelictPHYSFS" rel="noopener noreferrer">PhysicsFS</a> - Virtual file system</li>
+<li><a href="https://github.com/DerelictOrg/DerelictODE" rel="noopener noreferrer">Open Dynamics Engine (ODE)</a> - Physics library</li>
+<li><a href="https://github.com/DerelictOrg/DerelictALURE" rel="noopener noreferrer">ALURE</a> - Audio library</li>
+<li><a href="https://github.com/DerelictOrg/DerelictIL" rel="noopener noreferrer">DevIL</a> - Image library</li>
+</ul>
+</li>
+</ul>
+<h2 id="game-libraries"><a class="anchor" aria-hidden="true" tabindex="-1" href="#game-libraries"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Game Libraries</h2><p><em>D libraries for game development.</em></p>
+<ul>
+<li><a href="https://github.com/Inochi2D/inmath" rel="noopener noreferrer">InMath</a> - Games math library for D.</li>
+</ul>
+<p><em>Libraries for 2D-related projects.</em></p>
+<ul>
+<li><a href="https://github.com/drug007/gfm7" rel="noopener noreferrer">gfm</a> - D gamedev toolkit.</li>
+<li><a href="https://github.com/Kapendev/parin" rel="noopener noreferrer">Parin</a> - A delightfully simple 2D game engine.</li>
+<li><a href="https://github.com/ZILtoid1991/pixelperfectengine" rel="noopener noreferrer">PixelPerfectEngine</a> - 2D graphics engine written in D.</li>
+<li><a href="https://github.com/MrcSnm/HipremeEngine" rel="noopener noreferrer">HipremeEngine</a> - Cross Platform D-Lang Game Engine with scripting support.</li>
+</ul>
+<p><em>Libraries for 2D/3D-related projects.</em></p>
+<ul>
+<li><a href="https://github.com/bmchtech/rengfx" rel="noopener noreferrer">rengfx</a> - lightweight, expressive, extensible 2D/3D game engine.</li>
+</ul>
+<p><em>Libraries for 3D-related projects.</em></p>
+<ul>
+<li><a href="https://github.com/gecko0307/dagon" rel="noopener noreferrer">Dagon</a> - 3D game engine for D. See: <a href="https://gecko0307.github.io/dagon/" rel="noopener noreferrer">https://gecko0307.github.io/dagon/</a></li>
+<li><a href="https://github.com/MrSmith33/voxelman" rel="noopener noreferrer">Voxelman</a> - Plugin-based client-server voxel game engine written in D language.</li>
+</ul>
+<h2 id="games"><a class="anchor" aria-hidden="true" tabindex="-1" href="#games"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Games</h2><ul>
+<li><a href="https://github.com/Ingrater/Spacecraft" rel="noopener noreferrer">Spacecraft</a> - A 3d multiplayer deathmatch space game written in D 2.0.</li>
+<li><a href="https://github.com/kingsleyh/dtanks" rel="noopener noreferrer">Dtanks</a> - Robot Tank Battle Game.</li>
+<li><a href="https://github.com/gecko0307/electronvolt" rel="noopener noreferrer">Electronvolt (formerly Atrium)</a> - FPS game with physics based puzzles using OpenGL.</li>
+<li><a href="https://github.com/jonathanballs/backgammony" rel="noopener noreferrer">Backgammony</a> - A Backgammon GUI for Linux built with Gtk.</li>
+<li><a href="https://kapendev.itch.io/worms-within" rel="noopener noreferrer">Worms Within</a> - A bite-sized escape room game.</li>
+<li><a href="https://kapendev.itch.io/clean-haunted" rel="noopener noreferrer">Clean &amp; Haunted</a> - Clean a spooky haunted house.</li>
+<li><a href="https://kapendev.itch.io/runani" rel="noopener noreferrer">Runani</a> - An endless runner game where you help cute animals.</li>
+<li><a href="https://kapendev.itch.io/a-short-metamorphosis" rel="noopener noreferrer">A Short Metamorphosis</a> - A cute visual novel about looking at an egg.</li>
+</ul>
+<h2 id="internationalization"><a class="anchor" aria-hidden="true" tabindex="-1" href="#internationalization"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Internationalization</h2><ul>
+<li><a href="https://github.com/shoo/bindbc-icu" rel="noopener noreferrer">bindbc-icu</a> - bindbc bindings for the unicode ICU library.</li>
+</ul>
+<h2 id="image-processing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#image-processing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Image Processing</h2><ul>
+<li><a href="https://github.com/CyberShadow/ae/tree/master/utils/graphics" rel="noopener noreferrer">ArmageddonEngine</a> - Vladimir Panteleev's ae library has a package for image processing in functional style, which is described in the article <a href="http://blog.thecybershadow.net/2014/03/21/functional-image-processing-in-d/" rel="noopener noreferrer">Functional Image Processing in D</a>.</li>
+<li><a href="https://bitbucket.org/infognition/bsort/" rel="noopener noreferrer">Blogsort</a> -  A simple Windows app for viewing photos and preparing them for a blog.</li>
+<li><a href="https://github.com/gecko0307/dlib" rel="noopener noreferrer">dlib.image</a> - image processing (8 and 16 bits per channel, floating point operations, filtering, FFT, HDRI, graphics formats support including JPEG and PNG)</li>
+<li><a href="https://github.com/adamdruppe/arsd/blob/master/color.d" rel="noopener noreferrer">color.d</a> + <a href="https://github.com/adamdruppe/arsd/blob/master/bmp.d" rel="noopener noreferrer">bmp.d</a>, <a href="https://github.com/adamdruppe/arsd/blob/master/jpg.d" rel="noopener noreferrer">jpg.d</a>, <a href="https://github.com/adamdruppe/arsd/blob/master/png.d" rel="noopener noreferrer">png.d</a> - basic color struct, HSL functions and reading and writing image files</li>
+<li><a href="https://github.com/aferust/opencvd" rel="noopener noreferrer">opencvd</a> - Unofficial OpenCV binding for D</li>
+</ul>
+<h2 id="machine-learning"><a class="anchor" aria-hidden="true" tabindex="-1" href="#machine-learning"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Machine Learning</h2><ul>
+<li><a href="https://github.com/Netflix/vectorflow" rel="noopener noreferrer">vectorflow</a> - Nexflix's opensource deep learning framework.</li>
+<li><a href="https://github.com/lempiji/bindbc-onnxruntime" rel="noopener noreferrer">bindbc-onnxruntime</a> - bindbc bindings to Microsoft's cross-platform, high performance ML inferencing and training accelerator</li>
+<li><a href="https://github.com/ShigekiKarita/grain2" rel="noopener noreferrer">grain2</a> - Autograd and GPGPU library for dynamic neural networks in D</li>
+<li><a href="https://github.com/ShigekiKarita/tfd" rel="noopener noreferrer">tfd</a> -  Tensorflow wrapper for D</li>
+</ul>
+<h2 id="parallel-computing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#parallel-computing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Parallel Computing</h2><ul>
+<li><a href="https://github.com/libmir/dcompute" rel="noopener noreferrer">DCompute</a> - <a href="https://dlang.org/blog/2017/07/17/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/" rel="noopener noreferrer">GPGPU with Native D for OpenCL and CUDA</a></li>
+<li><a href="https://github.com/DerelictOrg/DerelictCUDA" rel="noopener noreferrer">DerelictCUDA</a> - Dynamic bindings to the CUDA library for the D Programming Language.</li>
+<li><a href="https://github.com/DerelictOrg/DerelictCL" rel="noopener noreferrer">DerelictCL</a> - Dynamic bindings to the OpenCL library for the D Programming Language.</li>
+</ul>
+<h2 id="scientific"><a class="anchor" aria-hidden="true" tabindex="-1" href="#scientific"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Scientific</h2><p><em>Scientific programming.</em></p>
+<ul>
+<li><a href="https://github.com/DlangScience/scid" rel="noopener noreferrer">scid</a> -  Scientific library for the D programming language</li>
+<li><a href="https://github.com/DlangScience/dstats" rel="noopener noreferrer">dstats</a> -  A statistics library for D.</li>
+<li><a href="https://github.com/libmir/mir" rel="noopener noreferrer">mir</a> -  Sandbox for some mir packages: sparse tensors, Hoffman and others.</li>
+<li><a href="https://github.com/libmir/mir" rel="noopener noreferrer">mir-algorithm</a> - N-dimensional arrays (matrixes, tensors), algorithms, general purpose library.</li>
+<li><a href="https://github.com/libmir/mir-random" rel="noopener noreferrer">mir-random</a> -  Advanced Random Number Generators.</li>
+<li><a href="https://github.com/rumbu13/decimal" rel="noopener noreferrer">decimals</a> - Decimal library for D.</li>
+</ul>
+<h3 id="language-processing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#language-processing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Language Processing</h3><ul>
+<li><a href="https://github.com/lempiji/bindbc-mecab" rel="noopener noreferrer">bindbc-mecab</a> - bindbc MeCab binding (Part-of-Speech and Morphological Analyzer for Japanese)</li>
+</ul>
+<h2 id="text-processing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#text-processing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Text Processing</h2><ul>
+<li><a href="https://github.com/huntlabs/hunt-markdown" rel="noopener noreferrer">hunt-markdown</a> - A markdown parsing and rendering library for D programming language. Support commonMark.</li>
+<li><a href="https://github.com/eBay/tsv-utils/" rel="noopener noreferrer">eBay's TSV utilities</a> - Filtering, statistics, sampling, joins and other operations on TSV files. Very fast, especially good for large datasets.</li>
+</ul>
+<h2 id="logging"><a class="anchor" aria-hidden="true" tabindex="-1" href="#logging"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Logging</h2><p><em>Print with care.</em></p>
+<ul>
+<li><a href="https://github.com/deavmi/dlog" rel="noopener noreferrer">dlog</a> - extensible logging framework with message transformation support and custom loggers and contexts</li>
+<li><a href="https://dlang.org/phobos/std_experimental_logger.html" rel="noopener noreferrer">std.experimenatal.logger</a> - Phobos's upcoming standard logging facility.</li>
+<li><a href="https://github.com/NCrashed/dlogg" rel="noopener noreferrer">dlogg</a> - Logging for concurrent applications and daemons with lazy and delayed logging, <a href="https://linux.die.net/man/8/logrotate" rel="noopener noreferrer">logrotate</a> support.</li>
+</ul>
+<h2 id="configuration"><a class="anchor" aria-hidden="true" tabindex="-1" href="#configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Configuration</h2><p><em>Parsing configuration files.</em></p>
+<ul>
+<li><a href="https://github.com/Abscissa/SDLang-D" rel="noopener noreferrer">sdlang</a> - An SDL (Simple Declarative Language) library for D.</li>
+<li><a href="https://github.com/dlang-community/D-YAML" rel="noopener noreferrer">D:YAML</a> - YAML parser and emitter for the D programming language.</li>
+<li><a href="https://github.com/burner/inifiled" rel="noopener noreferrer">inifile-D</a> - A compile time ini file parser and writter generator for D</li>
+</ul>
+<h2 id="blog-engine"><a class="anchor" aria-hidden="true" tabindex="-1" href="#blog-engine"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Blog Engine</h2><p><em>Hosting blogs yourself.</em></p>
+<ul>
+<li><a href="https://github.com/mihails-strasuns/mood" rel="noopener noreferrer">mood</a> - simple vibe.d based blog engine</li>
+</ul>
+<h2 id="dependency-injection"><a class="anchor" aria-hidden="true" tabindex="-1" href="#dependency-injection"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Dependency Injection</h2><p><em>Apply inversion of control.</em></p>
+<ul>
+<li><a href="https://github.com/mbierlee/poodinis" rel="noopener noreferrer">Poodinis</a> - A dependency injection framework for D with support for autowiring.</li>
+</ul>
+<h2 id="unmaintained"><a class="anchor" aria-hidden="true" tabindex="-1" href="#unmaintained"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Unmaintained</h2><p><em>Old or archived projects saved for reference.</em></p>
+<ul>
+<li><a href="https://github.com/nomad-software/dunit" rel="noopener noreferrer">dunit</a> - Advanced unit testing &amp; mocking toolkit</li>
+<li><a href="https://github.com/huntlabs/hunt" rel="noopener noreferrer">hunt</a> - A refined core library for D programming language. The module has concurrency / collection / event / io / logging / text / serialize and more.</li>
+<li><a href="https://github.com/huntlabs/hunt-time" rel="noopener noreferrer">hunt-time</a> - A time library and similar to Joda-time and Java.time api.</li>
+<li><a href="https://github.com/huntlabs/hunt-validation" rel="noopener noreferrer">hunt-validation</a> - A data validation library for DLang based on hunt library.</li>
+<li><a href="https://github.com/huntlabs/collie" rel="noopener noreferrer">collie</a> -  An asynchronous event-driven network framework written in dlang, like netty framework in D.</li>
+<li><a href="https://github.com/huntlabs/hunt-net" rel="noopener noreferrer">hunt-net</a> - High-performance network library for D programming language, event-driven asynchonous implemention(IOCP / kqueue / epoll).</li>
+<li><a href="https://github.com/huntlabs/hunt-http" rel="noopener noreferrer">hunt-http</a> - HTTP/1 and HTTP/2 protocol library for D.</li>
+<li><a href="https://github.com/huntlabs/hunt-framework/" rel="noopener noreferrer">Hunt Framework</a> - Hunt is a high-level D Programming Language Web framework that encourages rapid development and clean, pragmatic design. It lets you build high-performance Web applications quickly and easily.</li>
+<li><a href="https://github.com/huntlabs/grpc-dlang" rel="noopener noreferrer">grpc</a> - Grpc for D programming language, hunt-http library based.</li>
+<li><a href="https://github.com/huntlabs/kissrpc" rel="noopener noreferrer">kissrpc</a> - Fast and light, flatbuffers based rpc framework.</li>
+<li><a href="https://github.com/huntlabs/hunt-gossip" rel="noopener noreferrer">hunt-gossip</a> - A Apache V2 gossip protocol implementation for D programming language.</li>
+<li><a href="https://github.com/huntlabs/hunt-cache" rel="noopener noreferrer">hunt-cache</a> - D language universal cache library, using radix, redis and memcached.</li>
+<li><a href="https://github.com/huntlabs/flatbuffers" rel="noopener noreferrer">flatbuffers</a> - D Programming Language implementation of the google flatbuffers library.</li>
+<li><a href="https://github.com/huntlabs/hunt-entity" rel="noopener noreferrer">hunt-entity</a> - Hunt entity is an object-relational mapping tool for the D programming language. Referring to the design idea of JPA, support PostgreSQL / MySQL / SQLite.</li>
+<li><a href="https://github.com/huntlabs/hunt-database" rel="noopener noreferrer">hunt-database</a> - Hunt database abstraction layer for D programing language, support PostgreSQL / MySQL / SQLite.</li>
+<li><a href="https://github.com/huntlabs/hunt-console" rel="noopener noreferrer">hunt-console</a> - Hunt console creation easier to create powerful command-line applications.</li>
+<li><a href="https://github.com/d-widget-toolkit/dwt" rel="noopener noreferrer">DWT</a> - A library for creating cross-platform GUI applications. GWT is a port of the Java SWT library to D. DWT was promoted as a semi-standard GUI library for D, but unfortunately didn't catch up popularity yet.</li>
+<li><a href="https://github.com/Extrawurst/DerelictLibui" rel="noopener noreferrer">LibUI</a> - Dynamic Binding for <a href="https://github.com/andlabs/libui" rel="noopener noreferrer">libui</a></li>
+</ul>
+
+
+    </main>
+  </body>
+</html>

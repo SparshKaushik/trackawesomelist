@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Track Awesome Mongodb (ramnes/awesome-mongodb) Updates Weekly - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/ramnes/awesome-mongodb/week/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Track Awesome Mongodb Updates Weekly" />
+    <meta property="og:description" content=":leaves: A curated list of awesome MongoDB resources, libraries, tools and applications" />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Track Awesome Mongodb Updates Weekly</h1>
+<p>:leaves: A curated list of awesome MongoDB resources, libraries, tools and applications</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/ramnes/awesome-mongodb/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/ramnes/awesome-mongodb">😺 ramnes/awesome-mongodb</a><span> · </span><span>⭐ 2.6K</span><span> · </span><span>🏷️ Databases</span></p>
+<p><span>[ </span><a href="/ramnes/awesome-mongodb/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/ramnes/awesome-mongodb/readme/">Overview</a><span> ]</span></p>
+
+<h2><a href="https://www.trackawesomelist.com/2025/24/">Jun 16 - Jun 22, 2025</a></h2><h3><p>Libraries / JavaScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/morris/mongomq2" rel="noopener noreferrer">MongoMQ2 (⭐17)</a> - A general-purpose message and event queuing library for MongoDB</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/23/">Jun 09 - Jun 15, 2025</a></h2><h3><p>Tools / Data</p>
+</h3>
+<ul>
+<li><a href="https://www.mongodb.com/products/cluster-to-cluster-sync" rel="noopener noreferrer">Cluster to cluster sync</a> - MongoDB Inc. solution for continuous data sync between separate clusters</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/8/">Feb 24 - Mar 02, 2025</a></h2><h3><p>Tools / Desktop</p>
+</h3>
+<ul>
+<li><a href="https://www.datensen.com/" rel="noopener noreferrer">Moon Modeler</a> - Data modeling tool for MongoDB and relational databases</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/4/">Jan 27 - Feb 02, 2025</a></h2><h3><p>Resources / Books</p>
+</h3>
+<ul>
+<li><a href="https://www.manning.com/books/mongodb-in-action-third-edition" rel="noopener noreferrer">MongoDB in Action, Third Edition (Arek Borucki)</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/40/">Sep 30 - Oct 06, 2024</a></h2><h3><p>Libraries / PHP</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/laravel-mongodb" rel="noopener noreferrer">laravel-mongodb (⭐7.1k)</a> - Official Eloquent model and query builder for Laravel</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/doctrine/mongodb-odm" rel="noopener noreferrer">Doctrine MongoDB ODM (⭐1.1k)</a> and <a href="https://github.com/doctrine/DoctrineMongoDBBundle" rel="noopener noreferrer">MongoDB ODM Bundle for Symfony (⭐384)</a> - Fully featured ORM with Symfony integration</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/facile-it/mongodb-bundle" rel="noopener noreferrer">MongoDB Bundle (⭐37)</a> - Integration of the official library with Symfony, without ORM</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/yiisoft/yii2-mongodb" rel="noopener noreferrer">yii-mongodb (⭐330)</a> - Yii 2 MongoDB extension</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/opentelemetry-php/contrib-auto-mongodb" rel="noopener noreferrer">opentelemetry php auto-mongodb (⭐2)</a> - Automatic monitoring of MongoDB commands with OpenTelemetry</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/alcaeus/mongo-php-adapter" rel="noopener noreferrer">mongo-php-adapter (⭐467)</a> - Adapter for applications using <code>ext-mongo</code></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/34/">Aug 19 - Aug 25, 2024</a></h2><h3><p>Libraries / C#/.NET</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo-efcore-provider" rel="noopener noreferrer">mongo-efcore-provider (⭐372)</a> - Official Entity Framework (EF) Core provider for MongoDB</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/16/">Apr 15 - Apr 21, 2024</a></h2><h3><p>Libraries / Ballerina</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ballerina-platform/module-ballerinax-mongodb" rel="noopener noreferrer">ballerina-mongodb (⭐121)</a> - Official Ballerina driver</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/15/">Apr 08 - Apr 14, 2024</a></h2><h3><p>Tools / Desktop</p>
+</h3>
+<ul>
+<li><a href="https://github.com/WebDB-App/app" rel="noopener noreferrer">WebDB (⭐295)</a> – Web-based and open-source "efficient database IDE". Provides ERDs, data generators, an AI assistant, a NoSQL structure manager, a time machine, auto-completion and more</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/11/">Mar 11 - Mar 17, 2024</a></h2><h3><p>Resources / Documentation</p>
+</h3>
+<ul>
+<li><a href="https://www.mongodb.com/docs/manual/" rel="noopener noreferrer">MongoDB Server Documentation</a></li>
+</ul>
+<h3><p>Libraries / Kotlin</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo-java-driver/tree/master/driver-kotlin-coroutine" rel="noopener noreferrer">driver-kotlin-coroutine (⭐2.6k)</a> - Official Kotlin driver</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/41/">Oct 09 - Oct 15, 2023</a></h2><h3><p>Libraries / JavaScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/neuledge/engine-js" rel="noopener noreferrer">Neuledge (⭐237)</a> - Universal schema-based ORM with multi-state representation for entities</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/37/">Sep 11 - Sep 17, 2023</a></h2><h3><p>Libraries / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/certego/AtlasQ" rel="noopener noreferrer">AtlasQ (⭐7)</a> - MongoDB Atlas Search wrapper with MongoEngine syntax</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/23/">Jun 05 - Jun 11, 2023</a></h2><h3><p>Libraries / D</p>
+</h3>
+<ul>
+<li><a href="https://vibed.org/docs#mongo" rel="noopener noreferrer">vibe.d</a> - D web framework shipping with a MongoDB driver</li>
+</ul>
+<h3><p>Libraries / Dart</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongo-dart/mongo_dart" rel="noopener noreferrer">mongo_dart (⭐454)</a> - Community Dart driver</li>
+</ul>
+<h3><p>Libraries / Fantom</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Fantom-Factory/afMongo" rel="noopener noreferrer">afMongo (⭐0)</a> - Community Fantom driver</li>
+</ul>
+<h3><p>Libraries / JavaScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/denodrivers/mongo" rel="noopener noreferrer">deno_mongo (⭐516)</a> - Community Deno driver</li>
+</ul>
+<h3><p>Libraries / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/twisted/txmongo" rel="noopener noreferrer">TxMongo (⭐339)</a> - Twisted's MongoDB driver</li>
+</ul>
+<h3><p>Libraries / Smalltalk</p>
+</h3>
+<ul>
+<li><a href="https://github.com/pharo-nosql/mongotalk" rel="noopener noreferrer">MongoTalk (⭐19)</a> - Community Smalltalk driver</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/10/">Mar 06 - Mar 12, 2023</a></h2><h3><p>Tools / Development</p>
+</h3>
+<ul>
+<li><a href="https://github.com/seppevs/migrate-mongo" rel="noopener noreferrer">migrate-mongo (⭐982)</a> - Database migration tool</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/8/">Feb 20 - Feb 26, 2023</a></h2><h3><p>Libraries / Delphi</p>
+</h3>
+<ul>
+<li><a href="https://github.com/MagicFoundation/Alcinoe" rel="noopener noreferrer">Alcinoe (⭐1k)</a> - Library for Delphi that includes a MongoDB client</li>
+</ul>
+<h3><p>Libraries / Elixir</p>
+</h3>
+<ul>
+<li><a href="https://github.com/zookzook/elixir-mongodb-driver" rel="noopener noreferrer">elixir-mongodb-driver (⭐258)</a> - Community Elixir driver</li>
+</ul>
+<h3><p>Libraries / OCaml</p>
+</h3>
+<ul>
+<li><a href="http://massd.github.io/mongo/" rel="noopener noreferrer">Mongo.ml</a> - Community OCaml driver</li>
+</ul>
+<h3><p>Libraries / PowerShell</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nightroman/Mdbc" rel="noopener noreferrer">Mdbc (⭐145)</a> - MongoDB cmdlets for PowerShell</li>
+</ul>
+<h3><p>Libraries / Swift</p>
+</h3>
+<ul>
+<li><a href="https://github.com/orlandos-nl/MongoKitten" rel="noopener noreferrer">MongoKitten (⭐744)</a> - Community asynchronous Swift driver</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/6/">Feb 06 - Feb 12, 2023</a></h2><h3><p>Tools / Desktop</p>
+</h3>
+<ul>
+<li><a href="https://studio3t.com/" rel="noopener noreferrer">Studio 3T</a> - Cross-platform GUI, stable and powerful (formerly MongoChef and Robo 3T)</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/5/">Jan 30 - Feb 05, 2023</a></h2><h3><p>Tools / Desktop</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb-js/compass" rel="noopener noreferrer">Compass (⭐1.3k)</a> - Free Cross-platform GUI from MongoDB</li>
+</ul>
+
+<ul>
+<li><a href="https://www.jetbrains.com/datagrip/" rel="noopener noreferrer">DataGrip</a> - Cross-platform JetBrains' IDE</li>
+</ul>
+
+<ul>
+<li><a href="https://mingo.io/" rel="noopener noreferrer">Mingo</a> - MongoDB Admin. Intuitive UI. Fast. Reliable</li>
+</ul>
+<h3><p>Tools / Development</p>
+</h3>
+<ul>
+<li><a href="https://github.com/feliixx/mongoplayground" rel="noopener noreferrer">Mongo Playground (⭐189)</a> - Online query playground</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mongodb-js/vscode" rel="noopener noreferrer">VS Code Extension (⭐356)</a></li>
+</ul>
+<h3><p>Tools / Low-Code</p>
+</h3>
+<ul>
+<li><a href="https://github.com/appsmithorg/appsmith" rel="noopener noreferrer">Appsmith (⭐37k)</a> - Open-source Retool alternative</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/appwrite/appwrite" rel="noopener noreferrer">Appwrite (⭐52k)</a> - Open-source Firebase alternative</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Budibase/budibase" rel="noopener noreferrer">Budibase (⭐25k)</a> - Open-source Retool alternative</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/illacloud/illa-builder" rel="noopener noreferrer">ILLA Builder (⭐12k)</a> - Open-source Retool alternative</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ToolJet/ToolJet" rel="noopener noreferrer">Tooljet (⭐36k)</a> - Open-source Retool alternative</li>
+</ul>
+
+<ul>
+<li><a href="https://www.dronahq.com/" rel="noopener noreferrer">DronaHQ</a> - Retool alternative</li>
+</ul>
+
+<ul>
+<li><a href="https://retool.com/" rel="noopener noreferrer">Retool</a> - Drag-and-drop editor with pre-built components to build internal tools</li>
+</ul>
+<h3><p>Applications / Web</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nodemailer/wildduck" rel="noopener noreferrer">WildDuck Mail Server (⭐2k)</a> - Scalable high availability email server that uses MongoDB for email storage</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/52/">Dec 26 - Jan 01, 2022</a></h2><h3><p>Libraries / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/numberly/mongo-thingy" rel="noopener noreferrer">Mongo-Thingy (⭐70)</a> - Powerful schema-less ODM for MongoDB and Python (sync + async)</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/47/">Nov 21 - Nov 27, 2022</a></h2><h3><p>Resources / Books</p>
+</h3>
+<ul>
+<li><a href="https://www.practical-mongodb-aggregations.com/" rel="noopener noreferrer">Practical MongoDB Aggregations E-Book</a> - Free e-book: How to develop effective and optimal data manipulation and analytics pipelines</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mongodb-developer/the-little-mongodb-book" rel="noopener noreferrer">The Little MongoDB Book (⭐4)</a> - Basic introduction</li>
+</ul>
+<h3><p>Resources / More</p>
+</h3>
+<ul>
+<li><a href="https://learn.mongodb.com/" rel="noopener noreferrer">MongoDB University</a> - Certifications and free online courses</li>
+</ul>
+<h3><p>Libraries / Kotlin</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Litote/kmongo" rel="noopener noreferrer">kmongo (⭐782)</a> - Kotlin toolkit based on the Java driver</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/46/">Nov 14 - Nov 20, 2022</a></h2><h3><p>Resources / Documentation</p>
+</h3>
+<ul>
+<li><a href="https://www.mongodb.com/docs/manual/introduction/" rel="noopener noreferrer">MongoDB Server Introduction</a></li>
+</ul>
+
+<ul>
+<li><a href="https://www.mongodb.com/docs/manual/tutorial/" rel="noopener noreferrer">MongoDB Tutorials</a></li>
+</ul>
+
+<ul>
+<li><a href="https://www.mongodb.com/docs/guides/" rel="noopener noreferrer">MongoDB Guides</a></li>
+</ul>
+
+<ul>
+<li><a href="https://www.mongodb.com/developer/" rel="noopener noreferrer">MongoDB Developer Center</a></li>
+</ul>
+
+<ul>
+<li><a href="https://www.mongodb.com/docs/drivers/" rel="noopener noreferrer">MongoDB Driver Documentation</a></li>
+</ul>
+
+<ul>
+<li><a href="https://www.mongodb.com/connectors/" rel="noopener noreferrer">MongoDB Connectors</a></li>
+</ul>
+<h3><p>Libraries / PHP</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo-php-driver" rel="noopener noreferrer">PHP Driver (⭐906)</a> - Official PHP driver</li>
+</ul>
+<h3><p>Libraries / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/motor" rel="noopener noreferrer">Motor (⭐2.5k)</a> - Official non-blocking Python driver for Tornado or asyncio</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mongodb/mongo-python-driver" rel="noopener noreferrer">PyMongo (⭐4.2k)</a> - Official Python driver</li>
+</ul>
+<h3><p>Libraries / Scala</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo-java-driver/tree/master/driver-scala" rel="noopener noreferrer">driver-scala (⭐2.6k)</a> - Official Scala driver</li>
+</ul>
+<h3><p>Tools / Deployment</p>
+</h3>
+<ul>
+<li><a href="https://hub.docker.com/_/mongo/" rel="noopener noreferrer">DockerHub Official Docker Image</a></li>
+</ul>
+<h3><p>Tools / Development</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo-csharp-analyzer" rel="noopener noreferrer">C# Analyzer (⭐29)</a> - View the MongoDB Query API equivalents of your builder expressions in Visual Studio</li>
+</ul>
+
+<ul>
+<li><a href="https://www.mongodb.com/atlas/app-services" rel="noopener noreferrer">MongoDB Atlas App Services</a> - MongoDB Inc. solution to run code without the operational overhead</li>
+</ul>
+
+<ul>
+<li><a href="https://www.mongodb.com/realm" rel="noopener noreferrer">MongoDB Realm</a> - MongoDB Inc. solution for mobile data sync</li>
+</ul>
+<h3><p>Tools / Shell</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongodb-atlas-cli" rel="noopener noreferrer">MongoDB Atlas CLI (⭐173)</a> - Official Atlas API command-line client</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mongodb-js/mongosh" rel="noopener noreferrer">mongosh (⭐363)</a> - Official command-line client</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/45/">Nov 07 - Nov 13, 2022</a></h2><h3><p>Resources / Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://github.com/minhhungit/mongodb-cluster-docker-compose" rel="noopener noreferrer">Sharded Cluster with Docker Compose (⭐548)</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/26/">Jun 27 - Jul 03, 2022</a></h2><h3><p>Libraries / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/art049/odmantic" rel="noopener noreferrer">ODMantic (⭐1.1k)</a> - Asynchronous ODM on top of pydantic</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/12/">Mar 21 - Mar 27, 2022</a></h2><h3><p>Tools / Administration</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tuladhar/k8s-backup-mongodb" rel="noopener noreferrer">k8s-backup-mongodb (⭐34)</a> - Schedule MongoDB backups to S3 with a Kubernetes CronJob.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/stefanprodan/mgob" rel="noopener noreferrer">mgob (⭐766)</a> - Full-featured MongoDB dockerized backup agent</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/40/">Oct 04 - Oct 10, 2021</a></h2><h3><p>Resources / Articles</p>
+</h3>
+<ul>
+<li><a href="https://blog.apify.com/tuning-mongodb-performance/" rel="noopener noreferrer">Tuning MongoDB performance for production systems (Marek Trunkat, Apify)</a> - The techniques and MongoDB Cloud features to debug performance issues and expose sub-optimal queries</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/25/">Jun 21 - Jun 27, 2021</a></h2><h3><p>Libraries / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo-rust-driver" rel="noopener noreferrer">mongodb-rust-driver (⭐1.5k)</a> - Official Rust driver</li>
+</ul>
+<h3><p>Tools / Desktop</p>
+</h3>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode" rel="noopener noreferrer">MongoDB for VS Code</a> - Connect to MongoDB and prototype queries from VS Code</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/21/">May 24 - May 30, 2021</a></h2><h3><p>Libraries / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nesdis/djongo" rel="noopener noreferrer">Djongo (⭐1.9k)</a> - MongoDB connector for Django compatible with Django ORM</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/16/">Apr 19 - Apr 25, 2021</a></h2><h3><p>Libraries / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/roman-right/beanie" rel="noopener noreferrer">Beanie (⭐2.4k)</a> - Asynchronous ODM based on <a href="https://motor.readthedocs.io/en/stable/" rel="noopener noreferrer">Motor</a> and <a href="https://pydantic-docs.helpmanual.io/" rel="noopener noreferrer">Pydantic</a>, which supports migrations out of the box</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/14/">Apr 05 - Apr 11, 2021</a></h2><h3><p>Resources / Books</p>
+</h3>
+<ul>
+<li><a href="https://builderbook.org" rel="noopener noreferrer">Builder Book</a> - Learn how to build a full stack JavaScript web app from scratch</li>
+</ul>
+
+<ul>
+<li><a href="https://builderbook.org/book" rel="noopener noreferrer">SaaS Boilerplate Book</a> - Learn how to build a production-ready SaaS web app from scratch</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/6/">Feb 08 - Feb 14, 2021</a></h2><h3><p>Applications / Web</p>
+</h3>
+<ul>
+<li><a href="https://github.com/async-labs/builderbook" rel="noopener noreferrer">Builder Book App (⭐3.8k)</a> - Web app to publish books or documentation built with React and Express</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/41/">Oct 12 - Oct 18, 2020</a></h2><h3><p>Libraries / Java</p>
+</h3>
+<ul>
+<li><a href="https://github.com/yonderblue/mongo-queue-java" rel="noopener noreferrer">mongo-queue-java (⭐35)</a> - Java message queue on top of MongoDB</li>
+</ul>
+<h3><p>Libraries / JavaScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/yuval-a/derivejs" rel="noopener noreferrer">DeriveJS (⭐4)</a> - Reactive ODM that uses Javascript Proxies to enable transparent DB persistence</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/37/">Sep 14 - Sep 20, 2020</a></h2><h3><p>Resources / More</p>
+</h3>
+<ul>
+<li><a href="https://studio3t.com/academy/" rel="noopener noreferrer">MongoDB 101 by Academy 3T</a> - Free and self-paced MongoDB courses for beginners</li>
+</ul>
+<h3><p>Tools / Desktop</p>
+</h3>
+<ul>
+<li><a href="https://tableplus.com/" rel="noopener noreferrer">TablePlus</a> - Native, lightweight GUI on macOS</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/30/">Jul 27 - Aug 02, 2020</a></h2><h3><p>Resources / Books</p>
+</h3>
+<ul>
+<li><a href="https://www.oreilly.com/library/view/50-tips-and/9781449306779/" rel="noopener noreferrer">50 Tips and Tricks for MongoDB Developers</a> - Advanced MongoDB tips and tricks, given by a MongoDB inc. engineer</li>
+</ul>
+
+<ul>
+<li><a href="https://www.oreilly.com/library/view/mongodb-applied-design/9781449340056/" rel="noopener noreferrer">MongoDB Applied Design Patterns (Rick Copeland)</a></li>
+</ul>
+<h3><p>Libraries / Elixir</p>
+</h3>
+<ul>
+<li><a href="https://github.com/kobil-systems/mongodb" rel="noopener noreferrer">mongodb (⭐571)</a> - Community Elixir driver</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kobil-systems/mongodb_ecto" rel="noopener noreferrer">mongodb_ecto (⭐377)</a> - Adapter for the Ecto database wrapper</li>
+</ul>
+<h3><p>Tools / Monitoring</p>
+</h3>
+<ul>
+<li><a href="https://www.solarwinds.com/database-performance-monitor" rel="noopener noreferrer">Solarwindws Database Performance Monitor</a> - SaaS-based query performance analytics and monitoring</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/17/">Apr 27 - May 03, 2020</a></h2><h3><p>Resources / Articles</p>
+</h3>
+<ul>
+<li><a href="https://www.mongodb.com/blog/post/building-with-patterns-a-summary" rel="noopener noreferrer">Building with Patterns</a> - Series of articles regarding MongoDB Design Patterns and common use case of each Design Pattern with real world examples.</li>
+</ul>
+<h3><p>Tools / Data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/yougov/mongo-connector" rel="noopener noreferrer">mongo-connector (⭐1.9k)</a> - Streaming replication to Elasticsearch, Solr, or MongoDB</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/14/">Apr 06 - Apr 12, 2020</a></h2><h3><p>Tools / Monitoring</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mrsarm/mongotail" rel="noopener noreferrer">mongotail (⭐195)</a> - Log all MongoDB queries in a "tail"able way</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/9/">Mar 02 - Mar 08, 2020</a></h2><h3><p>Applications / Web</p>
+</h3>
+<ul>
+<li><a href="https://github.com/fiction-com/factor" rel="noopener noreferrer">FactorJS (⭐1.4k)</a> - JavaScript CMS built with Mongoose</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/4/">Jan 27 - Feb 02, 2020</a></h2><h3><p>Libraries / Lisp</p>
+</h3>
+<ul>
+<li><a href="https://github.com/emacsorphanage/mongo" rel="noopener noreferrer">mongo-el (⭐47)</a> - Community Emacs Lisp driver</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/34/">Aug 26 - Sep 01, 2019</a></h2><h3><p>Tools / Monitoring</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Lujeni/mongoop" rel="noopener noreferrer">Mongoop (⭐39)</a> - Long operations monitoring and alerting</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tart/motop" rel="noopener noreferrer">Motop (⭐67)</a> - MongoDB top clone</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/beaufour/mtop" rel="noopener noreferrer">mtop (⭐48)</a> - Another top clone</li>
+</ul>
+<h3><p>Tools / Web</p>
+</h3>
+<ul>
+<li><a href="https://github.com/huggingface/Mongoku" rel="noopener noreferrer">Mongoku (⭐1.4k)</a> - MongoDB client for the web</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/21/">May 27 - Jun 02, 2019</a></h2><h3><p>Resources / Articles</p>
+</h3>
+<ul>
+<li><a href="https://www.infoq.com/articles/Starting-With-MongoDB/" rel="noopener noreferrer">14 Things I Wish I'd Known When Starting with MongoDB (Phil Factor)</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/10/">Mar 11 - Mar 17, 2019</a></h2><h3><p>Libraries / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/go-bongo/bongo" rel="noopener noreferrer">Bongo (⭐491)</a> - ODM based on mgo</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/globalsign/mgo" rel="noopener noreferrer">mgo (⭐2k)</a> - Community Go driver</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/icza/minquery" rel="noopener noreferrer">minquery (⭐62)</a> - MongoDB cursor that paginates</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mongodb/mongo-go-driver" rel="noopener noreferrer">mongo-go-driver (⭐8.4k)</a> - Official Go driver</li>
+</ul>
+<h3><p>Libraries / Java</p>
+</h3>
+<ul>
+<li><a href="https://github.com/MorphiaOrg/morphia" rel="noopener noreferrer">Morphia (⭐1.7k)</a> - Java ODM</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/3/">Jan 21 - Jan 27, 2019</a></h2><h3><p>Resources / Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://eladnava.com/deploy-a-highly-available-mongodb-replica-set-on-aws/" rel="noopener noreferrer">Deploy a Highly-Available MongoDB Replica Set on AWS</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/42/">Oct 15 - Oct 21, 2018</a></h2><h3><p>Tools / Administration</p>
+</h3>
+<ul>
+<li><a href="https://www.mongodb.com/cloud/atlas" rel="noopener noreferrer">MongoDB Atlas</a> - MongoDB Inc. DBaaS offer (works with AWS, Azure, or GCP)</li>
+</ul>
+
+<ul>
+<li><a href="https://www.mongodb.com/cloud/cloud-manager" rel="noopener noreferrer">MongoDB Cloud Manager</a> - MongoDB Inc. databases management offer</li>
+</ul>
+
+<ul>
+<li><a href="https://www.objectrocket.com/" rel="noopener noreferrer">ObjectRocket</a> - Rackspace DBaaS offer (has other database types too)</li>
+</ul>
+
+<ul>
+<li><a href="https://scalegrid.io" rel="noopener noreferrer">Scalegrid</a> - Fully managed DBaaS (with option to bring your own Azure/AWS account)</li>
+</ul>
+<h3><p>Tools / Data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/EnterpriseDB/mongo_fdw" rel="noopener noreferrer">mongo_fdw (⭐333)</a> - PostgreSQL foreign data wrapper</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ozlerhakan/mongolastic" rel="noopener noreferrer">Mongolastic (⭐135)</a> - MongoDB to Elasticsearch (and vice-versa) migration tool</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/rick446/mmm" rel="noopener noreferrer">MongoMultiMaster (⭐68)</a> - Multi-master replication</li>
+</ul>
+<h3><p>Tools / Monitoring</p>
+</h3>
+<ul>
+<li><a href="https://www.datadoghq.com/blog/monitor-mongodb-performance-with-datadog/" rel="noopener noreferrer">Datadog</a> - SaaS-based monitoring</li>
+</ul>
+<h3><p>Tools / Web</p>
+</h3>
+<ul>
+<li><a href="https://www.humongous.io" rel="noopener noreferrer">HumongouS.io</a> - Easy online GUI and data-visualization dashboards</li>
+</ul>
+<h3><p>Applications / Web</p>
+</h3>
+<ul>
+<li><a href="https://github.com/grandnode/grandnode" rel="noopener noreferrer">GrandNode (⭐1.9k)</a> - Multi-platform e-commerce shopping cart built with ASP.NET</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/41/">Oct 08 - Oct 14, 2018</a></h2><h3><p>Resources / Articles</p>
+</h3>
+<ul>
+<li><a href="https://ahmadawais.com/wordpress-mongodb-atlas-microsoft-azure-serverless-functions/" rel="noopener noreferrer">A Custom WordPress Dashboard with MongoDB Atlas, Microsoft Azure, &amp; Serverless Functions (Ahmad Awais)</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/40/">Oct 01 - Oct 07, 2018</a></h2><h3><p>Libraries / C#/.NET</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dominionenterprises/mongo-queue-csharp" rel="noopener noreferrer">mongo-queue-csharp (⭐4)</a> - C# message queue on top of MongoDB</li>
+</ul>
+<h3><p>Libraries / Java</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dbuschman7/mongoFS" rel="noopener noreferrer">mongoFS (⭐20)</a> - An enhancement of GridFS to allow for more features and capabilities</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/spring-projects/spring-data-mongodb" rel="noopener noreferrer">Spring Data MongoDB (⭐1.6k)</a> - Spring based, object-document support and repositories</li>
+</ul>
+<h3><p>Libraries / JavaScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/meanjs/mean" rel="noopener noreferrer">MEAN.JS (⭐4.9k)</a> - Full stack based on MongoDB, Express, AngularJS, and Node.js</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Hashnode/mern-starter" rel="noopener noreferrer">MERN (mern-starter) (⭐5.2k)</a> - Full stack based on MongoDB, Express, React and Node.js</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/meteor/meteor" rel="noopener noreferrer">Meteor (⭐45k)</a> - Real-time/reactive client-server framework based on MongoDB, with lots of features</li>
+</ul>
+<h3><p>Libraries / Julia</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Lytol/Mongo.jl" rel="noopener noreferrer">Mongo.jl (⭐30)</a> - C driver bindings</li>
+</ul>
+<h3><p>Libraries / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/MongoEngine/mongoengine" rel="noopener noreferrer">MongoEngine (⭐4.3k)</a> - ODM on top of PyMongo</li>
+</ul>
+<h3><p>Libraries / R</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jeroen/mongolite" rel="noopener noreferrer">mongolite (⭐285)</a> - Fast and simple client for R</li>
+</ul>
+<h3><p>Libraries / Ruby</p>
+</h3>
+<ul>
+<li><a href="https://github.com/sandboxws/awesome_explain" rel="noopener noreferrer">awesome_explain (⭐15)</a> - A simple global method to explain Mongoid queries</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mongodb/mongoid" rel="noopener noreferrer">Mongoid (⭐3.9k)</a> - ODM framework</li>
+</ul>
+<h3><p>Tools / Administration</p>
+</h3>
+<ul>
+<li><a href="https://github.com/duckie/mongo_smasher" rel="noopener noreferrer">MongoDB Smasher (⭐35)</a> - Generate randomized datasets and benchmark your setup</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/rueckstiess/mtools" rel="noopener noreferrer">mtools (⭐1.9k)</a> - Collection of scripts to set up test environments and visualize log files</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mdirolf/nginx-gridfs" rel="noopener noreferrer">nginx-gridfs (⭐792)</a> - Nginx module for serving files from GridFS</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/minhajuddin/nginx-mongodb-rest" rel="noopener noreferrer">nginx-mongodb-rest (⭐32)</a> - REST client written as an Nginx module</li>
+</ul>
+<h3><p>Tools / Data</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo-hadoop" rel="noopener noreferrer">mongo-hadoop (⭐1.5k)</a> - Hadoop connector</li>
+</ul>
+<h3><p>Tools / Deployment</p>
+</h3>
+<ul>
+<li><a href="https://github.com/helm/charts/tree/master/stable/mongodb" rel="noopener noreferrer">Helm Chart (⭐15k)</a></li>
+</ul>
+<h3><p>Tools / Desktop</p>
+</h3>
+<ul>
+<li><a href="https://nosqlbooster.com" rel="noopener noreferrer">NoSQLBooster</a> - Feature-rich but easy-to-use cross-platform IDE (formerly MongoBooster)</li>
+</ul>
+<h3><p>Tools / Development</p>
+</h3>
+<ul>
+<li><a href="https://github.com/feliixx/mgodatagen" rel="noopener noreferrer">mgodatagen (⭐329)</a> - Random data generator</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pkosiec/mongo-seeding" rel="noopener noreferrer">Mongo Seeding (⭐558)</a> - Node.js library, CLI and Docker image for populating databases using JS and JSON files</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mongoeye/mongoeye" rel="noopener noreferrer">Mongoeye (⭐172)</a> - Schema and data analyzer: explore data in your collections</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/variety/variety" rel="noopener noreferrer">Variety (⭐1.8k)</a> - Schema analyzer: see what fields are in your collection and what's their content</li>
+</ul>
+<h3><p>Tools / Monitoring</p>
+</h3>
+<ul>
+<li><a href="https://www.percona.com/software/database-tools/percona-monitoring-and-management" rel="noopener noreferrer">Percona Monitoring and Management</a> - Free and open-source platform for managing and monitoring databases performances</li>
+</ul>
+<h3><p>Tools / Web</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongo-express/mongo-express" rel="noopener noreferrer">mongo-express (⭐5.8k)</a> - Web-based admin interface built with Express</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/thomasst/mongoadmin" rel="noopener noreferrer">mongoadmin (⭐250)</a> - Admin interface built with Django</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dongri/mongri" rel="noopener noreferrer">mongri (⭐75)</a> - Web-based user interface written in JavaScript</li>
+</ul>
+<h3><p>Applications / Web</p>
+</h3>
+<ul>
+<li><a href="https://github.com/countly/countly-server" rel="noopener noreferrer">Countly (⭐5.7k)</a> - Mobile &amp; web analytics and marketing platform built with Node.js</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/leanote/leanote" rel="noopener noreferrer">Leanote (⭐12k)</a> - Evernote clone built with Go</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/NodeBB/NodeBB" rel="noopener noreferrer">NodeBB (⭐15k)</a> - Node.js based forum software ("built for the modern web")</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/reactioncommerce/reaction" rel="noopener noreferrer">Reaction (⭐12k)</a> - Event-driven, real-time commerce platform built with ES6</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/async-labs/saas" rel="noopener noreferrer">SaaS Boilerplate (⭐4.3k)</a> - Boilerplate for SaaS products, built with TypeScript, React and Express</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/fzaninotto/uptime" rel="noopener noreferrer">uptime (⭐3.6k)</a> - Remote monitoring application built with Node.js and Bootstrap</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/26/">Jun 25 - Jul 01, 2018</a></h2><h3><p>Libraries / JavaScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/stalniy/casl/tree/master/packages/casl-mongoose" rel="noopener noreferrer">CASL Mongoose (⭐6.5k)</a> - Permissions management library integrated with Mongoose</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/21/">May 21 - May 27, 2018</a></h2><h3><p>Tools / Monitoring</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dwmkerr/mongo-monitor" rel="noopener noreferrer">mongo-monitor (⭐80)</a> - Simple monitoring CLI</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/15/">Apr 09 - Apr 15, 2018</a></h2><h3><p>Tools / Administration</p>
+</h3>
+<ul>
+<li><a href="https://www.percona.com/doc/percona-toolkit/LATEST/pt-mongodb-query-digest.html" rel="noopener noreferrer">pt-mongodb-query-digest</a> - Aggregates queries from query profiler and reports query usage statistics</li>
+</ul>
+
+<ul>
+<li><a href="https://www.percona.com/doc/percona-toolkit/LATEST/pt-mongodb-summary.html" rel="noopener noreferrer">pt-mongodb-summary</a> - MongoDB cluster status overview command line tool</li>
+</ul>
+<h3><p>Applications / Web</p>
+</h3>
+<ul>
+<li><a href="https://github.com/codecombat/codecombat" rel="noopener noreferrer">CodeCombat (⭐8.2k)</a> - Multiplayer programming game for learning how to code</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/3/">Jan 15 - Jan 21, 2018</a></h2><h3><p>Resources / Articles</p>
+</h3>
+<ul>
+<li><a href="https://emptysqua.re/blog/optimizing-mongodb-compound-indexes/" rel="noopener noreferrer">Optimizing MongoDB Compound Indexes (A. Jesse Jiryu Davis, MongoDB Inc.)</a> - Everything you need/have to know about indexes</li>
+</ul>
+<h3><p>Libraries / JavaScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/awapps/mongration" rel="noopener noreferrer">mongration (⭐85)</a> - Node.js migration framework</li>
+</ul>
+<h3><p>Tools / Deployment</p>
+</h3>
+<ul>
+<li><a href="https://github.com/voxpupuli/puppet-mongodb" rel="noopener noreferrer">puppet-mongodb (⭐90)</a> - Puppet module (formerly puppetlabs-mongodb)</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/18/">May 01 - May 07, 2017</a></h2><h3><p>Tools / Desktop</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jeromelebel/MongoHub-Mac" rel="noopener noreferrer">MongoHub (⭐2.4k)</a> - Mac native client</li>
+</ul>
+<h3><p>Tools / Web</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mrvautin/adminMongo" rel="noopener noreferrer">adminMongo (⭐3.9k)</a> - Web-based user interface to handle connections and databases needs</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/iwind/rockmongo" rel="noopener noreferrer">Rockmongo (⭐1k)</a> - PHPMyAdmin for MongoDB, sort of</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/22/">May 30 - Jun 05, 2016</a></h2><h3><p>Resources / Articles</p>
+</h3>
+<ul>
+<li><a href="https://www.datadoghq.com/blog/monitoring-mongodb-performance-metrics-wiredtiger/" rel="noopener noreferrer">Monitoring MongoDB performance metrics (Jean-Mathieu Saponaro, Datadog)</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/20/">May 16 - May 22, 2016</a></h2><h3><p>Tools / Monitoring</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dalenys/check_mongodb" rel="noopener noreferrer">check_mongodb (⭐15)</a> - Nagios plugin (in Bash)</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mzupan/nagios-plugin-mongodb" rel="noopener noreferrer">nagios-plugin-mongodb (⭐346)</a> - Nagios plugin (in Python)</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/12/">Mar 21 - Mar 27, 2016</a></h2><h3><p>Tools / Administration</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jwilder/mongodb-tools" rel="noopener noreferrer">mongodb-tools (⭐297)</a> - Three neat Python scripts to work with collections and indexes</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/9/">Feb 29 - Mar 06, 2016</a></h2><h3><p>Libraries / Mathematica</p>
+</h3>
+<ul>
+<li><a href="https://github.com/zbjornson/MongoDBLink" rel="noopener noreferrer">MongoDBLink (⭐17)</a> - Community Mathematica driver</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/8/">Feb 22 - Feb 28, 2016</a></h2><h3><p>Resources / Articles</p>
+</h3>
+<ul>
+<li><a href="https://emptysqua.re/blog/five-things/" rel="noopener noreferrer">Five Things About Scaling MongoDB (A. Jesse Jiryu Davis, MongoDB Inc.)</a> - Scale 101</li>
+</ul>
+
+<ul>
+<li><a href="https://emptysqua.re/blog/server-discovery-and-monitoring-in-pymongo-perl-and-c/" rel="noopener noreferrer">Server Discovery And Monitoring In PyMongo, Perl, And C (A. Jesse Jiryu Davis, MongoDB Inc.) </a></li>
+</ul>
+<h3><p>Resources / Talks</p>
+</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=csKBT8zkRf0" rel="noopener noreferrer">MongoDB Schema Design (Tugdual Grall, MongoDB Inc.)</a> [47']</li>
+</ul>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=hXbLHInH5qU" rel="noopener noreferrer">Partial and Fuzzy Matching with MongoDB (John Page, MongoDB Inc.)</a> [35']</li>
+</ul>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=bkjVhEQocFI" rel="noopener noreferrer">Scaling MongoDB on Amazon Web Services (Michael Saffitz, Apptentive)</a> [50']</li>
+</ul>
+<h3><p>Resources / More</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo" rel="noopener noreferrer">MongoDB source code (⭐27k)</a></li>
+</ul>
+<h3><p>Libraries / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo-c-driver" rel="noopener noreferrer">mongo-c-driver (⭐843)</a> - Official C driver</li>
+</ul>
+<h3><p>Libraries / C++</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo-cxx-driver" rel="noopener noreferrer">mongo-cxx-driver (⭐1.1k)</a> - Official C++ driver</li>
+</ul>
+<h3><p>Libraries / C#/.NET</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo-csharp-driver" rel="noopener noreferrer">mongo-csharp-driver (⭐3.2k)</a> - Official C# driver</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/loresoft/MongoDB.Messaging" rel="noopener noreferrer">MongoDB Messaging (⭐59)</a> - Lightweight queue pub/sub processing library</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/RobThree/MongoRepository" rel="noopener noreferrer">MongoRepository (⭐311)</a> - Repository abstraction layer on top of the C# driver</li>
+</ul>
+<h3><p>Libraries / Delphi</p>
+</h3>
+<ul>
+<li><a href="https://github.com/stijnsanders/TMongoWire" rel="noopener noreferrer">TMongoWire (⭐104)</a> - Minimal community Delphi driver</li>
+</ul>
+<h3><p>Libraries / Erlang</p>
+</h3>
+<ul>
+<li><a href="https://github.com/comtihon/mongodb-erlang" rel="noopener noreferrer">mongodb-erlang (⭐344)</a> - Community Erlang driver</li>
+</ul>
+<h3><p>Libraries / Haskell</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb-haskell/mongodb/" rel="noopener noreferrer">mongodb (⭐174)</a> - Community Haskell driver</li>
+</ul>
+<h3><p>Libraries / Java</p>
+</h3>
+<ul>
+<li><a href="https://github.com/bguerout/jongo" rel="noopener noreferrer">Jongo (⭐586)</a> - Query in Java as in Mongo shell</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/hibernate/hibernate-ogm" rel="noopener noreferrer">Hibernate OGM (⭐321)</a> - The power and simplicity of JPA for NoSQL datastores</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mongodb/mongo-java-driver" rel="noopener noreferrer">mongo-java-driver (⭐2.6k)</a> - Official Java driver</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mongojack/mongojack" rel="noopener noreferrer">Mongojack (⭐274)</a> - Based on Jackson, allows you to easily handle your mongo objects as POJOs</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/sboesebeck/morphium" rel="noopener noreferrer">Morphium (⭐55)</a> - Java ODM and caching layer</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jannehietamaki/mungbean" rel="noopener noreferrer">Mungbean (⭐18)</a> - Community driver for languages running on the JVM</li>
+</ul>
+<h3><p>Libraries / JavaScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/scottwrobinson/camo" rel="noopener noreferrer">Camo (⭐557)</a> - Class-based ES6 ODM for Mongo-like databases</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Automattic/mongoose" rel="noopener noreferrer">Mongoose (⭐27k)</a> - Node.js asynchronous ODM</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/capaj/Moonridge" rel="noopener noreferrer">Moonridge (⭐66)</a> - Framework with live querying on top of Mongoose and socket.io</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mongodb/node-mongodb-native" rel="noopener noreferrer">node-mongodb-native (⭐10k)</a> - Official Node.js driver</li>
+</ul>
+<h3><p>Libraries / Lisp</p>
+</h3>
+<ul>
+<li><a href="https://github.com/fons/cl-mongo" rel="noopener noreferrer">cl-mongo (⭐143)</a> - Community Common Lisp interface</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/archimag/mongo-cl-driver" rel="noopener noreferrer">mongo-cl-driver (⭐35)</a> Community Common Lisp driver</li>
+</ul>
+<h3><p>Libraries / Ruby</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongodb/mongo-ruby-driver" rel="noopener noreferrer">mongo-ruby-driver (⭐1.4k)</a> - Official Ruby driver</li>
+</ul>
+<h3><p>Libraries / Scala</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ReactiveMongo/ReactiveMongo" rel="noopener noreferrer">ReactiveMongo (⭐850)</a> - Non-blocking Scala driver</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Stratio/Spark-MongoDB" rel="noopener noreferrer">Spark-MongoDB (⭐309)</a> - Read/write data with Spark SQL</li>
+</ul>
+<h3><p>Tools / Administration</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mongolab/mongoctl" rel="noopener noreferrer">mongoctl (⭐177)</a> - Manage MongoDB servers and replica sets using JSON configurations</li>
+</ul>
+<h3><p>Tools / Deployment</p>
+</h3>
+<ul>
+<li><a href="https://github.com/UnderGreen/ansible-role-mongodb" rel="noopener noreferrer">ansible-role-mongodb (⭐347)</a> - Ansible role</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/edelight/chef-mongodb" rel="noopener noreferrer">chef-mongodb (⭐363)</a> - Chef cookbook</li>
+</ul>
+<h3><p>Tools / Monitoring</p>
+</h3>
+<ul>
+<li><a href="https://github.com/erh/mongo-munin" rel="noopener noreferrer">mongo-munin (⭐144)</a> - Collection of Munin plugins</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pcdummy/mongomon" rel="noopener noreferrer">mongomon (⭐23)</a> - More Munin plugins</li>
+</ul>
+
+    </main>
+  </body>
+</html>

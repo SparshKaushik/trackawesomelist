@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Track Awesome Jupyter (markusschanta/awesome-jupyter) Updates Weekly - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/markusschanta/awesome-jupyter/week/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Track Awesome Jupyter Updates Weekly" />
+    <meta property="og:description" content="A curated list of awesome Jupyter projects, libraries and resources" />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Track Awesome Jupyter Updates Weekly</h1>
+<p>A curated list of awesome Jupyter projects, libraries and resources</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/markusschanta/awesome-jupyter/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/markusschanta/awesome-jupyter">😺 markusschanta/awesome-jupyter</a><span> · </span><span>⭐ 4.3K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><span>[ </span><a href="/markusschanta/awesome-jupyter/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/markusschanta/awesome-jupyter/readme/">Overview</a><span> ]</span></p>
+
+<h2><a href="https://www.trackawesomelist.com/2024/25/">Jun 17 - Jun 23, 2024</a></h2><h3><p>Collaboration/Education</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jmshea/jupyterquiz" rel="noopener noreferrer">jupyterquiz (⭐152)</a> - An interactive quiz generator for Jupyter notebooks and Jupyter Book.</li>
+</ul>
+<h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/amphi-ai/amphi-etl" rel="noopener noreferrer">amphi-etl (⭐1.1k)</a> - Low-code ETL extension for Jupyterlab.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/10/">Mar 04 - Mar 10, 2024</a></h2><h3><p>Tables</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mwouts/itables" rel="noopener noreferrer">ITables (⭐882)</a> - Pandas and Polars DataFrames rendered as interactive <a href="https://datatables.net/" rel="noopener noreferrer">datatables-net</a> tables.</li>
+</ul>
+<h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/teticio/jupyter-stack-trace" rel="noopener noreferrer">jupyter-stack-trace (⭐7)</a> - Click on the stack trace to open the respective file or a Google search.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/34/">Aug 21 - Aug 27, 2023</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jupyterlab/jupyter-ai" rel="noopener noreferrer">jupyter-ai (⭐3.7k)</a> - Work with generative AIs (wide range of models supported) as a conversational assistant in JupyterLab.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/31/">Jul 31 - Aug 06, 2023</a></h2><h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://docs.qbraid.com/en/latest/lab/getting_started.html" rel="noopener noreferrer">qBraid Lab</a> - JupyterLab deployment providing curated software tools and integrations for quantum computing.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/25/">Jun 19 - Jun 25, 2023</a></h2><h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://pinggy.io" rel="noopener noreferrer">Pinggy</a> - Create a tunnel to your Jupyter instance even if it is behind a firewall or NAT.</li>
+</ul>
+<h3><p>Articles/Guides/Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://pinggy.io/blog/share_jupyter_notebook_from_localhost/" rel="noopener noreferrer">Sharing Jupyter Notebooks from localhost</a> - Sharing Jupyter Notebooks from localhost.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/22/">May 29 - Jun 04, 2023</a></h2><h3><p>Tables</p>
+</h3>
+<ul>
+<li><a href="https://github.com/paddymul/buckaroo" rel="noopener noreferrer">buckaroo (⭐615)</a> - GUI Data Wrangling tool for Jupyter and pandas.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/widgetti/ipyaggrid" rel="noopener noreferrer">ipyaggrid (⭐63)</a> -  The power of ag-Grid in Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/bloomberg/ipydatagrid" rel="noopener noreferrer">ipydatagrid (⭐615)</a> - Fast datagrid widget for Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jpmorganchase/ipyregulartable" rel="noopener noreferrer">ipyregulartable (⭐113)</a> - High performance, editable, stylable datagrids in Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/QuantStack/ipysheet/" rel="noopener noreferrer">ipysheet (⭐552)</a> - Interactive spreadsheets in Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/quantopian/qgrid" rel="noopener noreferrer">Qgrid (⭐3.1k)</a> - Interactive grid for sorting, filtering, and editing DataFrames in Jupyter.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/15/">Apr 10 - Apr 16, 2023</a></h2><h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://noteable.io/" rel="noopener noreferrer">Noteable</a> - Noteable is a collaborative notebook to combine code (SQL, Python &amp; R) and interactive visualizations.</li>
+</ul>
+
+<ul>
+<li><a href="https://saturncloud.io/" rel="noopener noreferrer">Saturn Cloud</a> - Move your data science team into the cloud without having to switch tools.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/12/">Mar 20 - Mar 26, 2023</a></h2><h3><p>Domain-Specific Projects</p>
+</h3>
+<ul>
+<li><a href="https://github.com/xonsh/xontrib-jupyter" rel="noopener noreferrer">xontrib-jupyter (⭐38)</a> - Jupyter kernel for xonsh, a Python-powered, cross-platform, Unix-gazing shell language.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/10/">Mar 06 - Mar 12, 2023</a></h2><h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://mineo.app" rel="noopener noreferrer">Mineo.app</a> - Data Ops platform with Jupyter-compatible notebooks, no code blocks, and support for creating dashboards.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/6/">Feb 06 - Feb 12, 2023</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://anywidget.dev" rel="noopener noreferrer">anywidget</a> - A Python library that simplifies creating and publishing custom Jupyter widgets.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/1/">Jan 02 - Jan 08, 2023</a></h2><h3><p>Runtimes/Frontends</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jupyterlab/jupyterlab-desktop" rel="noopener noreferrer">JupyterLab Desktop (⭐4.1k)</a> - A desktop application for JupyterLab, based on Electron.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/51/">Dec 19 - Dec 25, 2022</a></h2><h3><p>Runtimes/Frontends</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nteract/nteract" rel="noopener noreferrer">nteract (⭐6.3k)</a> - Native desktop notebook frontend. </li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/holoviz/panel" rel="noopener noreferrer">Panel (⭐5.3k)</a> - Notebooks as static files or interactive and standalone server-/client-side (via pyodide) apps.</li>
+</ul>
+
+<ul>
+<li><a href="https://panelite.holoviz.org" rel="noopener noreferrer">PaneLite</a> - A distribution of <a href="https://jupyterlite.readthedocs.io/en/latest/" rel="noopener noreferrer">JupyterLite</a> that works with <a href="https://panel.holoviz.org" rel="noopener noreferrer">Panel</a> and the <a href="https://holoviz.org" rel="noopener noreferrer">HoloViz</a> ecosystem. </li>
+</ul>
+<h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ShopRunner/jupyter-notify" rel="noopener noreferrer">jupyter-notify</a> - Cell magic for browser notification of cell completion. </li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/holoviz/jupyter-panel-proxy" rel="noopener noreferrer">jupyter-panel-proxy (⭐13)</a> - Automatically serve notebooks as <a href="https://panel.holoviz.org" rel="noopener noreferrer">Panel</a> data apps at the <code>/panel</code> endpoint of your Jupyter server. </li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/49/">Dec 05 - Dec 11, 2022</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://hvplot.holoviz.org/" rel="noopener noreferrer">hvplot</a> - A familiar and high-level API for data exploration and visualization in Jupyter.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/45/">Nov 07 - Nov 13, 2022</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/run-ai/jupyterlab_genv" rel="noopener noreferrer">genv (⭐23)</a> - Extension for managing GPU environments in JupyterLab.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/32/">Aug 08 - Aug 14, 2022</a></h2><h3><p>Community Resources</p>
+</h3>
+<ul>
+<li><a href="https://elc.github.io/jupyter-map/" rel="noopener noreferrer">jupyter-map</a> - Map of university institutions that use Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://kandi.openweaver.com/explore/jupyter" rel="noopener noreferrer">kandi Kits Topic</a> - Discover popular Jupyter libraries, top authors, trending project kits, discussions, tutorials &amp; learning resources.  </li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/31/">Aug 01 - Aug 07, 2022</a></h2><h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://colab.research.google.com" rel="noopener noreferrer">Google Colaboratory</a> - Cloud-based Jupyter environment aimed at machine learning education and research.  </li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/29/">Jul 18 - Jul 24, 2022</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/HFAiLab/jupyterlab_tensorboard_pro" rel="noopener noreferrer">jupyterlab-tensorboard-pro (⭐89)</a> - TensorBoard support for JupyterLab.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/28/">Jul 11 - Jul 17, 2022</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/vizzuhq/ipyvizzu" rel="noopener noreferrer">ipyvizzu (⭐966)</a> - Animated data storytelling tool.</li>
+</ul>
+<h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://naas.ai" rel="noopener noreferrer">Naas</a> - JupyterLab environment with magic scheduling/notification functionality and assets/dependency/secrets management.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/26/">Jun 27 - Jul 03, 2022</a></h2><h3><p>Official Resources and Documentation</p>
+</h3>
+<ul>
+<li><a href="https://docs.jupyter.org/en/latest/index.html" rel="noopener noreferrer">Jupyter documentation</a></li>
+</ul>
+
+<ul>
+<li><a href="http://jupyterlab.readthedocs.io/en/stable/index.html" rel="noopener noreferrer">JupyterLab documentation</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/25/">Jun 20 - Jun 26, 2022</a></h2><h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mljar/mercury" rel="noopener noreferrer">Mercury (⭐4.2k)</a> - Convert notebooks into web applications.</li>
+</ul>
+
+<ul>
+<li><a href="https://nbconvert.readthedocs.io" rel="noopener noreferrer">nbconvert</a> - Convert notebooks to other formats.</li>
+</ul>
+<h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/LineaLabs/lineapy" rel="noopener noreferrer">lineapy (⭐667)</a> - Extension for transforming messy Jupyter notebooks to production-ready pipelines with two lines of code.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/18/">May 02 - May 08, 2022</a></h2><h3><p>Runtimes/Frontends</p>
+</h3>
+<ul>
+<li><a href="https://github.com/voila-dashboards/voila" rel="noopener noreferrer">voila (⭐5.8k)</a> - Notebooks as interactive standalone web applications.</li>
+</ul>
+<h3><p>Collaboration/Education</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ibleducation/jupyter-viewer-xblock" rel="noopener noreferrer">jupyter-viewer-xblock (⭐30)</a> - Fetch and display part of, or an entire Jupyter Notebook in an Open edX XBlock.</li>
+</ul>
+<h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/cytoscape/ipycytoscape" rel="noopener noreferrer">ipycytoscape (⭐278)</a> - Widget for interactive graph visualization in Jupyter using cytoscape.js. </li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/timkpaine/ipydagred3" rel="noopener noreferrer">ipydagred3 (⭐85)</a> - <a href="https://github.com/jupyter-widgets/ipywidgets" rel="noopener noreferrer">ipywidgets (⭐3.2k)</a> library for drawing directed acyclic graphs in jupyterlab using dagre-d3.  </li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/bsnacks000/IPySigma-Demo" rel="noopener noreferrer">IPySigma (⭐17)</a> - Prototype network visualization frontend for Jupyter notebooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/maartenbreddels/ipyvolume" rel="noopener noreferrer">ipyvolume (⭐2k)</a> - 3D plotting for Python in Jupyter based on widgets and WebGL.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/maartenbreddels/ipywebrtc" rel="noopener noreferrer">ipywebrtc (⭐251)</a> - Video/Audio streaming in Jupyter. </li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyter-widgets/ipywidgets" rel="noopener noreferrer">ipywidgets (⭐3.2k)</a> - UI widgets for Jupyter.  </li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/krassowski/jupyter-manim" rel="noopener noreferrer">jupyter-manim (⭐198)</a> - Display <a href="https://github.com/3b1b/manim" rel="noopener noreferrer">manim (⭐79k)</a> (Mathematical Animation Engine) videos or GIFs in Jupyter notebooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/finos/perspective" rel="noopener noreferrer">Perspective (⭐9.2k)</a> - Data visualization and analytics component, especially for large/streaming datasets.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/timkpaine/tributary" rel="noopener noreferrer">tributary (⭐456)</a> - Python data streams with Jupyter support.</li>
+</ul>
+<h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/timkpaine/jupyterlab_nbconvert_nocode" rel="noopener noreferrer">jupyterlab_nbconvert_nocode (⭐24)</a> - NBConvert exporters for PDF/HTML export without code cells.</li>
+</ul>
+<h3><p>Version Control</p>
+</h3>
+<ul>
+<li><a href="https://github.com/datarootsio/databooks" rel="noopener noreferrer">databooks (⭐112)</a> - A command-line utility that eases versioning and sharing of notebooks.</li>
+</ul>
+<h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jpmorganchase/jupyter-fs" rel="noopener noreferrer">jupyter-fs (⭐227)</a> - A filesystem-like content manager for multiple backends in Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/gavincyi/jupyterlab-executor" rel="noopener noreferrer">jupyterlab-executor (⭐16)</a> - Extension to execute scripts from the Jupyterlab file browser. </li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kyso-io/jupyterlab-extension" rel="noopener noreferrer">jupyterlab-kyso (⭐2)</a> - Extension to publish notebooks to the <a href="https://kyso.io" rel="noopener noreferrer">Kyso</a> platform from Jupyterlab. </li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mwakaba2/jupyterlab-notifications" rel="noopener noreferrer">jupyterlab-notifications (⭐58)</a> - Customizable notebook cell completion browser notifications for JupyterLab.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/timkpaine/jupyterlab_autoversion" rel="noopener noreferrer">jupyterlab_autoversion (⭐86)</a> - Automatically version notebooks in JupyterLab.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/timkpaine/jupyterlab_commands" rel="noopener noreferrer">jupyterlab_commands (⭐61)</a> - Add arbitrary python commands to the JupyterLab command palette.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/timkpaine/jupyterlab_iframe" rel="noopener noreferrer">jupyterlab_iframe (⭐114)</a> - View HTML as an embedded iframe in JupyterLab.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/timkpaine/jupyterlab_miami_nights" rel="noopener noreferrer">jupyterlab_miami_nights (⭐123)</a> - Combination of VS Code's SynthWave '84 and JupyterLab's Neon Night themes.</li>
+</ul>
+<h3><p>Testing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jpmorganchase/nbcelltests" rel="noopener noreferrer">nbcelltests (⭐94)</a> - Cell-by-cell testing for notebooks in Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/QuantEcon/sphinxcontrib-jupyter" rel="noopener noreferrer">sphinxcontrib-jupyter (⭐77)</a> - Sphinx extension for generating Jupyter notebooks.</li>
+</ul>
+<h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://kyso.io" rel="noopener noreferrer">Kyso</a> - Data science platform to publish and share Jupyter notebooks as data blogs and web applications.  </li>
+</ul>
+<h3><p>Community Resources</p>
+</h3>
+<ul>
+<li>GitHub - Topics: <a href="https://github.com/topics/jupyter" rel="noopener noreferrer">jupyter</a>, <a href="https://github.com/topics/jupyter-kernels" rel="noopener noreferrer">jupyter-kernels</a>, <a href="https://github.com/topics/jupyter-notebook" rel="noopener noreferrer">jupyter-notebook</a>, <a href="https://github.com/topics/jupyterhub" rel="noopener noreferrer">jupyterhub</a>, <a href="https://github.com/topics/jupyterlab" rel="noopener noreferrer">jupyterlab</a>, <a href="https://github.com/topics/jupyterlab-extension" rel="noopener noreferrer">jupyterlab-extension</a></li>
+</ul>
+
+<ul>
+<li>Gitter - <a href="https://gitter.im/jupyter/jupyter" rel="noopener noreferrer">Jupyter Gitter Chatroom</a></li>
+</ul>
+
+<ul>
+<li>Mailing Lists - <a href="https://groups.google.com/forum/#!forum/jupyter" rel="noopener noreferrer">Jupyter General Mailing List</a>, <a href="https://groups.google.com/forum/#!forum/jupyter-education" rel="noopener noreferrer">Jupyter in Education Mailing List</a> </li>
+</ul>
+<h3><p>Articles/Guides/Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://github.com/markusschanta/talks/tree/master/2018-03%20-%20JupyterLab%20-%20Full%20Stack%20Quants" rel="noopener noreferrer">JupyterLab - Your Personal Data Science Workbench (⭐16)</a> - Talk about JupyterLab at Full Stack Quants London.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks" rel="noopener noreferrer">List of Jupyter notebooks (⭐15k)</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyter-naas/awesome-notebooks" rel="noopener noreferrer">List of Jupyter notebooks II (⭐2.9k)</a></li>
+</ul>
+
+<ul>
+<li><a href="https://the-littlest-jupyterhub.readthedocs.io/en/latest/" rel="noopener noreferrer">The Littlest JupyterHub</a> - JupyterHub distribution for 1-50 users on a single server; more lightweight than the Zero to JupyterHub setup.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/8/">Feb 21 - Feb 27, 2022</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/xiaohk/stickyland" rel="noopener noreferrer">stickyland (⭐569)</a> - Break the linear presentation of notebooks with sticky cells.</li>
+</ul>
+<h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://www.datablogs.co/" rel="noopener noreferrer">DataBlogs</a> - DataBlogs is an open-source data journalism platform that converts Jupyter notebooks into published articles on the web.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.datacamp.com/workspace" rel="noopener noreferrer">DataCamp Workspace</a> - Jupyter-backed data science notebooks with built-in collaboration and publishing functionality.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/4/">Jan 24 - Jan 30, 2022</a></h2><h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://gradient.run/" rel="noopener noreferrer">Paperspace Gradient</a> - A Jupyter-backed data science IDE with accelerated hardware (GPUs) and MLOps functionality.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/37/">Sep 13 - Sep 19, 2021</a></h2><h3><p>Version Control</p>
+</h3>
+<ul>
+<li><a href="https://docs.neptune.ai/integrations-and-supported-tools/ide-and-notebooks/jupyter-lab-and-jupyter-notebook" rel="noopener noreferrer">Neptune</a> - Version, manage and share notebook checkpoints in your projects.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/33/">Aug 16 - Aug 22, 2021</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/codota/tabnine-jupyterlab" rel="noopener noreferrer">tabnine (⭐36)</a> - Tabnine AI auto completer extension.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/25/">Jun 21 - Jun 27, 2021</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nicohlr/ipychart" rel="noopener noreferrer">ipychart (⭐129)</a> - Interactive Chart.js plots in Jupyter.</li>
+</ul>
+<h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/manugraj/ganimede" rel="noopener noreferrer">Ganimede (⭐6)</a> - Store, version, edit and execute notebooks in sandboxes and integrate them directly via REST interfaces.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/QuantStack/voila" rel="noopener noreferrer">Voila (⭐5.8k)</a> - Rendering of live Jupyter Notebooks with interactive widgets, allowing dashboarding based on Jupyter Notebooks.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/24/">Jun 14 - Jun 20, 2021</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/evidentlyai/evidently" rel="noopener noreferrer">Evidently (⭐6.4k)</a> - Interactive reports to analyze machine learning models during validation or production monitoring.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/20/">May 17 - May 23, 2021</a></h2><h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/executablebooks/jupyter-book" rel="noopener noreferrer">Jupyter Book (⭐4.1k)</a> - Build publication-quality books and documents from computational material.</li>
+</ul>
+<h3><p>Domain-Specific Projects</p>
+</h3>
+<ul>
+<li><a href="https://docs.kepler.gl/docs/keplergl-jupyter" rel="noopener noreferrer">keplergl</a> - Jupyter extension for visual exploration of large-scale geolocation data sets.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/17/">Apr 26 - May 02, 2021</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/lux-org/lux" rel="noopener noreferrer">lux (⭐5.3k)</a> - Recommends a set of visualizations whenever a dataframe is printed in a notebook.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/13/">Mar 29 - Apr 04, 2021</a></h2><h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/kracekumar/jut" rel="noopener noreferrer">jut (⭐189)</a> - CLI to nicely display notebooks in the terminal.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/8/">Feb 22 - Feb 28, 2021</a></h2><h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ideonate/cdsdashboards" rel="noopener noreferrer">ContainDS Dashboards (⭐201)</a> - JupyterHub extension to host authenticated scripts or notebooks in any framework (Voilà, Streamlit, Plotly Dash etc).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/4/">Jan 25 - Jan 31, 2021</a></h2><h3><p>Runtimes/Frontends</p>
+</h3>
+<ul>
+<li><a href="https://my.guild.ai/docs/jupyter-notebook-experiments/" rel="noopener noreferrer">Guild AI</a> - Execute notebooks as experiments to capture and compare results over time.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/3/">Jan 18 - Jan 24, 2021</a></h2><h3><p>Collaboration/Education</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jupyterhub/nbgitpuller" rel="noopener noreferrer">nbgitpuller (⭐219)</a> - Sync a git repository one-way to a local path.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/1/">Jan 04 - Jan 10, 2021</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/elyra-ai/elyra" rel="noopener noreferrer">elyra (⭐1.9k)</a> - A visual editor for creating and running notebook (or Python script) pipelines locally or remotely.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/49/">Dec 07 - Dec 13, 2020</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="http://mpld3.github.io" rel="noopener noreferrer">mpld3</a> - Combining Matplotlib and D3js for interactive data visualizations.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/48/">Nov 30 - Dec 06, 2020</a></h2><h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mwouts/jupytext" rel="noopener noreferrer">Jupytext (⭐6.9k)</a> - Convert and synchronize notebooks with text formats (e.g. Python or Markdown files) that work well under version control.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/47/">Nov 23 - Nov 29, 2020</a></h2><h3><p>Domain-Specific Projects</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nir/jupylet" rel="noopener noreferrer">Jupylet (⭐242)</a> - Create 2D and 3D games, graphics, live music and sound interactively in a Jupyter notebook.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/45/">Nov 09 - Nov 15, 2020</a></h2><h3><p>Version Control</p>
+</h3>
+<ul>
+<li><a href="https://github.com/thoth-station/jupyter-nbrequirements/" rel="noopener noreferrer">jupyter-nbrequirements (⭐21)</a> - Dependency management and optimization in Jupyter Notebooks.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/44/">Nov 02 - Nov 08, 2020</a></h2><h3><p>Version Control</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nbQA-dev/nbQA" rel="noopener noreferrer">nbQA (⭐1.1k)</a> - Run any standard Python code quality tool on a Jupyter Notebook, from the command-line or via pre-commit.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/36/">Sep 07 - Sep 13, 2020</a></h2><h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jhamrick/nbflow" rel="noopener noreferrer">nbflow (⭐162)</a> - One-button reproducible workflows with Jupyter and Scons.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.nbinteract.com" rel="noopener noreferrer">nbinteract</a> - Create interactive webpages from Jupyter notebooks.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/35/">Aug 31 - Sep 06, 2020</a></h2><h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/fastai/nbdev" rel="noopener noreferrer">nbdev (⭐5.1k)</a> - Develop, package and distribute Python packages to PyPI using Jupyter as a <a href="https://en.wikipedia.org/wiki/Literate_programming" rel="noopener noreferrer">Literate Programing</a> environment.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/33/">Aug 17 - Aug 23, 2020</a></h2><h3><p>Testing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/treebeardtech/treebeard" rel="noopener noreferrer">treebeard (⭐152)</a> - GitHub Action for testing/scheduling Jupyter notebooks.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/29/">Jul 20 - Jul 26, 2020</a></h2><h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ploomber/ploomber" rel="noopener noreferrer">Ploomber (⭐3.6k)</a> - Run a collection of notebooks and scripts in a reproducible manner using a <code>pipeline.yaml</code> file.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/25/">Jun 22 - Jun 28, 2020</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jpmorganchase/jupyterlab_templates" rel="noopener noreferrer">jupyterlab_templates (⭐407)</a> - Notebook templates in JupyterLab.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/17/">Apr 27 - May 03, 2020</a></h2><h3><p>Runtimes/Frontends</p>
+</h3>
+<ul>
+<li><a href="https://code.visualstudio.com/docs/python/jupyter-support" rel="noopener noreferrer">Visual Studio Code</a> - Native desktop notebook frontend.</li>
+</ul>
+<h3><p>Collaboration/Education</p>
+</h3>
+<ul>
+<li><a href="https://github.com/IllumiDesk/illumidesk" rel="noopener noreferrer">IllumiDesk (⭐44)</a> - Docker-based JupyterHub + LTI + nbgrader distribution for education.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/16/">Apr 20 - Apr 26, 2020</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/scwilkinson/pd-replicator" rel="noopener noreferrer">pd-replicator (⭐11)</a> - Copy a pandas DataFrame to the clipboard with one click.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/15/">Apr 13 - Apr 19, 2020</a></h2><h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/gitjeff05/kapitsa" rel="noopener noreferrer">Kapitsa (⭐13)</a> - CLI to search local Jupyter notebooks.</li>
+</ul>
+<h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jupyterlab/debugger" rel="noopener noreferrer">debugger (⭐557)</a> - A visual debugger for Jupyter notebooks, consoles, and source files.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/13/">Mar 30 - Apr 05, 2020</a></h2><h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://cloud.google.com/ai-platform-notebooks" rel="noopener noreferrer">Google Cloud AI Platform Notebooks</a> - Managed JupyterLab notebook instances configured with GPU-enabled machine learning frameworks on Google Cloud Platform.</li>
+</ul>
+
+<ul>
+<li><a href="https://cloud.google.com/dataproc/docs/concepts/components/jupyter" rel="noopener noreferrer">Google Cloud Dataproc Jupyter component</a> - Jupyter and JupyterLab for Apache Spark using Google Cloud Dataproc.</li>
+</ul>
+<h3><p>Articles/Guides/Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://github.com/guillaume-chevalier/How-to-Grow-Neat-Software-Architecture-out-of-Jupyter-Notebooks" rel="noopener noreferrer">How to Grow Neat Software Architecture out of Jupyter Notebooks (⭐528)</a> - Article and <a href="https://www.youtube.com/watch?v=K4QN27IKr0g" rel="noopener noreferrer">video</a> about growing a neat software architecture from notebooks.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/9/">Mar 02 - Mar 08, 2020</a></h2><h3><p>Version Control</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jupyterlab/jupyterlab-git" rel="noopener noreferrer">git (⭐1.5k)</a> - Extension for git integration.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyter/nbdime" rel="noopener noreferrer">nbdime (⭐2.8k)</a> - Tools for diffing and merging of Jupyter notebooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.reviewnb.com/" rel="noopener noreferrer">ReviewNB</a> - Code reviews for Jupyter Notebooks.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/8/">Feb 24 - Mar 01, 2020</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jupyterlab/jupyterlab-shortcutui" rel="noopener noreferrer">shortcutui (⭐54)</a> - An extension for managing keyboard shortcuts.</li>
+</ul>
+<h3><p>Testing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ReviewNB/treon" rel="noopener noreferrer">treon (⭐310)</a> - Easy-to-use test framework for Jupyter Notebooks.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/4/">Jan 27 - Feb 02, 2020</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/krassowski/jupyterlab-lsp" rel="noopener noreferrer">lsp (⭐131)</a> - IDE-like features (code navigation, hover suggestions, linters, diagnostics, kernel-less autocompletion etc.)</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/41/">Oct 14 - Oct 20, 2019</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ryantam626/jupyterlab_code_formatter" rel="noopener noreferrer">code_formatter (⭐884)</a> - A universal code formatter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dnanhkhoa/nb_black" rel="noopener noreferrer">nb_black (⭐367)</a> - Extension to keep Python code automatically formatted using <a href="https://github.com/psf/black" rel="noopener noreferrer">black (⭐40k)</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jtpio/jupyterlab-python-bytecode" rel="noopener noreferrer">python-bytecode (⭐62)</a> - Explore CPython Bytecode in JupyterLab.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/parente/jupyterlab-quickopen" rel="noopener noreferrer">quickopen (⭐85)</a> - Quickly open a file in JupyterLab by typing part of its name.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyter-widgets/jupyterlab-sidecar" rel="noopener noreferrer">sidecar (⭐257)</a> - A sidecar output widget for JupyterLab.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pbugnion/jupyterlab-sql" rel="noopener noreferrer">sql (⭐428)</a> - SQL GUI for JupyterLab.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jtpio/jupyterlab-system-monitor" rel="noopener noreferrer">system-monitor (⭐302)</a> - Extension to display system metrics.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/telamonian/theme-darcula" rel="noopener noreferrer">theme-darcula (⭐217)</a> - A handsome Darcula theme for Jupyterlab.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jtpio/jupyterlab-topbar" rel="noopener noreferrer">topbar (⭐6)</a> - Top Bar extension for JupyterLab.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jwkvam/jupyterlab-vim" rel="noopener noreferrer">vim (⭐982)</a> - Vim notebook cell bindings.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/39/">Sep 30 - Oct 06, 2019</a></h2><h3><p>Runtimes/Frontends</p>
+</h3>
+<ul>
+<li><a href="http://beakerx.com/" rel="noopener noreferrer">Beaker</a> - Development environment with seamless data transmission from one language to another.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/36/">Sep 09 - Sep 15, 2019</a></h2><h3><p>Runtimes/Frontends</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ml-tooling/ml-workspace" rel="noopener noreferrer">ML Workspace (⭐3.5k)</a> - Docker image that includes Jupyter(Lab) and various packages for data science/machine learning.</li>
+</ul>
+<h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://www.deepnote.com" rel="noopener noreferrer">Deepnote</a> - Jupyter-compatible data science notebook with real-time collaboration, versioning and easy deployment.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/31/">Aug 05 - Aug 11, 2019</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/AaronWatters/jp_doodle" rel="noopener noreferrer">jp_doodle (⭐54)</a> - Infrastructure for building special purpose interactive diagrams in 2D and 3D.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/21/">May 27 - Jun 02, 2019</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tqdm/tqdm" rel="noopener noreferrer">tqdm (⭐30k)</a> - Fast, extensible progress bar for loops and iterables.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/16/">Apr 22 - Apr 28, 2019</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/timkpaine/jupyterlab_email" rel="noopener noreferrer">jupyterlab_email (⭐60)</a> - Email notebooks and their content from within JupyterLab.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/15/">Apr 15 - Apr 21, 2019</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/QuantStack/ipytree/" rel="noopener noreferrer">ipytree (⭐131)</a> - Tree UI element for Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/QuantStack/xleaflet" rel="noopener noreferrer">xleaflet (⭐89)</a> - C++ Backend for ipyleaflet.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/QuantStack/xwebrtc" rel="noopener noreferrer">xwebrtc (⭐15)</a> - C++ Backend for ipywebrtc.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/QuantStack/xwidgets" rel="noopener noreferrer">xwidgets (⭐141)</a> - C++ Backend for ipywidgets.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/11/">Mar 18 - Mar 24, 2019</a></h2><h3><p>Runtimes/Frontends</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tweag/jupyterWith" rel="noopener noreferrer">JupyterWith (⭐717)</a> - Nix-based framework for the definition of declarative and reproducible Jupyter environments.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/7/">Feb 18 - Feb 24, 2019</a></h2><h3><p>Domain-Specific Projects</p>
+</h3>
+<ul>
+<li><a href="https://developers.arcgis.com/python/" rel="noopener noreferrer">ArcGIS</a> - Library for working with maps and geospatial data, powered by web GIS.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/3/">Jan 21 - Jan 27, 2019</a></h2><h3><p>Collaboration/Education</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jiffyclub/ipythonblocks" rel="noopener noreferrer">IPythonBlocks (⭐158)</a> - Practice Python with colored grids in Jupyter.</li>
+</ul>
+<h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jupyter-widgets/ipyleaflet" rel="noopener noreferrer">ipyleaflet (⭐1.5k)</a> - Interactive visualization library for Leaflet.js maps in Jupyter notebooks.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/1/">Jan 07 - Jan 13, 2019</a></h2><h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/krassowski/jupyterlab-go-to-definition" rel="noopener noreferrer">go-to-definition (⭐228)</a> - Extension for navigating to the definition of a variable or function in JupyterLab.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/36/">Sep 03 - Sep 09, 2018</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/InsightSoftwareConsortium/itk-jupyter-widgets" rel="noopener noreferrer">itk-jupyter-widgets (⭐609)</a> - Interactive widgets to visualize images in 2D and 3D.</li>
+</ul>
+<h3><p>Testing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/chmp/ipytest" rel="noopener noreferrer">ipytest (⭐332)</a> - Test runner for running unit tests from within a notebook.</li>
+</ul>
+<h3><p>Community Resources</p>
+</h3>
+<ul>
+<li>GitHub - Search: <a href="https://github.com/search?type=Repositories&amp;q=jupyter" rel="noopener noreferrer">jupyter</a></li>
+</ul>
+
+<ul>
+<li>PyPI - <a href="https://pypi.org/search/?&amp;c=Framework+%3A%3A+Jupyter" rel="noopener noreferrer"><code>Framework :: Jupyter</code></a>
+is the PyPI trove classifier for Jupyter projects.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/35/">Aug 27 - Sep 02, 2018</a></h2><h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/pbugnion/gmaps" rel="noopener noreferrer">jupyter-gmaps (⭐761)</a> - Interactive visualization library for Google Maps in Jupyter notebooks.</li>
+</ul>
+<h3><p>JupyterLab Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jupyterlab/jupyterlab-celltags" rel="noopener noreferrer">celltags (⭐114)</a> - Extension to organise and execute notebooks using cell tags.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/QuantStack/jupyterlab-drawio" rel="noopener noreferrer">drawio (⭐614)</a> - Extension that displays drawio/mxgraph diagrams.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyterlab/jupyterlab-google-drive" rel="noopener noreferrer">google-drive (⭐401)</a> - Extension for Google Drive integration.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyterlab/jupyterlab-latex" rel="noopener noreferrer">latex (⭐653)</a> - Extension for live editing of LaTeX documents.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyterlab/jupyterlab-toc" rel="noopener noreferrer">toc (⭐727)</a> - Extension that provides a table of contents for notebooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/lckr/jupyterlab-variableInspector" rel="noopener noreferrer">variableinspector (⭐1.2k)</a> - Variable inspector extension that shows variables and their values.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/altair-viz/jupyterlab_voyager" rel="noopener noreferrer">voyager (⭐305)</a> - Extension to view CSV and JSON data in <a href="http://vega.github.io/voyager/" rel="noopener noreferrer">Voyager</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/32/">Aug 06 - Aug 12, 2018</a></h2><h3><p>Runtimes/Frontends</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jupyter/docker-stacks" rel="noopener noreferrer">docker-stacks (⭐8.3k)</a> - Hierarchical stacks of ready-to-run Jupyter applications in Docker.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/nteract/hydrogen" rel="noopener noreferrer">Hydrogen (⭐3.9k)</a> - Run code inline in Atom using Jupyter kernels.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyter/notebook" rel="noopener noreferrer">Jupyter Notebook (⭐12k)</a> - Main Jupyter notebook runtime.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyterhub/jupyterhub" rel="noopener noreferrer">JupyterHub (⭐8.1k)</a> - Multi-user server for Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyterlab/jupyterlab" rel="noopener noreferrer">JupyterLab (⭐15k)</a> - JupyterLab is the next generation user interface for Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kaggle/docker-python" rel="noopener noreferrer">kaggle/docker-python (⭐2.6k)</a> - Kaggle Python docker image that includes datasets and packages.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/stencila/stencila" rel="noopener noreferrer">Stencila (⭐832)</a> - Native desktop notebook frontend.</li>
+</ul>
+<h3><p>Collaboration/Education</p>
+</h3>
+<ul>
+<li><a href="https://github.com/osteele/callgraph" rel="noopener noreferrer">callgraph (⭐79)</a> - Magic to display a function call graph.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyter/jupyter-drive" rel="noopener noreferrer">jupyter-drive (⭐419)</a> - Google drive for Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ibleducation/jupyter-edx-grader-xblock" rel="noopener noreferrer">jupyter-edx-grader-xblock (⭐46)</a> - Auto-grade a student assignment created as a Jupyter notebook and write the score in the Open edX gradebook.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyterhub/ltiauthenticator" rel="noopener noreferrer">LTI Launch JupyterHub Authenticator (⭐72)</a> - Authentication via Edx.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/parmentelat/nbautoeval" rel="noopener noreferrer">nbautoeval (⭐20)</a> - Create auto-evaluated exercises.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jupyter/nbgrader" rel="noopener noreferrer">nbgrader (⭐1.3k)</a> - Assigning and grading of Jupyter notebooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/lgpage/nbtutor" rel="noopener noreferrer">nbtutor (⭐466)</a> - Visualize Python code execution (line-by-line).</li>
+</ul>
+<h3><p>Visualization</p>
+</h3>
+<ul>
+<li><a href="https://github.com/altair-viz/altair" rel="noopener noreferrer">Altair (⭐9.9k)</a> - Declarative visualization library for Python, based on <a href="http://vega.github.io/vega" rel="noopener noreferrer">Vega</a> and <a href="https://github.com/vega/vega-lite" rel="noopener noreferrer">Vega-Lite (⭐4.9k)</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://bokeh.pydata.org/en/latest/" rel="noopener noreferrer">Bokeh</a> - Interactive visualization library that targets modern web browsers for presentation.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/bloomberg/bqplot" rel="noopener noreferrer">bqplot (⭐3.7k)</a> - Grammar of Graphics-based interactive plotting framework for Jupyter.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pyecharts/pyecharts" rel="noopener noreferrer">pyecharts (⭐15k)</a> - Python interface for the <a href="https://github.com/apache/incubator-echarts" rel="noopener noreferrer">ECharts (⭐64k)</a> visualization library.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jovyan/pythreejs" rel="noopener noreferrer">pythreejs (⭐972)</a> - Python / ThreeJS bridge utilizing the Jupyter widget infrastructure.</li>
+</ul>
+<h3><p>Rendering/Publishing/Conversion</p>
+</h3>
+<ul>
+<li><a href="http://mybinder.org" rel="noopener noreferrer">Binder</a> - Turn a GitHub repo into a collection of interactive notebooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/takluyver/bookbook" rel="noopener noreferrer">Bookbook (⭐100)</a> - Bookbook converts a set of notebooks in a directory to HTML or PDF, preserving cross references within and between notebooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/conery/nbscan" rel="noopener noreferrer">nbscan (⭐24)</a> - Search for and print cells contents of Jupyter notebooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://getnikola.com" rel="noopener noreferrer">Nikola</a> - Static Site Generator that converts notebooks into websites.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/aaren/notedown/" rel="noopener noreferrer">notedown (⭐856)</a> - Convert Jupyter notebooks to markdown (and back).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/nteract/papermill" rel="noopener noreferrer">Papermill (⭐6.2k)</a> - Tool for parameterizing, executing, and analyzing Jupyter notebooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/minodes/pynb" rel="noopener noreferrer">pynb (⭐249)</a> - Jupyter Notebooks as plain Python code with embedded Markdown text.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/damianavila/RISE" rel="noopener noreferrer">RISE (⭐3.7k)</a> - Reveal.js Jupyter/IPython Slideshow.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/nthiery/rst-to-ipynb" rel="noopener noreferrer">rst2ipynb (⭐18)</a> - Convert standalone reStructuredText files to Jupyter notebook file.</li>
+</ul>
+<h3><p>Testing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/computationalmodelling/nbval" rel="noopener noreferrer">nbval (⭐454)</a> - Py.test plugin for validating Jupyter notebooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/bollwyvl/nosebook" rel="noopener noreferrer">nosebook (⭐80)</a> - Nose plugin for finding and running IPython notebooks as nose tests.</li>
+</ul>
+<h3><p>Domain-Specific Projects</p>
+</h3>
+<ul>
+<li><a href="http://genepattern-notebook.org" rel="noopener noreferrer">GenePattern Notebook</a> - Integrating Genomic Analysis with Interactive Notebooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/OpenGeoscience/geonotebook" rel="noopener noreferrer">GeoNotebook (⭐1.1k)</a> - Extension for exploratory geospatial analysis.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/parrt/lolviz" rel="noopener noreferrer">lolviz (⭐837)</a> - Data-structure visualization tool for lists of lists, lists, dictionaries.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.quantopian.com/notebooks/survey" rel="noopener noreferrer">Quantopian Notebooks</a> - Jupyter-based platform for financial research.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/BruceSherwood/vpython-jupyter" rel="noopener noreferrer">vpython-jupyter (⭐65)</a> - VPython 3D engine running in a Jupyter notebook.</li>
+</ul>
+<h3><p>Hosted Notebook Solutions</p>
+</h3>
+<ul>
+<li><a href="https://www.anaconda.com/enterprise/" rel="noopener noreferrer">Anaconda Enterprise</a> - Multi-user collaboration and one-click deployment of models, notebooks, and dashboards.</li>
+</ul>
+
+<ul>
+<li><a href="https://notebooks.azure.com" rel="noopener noreferrer">Azure Notebooks</a> - Jupyter notebooks running in the cloud on Microsoft Azure.</li>
+</ul>
+
+<ul>
+<li><a href="https://cocalc.com" rel="noopener noreferrer">CoCalc</a> - Notebooks with 17 supported kernel types, course management, LaTeX document authoring, simultaneous document editing and integration with the SageMath computer algebra system.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.dominodatalab.com" rel="noopener noreferrer">Domino Data Lab</a> - Data science platform with integrated collaboration tools, environment management and compute grid.</li>
+</ul>
+
+<ul>
+<li><a href="https://wikitech.wikimedia.org/wiki/PAWS" rel="noopener noreferrer">PAWS</a> - Jupyter notebook deployment customized for interacting with Wikimedia wikis.</li>
+</ul>
+<h3><p>Official Resources and Documentation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels" rel="noopener noreferrer">Jupyter kernels (⭐15k)</a> - List of all programming languages available as Jupyter kernels.</li>
+</ul>
+
+<ul>
+<li><a href="https://jupyter-client.readthedocs.io/en/latest/kernels.html" rel="noopener noreferrer">Making kernels for Jupyter</a></li>
+</ul>
+
+<ul>
+<li><a href="https://try.jupyter.org" rel="noopener noreferrer">Try Jupyter</a> - Try Jupyter in your browser.</li>
+</ul>
+<h3><p>Community Resources</p>
+</h3>
+<ul>
+<li>Conference Talks - <a href="http://pyvideo.org/search.html?q=jupyter" rel="noopener noreferrer">PyVideo.org</a>, <a href="https://www.youtube.com/playlist?list=PL055Epbe6d5aP6Ru42r7hk68GTSaclYgi" rel="noopener noreferrer">JupyterCon</a></li>
+</ul>
+
+<ul>
+<li>Reddit - Subreddits: <a href="https://www.reddit.com/r/IPython/" rel="noopener noreferrer">r/IPython</a>, <a href="https://www.reddit.com/r/Jupyter/" rel="noopener noreferrer">r/Jupyter/</a></li>
+</ul>
+
+<ul>
+<li>Stack Overflow - Tags: <a href="https://stackoverflow.com/questions/tagged/jupyter" rel="noopener noreferrer">jupyter</a>, <a href="https://stackoverflow.com/questions/tagged/jupyter-notebook" rel="noopener noreferrer">jupyter-notebook</a></li>
+</ul>
+<h3><p>Articles/Guides/Tutorials</p>
+</h3>
+<ul>
+<li><a href="http://mbakker7.github.io/exploratory_computing_with_python/" rel="noopener noreferrer">Exploratory computing with Python</a> - Collection of notebooks covering scientific computing.</li>
+</ul>
+
+<ul>
+<li><a href="https://cloud.google.com/dataproc/docs/tutorials/jupyter-notebook" rel="noopener noreferrer">Install and run a Jupyter notebook in a Google Cloud Dataproc cluster</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/bokeh/bokeh-notebooks" rel="noopener noreferrer">Interactive Web Plotting with Bokeh (⭐733)</a></li>
+</ul>
+
+<ul>
+<li><a href="http://jupyter-contrib-nbextensions.readthedocs.io" rel="noopener noreferrer">Jupyter Notebook Extensions</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dunovank/jupyter-themes" rel="noopener noreferrer">Jupyter Notebook Themes (⭐9.8k)</a></li>
+</ul>
+
+<ul>
+<li><a href="https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/" rel="noopener noreferrer">Jupyter tips, tricks and shortcuts</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jrjohansson/scientific-python-lectures" rel="noopener noreferrer">Lectures on scientific computing with Python (⭐3.6k)</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/norvig/pytudes" rel="noopener noreferrer">pytudes (⭐24k)</a> - List of Jupyter Notebooks by Peter Norvig.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.gitbook.com/book/dansand/resguides-research-with-jupyter/details" rel="noopener noreferrer">ResGuides: research with Jupyter</a></li>
+</ul>
+
+<ul>
+<li><a href="http://zero-to-jupyterhub.readthedocs.io/en/latest/" rel="noopener noreferrer">Zero to JupyterHub</a> - Tutorial to help install and manage JupyterHub.</li>
+</ul>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Awesome Clojure (razum2um/awesome-clojure) Overview - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/razum2um/awesome-clojure/readme/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Awesome Clojure Overview" />
+    <meta property="og:description" content="A curated list of awesome Clojure libraries and resources. Inspired by awesome-... stuff" />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Awesome Clojure Overview</h1>
+<p>A curated list of awesome Clojure libraries and resources. Inspired by awesome-... stuff</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/razum2um/awesome-clojure/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/razum2um/awesome-clojure">😺 razum2um/awesome-clojure</a><span> · </span><span>⭐ 2.8K</span><span> · </span><span>🏷️ Programming Languages</span></p>
+<p><span>[ </span><a href="/razum2um/awesome-clojure/">Daily</a><span> / </span><a href="/razum2um/awesome-clojure/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
+<h1 id="awesome-clojure-awesome"><a class="anchor" aria-hidden="true" tabindex="-1" href="#awesome-clojure-awesome"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Awesome Clojure <a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer"><img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome" /></a></h1><ul>
+<li><p><a href="#awesome-products-in-clojure">Awesome products in Clojure</a></p>
+<ul>
+<li><a href="https://github.com/OneKeePass/desktop" rel="noopener noreferrer">OneKeePass</a>: A secure password manager and <a href="https://github.com/OneKeePass/mobile" rel="noopener noreferrer">mobile app in ClojureScript</a></li>
+<li><a href="https://penpot.app/" rel="noopener noreferrer">Penpot</a>: design and prototyping platform</li>
+<li><a href="http://lighttable.com/" rel="noopener noreferrer">LightTable (IDE)</a> (archived)</li>
+<li><a href="https://www.maria.cloud/" rel="noopener noreferrer">Maria.cloud (Online IDE for beginners)</a></li>
+<li><a href="http://riemann.io/" rel="noopener noreferrer">Riemann (Monitoring)</a></li>
+<li><a href="https://precursorapp.com/" rel="noopener noreferrer">Precursor (Online prototyping tool)</a></li>
+<li><a href="https://github.com/puppetlabs/puppet-server" rel="noopener noreferrer">Puppet Server</a></li>
+<li><a href="https://github.com/puppetlabs/puppetdb" rel="noopener noreferrer">PuppetDB</a></li>
+<li><a href="https://github.com/metabase/metabase" rel="noopener noreferrer">Metabase</a></li>
+<li><a href="https://github.com/lambdaisland/metabase-datomic" rel="noopener noreferrer">Metabase Datomic</a></li>
+<li><a href="https://circleci.com/" rel="noopener noreferrer">CircleCI</a></li>
+<li><a href="https://github.com/maitria/avi" rel="noopener noreferrer">Avi (vim rewrite)</a></li>
+<li><a href="https://github.com/mogenslund/liquid" rel="noopener noreferrer">Liquid (Text Editor)</a></li>
+<li><a href="https://github.com/clojupyter/clojupyter" rel="noopener noreferrer">Clojupyter</a></li>
+<li><a href="https://github.com/matthiasn/meins" rel="noopener noreferrer">meins</a></li>
+<li><a href="https://github.com/jepsen-io/jepsen" rel="noopener noreferrer">Jepsen</a></li>
+<li><a href="https://github.com/braidchat/braid" rel="noopener noreferrer">Braid</a>: a team-chat app with a novel UI that leads to better conversations</li>
+<li><a href="https://github.com/tokenmill/accelerated-text" rel="noopener noreferrer">Accelerated Text</a>: a natural language generation environment (backend: Clojure, frontend: JS)</li>
+<li><a href="https://github.com/gojek/ziggurat" rel="noopener noreferrer">Ziggurat</a>: a framework built to simplify Stream processing on Kafka</li>
+<li><a href="https://github.com/oakes/Nightcode" rel="noopener noreferrer">Nightcode</a>: An IDE for Clojure (archived)</li>
+<li><a href="https://github.com/oakes/Nightlight" rel="noopener noreferrer">Nightlight</a>: text editor (archived)</li>
+<li><a href="https://github.com/pkamenarsky/atea" rel="noopener noreferrer">Atea</a>: a minimalistic menu bar time tracker for MacOS (legacy, requires jvm 1.6)</li>
+<li><a href="https://github.com/ertugrulcetin/herfi" rel="noopener noreferrer">herfi</a> - 3D multiplayer game prototype written in Clojure and ClojureScript</li>
+<li><a href="https://github.com/ertugrulcetin/racing-game-cljs" rel="noopener noreferrer">racing-game-cljs</a> - A 3D racing game built with ClojureScript, React and ThreeJS</li>
+</ul>
+</li>
+<li><p><a href="#awesome-saas-in-clojure">Awesome SaaS (partially OSS) in Clojure</a></p>
+<ul>
+<li><a href="https://github.com/logseq/logseq" rel="noopener noreferrer">Logseq</a>: knowledge management and collaboration (open frontend)</li>
+</ul>
+</li>
+<li><p><a href="#languages-written-with-clojure">Languages written with Clojure</a></p>
+<ul>
+<li><a href="https://github.com/jeaye/jank" rel="noopener noreferrer">jank</a></li>
+<li><a href="https://github.com/LuxLang/lux" rel="noopener noreferrer">lux</a></li>
+<li><a href="https://github.com/kanaka/mal/tree/master/impls/clojure" rel="noopener noreferrer">mal</a></li>
+<li><a href="https://github.com/turbopape/scheje" rel="noopener noreferrer">scheje</a></li>
+<li><a href="https://github.com/benzap/eden" rel="noopener noreferrer">eden</a></li>
+<li><a href="https://ferret-lang.org" rel="noopener noreferrer">ferret</a></li>
+</ul>
+</li>
+<li><p><a href="#awesome-tools-in-clojure">Awesome tools in Clojure</a></p>
+<ul>
+<li><a href="#awesome-macros-usage">Awesome macros usage</a></li>
+<li><a href="#advanced-datastructures">Advanced datastructures</a></li>
+<li><a href="#web-framework">Web Framework</a></li>
+<li><a href="#dependency-injection">Dependency injection</a></li>
+<li><a href="#build-automation-and-package-management">Build Automation and Package management</a></li>
+<li><a href="#version-control-management">Version Control Management</a></li>
+<li><a href="#date-and-time">Date and Time</a></li>
+<li><a href="#gui">GUI</a></li>
+<li><a href="#audio">Audio</a></li>
+<li><a href="#http">HTTP</a></li>
+<li><a href="#database">Database</a></li>
+<li><a href="#connection-pools">Connection pools</a></li>
+<li><a href="#structural-migrations">Structural Migrations</a></li>
+<li><a href="#redis">Redis</a></li>
+<li><a href="#json">JSON</a></li>
+<li><a href="#protocol-buffers-and-grpc">Protocol Buffers and gRPC</a></li>
+<li><a href="#orm-and-sql-generation">ORM and SQL generation</a></li>
+<li><a href="#security">Security</a></li>
+<li><a href="#restful-api">RESTful API</a></li>
+<li><a href="#graphql-api">GraphQL API</a></li>
+<li><a href="#emails">Emails</a></li>
+<li><a href="#html-manipulation">HTML Manipulation</a></li>
+<li><a href="#data-validation">Data Validation</a></li>
+<li><a href="#type-system">Type System</a></li>
+<li><a href="#pattern-matching">Pattern Matching</a></li>
+<li><a href="#async-processing">Async processing</a></li>
+<li><a href="#monads">Monads</a></li>
+<li><a href="#websocket">WebSocket</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#webdriver-automation">Webdriver automation</a></li>
+<li><a href="#code-analysis-and-linter">Code Analysis and Linter</a></li>
+<li><a href="#science-and-data-analysis">Science and Data Analysis</a></li>
+<li><a href="#machine-learning">Machine Learning</a></li>
+<li><a href="#computer-vision">Computer Vision</a></li>
+<li><a href="#text-processing">Text Processing</a></li>
+<li><a href="#parsing">Parsing</a></li>
+<li><a href="#editor-plugins">Editor Plugins</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#literate-programming">Literate Programming</a></li>
+<li><a href="#archives-and-compression">Archives and Compression</a></li>
+<li><a href="#miscellaneous">Miscellaneous</a></li>
+<li><a href="#debugging">Debugging tools</a></li>
+<li><a href="#ci">CI</a></li>
+<li><a href="#project-management">Project Management</a></li>
+<li><a href="#terminal-ui">Terminal UI</a></li>
+<li><a href="#graphviz">Graphviz</a></li>
+</ul>
+</li>
+<li><p><a href="#resources">Resources</a></p>
+<ul>
+<li><a href="#guides">Guides</a></li>
+<li><a href="#video-tutorials">Video tutorials</a></li>
+<li><a href="#websites">Websites</a></li>
+<li><a href="#twitter">Twitter</a></li>
+<li><a href="#exercises">Exercises</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="awesome-macros-usage"><a class="anchor" aria-hidden="true" tabindex="-1" href="#awesome-macros-usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Awesome macros usage</h2><p><em>Answers why the lisp shines, killer features in action</em></p>
+<ul>
+<li><a href="https://github.com/clojure/core.async" rel="noopener noreferrer">core.async</a> - transforms AST into CSP programs</li>
+<li><a href="https://github.com/leonoel/cloroutine" rel="noopener noreferrer">cloroutine</a> - suspends and continuations (coroutines)</li>
+<li><a href="https://github.com/leonoel/missionary" rel="noopener noreferrer">missionary</a> - a reactive dataflow programming toolkit</li>
+<li><a href="https://github.com/venantius/photon" rel="noopener noreferrer">photon</a> - realtime web, like Meteor, but for Clojure(Script)</li>
+<li><a href="https://github.com/brandonbloom/metaclj" rel="noopener noreferrer">metaclj</a> - staged compilation</li>
+<li><a href="https://github.com/noprompt/meander" rel="noopener noreferrer">meander</a> - transparent data transformation using datastructure pattermatching</li>
+<li><a href="https://github.com/ztellman/proteus" rel="noopener noreferrer">proteus</a> - introduce mutable variables (don't use, just learn how to map your mind into immutable world)</li>
+</ul>
+<h2 id="advanced-datastructures"><a class="anchor" aria-hidden="true" tabindex="-1" href="#advanced-datastructures"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Advanced datastructures</h2><ul>
+<li><a href="https://github.com/redplanetlabs/specter" rel="noopener noreferrer">specter</a>: an elegant API for querying and transforming nested and recursive data</li>
+<li><a href="https://github.com/noprompt/meander" rel="noopener noreferrer">meander</a>: transparent data transformation (defined as pattern-matching)</li>
+<li><a href="https://github.com/clojure/data.avl" rel="noopener noreferrer">Persistent AVL trees</a>: persistent sorted maps and sets with log-time rank queries</li>
+<li><a href="https://github.com/clojure/data.finger-tree" rel="noopener noreferrer">Finger Tree</a>: double-list, counted-double-list, counted-sorted-set</li>
+<li><a href="https://github.com/datacrypt-project/hitchhiker-tree" rel="noopener noreferrer">Hitchhiker Tree</a>: create fast, snapshottable, massively scalable databases</li>
+<li><a href="https://github.com/llasram/hier-set" rel="noopener noreferrer">Hierarchical set</a></li>
+<li><a href="https://github.com/amalloy/ordered" rel="noopener noreferrer">Ordered</a>: ordered sets and maps</li>
+<li><a href="https://github.com/Malabarba/lazy-map-clojure" rel="noopener noreferrer">Lazy Map</a>: whose values are only calculated when accessed</li>
+<li><a href="https://github.com/jimpil/duratom" rel="noopener noreferrer">Duratom</a>: persisted atoms</li>
+<li><a href="https://github.com/Factual/durable-queue" rel="noopener noreferrer">Durable Queue</a>: queue persisted on disk</li>
+<li><a href="https://github.com/lacuna/bifurcan" rel="noopener noreferrer">bifurcan</a>: linear map/set/list (stores entries contiguously in memory), ;writtern in java, but test suite (read: usage examples) <a href="https://github.com/lacuna/bifurcan/blob/master/test/bifurcan" rel="noopener noreferrer">in clojure</a></li>
+</ul>
+<h2 id="web-framework"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web-framework"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web Framework</h2><p><em>Actually don't search rails/django here, but compose them by yourself</em></p>
+<ul>
+<li><a href="https://github.com/weavejester/compojure" rel="noopener noreferrer">Compojure</a></li>
+<li><a href="https://github.com/metosin/compojure-api" rel="noopener noreferrer">Compojure-api</a></li>
+<li><a href="http://www.luminusweb.net/" rel="noopener noreferrer">Luminus</a></li>
+<li><a href="https://github.com/weavejester/duct" rel="noopener noreferrer">Duct</a></li>
+<li><a href="https://github.com/pedestal/pedestal" rel="noopener noreferrer">Pedestal</a></li>
+<li><a href="https://github.com/metasoarous/datsys" rel="noopener noreferrer">Datsys</a></li>
+<li><a href="https://github.com/juxt/yada" rel="noopener noreferrer">yada</a></li>
+<li><a href="http://hoplon.io/" rel="noopener noreferrer">Hoplon</a></li>
+<li><a href="https://github.com/fulcrologic/fulcro" rel="noopener noreferrer">Fulcro</a></li>
+<li><a href="http://coastonclojure.com/" rel="noopener noreferrer">Coast</a></li>
+<li><a href="https://github.com/metosin/reitit" rel="noopener noreferrer">Reitit</a></li>
+<li><a href="https://www.tadam-framework.dev/" rel="noopener noreferrer">Tadam</a></li>
+<li><a href="https://gitlab.com/demonshreder/column" rel="noopener noreferrer">Column</a></li>
+<li><a href="https://biffweb.com/" rel="noopener noreferrer">Biff</a></li>
+</ul>
+<h2 id="dependency-injection"><a class="anchor" aria-hidden="true" tabindex="-1" href="#dependency-injection"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Dependency injection</h2><p><em>Managed lifecycle of stateful objects</em></p>
+<ul>
+<li><a href="https://github.com/stuartsierra/component" rel="noopener noreferrer">Component</a></li>
+<li><a href="https://github.com/danielsz/system" rel="noopener noreferrer">System</a></li>
+<li><a href="https://github.com/tolitius/mount" rel="noopener noreferrer">mount</a></li>
+<li><a href="https://github.com/weavejester/integrant" rel="noopener noreferrer">Integrant</a></li>
+<li><a href="https://github.com/juxt/clip" rel="noopener noreferrer">clip</a></li>
+<li><a href="https://github.com/piotr-yuxuan/closeable-map" rel="noopener noreferrer">piotr-yuxuan/closeable-map</a></li>
+<li><a href="https://github.com/darkleaf/di" rel="noopener noreferrer">darkleaf/di</a></li>
+</ul>
+<h2 id="build-automation-and-package-management"><a class="anchor" aria-hidden="true" tabindex="-1" href="#build-automation-and-package-management"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Build Automation and Package management</h2><p><em>Libraries for project build automation and package/dependency management.</em></p>
+<ul>
+<li><a href="https://github.com/technomancy/leiningen" rel="noopener noreferrer">Leiningen</a></li>
+<li><a href="https://github.com/boot-clj/boot" rel="noopener noreferrer">Boot</a></li>
+<li><a href="https://www.clojure.org/guides/tools_build" rel="noopener noreferrer">tools.build</a><ul>
+<li><a href="https://github.com/gnl/build.simple" rel="noopener noreferrer">build.simple</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/clojurephant/clojurephant" rel="noopener noreferrer">clojurephant</a> (Gradle plugin)</li>
+<li><a href="https://github.com/thheller/shadow-cljs" rel="noopener noreferrer">shadow-cljs</a> (Clojurescript)</li>
+</ul>
+<h2 id="version-control-management"><a class="anchor" aria-hidden="true" tabindex="-1" href="#version-control-management"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Version Control Management</h2><p><em>Code utilities for interacting with VCS software</em></p>
+<ul>
+<li><a href="https://github.com/clj-jgit/clj-jgit" rel="noopener noreferrer">clj-jgit</a></li>
+</ul>
+<h2 id="date-and-time"><a class="anchor" aria-hidden="true" tabindex="-1" href="#date-and-time"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Date and Time</h2><p><em>Libraries for working with dates and times.</em></p>
+<ul>
+<li><a href="https://github.com/clj-time/clj-time" rel="noopener noreferrer">clj-time</a></li>
+<li><a href="https://github.com/dm3/clojure.java-time" rel="noopener noreferrer">clojure.java-time</a> - Java 8 Date-Time API</li>
+<li><a href="https://github.com/luciolucio/holi" rel="noopener noreferrer">holi</a> - Calendar operations that are aware of weekends and holidays</li>
+<li><a href="https://github.com/tokenmill/timewords" rel="noopener noreferrer">timewords</a></li>
+<li><a href="https://github.com/juxt/tick" rel="noopener noreferrer">tick</a>: Clojure(Script) library, intended as replacement for clj-time</li>
+</ul>
+<h2 id="gui"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gui"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>GUI</h2><ul>
+<li><a href="https://github.com/daveray/seesaw" rel="noopener noreferrer">seesaw</a></li>
+<li><a href="https://github.com/lambdaisland/trikl" rel="noopener noreferrer">trikl</a></li>
+<li><a href="https://github.com/aaronc/fx-clj" rel="noopener noreferrer">fx-clj</a></li>
+</ul>
+<h2 id="audio"><a class="anchor" aria-hidden="true" tabindex="-1" href="#audio"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Audio</h2><ul>
+<li><a href="http://overtone.github.io/" rel="noopener noreferrer">Overtone</a></li>
+<li><a href="https://github.com/alda-lang/alda" rel="noopener noreferrer">Alda</a></li>
+</ul>
+<h2 id="http"><a class="anchor" aria-hidden="true" tabindex="-1" href="#http"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>HTTP</h2><p><em>Libraries for working with HTTP.</em></p>
+<ul>
+<li><a href="https://github.com/dakrone/clj-http" rel="noopener noreferrer">clj-http</a> :  Apache HttpComponents client wrapper</li>
+<li><a href="https://github.com/http-kit/http-kit" rel="noopener noreferrer">http-kit</a> : Simple, high-performance event-driven HTTP client and server</li>
+<li><a href="https://github.com/ring-clojure/ring" rel="noopener noreferrer">ring</a> : HTTP server abstraction</li>
+<li><a href="https://github.com/nervous-systems/kvlt" rel="noopener noreferrer">kvlt</a> : Uniform, asychronous client interface for HTTP across JVM / Node / browsers</li>
+<li><a href="https://github.com/clj-commons/aleph" rel="noopener noreferrer">aleph</a> : Async client/server based on Netty, with defaults for HTTP, TCP and UDP</li>
+<li><a href="https://github.com/gnarroway/hato" rel="noopener noreferrer">hato</a> : An HTTP client for Clojure, wrapping JDK 11's HttpClient</li>
+</ul>
+<h2 id="database"><a class="anchor" aria-hidden="true" tabindex="-1" href="#database"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Database</h2><p><em>Databases and database client libraries</em></p>
+<ul>
+<li><a href="http://www.datomic.com/" rel="noopener noreferrer">Datomic</a></li>
+<li><a href="https://github.com/xtdb/xtdb" rel="noopener noreferrer">xtdb</a>: bitemporal database for SQL, Datalog &amp; graph queries</li>
+<li><a href="https://github.com/replikativ/datahike" rel="noopener noreferrer">Datahike</a></li>
+<li><a href="https://github.com/tonsky/datascript" rel="noopener noreferrer">Datascript</a></li>
+<li><a href="https://github.com/juji-io/datalevin" rel="noopener noreferrer">Datalevin</a></li>
+<li><a href="https://github.com/seancorfield/next-jdbc" rel="noopener noreferrer">next.jdbc</a></li>
+<li><a href="https://github.com/clojure/java.jdbc" rel="noopener noreferrer">clojure.java.jdbc</a></li>
+<li><a href="https://github.com/funcool/clojure.jdbc" rel="noopener noreferrer">clojure.jdbc</a></li>
+<li><a href="https://github.com/robashton/cravendb" rel="noopener noreferrer">cravendb</a></li>
+<li><a href="http://clojuremongodb.info/" rel="noopener noreferrer">Monger</a>: for MongoDB</li>
+<li><a href="https://baumandm.github.io/monglorious/" rel="noopener noreferrer">Monglorious</a>: for MongoDB</li>
+<li><a href="https://github.com/apa512/clj-rethinkdb" rel="noopener noreferrer">clj-rethinkdb</a>: for RethinkDB</li>
+<li><a href="https://github.com/bitemyapp/revise" rel="noopener noreferrer">Revise</a>: for RethinkDB</li>
+<li><a href="https://github.com/mpenet/spandex" rel="noopener noreferrer">Spandex</a>: for ElasticSearch</li>
+<li><a href="http://clojureelasticsearch.info/" rel="noopener noreferrer">Elastisch</a>: for ElasticSearch</li>
+<li><a href="http://clojureneo4j.info/" rel="noopener noreferrer">neocons</a>: for Neo4j</li>
+<li><a href="https://github.com/mpenet/alia" rel="noopener noreferrer">Alia</a>: for Cassandra</li>
+<li><a href="https://github.com/AppsFlyer/aerospike-clj" rel="noopener noreferrer">aerospike-clj</a>: for Aerospike</li>
+</ul>
+<h2 id="connection-pools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#connection-pools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Connection pools</h2><p><em>Database connection pools</em></p>
+<ul>
+<li><a href="https://github.com/tomekw/hikari-cp" rel="noopener noreferrer">hikari-cp</a></li>
+<li><a href="https://github.com/metabase/connection-pool" rel="noopener noreferrer">metabase/connection-pool</a></li>
+</ul>
+<h2 id="structural-migrations"><a class="anchor" aria-hidden="true" tabindex="-1" href="#structural-migrations"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Structural Migrations</h2><p><em>Keeps database and others in sync</em></p>
+<ul>
+<li><a href="https://github.com/budu/lobos" rel="noopener noreferrer">Lobos</a></li>
+<li><a href="https://github.com/weavejester/ragtime" rel="noopener noreferrer">Ragtime</a></li>
+<li><a href="https://github.com/juxt/joplin" rel="noopener noreferrer">Joplin</a></li>
+<li><a href="https://github.com/yogthos/migratus" rel="noopener noreferrer">Migratus</a></li>
+<li><a href="https://github.com/macourtney/drift" rel="noopener noreferrer">Drift</a></li>
+</ul>
+<h2 id="redis"><a class="anchor" aria-hidden="true" tabindex="-1" href="#redis"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Redis</h2><ul>
+<li><a href="https://github.com/ptaoussanis/carmine" rel="noopener noreferrer">carmine</a></li>
+<li><a href="https://github.com/lerouxrgd/celtuce" rel="noopener noreferrer">celtuce</a></li>
+</ul>
+<h2 id="json"><a class="anchor" aria-hidden="true" tabindex="-1" href="#json"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>JSON</h2><ul>
+<li><a href="https://github.com/dakrone/cheshire" rel="noopener noreferrer">cheshire</a></li>
+<li><a href="https://github.com/metosin/jsonista" rel="noopener noreferrer">jsonista</a></li>
+</ul>
+<h2 id="protocol-buffers-and-grpc"><a class="anchor" aria-hidden="true" tabindex="-1" href="#protocol-buffers-and-grpc"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Protocol Buffers and gRPC</h2><ul>
+<li><a href="https://github.com/AppsFlyer/pronto" rel="noopener noreferrer">pronto</a></li>
+<li><a href="https://github.com/AppsFlyer/lein-protodeps" rel="noopener noreferrer">lein-protodeps</a></li>
+</ul>
+<h2 id="database-cli"><a class="anchor" aria-hidden="true" tabindex="-1" href="#database-cli"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Database Cli</h2><h2 id="orm-and-sql-generation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#orm-and-sql-generation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>ORM and SQL generation</h2><p><em>DSL for SQL generation.</em></p>
+<ul>
+<li><a href="https://github.com/walkable-server/walkable" rel="noopener noreferrer">Walkable</a></li>
+<li><a href="https://github.com/korma/Korma" rel="noopener noreferrer">Korma</a></li>
+<li><a href="https://github.com/tatut/specql/" rel="noopener noreferrer">Specql</a></li>
+<li><a href="https://github.com/stch-library/sql" rel="noopener noreferrer">stch-library/sql</a></li>
+<li><a href="https://github.com/r0man/sqlingvo" rel="noopener noreferrer">sqlingvo</a></li>
+<li><a href="https://github.com/TheLadders/sqlium/" rel="noopener noreferrer">sqlium</a></li>
+<li><a href="https://github.com/jkk/honeysql" rel="noopener noreferrer">honeysql</a></li>
+<li><a href="https://github.com/metabase/toucan" rel="noopener noreferrer">Toucan</a></li>
+</ul>
+<h2 id="security"><a class="anchor" aria-hidden="true" tabindex="-1" href="#security"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Security</h2><p><em>Authentication, authorization and other security related libraries.</em></p>
+<ul>
+<li><a href="https://github.com/funcool/buddy" rel="noopener noreferrer">Buddy</a></li>
+<li><a href="https://github.com/lvh/caesium" rel="noopener noreferrer">caesium</a> (libsodium bindings)</li>
+<li><a href="https://github.com/cemerick/friend" rel="noopener noreferrer">Friend</a></li>
+<li><a href="https://github.com/lk-geimfari/secrets.clj" rel="noopener noreferrer">secrets.clj</a></li>
+<li><a href="https://github.com/juxt/bolt" rel="noopener noreferrer">bolt</a></li>
+</ul>
+<h2 id="restful-api"><a class="anchor" aria-hidden="true" tabindex="-1" href="#restful-api"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>RESTful API</h2><p><em>Libraries for developing RESTful APIs.</em></p>
+<ul>
+<li><a href="http://clojure-liberator.github.io/liberator/" rel="noopener noreferrer">Liberator</a></li>
+<li><a href="https://github.com/metosin/compojure-api" rel="noopener noreferrer">Compojure-api</a></li>
+<li><a href="https://github.com/zalando/friboo" rel="noopener noreferrer">Friboo</a></li>
+<li><a href="https://github.com/juxt/yada" rel="noopener noreferrer">yada</a></li>
+<li><a href="https://github.com/darkleaf/router" rel="noopener noreferrer">router</a></li>
+<li><a href="https://github.com/metosin/reitit" rel="noopener noreferrer">reitit</a></li>
+</ul>
+<h2 id="graphql-api"><a class="anchor" aria-hidden="true" tabindex="-1" href="#graphql-api"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>GraphQL API</h2><p><em>Libraries for developing GraphQL APIs.</em></p>
+<ul>
+<li><a href="https://lacinia.readthedocs.io/en/latest/" rel="noopener noreferrer">Lacinia</a></li>
+</ul>
+<h2 id="emails"><a class="anchor" aria-hidden="true" tabindex="-1" href="#emails"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Emails</h2><ul>
+<li><a href="https://github.com/drewr/postal" rel="noopener noreferrer">postal</a></li>
+</ul>
+<h2 id="html-manipulation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#html-manipulation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>HTML Manipulation</h2><p><em>Libraries for working with HTML.</em></p>
+<ul>
+<li><a href="https://github.com/cgrand/enlive/wiki" rel="noopener noreferrer">Enlive</a></li>
+<li><a href="https://github.com/weavejester/hiccup" rel="noopener noreferrer">hiccup</a></li>
+<li><a href="https://github.com/fhd/clostache" rel="noopener noreferrer">clostache</a></li>
+<li><a href="https://github.com/yogthos/Selmer" rel="noopener noreferrer">selmer</a></li>
+</ul>
+<h2 id="data-validation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#data-validation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Data Validation</h2><p><em>Libraries for validating data.</em></p>
+<ul>
+<li><a href="https://github.com/fulcrologic/guardrails" rel="noopener noreferrer">Guardrails</a></li>
+<li><a href="https://github.com/metosin/malli" rel="noopener noreferrer">Malli</a></li>
+<li><a href="http://clojurevalidations.info/" rel="noopener noreferrer">Validateur</a></li>
+<li><a href="https://github.com/plumatic/schema" rel="noopener noreferrer">Prismatic's schema</a></li>
+<li><a href="https://github.com/leonardoborges/bouncer" rel="noopener noreferrer">Bouncer</a></li>
+<li><a href="https://github.com/markwoodhall/clova" rel="noopener noreferrer">clova</a></li>
+<li><a href="https://github.com/jeaye/orchestra" rel="noopener noreferrer">Orchestra</a></li>
+<li><a href="https://github.com/funcool/struct" rel="noopener noreferrer">struct</a></li>
+<li><a href="https://github.com/friemen/domaintypes" rel="noopener noreferrer">domaintypes</a></li>
+</ul>
+<h2 id="type-system"><a class="anchor" aria-hidden="true" tabindex="-1" href="#type-system"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Type System</h2><p><em>Optional type system for Clojure</em></p>
+<ul>
+<li><a href="https://github.com/clojure/core.typed" rel="noopener noreferrer">core.typed</a></li>
+</ul>
+<h2 id="pattern-matching"><a class="anchor" aria-hidden="true" tabindex="-1" href="#pattern-matching"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Pattern Matching</h2><ul>
+<li><a href="https://github.com/clojure/core.match" rel="noopener noreferrer">core.match</a></li>
+<li><a href="https://github.com/killme2008/defun" rel="noopener noreferrer">defun</a></li>
+<li><a href="https://github.com/zalando/cats.match" rel="noopener noreferrer">cats.match</a></li>
+<li><a href="https://github.com/missingfaktor/akar" rel="noopener noreferrer">Akar</a></li>
+<li><a href="https://github.com/noprompt/meander" rel="noopener noreferrer">Meander</a></li>
+<li><a href="https://github.com/WeshGuillaume/Verbal-Exprejon" rel="noopener noreferrer">Verbal-Exprejon</a></li>
+</ul>
+<h2 id="async-processing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#async-processing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Async processing</h2><ul>
+<li><a href="https://github.com/clojure/core.async/" rel="noopener noreferrer">core.async</a></li>
+<li><a href="https://github.com/puniverse/pulsar" rel="noopener noreferrer">pulsar</a></li>
+<li><a href="https://github.com/ztellman/manifold" rel="noopener noreferrer">manifold</a></li>
+<li><a href="https://github.com/nilenso/goose" rel="noopener noreferrer">goose</a></li>
+</ul>
+<h2 id="monads"><a class="anchor" aria-hidden="true" tabindex="-1" href="#monads"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Monads</h2><ul>
+<li><a href="https://github.com/funcool/cats" rel="noopener noreferrer">cats</a></li>
+<li><a href="https://github.com/clojure/algo.monads" rel="noopener noreferrer">algo.monads</a></li>
+<li><a href="https://github.com/uncomplicate/fluokitten" rel="noopener noreferrer">Fluokitten</a></li>
+</ul>
+<h2 id="websocket"><a class="anchor" aria-hidden="true" tabindex="-1" href="#websocket"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>WebSocket</h2><ul>
+<li><a href="https://github.com/jarohen/chord" rel="noopener noreferrer">Chord</a></li>
+<li><a href="https://github.com/ptaoussanis/sente" rel="noopener noreferrer">Sente</a></li>
+<li><a href="https://github.com/ztellman/aleph" rel="noopener noreferrer">aleph</a></li>
+</ul>
+<h2 id="testing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#testing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Testing</h2><ul>
+<li><a href="https://github.com/clojure-expectations/expectations" rel="noopener noreferrer">Expectations</a></li>
+<li><a href="https://github.com/marick/Midje" rel="noopener noreferrer">Midje</a></li>
+<li><a href="https://github.com/GreenPowerMonitor/test-doubles" rel="noopener noreferrer">test-doubles</a></li>
+<li><a href="https://github.com/lambdaisland/kaocha" rel="noopener noreferrer">kaocha</a></li>
+<li><a href="https://github.com/nubank/state-flow" rel="noopener noreferrer">StateFlow</a></li>
+<li><a href="https://github.com/amokfa/datest" rel="noopener noreferrer">Datest</a></li>
+</ul>
+<h2 id="webdriver-automation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#webdriver-automation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Webdriver automation</h2><ul>
+<li><a href="https://github.com/igrishaev/etaoin" rel="noopener noreferrer">Etaoin</a></li>
+</ul>
+<h2 id="code-analysis-and-linter"><a class="anchor" aria-hidden="true" tabindex="-1" href="#code-analysis-and-linter"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Code Analysis and Linter</h2><ul>
+<li><a href="https://github.com/technomancy/slamhound" rel="noopener noreferrer">Slamhound</a></li>
+<li><a href="https://github.com/jonase/eastwood" rel="noopener noreferrer">eastwood</a></li>
+<li><a href="https://github.com/jonase/kibit" rel="noopener noreferrer">kibit</a></li>
+<li><a href="https://github.com/venantius/yagni" rel="noopener noreferrer">yagni</a></li>
+<li><a href="https://github.com/dakrone/lein-bikeshed" rel="noopener noreferrer">lein-bikeshed</a></li>
+<li><a href="https://github.com/arohner/spectrum" rel="noopener noreferrer">spectrum</a></li>
+<li><a href="https://github.com/cloverage/cloverage" rel="noopener noreferrer">cloverage</a></li>
+<li><a href="https://github.com/borkdude/clj-kondo" rel="noopener noreferrer">clj-kondo</a></li>
+<li><a href="https://github.com/NoahTheDuke/splint" rel="noopener noreferrer">splint</a></li>
+</ul>
+<h2 id="science-and-data-analysis"><a class="anchor" aria-hidden="true" tabindex="-1" href="#science-and-data-analysis"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Science and Data Analysis</h2><p><em>Libraries, extended REPLs, and other tools for scientific and statistical data
+anylysis and visualization.</em></p>
+<ul>
+<li><a href="https://github.com/incanter/incanter" rel="noopener noreferrer">Incanter</a></li>
+<li><a href="http://cascalog.org/" rel="noopener noreferrer">Cascalog</a></li>
+<li><a href="https://github.com/onyx-platform/onyx" rel="noopener noreferrer">Onyx</a></li>
+<li><a href="https://github.com/gorillalabs/sparkling" rel="noopener noreferrer">sparklling</a></li>
+<li><a href="https://github.com/yieldbot/flambo" rel="noopener noreferrer">flambo</a></li>
+<li><a href="https://github.com/uncomplicate/neanderthal" rel="noopener noreferrer">Neanderthal</a></li>
+<li><a href="https://github.com/bigmlcom/histogram" rel="noopener noreferrer">Streaming Histograms</a></li>
+<li><a href="http://gorilla-repl.org/" rel="noopener noreferrer">Gorilla REPL</a></li>
+<li><a href="https://github.com/uncomplicate/bayadera" rel="noopener noreferrer">Bayadera - Bayesian Data Analysis on the GPU</a></li>
+<li><a href="https://github.com/uncomplicate/clojurecuda" rel="noopener noreferrer">ClojureCUDA</a></li>
+<li><a href="https://github.com/uncomplicate/neanderthal" rel="noopener noreferrer">Neanderthal - fast matrix and linear algebra</a></li>
+<li><a href="https://github.com/uncomplicate/clojurecl" rel="noopener noreferrer">ClojureCL - parallel computations with OpenCL</a></li>
+<li><a href="https://github.com/aysylu/loom" rel="noopener noreferrer">Loom - graph library for Clojure</a></li>
+</ul>
+<h2 id="machine-learning"><a class="anchor" aria-hidden="true" tabindex="-1" href="#machine-learning"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Machine Learning</h2><ul>
+<li><a href="https://github.com/uncomplicate/neanderthal" rel="noopener noreferrer">neanderthal</a>: fast matrix library</li>
+<li><a href="https://github.com/uncomplicate/clojurecuda" rel="noopener noreferrer">clojurecuda</a></li>
+<li><a href="https://github.com/uncomplicate/clojurecl" rel="noopener noreferrer">clojurecl</a></li>
+<li><a href="https://github.com/uncomplicate/bayadera" rel="noopener noreferrer">bayadera</a>: bayesian data analysis on the GPU</li>
+<li><a href="https://github.com/originrose/cortex" rel="noopener noreferrer">cortex</a></li>
+<li><a href="https://github.com/aria42/flare" rel="noopener noreferrer">Flare</a></li>
+<li><a href="https://mxnet.apache.org/versions/1.7.0/api/clojure" rel="noopener noreferrer">MXNet - Clojure API</a></li>
+<li><a href="https://github.com/bigmlcom/clj-bigml" rel="noopener noreferrer">clj-bigml</a></li>
+<li><a href="https://github.com/deeplearning4j/deeplearning4j" rel="noopener noreferrer">Deeplearning4j</a></li>
+<li><a href="https://github.com/jimpil/enclog" rel="noopener noreferrer">Enclog</a></li>
+<li><a href="https://github.com/cloudkj/lambda-ml" rel="noopener noreferrer">lambda-ml</a></li>
+<li><a href="https://github.com/kieranbrowne/clojure-tensorflow" rel="noopener noreferrer">clojure-tensorflow</a></li>
+<li><a href="https://github.com/yetanalytics/dl4clj" rel="noopener noreferrer">dl4clj (deeplearning4j to clojure)</a></li>
+<li><a href="https://probprog.github.io/anglican/" rel="noopener noreferrer">Anglican</a></li>
+<li><a href="https://github.com/antoniogarrote/clj-ml" rel="noopener noreferrer">clj-ml</a></li>
+<li><a href="https://github.com/rinuboney/clatern" rel="noopener noreferrer">Clatern</a></li>
+<li><a href="https://github.com/gigasquid/k9" rel="noopener noreferrer">k9</a></li>
+<li><a href="https://github.com/clojurewerkz/statistiker" rel="noopener noreferrer">Statistiker</a></li>
+<li><a href="https://github.com/japonophile/synaptic" rel="noopener noreferrer">Synaptic</a></li>
+<li><a href="https://github.com/aria42/infer" rel="noopener noreferrer">Infer</a></li>
+<li><a href="https://github.com/mrdimosthenis/clj-synapses" rel="noopener noreferrer">clj-synapses</a></li>
+<li><a href="https://github.com/scicloj/scicloj.ml" rel="noopener noreferrer">scicloj.ml</a></li>
+</ul>
+<h2 id="computer-vision"><a class="anchor" aria-hidden="true" tabindex="-1" href="#computer-vision"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Computer Vision</h2><ul>
+<li><a href="https://github.com/hellonico/origami" rel="noopener noreferrer">origami</a>: OpenCV 4 wrapper</li>
+<li><a href="https://github.com/antoniogarrote/clj-tesseract" rel="noopener noreferrer">clj-tesseract</a></li>
+<li><a href="http://nakkaya.com/vision.html" rel="noopener noreferrer">vision</a></li>
+</ul>
+<h2 id="text-processing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#text-processing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Text Processing</h2><ul>
+<li><a href="https://github.com/dakrone/clojure-opennlp" rel="noopener noreferrer">clojure-opennlp</a></li>
+<li><a href="https://github.com/turbopape/postagga" rel="noopener noreferrer">postagga</a></li>
+<li><a href="https://github.com/tokenmill/beagle" rel="noopener noreferrer">beagle</a></li>
+<li><a href="https://github.com/dainiusjocas/lucene-grep" rel="noopener noreferrer">lmgrep</a></li>
+</ul>
+<h2 id="parsing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#parsing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Parsing</h2><ul>
+<li><a href="https://github.com/Engelberg/instaparse" rel="noopener noreferrer">Instaparse</a></li>
+<li><a href="https://github.com/blancas/kern" rel="noopener noreferrer">kern</a></li>
+<li><a href="https://github.com/wit-ai/duckling" rel="noopener noreferrer">duckling</a></li>
+<li><a href="https://github.com/alekseysotnikov/buran" rel="noopener noreferrer">buran</a> - RSS/Atom feed consumer and producer</li>
+</ul>
+<h2 id="exceptions-and-error-handling"><a class="anchor" aria-hidden="true" tabindex="-1" href="#exceptions-and-error-handling"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Exceptions and Error Handling</h2><ul>
+<li><a href="https://github.com/mpenet/ex" rel="noopener noreferrer">Ex</a></li>
+<li><a href="https://github.com/grammarly/perseverance" rel="noopener noreferrer">Perseverance</a></li>
+<li><a href="https://github.com/MichaelDrogalis/dire" rel="noopener noreferrer">Dire</a></li>
+</ul>
+<h2 id="rule-based-programming"><a class="anchor" aria-hidden="true" tabindex="-1" href="#rule-based-programming"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Rule-based Programming</h2><ul>
+<li><a href="https://github.com/oakes/odoyle-rules" rel="noopener noreferrer">O'Doyle Rules</a></li>
+<li><a href="https://github.com/cerner/clara-rules" rel="noopener noreferrer">Clara Rules</a></li>
+<li><a href="https://github.com/yipeeio/arete" rel="noopener noreferrer">Arete</a></li>
+</ul>
+<h2 id="editor-plugins"><a class="anchor" aria-hidden="true" tabindex="-1" href="#editor-plugins"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Editor Plugins</h2><ul>
+<li><a href="https://github.com/BetterThanTomorrow/calva" rel="noopener noreferrer">Calva (VSCode)</a></li>
+<li><a href="https://github.com/clojure-lsp/clojure-lsp" rel="noopener noreferrer">clojure-lsp (multiple editors)</a></li>
+<li><a href="https://github.com/clojure-emacs/cider" rel="noopener noreferrer">CIDER (Emacs)</a></li>
+<li><a href="https://github.com/Fuco1/smartparens" rel="noopener noreferrer">smartparens (Emacs)</a></li>
+<li><a href="https://github.com/Fanael/rainbow-delimiters" rel="noopener noreferrer">rainbow-delimiters (Emacs)</a></li>
+<li><a href="https://github.com/Malabarba/aggressive-indent-mode" rel="noopener noreferrer">aggressive-indent (Emacs)</a></li>
+<li><a href="https://github.com/Olical/conjure" rel="noopener noreferrer">Conjure (Neovim)</a></li>
+<li><a href="https://github.com/venantius/vim-cljfmt" rel="noopener noreferrer">vim-cljfmt (Vim)</a></li>
+<li><a href="https://github.com/venantius/vim-eastwood" rel="noopener noreferrer">vim-eastwood (Vim)</a></li>
+<li><a href="https://github.com/tpope/vim-fireplace" rel="noopener noreferrer">vim-fireplace (Vim)</a></li>
+<li><a href="https://github.com/dgrnbrg/vim-redl" rel="noopener noreferrer">vim-redl (Vim)</a></li>
+<li><a href="https://github.com/tpope/vim-salve" rel="noopener noreferrer">vim-leiningen (Vim)</a></li>
+<li><a href="https://github.com/junegunn/rainbow_parentheses.vim" rel="noopener noreferrer">rainbow_parentheses.vim (Vim)</a></li>
+<li><a href="https://github.com/liquidz/vim-iced" rel="noopener noreferrer">vim-iced (Vim)</a></li>
+<li><a href="https://cursive-ide.com/" rel="noopener noreferrer">Cursive (IntelliJ)</a></li>
+<li><a href="https://atom.io/packages/proto-repl" rel="noopener noreferrer">proto-repl (Atom)</a></li>
+<li><a href="http://shaunlebron.github.io/parinfer/" rel="noopener noreferrer">Parinfer (multiple editors)</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer" rel="noopener noreferrer">Bracket Pair Colorizer (VSCode)</a></li>
+<li><a href="https://github.com/avli/clojureVSCode" rel="noopener noreferrer">clojureVSCode (VSCode)</a></li>
+<li><a href="https://github.com/linpengcheng/ClojureBoxNpp" rel="noopener noreferrer">Notepad++</a>: modified config files of Lisp</li>
+</ul>
+<h2 id="documentation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#documentation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Documentation</h2><p><em>Utilities and libraries for (non-LP) code and project documentation</em></p>
+<ul>
+<li><a href="https://github.com/weavejester/codox" rel="noopener noreferrer">codox</a></li>
+</ul>
+<h2 id="literate-programming"><a class="anchor" aria-hidden="true" tabindex="-1" href="#literate-programming"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Literate Programming</h2><ul>
+<li><a href="https://github.com/gdeer81/marginalia" rel="noopener noreferrer">marginalia</a></li>
+<li><a href="https://github.com/viebel/klipse" rel="noopener noreferrer">klipse</a></li>
+</ul>
+<h2 id="archives-and-compression"><a class="anchor" aria-hidden="true" tabindex="-1" href="#archives-and-compression"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Archives and Compression</h2><ul>
+<li><a href="https://github.com/AeroNotix/swindon" rel="noopener noreferrer">swindon (java.util.zip wrapper)</a></li>
+</ul>
+<h2 id="miscellaneous"><a class="anchor" aria-hidden="true" tabindex="-1" href="#miscellaneous"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Miscellaneous</h2><ul>
+<li><a href="https://github.com/ztellman/potemkin" rel="noopener noreferrer">potemkin</a> - reexport vars in another ns / act like a clojure map</li>
+<li><a href="https://github.com/ztellman/clj-tuple" rel="noopener noreferrer">clj-tuple</a></li>
+<li><a href="https://github.com/scgilardi/slingshot" rel="noopener noreferrer">slingshot</a></li>
+<li><a href="https://github.com/ztellman/virgil" rel="noopener noreferrer">virgil</a></li>
+<li><a href="https://github.com/tailrecursion/javastar" rel="noopener noreferrer">javastar</a></li>
+<li><a href="https://github.com/ztellman/riddley" rel="noopener noreferrer">riddley</a></li>
+<li><a href="https://github.com/ertugrulcetin/kezban" rel="noopener noreferrer">kezban</a></li>
+<li><a href="https://github.com/otwieracz/clj-grpc" rel="noopener noreferrer">clj-grpc</a></li>
+</ul>
+<h2 id="debugging"><a class="anchor" aria-hidden="true" tabindex="-1" href="#debugging"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Debugging</h2><ul>
+<li><a href="https://github.com/flow-storm/flow-storm-debugger" rel="noopener noreferrer">flow-storm-debugger</a></li>
+<li><a href="https://github.com/gnl/playback" rel="noopener noreferrer">playback</a></li>
+<li><a href="https://github.com/clojure/tools.trace" rel="noopener noreferrer">tools.trace</a></li>
+<li><a href="https://github.com/razum2um/clj-debugger" rel="noopener noreferrer">debugger</a></li>
+<li><a href="https://github.com/GeorgeJahad/debug-repl" rel="noopener noreferrer">debug-repl</a></li>
+<li><a href="https://github.com/pallet/ritz" rel="noopener noreferrer">ritz</a></li>
+<li><a href="https://github.com/dgrnbrg/redl" rel="noopener noreferrer">redl</a></li>
+<li><a href="https://github.com/technomancy/limit-break" rel="noopener noreferrer">limit-break</a></li>
+<li><a href="https://github.com/dgrnbrg/spyscope" rel="noopener noreferrer">spyscope</a></li>
+<li><a href="https://github.com/razum2um/aprint" rel="noopener noreferrer">aprint</a></li>
+<li><a href="https://github.com/cgrand/packed-printer" rel="noopener noreferrer">packed-printer</a></li>
+<li><a href="https://github.com/AvisoNovate/pretty" rel="noopener noreferrer">pretty</a></li>
+<li><a href="https://github.com/magnars/prone" rel="noopener noreferrer">prone</a></li>
+<li><a href="https://github.com/bhauman/lein-figwheel" rel="noopener noreferrer">figwheel</a></li>
+<li><a href="https://github.com/venantius/ultra" rel="noopener noreferrer">ultra</a></li>
+<li><a href="https://github.com/AppsFlyer/mate-clj" rel="noopener noreferrer">mate-clj</a></li>
+<li><a href="https://github.com/vvvvalvalval/scope-capture" rel="noopener noreferrer">scope-capture</a></li>
+</ul>
+<h2 id="ci"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ci"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>CI</h2><ul>
+<li><a href="https://github.com/flosell/lambdacd" rel="noopener noreferrer">lambdacd</a></li>
+</ul>
+<h2 id="project-management"><a class="anchor" aria-hidden="true" tabindex="-1" href="#project-management"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Project Management</h2><ul>
+<li><a href="https://github.com/turbopape/milestones" rel="noopener noreferrer">milestones</a></li>
+</ul>
+<h2 id="terminal-ui"><a class="anchor" aria-hidden="true" tabindex="-1" href="#terminal-ui"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Terminal UI</h2><ul>
+<li><a href="https://github.com/MultiMUD/clojure-lanterna" rel="noopener noreferrer">clojure-lanterna</a></li>
+<li><a href="https://github.com/lambdaisland/trikl" rel="noopener noreferrer">triki</a></li>
+<li><a href="https://github.com/aaron-santos/zaffre" rel="noopener noreferrer">zaffre</a></li>
+<li><a href="https://github.com/dundalek/closh" rel="noopener noreferrer">closh</a></li>
+<li><a href="https://github.com/piotr-yuxuan/malli-cli" rel="noopener noreferrer">piotr-yuxuan/malli-cli</a></li>
+</ul>
+<h2 id="graphviz"><a class="anchor" aria-hidden="true" tabindex="-1" href="#graphviz"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Graphviz</h2><ul>
+<li><a href="https://github.com/lambdaisland/zipper-viz" rel="noopener noreferrer">zipper-viz</a></li>
+<li><a href="https://github.com/daveray/dorothy" rel="noopener noreferrer">dorothy</a></li>
+<li><a href="https://github.com/jebberjeb/viz.cljc" rel="noopener noreferrer">viz.cljc</a></li>
+<li><a href="https://github.com/jebberjeb/fsmviz" rel="noopener noreferrer">fsmviz</a></li>
+<li><a href="https://github.com/ztellman/rhizome" rel="noopener noreferrer">rhizome</a></li>
+<li><a href="https://github.com/ertugrulcetin/re-frame-flow" rel="noopener noreferrer">re-frame-flow</a> - Graph based visualization tool for re-frame event chains (ClojureScript)</li>
+</ul>
+<h2 id="game-development"><a class="anchor" aria-hidden="true" tabindex="-1" href="#game-development"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Game Development</h2><ul>
+<li><a href="https://github.com/ertugrulcetin/jme-clj" rel="noopener noreferrer">jme-clj</a> - A Clojure 3D Game Engine (Wrapper), Powered by jMonkeyEngine</li>
+<li><a href="https://github.com/oakes/play-cljc" rel="noopener noreferrer">play-cljc</a> - A Clojure and ClojureScript game library</li>
+</ul>
+<h2 id="guides"><a class="anchor" aria-hidden="true" tabindex="-1" href="#guides"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Guides</h2><ul>
+<li><a href="https://github.com/bbatsov/clojure-style-guide" rel="noopener noreferrer">The Clojure Style Guide</a></li>
+<li><a href="http://yogthos.github.io/ClojureDistilled.html" rel="noopener noreferrer">Clojure Distilled</a></li>
+<li><a href="https://github.com/clojure-cookbook/clojure-cookbook" rel="noopener noreferrer">clojure-cookbook</a></li>
+<li><a href="http://www.unexpected-vortices.com/clojure/brief-beginners-guide/index.html" rel="noopener noreferrer">A Brief Beginner's Guide To Clojure</a></li>
+<li><a href="http://www.braveclojure.com/" rel="noopener noreferrer">Clojure for the Brave and True</a></li>
+<li><a href="https://aphyr.com/tags/Clojure-from-the-ground-up" rel="noopener noreferrer">Clojure from the ground up</a></li>
+<li><a href="https://github.com/yogthos/clojure-error-message-catalog" rel="noopener noreferrer">Error message catalog</a></li>
+<li><a href="https://kimh.github.io/clojure-by-example/" rel="noopener noreferrer">Clojure by Example</a></li>
+</ul>
+<h2 id="video-tutorials"><a class="anchor" aria-hidden="true" tabindex="-1" href="#video-tutorials"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Video tutorials</h2><h3 id="youtube"><a class="anchor" aria-hidden="true" tabindex="-1" href="#youtube"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>YouTube</h3><ul>
+<li><a href="https://www.youtube.com/user/Misophistful/videos" rel="noopener noreferrer">Misophistful's channel</a>: Understand concepts such as list comprehension, threading macros, generative testing, destructuring, core.match and introductions to Light Table, Datomic and Game development with Clojure</li>
+<li><a href="https://www.youtube.com/channel/UC9m7D4XKPJqTPCLSBym3BCg/search?query=Clojure" rel="noopener noreferrer">Fred Overflow's channel</a>: Introductions to Functional programming and TDD with Clojure</li>
+<li><a href="https://www.youtube.com/channel/UCH0CkLvbv6yEyrUnw9qujpQ/videos" rel="noopener noreferrer">Clojure Pills screencast</a>: Introduction to Clojure one function at a time</li>
+<li><a href="https://www.youtube.com/c/onthecodeagain/videos" rel="noopener noreferrer">Clojure Pills screencast</a>: Fun and beginner friendly content related to the overall clojure ecosystem</li>
+<li><a href="https://www.youtube.com/channel/UCrwwOZ4h2FQhAdTMfjyQfQA/playlists" rel="noopener noreferrer">Data persistance with Postgres, Clojure and JDBC</a></li>
+<li><a href="https://www.youtube.com/channel/UC6yONKYeoE2P3bsahDtsimg/videos" rel="noopener noreferrer">Clojure Tutorials by Timothy Baldridge</a>: More advanced videos on core.async, transducers, transients, logic programming and a "Function of the day" series.</li>
+</ul>
+<h2 id="websites"><a class="anchor" aria-hidden="true" tabindex="-1" href="#websites"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Websites</h2><ul>
+<li><a href="http://clojure.org/" rel="noopener noreferrer">Clojure</a></li>
+<li><a href="http://clojurians.net/" rel="noopener noreferrer">Clojure Slack</a></li>
+<li><a href="http://clojuredocs.org" rel="noopener noreferrer">clojuredocs</a></li>
+<li><a href="http://clojure-doc.org/" rel="noopener noreferrer">clojure-doc</a></li>
+<li><a href="http://www.clojure-toolbox.com/" rel="noopener noreferrer">The Clojure Toolbox</a></li>
+<li><a href="https://clojure.zeef.com/vlad.bokov" rel="noopener noreferrer">ZEEF/Clojure</a></li>
+</ul>
+<h2 id="twitter"><a class="anchor" aria-hidden="true" tabindex="-1" href="#twitter"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Twitter</h2><ul>
+<li><a href="https://twitter.com/oss_clj" rel="noopener noreferrer">oss_clj</a></li>
+</ul>
+<h2 id="exercises"><a class="anchor" aria-hidden="true" tabindex="-1" href="#exercises"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Exercises</h2><ul>
+<li><a href="https://github.com/PEZ/rich4clojure" rel="noopener noreferrer">rich4clojure</a></li>
+<li><a href="https://github.com/gigasquid/wonderland-clojure-katas" rel="noopener noreferrer">Wonderland Clojure Katas</a></li>
+<li><a href="http://clojurekoans.com" rel="noopener noreferrer">Clojure Koans</a></li>
+<li><a href="http://exercism.io/languages/clojure" rel="noopener noreferrer">exercism.io</a></li>
+<li><a href="https://www.codewars.com/kata/search/clojure" rel="noopener noreferrer">Codewars</a></li>
+</ul>
+
+
+    </main>
+  </body>
+</html>

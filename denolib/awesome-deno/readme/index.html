@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Awesome Deno (denolib/awesome-deno) Overview - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/denolib/awesome-deno/readme/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Awesome Deno Overview" />
+    <meta property="og:description" content="Curated list of awesome things related to Deno" />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Awesome Deno Overview</h1>
+<p>Curated list of awesome things related to Deno</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/denolib/awesome-deno/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/denolib/awesome-deno">😺 denolib/awesome-deno</a><span> · </span><span>⭐ 4.4K</span><span> · </span><span>🏷️ Platforms</span></p>
+<p><span>[ </span><a href="/denolib/awesome-deno/">Daily</a><span> / </span><a href="/denolib/awesome-deno/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
+<h1 id="awesome-deno-awesome"><a class="anchor" aria-hidden="true" tabindex="-1" href="#awesome-deno-awesome"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Awesome Deno <a href="https://awesome.re" rel="noopener noreferrer"><img src="https://awesome.re/badge.svg" alt="Awesome" /></a></h1><p><a href="https://deno.land" rel="noopener noreferrer"><img src="https://github.com/denolib/awesome-deno/raw/main/deno-logo.png" align="right" width="100" /></a></p>
+<p>Deno is a simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.</p>
+<p>This list is a collection of the best Deno modules and resources.</p>
+<h2 id="contents"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contents"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contents</h2><ul>
+<li><a href="#docs">Docs</a><ul>
+<li><a href="#official-docs">Official Docs</a></li>
+<li><a href="#external-docs">External Docs</a></li>
+<li><a href="#online-playgrounds">Online Playgrounds</a></li>
+</ul>
+</li>
+<li><a href="#modules">Modules</a><ul>
+<li><a href="#automation">Automation</a></li>
+<li><a href="#cli-utils">CLI utils</a></li>
+<li><a href="#cloud-apis">Cloud APIs</a></li>
+<li><a href="#database">Database</a></li>
+<li><a href="#editor-framework">Editor framework</a></li>
+<li><a href="#frontend-development">Frontend development</a></li>
+<li><a href="#frontend-framework">Frontend framework</a></li>
+<li><a href="#game-engine">Game engine</a></li>
+<li><a href="#llm">LLM</a></li>
+<li><a href="#logging">Logging</a></li>
+<li><a href="#machine-learning">Machine Learning</a></li>
+<li><a href="#mail">Mail</a></li>
+<li><a href="#markdown">Markdown</a></li>
+<li><a href="#math">Math</a></li>
+<li><a href="#static-site-generator">Static site generator</a></li>
+<li><a href="#string-utils">String utils</a></li>
+<li><a href="#social-platform-apis">Social Platform APIs</a></li>
+<li><a href="#template-engine">Template engine</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#utils">Utils</a></li>
+<li><a href="#web-framework">Web framework</a></li>
+<li><a href="#websocket">WebSocket</a></li>
+<li><a href="#web-utils">Web utils</a></li>
+<li><a href="#webview">Webview</a></li>
+<li><a href="#xml">XML</a></li>
+</ul>
+</li>
+<li><a href="#registries">Registries</a></li>
+<li><a href="#showcases">Showcases</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="#integrations">Integrations</a></li>
+<li><a href="#articles">Articles</a></li>
+<li><a href="#blogsnewsletters">Blogs/Newsletters</a></li>
+<li><a href="#presentations">Presentations</a></li>
+<li><a href="#resources">Resources</a><ul>
+<li><a href="#books">Books</a></li>
+</ul>
+</li>
+<li><a href="#resources-in-other-languages">Resources in Other Languages</a><ul>
+<li><a href="#chinese">Chinese</a></li>
+<li><a href="#hebrew">Hebrew</a></li>
+<li><a href="#indonesian">Indonesian</a></li>
+<li><a href="#italian">Italian</a></li>
+<li><a href="#japanese">Japanese</a></li>
+<li><a href="#korean">Korean</a></li>
+<li><a href="#russian">Russian</a></li>
+<li><a href="#spanish">Spanish</a></li>
+<li><a href="#darija">Darija (Arabe marocain)</a></li>
+<li><a href="#kurdish-central">Kurdish (Central)</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="docs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#docs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Docs</h2><h3 id="official-docs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#official-docs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Official Docs</h3><ul>
+<li><a href="https://deno.com" rel="noopener noreferrer">Official Site</a></li>
+<li><a href="https://docs.deno.com" rel="noopener noreferrer">Deno Manual</a></li>
+<li><a href="https://docs.deno.com/api" rel="noopener noreferrer">Deno API Reference</a></li>
+<li><a href="https://jsr.io/@std" rel="noopener noreferrer">Deno Standard Library</a></li>
+</ul>
+<h3 id="external-docs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#external-docs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>External Docs</h3><ul>
+<li><a href="https://denolib.github.io/v8-docs/" rel="noopener noreferrer">V8 Docs for Deno</a></li>
+</ul>
+<h3 id="online-playgrounds"><a class="anchor" aria-hidden="true" tabindex="-1" href="#online-playgrounds"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Online Playgrounds</h3><ul>
+<li><a href="https://codesandbox.io/s/y56n2" rel="noopener noreferrer">Deno Starter in Codesandbox</a></li>
+<li><a href="https://www.mycompiler.io/new/deno" rel="noopener noreferrer">myCompiler.io</a></li>
+<li><a href="https://repl.it/languages/deno" rel="noopener noreferrer">Repl.it</a></li>
+</ul>
+<h2 id="modules"><a class="anchor" aria-hidden="true" tabindex="-1" href="#modules"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Modules</h2><h3 id="automation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#automation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Automation</h3><ul>
+<li><a href="https://github.com/divy-work/autopilot-deno" rel="noopener noreferrer">autopilot</a> - Autopilot - Cross-platform web automation with Deno.</li>
+<li><a href="https://github.com/fakoua/SwissKnife" rel="noopener noreferrer">swissknife</a> - SwissKnife - Deno Swiss Knife tools for Windows.</li>
+</ul>
+<h3 id="cli-utils"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cli-utils"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>CLI utils</h3><ul>
+<li><a href="https://github.com/cacjs/cac" rel="noopener noreferrer">cac</a> - Simple yet powerful framework for building command-line apps.</li>
+<li><a href="https://github.com/littletof/charmd" rel="noopener noreferrer">charmd</a> - A simple, extendable markdown renderer for your terminal.</li>
+<li><a href="https://github.com/maximousblk/chart" rel="noopener noreferrer">chart</a> - Console ASCII line charts with no dependencies.</li>
+<li><a href="https://github.com/ameerthehacker/cli-spinners" rel="noopener noreferrer">cli-spinner</a> - Show spinners in the terminal while running long tasks.</li>
+<li><a href="https://github.com/c4spar/deno-cliffy" rel="noopener noreferrer">cliffy</a> - The complete solution for building interactive command-line tools.</li>
+<li><a href="https://github.com/jersou/clite-parser" rel="noopener noreferrer">clite</a> - Automatic CLI generation from a class.</li>
+<li><a href="https://github.com/AhmedOsman101/commit-sage-cli" rel="noopener noreferrer">commit-sage-cli</a> - Generates Conventional Commit messages with AI based on Git repository changes.</li>
+<li><a href="https://github.com/HarryPeach/kia" rel="noopener noreferrer">kia</a> - Simple terminal spinners for Deno 🦕</li>
+<li><a href="https://github.com/mjrlowe/terminal_images" rel="noopener noreferrer">terminal_images</a> -  A Deno module and CLI tool for displaying images in the terminal.</li>
+<li><a href="https://github.com/Im-Beast/deno_tui" rel="noopener noreferrer">tui</a> - Module which allows easy creation of Terminal User Interfaces.</li>
+<li><a href="https://github.com/bcheidemann/with-env" rel="noopener noreferrer">with-env</a> - Simple command line utilty for executing commands with one or more .env files.</li>
+<li><a href="https://github.com/yargs/yargs" rel="noopener noreferrer">yargs</a> - The modern, pirate-themed successor to optimist.</li>
+</ul>
+<h3 id="cloud-apis"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cloud-apis"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Cloud APIs</h3><ul>
+<li><a href="https://aws-api.deno.dev/" rel="noopener noreferrer">aws-api</a> - From-scratch Typescript AWS API client built for Deno.</li>
+<li><a href="https://googleapis.deno.dev/" rel="noopener noreferrer">googleapis</a> - Auto-generated Google API clients for Deno.</li>
+</ul>
+<h3 id="database"><a class="anchor" aria-hidden="true" tabindex="-1" href="#database"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Database</h3><ul>
+<li><a href="https://github.com/Kirlovon/AloeDB" rel="noopener noreferrer">aloedb</a> - Light, Embeddable, NoSQL database for Deno without dependencies.</li>
+<li><a href="https://github.com/rahmanfadhil/cotton" rel="noopener noreferrer">cotton</a> - SQL Database Toolkit for deno</li>
+<li><a href="https://github.com/oslabs-beta/dangoDB" rel="noopener noreferrer">dangoDB</a> - A MongoDB ODM for Deno.</li>
+<li><a href="https://github.com/eveningkid/denodb" rel="noopener noreferrer">denodb</a> - MySQL, SQLite, MariaDB, PostgreSQL and MongoDB ORM for Deno.</li>
+<li><a href="https://github.com/denodrivers/deno_mongo" rel="noopener noreferrer">deno_mongo</a> - MongoDB database driver.</li>
+<li><a href="https://github.com/denodrivers/mysql" rel="noopener noreferrer">deno_mysql</a> - MySQL database driver.</li>
+<li><a href="https://github.com/denyncrawford/dndb" rel="noopener noreferrer">dndb</a> - Persistent and embedable NoSQL database engine written for Deno 🦕.</li>
+<li><a href="https://github.com/roonie007/dongoose" rel="noopener noreferrer">dongoose</a> - A simple and easy to use ORM for Deno KV.</li>
+<li><a href="https://github.com/MaximilianHeidenreich/DsDDB" rel="noopener noreferrer">dsddb</a> - A dead simple persistant key-value database utilizing the JSON format.</li>
+<li><a href="https://github.com/manyuanrong/dso" rel="noopener noreferrer">dso</a> - A simple ORM library based on mysql.</li>
+<li><a href="https://jsr.io/@iuioiua/redis" rel="noopener noreferrer">@iuioiua/redis</a> - Fast, lightweight Redis client built upon the Web Streams API.</li>
+<li><a href="https://github.com/josh-hemphill/maxminddb-deno" rel="noopener noreferrer">maxminddb</a> - A library that enables the usage of MaxmindDB geoIP database files</li>
+<li><a href="https://github.com/halvardssm/deno-nessie" rel="noopener noreferrer">nessie</a> - Create, migrate and rollback migrations for PostgreSQL, MySQL and SQLite.</li>
+<li><a href="https://github.com/denodrivers/postgres" rel="noopener noreferrer">postgres</a> - Driver for PostgreSQL database.</li>
+<li><a href="https://github.com/denodrivers/redis" rel="noopener noreferrer">redis</a> - An experimental implementation of redis client for deno.</li>
+<li><a href="https://github.com/manyuanrong/sql-builder" rel="noopener noreferrer">sql-builder</a> - An sql query builder.</li>
+<li><a href="https://github.com/yooneskh/yongo" rel="noopener noreferrer">yongo</a> - Subset of Mongoose api in deno (like populate) but will not fully copy mongoose</li>
+</ul>
+<h3 id="editor-framework"><a class="anchor" aria-hidden="true" tabindex="-1" href="#editor-framework"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Editor framework</h3><ul>
+<li><a href="https://github.com/vim-denops/denops.vim" rel="noopener noreferrer">Denops</a> - 🐜 An ecosystem to write Vim/Neovim plugins with Deno.</li>
+</ul>
+<h3 id="frontend-development"><a class="anchor" aria-hidden="true" tabindex="-1" href="#frontend-development"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Frontend development</h3><ul>
+<li><a href="https://github.com/postcss/postcss-deno" rel="noopener noreferrer">postcss</a> - A tool for transforming styles with JS plugins.</li>
+</ul>
+<h3 id="frontend-framework"><a class="anchor" aria-hidden="true" tabindex="-1" href="#frontend-framework"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Frontend framework</h3><ul>
+<li><a href="https://github.com/postui/aleph.js" rel="noopener noreferrer">aleph.js</a> - A React framework in Deno, inspired by <a href="https://nextjs.org" rel="noopener noreferrer">Next.js</a>.</li>
+<li><a href="https://github.com/denoland/fresh" rel="noopener noreferrer">fresh</a> - The next-gen web framework.</li>
+<li><a href="https://github.com/kt3k/packup" rel="noopener noreferrer">packup</a> - Zero-config web application packager for Deno.</li>
+<li><a href="https://github.com/exhibitionist-digital/ultra" rel="noopener noreferrer">ultra</a> - 💎 Modern Streaming React Framework in Deno.</li>
+</ul>
+<h3 id="game-engine"><a class="anchor" aria-hidden="true" tabindex="-1" href="#game-engine"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Game engine</h3><ul>
+<li><a href="https://github.com/load1n9/caviar" rel="noopener noreferrer">caviar</a> - ⚡ Blazing fast, modern, Game Engine powered by WebGPU for Deno and the browser</li>
+<li><a href="https://github.com/load1n9/neko" rel="noopener noreferrer">neko</a> - 🐈 caviar's twin frame buffer deno module with a framebuffer canvas implementation</li>
+<li><a href="https://github.com/littledivy/deno_sdl2" rel="noopener noreferrer">sdl2</a> - SDL2 module for Deno</li>
+</ul>
+<h3 id="image"><a class="anchor" aria-hidden="true" tabindex="-1" href="#image"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Image</h3><ul>
+<li><a href="https://github.com/matmen/ImageScript" rel="noopener noreferrer">ImageScript</a> - Image processing in JavaScript, utilizing WebAssembly for performance.</li>
+<li><a href="https://github.com/retraigo/monke" rel="noopener noreferrer">monke</a> - Color quantization and dithering library with extra image filters (blur, invert, etc).</li>
+</ul>
+<h3 id="llm"><a class="anchor" aria-hidden="true" tabindex="-1" href="#llm"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>LLM</h3><ul>
+<li><a href="https://github.com/mumu-lhl/duckduckgo-ai-chat" rel="noopener noreferrer">duckduckgo-ai-chat</a> - Providing Duckduckgo AI Chat API, which can use gpt-4o-mini for free.</li>
+</ul>
+<h3 id="logging"><a class="anchor" aria-hidden="true" tabindex="-1" href="#logging"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Logging</h3><ul>
+<li><a href="https://github.com/GJZwiers/sentry_deno" rel="noopener noreferrer">sentry_deno</a> - Unofficial port of the Sentry SDK for JavaScript to Deno.</li>
+<li><a href="https://github.com/dpmland/dlog" rel="noopener noreferrer">dlog</a> - A ussefull logger for the prompt with icons or simple version!</li>
+<li><a href="https://github.com/dahlia/logtape" rel="noopener noreferrer">LogTape</a> - Simple logging library with zero dependencies for Deno/Node.js/Bun/browsers.</li>
+</ul>
+<h3 id="machine-learning"><a class="anchor" aria-hidden="true" tabindex="-1" href="#machine-learning"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Machine learning</h3><ul>
+<li><a href="https://github.com/retraigo/la-classy" rel="noopener noreferrer">classy-lala</a> - Single-layer perceptrons for supervised learning tasks.</li>
+<li><a href="https://github.com/denosaurs/netsaur" rel="noopener noreferrer">netsaur</a> - Powerful machine learning, accelerated by WebGPU</li>
+<li><a href="https://github.com/load1n9/synaptic" rel="noopener noreferrer">synaptic</a> - Dependency-less neural network library ported to deno</li>
+<li><a href="https://github.com/retraigo/appraisal" rel="noopener noreferrer">appraisal</a> - Feature extraction and conversion.</li>
+</ul>
+<h3 id="mail"><a class="anchor" aria-hidden="true" tabindex="-1" href="#mail"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Mail</h3><ul>
+<li><a href="https://github.com/manyuanrong/deno-smtp" rel="noopener noreferrer">deno-smtp</a> - A smtp mail sender for deno.</li>
+</ul>
+<h3 id="markdown"><a class="anchor" aria-hidden="true" tabindex="-1" href="#markdown"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Markdown</h3><ul>
+<li><a href="https://github.com/denolib/marked/" rel="noopener noreferrer">marked</a> - Markdown-to-HTML converter.</li>
+</ul>
+<h3 id="math"><a class="anchor" aria-hidden="true" tabindex="-1" href="#math"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Math</h3><ul>
+<li><a href="https://github.com/denosaurs/neo/" rel="noopener noreferrer">neo</a> - Matrix and other math, accelerated by WebGPU</li>
+</ul>
+<h3 id="static-site-generator"><a class="anchor" aria-hidden="true" tabindex="-1" href="#static-site-generator"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Static site generator</h3><ul>
+<li><a href="https://github.com/lumeland/lume" rel="noopener noreferrer">lume</a> - A static site generator similar to Jekyll or Eleventy with support for multiple file formats.</li>
+<li><a href="https://github.com/xcatliu/pagic" rel="noopener noreferrer">pagic</a> - The easiest way to generate static html page from markdown, built with Deno.</li>
+</ul>
+<h3 id="string-utils"><a class="anchor" aria-hidden="true" tabindex="-1" href="#string-utils"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>String utils</h3><ul>
+<li><a href="https://github.com/denolib/camelcase" rel="noopener noreferrer">camelcase</a> - Convert a dash/dot/underscore/space separated string to camelCase: foo-bar → fooBar.</li>
+<li><a href="https://github.com/zekth/deno_case_style" rel="noopener noreferrer">deno_case_style</a> - String validator and formater for different case style. eg: camelCase etc.</li>
+<li><a href="https://github.com/dpmland/deno-json-colorizer" rel="noopener noreferrer">deno-json-colorizer</a> - A library for colorizing JSON strings in Deno</li>
+<li><a href="https://github.com/OnikurYH/deno-prettystring" rel="noopener noreferrer">deno-prettystring</a> - Format, trim and remove extra white spaces between characters from string.</li>
+<li><a href="https://github.com/jcardama/deno_slugify" rel="noopener noreferrer">deno-slugify</a> - A string slugifier for deno.</li>
+<li><a href="https://github.com/motss/deno_mod/tree/master/normalize_diacritics" rel="noopener noreferrer">normalize_diacritics</a> - Remove accents/diacritics in string.</li>
+<li><a href="https://github.com/vixalien/written" rel="noopener noreferrer">written</a> - A provides a set of utilities for manipulating text, with a focus on providing typographic tools rather than pure string manipulation.</li>
+</ul>
+<h3 id="social-platform-apis"><a class="anchor" aria-hidden="true" tabindex="-1" href="#social-platform-apis"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Social Platform APIs</h3><ul>
+<li><a href="https://github.com/grammyjs/grammy" rel="noopener noreferrer">grammY</a> - Telegram Bot API framework for Deno.</li>
+<li><a href="https://github.com/dcdunkan/grm" rel="noopener noreferrer">grm</a> - Telegram MTProto client for Deno.</li>
+<li><a href="https://github.com/roj1512/twi" rel="noopener noreferrer">twi</a> - Twitter API v2 client for Deno.</li>
+<li><a href="https://discordeno.mod.land/" rel="noopener noreferrer">discordeno</a> - Discord API library for Deno</li>
+<li><a href="https://github.com/MTKruto/MTKruto" rel="noopener noreferrer">MTKruto</a> - Deno-first, cross-runtime client library for Telegram's MTProto API.</li>
+</ul>
+<h3 id="template-engine"><a class="anchor" aria-hidden="true" tabindex="-1" href="#template-engine"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Template engine</h3><ul>
+<li><a href="https://github.com/syumai/dejs" rel="noopener noreferrer">dejs</a> - Ejs template engine for deno.</li>
+<li><a href="https://github.com/zekth/deno_tiny_templates" rel="noopener noreferrer">deno_tiny_templates</a> - Template renderer for deno.</li>
+<li><a href="https://github.com/eta-dev/eta" rel="noopener noreferrer">eta</a> - Fast, lightweight, and configurable embedded template engine.</li>
+<li><a href="https://github.com/alosaur/handlebars" rel="noopener noreferrer">handlebars</a> - Handlebars template engine for deno</li>
+<li><a href="https://github.com/alosaur/mustache" rel="noopener noreferrer">mustache</a> - Mustache template engine for deno</li>
+</ul>
+<h3 id="testing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#testing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Testing</h3><ul>
+<li><a href="https://github.com/lucacasonato/deno-puppeteer" rel="noopener noreferrer">deno-puppeteer</a> - A library which provides a high-level API to control Chromium or Chrome over the DevTools Protocol.</li>
+<li><a href="https://github.com/allain/expect" rel="noopener noreferrer">expect</a> - Helpers for writing jest like expect tests in deno.</li>
+<li><a href="https://github.com/crewdevio/merlin" rel="noopener noreferrer">merlin</a> - Testing and Benchmarking framework for deno 🧙‍♂️</li>
+<li><a href="https://github.com/littletof/prettyBenching" rel="noopener noreferrer">pretty_benching</a> - A small library to make your Deno benchmarking progress and results look pretty.</li>
+<li><a href="https://github.com/izelnakri/qunitx" rel="noopener noreferrer">qunitx</a> - Zero dependency, fully customizable, mature, universal test API that can run interchangably in node.js, Deno &amp; browser, using default runtime test runners.</li>
+<li><a href="https://github.com/drashland/rhum" rel="noopener noreferrer">rhum</a> - A lightweight testing framework for Deno.</li>
+<li><a href="https://github.com/asos-craigmorten/superdeno" rel="noopener noreferrer">superdeno</a> - Super-agent driven library for testing Deno HTTP servers.</li>
+<li><a href="https://github.com/asos-craigmorten/superoak" rel="noopener noreferrer">superoak</a> - HTTP assertions for Oak made easy via SuperDeno.</li>
+<li><a href="https://deno.land/x/tepi" rel="noopener noreferrer">tepi</a> - A .http Test Runner</li>
+<li><a href="https://github.com/gcaptn/tincan" rel="noopener noreferrer">tincan</a> - A Jest-like testing library for Deno.</li>
+<li><a href="https://github.com/unexpectedjs/unexpected" rel="noopener noreferrer">unexpected</a> - Extensible BDD assertion toolkit.</li>
+<li><a href="https://github.com/TomokiMiyauci/unitest" rel="noopener noreferrer">unitest</a> - Deno-first universal unit testing framework.</li>
+</ul>
+<h3 id="utils"><a class="anchor" aria-hidden="true" tabindex="-1" href="#utils"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Utils</h3><ul>
+<li><a href="https://github.com/retraigo/bettermap" rel="noopener noreferrer">bettermap</a> - A TypeScript extension of the JavaScript Map with Array-like features.</li>
+<li><a href="https://github.com/dpmland/beno" rel="noopener noreferrer">beno</a> - A configuration manager typed and faster for Deno <strong>Inspired in Viper of Golang</strong></li>
+<li><a href="https://github.com/jacoborus/deno-buckets" rel="noopener noreferrer">buckets</a> - Bundle assets and scripts in a single executable file.</li>
+<li><a href="https://github.com/manyuanrong/bytes_formater" rel="noopener noreferrer">bytes_formater</a> - Format bytes (Uint8Array, ArrayBufferView, etc) output, useful when debugging IO functions.</li>
+<li><a href="https://github.com/irandeno/coffee" rel="noopener noreferrer">coffee</a> - Deno Configuration - a type-safe, easy to use Deno config manager.</li>
+<li><a href="https://github.com/retraigo/colors" rel="noopener noreferrer">colors</a> - Color conversions and operations in TypeScript.</li>
+<li><a href="https://github.com/hexagon/croner" rel="noopener noreferrer">croner</a> - Cron library with advanced scheduling features, well-documented API, and zero dependencies.</li>
+<li><a href="https://github.com/neuledge/computed-types" rel="noopener noreferrer">computed_types</a> - Joi like validators for Typescript and Deno.</li>
+<li><a href="https://github.com/BoltDoggy/deno#dcc" rel="noopener noreferrer">dcc</a> - Deno Cache Clean, reloading deps when next running.</li>
+<li><a href="https://github.com/denosaurs/denon/blob/master/mod.ts" rel="noopener noreferrer">denon</a> - A file watcher with a for-await generator.</li>
+<li><a href="https://github.com/yooneskh/deno-config" rel="noopener noreferrer">deno-config</a> - Utility to streamline deno app configuration management through cli, .env and json files</li>
+<li><a href="https://github.com/code-hex/deno-context" rel="noopener noreferrer">deno-context</a> - Propagate deadlines, a cancellation and other request-scoped values to multiple promise. The behaviour is like Go's context.</li>
+<li><a href="https://github.com/rbrahul/deno_cron" rel="noopener noreferrer">deno_cron</a> - A cron Job scheduler that allows you to write human readable cron syntax with tons of flexibility</li>
+<li><a href="https://github.com/manyuanrong/deno-deamon" rel="noopener noreferrer">deno-deamon</a> - Make the Deno program run in the background.</li>
+<li>deno-dotenv<ul>
+<li><a href="https://github.com/pietvanzoen/deno-dotenv" rel="noopener noreferrer">pietvanzoen/deno-dotenv</a> - Dotenv handling for deno.</li>
+<li><a href="https://github.com/cardosomarcos/deno-dotenv" rel="noopener noreferrer">cardosomarcos/deno-dotenv</a> - Loads environment variables from .env for Deno projects.</li>
+</ul>
+</li>
+<li><a href="https://github.com/fernandolguevara/deno-envconfig" rel="noopener noreferrer">deno-envconfig</a> - Configuration management utility.</li>
+<li><a href="https://github.com/hashrock/deno-fnparse" rel="noopener noreferrer">deno-fnparse</a> - An extremely simple parser combinator for JavaScript.</li>
+<li><a href="https://github.com/hayd/deno-globrex" rel="noopener noreferrer">deno-globrex</a> - Port of globrex to deno, glob to regular expression.</li>
+<li><a href="https://github.com/PandawanFr/deno_notify" rel="noopener noreferrer">deno_notify</a> - Send desktop notifications on all platforms.</li>
+<li><a href="https://github.com/hashrock/deno-opn" rel="noopener noreferrer">deno-opn</a> - Opens stuff like websites, files, executables. Cross-platform.</li>
+<li><a href="https://github.com/manyuanrong/deno-plugin-prepare" rel="noopener noreferrer">deno-plugin-prepare</a> - A library for managing Deno native plugin dependencies.</li>
+<li><a href="https://github.com/zekth/deno_random_interval" rel="noopener noreferrer">deno_random_interval</a> - Helper to generate random interval.</li>
+<li><a href="https://github.com/eliassjogreen/deno_tokenizer" rel="noopener noreferrer">deno_tokenizer</a> - A simple tokenizer for deno.</li>
+<li><a href="https://github.com/hayd/deno-using" rel="noopener noreferrer">deno-using</a> - An python-style with statements for deno.</li>
+<li><a href="https://github.com/ethandunford/deno-validation" rel="noopener noreferrer">deno-validation</a> - A general purpose validation library for Deno.</li>
+<li><a href="https://deno.land/x/dinoenv" rel="noopener noreferrer">dinoenv</a> - tiny library to manage environment variables with deno.</li>
+<li><a href="https://github.com/retraigo/duration.js" rel="noopener noreferrer">durationjs</a> - Get formatted time duration from a timestamp or a human-readable string.</li>
+<li><a href="https://github.com/dpmland/draco" rel="noopener noreferrer">draco</a> - File and folder multiplatform utils for Deno!</li>
+<li><a href="https://github.com/eankeen/ensure" rel="noopener noreferrer">ensure</a> - Ensure you are running a minimum version of Deno, Typescript, or V8.</li>
+<li><a href="https://github.com/garronej/evt" rel="noopener noreferrer">evt</a> - Type safe replacement for EventEmitter.</li>
+<li><a href="https://github.com/icebob/fastest-validator" rel="noopener noreferrer">fastest-validator</a> - Schema validator for all javascript platforms</li>
+<li><a href="https://github.com/retraigo/fortuna" rel="noopener noreferrer">fortuna</a> - Weighted gacha system.</li>
+<li><a href="https://github.com/matteocrippa/fossil" rel="noopener noreferrer">fossil</a> - A value-type validation suite.</li>
+<li><a href="https://github.com/jupegarnica/garn-yaml" rel="noopener noreferrer">garn-yaml</a> - Read or write yaml interpolating env variables.</li>
+<li><a href="https://github.com/jupegarnica/garn-validator" rel="noopener noreferrer">garn-validator</a> - Create validations with ease.</li>
+<li><a href="https://github.com/denorg/invert-kv" rel="noopener noreferrer">invert-kv</a> - Invert key-value pairs in Deno.</li>
+<li><a href="https://github.com/luvies/lazy" rel="noopener noreferrer">lazy</a> - A linq-like lazy-evaluation iteration module.</li>
+<li><a href="https://deno.land/x/localekit" rel="noopener noreferrer">locale-kit</a> (<a href="https://github.com/locale-kit/locale-kit" rel="noopener noreferrer">GitHub</a>) - A internationalisation/localisation/translation (i18n/l10n/t9n) library with a wrapper for Fresh and support for plurals and dynamic replacement.</li>
+<li><a href="https://github.com/mjrlowe/maze_generator" rel="noopener noreferrer">maze_generator</a> - Javascript module for generating, solving, analyzing and displaying mazes.</li>
+<li><a href="https://github.com/denolib/ms" rel="noopener noreferrer">ms</a> - Easily convert various time formats to milliseconds.</li>
+<li><a href="https://github.com/denorg/online" rel="noopener noreferrer">online</a> - Check if you're currently online in Deno.</li>
+<li><a href="https://github.com/OliverBrotchie/optionals" rel="noopener noreferrer">optionals</a> - Rust-like error handling and options with exhaustive pattern matching.</li>
+<li><a href="https://github.com/denorg/qrcode" rel="noopener noreferrer">qrcode</a> - QR code image generator for Deno.</li>
+<li><a href="https://github.com/denorg/recursive-readdir" rel="noopener noreferrer">recursive-readdir</a> - Recursively read directories in Deno.</li>
+<li><a href="https://github.com/richytong/rubico" rel="noopener noreferrer">rubico</a> - 🏞 [a]synchronous function composition; it just works.</li>
+<li><a href="https://github.com/deno-web3/solc" rel="noopener noreferrer">solc</a> - 💎 Solidity bindings for Deno.</li>
+<li><a href="https://github.com/switcherapi/switcher-client-deno" rel="noopener noreferrer">switcher4deno</a> - Feature Flag Deno SDK client for Switcher-API.</li>
+<li><a href="https://github.com/denoserverless/type-fest" rel="noopener noreferrer">type-fest</a> - A collection of essential TypeScript types (port of sindresorhus/type-fest).</li>
+<li><a href="https://github.com/yooneskh/unified-deno-lock" rel="noopener noreferrer">unified-deno-lock</a> - Powerful and simple lock (mutex) library to handle race conditions with zero dependencies</li>
+<li><a href="https://github.com/manyuanrong/wasm_gzip" rel="noopener noreferrer">wasm-gzip</a> - Perform gzip operations for Deno.</li>
+<li><a href="https://github.com/jinjor/deno-watch" rel="noopener noreferrer">watch</a> - A file watcher.</li>
+<li><a href="https://github.com/bokuweb/wu-diff-js" rel="noopener noreferrer">wu-diff-js</a> - A diff library to compute differences between two slices using wu(the O(NP)) algorithm.</li>
+<li><a href="https://github.com/roj1512/pls" rel="noopener noreferrer">PLS</a> - Use 2 lines to persist localStorage in any database, including, but not limited to, MongoDB, PostgreSQL and Redis.</li>
+<li><a href="https://github.com/hviana/deno_kv_fs" rel="noopener noreferrer">deno_kv_fs</a> Deno KV file system, compatible with Deno deploy. Makes use of Web Streams API.</li>
+</ul>
+<h3 id="validation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#validation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Validation</h3><ul>
+<li><a href="https://github.com/colinhacks/zod" rel="noopener noreferrer">zod</a> - TypeScript-first schema validation with static type inference.</li>
+</ul>
+<h3 id="video"><a class="anchor" aria-hidden="true" tabindex="-1" href="#video"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Video</h3><ul>
+<li><a href="https://github.com/c4spar/deno-fast-forward" rel="noopener noreferrer">Fast Forward</a> - An easy to use ffmpeg module for Deno. 🦕</li>
+</ul>
+<h3 id="web-framework"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web-framework"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web framework</h3><ul>
+<li><a href="https://github.com/l2ig/aqua" rel="noopener noreferrer">aqua</a> - A minimal and fast web framework for Deno.</li>
+<li><a href="https://github.com/alosaur/alosaur" rel="noopener noreferrer">alosaur</a> - Alosaur - Deno web framework with many ES Decorators.</li>
+<li><a href="https://github.com/Savory/Danet" rel="noopener noreferrer">danet</a> - A Savory web framework for Deno heavily inspired by <a href="https://nestjs.com" rel="noopener noreferrer">Nest.js</a>.</li>
+<li><a href="https://github.com/drashland/deno-drash" rel="noopener noreferrer">drash</a> - A REST microframework for Deno's HTTP server with zero dependencies.</li>
+<li><a href="https://github.com/hviana/faster" rel="noopener noreferrer">faster</a> - A fast and optimized middleware server with a set of useful middlwares.</li>
+<li><a href="https://github.com/hviana/faster_react" rel="noopener noreferrer">faster_react</a> - Full Stack web framework with React + Faster. Fully compatible with Deno Deploy.</li>
+<li><a href="https://github.com/honojs/hono" rel="noopener noreferrer">hono</a> - Ultrafast web framework for Cloudflare Workers, Deno, and Bun. Fast, but not only fast.</li>
+<li><a href="https://github.com/oakserver/oak" rel="noopener noreferrer">oak</a> - A middleware framework for Deno's net server.<ul>
+<li><a href="https://github.com/asos-craigmorten/oak-http-proxy" rel="noopener noreferrer">oak-http-proxy</a> - Proxy middleware for Deno Oak HTTP servers.</li>
+<li><a href="https://github.com/Thesephi/oak-routing-ctrl" rel="noopener noreferrer">oak-routing-ctrl</a> - TypeScript Decorators for easy scaffolding API services with the oak framework.</li>
+</ul>
+</li>
+<li><a href="https://github.com/asos-craigmorten/opine" rel="noopener noreferrer">opine</a> - Fast, minimalist web framework ported from ExpressJS.<ul>
+<li><a href="https://github.com/asos-craigmorten/opine-http-proxy" rel="noopener noreferrer">opine-http-proxy</a> - Proxy middleware for Deno Opine HTTP servers.</li>
+</ul>
+</li>
+<li><a href="https://github.com/zaiste/wren" rel="noopener noreferrer">wren</a> - A small, but powerful HTTP library with a functional spin for creating composable web apps, built for convenience and simplicity</li>
+<li><a href="https://primatejs.com" rel="noopener noreferrer">primate</a> - A polymorphic development platform</li>
+<li><a href="https://docs.yelix.dev/" rel="noopener noreferrer">Yelix</a> - Yelix is a <a href="https://github.com/honojs/hono" rel="noopener noreferrer">Hono</a> based Deno web server framework that simplifies backend development with built-in tools and automation.</li>
+</ul>
+<h3 id="websocket"><a class="anchor" aria-hidden="true" tabindex="-1" href="#websocket"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>WebSocket</h3><ul>
+<li><a href="https://github.com/ryo-ma/deno-websocket" rel="noopener noreferrer">deno-websocket</a> - 🦕 A simple WebSocket library like ws of node.js library.</li>
+<li><a href="https://github.com/denyncrawford/dropper-deno" rel="noopener noreferrer">dropper</a> - Custom event-based WebSockets framework for building real-time apps on Deno 🦕</li>
+<li><a href="https://github.com/JohanWinther/websocket_server" rel="noopener noreferrer">websocket_server</a> - A WebSocket server library.</li>
+<li><a href="https://github.com/drashland/wocket" rel="noopener noreferrer">wocket</a> - A WebSocket library for Deno.</li>
+</ul>
+<h3 id="web-utils"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web-utils"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web utils</h3><ul>
+<li><a href="https://github.com/deno-libs/compression" rel="noopener noreferrer">compression</a> - Deno HTTP compression middleware.</li>
+<li><a href="https://github.com/timonson/djwt" rel="noopener noreferrer">djwt</a> - Make JSON Web Tokens (JWT) on Deno based on JWT and JWS specifications.</li>
+<li><a href="https://github.com/deno-libs/forwarded" rel="noopener noreferrer">forwarded</a> - Deno port of <code>forwarded</code> library.</li>
+<li><a href="https://github.com/denoland/fresh_charts" rel="noopener noreferrer">fresh_chart</a> - A server-side-rendered charting library for Fresh.</li>
+<li><a href="https://github.com/timonson/gentleRpc" rel="noopener noreferrer">gentleRpc</a> - A JSON-RPC 2.0 TypeScript library for Deno and the browser.</li>
+<li><a href="https://github.com/deno-libs/gql" rel="noopener noreferrer">gql</a> - Universal GraphQL HTTP middleware.</li>
+<li><a href="https://github.com/deno-libs/graphql-tag" rel="noopener noreferrer">graphql-tag</a> - GraphQL schema AST from template literal.</li>
+<li><a href="https://github.com/nats-io/nats.deno" rel="noopener noreferrer">nats</a> - A Deno client for the <a href="https://nats.io/" rel="noopener noreferrer">NATS messaging system</a>.</li>
+<li><a href="https://github.com/oslabs-beta/obsidian" rel="noopener noreferrer">obsidian</a> - A native GraphQL caching client and server module.</li>
+<li><a href="https://github.com/denolib/qs" rel="noopener noreferrer">qs</a> - A query string parser with nesting support.</li>
+<li><a href="https://react-icons.deno.dev/" rel="noopener noreferrer">react-icons</a> - React Icons converted to preact for deno fresh.</li>
+<li><a href="https://github.com/zhmushan/router" rel="noopener noreferrer">router</a> - A high-performance basic router works anywhere.</li>
+<li><a href="https://github.com/deno-libs/rpc" rel="noopener noreferrer">rpc</a> - JSONRPC server implementation for Deno.</li>
+<li><a href="https://github.com/denosaurs/status" rel="noopener noreferrer">status</a> - HTTP codes and status utility for Deno.</li>
+<li><a href="https://github.com/omar2205/squishy_cookies" rel="noopener noreferrer">squishy_cookies</a> - Easily sign and verify cookies.</li>
+<li><a href="https://github.com/marcopacini/ts-prometheus" rel="noopener noreferrer">ts-prometheus</a> - A prometheus client.</li>
+<li><a href="https://github.com/denorg/up" rel="noopener noreferrer">up</a> - Check if a website is up in Deno.</li>
+<li><a href="https://github.com/akshgpt7/youtube-deno" rel="noopener noreferrer">youtube-deno</a> - A Deno client library for the YouTube Data API for any interaction with YouTube.</li>
+</ul>
+<h3 id="webview"><a class="anchor" aria-hidden="true" tabindex="-1" href="#webview"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Webview</h3><ul>
+<li><a href="https://github.com/astrodon/astrodon" rel="noopener noreferrer">Astrodon</a> - Modular framework for building native multi-platform apps with Deno and webview.</li>
+<li><a href="https://github.com/eliassjogreen/deno_webview" rel="noopener noreferrer">webview</a> - Deno bindings for webview, a tiny library for creating web-based desktop GUIs.</li>
+</ul>
+<h3 id="xml"><a class="anchor" aria-hidden="true" tabindex="-1" href="#xml"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>XML</h3><ul>
+<li><a href="https://github.com/nekobato/deno-xml-parser" rel="noopener noreferrer">deno-xml-parser</a> - Deno XML parser ported from segmentio/xml-parser.</li>
+<li><a href="https://github.com/Maxim-Mazurok/sax-ts" rel="noopener noreferrer">sax-ts</a> - SAX-style XML parser ported from <a href="https://github.com/isaacs/sax-js" rel="noopener noreferrer">sax-js</a>.</li>
+</ul>
+<h2 id="registries"><a class="anchor" aria-hidden="true" tabindex="-1" href="#registries"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Registries</h2><ul>
+<li><a href="https://crux.land/" rel="noopener noreferrer">crux.land</a> - A free registry service meant for hosting small ( &lt; 10kB) single deno scripts.</li>
+<li><a href="https://denopkg.com/" rel="noopener noreferrer">Deno PKG</a> - An easier way to use code from GitHub in your Deno project.</li>
+<li><a href="https://deno.land/x/" rel="noopener noreferrer">deno.land/x/</a> - The official 3rd party module registry.</li>
+<li><a href="https://nest.land" rel="noopener noreferrer">nest.land</a> - An immutable, blockchain powered Deno package registry. 🥚</li>
+</ul>
+<h2 id="showcases"><a class="anchor" aria-hidden="true" tabindex="-1" href="#showcases"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Showcases</h2><ul>
+<li><a href="https://github.com/vicky-gonsalves/deno_rest" rel="noopener noreferrer">Deno Rest</a> - A Boilerplate for deno RESTful apis.</li>
+<li><a href="https://github.com/tamasszoke/deno-seed" rel="noopener noreferrer">Deno Seed</a> - Complete boilerplate for development. 🌱</li>
+<li><a href="https://github.com/edrys-org/edrys" rel="noopener noreferrer">Edrys</a> - Remote Teaching Software</li>
+<li><a href="https://fresh.deno.dev/showcase" rel="noopener noreferrer">Fresh Showcase</a> - The official showcase of Fresh apps.</li>
+<li><a href="https://github.com/ryo-ma/github-profile-trophy" rel="noopener noreferrer">GitHub Profile Trophy</a> - 🏆 Add dynamically generated GitHub Trophy on your readme</li>
+<li><a href="https://github.com/saleor/deno-merch" rel="noopener noreferrer">Saleor Deno Merch</a> - A fork of the original Deno Merch e-commerce website, rebuilt with <a href="https://github.com/saleor/saleor" rel="noopener noreferrer">Saleor</a>.</li>
+<li><a href="https://deno.land/showcase" rel="noopener noreferrer">The Official Showcase</a> - The official showcase of Deno.</li>
+<li><a href="https://usingdeno.com" rel="noopener noreferrer">UsingDeno</a> - Curated list of Web Applications &amp; Projects using Deno 🦕.</li>
+</ul>
+<h2 id="tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tools</h2><ul>
+<li><a href="https://github.com/ekaragodin/clone" rel="noopener noreferrer">clone</a> - A simple utility for the convenient clone.</li>
+<li><a href="https://github.com/vinliao/decense" rel="noopener noreferrer">decense</a> - Generate a license with one <code>deno run</code> command.</li>
+<li><a href="https://github.com/egoist/dedep" rel="noopener noreferrer">dedep</a> - Manage dependency versions.</li>
+<li><a href="https://github.com/denoflow/denoflow" rel="noopener noreferrer">denoflow</a> - Configuration as code, use YAML to write automated workflows that run on Deno, with any Deno modules, Typescript/Javascript codes</li>
+<li><a href="https://github.com/garronej/denoify" rel="noopener noreferrer">denoify</a> - For NPM module authors that would like to support Deno but do not want to write and maintain a port.</li>
+<li><a href="https://github.com/syumai/deno-libs/tree/master/denoinit" rel="noopener noreferrer">denoinit</a> - Denoinit generates useful files for Deno project.</li>
+<li><a href="https://github.com/joakimunge/denoliver" rel="noopener noreferrer">denoliver</a> - A simple, dependency free file server with live reload.</li>
+<li><a href="https://github.com/siokas/denomander" rel="noopener noreferrer">denomander</a> - Deno command-line interfaces inspired from commander.js.</li>
+<li><a href="https://github.com/denosaurs/denon" rel="noopener noreferrer">denon</a> - A daemon script runner, like nodemon. Built in and for Deno.</li>
+<li><a href="https://github.com/apps/denopendabot" rel="noopener noreferrer">denopendabot</a> - Dependabot for Deno projects.</li>
+<li><a href="https://github.com/denopkg/denopkg.com" rel="noopener noreferrer">denopkg</a> - An easier way to use code from GitHub in your Deno project.</li>
+<li><a href="https://github.com/lucascaro/denoversion" rel="noopener noreferrer">denoversion</a> - SemVer and git version management for Deno.</li>
+<li><a href="https://github.com/BentoumiTech/denox" rel="noopener noreferrer">denox</a> - Like packages.json scripts, but for Deno with permissions support.</li>
+<li><a href="https://github.com/MarkTiedemann/deno.mk" rel="noopener noreferrer">deno.mk</a> - Cross-platform Makefile for installing and running Deno.</li>
+<li><a href="https://github.com/theGEBIRGE/DenoDig" rel="noopener noreferrer">Deno Dig</a> - A tool for extracting application code and npm packages from stand-alone Deno executables.</li>
+<li><a href="https://github.com/denoland/deno_docker" rel="noopener noreferrer">deno_docker</a> - Latest dockerfiles and images for Deno - alpine, centos, debian, ubuntu.</li>
+<li><a href="https://github.com/zhmushan/dev_server" rel="noopener noreferrer">dev_server</a> - Let TypeScript files be used directly in the script tag.</li>
+<li><a href="https://github.com/drashland/dmm" rel="noopener noreferrer">dmm</a> - Lightweight Deno Module Manager</li>
+<li><a href="https://github.com/denoland/dnt" rel="noopener noreferrer">dnt</a> - Deno to npm package build tool.</li>
+<li>dpm<ul>
+<li><a href="https://github.com/BoltDoggy/deno#dpm" rel="noopener noreferrer">BoltDoggy/deno#dpm</a> - Deno Package Manager, install global command for deno. like denoget.</li>
+<li><a href="https://github.com/dpmland/dpm" rel="noopener noreferrer">dpmland/dpm</a> - Deno Package Manager, a NPM | Yarn Experience for Deno</li>
+</ul>
+</li>
+<li>dvm<ul>
+<li><a href="https://github.com/asdf-community/asdf-deno.git" rel="noopener noreferrer">asdf-community/asdf-deno</a> - Deno plugin for <a href="https://asdf-vm.com/" rel="noopener noreferrer">asdf</a></li>
+<li><a href="https://github.com/justjavac/dvm" rel="noopener noreferrer">justjavac/dvm</a> - Deno Version Manager: manage multiple active Deno versions.</li>
+<li><a href="https://github.com/axetroy/dvm" rel="noopener noreferrer">axetroy/dvm</a> - Version manger for Deno without runtime dependencies.</li>
+<li><a href="https://github.com/MarkTiedemann/dvm.cmd" rel="noopener noreferrer">dvm.cmd</a> - Deno Version Manager for Windows. Written as a single batch file.</li>
+<li><a href="https://github.com/ghosind/dvm" rel="noopener noreferrer">ghosind/dvm</a> - A lightweight Deno Version Manager for Linux/MacOS.</li>
+</ul>
+</li>
+<li><a href="https://github.com/bcheidemann/entype" rel="noopener noreferrer">entype</a> - A CLI tool used to generate type definitions for serialised data, currently supporting JSON to Rust and TypeScript.</li>
+<li><a href="https://github.com/littletof/kopo-cli" rel="noopener noreferrer">kopo-cli</a> - A Deno registry browser in the terminal.</li>
+<li><a href="https://github.com/bevry/make-deno-edition" rel="noopener noreferrer">make-deno-edition</a> - Automatically makes package.json projects (such as npm packages and node.js modules) compatible with Deno.</li>
+<li><a href="https://github.com/dontlaugh/packer-provisioner-deno" rel="noopener noreferrer">packer-provisioner-deno</a> - A Packer plugin that makes it easy to build virtual machine images with Deno scripts.</li>
+<li><a href="https://github.com/nozaq/pre-commit-deno" rel="noopener noreferrer">pre-commit-deno</a> - pre-commit git hooks for Deno projects.</li>
+<li><a href="https://github.com/hexagon/pup" rel="noopener noreferrer">pup</a> - Advanced process manager for Deno. With autorestart, fs watch, cron start, process telemetry, ipc, clustering, load balancer and more.</li>
+<li><a href="https://github.com/denorg/starter" rel="noopener noreferrer">starter</a> - Deno module starter template with GitHub Actions CI</li>
+<li><a href="https://github.com/jersou/studio-pack-generator" rel="noopener noreferrer">studio-pack-generator</a> - Convert a folder or a RSS URL to Studio pack for Lunii device</li>
+<li><a href="https://github.com/crewdevio/Trex" rel="noopener noreferrer">trex</a> - Package management like npm for deno.</li>
+<li><a href="https://github.com/hayd/deno-udd" rel="noopener noreferrer">udd</a> - Update Deno dependencies: updates import statements to their latest published version.</li>
+<li><a href="https://github.com/umbopepato/velociraptor" rel="noopener noreferrer">velociraptor</a> - An npm-style script runner for Deno.</li>
+<li><a href="https://github.com/denoland/vscode_deno" rel="noopener noreferrer">vscode-deno</a> - VS Code extension that provides Deno support using the <code>TypeScript Deno language service plugin</code>.</li>
+<li><a href="https://github.com/denofn/denofn-selfhosted" rel="noopener noreferrer">denofn-selfhosted</a> - Self-hosted Deno functions, made with Deno and Docker.</li>
+</ul>
+<h2 id="integrations"><a class="anchor" aria-hidden="true" tabindex="-1" href="#integrations"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Integrations</h2><ul>
+<li><a href="https://docs.netlify.com/edge-functions/overview/" rel="noopener noreferrer">Netlify Edge Functions</a> - Edge Functions connect the Netlify platform and workflow.</li>
+<li><a href="https://api.slack.com/future/functions/custom" rel="noopener noreferrer">Slack Custom Functions</a> - Build custom Run On Slack functions using Deno.</li>
+<li><a href="https://www.smallweb.run/" rel="noopener noreferrer">Smallweb</a> - A personal cloud contained in a single directory. You can customize the server behavior using Deno.</li>
+<li><a href="https://supabase.com/docs/guides/functions" rel="noopener noreferrer">Supabase Edge Functions</a> - Edge Functions are server-side TypeScript functions, distributed globally at the edge.</li>
+<li><a href="https://docs.astro.build/en/guides/deploy/deno/" rel="noopener noreferrer">Astro</a> - Deploy a server-side rendered Astro site to Deno Deploy.</li>
+</ul>
+<h2 id="blogsnewsletters"><a class="anchor" aria-hidden="true" tabindex="-1" href="#blogsnewsletters"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Blogs/Newsletters</h2><ul>
+<li><a href="https://deno-blog.com" rel="noopener noreferrer">Craig's Deno Diary</a> - A blog focussing on Deno tech &amp; lib howtos.</li>
+<li><a href="https://deno.com/blog" rel="noopener noreferrer">Deno Blog</a> - The official blog of the Deno Company.</li>
+<li><a href="https://deno.news" rel="noopener noreferrer">Deno News</a> - A newsletter of Deno articles, news and cool projects.</li>
+</ul>
+<h2 id="articles"><a class="anchor" aria-hidden="true" tabindex="-1" href="#articles"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Articles</h2><ul>
+<li><a href="https://medium.com/@kitsonk/develop-with-deno-and-visual-studio-code-225ce7c5b1ba" rel="noopener noreferrer">Develop with Deno and Visual Studio Code</a></li>
+<li><a href="https://43081j.com/2019/01/first-look-at-deno" rel="noopener noreferrer">First thoughts on Deno, the JavaScript/TypeScript run-time</a></li>
+<li><a href="https://dev.to/wuz/getting-started-with-deno-e1m" rel="noopener noreferrer">Getting started with Deno</a></li>
+<li><a href="https://dev.to/bnevilleoneill/what-s-deno-and-how-is-it-different-from-node-js-366g" rel="noopener noreferrer">What's Deno, and how is it different from Node.js?</a></li>
+<li><a href="https://dev.to/kryz/write-a-small-api-using-deno-1cl0" rel="noopener noreferrer">Write a small API using Deno</a></li>
+<li><a href="https://medium.com/google-cloud/deno-on-cloud-run-89ae64d1664d" rel="noopener noreferrer">Deno on Cloud Run</a></li>
+<li><a href="https://aralroca.com/blog/learn-deno-chat-app" rel="noopener noreferrer">Learn Deno: Chat app</a></li>
+<li><a href="https://dev.to/aralroca/from-node-to-deno-5gpn" rel="noopener noreferrer">From Node to Deno</a></li>
+<li><a href="https://dev.to/jeferson_sb/create-a-simple-note-taking-app-with-deno-3k7g" rel="noopener noreferrer">Create a simple Note-taking app with Deno</a></li>
+<li><a href="https://codeforgeek.com/building-api-server-using-deno-and-mysql/" rel="noopener noreferrer">Building API's using Deno, Oak and MYSQL</a></li>
+<li><a href="https://medium.com/javascript-in-plain-english/creating-your-first-news-cli-app-using-deno-e1470398c627" rel="noopener noreferrer">Create your first News CLI app using Deno</a></li>
+<li><a href="https://semaphoreci.com/blog/continuous-integration-with-deno" rel="noopener noreferrer">Continuous Integration with Deno</a></li>
+<li><a href="https://stefanbuck.com/blog/hidden-superpower-deno-xeval" rel="noopener noreferrer">The Hidden Superpower of Deno: xeval</a></li>
+<li>Deno REST API with Oak Tutorial Series <a href="https://www.robinwieruch.de/deno-tutorial" rel="noopener noreferrer">0</a>, <a href="https://www.robinwieruch.de/deno-oak" rel="noopener noreferrer">1</a>, <a href="https://www.robinwieruch.de/deno-oak-rest-api" rel="noopener noreferrer">2</a></li>
+<li><a href="https://sabe.io/tutorials/getting-started-with-deno" rel="noopener noreferrer">Getting Started with Deno</a></li>
+<li><a href="https://sabe.io/tutorials/how-to-deploy-deno-app-docker" rel="noopener noreferrer">How to deploy a Deno app using Docker</a></li>
+</ul>
+<h2 id="presentations"><a class="anchor" aria-hidden="true" tabindex="-1" href="#presentations"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Presentations</h2><ul>
+<li><a href="https://www.youtube.com/watch?v=M3BM9TB-8yA" rel="noopener noreferrer">10 Things I Regret About Node.js - Ryan Dahl - JSConf EU 2018</a><ul>
+<li><a href="https://tinyclouds.org/jsconf2018.pdf" rel="noopener noreferrer">Slides</a></li>
+</ul>
+</li>
+<li><a href="https://www.youtube.com/watch?v=FlTG0UXRAkE" rel="noopener noreferrer">JSDC 2018#A01 - Deno, A New Server-Side Runtime By Ryan Dahl</a></li>
+<li><a href="https://www.youtube.com/watch?v=z6JRlx5NC9E" rel="noopener noreferrer">Ryan Dahl. Deno, a new way to JavaScript. JS Fest 2019 Spring</a><ul>
+<li><a href="https://www.slideshare.net/JSFestUA/js-fest-2019-ryan-dahl-deno-a-new-way-to-javascript" rel="noopener noreferrer">Slides</a></li>
+</ul>
+</li>
+<li><a href="https://www.youtube.com/watch?v=Aib1OZLy0_c" rel="noopener noreferrer">Rafał Pocztarski — From Node.js to Deno - JavaScript/TypeScript runtime built with V8 and Rust [EN]</a></li>
+<li><a href="https://www.youtube.com/watch?v=RAmqgbv247s" rel="noopener noreferrer">Ryan Dahl: A secure runtime for JavaScript and TypeScript | js.la April 2019</a><ul>
+<li><a href="https://docs.google.com/presentation/d/1CSQVTeH5tFzE4AZVXIpx9Xwew5YS-gxJZ03eRFtNeIc/edit" rel="noopener noreferrer">Slides</a></li>
+</ul>
+</li>
+<li><a href="https://www.youtube.com/watch?v=HjdJzNoT_qg" rel="noopener noreferrer">Ryan Dahl: Deno, a new way to JavaScript - HolyJS 2019 Piter</a><ul>
+<li><a href="https://docs.google.com/presentation/d/1BjvZx5S8noVfFINptH4jfKfqh9jB9nXlFC0I3oIDtg4/edit" rel="noopener noreferrer">Slides</a></li>
+</ul>
+</li>
+<li><a href="https://www.youtube.com/watch?v=aI5A9zvYSjk" rel="noopener noreferrer">Rafał Pocztarski - What is Deno? A new runtime for modern JavaScript and TypeScript backends for 2020s - Deno Warsaw</a></li>
+<li><a href="https://www.youtube.com/watch?v=LAtjnKLbPpw" rel="noopener noreferrer">Michał Sabiniarz - How to contribute to Deno? - Deno Warsaw</a></li>
+<li><a href="https://www.youtube.com/watch?v=qt7fbmypAFk" rel="noopener noreferrer">Bartek Iwańczuk - Deno internals, how modern runtime is built - Deno Warsaw</a><ul>
+<li><a href="https://docs.google.com/presentation/d/1LYNGpyjx9PemL-P__7hVC8mSqkX-jL8VQLMhCRehy00/edit?usp=sharing" rel="noopener noreferrer">Slides</a></li>
+</ul>
+</li>
+<li><a href="https://www.youtube.com/watch?v=1gIiZfSbEAE" rel="noopener noreferrer">Ryan Dahl &amp; Kitson Kelly: Deno is a New Way to JavaScript - TSConf 2019</a></li>
+<li><a href="https://www.youtube.com/watch?v=puXyo1jGQys" rel="noopener noreferrer">Bert Belder - Deno - dotJS 2019</a></li>
+<li><a href="https://www.youtube.com/watch?v=2eRyZpX4qvI" rel="noopener noreferrer">Kitson P. Kelly - Deno, and The Future of JavaScript Runtimes - CityJS Conf 2020</a></li>
+<li><a href="https://www.youtube.com/watch?v=N0BRE-0n2cU" rel="noopener noreferrer">Matías Insaurralde - Deno: an experimental approach on V8 interoperability [EN subtitles] - NodeConf Argentina 2019</a><ul>
+<li><a href="https://speakerdeck.com/matiasinsaurralde/deno-an-experimental-approach-on-v8-interoperability" rel="noopener noreferrer">Slides</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="resources"><a class="anchor" aria-hidden="true" tabindex="-1" href="#resources"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Resources</h2><h3 id="books"><a class="anchor" aria-hidden="true" tabindex="-1" href="#books"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Books</h3><ul>
+<li><a href="https://bpbonline.com/products/modern-web-development-with-deno" rel="noopener noreferrer">Modern Web Development with Deno</a></li>
+</ul>
+<h2 id="resources-in-other-languages"><a class="anchor" aria-hidden="true" tabindex="-1" href="#resources-in-other-languages"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Resources in Other Languages</h2><h3 id="chinese"><a class="anchor" aria-hidden="true" tabindex="-1" href="#chinese"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Chinese</h3><ul>
+<li><a href="https://juejin.im/post/5b14a390e51d4506c1300bbc" rel="noopener noreferrer">Deno 并不是下一代 Node.js</a></li>
+<li><a href="https://juejin.im/post/5b1245b3f265da6e4c6cf249" rel="noopener noreferrer">玩 Deno 遇到问题的解决方案</a></li>
+<li><a href="https://segmentfault.com/a/1190000015151287" rel="noopener noreferrer">让我们一起来学习别人学不动的 Deno</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/37637923" rel="noopener noreferrer">Design Mistakes in Node zh-CN</a></li>
+<li><a href="https://mp.weixin.qq.com/s/7XAiYw18c8YZc-fXk0-wrw" rel="noopener noreferrer">Node之父ry：Node中的设计错误</a></li>
+<li><a href="https://github.com/chenshenhai/deno_note/" rel="noopener noreferrer">《Deno进阶开发笔记》</a></li>
+<li><a href="https://github.com/Nugine/deno-manual-cn/" rel="noopener noreferrer">Deno 手册</a></li>
+<li><a href="https://deno.js.cn" rel="noopener noreferrer">Deno 中文开发者社区</a></li>
+<li><a href="https://www.bilibili.com/video/av52038617" rel="noopener noreferrer">Node之父 - Deno，一个新的JS运行时</a></li>
+</ul>
+<h3 id="hebrew"><a class="anchor" aria-hidden="true" tabindex="-1" href="#hebrew"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Hebrew</h3><ul>
+<li><a href="https://www.youtube.com/watch?v=9tJ_LkI6_qw" rel="noopener noreferrer">Deno intro in Hebrew (slides in English)</a></li>
+</ul>
+<h3 id="indonesian"><a class="anchor" aria-hidden="true" tabindex="-1" href="#indonesian"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Indonesian</h3><ul>
+<li><a href="https://medium.com/@redhajuanda/berkenalan-dengan-dengan-deno-c48cdf3aa31e" rel="noopener noreferrer">Berkenalan dengan Deno</a></li>
+<li><a href="https://youtu.be/V_kpUTJSd9c" rel="noopener noreferrer">Perkenalan Deno dan Instalasi</a></li>
+<li><a href="https://t.me/deno_id" rel="noopener noreferrer">Deno Land Indonesia Telegram group</a></li>
+</ul>
+<h3 id="italian"><a class="anchor" aria-hidden="true" tabindex="-1" href="#italian"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Italian</h3><ul>
+<li><a href="https://www.slideshare.net/FrancescoSciuti/deno-lanagramma-di-node" rel="noopener noreferrer">Deno - L'anagramma di Node</a></li>
+</ul>
+<h3 id="japanese"><a class="anchor" aria-hidden="true" tabindex="-1" href="#japanese"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Japanese</h3><ul>
+<li><a href="https://deno-ja.deno.dev/" rel="noopener noreferrer">deno-ja</a> - Deno Japanese User Group.</li>
+<li><a href="https://yosuke-furukawa.hatenablog.com/entry/2018/06/07/080335" rel="noopener noreferrer">Node.js における設計ミス By Ryan Dahl</a></li>
+<li><a href="https://gist.github.com/mizchi/31e5628751330b624a0e8ada9e739b1e" rel="noopener noreferrer">mizchi/deno_code_reading.md</a></li>
+<li><a href="https://speakerdeck.com/masashi/deno" rel="noopener noreferrer">Design Mistakes in Node &amp; Deno #kng5 / deno</a></li>
+<li><a href="https://blog.leko.jp/post/code-reading-of-deno-boot-process/" rel="noopener noreferrer">Dive into Deno：プロセス起動からTypeScriptが実行されるまで</a></li>
+</ul>
+<h3 id="korean"><a class="anchor" aria-hidden="true" tabindex="-1" href="#korean"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Korean</h3><ul>
+<li><a href="https://deno.kr/" rel="noopener noreferrer">Deno Korea</a> - Deno Korean User Group.</li>
+</ul>
+<h3 id="russian"><a class="anchor" aria-hidden="true" tabindex="-1" href="#russian"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Russian</h3><ul>
+<li><a href="https://t.me/denoland_ru" rel="noopener noreferrer">Telegram channel</a></li>
+<li><a href="https://t.me/denoland" rel="noopener noreferrer">Telegram chat</a></li>
+</ul>
+<h3 id="spanish"><a class="anchor" aria-hidden="true" tabindex="-1" href="#spanish"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Spanish</h3><ul>
+<li><a href="https://medium.com/javascript-espa%C3%B1ol/hola-deno-f31f9f6f2c84" rel="noopener noreferrer">Hola Deno! . 🦕</a></li>
+<li><a href="https://medium.com/@mpampols/as%C3%AD-puedes-crear-tu-primera-api-rest-con-deno-a9094ee5c0b2" rel="noopener noreferrer">Así puedes crear tu primera API REST con Deno</a></li>
+<li><a href="https://medium.com/@manurua/primeros-pasos-con-deno-el-nuevo-nodejs-desarrollado-con-rust-y-typescript-b9ac14f7d0c7" rel="noopener noreferrer">Primeros pasos con Deno 🦕 El sucesor de NodeJS desarrollado con Rust y TypeScript</a></li>
+<li><a href="https://dev.to/buttercubz/first-look-with-deno-spanish-30dh" rel="noopener noreferrer">Primer vistazo con deno</a></li>
+</ul>
+<h3 id="darija"><a class="anchor" aria-hidden="true" tabindex="-1" href="#darija"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Darija</h3><ul>
+<li><a href="https://www.youtube.com/watch?v=Y_etUvzAa4s" rel="noopener noreferrer">A first look at Deno | BlaBlaConf 2021 🇲🇦</a></li>
+</ul>
+<h3 id="kurdish-central"><a class="anchor" aria-hidden="true" tabindex="-1" href="#kurdish-central"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Kurdish (Central)</h3><ul>
+<li><a href="https://devs.krd/about-deno" rel="noopener noreferrer">A short introduction to Deno</a></li>
+</ul>
+
+
+    </main>
+  </body>
+</html>

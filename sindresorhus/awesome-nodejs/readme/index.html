@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Awesome Nodejs (sindresorhus/awesome-nodejs) Overview - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/sindresorhus/awesome-nodejs/readme/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Awesome Nodejs Overview" />
+    <meta property="og:description" content=":zap: Delightful Node.js packages and resources" />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Awesome Nodejs Overview</h1>
+<p>:zap: Delightful Node.js packages and resources</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/sindresorhus/awesome-nodejs/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/sindresorhus/awesome-nodejs">😺 sindresorhus/awesome-nodejs</a><span> · </span><span>⭐ 62K</span><span> · </span><span>🏷️ Platforms</span></p>
+<p><span>[ </span><a href="/sindresorhus/awesome-nodejs/">Daily</a><span> / </span><a href="/sindresorhus/awesome-nodejs/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
+<div>
+    <div>
+        <img width="500" src="https://github.com/sindresorhus/awesome-nodejs/raw/main/media/logo.svg" alt="Awesome Node.js" />
+        <br />
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <hr />
+    <p>
+        </p><p>
+            <sup>
+                <a href="https://github.com/sponsors/sindresorhus">My open source work is supported by the community</a>
+            </sup>
+        </p>
+        <sup>Special thanks to:</sup>
+        <br />
+        <br />
+        <br />
+        <a href="https://nitric.io/?utm_campaign=github_repo&amp;utm_medium=referral&amp;utm_content=sindresorhus&amp;utm_source=github">
+            <div>
+                <img width="230" src="https://sindresorhus.com/assets/thanks/nitric-logo.svg" alt="nitric logo" />
+            </div>
+            <b>Effortless backends with infrastructure from code</b>
+            <div>
+                <sup>An open-source framework that supports any programming language, cloud provider, or deployment automation tool.</sup>
+            </div>
+        </a>
+        <br />
+        <br />
+    <p></p>
+    <hr />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <a href="https://awesome.re">
+        <img src="https://awesome.re/badge-flat2.svg" alt="Awesome" />
+    </a>
+    <p>
+        <sub>Just type <a href="https://node.cool"><code>node.cool</code></a> to go here. Follow me on <a href="https://twitter.com/sindresorhus">Twitter</a>.</sub>
+    </p>
+    <br />
+    <p>
+        <a href="https://en.wikipedia.org/wiki/Node.js">Node.js</a> is an open-source, cross-platform, JavaScript runtime for writing servers and command-line tools.
+    </p>
+    <br />
+</div>
+
+<h2 id="contents"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contents"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contents</h2><ul>
+<li><a href="#official">Official</a></li>
+<li><a href="#packages">Packages</a><ul>
+<li><a href="#mad-science">Mad science</a></li>
+<li><a href="#command-line-apps">Command-line apps</a></li>
+<li><a href="#functional-programming">Functional programming</a></li>
+<li><a href="#http">HTTP</a></li>
+<li><a href="#debugging--profiling">Debugging / Profiling</a></li>
+<li><a href="#logging">Logging</a></li>
+<li><a href="#command-line-utilities">Command-line utilities</a></li>
+<li><a href="#build-tools">Build tools</a></li>
+<li><a href="#hardware">Hardware</a></li>
+<li><a href="#templating">Templating</a></li>
+<li><a href="#web-frameworks">Web frameworks</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#filesystem">Filesystem</a></li>
+<li><a href="#control-flow">Control flow</a></li>
+<li><a href="#streams">Streams</a></li>
+<li><a href="#real-time">Real-time</a></li>
+<li><a href="#image">Image</a></li>
+<li><a href="#text">Text</a></li>
+<li><a href="#number">Number</a></li>
+<li><a href="#math">Math</a></li>
+<li><a href="#date">Date</a></li>
+<li><a href="#url">URL</a></li>
+<li><a href="#data-validation">Data validation</a></li>
+<li><a href="#parsing">Parsing</a></li>
+<li><a href="#humanize">Humanize</a></li>
+<li><a href="#compression">Compression</a></li>
+<li><a href="#network">Network</a></li>
+<li><a href="#database">Database</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#security">Security</a></li>
+<li><a href="#benchmarking">Benchmarking</a></li>
+<li><a href="#minifiers">Minifiers</a></li>
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#authorization">Authorization</a></li>
+<li><a href="#email">Email</a></li>
+<li><a href="#job-queues">Job queues</a></li>
+<li><a href="#nodejs-management">Node.js management</a></li>
+<li><a href="#cross-platform-integration">Cross-platform integration</a></li>
+<li><a href="#natural-language-processing">Natural language processing</a></li>
+<li><a href="#process-management">Process management</a></li>
+<li><a href="#automation">Automation</a></li>
+<li><a href="#ast">AST</a></li>
+<li><a href="#static-site-generators">Static site generators</a></li>
+<li><a href="#content-management-systems">Content management systems</a></li>
+<li><a href="#forum">Forum</a></li>
+<li><a href="#blogging">Blogging</a></li>
+<li><a href="#weird">Weird</a></li>
+<li><a href="#serialization">Serialization</a></li>
+<li><a href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li><a href="#package-manager">Package Manager</a></li>
+<li><a href="#resources">Resources</a><ul>
+<li><a href="#tutorials">Tutorials</a></li>
+<li><a href="#discovery">Discovery</a></li>
+<li><a href="#articles">Articles</a></li>
+<li><a href="#newsletters">Newsletters</a></li>
+<li><a href="#videos">Videos</a></li>
+<li><a href="#books">Books</a></li>
+<li><a href="#blogs">Blogs</a></li>
+<li><a href="#courses">Courses</a></li>
+<li><a href="#cheatsheets">Cheatsheets</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="#community">Community</a></li>
+<li><a href="#miscellaneous-1">Miscellaneous</a></li>
+</ul>
+</li>
+<li><a href="#related-lists">Related lists</a></li>
+</ul>
+<h2 id="official"><a class="anchor" aria-hidden="true" tabindex="-1" href="#official"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Official</h2><ul>
+<li><a href="https://nodejs.org" rel="noopener noreferrer">Website</a></li>
+<li><a href="https://nodejs.org/dist/latest/docs/api/" rel="noopener noreferrer">Documentation</a></li>
+<li><a href="https://github.com/nodejs/node" rel="noopener noreferrer">Repository</a></li>
+</ul>
+<h2 id="packages"><a class="anchor" aria-hidden="true" tabindex="-1" href="#packages"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Packages</h2><h3 id="mad-science"><a class="anchor" aria-hidden="true" tabindex="-1" href="#mad-science"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Mad science</h3><ul>
+<li><a href="https://github.com/webtorrent/webtorrent" rel="noopener noreferrer">webtorrent</a> - Streaming torrent client for Node.js and the browser.</li>
+<li><a href="https://github.com/mafintosh/peerflix" rel="noopener noreferrer">peerflix</a> - Streaming torrent client.</li>
+<li><a href="https://github.com/ipfs/helia" rel="noopener noreferrer">ipfs</a> - Distributed file system that seeks to connect all computing devices with the same system of files.</li>
+<li><a href="https://github.com/stackgl" rel="noopener noreferrer">stackgl</a> - Open software ecosystem for WebGL, built on top of browserify and npm.</li>
+<li><a href="https://github.com/mafintosh/peerwiki" rel="noopener noreferrer">peerwiki</a> - All of Wikipedia on BitTorrent.</li>
+<li><a href="https://github.com/mafintosh/peercast" rel="noopener noreferrer">peercast</a> - Stream a torrent video to Chromecast.</li>
+<li><a href="https://github.com/bitcoinjs/bitcoinjs-lib" rel="noopener noreferrer">BitcoinJS</a> - Clean, readable, proven Bitcoin library.</li>
+<li><a href="https://github.com/bitpay/bitcore" rel="noopener noreferrer">Bitcore</a> - Pure and powerful Bitcoin library.</li>
+<li><a href="https://github.com/foliojs/pdfkit" rel="noopener noreferrer">PDFKit</a> - PDF generation library.</li>
+<li><a href="https://github.com/Turfjs/turf" rel="noopener noreferrer">turf</a> - Modular geospatial processing and analysis engine.</li>
+<li><a href="https://github.com/mafintosh/webcat" rel="noopener noreferrer">webcat</a> - p2p pipe across the web using WebRTC that uses your GitHub private/public key for authentication.</li>
+<li><a href="https://github.com/NodeOS/NodeOS" rel="noopener noreferrer">NodeOS</a> - The first operating system powered by npm.</li>
+<li><a href="https://github.com/yodaos-project/yodaos" rel="noopener noreferrer">YodaOS</a> - AI operating system.</li>
+<li><a href="https://github.com/BrainJS/brain.js" rel="noopener noreferrer">Brain.js</a> - Machine-learning framework.</li>
+<li><a href="https://github.com/alibaba/pipcook" rel="noopener noreferrer">Pipcook</a> - Front-end algorithm framework to create a machine learning pipeline.</li>
+<li><a href="https://github.com/cytoscape/cytoscape.js" rel="noopener noreferrer">Cytoscape.js</a> - Graph theory (a.k.a. network) modeling and analysis.</li>
+<li><a href="https://github.com/creationix/js-git" rel="noopener noreferrer">js-git</a> - JavaScript implementation of Git.</li>
+<li><a href="https://github.com/SheetJS/sheetjs" rel="noopener noreferrer">xlsx</a> - Pure JS Excel spreadsheet reader and writer.</li>
+<li><a href="https://github.com/isomorphic-git/isomorphic-git" rel="noopener noreferrer">isomorphic-git</a> - Pure JavaScript implementation of Git.</li>
+</ul>
+<h3 id="command-line-apps"><a class="anchor" aria-hidden="true" tabindex="-1" href="#command-line-apps"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Command-line apps</h3><ul>
+<li><a href="https://github.com/sindresorhus/np" rel="noopener noreferrer">np</a> - Better <code>npm publish</code>.</li>
+<li><a href="https://github.com/sindresorhus/npm-name" rel="noopener noreferrer">npm-name</a> - Check a package name's availability on npm.</li>
+<li><a href="https://github.com/sindresorhus/gh-home" rel="noopener noreferrer">gh-home</a> - Open the GitHub page of the repo in the current directory.</li>
+<li><a href="https://github.com/sindresorhus/npm-home" rel="noopener noreferrer">npm-home</a> - Open the npm page of a package.</li>
+<li><a href="https://github.com/sindresorhus/trash" rel="noopener noreferrer">trash</a> - Safer alternative to <code>rm</code>.</li>
+<li><a href="https://github.com/sindresorhus/speed-test" rel="noopener noreferrer">speed-test</a> - Test your internet connection speed and ping.</li>
+<li><a href="https://github.com/sindresorhus/pageres" rel="noopener noreferrer">pageres</a> - Capture website screenshots.</li>
+<li><a href="https://github.com/sindresorhus/cpy" rel="noopener noreferrer">cpy</a> - Copy files.</li>
+<li><a href="https://github.com/MrRio/vtop" rel="noopener noreferrer">vtop</a> - More better top, with nice charts.</li>
+<li><a href="https://github.com/sindresorhus/empty-trash" rel="noopener noreferrer">empty-trash</a> - Empty the trash.</li>
+<li><a href="https://github.com/sindresorhus/is-up" rel="noopener noreferrer">is-up</a> - Check whether a website is up or down.</li>
+<li><a href="https://github.com/sindresorhus/is-online" rel="noopener noreferrer">is-online</a> - Check if the internet connection is up.</li>
+<li><a href="https://github.com/sindresorhus/public-ip" rel="noopener noreferrer">public-ip</a> - Get your public IP address.</li>
+<li><a href="https://github.com/sindresorhus/clipboard-cli" rel="noopener noreferrer">clipboard-cli</a> - Copy &amp; paste on the terminal.</li>
+<li><a href="https://github.com/xojs/xo" rel="noopener noreferrer">XO</a> - Enforce strict code style using the JavaScript happiness style.</li>
+<li><a href="https://github.com/eslint/eslint" rel="noopener noreferrer">ESLint</a> - The pluggable linting utility for JavaScript.</li>
+<li><a href="https://github.com/alanshaw/david" rel="noopener noreferrer">David</a> - Tells you when your package npm dependencies are out of date.</li>
+<li><a href="https://github.com/http-party/http-server" rel="noopener noreferrer">http-server</a> - Simple, zero-config command-line HTTP server.</li>
+<li><a href="https://github.com/tapio/live-server" rel="noopener noreferrer">Live Server</a> - Development HTTP-server with livereload capability.</li>
+<li><a href="https://github.com/kessler/node-bcat" rel="noopener noreferrer">bcat</a> - Pipe command output to web browsers.</li>
+<li><a href="https://github.com/pawurb/normit" rel="noopener noreferrer">normit</a> - Google Translate with speech synthesis in your terminal.</li>
+<li><a href="https://github.com/sindresorhus/fkill-cli" rel="noopener noreferrer">fkill</a> - Fabulously kill processes. Cross-platform.</li>
+<li><a href="https://github.com/danielstjules/pjs" rel="noopener noreferrer">pjs</a> - Pipeable JavaScript. Quickly filter, map, and reduce from the terminal.</li>
+<li><a href="https://github.com/davglass/license-checker" rel="noopener noreferrer">license-checker</a> - Check licenses of your app's dependencies.</li>
+<li><a href="https://github.com/juliangruber/browser-run" rel="noopener noreferrer">browser-run</a> - Easily run code in a browser environment.</li>
+<li><a href="https://github.com/sindresorhus/tmpin" rel="noopener noreferrer">tmpin</a> - Adds stdin support to any CLI app that accepts file input.</li>
+<li><a href="https://github.com/sindresorhus/wallpaper" rel="noopener noreferrer">wallpaper</a> - Change the desktop wallpaper.</li>
+<li><a href="https://github.com/hatashiro/pen" rel="noopener noreferrer">pen</a> - Live Markdown preview in the browser from your favorite editor.</li>
+<li><a href="https://github.com/sindresorhus/dark-mode" rel="noopener noreferrer">dark-mode</a> - Toggle the macOS Dark Mode.</li>
+<li><a href="https://github.com/Javascipt/Jsome" rel="noopener noreferrer">Jsome</a> - Pretty prints JSON with configurable colors and indentation.</li>
+<li><a href="https://github.com/samverschueren/mobicon-cli" rel="noopener noreferrer">mobicon</a> - Mobile app icon generator.</li>
+<li><a href="https://github.com/samverschueren/mobisplash-cli" rel="noopener noreferrer">mobisplash</a> - Mobile app splash screen generator.</li>
+<li><a href="https://github.com/rtfpessoa/diff2html-cli" rel="noopener noreferrer">diff2html-cli</a> - Pretty git diff to HTML generator.</li>
+<li><a href="https://github.com/victorb/trymodule" rel="noopener noreferrer">trymodule</a> - Try out npm packages in the terminal.</li>
+<li><a href="https://github.com/kucherenko/jscpd" rel="noopener noreferrer">jscpd</a> - Copy/paste detector for source code.</li>
+<li><a href="https://github.com/Raathigesh/Atmo" rel="noopener noreferrer">atmo</a> - Server-side API mocking.</li>
+<li><a href="https://github.com/siddharthkp/auto-install" rel="noopener noreferrer">auto-install</a> - Auto installs dependencies as you code.</li>
+<li><a href="https://github.com/linuxenko/lessmd" rel="noopener noreferrer">lessmd</a> - Markdown in the terminal.</li>
+<li><a href="https://github.com/siddharthkp/cost-of-modules" rel="noopener noreferrer">cost-of-modules</a> - Find out which dependencies are slowing you down.</li>
+<li><a href="https://github.com/localtunnel/localtunnel" rel="noopener noreferrer">localtunnel</a> - Expose your localhost to the world.</li>
+<li><a href="https://github.com/marionebl/svg-term-cli" rel="noopener noreferrer">svg-term-cli</a> - Share terminal sessions via SVG.</li>
+<li><a href="https://github.com/aksakalli/gtop" rel="noopener noreferrer">gtop</a> - System monitoring dashboard for the terminal.</li>
+<li><a href="https://github.com/themerdev/themer" rel="noopener noreferrer">themer</a> - Generate themes for your editor, terminal, wallpaper, Slack, and more.</li>
+<li><a href="https://github.com/mixn/carbon-now-cli" rel="noopener noreferrer">carbon-now-cli</a> - Beautiful images of your code — from right inside your terminal.</li>
+<li><a href="https://github.com/xxczaki/cash-cli" rel="noopener noreferrer">cash-cli</a> - Convert between 170 currencies.</li>
+<li><a href="https://github.com/klaussinani/taskbook" rel="noopener noreferrer">taskbook</a> - Tasks, boards &amp; notes for the command-line habitat.</li>
+<li><a href="https://github.com/brandonweiss/discharge" rel="noopener noreferrer">discharge</a> - Easily deploy static websites to Amazon S3.</li>
+<li><a href="https://github.com/voidcosmos/npkill" rel="noopener noreferrer">npkill</a> - Easily find and remove old and heavy node_modules folders.</li>
+</ul>
+<h3 id="functional-programming"><a class="anchor" aria-hidden="true" tabindex="-1" href="#functional-programming"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Functional programming</h3><ul>
+<li><a href="https://github.com/lodash/lodash" rel="noopener noreferrer">lodash</a> - Utility library delivering consistency, customization, performance, &amp; extras. A better and faster Underscore.js.</li>
+<li><a href="https://github.com/immutable-js/immutable-js" rel="noopener noreferrer">immutable</a> - Immutable data collections.</li>
+<li><a href="https://github.com/ramda/ramda" rel="noopener noreferrer">Ramda</a> - Utility library with a focus on flexible functional composition enabled by automatic currying and reversed argument order. Avoids mutating data.</li>
+<li><a href="https://github.com/mout/mout" rel="noopener noreferrer">Mout</a> - Utility library with the biggest difference between other existing solutions is that you can choose to load only the modules/functions that you need, no extra overhead.</li>
+<li><a href="https://github.com/reactivex/rxjs" rel="noopener noreferrer">RxJS</a> - Functional reactive library for transforming, composing, and querying various kinds of data.</li>
+<li><a href="https://github.com/kefirjs/kefir" rel="noopener noreferrer">Kefir.js</a> - Reactive library with focus on high performance and low memory usage.</li>
+</ul>
+<h3 id="http"><a class="anchor" aria-hidden="true" tabindex="-1" href="#http"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>HTTP</h3><ul>
+<li><a href="https://github.com/sindresorhus/got" rel="noopener noreferrer">got</a> - Nicer interface to the built-in <code>http</code> module.</li>
+<li><a href="https://github.com/nodejs/undici" rel="noopener noreferrer">undici</a> - High performance HTTP client written from scratch with zero dependencies.</li>
+<li><a href="https://github.com/sindresorhus/ky-universal" rel="noopener noreferrer">ky-universal</a> - Universal HTTP client based on Fetch.</li>
+<li><a href="https://github.com/node-fetch/node-fetch" rel="noopener noreferrer">node-fetch</a> - <code>window.fetch</code> for Node.js.</li>
+<li><a href="https://github.com/axios/axios" rel="noopener noreferrer">axios</a> - Promise based HTTP client (works in the browser too).</li>
+<li><a href="https://github.com/visionmedia/superagent" rel="noopener noreferrer">superagent</a> - HTTP request library.</li>
+<li><a href="https://github.com/micromata/http-fake-backend" rel="noopener noreferrer">http-fake-backend</a> - Build a fake backend by providing the content of JSON files or JavaScript objects through configurable routes.</li>
+<li><a href="https://github.com/lukechilds/cacheable-request" rel="noopener noreferrer">cacheable-request</a> - Wrap native HTTP requests with RFC compliant cache support.</li>
+<li><a href="https://github.com/khaosdoctor/gotql" rel="noopener noreferrer">gotql</a> - GraphQL request library built on <a href="https://github.com/sindresorhus/got" rel="noopener noreferrer">got</a>.</li>
+<li><a href="https://github.com/gajus/global-agent" rel="noopener noreferrer">global-agent</a> - Global HTTP/HTTPS proxy agent that is configurable using environment variables.</li>
+<li><a href="https://github.com/sinedied/smoke" rel="noopener noreferrer">smoke</a> - File-based HTTP mock server with recording abilities.</li>
+<li><a href="https://github.com/simov/purest" rel="noopener noreferrer">purest</a> - REST client.</li>
+</ul>
+<h3 id="debugging--profiling"><a class="anchor" aria-hidden="true" tabindex="-1" href="#debugging--profiling"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Debugging / Profiling</h3><ul>
+<li><a href="https://github.com/debug-js/debug" rel="noopener noreferrer">debug</a> - Tiny debugging utility.</li>
+<li><a href="https://github.com/mafintosh/why-is-node-running" rel="noopener noreferrer">why-is-node-running</a> - Node.js is running but you don't know why?</li>
+<li><a href="https://github.com/valyouw/njstrace" rel="noopener noreferrer">njsTrace</a> - Instrument and trace your code, see all function calls, arguments, return values, as well as the time spent in each function.</li>
+<li><a href="https://github.com/joyent/node-vstream" rel="noopener noreferrer">vstream</a> - Instrumentable streams mix-ins to inspect a pipeline of streams.</li>
+<li><a href="https://github.com/watson/stackman" rel="noopener noreferrer">stackman</a> - Enhance an error stacktrace with code excerpts and other goodies.</li>
+<li><a href="https://github.com/alidavut/locus" rel="noopener noreferrer">locus</a> - Starts a REPL at runtime that has access to all variables.</li>
+<li><a href="https://github.com/davidmarkclements/0x" rel="noopener noreferrer">0x</a> - Flamegraph profiling.</li>
+<li><a href="https://github.com/automation-stack/ctrace" rel="noopener noreferrer">ctrace</a> - Well-formatted and improved trace system calls and signals.</li>
+<li><a href="https://github.com/andywer/leakage" rel="noopener noreferrer">leakage</a> - Write memory leak tests.</li>
+<li><a href="https://github.com/nodejs/llnode" rel="noopener noreferrer">llnode</a> - Post-mortem analysis tool which allows you to inspect objects and get insights from a crashed Node.js process.</li>
+<li><a href="https://github.com/sfninja/thetool" rel="noopener noreferrer">thetool</a> - Capture different CPU, memory, and other profiles for your app in Chrome DevTools friendly format.</li>
+<li><a href="https://github.com/slanatech/swagger-stats" rel="noopener noreferrer">swagger-stats</a> - Trace API calls and monitor API performance, health, and usage metrics.</li>
+<li><a href="https://github.com/june07/nim" rel="noopener noreferrer">NiM</a> - Manages DevTools debugging workflow.</li>
+<li><a href="https://github.com/immobiliare/dats" rel="noopener noreferrer">dats</a> - Minimalistic and zero-dependencies <a href="https://github.com/statsd/statsd" rel="noopener noreferrer">StatsD</a> client.</li>
+</ul>
+<h3 id="logging"><a class="anchor" aria-hidden="true" tabindex="-1" href="#logging"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Logging</h3><ul>
+<li><a href="https://github.com/pinojs/pino" rel="noopener noreferrer">pino</a> - Extremely fast logger inspired by Bunyan.</li>
+<li><a href="https://github.com/winstonjs/winston" rel="noopener noreferrer">winston</a> - Multi-transport async logging library.</li>
+<li><a href="https://github.com/watson/console-log-level" rel="noopener noreferrer">console-log-level</a> - The most simple logger imaginable with support for log levels and custom prefixes.</li>
+<li><a href="https://github.com/guigrpa/storyboard" rel="noopener noreferrer">storyboard</a> - End-to-end, hierarchical, real-time, colorful logs and stories.</li>
+<li><a href="https://github.com/unjs/consola" rel="noopener noreferrer">consola</a> - Console logger.</li>
+</ul>
+<h3 id="command-line-utilities"><a class="anchor" aria-hidden="true" tabindex="-1" href="#command-line-utilities"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Command-line utilities</h3><ul>
+<li><a href="https://github.com/chalk/chalk" rel="noopener noreferrer">chalk</a> - Terminal string styling done right.</li>
+<li><a href="https://github.com/sindresorhus/meow" rel="noopener noreferrer">meow</a> - CLI app helper.</li>
+<li><a href="https://github.com/yargs/yargs" rel="noopener noreferrer">yargs</a> - Command-line parser that automatically generates an elegant user-interface.</li>
+<li><a href="https://github.com/sindresorhus/ora" rel="noopener noreferrer">ora</a> - Elegant terminal spinner.</li>
+<li><a href="https://github.com/sindresorhus/get-stdin" rel="noopener noreferrer">get-stdin</a> - Easier stdin.</li>
+<li><a href="https://github.com/sindresorhus/log-update" rel="noopener noreferrer">log-update</a> - Log by overwriting the previous output in the terminal. Useful for rendering progress bars, animations, etc.</li>
+<li><a href="https://github.com/vadimdemedes/ink" rel="noopener noreferrer">Ink</a> - React for interactive command-line apps.</li>
+<li><a href="https://github.com/listr2/listr2" rel="noopener noreferrer">listr2</a> - Terminal task list.</li>
+<li><a href="https://github.com/sindresorhus/conf" rel="noopener noreferrer">conf</a> - Simple config handling for your app or module.</li>
+<li><a href="https://github.com/sindresorhus/ansi-escapes" rel="noopener noreferrer">ansi-escapes</a> - ANSI escape codes for manipulating the terminal.</li>
+<li><a href="https://github.com/sindresorhus/log-symbols" rel="noopener noreferrer">log-symbols</a> - Colored symbols for various log levels.</li>
+<li><a href="https://github.com/sindresorhus/figures" rel="noopener noreferrer">figures</a> - Unicode symbols with Windows CMD fallbacks.</li>
+<li><a href="https://github.com/sindresorhus/boxen" rel="noopener noreferrer">boxen</a> - Create boxes in the terminal.</li>
+<li><a href="https://github.com/sindresorhus/terminal-link" rel="noopener noreferrer">terminal-link</a> - Create clickable links in the terminal.</li>
+<li><a href="https://github.com/sindresorhus/terminal-image" rel="noopener noreferrer">terminal-image</a> - Display images in the terminal.</li>
+<li><a href="https://github.com/sindresorhus/string-width" rel="noopener noreferrer">string-width</a> - Get the visual width of a string - the number of columns required to display it.</li>
+<li><a href="https://github.com/sindresorhus/cli-truncate" rel="noopener noreferrer">cli-truncate</a> - Truncate a string to a specific width in the terminal.</li>
+<li><a href="https://github.com/chjj/blessed" rel="noopener noreferrer">blessed</a> - Curses-like library.</li>
+<li><a href="https://github.com/SBoudrias/Inquirer.js" rel="noopener noreferrer">Inquirer.js</a> - Interactive command-line prompt.</li>
+<li><a href="https://github.com/sindresorhus/yn" rel="noopener noreferrer">yn</a> - Parse yes/no like values.</li>
+<li><a href="https://github.com/cli-table/cli-table3" rel="noopener noreferrer">cli-table3</a> - Pretty unicode tables.</li>
+<li><a href="https://github.com/madbence/node-drawille" rel="noopener noreferrer">drawille</a> - Draw on the terminal with unicode braille characters.</li>
+<li><a href="https://github.com/jstrace/chart" rel="noopener noreferrer">ascii-charts</a> - ASCII bar chart in the terminal.</li>
+<li><a href="https://github.com/visionmedia/node-progress" rel="noopener noreferrer">progress</a> - Flexible ascii progress bar.</li>
+<li><a href="https://github.com/yeoman/insight" rel="noopener noreferrer">insight</a> - Helps you understand how your tool is being used by anonymously reporting usage metrics to Google Analytics.</li>
+<li><a href="https://github.com/sindresorhus/cli-cursor" rel="noopener noreferrer">cli-cursor</a> - Toggle the CLI cursor.</li>
+<li><a href="https://github.com/shannonmoeller/cli-columns" rel="noopener noreferrer">cli-columns</a> - Columnated unicode and ansi-safe text lists.</li>
+<li><a href="https://github.com/dominikwilkowski/cfonts" rel="noopener noreferrer">cfonts</a> - Sexy ASCII fonts for the console.</li>
+<li><a href="https://github.com/codekirei/node-multispinner" rel="noopener noreferrer">multispinner</a> - Multiple, simultaneous, individually controllable CLI spinners.</li>
+<li><a href="https://github.com/f/omelette" rel="noopener noreferrer">omelette</a> - Shell autocompletion helper.</li>
+<li><a href="https://github.com/kentcdodds/cross-env" rel="noopener noreferrer">cross-env</a> - Set environment variables cross-platform.</li>
+<li><a href="https://github.com/shelljs/shelljs" rel="noopener noreferrer">shelljs</a> - Portable Unix shell commands.</li>
+<li><a href="https://github.com/sindresorhus/sudo-block" rel="noopener noreferrer">sudo-block</a> - Block users from running your app with root permissions.</li>
+<li><a href="https://github.com/sindresorhus/sparkly" rel="noopener noreferrer">sparkly</a> - Generate sparklines <code>▁▂▃▅▂▇</code>.</li>
+<li><a href="https://github.com/teambit/bit" rel="noopener noreferrer">Bit</a> - Create, maintain, find and use small modules and components across repositories.</li>
+<li><a href="https://github.com/bokub/gradient-string" rel="noopener noreferrer">gradient-string</a> - Beautiful color gradients in terminal output.</li>
+<li><a href="https://github.com/oclif/oclif" rel="noopener noreferrer">oclif</a> - CLI framework complete with parser, automatic documentation, testing, and plugins.</li>
+<li><a href="https://github.com/sindresorhus/terminal-size" rel="noopener noreferrer">terminal-size</a> - Reliably get the terminal window size.</li>
+<li><a href="https://github.com/drew-y/cliffy" rel="noopener noreferrer">Cliffy</a> - Framework for interactive CLIs.</li>
+<li><a href="https://github.com/google/zx" rel="noopener noreferrer">zx</a> - Write shell scripts JavaScript.</li>
+</ul>
+<h3 id="build-tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#build-tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Build tools</h3><ul>
+<li><a href="https://github.com/parcel-bundler/parcel" rel="noopener noreferrer">parcel</a> - Blazing fast, zero config web app bundler.</li>
+<li><a href="https://github.com/webpack/webpack" rel="noopener noreferrer">webpack</a> - Packs modules and assets for the browser.</li>
+<li><a href="https://github.com/rollup/rollup" rel="noopener noreferrer">rollup</a> - Next-generation ES2015 module bundler.</li>
+<li><a href="https://github.com/gulpjs/gulp" rel="noopener noreferrer">gulp</a> - Streaming and fast build system that favors code over config.</li>
+<li><a href="https://github.com/broccolijs/broccoli" rel="noopener noreferrer">Broccoli</a> - Fast, reliable asset pipeline, supporting constant-time rebuilds and compact build definitions.</li>
+<li><a href="https://github.com/brunch/brunch" rel="noopener noreferrer">Brunch</a> - Front-end web app build tool with simple declarative config, fast incremental compilation, and an opinionated workflow.</li>
+<li><a href="https://github.com/fuse-box/fuse-box" rel="noopener noreferrer">FuseBox</a> - Fast build system that combines the power of webpack, JSPM and SystemJS, with first-class TypeScript support.</li>
+<li><a href="https://github.com/vercel/pkg" rel="noopener noreferrer">pkg</a> - Package your Node.js project into an executable.</li>
+<li><a href="https://github.com/vitejs/vite" rel="noopener noreferrer">Vite</a> - Front-end build tool with hot module replacement and static asset bundling.</li>
+</ul>
+<h3 id="hardware"><a class="anchor" aria-hidden="true" tabindex="-1" href="#hardware"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Hardware</h3><ul>
+<li><a href="https://github.com/rwaldron/johnny-five" rel="noopener noreferrer">johnny-five</a> - Firmata based Arduino Framework.</li>
+<li><a href="https://github.com/serialport/node-serialport" rel="noopener noreferrer">serialport</a> - Access serial ports for reading and writing.</li>
+<li><a href="https://github.com/node-usb/node-usb" rel="noopener noreferrer">usb</a> - USB library.</li>
+<li><a href="https://github.com/fivdi/i2c-bus" rel="noopener noreferrer">i2c-bus</a> - I2C serial bus access.</li>
+<li><a href="https://github.com/fivdi/onoff" rel="noopener noreferrer">onoff</a> - GPIO access and interrupt detection.</li>
+<li><a href="https://github.com/fivdi/spi-device" rel="noopener noreferrer">spi-device</a> - SPI serial bus access.</li>
+<li><a href="https://github.com/fivdi/pigpio" rel="noopener noreferrer">pigpio</a> - Fast GPIO, PWM, servo control, state change notification, and interrupt handling on the Raspberry Pi.</li>
+<li><a href="https://github.com/infusion/GPS.js" rel="noopener noreferrer">gps</a> - NMEA parser for handling GPS receivers.</li>
+<li><a href="https://github.com/yaacov/node-modbus-serial" rel="noopener noreferrer">modbus-serial</a> - A pure JavaScript implementation of MODBUS-RTU (serial and TCP).</li>
+</ul>
+<h3 id="templating"><a class="anchor" aria-hidden="true" tabindex="-1" href="#templating"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Templating</h3><ul>
+<li><a href="https://github.com/marko-js/marko" rel="noopener noreferrer">marko</a> - HTML-based templating engine that compiles templates to CommonJS modules and supports streaming, async rendering and custom tags.</li>
+<li><a href="https://github.com/mozilla/nunjucks" rel="noopener noreferrer">nunjucks</a> - Templating engine with inheritance, asynchronous control, and more (jinja2 inspired).</li>
+<li><a href="https://github.com/handlebars-lang/handlebars.js" rel="noopener noreferrer">handlebars.js</a> - Superset of Mustache templates which adds powerful features like helpers and more advanced blocks.</li>
+<li><a href="https://github.com/mde/ejs" rel="noopener noreferrer">EJS</a> - Simple unopinionated templating language.</li>
+<li><a href="https://github.com/pugjs/pug" rel="noopener noreferrer">Pug</a> - High-performance template engine heavily influenced by Haml.</li>
+</ul>
+<h3 id="web-frameworks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web-frameworks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web frameworks</h3><ul>
+<li><a href="https://github.com/fastify/fastify" rel="noopener noreferrer">Fastify</a> - Fast and low overhead web framework.</li>
+<li><a href="https://github.com/vercel/next.js" rel="noopener noreferrer">Next.js</a> - Minimalistic framework for server-rendered universal JavaScript web apps.</li>
+<li><a href="https://github.com/nuxt/nuxt.js" rel="noopener noreferrer">Nuxt.js</a> - Minimalistic framework for server-rendered Vue.js apps.</li>
+<li><a href="https://github.com/hapijs/hapi" rel="noopener noreferrer">Hapi</a> - Framework for building applications and services.</li>
+<li><a href="https://github.com/vercel/micro" rel="noopener noreferrer">Micro</a> - Minimalistic microservice framework with an async approach.</li>
+<li><a href="https://github.com/koajs/koa" rel="noopener noreferrer">Koa</a> - Framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and APIs.</li>
+<li><a href="https://github.com/expressjs/express" rel="noopener noreferrer">Express</a> - Web application framework, providing a robust set of features for building single and multi-page, and hybrid web applications.</li>
+<li><a href="https://github.com/feathersjs/feathers" rel="noopener noreferrer">Feathers</a> - Microservice framework built in the spirit of Express.</li>
+<li><a href="https://github.com/loopbackio/loopback-next" rel="noopener noreferrer">LoopBack</a> - Powerful framework for creating REST APIs and easily connecting to backend data sources.</li>
+<li><a href="https://github.com/meteor/meteor" rel="noopener noreferrer">Meteor</a> - An ultra-simple, database-everywhere, data-on-the-wire, pure-Javascript web framework. <em>(You might like <a href="https://github.com/Urigo/awesome-meteor" rel="noopener noreferrer">awesome-meteor</a>)</em></li>
+<li><a href="https://github.com/restify/node-restify" rel="noopener noreferrer">Restify</a> - Enables you to build correct REST web services.</li>
+<li><a href="https://github.com/thinkjs/thinkjs" rel="noopener noreferrer">ThinkJS</a> - Framework with ES2015+ support, WebSockets, REST API.</li>
+<li><a href="https://github.com/actionhero/actionhero" rel="noopener noreferrer">ActionHero</a> - Framework for making reusable &amp; scalable APIs for TCP sockets, WebSockets, and HTTP clients.</li>
+<li><a href="https://github.com/senecajs/seneca" rel="noopener noreferrer">seneca</a> - Toolkit for writing microservices.</li>
+<li><a href="https://github.com/adonisjs/core" rel="noopener noreferrer">AdonisJs</a> - A true MVC framework for Node.js built on solid foundations of Dependency Injection and IoC container.</li>
+<li><a href="https://github.com/moleculerjs/moleculer" rel="noopener noreferrer">Moleculer</a> - Fast &amp; powerful microservices framework.</li>
+<li><a href="https://github.com/nestjs/nest" rel="noopener noreferrer">Nest</a> - Angular-inspired framework for building efficient and scalable server-side apps.</li>
+<li><a href="https://github.com/MichalLytek/type-graphql" rel="noopener noreferrer">TypeGraphQL</a> - Modern framework for creating GraphQL APIs with TypeScript, using classes and decorators.</li>
+<li><a href="https://github.com/tinyhttp/tinyhttp" rel="noopener noreferrer">Tinyhttp</a> - Modern and fast Express-like web framework.</li>
+<li><a href="https://github.com/marblejs/marble" rel="noopener noreferrer">Marble.js</a> - Functional reactive framework for building server-side apps, based on TypeScript and RxJS.</li>
+<li><a href="https://github.com/ladjs/lad" rel="noopener noreferrer">Lad</a> - Framework made by a former Express TC and Koa member that bundles web, API, job, and proxy servers.</li>
+<li><a href="https://github.com/tsedio/tsed" rel="noopener noreferrer">Ts.ED</a> - Intuitive  TypeScript framework for building server-side apps on top of Express.js or Koa.js.</li>
+<li><a href="https://github.com/honojs/hono" rel="noopener noreferrer">Hono</a> - Small and fast web framework.</li>
+</ul>
+<h3 id="documentation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#documentation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Documentation</h3><ul>
+<li><a href="https://github.com/documentationjs/documentation" rel="noopener noreferrer">documentation.js</a> - API documentation generator with support for ES2015+ and flow annotation.</li>
+<li><a href="https://github.com/jashkenas/docco" rel="noopener noreferrer">Docco</a> - Documentation generator which produces an HTML document that displays your comments intermingled with your code.</li>
+<li><a href="https://github.com/jsdoc/jsdoc" rel="noopener noreferrer">JSDoc</a> - API documentation generator similar to JavaDoc or PHPDoc.</li>
+<li><a href="https://github.com/facebook/docusaurus" rel="noopener noreferrer">Docusaurus</a> - Documentation website generator that leverages React and Markdown, and comes with translation and versioning features.</li>
+</ul>
+<h3 id="filesystem"><a class="anchor" aria-hidden="true" tabindex="-1" href="#filesystem"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Filesystem</h3><ul>
+<li><a href="https://github.com/sindresorhus/del" rel="noopener noreferrer">del</a> - Delete files/folders using globs.</li>
+<li><a href="https://github.com/sindresorhus/globby" rel="noopener noreferrer">globby</a> - Glob files with support for multiple patterns.</li>
+<li><a href="https://github.com/paulmillr/chokidar" rel="noopener noreferrer">chokidar</a> - Filesystem watcher which stabilizes events from <code>fs.watch</code> and <code>fs.watchFile</code> as well as using native <code>fsevents</code> on macOS.</li>
+<li><a href="https://github.com/sindresorhus/find-up" rel="noopener noreferrer">find-up</a> - Find a file by walking up parent directories.</li>
+<li><a href="https://github.com/moxystudio/node-proper-lockfile" rel="noopener noreferrer">proper-lockfile</a> - Inter-process and inter-machine lockfile utility.</li>
+<li><a href="https://github.com/sindresorhus/load-json-file" rel="noopener noreferrer">load-json-file</a> - Read and parse a JSON file.</li>
+<li><a href="https://github.com/sindresorhus/write-json-file" rel="noopener noreferrer">write-json-file</a> - Stringify and write JSON to a file atomically.</li>
+<li><a href="https://github.com/npm/fs-write-stream-atomic" rel="noopener noreferrer">fs-write-stream-atomic</a> - Like <code>fs.createWriteStream()</code>, but atomic.</li>
+<li><a href="https://github.com/sindresorhus/filenamify" rel="noopener noreferrer">filenamify</a> - Convert a string to a valid filename.</li>
+<li><a href="https://github.com/bevry/istextorbinary" rel="noopener noreferrer">istextorbinary</a> - Check if a file is text or binary.</li>
+<li><a href="https://github.com/szwacz/fs-jetpack" rel="noopener noreferrer">fs-jetpack</a> - Completely redesigned file system API for convenience in everyday use.</li>
+<li><a href="https://github.com/jprichardson/node-fs-extra" rel="noopener noreferrer">fs-extra</a> - Extra methods for the <code>fs</code> module.</li>
+<li><a href="https://github.com/sindresorhus/pkg-dir" rel="noopener noreferrer">pkg-dir</a> - Find the root directory of an npm package.</li>
+<li><a href="https://github.com/nspragg/filehound" rel="noopener noreferrer">filehound</a> - Flexible and fluent interface for searching the file system.</li>
+<li><a href="https://github.com/sindresorhus/move-file" rel="noopener noreferrer">move-file</a> - Move a file, even works across devices.</li>
+<li><a href="https://github.com/sindresorhus/tempy" rel="noopener noreferrer">tempy</a> - Get a random temporary file or directory path.</li>
+</ul>
+<h3 id="control-flow"><a class="anchor" aria-hidden="true" tabindex="-1" href="#control-flow"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Control flow</h3><ul>
+<li>Promises<ul>
+<li><a href="https://github.com/sindresorhus/pify" rel="noopener noreferrer">pify</a> - Promisify a callback-style function.</li>
+<li><a href="https://github.com/sindresorhus/delay" rel="noopener noreferrer">delay</a> - Delay a promise a specified amount of time.</li>
+<li><a href="https://github.com/nodeca/promise-memoize" rel="noopener noreferrer">promise-memoize</a> - Memoize promise-returning functions, with expire and prefetch.</li>
+<li><a href="https://github.com/lpinca/valvelet" rel="noopener noreferrer">valvelet</a> - Limit the execution rate of a promise-returning function.</li>
+<li><a href="https://github.com/sindresorhus/p-map" rel="noopener noreferrer">p-map</a> - Map over promises concurrently.</li>
+<li><a href="https://github.com/sindresorhus/promise-fun" rel="noopener noreferrer">More…</a></li>
+</ul>
+</li>
+<li>Observables<ul>
+<li><a href="https://github.com/ReactiveX/RxJS" rel="noopener noreferrer">RxJS</a> - Reactive programming.</li>
+<li><a href="https://github.com/sindresorhus/observable-to-promise" rel="noopener noreferrer">observable-to-promise</a> - Convert an Observable to a Promise.</li>
+<li><a href="https://github.com/sindresorhus/awesome-observables" rel="noopener noreferrer">More…</a></li>
+</ul>
+</li>
+<li>Streams<ul>
+<li><a href="https://github.com/caolan/highland" rel="noopener noreferrer">Highland.js</a> - Manages synchronous and asynchronous code easily, using nothing more than standard JavaScript and Node-like Streams.</li>
+</ul>
+</li>
+</ul>
+<h3 id="streams"><a class="anchor" aria-hidden="true" tabindex="-1" href="#streams"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Streams</h3><ul>
+<li><a href="https://github.com/sindresorhus/get-stream" rel="noopener noreferrer">get-stream</a> - Get a stream as a string or buffer.</li>
+<li><a href="https://github.com/hughsk/from2" rel="noopener noreferrer">from2</a> - Convenience wrapper for ReadableStream, inspired by <code>through2</code>.</li>
+<li><a href="https://github.com/sindresorhus/into-stream" rel="noopener noreferrer">into-stream</a> - Convert a buffer/string/array/object into a stream.</li>
+<li><a href="https://github.com/mafintosh/duplexify" rel="noopener noreferrer">duplexify</a> - Turn a writeable and readable stream into a single streams2 duplex stream.</li>
+<li><a href="https://github.com/mafintosh/pumpify" rel="noopener noreferrer">pumpify</a> - Combine an array of streams into a single duplex stream.</li>
+<li><a href="https://github.com/mafintosh/peek-stream" rel="noopener noreferrer">peek-stream</a> - Transform stream that lets you peek the first line before deciding how to parse it.</li>
+<li><a href="https://github.com/maxogden/binary-split" rel="noopener noreferrer">binary-split</a> - Newline (or any delimiter) splitter stream.</li>
+<li><a href="https://github.com/jahewson/node-byline" rel="noopener noreferrer">byline</a> - Super-simple line-by-line Stream reader.</li>
+<li><a href="https://github.com/sindresorhus/first-chunk-stream" rel="noopener noreferrer">first-chunk-stream</a> - Transform the first chunk in a stream.</li>
+<li><a href="https://github.com/sindresorhus/pad-stream" rel="noopener noreferrer">pad-stream</a> - Pad each line in a stream.</li>
+<li><a href="https://github.com/feross/multistream" rel="noopener noreferrer">multistream</a> - Combine multiple streams into a single stream.</li>
+<li><a href="https://github.com/nodejs/readable-stream" rel="noopener noreferrer">readable-stream</a> - Mirror of Streams2 and Streams3 implementations in core.</li>
+<li><a href="https://github.com/almost/through2-concurrent" rel="noopener noreferrer">through2-concurrent</a> - Transform object streams concurrently.</li>
+</ul>
+<h3 id="real-time"><a class="anchor" aria-hidden="true" tabindex="-1" href="#real-time"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Real-time</h3><ul>
+<li><a href="https://github.com/uNetworking/uWebSockets" rel="noopener noreferrer">µWebSockets</a> - Highly scalable WebSocket server &amp; client library.</li>
+<li><a href="https://github.com/socketio/socket.io" rel="noopener noreferrer">Socket.io</a> - Enables real-time bidirectional event-based communication.</li>
+<li><a href="https://github.com/faye/faye" rel="noopener noreferrer">Faye</a> - Real-time client-server message bus, based on Bayeux protocol.</li>
+<li><a href="https://github.com/SocketCluster/socketcluster" rel="noopener noreferrer">SocketCluster</a> - Scalable HTTP + WebSocket engine which can run on multiple CPU cores.</li>
+<li><a href="https://github.com/primus/primus" rel="noopener noreferrer">Primus</a> - An abstraction layer for real-time frameworks to prevent module lock-in.</li>
+<li><a href="https://github.com/deepstreamIO/deepstream.io-client-js" rel="noopener noreferrer">deepstream.io</a> - Scalable real-time microservice framework.</li>
+<li><a href="https://github.com/kalm/kalm.js" rel="noopener noreferrer">Kalm</a> - Low-level socket router and middleware framework.</li>
+<li><a href="https://github.com/mqttjs/MQTT.js" rel="noopener noreferrer">MQTT.js</a> - Client for MQTT - Pub-sub based messaging protocol for use on top of TCP/IP.</li>
+<li><a href="https://github.com/elpheria/rpc-websockets" rel="noopener noreferrer">rpc-websockets</a> - JSON-RPC 2.0 implementation over WebSockets.</li>
+<li><a href="https://github.com/moscajs/aedes" rel="noopener noreferrer">Aedes</a> - Barebone MQTT server that can run on any stream server.</li>
+</ul>
+<h3 id="image"><a class="anchor" aria-hidden="true" tabindex="-1" href="#image"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Image</h3><ul>
+<li><a href="https://github.com/lovell/sharp" rel="noopener noreferrer">sharp</a> - The fastest module for resizing JPEG, PNG, WebP and TIFF images.</li>
+<li><a href="https://github.com/sindresorhus/image-type" rel="noopener noreferrer">image-type</a> - Detect the type of an image.</li>
+<li><a href="https://github.com/sindresorhus/image-dimensions" rel="noopener noreferrer">image-dimensions</a> - Get the dimensions of an image.</li>
+<li><a href="https://github.com/EyalAr/lwip" rel="noopener noreferrer">lwip</a> - Lightweight image processor which does not require ImageMagick.</li>
+<li><a href="https://github.com/nodeca/pica" rel="noopener noreferrer">pica</a> - High quality &amp; fast resize (lanczos3) in pure JS. Alternative to canvas drawImage(), when no pixelation allowed.</li>
+<li><a href="https://github.com/oliver-moran/jimp" rel="noopener noreferrer">jimp</a> - Image processing in pure JavaScript.</li>
+<li><a href="https://github.com/soldair/node-qrcode" rel="noopener noreferrer">qrcode</a> - QR code and bar code generator.</li>
+<li><a href="https://github.com/matmen/ImageScript" rel="noopener noreferrer">ImageScript</a> - Image processing in JavaScript, utilizing WebAssembly for performance.</li>
+</ul>
+<h3 id="text"><a class="anchor" aria-hidden="true" tabindex="-1" href="#text"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Text</h3><ul>
+<li><a href="https://github.com/ashtuchkin/iconv-lite" rel="noopener noreferrer">iconv-lite</a> - Convert character encodings.</li>
+<li><a href="https://github.com/sindresorhus/string-length" rel="noopener noreferrer">string-length</a> - Get the real length of a string - by correctly counting astral symbols and ignoring ansi escape codes.</li>
+<li><a href="https://github.com/sindresorhus/camelcase" rel="noopener noreferrer">camelcase</a> - Convert a dash/dot/underscore/space separated string to camelCase: foo-bar → fooBar.</li>
+<li><a href="https://github.com/sindresorhus/escape-string-regexp" rel="noopener noreferrer">escape-string-regexp</a> - Escape RegExp special characters.</li>
+<li><a href="https://github.com/sindresorhus/splice-string" rel="noopener noreferrer">splice-string</a> - Remove or replace part of a string like <code>Array#splice</code>.</li>
+<li><a href="https://github.com/sindresorhus/indent-string" rel="noopener noreferrer">indent-string</a> - Indent each line in a string.</li>
+<li><a href="https://github.com/sindresorhus/strip-indent" rel="noopener noreferrer">strip-indent</a> - Strip leading whitespace from every line in a string.</li>
+<li><a href="https://github.com/sindresorhus/detect-indent" rel="noopener noreferrer">detect-indent</a> - Detect the indentation of code.</li>
+<li><a href="https://github.com/mathiasbynens/he" rel="noopener noreferrer">he</a> - HTML entity encoder/decoder.</li>
+<li><a href="https://github.com/mashpie/i18n-node" rel="noopener noreferrer">i18n-node</a> - Simple translation module with dynamic JSON storage.</li>
+<li><a href="https://github.com/nodeca/babelfish" rel="noopener noreferrer">babelfish</a> - i18n with very easy syntax for plurals.</li>
+<li><a href="https://github.com/sindresorhus/matcher" rel="noopener noreferrer">matcher</a> - Simple wildcard matching.</li>
+<li><a href="https://github.com/nodeca/unhomoglyph" rel="noopener noreferrer">unhomoglyph</a> - Normalize visually similar unicode characters.</li>
+<li><a href="https://github.com/i18next/i18next" rel="noopener noreferrer">i18next</a> - Internationalization framework.</li>
+<li><a href="https://github.com/ai/nanoid" rel="noopener noreferrer">nanoid</a> - Tiny, secure, URL-friendly, unique string ID generator.</li>
+<li><a href="https://github.com/kurolabs/stegcloak" rel="noopener noreferrer">StegCloak</a> - Conceal secrets within strings, in plain sight.</li>
+</ul>
+<h3 id="number"><a class="anchor" aria-hidden="true" tabindex="-1" href="#number"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Number</h3><ul>
+<li><a href="https://github.com/sindresorhus/random-int" rel="noopener noreferrer">random-int</a> - Generate a random integer.</li>
+<li><a href="https://github.com/sindresorhus/random-float" rel="noopener noreferrer">random-float</a> - Generate a random float.</li>
+<li><a href="https://github.com/sindresorhus/unique-random" rel="noopener noreferrer">unique-random</a> - Generate random numbers that are consecutively unique.</li>
+<li><a href="https://github.com/sindresorhus/round-to" rel="noopener noreferrer">round-to</a> - Round a number to a specific number of decimal places: <code>1.234</code> → <code>1.2</code>.</li>
+</ul>
+<h3 id="math"><a class="anchor" aria-hidden="true" tabindex="-1" href="#math"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Math</h3><ul>
+<li><a href="https://github.com/scijs/ndarray" rel="noopener noreferrer">ndarray</a> - Multidimensional arrays.</li>
+<li><a href="https://github.com/josdejong/mathjs" rel="noopener noreferrer">mathjs</a> - An extensive math library.</li>
+<li><a href="https://github.com/sindresorhus/math-clamp" rel="noopener noreferrer">math-clamp</a> - Clamp a number.</li>
+<li><a href="https://github.com/fibo/algebra" rel="noopener noreferrer">algebra</a> - Algebraic structures.</li>
+<li><a href="https://github.com/nodeca/multimath" rel="noopener noreferrer">multimath</a> - Core to create fast image math in WebAssembly and JS.</li>
+</ul>
+<h3 id="date"><a class="anchor" aria-hidden="true" tabindex="-1" href="#date"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Date</h3><ul>
+<li><a href="https://github.com/moment/luxon" rel="noopener noreferrer">Luxon</a> - Library for working with dates and times.</li>
+<li><a href="https://github.com/date-fns/date-fns" rel="noopener noreferrer">date-fns</a> - Modern date utility.</li>
+<li><a href="https://github.com/iamkun/dayjs" rel="noopener noreferrer">Day.js</a> - Immutable date library alternative to Moment.js.</li>
+<li><a href="https://github.com/felixge/node-dateformat" rel="noopener noreferrer">dateformat</a> - Date formatting.</li>
+<li><a href="https://github.com/samverschueren/tz-format" rel="noopener noreferrer">tz-format</a> - Format a date with timezone: <code>2015-11-30T10:40:35+01:00</code>.</li>
+<li><a href="https://github.com/floatdrop/node-cctz" rel="noopener noreferrer">cctz</a> - Fast parsing, formatting, and timezone conversation for dates.</li>
+</ul>
+<h3 id="url"><a class="anchor" aria-hidden="true" tabindex="-1" href="#url"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>URL</h3><ul>
+<li><a href="https://github.com/sindresorhus/normalize-url" rel="noopener noreferrer">normalize-url</a> - Normalize a URL.</li>
+<li><a href="https://github.com/sindresorhus/humanize-url" rel="noopener noreferrer">humanize-url</a> - Humanize a URL: <a href="https://sindresorhus.com" rel="noopener noreferrer">https://sindresorhus.com</a> → sindresorhus.com.</li>
+<li><a href="https://github.com/nodeca/url-unshort" rel="noopener noreferrer">url-unshort</a> - Expand shortened URLs.</li>
+<li><a href="https://github.com/pid/speakingurl" rel="noopener noreferrer">speakingurl</a> - Generate a slug from a string with transliteration.</li>
+<li><a href="https://github.com/markdown-it/linkify-it" rel="noopener noreferrer">linkify-it</a> - Link patterns detector with full unicode support.</li>
+<li><a href="https://github.com/snd/url-pattern" rel="noopener noreferrer">url-pattern</a> - Easier than regex string matching patterns for URLs and other strings.</li>
+<li><a href="https://github.com/nodeca/embedza" rel="noopener noreferrer">embedza</a> - Create HTML snippets/embeds from URLs using info from oEmbed, Open Graph, meta tags.</li>
+</ul>
+<h3 id="data-validation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#data-validation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Data validation</h3><ul>
+<li><a href="https://github.com/sideway/joi" rel="noopener noreferrer">joi</a> - Object schema description language and validator for JavaScript objects.</li>
+<li><a href="https://github.com/mafintosh/is-my-json-valid" rel="noopener noreferrer">is-my-json-valid</a> - JSON Schema validator that uses code generation to be extremely fast.</li>
+<li><a href="https://github.com/nettofarah/property-validator" rel="noopener noreferrer">property-validator</a> - Easy property validation for Express.</li>
+<li><a href="https://github.com/schema-inspector/schema-inspector" rel="noopener noreferrer">schema-inspector</a> - JSON API sanitization and validation.</li>
+<li><a href="https://github.com/ajv-validator/ajv" rel="noopener noreferrer">ajv</a> - The fastest JSON Schema validator. Supports v5, v6 and v7 proposals.</li>
+<li><a href="https://github.com/ianstormtaylor/superstruct" rel="noopener noreferrer">Superstruct</a> - Simple and composable way to validate data in JavaScript (and TypeScript).</li>
+<li><a href="https://github.com/jquense/yup" rel="noopener noreferrer">yup</a> - Object schema validation.</li>
+<li><a href="https://github.com/colinhacks/zod" rel="noopener noreferrer">zod</a> - TypeScript-first schema validation with static type inference.</li>
+</ul>
+<h3 id="parsing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#parsing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Parsing</h3><ul>
+<li><a href="https://github.com/remarkjs/remark" rel="noopener noreferrer">remark</a> - Markdown processor powered by plugins.</li>
+<li><a href="https://github.com/markdown-it/markdown-it" rel="noopener noreferrer">markdown-it</a> - Markdown parser with 100% CommonMark support, extensions and syntax plugins.</li>
+<li><a href="https://github.com/inikulin/parse5" rel="noopener noreferrer">parse5</a> - Fast full-featured spec compliant HTML parser.</li>
+<li><a href="https://github.com/parcel-bundler/parcel-css" rel="noopener noreferrer">@parcel/css</a> - A CSS parser, transformer, and minifier written in Rust.</li>
+<li><a href="https://github.com/sindresorhus/strip-json-comments" rel="noopener noreferrer">strip-json-comments</a> - Strip comments from JSON.</li>
+<li><a href="https://github.com/sindresorhus/strip-css-comments" rel="noopener noreferrer">strip-css-comments</a> - Strip comments from CSS.</li>
+<li><a href="https://github.com/sindresorhus/parse-json" rel="noopener noreferrer">parse-json</a> - Parse JSON with more helpful errors.</li>
+<li><a href="https://github.com/medialize/URI.js" rel="noopener noreferrer">URI.js</a> - URL mutation.</li>
+<li><a href="https://github.com/dominictarr/JSONStream" rel="noopener noreferrer">JSONStream</a> - Streaming JSON.parse and stringify.</li>
+<li><a href="https://github.com/sindresorhus/neat-csv" rel="noopener noreferrer">neat-csv</a> - Fast CSV parser. Callback interface for the above.</li>
+<li><a href="https://github.com/mafintosh/csv-parser" rel="noopener noreferrer">csv-parser</a> - Streaming CSV parser that aims to be faster than everyone else.</li>
+<li><a href="https://github.com/pegjs/pegjs" rel="noopener noreferrer">PEG.js</a> - Simple parser generator that produces fast parsers with excellent error reporting.</li>
+<li><a href="https://github.com/matthewmueller/x-ray" rel="noopener noreferrer">x-ray</a> - Web scraping utility.</li>
+<li><a href="https://github.com/kach/nearley" rel="noopener noreferrer">nearley</a> - Simple, fast, powerful parsing for JavaScript.</li>
+<li><a href="https://github.com/juliangruber/binary-extract" rel="noopener noreferrer">binary-extract</a> - Extract a value from a buffer of JSON without parsing the whole thing.</li>
+<li><a href="https://github.com/stylecow/stylecow" rel="noopener noreferrer">Stylecow</a> - Parse, manipulate and convert modern CSS to make it compatible with all browsers. Extensible with plugins.</li>
+<li><a href="https://github.com/nodeca/js-yaml" rel="noopener noreferrer">js-yaml</a> - Very fast YAML parser.</li>
+<li><a href="https://github.com/Leonidas-from-XIV/node-xml2js" rel="noopener noreferrer">xml2js</a> - XML to JavaScript object converter.</li>
+<li><a href="https://github.com/zaach/jison" rel="noopener noreferrer">Jison</a> - Friendly JavaScript parser generator. It shares genes with Bison, Yacc and family.</li>
+<li><a href="https://github.com/ruimarinho/google-libphonenumber" rel="noopener noreferrer">google-libphonenumber</a> - Parse, format, store and validate phone numbers.</li>
+<li><a href="https://github.com/TooTallNate/ref" rel="noopener noreferrer">ref</a> - Read/write structured binary data in Buffers.</li>
+<li><a href="https://github.com/dtjohnson/xlsx-populate" rel="noopener noreferrer">xlsx-populate</a> - Read/write Excel XLSX.</li>
+<li><a href="https://github.com/Chevrotain/chevrotain" rel="noopener noreferrer">Chevrotain</a> - Very fast and feature rich parser building toolkit for JavaScript.</li>
+<li><a href="https://github.com/NaturalIntelligence/fast-xml-parser" rel="noopener noreferrer">fast-xml-parser</a> - Validate and parse XML.</li>
+</ul>
+<h3 id="humanize"><a class="anchor" aria-hidden="true" tabindex="-1" href="#humanize"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Humanize</h3><ul>
+<li><a href="https://github.com/sindresorhus/pretty-bytes" rel="noopener noreferrer">pretty-bytes</a> - Convert bytes to a human readable string: <code>1337</code> → <code>1.34 kB</code>.</li>
+<li><a href="https://github.com/sindresorhus/pretty-ms" rel="noopener noreferrer">pretty-ms</a> - Convert milliseconds to a human readable string: <code>1337000000</code> → <code>15d 11h 23m 20s</code>.</li>
+<li><a href="https://github.com/vercel/ms" rel="noopener noreferrer">ms</a> - Tiny millisecond conversion utility.</li>
+<li><a href="https://github.com/AriaMinaei/pretty-error" rel="noopener noreferrer">pretty-error</a> - Errors with less clutter.</li>
+<li><a href="https://github.com/Tjatse/node-readability" rel="noopener noreferrer">read-art</a> - Extract readable content from any page.</li>
+</ul>
+<h3 id="compression"><a class="anchor" aria-hidden="true" tabindex="-1" href="#compression"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Compression</h3><ul>
+<li><a href="https://github.com/thejoshwolfe/yazl" rel="noopener noreferrer">yazl</a> - Zip.</li>
+<li><a href="https://github.com/thejoshwolfe/yauzl" rel="noopener noreferrer">yauzl</a> - Unzip.</li>
+<li><a href="https://github.com/archiverjs/node-archiver" rel="noopener noreferrer">Archiver</a> - Streaming interface for archive generation, supporting ZIP and TAR.</li>
+<li><a href="https://github.com/nodeca/pako" rel="noopener noreferrer">pako</a> - High speed zlib port to pure js (deflate, inflate, gzip).</li>
+<li><a href="https://github.com/mafintosh/tar-stream" rel="noopener noreferrer">tar-stream</a> - Streaming tar parser and generator. Also see <a href="https://github.com/mafintosh/tar-fs" rel="noopener noreferrer">tar-fs</a>.</li>
+</ul>
+<h3 id="network"><a class="anchor" aria-hidden="true" tabindex="-1" href="#network"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Network</h3><ul>
+<li><a href="https://github.com/sindresorhus/get-port" rel="noopener noreferrer">get-port</a> - Get an available port.</li>
+<li><a href="https://github.com/sindresorhus/ipify" rel="noopener noreferrer">ipify</a> - Get your public IP address.</li>
+<li><a href="https://github.com/bevry/getmac" rel="noopener noreferrer">getmac</a> - Get the computer MAC address.</li>
+<li><a href="https://github.com/infusion/node-dhcp" rel="noopener noreferrer">DHCP</a> - DHCP client and server.</li>
+<li><a href="https://github.com/roccomuso/netcat" rel="noopener noreferrer">netcat</a> - Netcat port in pure JS.</li>
+</ul>
+<h3 id="database"><a class="anchor" aria-hidden="true" tabindex="-1" href="#database"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Database</h3><ul>
+<li>Drivers<ul>
+<li><a href="https://github.com/brianc/node-postgres" rel="noopener noreferrer">PostgreSQL</a> - PostgreSQL client. Pure JavaScript and native libpq bindings.</li>
+<li><a href="https://github.com/luin/ioredis" rel="noopener noreferrer">Redis</a> - Redis client.</li>
+<li><a href="https://github.com/Level/levelup" rel="noopener noreferrer">LevelUP</a> - LevelDB.</li>
+<li><a href="https://github.com/mysqljs/mysql" rel="noopener noreferrer">MySQL</a> - MySQL client.</li>
+<li><a href="https://github.com/apache/couchdb-nano" rel="noopener noreferrer">couchdb-nano</a> - CouchDB client.</li>
+<li><a href="https://github.com/aerospike/aerospike-client-nodejs" rel="noopener noreferrer">Aerospike</a> - Aerospike client.</li>
+<li><a href="https://github.com/couchbase/couchnode" rel="noopener noreferrer">Couchbase</a> - Couchbase client.</li>
+<li><a href="https://github.com/mongodb/node-mongodb-native" rel="noopener noreferrer">MongoDB</a> - MongoDB driver.</li>
+</ul>
+</li>
+<li>ODM / ORM<ul>
+<li><a href="https://github.com/sequelize/sequelize" rel="noopener noreferrer">Sequelize</a> - Multi-dialect ORM. Supports PostgreSQL, SQLite, MySQL, and more.</li>
+<li><a href="https://github.com/bookshelf/bookshelf" rel="noopener noreferrer">Bookshelf</a> - ORM for PostgreSQL, MySQL and SQLite3 in the style of Backbone.js.</li>
+<li><a href="https://github.com/Automattic/mongoose" rel="noopener noreferrer">Mongoose</a> - Elegant MongoDB object modeling.</li>
+<li><a href="https://github.com/balderdashy/waterline" rel="noopener noreferrer">Waterline</a> - Datastore-agnostic tool that dramatically simplifies interaction with one or more databases.</li>
+<li><a href="https://github.com/PhilWaldmann/openrecord" rel="noopener noreferrer">OpenRecord</a> - ORM for PostgreSQL, MySQL, SQLite3 and RESTful datastores. Similar to ActiveRecord.</li>
+<li><a href="https://github.com/vitaly-t/pg-promise" rel="noopener noreferrer">pg-promise</a> - PostgreSQL framework for native SQL using promises.</li>
+<li><a href="https://github.com/gajus/slonik" rel="noopener noreferrer">slonik</a> - PostgreSQL client with strict types, detailed logging and assertions.</li>
+<li><a href="https://github.com/Vincit/objection.js" rel="noopener noreferrer">Objection.js</a> - Lightweight ORM built on the SQL query builder Knex.</li>
+<li><a href="https://github.com/typeorm/typeorm" rel="noopener noreferrer">TypeORM</a> - ORM for PostgreSQL, MariaDB, MySQL, SQLite, and more.</li>
+<li><a href="https://github.com/mikro-orm/mikro-orm" rel="noopener noreferrer">MikroORM</a> - TypeScript ORM based on Data Mapper, Unit of Work and Identity Map patterns. Supports MongoDB, PostgreSQL, MySQL and SQLite.</li>
+<li><a href="https://github.com/prisma/prisma" rel="noopener noreferrer">Prisma</a> - Modern database access (ORM alternative). Auto-generated and type-safe query builder in TypeScript. Supports PostgreSQL, MySQL &amp; SQLite.</li>
+<li><a href="https://github.com/drizzle-team/drizzle-orm" rel="noopener noreferrer">Drizzle ORM</a> - TypeScript ORM that supports various databases such as PostgreSQL.</li>
+</ul>
+</li>
+<li>Query builder<ul>
+<li><a href="https://github.com/knex/knex" rel="noopener noreferrer">Knex</a> - Query builder for PostgreSQL, MySQL and SQLite3, designed to be flexible, portable, and fun to use.</li>
+</ul>
+</li>
+<li>Other<ul>
+<li><a href="https://github.com/louischatriot/nedb" rel="noopener noreferrer">NeDB</a> - Embedded persistent database written in JavaScript.</li>
+<li><a href="https://github.com/typicode/lowdb" rel="noopener noreferrer">Lowdb</a> - Small JavaScript database powered by Lodash.</li>
+<li><a href="https://github.com/jaredwray/keyv" rel="noopener noreferrer">Keyv</a> - Simple key-value storage with support for multiple backends.</li>
+<li><a href="https://github.com/tommybananas/finale" rel="noopener noreferrer">Finale</a> - RESTful endpoint generator for your Sequelize models.</li>
+<li><a href="https://github.com/mlaanderson/database-js" rel="noopener noreferrer">database-js</a> - Wrapper for multiple databases with a JDBC-like connection.</li>
+<li><a href="https://github.com/pkosiec/mongo-seeding" rel="noopener noreferrer">Mongo Seeding</a> - Populate MongoDB databases with JavaScript and JSON files.</li>
+<li><a href="https://github.com/ForbesLindesay/atdatabases" rel="noopener noreferrer">@databases</a> - Query PostgreSQL, MySQL and SQLite3 with plain SQL without risking SQL injection.</li>
+<li><a href="https://github.com/oguimbal/pg-mem" rel="noopener noreferrer">pg-mem</a> - In-memory PostgreSQL instance for your tests.</li>
+</ul>
+</li>
+</ul>
+<h3 id="testing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#testing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Testing</h3><ul>
+<li><a href="https://github.com/avajs/ava" rel="noopener noreferrer">AVA</a> - Futuristic test runner.</li>
+<li><a href="https://github.com/mochajs/mocha" rel="noopener noreferrer">Mocha</a> - Feature-rich test framework making asynchronous testing simple and fun.</li>
+<li><a href="https://github.com/istanbuljs/nyc" rel="noopener noreferrer">nyc</a> - Code coverage tool built on istanbul that works with subprocesses.</li>
+<li><a href="https://github.com/tapjs/node-tap" rel="noopener noreferrer">tap</a> - TAP test framework.</li>
+<li><a href="https://github.com/substack/tape" rel="noopener noreferrer">tape</a> - TAP-producing test harness.</li>
+<li><a href="https://github.com/power-assert-js/power-assert" rel="noopener noreferrer">power-assert</a> - Provides descriptive assertion messages through the standard assert interface.</li>
+<li><a href="https://github.com/mantoni/mochify.js" rel="noopener noreferrer">Mochify</a> - TDD with Browserify, Mocha, PhantomJS and WebDriver.</li>
+<li><a href="https://github.com/vadimdemedes/trevor" rel="noopener noreferrer">trevor</a> - Run tests against multiple versions of Node.js without switching versions manually or pushing to Travis CI.</li>
+<li><a href="https://github.com/alexfernandez/loadtest" rel="noopener noreferrer">loadtest</a> - Run load tests for your web application, with an API for automation.</li>
+<li><a href="https://github.com/sinonjs/sinon" rel="noopener noreferrer">Sinon.JS</a> - Test spies, stubs and mocks.</li>
+<li><a href="https://github.com/nodeca/navit" rel="noopener noreferrer">navit</a> - PhantomJS / SlimerJS wrapper to simplify browser test scripting.</li>
+<li><a href="https://github.com/nock/nock" rel="noopener noreferrer">Nock</a> - HTTP mocking and expectations.</li>
+<li><a href="https://github.com/theintern/intern" rel="noopener noreferrer">intern</a> - Code testing stack.</li>
+<li><a href="https://github.com/h2non/toxy" rel="noopener noreferrer">toxy</a> - Hackable HTTP proxy to simulate failure scenarios and network conditions.</li>
+<li><a href="https://github.com/sindresorhus/hook-std" rel="noopener noreferrer">hook-std</a> - Hook and modify stdout/stderr.</li>
+<li><a href="https://github.com/egoist/testen" rel="noopener noreferrer">testen</a> - Run tests for multiple versions of Node.js locally with NVM.</li>
+<li><a href="https://github.com/nightwatchjs/nightwatch" rel="noopener noreferrer">Nightwatch</a> - Automated UI testing framework based on Selenium WebDriver.</li>
+<li><a href="https://github.com/webdriverio/webdriverio" rel="noopener noreferrer">WebdriverIO</a> - Automated testing based on the WebDriver protocol.</li>
+<li><a href="https://github.com/facebook/jest" rel="noopener noreferrer">Jest</a> - Painless JavaScript testing.</li>
+<li><a href="https://github.com/DevExpress/testcafe" rel="noopener noreferrer">TestCafe</a> - Automated browser testing.</li>
+<li><a href="https://github.com/bleenco/abstruse" rel="noopener noreferrer">abstruse</a> - Continuous Integration server.</li>
+<li><a href="https://github.com/codeceptjs/CodeceptJS" rel="noopener noreferrer">CodeceptJS</a> - End-to-end testing.</li>
+<li><a href="https://github.com/puppeteer/puppeteer" rel="noopener noreferrer">Puppeteer</a> - Headless Chrome.</li>
+<li><a href="https://github.com/microsoft/playwright" rel="noopener noreferrer">Playwright</a> - Headless Chromium, WebKit, and Firefox with a single API.</li>
+<li><a href="https://github.com/ehmicky/nve" rel="noopener noreferrer">nve</a> - Run any command on multiple versions of Node.js locally.</li>
+<li><a href="https://github.com/dequelabs/axe-core" rel="noopener noreferrer">axe-core</a> - Accessibility engine for automated Web UI testing.</li>
+<li><a href="https://github.com/testcontainers/testcontainers-node" rel="noopener noreferrer">testcontainers-node</a> - Provides lightweight, throwaway instances of common databases, Selenium web browsers, or anything else that can run in a Docker container.</li>
+</ul>
+<h3 id="security"><a class="anchor" aria-hidden="true" tabindex="-1" href="#security"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Security</h3><ul>
+<li><a href="https://github.com/simonepri/upash" rel="noopener noreferrer">upash</a> - Unified API for all password hashing algorithms.</li>
+<li><a href="https://github.com/cossacklabs/themis" rel="noopener noreferrer">themis</a> - Multilanguage framework for making typical encryption schemes easy to use: data at rest, authenticated data exchange, transport protection, authentication, and so on.</li>
+<li><a href="https://github.com/apps/guardrails" rel="noopener noreferrer">GuardRails</a> - GitHub app that provides security feedback in pull requests.</li>
+<li><a href="https://github.com/animir/node-rate-limiter-flexible" rel="noopener noreferrer">rate-limiter-flexible</a> - Brute-force and DDoS attack protection.</li>
+<li><a href="https://github.com/sindresorhus/crypto-hash" rel="noopener noreferrer">crypto-hash</a> - Async non-blocking hashing.</li>
+<li><a href="https://github.com/davesag/jose-simple" rel="noopener noreferrer">jose-simple</a> - Encryption and decryption of data using the JOSE (JSON Object Signing and Encryption) standard.</li>
+</ul>
+<h3 id="benchmarking"><a class="anchor" aria-hidden="true" tabindex="-1" href="#benchmarking"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Benchmarking</h3><ul>
+<li><a href="https://github.com/bestiejs/benchmark.js" rel="noopener noreferrer">Benchmark.js</a> - Benchmarking library that supports high-resolution timers and returns statistically significant results.</li>
+</ul>
+<h3 id="minifiers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#minifiers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Minifiers</h3><ul>
+<li><a href="https://github.com/babel/minify" rel="noopener noreferrer">babel-minify</a> - ES2015+ aware minifier based on the Babel toolchain.</li>
+<li><a href="https://github.com/mishoo/UglifyJS" rel="noopener noreferrer">UglifyJS2</a> - JavaScript minifier.</li>
+<li><a href="https://github.com/clean-css/clean-css" rel="noopener noreferrer">clean-css</a> - CSS minifier.</li>
+<li><a href="https://github.com/Swaagie/minimize" rel="noopener noreferrer">minimize</a> - HTML minifier.</li>
+<li><a href="https://github.com/imagemin/imagemin" rel="noopener noreferrer">imagemin</a> - Image minifier.</li>
+</ul>
+<h3 id="authentication"><a class="anchor" aria-hidden="true" tabindex="-1" href="#authentication"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Authentication</h3><ul>
+<li><a href="https://github.com/jaredhanson/passport" rel="noopener noreferrer">Passport</a> - Simple, unobtrusive authentication.</li>
+<li><a href="https://github.com/simov/grant" rel="noopener noreferrer">Grant</a> - OAuth providers for Express, Koa, Hapi, Fastify, AWS Lambda, Azure, Google Cloud, Vercel, and many more.</li>
+</ul>
+<h3 id="authorization"><a class="anchor" aria-hidden="true" tabindex="-1" href="#authorization"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Authorization</h3><ul>
+<li><a href="https://github.com/stalniy/casl" rel="noopener noreferrer">CASL</a> - Isomorphic authorization for UI and API.</li>
+<li><a href="https://github.com/casbin/node-casbin" rel="noopener noreferrer">node-casbin</a> - Authorization library that supports access control models like ACL, RBAC and ABAC.</li>
+</ul>
+<h3 id="email"><a class="anchor" aria-hidden="true" tabindex="-1" href="#email"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Email</h3><ul>
+<li><a href="https://github.com/nodemailer/nodemailer" rel="noopener noreferrer">Nodemailer</a> - The fastest way to handle email.</li>
+<li><a href="https://github.com/eleith/emailjs" rel="noopener noreferrer">emailjs</a> - Send text/HTML emails with attachments to any SMTP server.</li>
+<li><a href="https://github.com/forwardemail/email-templates" rel="noopener noreferrer">email-templates</a> - Create, preview, and send custom email templates.</li>
+<li><a href="https://github.com/mjmlio/mjml" rel="noopener noreferrer">MJML</a> - Markup language designed to reduce the pain of creating responsive emails.</li>
+</ul>
+<h3 id="job-queues"><a class="anchor" aria-hidden="true" tabindex="-1" href="#job-queues"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Job queues</h3><ul>
+<li><a href="https://github.com/OptimalBits/bull" rel="noopener noreferrer">bull</a> - Persistent job and message queue.</li>
+<li><a href="https://github.com/agenda/agenda" rel="noopener noreferrer">agenda</a> - MongoDB-backed job scheduling.</li>
+<li><a href="https://github.com/nodeca/idoit" rel="noopener noreferrer">idoit</a> - Redis-backed job queue engine with advanced job control.</li>
+<li><a href="https://github.com/actionhero/node-resque" rel="noopener noreferrer">node-resque</a> - Redis-backed job queue.</li>
+<li><a href="https://github.com/smrchy/rsmq" rel="noopener noreferrer">rsmq</a> - Redis-backed message queue.</li>
+<li><a href="https://github.com/bee-queue/bee-queue" rel="noopener noreferrer">bee-queue</a> - High-performance Redis-backed job queue.</li>
+<li><a href="https://github.com/weyoss/redis-smq" rel="noopener noreferrer">RedisSMQ</a> - Simple high-performance Redis message queue with real-time monitoring.</li>
+<li><a href="https://github.com/bbc/sqs-consumer" rel="noopener noreferrer">sqs-consumer</a> - Build Amazon Simple Queue Service (SQS) based apps without the boilerplate.</li>
+<li><a href="https://github.com/diamondio/better-queue" rel="noopener noreferrer">better-queue</a> - Simple and efficient job queue when you cannot use Redis.</li>
+<li><a href="https://github.com/taskforcesh/bullmq" rel="noopener noreferrer">bullmq</a> - Persistent job and message queue.</li>
+<li><a href="https://github.com/breejs/bree" rel="noopener noreferrer">bree</a> - Job task scheduler with worker threads, cron, date, and human syntax support.</li>
+<li><a href="https://github.com/graphile/worker" rel="noopener noreferrer">graphile-worker</a> - High performance PostgreSQL job queue.</li>
+</ul>
+<h3 id="nodejs-management"><a class="anchor" aria-hidden="true" tabindex="-1" href="#nodejs-management"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Node.js management</h3><ul>
+<li><a href="https://github.com/tj/n" rel="noopener noreferrer">n</a> - Node.js version management.</li>
+<li><a href="https://github.com/isaacs/nave" rel="noopener noreferrer">nave</a> - Virtual Environments for Node.js.</li>
+<li><a href="https://github.com/ekalinin/nodeenv" rel="noopener noreferrer">nodeenv</a> - Node.js virtual environment compatible to Python's virtualenv.</li>
+<li><a href="https://github.com/coreybutler/nvm-windows" rel="noopener noreferrer">nvm for Windows</a> - Version management for Windows.</li>
+<li><a href="https://github.com/nodenv/nodenv" rel="noopener noreferrer">nodenv</a> - Version manager that is similar to Ruby's rbenv. It supports auto version switching.</li>
+<li><a href="https://github.com/Schniz/fnm" rel="noopener noreferrer">fnm</a> - Cross-platform Node.js version manager built in Rust.</li>
+</ul>
+<h3 id="cross-platform-integration"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cross-platform-integration"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Cross-platform integration</h3><ul>
+<li><a href="https://github.com/napi-rs/napi-rs" rel="noopener noreferrer">napi-rs</a> - Framework for building compiled Node.js add-ons in Rust via Node-API.</li>
+<li><a href="https://github.com/neon-bindings/neon" rel="noopener noreferrer">Neon</a> - Rust bindings for writing safe and fast native Node.js modules.</li>
+<li><a href="https://github.com/agracio/edge-js" rel="noopener noreferrer">Edge.js</a> - Run .NET and Node.js code in the same process on Windows, macOS, and Linux.</li>
+<li><a href="https://github.com/Elringus/DotNetJS" rel="noopener noreferrer">DotNetJS</a> - Consume .NET libraries in Node.js using this .NET interoperability layer.</li>
+</ul>
+<h3 id="natural-language-processing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#natural-language-processing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Natural language processing</h3><ul>
+<li><a href="https://github.com/retextjs/retext" rel="noopener noreferrer">retext</a> - An extensible natural language system.</li>
+<li><a href="https://github.com/wooorm/franc" rel="noopener noreferrer">franc</a> - Detect the language of text.</li>
+<li><a href="https://github.com/sindresorhus/leven" rel="noopener noreferrer">leven</a> - Measure the difference between two strings using the Levenshtein distance algorithm.</li>
+<li><a href="https://github.com/NaturalNode/natural" rel="noopener noreferrer">natural</a> - Natural language facility.</li>
+<li><a href="https://github.com/axa-group/nlp.js" rel="noopener noreferrer">nlp.js</a> - Building bots, with entity extraction, sentiment analysis, automatic language identify, and more.</li>
+</ul>
+<h3 id="process-management"><a class="anchor" aria-hidden="true" tabindex="-1" href="#process-management"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Process management</h3><ul>
+<li><a href="https://github.com/Unitech/pm2" rel="noopener noreferrer">PM2</a> - Advanced Process Manager.</li>
+<li><a href="https://github.com/remy/nodemon" rel="noopener noreferrer">nodemon</a> - Monitor for changes in your app and automatically restart the server.</li>
+<li><a href="https://github.com/coreybutler/node-mac" rel="noopener noreferrer">node-mac</a> - Run scripts as a native Mac daemon and log to the console app.</li>
+<li><a href="https://github.com/coreybutler/node-linux" rel="noopener noreferrer">node-linux</a> - Run scripts as native system service and log to syslog.</li>
+<li><a href="https://github.com/coreybutler/node-windows" rel="noopener noreferrer">node-windows</a> - Run scripts as a native Windows service and log to the Event viewer.</li>
+<li><a href="https://github.com/petruisfan/node-supervisor" rel="noopener noreferrer">supervisor</a> - Restart scripts when they crash or restart when a <code>*.js</code> file changes.</li>
+<li><a href="https://github.com/phusion/passenger" rel="noopener noreferrer">Phusion Passenger</a> - Friendly process manager that integrates directly into Nginx.</li>
+</ul>
+<h3 id="automation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#automation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Automation</h3><ul>
+<li><a href="https://github.com/octalmage/robotjs" rel="noopener noreferrer">robotjs</a> - Desktop Automation: control the mouse, keyboard and read the screen.</li>
+<li><a href="https://github.com/nut-tree/nut.js" rel="noopener noreferrer">nut.js</a> - Cross-platform native GUI automation / testing framework with image matching capabilities which integrates with Jest.</li>
+</ul>
+<h3 id="ast"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ast"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>AST</h3><ul>
+<li><a href="https://github.com/acornjs/acorn" rel="noopener noreferrer">Acorn</a> - Tiny, fast JavaScript parser.</li>
+<li><a href="https://github.com/babel/babel/tree/master/packages/babel-parser" rel="noopener noreferrer">babel-parser</a> - JavaScript parser used in Babel.</li>
+</ul>
+<h3 id="static-site-generators"><a class="anchor" aria-hidden="true" tabindex="-1" href="#static-site-generators"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Static site generators</h3><ul>
+<li><a href="https://github.com/docpad/docpad" rel="noopener noreferrer">DocPad</a> - Static site generator with dynamic abilities and huge plugin ecosystem.</li>
+<li><a href="https://github.com/docsifyjs/docsify" rel="noopener noreferrer">docsify</a> - Markdown documentation site generator with no statically built HTML files.</li>
+<li><a href="https://github.com/brandonweiss/charge" rel="noopener noreferrer">Charge</a> - Opinionated, zero-config static site generator using JSX and MDX.</li>
+</ul>
+<h3 id="content-management-systems"><a class="anchor" aria-hidden="true" tabindex="-1" href="#content-management-systems"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Content management systems</h3><ul>
+<li><a href="https://github.com/keystonejs/keystone" rel="noopener noreferrer">KeystoneJS</a> - CMS and web application platform built on Express and MongoDB.</li>
+<li><a href="https://github.com/apostrophecms/apostrophe" rel="noopener noreferrer">ApostropheCMS</a> - Content management system with an emphasis on intuitive front end content editing and administration built on Express and MongoDB.</li>
+<li><a href="https://github.com/strapi/strapi" rel="noopener noreferrer">Strapi</a> - Content Management Framework (headless-CMS) to build powerful APIs.</li>
+<li><a href="https://github.com/FactorJS/factor" rel="noopener noreferrer">Factor</a> - Vue.js dashboard framework and headless CMS.</li>
+<li><a href="https://github.com/SoftwareBrothers/adminjs" rel="noopener noreferrer">AdminBro</a> - Auto-generated admin panel with CRUD for all your resources.</li>
+<li><a href="https://github.com/exogee-technology/graphweaver" rel="noopener noreferrer">Graphweaver</a> - CMS and headless GraphQL API.</li>
+</ul>
+<h3 id="forum"><a class="anchor" aria-hidden="true" tabindex="-1" href="#forum"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Forum</h3><ul>
+<li><a href="https://github.com/NodeBB/NodeBB" rel="noopener noreferrer">nodeBB</a> - Forum platform for the modern web.</li>
+</ul>
+<h3 id="blogging"><a class="anchor" aria-hidden="true" tabindex="-1" href="#blogging"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Blogging</h3><ul>
+<li><a href="https://github.com/TryGhost/Ghost" rel="noopener noreferrer">Ghost</a> - Simple, powerful publishing platform.</li>
+<li><a href="https://github.com/hexojs/hexo" rel="noopener noreferrer">Hexo</a> - Fast, simple and powerful blogging framework.</li>
+</ul>
+<h3 id="weird"><a class="anchor" aria-hidden="true" tabindex="-1" href="#weird"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Weird</h3><ul>
+<li><a href="https://github.com/sindresorhus/cows" rel="noopener noreferrer">cows</a> - ASCII cows.</li>
+<li><a href="https://github.com/sindresorhus/superb" rel="noopener noreferrer">superb</a> - Get superb like words.</li>
+<li><a href="https://github.com/sindresorhus/cat-names" rel="noopener noreferrer">cat-names</a> - Get popular cat names.</li>
+<li><a href="https://github.com/sindresorhus/dog-names" rel="noopener noreferrer">dog-names</a> - Get popular dog names.</li>
+<li><a href="https://github.com/sindresorhus/superheroes" rel="noopener noreferrer">superheroes</a> - Get superhero names.</li>
+<li><a href="https://github.com/sindresorhus/supervillains" rel="noopener noreferrer">supervillains</a> - Get supervillain names.</li>
+<li><a href="https://github.com/maxogden/cool-ascii-faces" rel="noopener noreferrer">cool-ascii-faces</a> - Get some cool ascii faces.</li>
+<li><a href="https://github.com/melaniecebula/cat-ascii-faces" rel="noopener noreferrer">cat-ascii-faces</a> - <code>₍˄·͈༝·͈˄₎◞ ̑̑ෆ⃛ (=ↀωↀ=)✧ (^･o･^)ﾉ”</code>.</li>
+<li><a href="https://github.com/SkyHacks/nerds" rel="noopener noreferrer">nerds</a> - Get data from nerdy topics like Harry Potter, Star Wars, and Pokémon.</li>
+</ul>
+<h3 id="serialization"><a class="anchor" aria-hidden="true" tabindex="-1" href="#serialization"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Serialization</h3><ul>
+<li><a href="https://github.com/kesla/node-snappy" rel="noopener noreferrer">snappy</a> - Native bindings for Google's Snappy compression library.</li>
+<li><a href="https://github.com/protobufjs/protobuf.js" rel="noopener noreferrer">protobuf</a> - Implementation of Protocol Buffers.</li>
+<li><a href="https://github.com/compactr/compactr.js" rel="noopener noreferrer">compactr</a> - Implementation of the Compactr protocol.</li>
+</ul>
+<h3 id="miscellaneous"><a class="anchor" aria-hidden="true" tabindex="-1" href="#miscellaneous"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Miscellaneous</h3><ul>
+<li><a href="https://github.com/sindresorhus/execa" rel="noopener noreferrer">execa</a> - Better <code>child_process</code>.</li>
+<li><a href="https://github.com/cheeriojs/cheerio" rel="noopener noreferrer">cheerio</a> - Fast, flexible, and lean implementation of core jQuery designed specifically for the server.</li>
+<li><a href="https://github.com/sindresorhus/open" rel="noopener noreferrer">open</a> - Opens stuff like websites, files, executables.</li>
+<li><a href="https://github.com/sindresorhus/hasha" rel="noopener noreferrer">hasha</a> - Hashing made simple. Get the hash of a buffer/string/stream/file.</li>
+<li><a href="https://github.com/sindresorhus/dot-prop" rel="noopener noreferrer">dot-prop</a> - Get a property from a nested object using a dot path.</li>
+<li><a href="https://github.com/sindresorhus/onetime" rel="noopener noreferrer">onetime</a> - Only run a function once.</li>
+<li><a href="https://github.com/sindresorhus/mem" rel="noopener noreferrer">mem</a> - Memoize functions - an optimization technique used to speed up consecutive function calls by caching the result of calls with identical input.</li>
+<li><a href="https://github.com/sindresorhus/strip-bom" rel="noopener noreferrer">strip-bom</a> - Strip UTF-8 byte order mark (BOM) from a string/buffer/stream.</li>
+<li><a href="https://github.com/sindresorhus/os-locale" rel="noopener noreferrer">os-locale</a> - Get the system locale.</li>
+<li><a href="https://github.com/mscdex/ssh2" rel="noopener noreferrer">ssh2</a> - SSH2 client and server module.</li>
+<li><a href="https://github.com/markelog/adit" rel="noopener noreferrer">adit</a> - SSH tunneling made simple.</li>
+<li><a href="https://github.com/sindresorhus/file-type" rel="noopener noreferrer">file-type</a> - Detect the file type of a Buffer.</li>
+<li><a href="https://github.com/SGrondin/bottleneck" rel="noopener noreferrer">Bottleneck</a> - Rate limiter that makes throttling easy.</li>
+<li><a href="https://github.com/audreyt/node-webworker-threads" rel="noopener noreferrer">webworker-threads</a> - Lightweight Web Worker API implementation with native threads.</li>
+<li><a href="https://github.com/sindresorhus/clipboardy" rel="noopener noreferrer">clipboardy</a> - Access the system clipboard (copy/paste).</li>
+<li><a href="https://github.com/mapbox/node-pre-gyp" rel="noopener noreferrer">node-pre-gyp</a> - Makes it easy to publish and install Node.js C++ addons from binaries.</li>
+<li><a href="https://github.com/peterbraden/node-opencv" rel="noopener noreferrer">opencv</a> - Bindings for OpenCV. The defacto computer vision library.</li>
+<li><a href="https://github.com/motdotla/dotenv" rel="noopener noreferrer">dotenv</a> - Load environment variables from .env file.</li>
+<li><a href="https://github.com/npm/node-semver" rel="noopener noreferrer">semver</a> - Semantic version parser.</li>
+<li><a href="https://github.com/nodegit/nodegit" rel="noopener noreferrer">nodegit</a> - Native bindings to Git.</li>
+<li><a href="https://github.com/pigulla/json-strictify" rel="noopener noreferrer">json-strictify</a> - Safely serialize a value to JSON without data loss or going into an infinite loop.</li>
+<li><a href="https://github.com/jsdom/jsdom" rel="noopener noreferrer">jsdom</a> - JavaScript implementation of HTML and the DOM.</li>
+<li><a href="https://github.com/sindresorhus/is" rel="noopener noreferrer">@sindresorhus/is</a> - Type check values.</li>
+<li><a href="https://github.com/simonepri/env-dot-prop" rel="noopener noreferrer">env-dot-prop</a> - Get, set, or delete nested properties of process.env using a dot path.</li>
+<li><a href="https://github.com/gkozlenko/node-video-lib" rel="noopener noreferrer">node-video-lib</a> - Pure JavaScript library for working with MP4 and FLV video files and creating MPEG-TS chunks for HLS streaming.</li>
+<li><a href="https://github.com/patrickjuchli/basic-ftp" rel="noopener noreferrer">basic-ftp</a> - FTP/FTPS client.</li>
+<li><a href="https://github.com/xxczaki/cashify" rel="noopener noreferrer">cashify</a> - Currency conversion.</li>
+<li><a href="https://github.com/Geode-solutions/genepi" rel="noopener noreferrer">genepi</a> - Automatically generate a native Node.js addon from C++ code.</li>
+<li><a href="https://github.com/typicode/husky" rel="noopener noreferrer">husky</a> - Create Git hook scripts.</li>
+<li><a href="https://github.com/ds300/patch-package" rel="noopener noreferrer">patch-package</a> - Make and preserve fixes to npm dependencies.</li>
+<li><a href="https://github.com/mifi/editly" rel="noopener noreferrer">editly</a> - Declarative video editing API.</li>
+<li><a href="https://github.com/ehmicky/wild-wild-path" rel="noopener noreferrer">wild-wild-path</a> - Object property paths with wildcards and regexes.</li>
+<li><a href="https://github.com/sindresorhus/uint8array-extras" rel="noopener noreferrer">uint8array-extras</a> - Useful utilities for working with Uint8Array and Buffer.</li>
+</ul>
+<h2 id="package-manager"><a class="anchor" aria-hidden="true" tabindex="-1" href="#package-manager"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Package Manager</h2><ul>
+<li><a href="https://docs.npmjs.com/about-npm" rel="noopener noreferrer">npm</a> - The default package manager.</li>
+<li><a href="https://pnpm.io" rel="noopener noreferrer">pnpm</a> - Disk space efficient package manager.</li>
+<li><a href="https://yarnpkg.com" rel="noopener noreferrer">yarn</a> - Alternative package manager.</li>
+<li><a href="https://bun.sh" rel="noopener noreferrer">bun</a> - All-in-one toolkit for JavaScript and TypeScript apps.</li>
+</ul>
+<h2 id="resources"><a class="anchor" aria-hidden="true" tabindex="-1" href="#resources"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Resources</h2><h3 id="tutorials"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tutorials"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tutorials</h3><ul>
+<li><a href="https://github.com/goldbergyoni/nodebestpractices" rel="noopener noreferrer">Node.js Best Practices</a> - Summary and curation of the top-ranked content on Node.js best practices, available in multiple languages.</li>
+<li><a href="https://github.com/nodeschool" rel="noopener noreferrer">Nodeschool</a> - Learn Node.js with interactive lessons.</li>
+<li><a href="https://github.com/maxogden/art-of-node/#the-art-of-node" rel="noopener noreferrer">The Art of Node</a> - An introduction to Node.js.</li>
+<li><a href="https://github.com/mattdesl/module-best-practices" rel="noopener noreferrer">module-best-practices</a> - Some good practices when writing new npm modules.</li>
+<li><a href="https://github.com/FredKSchott/the-node-way" rel="noopener noreferrer">The Node Way</a> - An entire philosophy of Node.js best practices and guiding principles exists for writing maintainable modules, scalable applications, and code that is actually pleasant to read.</li>
+<li><a href="https://github.com/azat-co/you-dont-know-node" rel="noopener noreferrer">You Don't Know Node.js</a> - Introduction to Node.js core features and asynchronous JavaScript.</li>
+<li><a href="https://github.com/ehmicky/cross-platform-node-guide" rel="noopener noreferrer">Portable Node.js guide</a> - Practical guide on how to write portable/cross-platform Node.js code.</li>
+<li><a href="https://frameworkless.js.org/course" rel="noopener noreferrer">Build a real web app with no frameworks</a> - A set of video tutorials/livestreams to help you build and deploy a real, live web app using a handful of simple libraries and the core Node.js modules.</li>
+</ul>
+<h3 id="discovery"><a class="anchor" aria-hidden="true" tabindex="-1" href="#discovery"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Discovery</h3><ul>
+<li><a href="https://npms.io" rel="noopener noreferrer">npms</a> - Superb package search with deep analysis of package quality using a <a href="https://npms.io/about" rel="noopener noreferrer">myriad of metrics</a>.</li>
+<li><a href="https://npmaddict.com" rel="noopener noreferrer">npm addict</a> - Your daily injection of npm packages.</li>
+</ul>
+<h3 id="articles"><a class="anchor" aria-hidden="true" tabindex="-1" href="#articles"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Articles</h3><ul>
+<li><a href="https://sematext.com/blog/node-js-error-handling/" rel="noopener noreferrer">Error Handling in Node.js</a></li>
+<li><a href="https://ponyfoo.com/articles/teach-yourself-nodejs-in-10-steps" rel="noopener noreferrer">Teach Yourself Node.js in 10 Steps</a></li>
+<li><a href="https://medium.com/@yoshuawuyts/mastering-the-filesystem-in-node-js-4706b7cb0801" rel="noopener noreferrer">Mastering the filesystem in Node.js</a></li>
+<li><a href="https://nodesource.com/blog/semver-a-primer/" rel="noopener noreferrer">Semver: A Primer</a></li>
+<li><a href="https://nodesource.com/blog/semver-tilde-and-caret/" rel="noopener noreferrer">Semver: Tilde and Caret</a></li>
+<li><a href="https://nodesource.com/blog/why-asynchronous/" rel="noopener noreferrer">Why Asynchronous?</a></li>
+<li><a href="https://nodesource.com/blog/understanding-the-nodejs-event-loop/" rel="noopener noreferrer">Understanding the Node.js Event Loop</a></li>
+<li><a href="https://nodesource.com/blog/understanding-object-streams/" rel="noopener noreferrer">Understanding Object Streams</a></li>
+<li><a href="https://snipcart.com/blog/graphql-nodejs-express-tutorial" rel="noopener noreferrer">Using Express to Quickly Build a GraphQL Server</a></li>
+</ul>
+<h3 id="newsletters"><a class="anchor" aria-hidden="true" tabindex="-1" href="#newsletters"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Newsletters</h3><ul>
+<li><a href="https://nodeweekly.com" rel="noopener noreferrer">Node Weekly</a> - Weekly e-mail round-up of Node.js news and articles.</li>
+</ul>
+<h3 id="videos"><a class="anchor" aria-hidden="true" tabindex="-1" href="#videos"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Videos</h3><ul>
+<li><a href="https://www.youtube.com/watch?v=jo_B4LTHi3I" rel="noopener noreferrer">Introduction to Node.js with Ryan Dahl</a></li>
+<li><a href="https://learn.bevry.me/hands-on-with-node.js/preface" rel="noopener noreferrer">Hands on with Node.js</a></li>
+<li><a href="https://v8.dev/blog/trash-talk" rel="noopener noreferrer">V8 Garbage Collector</a> - Trash talk about the V8 garbage collector.</li>
+<li><a href="https://www.youtube.com/watch?v=M3BM9TB-8yA" rel="noopener noreferrer">10 Things I Regret About Node.js by Ryan Dahl</a> - Insightful talk by the creator of Node.js about some of its limitions.</li>
+<li><a href="https://www.manning.com/livevideo/mastering-rest-apis-in-nodejs" rel="noopener noreferrer">Mastering REST APIs in Node.js: Zero-To-Hero</a> - Video course on how to make REST APIs using Node.js.</li>
+<li><a href="https://www.youtube.com/watch?v=_1xa8Bsho6A" rel="noopener noreferrer">Make a vanilla Node.js REST API</a> - Building a REST API without using a framework like Express.</li>
+<li><a href="https://www.youtube.com/watch?v=FrufJFBSoQY" rel="noopener noreferrer">Google I/O 2009 - V8: High Performance JavaScript Engine</a> - The basics of V8 architecture and how it optimizes JavaScript execution.</li>
+<li><a href="https://www.youtube.com/watch?v=UJPdhx5zTaw" rel="noopener noreferrer">Google I/O 2012 - Breaking the JavaScript Speed Limit with V8</a> - How V8 optimizes JavaScript execution.</li>
+<li><a href="https://www.youtube.com/watch?v=VhpdsjBUS3g" rel="noopener noreferrer">Google I/O 2013 - Accelerating Oz with V8: Follow the Yellow Brick Road to JavaScript Performance</a> - How to detect app bottlenecks and optimize performance with V8 knowledge.</li>
+<li><a href="https://www.youtube.com/watch?v=OCjvhCFFPTw" rel="noopener noreferrer">Node.js Internal Architecture | Ignition, Turbofan, Libuv</a> - How Node.js works internally, with a focus on V8 and libuv.</li>
+<li><a href="https://www.youtube.com/watch?v=_c51fcXRLGw" rel="noopener noreferrer">Introduction to libuv: What's a Unicorn Velociraptor?</a> - <code>libuv</code> architecture, thread pool, and event loop, with its source code.</li>
+<li><a href="https://www.youtube.com/watch?v=kCJ3PFU8Ke8" rel="noopener noreferrer">libuv Cross platform asynchronous i/o</a> - <code>libuv</code> architecture in detail, such as where it's actually using threads.</li>
+<li><a href="https://www.youtube.com/watch?v=oPo4EQmkjvY" rel="noopener noreferrer">You Don't Know Node - ForwardJS San Francisco</a> - Explaining Node.js internals with quizzes about V8, libuv, event loop, module, stream, and cluster.</li>
+</ul>
+<h3 id="books"><a class="anchor" aria-hidden="true" tabindex="-1" href="#books"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Books</h3><ul>
+<li><a href="https://www.manning.com/books/node-js-in-action-second-edition" rel="noopener noreferrer">Node.js in Action</a></li>
+<li><a href="https://www.amazon.com/Node-js-Practice-Alex-R-Young/dp/1617290939" rel="noopener noreferrer">Node.js in Practice</a></li>
+<li><a href="https://visionmedia.github.io/masteringnode/" rel="noopener noreferrer">Mastering Node</a></li>
+<li><a href="https://pragprog.com/book/jwnode2/node-js-8-the-right-way/" rel="noopener noreferrer">Node.js 8 the Right Way</a></li>
+<li><a href="https://www.amazon.com/Professional-Node-js-Building-Javascript-Scalable-ebook/dp/B009L7QETY/" rel="noopener noreferrer">Professional Node.js: Building JavaScript Based Scalable Software</a></li>
+<li><a href="https://www.amazon.com/Secure-Your-Node-js-Web-Application/dp/1680500856" rel="noopener noreferrer">Secure Your Node.js Web Application</a></li>
+<li><a href="https://www.manning.com/books/express-in-action" rel="noopener noreferrer">Express in Action</a></li>
+<li><a href="https://www.amazon.com/Practical-Modern-JavaScript-Dive-Future/dp/149194353X" rel="noopener noreferrer">Practical Modern JavaScript</a></li>
+<li><a href="https://www.amazon.com/Mastering-Modular-JavaScript-Nicolas-Bevacqua/dp/1491955686/" rel="noopener noreferrer">Mastering Modular JavaScript</a></li>
+<li><a href="https://www.manning.com/books/get-programming-with-node-js" rel="noopener noreferrer">Get Programming with Node.js</a></li>
+<li><a href="https://www.amazon.com/dp/1838558756" rel="noopener noreferrer">Node.js Cookbook</a></li>
+<li><a href="https://www.nodejsdesignpatterns.com" rel="noopener noreferrer">Node.js Design Patterns</a></li>
+</ul>
+<h3 id="blogs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#blogs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Blogs</h3><ul>
+<li><a href="https://nodejs.org/en/blog/" rel="noopener noreferrer">Node.js blog</a></li>
+<li><a href="https://webapplog.com/tag/node-js/" rel="noopener noreferrer">webapplog.com</a> - Blog posts on Node.js and JavaScript from the author of Practical Node.js and Pro Express.js Azat Mardan.</li>
+</ul>
+<h3 id="courses"><a class="anchor" aria-hidden="true" tabindex="-1" href="#courses"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Courses</h3><ul>
+<li><a href="https://learnnode.com/friend/AWESOME" rel="noopener noreferrer">Learn to build apps and APIs with Node.js</a> - Video course by Wes Bos.</li>
+<li><a href="https://www.pluralsight.com/courses/code-school-real-time-web-with-nodejs" rel="noopener noreferrer">Real Time Web with Node.js</a></li>
+<li><a href="https://www.udemy.com/course/understand-nodejs/" rel="noopener noreferrer">Learn and Understand Node.js</a></li>
+<li><a href="https://kinsta.com/academy/course/node-js-full-stack-developer/" rel="noopener noreferrer">Node.js Full Stack Developer Course</a></li>
+</ul>
+<h3 id="cheatsheets"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cheatsheets"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Cheatsheets</h3><ul>
+<li><a href="https://github.com/azat-co/cheatsheets/tree/master/express4" rel="noopener noreferrer">Express.js</a></li>
+<li><a href="https://github.com/stephenplusplus/stream-faqs" rel="noopener noreferrer">Stream FAQs</a> - Answering common questions about streams, covering pagination, events, and more.</li>
+<li><a href="https://github.com/jesusprubio/strong-node" rel="noopener noreferrer">Strong Node.js</a> - Checklist for source code security analysis of a Node.js web service.</li>
+</ul>
+<h3 id="tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tools</h3><ul>
+<li><a href="https://chrome.google.com/webstore/detail/octolinker/jlmafbaeoofdegohdhinkhilhclaklkp" rel="noopener noreferrer">OctoLinker</a> - Chrome extension that linkifies dependencies in package.json, .js, .jsx, .coffee and .md files on GitHub.</li>
+<li><a href="https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj" rel="noopener noreferrer">npm-hub</a> - Chrome extension to display npm dependencies at the bottom of a repo's readme.</li>
+<li><a href="https://runkit.com" rel="noopener noreferrer">RunKit</a> - Embed a Node.js environment on any website.</li>
+<li><a href="https://chrome.google.com/webstore/detail/github-npm-stats/oomfflokggoffaiagenekchfnpighcef" rel="noopener noreferrer">github-npm-stats</a> - Chrome extension that displays npm download stats on GitHub.</li>
+<li><a href="https://semver.npmjs.com" rel="noopener noreferrer">npm semver calculator</a> - Visually explore what versions of a package a semver range matches.</li>
+<li><a href="https://codesandbox.io/templates/node-http-server" rel="noopener noreferrer">CodeSandbox</a> - Online IDE and prototyping.</li>
+<li><a href="https://github.com/amplication/amplication" rel="noopener noreferrer">Amplication</a> - Auto-generates fully functional apps.</li>
+<li><a href="https://runjs.app" rel="noopener noreferrer">RunJS</a> - Desktop JavaScript playground.</li>
+</ul>
+<h3 id="community"><a class="anchor" aria-hidden="true" tabindex="-1" href="#community"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Community</h3><ul>
+<li><a href="https://stackoverflow.com/questions/tagged/node.js" rel="noopener noreferrer">Stack Overflow</a></li>
+<li><a href="https://www.reddit.com/r/node" rel="noopener noreferrer">Reddit</a></li>
+<li><a href="https://twitter.com/nodejs" rel="noopener noreferrer">Twitter</a></li>
+<li><a href="https://hashnode.com/n/nodejs" rel="noopener noreferrer">Hashnode</a></li>
+<li><a href="https://discord.com/invite/96WGtJt" rel="noopener noreferrer">Discord</a></li>
+</ul>
+<h3 id="miscellaneous-1"><a class="anchor" aria-hidden="true" tabindex="-1" href="#miscellaneous-1"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Miscellaneous</h3><ul>
+<li><a href="https://nodebots.io" rel="noopener noreferrer">nodebots</a> - Robots powered by JavaScript.</li>
+<li><a href="https://github.com/sindresorhus/node-module-boilerplate" rel="noopener noreferrer">node-module-boilerplate</a> - Boilerplate to kickstart creating a node module.</li>
+<li><a href="https://github.com/sheerun/modern-node" rel="noopener noreferrer">modern-node</a> - Toolkit for creating node modules with Jest, Prettier, ESLint, and Standard.</li>
+<li><a href="https://github.com/sindresorhus/generator-nm" rel="noopener noreferrer">generator-nm</a> - Scaffold out a node module.</li>
+<li><a href="https://github.com/Microsoft/nodejs-guidelines" rel="noopener noreferrer">Microsoft Node.js Guidelines</a> - Tips, tricks, and resources for working with Node.js on Microsoft platforms.</li>
+<li><a href="https://github.com/sindresorhus/project-ideas" rel="noopener noreferrer">Module Requests &amp; Ideas</a> - Request a JavaScript module you wish existed or get ideas for modules.</li>
+<li><a href="https://github.com/thlorenz/v8-perf" rel="noopener noreferrer">v8-perf</a> - Notes and resources related to V8 and thus Node.js performance.</li>
+</ul>
+<h2 id="related-lists"><a class="anchor" aria-hidden="true" tabindex="-1" href="#related-lists"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Related lists</h2><ul>
+<li><a href="https://github.com/sindresorhus/awesome-npm" rel="noopener noreferrer">awesome-npm</a> - Resources and tips for using npm.</li>
+<li><a href="https://github.com/bcoe/awesome-cross-platform-nodejs" rel="noopener noreferrer">awesome-cross-platform-nodejs</a> - Resources for writing and testing cross-platform code.</li>
+</ul>
+
+
+    </main>
+  </body>
+</html>

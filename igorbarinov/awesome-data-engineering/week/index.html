@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Track Awesome Data Engineering (igorbarinov/awesome-data-engineering) Updates Weekly - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/igorbarinov/awesome-data-engineering/week/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Track Awesome Data Engineering Updates Weekly" />
+    <meta property="og:description" content="A curated list of data engineering tools for software developers" />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Track Awesome Data Engineering Updates Weekly</h1>
+<p>A curated list of data engineering tools for software developers</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/igorbarinov/awesome-data-engineering/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/igorbarinov/awesome-data-engineering">😺 igorbarinov/awesome-data-engineering</a><span> · </span><span>⭐ 7.5K</span><span> · </span><span>🏷️ Big Data</span></p>
+<p><span>[ </span><a href="/igorbarinov/awesome-data-engineering/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/igorbarinov/awesome-data-engineering/readme/">Overview</a><span> ]</span></p>
+
+<h2><a href="https://www.trackawesomelist.com/2025/28/">Jul 14 - Jul 20, 2025</a></h2><h3><p>Data Ingestion</p>
+</h3>
+<ul>
+<li><a href="https://estuary.dev" rel="noopener noreferrer">Estuary Flow</a> - No/low-code data pipeline platform that handles both batch and real-time data ingestion.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/25/">Jun 23 - Jun 29, 2025</a></h2><h3><p>Data Lake Management</p>
+</h3>
+<ul>
+<li><a href="https://github.com/apache/gravitino" rel="noopener noreferrer">Gravitino (⭐1.7k)</a> - Gravitino is an open-source, unified metadata management for data lakes, data warehouses, and external catalogs.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/16/">Apr 21 - Apr 27, 2025</a></h2><h3><p>Charts and Dashboards</p>
+</h3>
+<ul>
+<li><a href="https://seaborn.pydata.org" rel="noopener noreferrer">Seaborn</a> - A Python visualization library based on matplotlib. It provides a high-level interface for drawing attractive statistical graphics.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/15/">Apr 14 - Apr 20, 2025</a></h2><h3><p>Data Lake Management</p>
+</h3>
+<ul>
+<li><a href="https://ilum.cloud/" rel="noopener noreferrer">Ilum</a> - Ilum is a modular Data Lakehouse platform that simplifies the management and monitoring of Apache Spark clusters across Kubernetes and Hadoop environments.</li>
+</ul>
+<h3><p>Community / Books</p>
+</h3>
+<ul>
+<li><a href="https://www.appliedaicourse.com/blog/data-science-books/" rel="noopener noreferrer">Best Data Science Books</a> - This blog offers a curated list of top data science books, categorized by topics and learning stages, to aid readers in building foundational knowledge and staying updated with industry trends.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/11/">Mar 17 - Mar 23, 2025</a></h2><h3><p>Stream Processing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/cocoindex-io/cocoindex" rel="noopener noreferrer">CocoIndex (⭐2.2k)</a> - An open source ETL framework to build fresh index for AI.</li>
+</ul>
+<h3><p>Batch Processing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/brexhq/substation" rel="noopener noreferrer">Substation (⭐373)</a> - Substation is a cloud native data pipeline and transformation toolkit written in Go.</li>
+</ul>
+<h3><p>Testing / Data Profiler</p>
+</h3>
+<ul>
+<li><a href="https://runsql.com/" rel="noopener noreferrer">RunSQL</a> - Free online SQL playground for MySQL, PostgreSQL, and SQL Server. Create database structures, run queries, and share results instantly.</li>
+</ul>
+<h3><p>Community / Books</p>
+</h3>
+<ul>
+<li><a href="https://www.manning.com/books/snowflake-data-engineering" rel="noopener noreferrer">Snowflake Data Engineering</a> - A practical introduction to data engineering on the Snowflake cloud data platform.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/8/">Feb 24 - Mar 02, 2025</a></h2><h3><p>Data Ingestion</p>
+</h3>
+<ul>
+<li><a href="https://www.csvpath.org/" rel="noopener noreferrer">CsvPath Framework</a> - A delimited data preboarding framework that fills the gap between MFT and the data lake.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/43/">Oct 21 - Oct 27, 2024</a></h2><h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dagworks-inc/hamilton" rel="noopener noreferrer">Hamilton (⭐2.2k)</a> - Hamilton is a lightweight library to define data transformations as a directed-acyclic graph (DAG). If you like dbt for SQL transforms, you will like Hamilton for Python processing.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/36/">Sep 02 - Sep 08, 2024</a></h2><h3><p>Data Ingestion</p>
+</h3>
+<ul>
+<li><a href="https://www.artie.com/" rel="noopener noreferrer">Artie</a> - Real-time data ingestion tool leveraging change data capture.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/31/">Jul 29 - Aug 04, 2024</a></h2><h3><p>Databases</p>
+</h3>
+<ul>
+<li>Other<ul>
+<li><a href="https://github.com/tarantool/tarantool/" rel="noopener noreferrer">Tarantool (⭐3.5k)</a> - Tarantool is an in-memory database and application server.</li>
+<li><a href="https://github.com/greenplum-db/gpdb" rel="noopener noreferrer">GreenPlum</a> - The Greenplum Database (GPDB) - An advanced, fully featured, open source data warehouse. It provides powerful and rapid analytics on petabyte scale data volumes.</li>
+<li><a href="https://github.com/cayleygraph/cayley" rel="noopener noreferrer">cayley (⭐15k)</a> - An open-source graph database. Google.</li>
+<li><a href="https://github.com/SnappyDataInc/snappydata" rel="noopener noreferrer">Snappydata (⭐1k)</a> - SnappyData: OLTP + OLAP Database built on Apache Spark.</li>
+<li><a href="https://www.timescale.com/" rel="noopener noreferrer">TimescaleDB</a> - Built as an extension on top of PostgreSQL, TimescaleDB is a time-series SQL database providing fast analytics, scalability, with automated data management on a proven storage engine.</li>
+<li><a href="https://duckdb.org/" rel="noopener noreferrer">DuckDB</a> - DuckDB is a fast in-process analytical database that has zero external dependencies, runs on Linux/macOS/Windows, offers a rich SQL dialect, and is free and extensible.</li>
+</ul>
+</li>
+</ul>
+<h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://www.mage.ai" rel="noopener noreferrer">Mage</a> - Open-source data pipeline tool for transforming and integrating data.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/30/">Jul 22 - Jul 28, 2024</a></h2><h3><p>Stream Processing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/swimos/swim-rust" rel="noopener noreferrer">SwimOS (⭐345)</a> - A framework for building real-time streaming data processing applications that supports a wide range of ingestion sources.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/29/">Jul 15 - Jul 21, 2024</a></h2><h3><p>Testing / Data Profiler</p>
+</h3>
+<ul>
+<li><a href="https://datakitchen.io/" rel="noopener noreferrer">DataKitchen</a> -  Open Source Data Observability for end-to-end Data Journey Observability, data profiling, anomaly detection, and auto-created data quality validation tests.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/26/">Jun 24 - Jun 30, 2024</a></h2><h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://github.com/kestra-io/kestra" rel="noopener noreferrer">Kestra (⭐20k)</a> - A versatile open source orchestrator and scheduler built on Java, designed to handle a broad range of workflows with a language-agnostic, API-first architecture.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/23/">Jun 03 - Jun 09, 2024</a></h2><h3><p>Data Ingestion</p>
+</h3>
+<ul>
+<li><a href="https://github.com/fulldecent/google-sheets-etl" rel="noopener noreferrer">Google Sheets ETL (⭐19)</a> - Live import all your Google Sheets to your data warehouse.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/22/">May 27 - Jun 02, 2024</a></h2><h3><p>Data Comparison</p>
+</h3>
+<ul>
+<li><a href="https://github.com/capitalone/datacompy" rel="noopener noreferrer">datacompy (⭐579)</a> - DataComPy is a Python library that facilitates the comparison of two DataFrames in pandas, Polars, Spark and more. The library goes beyond basic equality checks by providing detailed insights into discrepancies at both row and column levels.</li>
+</ul>
+<h3><p>Data Ingestion</p>
+</h3>
+<ul>
+<li><a href="https://kafka.apache.org/" rel="noopener noreferrer">Kafka</a> - Publish-subscribe messaging rethought as a distributed commit log.<ul>
+<li><a href="https://github.com/confluentinc/bottledwater-pg" rel="noopener noreferrer">BottledWater (⭐5)</a> - Change data capture from PostgreSQL into Kafka. Deprecated.</li>
+<li><a href="https://github.com/airbnb/kafkat" rel="noopener noreferrer">kafkat (⭐503)</a> - Simplified command-line administration for Kafka brokers.</li>
+<li><a href="https://github.com/edenhill/kafkacat" rel="noopener noreferrer">kafkacat (⭐5.6k)</a> - Generic command line non-JVM Apache Kafka producer and consumer.</li>
+<li><a href="https://github.com/xstevens/pg_kafka" rel="noopener noreferrer">pg-kafka (⭐112)</a> - A PostgreSQL extension to produce messages to Apache Kafka.</li>
+<li><a href="https://github.com/edenhill/librdkafka" rel="noopener noreferrer">librdkafka (⭐692)</a> - The Apache Kafka C/C++ library.</li>
+<li><a href="https://github.com/wurstmeister/kafka-docker" rel="noopener noreferrer">kafka-docker (⭐7k)</a> - Kafka in Docker.</li>
+<li><a href="https://github.com/yahoo/kafka-manager" rel="noopener noreferrer">kafka-manager (⭐12k)</a> - A tool for managing Apache Kafka.</li>
+<li><a href="https://github.com/SOHU-Co/kafka-node" rel="noopener noreferrer">kafka-node (⭐2.7k)</a> - Node.js client for Apache Kafka 0.8.</li>
+<li><a href="https://github.com/pinterest/secor" rel="noopener noreferrer">Secor (⭐1.9k)</a> - Pinterest's Kafka to S3 distributed consumer.</li>
+<li><a href="https://github.com/uber/kafka-logger" rel="noopener noreferrer">Kafka-logger (⭐45)</a> - Kafka-winston logger for Node.js from Uber.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><a href="https://www.dlthub.com" rel="noopener noreferrer">dlt</a> - A fast&amp;simple pipeline building library for python data devs, runs in notebooks, cloud functions, airflow, etc.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/apache/incubator-gobblin" rel="noopener noreferrer">Gobblin (⭐2.2k)</a> - Universal data ingestion framework for Hadoop from LinkedIn.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/awslabs/aws-data-wrangler" rel="noopener noreferrer">AWS Data Wrangler (⭐4k)</a> - Utility belt to handle data on AWS.</li>
+</ul>
+<h3><p>File System</p>
+</h3>
+<ul>
+<li><a href="https://ceph.com/" rel="noopener noreferrer">CEPH</a> - Ceph is a unified, distributed storage system designed for excellent performance, reliability, and scalability.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/juicedata/juicefs" rel="noopener noreferrer">JuiceFS (⭐12k)</a> - JuiceFS is a high-performance Cloud-Native file system driven by object storage for large-scale data storage.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tuplejump/snackfs-release" rel="noopener noreferrer">SnackFS (⭐14)</a> - SnackFS is our bite-sized, lightweight HDFS compatible file system built over Cassandra.</li>
+</ul>
+<h3><p>Stream Processing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/aklivity/zilla" rel="noopener noreferrer">Zilla (⭐597)</a> - - An API gateway built for event-driven architectures and streaming that supports standard protocols such as HTTP, SSE, gRPC, MQTT, and the native Kafka protocol.</li>
+</ul>
+<h3><p>Charts and Dashboards</p>
+</h3>
+<ul>
+<li><a href="https://d3js.org/" rel="noopener noreferrer">D3.js</a> - A JavaScript library for manipulating documents based on data.<ul>
+<li><a href="https://d3plus.org" rel="noopener noreferrer">D3Plus</a> - D3's simpler, easier to use cousin. Mostly predefined templates that you can just plug data in.</li>
+</ul>
+</li>
+</ul>
+<h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://github.com/seatgeek/cronq" rel="noopener noreferrer">CronQ</a> - An application cron-like system. <a href="https://chairnerd.seatgeek.com/building-out-the-seatgeek-data-pipeline/" rel="noopener noreferrer">Used</a> w/Luige. Deprecated.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/apache/airflow" rel="noopener noreferrer">Airflow (⭐41k)</a> - Airflow is a system to programmatically author, schedule, and monitor data pipelines.</li>
+</ul>
+
+<ul>
+<li><a href="https://azkaban.github.io/" rel="noopener noreferrer">Azkaban</a> - Azkaban is a batch workflow job scheduler created at LinkedIn to run Hadoop jobs. Azkaban resolves the ordering through job dependencies and provides an easy-to-use web user interface to maintain and track your workflows.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pinterest/pinball" rel="noopener noreferrer">Pinball (⭐1k)</a> - DAG based workflow manager. Job flows are defined programmatically in Python. Support output passing between jobs.</li>
+</ul>
+
+<ul>
+<li><a href="https://kestra.io/" rel="noopener noreferrer">Kestra</a> - Scalable, event-driven, language-agnostic orchestration and scheduling platform to manage millions of workflows declaratively in code.</li>
+</ul>
+<h3><p>ELK Elastic Logstash Kibana</p>
+</h3>
+<ul>
+<li><a href="https://github.com/pblittle/docker-logstash" rel="noopener noreferrer">docker-logstash (⭐236)</a> - A highly configurable Logstash (1.4.4) - Docker image running Elasticsearch (1.7.0) - and Kibana (3.1.2).</li>
+</ul>
+<h3><p>Docker</p>
+</h3>
+<ul>
+<li><a href="https://github.com/redbooth/gockerize" rel="noopener noreferrer">Gockerize (⭐665)</a> - Package golang service into minimal Docker containers.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/hashicorp/nomad" rel="noopener noreferrer">Nomad (⭐16k)</a> - Nomad is a cluster manager, designed for both long-lived services and short-lived batch processing workloads.</li>
+</ul>
+
+<ul>
+<li><a href="https://imagelayers.io/" rel="noopener noreferrer">ImageLayers</a> - Visualize Docker images and the layers that compose them.</li>
+</ul>
+<h3><p>Datasets / Data Dumps</p>
+</h3>
+<ul>
+<li><a href="https://dumps.wikimedia.org/enwiki/latest/" rel="noopener noreferrer">Wikipedia</a> - Wikipedia's complete copy of all wikis, in the form of Wikitext source and metadata embedded in XML. A number of raw database tables in SQL form are also available.</li>
+</ul>
+<h3><p>Community / Forums</p>
+</h3>
+<ul>
+<li><a href="https://www.reddit.com/r/dataengineering/" rel="noopener noreferrer">/r/dataengineering</a> - News, tips, and background on Data Engineering.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/21/">May 20 - May 26, 2024</a></h2><h3><p>Data Ingestion</p>
+</h3>
+<ul>
+<li><a href="https://meltano.com/" rel="noopener noreferrer">Meltano</a> - CLI &amp; code-first ELT.<ul>
+<li><a href="https://sdk.meltano.com" rel="noopener noreferrer">Singer SDK</a> - The fastest way to build custom data extractors and loaders compliant with the Singer Spec.</li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/13/">Mar 25 - Mar 31, 2024</a></h2><h3><p>Testing / Data Profiler</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dqops/dqo" rel="noopener noreferrer">DQOps (⭐153)</a> - An open-source data quality platform for the whole data platform lifecycle from profiling new data sources to applying full automation of data quality monitoring.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/12/">Mar 18 - Mar 24, 2024</a></h2><h3><p>Data Lake Management</p>
+</h3>
+<ul>
+<li><a href="https://github.com/projectnessie/nessie" rel="noopener noreferrer">Project Nessie (⭐1.3k)</a> - Project Nessie is a Transactional Catalog for Data Lakes with Git-like semantics. Works with Apache Iceberg tables.</li>
+</ul>
+<h3><p>Community / Podcasts</p>
+</h3>
+<ul>
+<li><a href="https://datastackshow.com/" rel="noopener noreferrer">The Data Stack Show</a> - A show where they talk to data engineers, analysts, and data scientists about their experience around building and maintaining data infrastructure, delivering data and data products, and driving better outcomes across their businesses with data.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/9/">Feb 26 - Mar 03, 2024</a></h2><h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://www.suprsend.com/products/workflows" rel="noopener noreferrer">SuprSend</a> - Create automated workflows and logic using API's for your notification service. Add templates, batching, preferences, inapp inbox with workflows to trigger notifications directly from your data warehouse.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/8/">Feb 19 - Feb 25, 2024</a></h2><h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Multiwoven/multiwoven" rel="noopener noreferrer">Multiwoven (⭐1.6k)</a> - The open-source reverse ETL, data activation platform for modern data teams.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/5/">Jan 29 - Feb 04, 2024</a></h2><h3><p>Profiling / Data Profiler</p>
+</h3>
+<ul>
+<li><a href="https://github.com/capitalone/dataprofiler" rel="noopener noreferrer">Data Profiler (⭐1.5k)</a> - The DataProfiler is a Python library designed to make data analysis, monitoring, and sensitive data detection easy.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/4/">Jan 22 - Jan 28, 2024</a></h2><h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://prefect.io/" rel="noopener noreferrer">Prefect</a> - Prefect is an orchestration and observability platform. With it, developers can rapidly build and scale resilient code, and triage disruptions effortlessly.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/2/">Jan 08 - Jan 14, 2024</a></h2><h3><p>Data Ingestion</p>
+</h3>
+<ul>
+<li><a href="https://slingdata.io/" rel="noopener noreferrer">Sling</a> - Sling is CLI data integration tool specialized in moving data between databases, as well as storage systems.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/49/">Dec 04 - Dec 10, 2023</a></h2><h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://github.com/getstrm/pace" rel="noopener noreferrer">PACE (⭐36)</a> - An open source framework that allows you to enforce agreements on how data should be accessed, used, and transformed, regardless of the data platform (Snowflake, BigQuery, DataBricks, etc.)</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/47/">Nov 20 - Nov 26, 2023</a></h2><h3><p>Databases</p>
+</h3>
+<ul>
+<li>Relational<ul>
+<li><a href="https://github.com/rqlite/rqlite" rel="noopener noreferrer">RQLite (⭐17k)</a> - Replicated SQLite using the Raft consensus protocol.</li>
+<li><a href="https://www.mysql.com/" rel="noopener noreferrer">MySQL</a> - The world's most popular open source database.<ul>
+<li><a href="https://github.com/pingcap/tidb" rel="noopener noreferrer">TiDB (⭐39k)</a> - TiDB is a distributed NewSQL database compatible with MySQL protocol.</li>
+<li><a href="https://www.percona.com/software/mysql-database/percona-xtrabackup" rel="noopener noreferrer">Percona XtraBackup</a> - Percona XtraBackup is a free, open source, complete online backup solution for all versions of Percona Server, MySQL® and MariaDB®.</li>
+<li><a href="https://github.com/pinterest/mysql_utils" rel="noopener noreferrer">mysql_utils (⭐885)</a> - Pinterest MySQL Management Tools.</li>
+</ul>
+</li>
+<li><a href="https://mariadb.org/" rel="noopener noreferrer">MariaDB</a> - An enhanced, drop-in replacement for MySQL.</li>
+<li><a href="https://www.postgresql.org/" rel="noopener noreferrer">PostgreSQL</a> - The world's most advanced open source database.</li>
+<li><a href="https://aws.amazon.com/rds/" rel="noopener noreferrer">Amazon RDS</a> - Amazon RDS makes it easy to set up, operate, and scale a relational database in the cloud.</li>
+<li><a href="https://crate.io/" rel="noopener noreferrer">Crate.IO</a> - Scalable SQL database with the NOSQL goodies.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>Key-Value<ul>
+<li><a href="https://redis.io/" rel="noopener noreferrer">Redis</a> - An open source, BSD licensed, advanced key-value cache and store.</li>
+<li><a href="https://docs.basho.com/riak/kv/" rel="noopener noreferrer">Riak</a> - A distributed database designed to deliver maximum data availability by distributing data across multiple servers.</li>
+<li><a href="https://aws.amazon.com/dynamodb/" rel="noopener noreferrer">AWS DynamoDB</a> - A fast and flexible NoSQL database service for all applications that need consistent, single-digit millisecond latency at any scale.</li>
+<li><a href="https://github.com/rescrv/HyperDex" rel="noopener noreferrer">HyperDex (⭐1.4k)</a> - HyperDex is a scalable, searchable key-value store. Deprecated.</li>
+<li><a href="https://ssdb.io" rel="noopener noreferrer">SSDB</a> - A high performance NoSQL database supporting many data structures, an alternative to Redis.</li>
+<li><a href="https://github.com/alticelabs/kyoto" rel="noopener noreferrer">Kyoto Tycoon (⭐280)</a> - Kyoto Tycoon is a lightweight network server on top of the Kyoto Cabinet key-value database, built for high-performance and concurrency.</li>
+<li><a href="https://github.com/iondbproject/iondb" rel="noopener noreferrer">IonDB (⭐593)</a> - A key-value store for microcontroller and IoT applications.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>Column<ul>
+<li><a href="https://cassandra.apache.org/" rel="noopener noreferrer">Cassandra</a> - The right choice when you need scalability and high availability without compromising performance.<ul>
+<li><a href="https://www.ecyrd.com/cassandracalculator/" rel="noopener noreferrer">Cassandra Calculator</a> - This simple form allows you to try out different values for your Apache Cassandra cluster and see what the impact is for your application.</li>
+<li><a href="https://github.com/pcmanus/ccm" rel="noopener noreferrer">CCM (⭐1.2k)</a> - A script to easily create and destroy an Apache Cassandra cluster on localhost.</li>
+<li><a href="https://github.com/scylladb/scylla" rel="noopener noreferrer">ScyllaDB (⭐15k)</a> - NoSQL data store using the seastar framework, compatible with Apache Cassandra.</li>
+</ul>
+</li>
+<li><a href="https://hbase.apache.org/" rel="noopener noreferrer">HBase</a> - The Hadoop database, a distributed, scalable, big data store.</li>
+<li><a href="https://aws.amazon.com/redshift/" rel="noopener noreferrer">AWS Redshift</a> - A fast, fully managed, petabyte-scale data warehouse that makes it simple and cost-effective to analyze all your data using your existing business intelligence tools.</li>
+<li><a href="https://github.com/filodb/FiloDB" rel="noopener noreferrer">FiloDB (⭐1.4k)</a> - Distributed. Columnar. Versioned. Streaming. SQL.</li>
+<li><a href="https://www.vertica.com" rel="noopener noreferrer">Vertica</a> - Distributed, MPP columnar database with extensive analytics SQL.</li>
+<li><a href="https://clickhouse.tech" rel="noopener noreferrer">ClickHouse</a> - Distributed columnar DBMS for OLAP. SQL.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>Document<ul>
+<li><a href="https://www.mongodb.com" rel="noopener noreferrer">MongoDB</a> - An open-source, document database designed for ease of development and scaling.<ul>
+<li><a href="https://www.percona.com/software/mongo-database/percona-server-for-mongodb" rel="noopener noreferrer">Percona Server for MongoDB</a> - Percona Server for MongoDB® is a free, enhanced, fully compatible, open source, drop-in replacement for the MongoDB® Community Edition that includes enterprise-grade features and functionality.</li>
+<li><a href="https://github.com/rain1017/memdb" rel="noopener noreferrer">MemDB (⭐593)</a> - Distributed Transactional In-Memory Database (based on MongoDB).</li>
+</ul>
+</li>
+<li><a href="https://www.elastic.co/" rel="noopener noreferrer">Elasticsearch</a> - Search &amp; Analyze Data in Real Time.</li>
+<li><a href="https://www.couchbase.com/" rel="noopener noreferrer">Couchbase</a> - The highest performing NoSQL distributed database.</li>
+<li><a href="https://rethinkdb.com/" rel="noopener noreferrer">RethinkDB</a> - The open-source database for the realtime web.</li>
+<li><a href="https://ravendb.net/" rel="noopener noreferrer">RavenDB</a> - Fully Transactional NoSQL Document Database.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>Graph<ul>
+<li><a href="https://neo4j.com/" rel="noopener noreferrer">Neo4j</a> - The world's leading graph database.</li>
+<li><a href="https://orientdb.com" rel="noopener noreferrer">OrientDB</a> - 2nd Generation Distributed Graph Database with the flexibility of Documents in one product with an Open Source commercial friendly license.</li>
+<li><a href="https://www.arangodb.com/" rel="noopener noreferrer">ArangoDB</a> - A distributed free and open-source database with a flexible data model for documents, graphs, and key-values.</li>
+<li><a href="https://titan.thinkaurelius.com" rel="noopener noreferrer">Titan</a> - A scalable graph database optimized for storing and querying graphs containing hundreds of billions of vertices and edges distributed across a multi-machine cluster.</li>
+<li><a href="https://github.com/twitter-archive/flockdb" rel="noopener noreferrer">FlockDB (⭐3.3k)</a> - A distributed, fault-tolerant graph database by Twitter. Deprecated.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>Distributed<ul>
+<li><a href="https://www.datomic.com" rel="noopener noreferrer">DAtomic</a> - The fully transactional, cloud-ready, distributed database.</li>
+<li><a href="https://geode.apache.org/" rel="noopener noreferrer">Apache Geode</a> - An open source, distributed, in-memory database for scale-out applications.</li>
+<li><a href="https://github.com/gchq/Gaffer" rel="noopener noreferrer">Gaffer (⭐1.8k)</a> - A large-scale graph database.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>Timeseries<ul>
+<li><a href="https://github.com/influxdata/influxdb" rel="noopener noreferrer">InfluxDB (⭐30k)</a> - Scalable datastore for metrics, events, and real-time analytics.</li>
+<li><a href="https://github.com/OpenTSDB/opentsdb" rel="noopener noreferrer">OpenTSDB (⭐5.1k)</a> - A scalable, distributed Time Series Database.</li>
+<li><a href="https://questdb.io/" rel="noopener noreferrer">QuestDB</a> - A relational column-oriented database designed for real-time analytics on time series and event data.</li>
+<li><a href="https://github.com/kairosdb/kairosdb" rel="noopener noreferrer">kairosdb (⭐1.7k)</a> - Fast scalable time series database.</li>
+<li><a href="https://github.com/spotify/heroic" rel="noopener noreferrer">Heroic (⭐846)</a> - A scalable time series database based on Cassandra and Elasticsearch, by Spotify.</li>
+<li><a href="https://github.com/apache/incubator-druid" rel="noopener noreferrer">Druid (⭐14k)</a> - Column oriented distributed data store ideal for powering interactive applications.</li>
+<li><a href="https://basho.com/products/riak-ts/" rel="noopener noreferrer">Riak-TS</a> - Riak TS is the only enterprise-grade NoSQL time series database optimized specifically for IoT and Time Series data.</li>
+<li><a href="https://github.com/akumuli/Akumuli" rel="noopener noreferrer">Akumuli (⭐836)</a> - Akumuli is a numeric time-series database. It can be used to capture, store and process time-series data in real-time. The word "akumuli" can be translated from esperanto as "accumulate".</li>
+<li><a href="https://github.com/Pardot/Rhombus" rel="noopener noreferrer">Rhombus</a> - A time-series object store for Cassandra that handles all the complexity of building wide row indexes.</li>
+<li><a href="https://github.com/dalmatinerdb/dalmatinerdb" rel="noopener noreferrer">Dalmatiner DB (⭐691)</a> - Fast distributed metrics database.</li>
+<li><a href="https://github.com/rackerlabs/blueflood" rel="noopener noreferrer">Blueflood (⭐597)</a> - A distributed system designed to ingest and process time series data.</li>
+<li><a href="https://github.com/NationalSecurityAgency/timely" rel="noopener noreferrer">Timely (⭐385)</a> - Timely is a time series database application that provides secure access to time series data based on Accumulo and Grafana.</li>
+</ul>
+</li>
+</ul>
+<h3><p>Data Ingestion</p>
+</h3>
+<ul>
+<li><a href="https://aws.amazon.com/kinesis/" rel="noopener noreferrer">AWS Kinesis</a> - A fully managed, cloud-based service for real-time data processing over large, distributed data streams.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.rabbitmq.com/" rel="noopener noreferrer">RabbitMQ</a> - Robust messaging for applications.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.fluentd.org" rel="noopener noreferrer">FluentD</a> - An open source data collector for unified logging layer.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.embulk.org" rel="noopener noreferrer">Embulk</a> - An open source bulk data loader that helps data transfer between various databases, storages, file formats, and cloud services.</li>
+</ul>
+
+<ul>
+<li><a href="https://sqoop.apache.org" rel="noopener noreferrer">Apache Sqoop</a> - A tool designed for efficiently transferring bulk data between Apache Hadoop and structured datastores such as relational databases.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mozilla-services/heka" rel="noopener noreferrer">Heka (⭐3.4k)</a> - Data Acquisition and Processing Made Easy. Deprecated.</li>
+</ul>
+
+<ul>
+<li><a href="https://nakadi.io" rel="noopener noreferrer">Nakadi</a> - Nakadi is an open source event messaging platform that provides a REST API on top of Kafka-like queues.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.pravega.io" rel="noopener noreferrer">Pravega</a> - Pravega provides a new storage abstraction - a stream - for continuous and unbounded data.</li>
+</ul>
+
+<ul>
+<li><a href="https://pulsar.apache.org/" rel="noopener noreferrer">Apache Pulsar</a> - Apache Pulsar is an open-source distributed pub-sub messaging system.</li>
+</ul>
+
+<ul>
+<li><a href="https://airbyte.io/" rel="noopener noreferrer">Airbyte</a> - Open-source data integration for modern data teams.</li>
+</ul>
+<h3><p>File System</p>
+</h3>
+<ul>
+<li><a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html" rel="noopener noreferrer">HDFS</a> - A distributed file system designed to run on commodity hardware.<ul>
+<li><a href="https://github.com/spotify/snakebite" rel="noopener noreferrer">Snakebite (⭐857)</a> - A pure python HDFS client.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><a href="https://aws.amazon.com/s3/" rel="noopener noreferrer">AWS S3</a> - Object storage built to retrieve any amount of data from anywhere.<ul>
+<li><a href="https://github.com/RaRe-Technologies/smart_open" rel="noopener noreferrer">smart_open (⭐3.3k)</a> - Utils for streaming large files (S3, HDFS, gzip, bz2).</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><a href="https://www.alluxio.org/" rel="noopener noreferrer">Alluxio</a> - Alluxio is a memory-centric distributed storage system enabling reliable data sharing at memory-speed across cluster frameworks, such as Spark and MapReduce.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.orangefs.org/" rel="noopener noreferrer">OrangeFS</a> - Orange File System is a branch of the Parallel Virtual File System.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.gluster.org/" rel="noopener noreferrer">GlusterFS</a> - Gluster Filesystem.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.xtreemfs.org/" rel="noopener noreferrer">XtreemFS</a> - Fault-tolerant distributed file system for all storage needs.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/chrislusf/seaweedfs" rel="noopener noreferrer">SeaweedFS (⭐25k)</a> - Seaweed-FS is a simple and highly scalable distributed file system. There are two objectives: to store billions of files! to serve the files fast! Instead of supporting full POSIX file system semantics, Seaweed-FS choose to implement only a key~file mapping. Similar to the word "NoSQL", you can call it as "NoFS".</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/s3ql/s3ql/" rel="noopener noreferrer">S3QL (⭐1.2k)</a> - S3QL is a file system that stores all its data online using storage services like Google Storage, Amazon S3, or OpenStack.</li>
+</ul>
+
+<ul>
+<li><a href="https://lizardfs.com/" rel="noopener noreferrer">LizardFS</a> - LizardFS Software Defined Storage is a distributed, parallel, scalable, fault-tolerant, Geo-Redundant and highly available file system.</li>
+</ul>
+<h3><p>Serialization format</p>
+</h3>
+<ul>
+<li><a href="https://avro.apache.org" rel="noopener noreferrer">Apache Avro</a> - Apache Avro™ is a data serialization system.</li>
+</ul>
+
+<ul>
+<li><a href="https://parquet.apache.org" rel="noopener noreferrer">Apache Parquet</a> - Apache Parquet is a columnar storage format available to any project in the Hadoop ecosystem, regardless of the choice of data processing framework, data model or programming language.<ul>
+<li><a href="https://github.com/google/snappy" rel="noopener noreferrer">Snappy (⭐6.4k)</a> - A fast compressor/decompressor. Used with Parquet.</li>
+<li><a href="https://zlib.net/pigz/" rel="noopener noreferrer">PigZ</a> - A parallel implementation of gzip for modern multi-processor, multi-core machines.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><a href="https://orc.apache.org/" rel="noopener noreferrer">Apache ORC</a> - The smallest, fastest columnar storage for Hadoop workloads.</li>
+</ul>
+
+<ul>
+<li><a href="https://thrift.apache.org" rel="noopener noreferrer">Apache Thrift</a> - The Apache Thrift software framework, for scalable cross-language services development.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/protocolbuffers/protobuf" rel="noopener noreferrer">ProtoBuf (⭐68k)</a> - Protocol Buffers - Google's data interchange format.</li>
+</ul>
+
+<ul>
+<li><a href="https://wiki.apache.org/hadoop/SequenceFile" rel="noopener noreferrer">SequenceFile</a> - SequenceFile is a flat file consisting of binary key/value pairs. It is extensively used in MapReduce as input/output formats.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/EsotericSoftware/kryo" rel="noopener noreferrer">Kryo (⭐6.4k)</a> - Kryo is a fast and efficient object graph serialization framework for Java.</li>
+</ul>
+<h3><p>Stream Processing</p>
+</h3>
+<ul>
+<li><a href="https://beam.apache.org/" rel="noopener noreferrer">Apache Beam</a> - Apache Beam is a unified programming model that implements both batch and streaming data processing jobs that run on many execution engines.</li>
+</ul>
+
+<ul>
+<li><a href="https://spark.apache.org/streaming/" rel="noopener noreferrer">Spark Streaming</a> - Spark Streaming makes it easy to build scalable fault-tolerant streaming applications.</li>
+</ul>
+
+<ul>
+<li><a href="https://flink.apache.org/" rel="noopener noreferrer">Apache Flink</a> - Apache Flink is a streaming dataflow engine that provides data distribution, communication, and fault tolerance for distributed computations over data streams.</li>
+</ul>
+
+<ul>
+<li><a href="https://storm.apache.org" rel="noopener noreferrer">Apache Storm</a> - Apache Storm is a free and open source distributed realtime computation system.</li>
+</ul>
+
+<ul>
+<li><a href="https://samza.apache.org" rel="noopener noreferrer">Apache Samza</a> - Apache Samza is a distributed stream processing framework.</li>
+</ul>
+
+<ul>
+<li><a href="https://nifi.apache.org/" rel="noopener noreferrer">Apache NiFi</a> - An easy to use, powerful, and reliable system to process and distribute data.</li>
+</ul>
+
+<ul>
+<li><a href="https://hudi.apache.org/" rel="noopener noreferrer">Apache Hudi</a> - An open source framework for managing storage for real time processing, one of the most interesting feature is the Upsert.</li>
+</ul>
+
+<ul>
+<li><a href="https://voltdb.com/" rel="noopener noreferrer">VoltDB</a> - VoltDb is an ACID-compliant RDBMS which uses a <a href="https://en.wikipedia.org/wiki/Shared-nothing_architecture" rel="noopener noreferrer">shared nothing architecture</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pipelinedb/pipelinedb" rel="noopener noreferrer">PipelineDB (⭐2.6k)</a> - The Streaming SQL Database.</li>
+</ul>
+
+<ul>
+<li><a href="https://cloud.spring.io/spring-cloud-dataflow/" rel="noopener noreferrer">Spring Cloud Dataflow</a> - Streaming and tasks execution between Spring Boot apps.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.bonobo-project.org/" rel="noopener noreferrer">Bonobo</a> - Bonobo is a data-processing toolkit for python 3.5+.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/faust-streaming/faust" rel="noopener noreferrer">Robinhood's Faust (⭐1.8k)</a> - Forever scalable event processing &amp; in-memory durable K/V store as a library with asyncio &amp; static typing.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/hstreamdb/hstream" rel="noopener noreferrer">HStreamDB (⭐723)</a> - The streaming database built for IoT data storage and real-time processing.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/emqx/kuiper" rel="noopener noreferrer">Kuiper (⭐1.6k)</a> - An edge lightweight IoT data analytics/streaming software implemented by Golang, and it can be run at all kinds of resource-constrained edge devices.</li>
+</ul>
+<h3><p>Batch Processing</p>
+</h3>
+<ul>
+<li><a href="https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html" rel="noopener noreferrer">Hadoop MapReduce</a> - Hadoop MapReduce is a software framework for easily writing applications which process vast amounts of data (multi-terabyte data-sets) - in-parallel on large clusters (thousands of nodes) - of commodity hardware in a reliable, fault-tolerant manner.</li>
+</ul>
+
+<ul>
+<li><a href="https://spark.apache.org/" rel="noopener noreferrer">Spark</a> - A multi-language engine for executing data engineering, data science, and machine learning on single-node machines or clusters.<ul>
+<li><a href="https://spark-packages.org" rel="noopener noreferrer">Spark Packages</a> - A community index of packages for Apache Spark.</li>
+<li><a href="https://github.com/Stratio/deep-spark" rel="noopener noreferrer">Deep Spark (⭐197)</a> - Connecting Apache Spark with different data stores. Deprecated.</li>
+<li><a href="https://homepage.cs.latrobe.edu.au/zhe/ZhenHeSparkRDDAPIExamples.html" rel="noopener noreferrer">Spark RDD API Examples</a> - Examples by Zhen He.</li>
+<li><a href="https://livy.incubator.apache.org" rel="noopener noreferrer">Livy</a> - The REST Spark Server.</li>
+<li><a href="https://github.com/datamechanics/delight" rel="noopener noreferrer">Delight (⭐344)</a> - A free &amp; cross platform monitoring tool (Spark UI / Spark History Server alternative).</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><a href="https://aws.amazon.com/emr/" rel="noopener noreferrer">AWS EMR</a> - A web service that makes it easy to quickly and cost-effectively process vast amounts of data.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.datamechanics.co" rel="noopener noreferrer">Data Mechanics</a> - A cloud-based platform deployed on Kubernetes making Apache Spark more developer-friendly and cost-effective.</li>
+</ul>
+
+<ul>
+<li><a href="https://tez.apache.org/" rel="noopener noreferrer">Tez</a> - An application framework which allows for a complex directed-acyclic-graph of tasks for processing data.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/asavinov/bistro" rel="noopener noreferrer">Bistro (⭐7)</a> - A light-weight engine for general-purpose data processing including both batch and stream analytics. It is based on a novel unique data model, which represents data via <em>functions</em> and processes data via <em>columns operations</em> as opposed to having only set operations in conventional approaches like MapReduce or SQL.</li>
+</ul>
+
+<ul>
+<li>Batch ML<ul>
+<li><a href="https://www.h2o.ai/" rel="noopener noreferrer">H2O</a> - Fast scalable machine learning API for smarter applications.</li>
+<li><a href="https://mahout.apache.org/" rel="noopener noreferrer">Mahout</a> - An environment for quickly creating scalable performant machine learning applications.</li>
+<li><a href="https://spark.apache.org/docs/latest/ml-guide.html" rel="noopener noreferrer">Spark MLlib</a> - Spark's scalable machine learning library consisting of common learning algorithms and utilities, including classification, regression, clustering, collaborative filtering, dimensionality reduction, as well as underlying optimization primitives.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>Batch Graph<ul>
+<li><a href="https://turi.com/products/create/docs/" rel="noopener noreferrer">GraphLab Create</a> - A machine learning platform that enables data scientists and app developers to easily create intelligent apps at scale.</li>
+<li><a href="https://giraph.apache.org/" rel="noopener noreferrer">Giraph</a> - An iterative graph processing system built for high scalability.</li>
+<li><a href="https://spark.apache.org/graphx/" rel="noopener noreferrer">Spark GraphX</a> - Apache Spark's API for graphs and graph-parallel computation.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>Batch SQL<ul>
+<li><a href="https://prestodb.github.io/docs/current/index.html" rel="noopener noreferrer">Presto</a> - A distributed SQL query engine designed to query large data sets distributed over one or more heterogeneous data sources.</li>
+<li><a href="https://hive.apache.org" rel="noopener noreferrer">Hive</a> - Data warehouse software facilitates querying and managing large datasets residing in distributed storage.<ul>
+<li><a href="https://github.com/apache/incubator-hivemall" rel="noopener noreferrer">Hivemall (⭐312)</a> - Scalable machine learning library for Hive/Hadoop.</li>
+<li><a href="https://github.com/dropbox/PyHive" rel="noopener noreferrer">PyHive (⭐1.7k)</a> - Python interface to Hive and Presto.</li>
+</ul>
+</li>
+<li><a href="https://drill.apache.org/" rel="noopener noreferrer">Drill</a> - Schema-free SQL Query Engine for Hadoop, NoSQL and Cloud Storage.</li>
+</ul>
+</li>
+</ul>
+<h3><p>Charts and Dashboards</p>
+</h3>
+<ul>
+<li><a href="https://www.highcharts.com/" rel="noopener noreferrer">Highcharts</a> - A charting library written in pure JavaScript, offering an easy way of adding interactive charts to your web site or web application.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.zingchart.com/" rel="noopener noreferrer">ZingChart</a> - Fast JavaScript charts for any data set.</li>
+</ul>
+
+<ul>
+<li><a href="https://c3js.org" rel="noopener noreferrer">C3.js</a> - D3-based reusable chart library.</li>
+</ul>
+
+<ul>
+<li><a href="https://smoothiecharts.org" rel="noopener noreferrer">SmoothieCharts</a> - A JavaScript Charting Library for Streaming Data.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/stitchfix/pyxley" rel="noopener noreferrer">PyXley (⭐2.3k)</a> - Python helpers for building dashboards using Flask and React.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/plotly/dash" rel="noopener noreferrer">Plotly (⭐23k)</a> - Flask, JS, and CSS boilerplate for interactive, web-based visualization apps in Python.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/apache/incubator-superset" rel="noopener noreferrer">Apache Superset (⭐67k)</a> - Apache Superset (incubating) - A modern, enterprise-ready business intelligence web application.</li>
+</ul>
+
+<ul>
+<li><a href="https://redash.io/" rel="noopener noreferrer">Redash</a> - Make Your Company Data Driven. Connect to any data source, easily visualize and share your data.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/metabase/metabase" rel="noopener noreferrer">Metabase (⭐43k)</a> - Metabase is the easy, open source way for everyone in your company to ask questions and learn from data.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.pyqtgraph.org/" rel="noopener noreferrer">PyQtGraph</a> - PyQtGraph is a pure-python graphics and GUI library built on PyQt4 / PySide and numpy. It is intended for use in mathematics / scientific / engineering applications.</li>
+</ul>
+<h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://github.com/spotify/luigi" rel="noopener noreferrer">Luigi (⭐18k)</a> - Luigi is a Python module that helps you build complex pipelines of batch jobs.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.cascading.org/" rel="noopener noreferrer">Cascading</a> - Java based application development platform.</li>
+</ul>
+
+<ul>
+<li><a href="https://oozie.apache.org/" rel="noopener noreferrer">Oozie</a> - Oozie is a workflow scheduler system to manage Apache Hadoop jobs.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dagster-io/dagster" rel="noopener noreferrer">Dagster (⭐14k)</a> - Dagster is an open-source Python library for building data applications.</li>
+</ul>
+
+<ul>
+<li><a href="https://kedro.readthedocs.io/en/latest/" rel="noopener noreferrer">Kedro</a> - Kedro is a framework that makes it easy to build robust and scalable data pipelines by providing uniform project templates, data abstraction, configuration and pipeline assembly.</li>
+</ul>
+
+<ul>
+<li><a href="https://dataform.co/" rel="noopener noreferrer">Dataform</a> - An open-source framework and web based IDE to manage datasets and their dependencies. SQLX extends your existing SQL warehouse dialect to add features that support dependency management, testing, documentation and more.</li>
+</ul>
+
+<ul>
+<li><a href="https://getcensus.com/" rel="noopener noreferrer">Census</a> - A reverse-ETL tool that let you sync data from your cloud data warehouse to SaaS applications like Salesforce, Marketo, HubSpot, Zendesk, etc. No engineering favors required—just SQL.</li>
+</ul>
+
+<ul>
+<li><a href="https://getdbt.com/" rel="noopener noreferrer">dbt</a> - A command line tool that enables data analysts and engineers to transform data in their warehouses more effectively.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/rudderlabs/rudder-server" rel="noopener noreferrer">RudderStack (⭐4.2k)</a> - A warehouse-first Customer Data Platform that enables you to collect data from every application, website and SaaS platform, and then activate it in your warehouse and business tools.</li>
+</ul>
+<h3><p>Data Lake Management</p>
+</h3>
+<ul>
+<li><a href="https://github.com/treeverse/lakeFS" rel="noopener noreferrer">lakeFS (⭐4.8k)</a> - lakeFS is an open source platform that delivers resilience and manageability to object-storage based data lakes.</li>
+</ul>
+<h3><p>ELK Elastic Logstash Kibana</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jprante/elasticsearch-jdbc" rel="noopener noreferrer">elasticsearch-jdbc (⭐2.8k)</a> - JDBC importer for Elasticsearch.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/zombodb/zombodb" rel="noopener noreferrer">ZomboDB (⭐4.7k)</a> - Postgres Extension that allows creating an index backed by Elasticsearch.</li>
+</ul>
+<h3><p>Docker</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ClusterHQ/flocker" rel="noopener noreferrer">Flocker (⭐3.4k)</a> - Easily manage Docker containers &amp; their data.</li>
+</ul>
+
+<ul>
+<li><a href="https://rancher.com/rancher-os/" rel="noopener noreferrer">Rancher</a> - RancherOS is a 20mb Linux distro that runs the entire OS as Docker containers.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.kontena.io/" rel="noopener noreferrer">Kontena</a> - Application Containers for Masses.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/weaveworks/weave" rel="noopener noreferrer">Weave (⭐6.6k)</a> - Weaving Docker containers into applications.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/CenturyLinkLabs/zodiac" rel="noopener noreferrer">Zodiac (⭐199)</a> - A lightweight tool for easy deployment and rollback of dockerized applications.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/google/cadvisor" rel="noopener noreferrer">cAdvisor (⭐18k)</a> - Analyzes resource usage and performance characteristics of running containers.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/figadore/micro-s3-persistence" rel="noopener noreferrer">Micro S3 persistence (⭐14)</a> - Docker microservice for saving/restoring volume data to S3.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/grammarly/rocker-compose" rel="noopener noreferrer">Rocker-compose (⭐410)</a> - Docker composition tool with idempotency features for deploying apps composed of multiple containers. Deprecated.</li>
+</ul>
+<h3><p>Datasets / Realtime</p>
+</h3>
+<ul>
+<li><a href="https://developer.twitter.com/en/docs/tweets/filter-realtime/overview" rel="noopener noreferrer">Twitter Realtime</a> - The Streaming APIs give developers low latency access to Twitter's global stream of Tweet data.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Interana/eventsim" rel="noopener noreferrer">Eventsim (⭐524)</a> - Event data simulator. Generates a stream of pseudo-random events from a set of users, designed to simulate web traffic.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.reddit.com/r/datasets/comments/3mk1vg/realtime_data_is_available_including_comments/" rel="noopener noreferrer">Reddit</a> - Real-time data is available including comments, submissions and links posted to reddit.</li>
+</ul>
+<h3><p>Datasets / Data Dumps</p>
+</h3>
+<ul>
+<li><a href="https://www.gharchive.org/" rel="noopener noreferrer">GitHub Archive</a> - GitHub's public timeline since 2011, updated every hour.</li>
+</ul>
+
+<ul>
+<li><a href="https://commoncrawl.org/" rel="noopener noreferrer">Common Crawl</a> - Open source repository of web crawl data.</li>
+</ul>
+<h3><p>Monitoring / Prometheus</p>
+</h3>
+<ul>
+<li><a href="https://github.com/prometheus/prometheus" rel="noopener noreferrer">Prometheus.io (⭐59k)</a> - An open-source service monitoring system and time series database.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/prometheus/haproxy_exporter" rel="noopener noreferrer">HAProxy Exporter (⭐621)</a> - Simple server that scrapes HAProxy stats and exports them via HTTP for Prometheus consumption.</li>
+</ul>
+<h3><p>Testing / Data Profiler</p>
+</h3>
+<ul>
+<li><a href="https://github.com/grai-io/grai-core/" rel="noopener noreferrer">Grai (⭐307)</a> - A data catalog tool that integrates into your CI system exposing downstream impact testing of data changes. These tests prevent data changes which might break data pipelines or BI dashboards from making it to production.</li>
+</ul>
+<h3><p>Community / Forums</p>
+</h3>
+<ul>
+<li><a href="https://www.reddit.com/r/ETL/" rel="noopener noreferrer">/r/etl</a> - Subreddit focused on ETL.</li>
+</ul>
+<h3><p>Community / Conferences</p>
+</h3>
+<ul>
+<li><a href="https://www.datacouncil.ai/about" rel="noopener noreferrer">Data Council</a> - Data Council is the first technical conference that bridges the gap between data scientists, data engineers and data analysts.</li>
+</ul>
+<h3><p>Community / Podcasts</p>
+</h3>
+<ul>
+<li><a href="https://www.dataengineeringpodcast.com/" rel="noopener noreferrer">Data Engineering Podcast</a> - The show about modern data infrastructure.</li>
+</ul>
+
+    </main>
+  </body>
+</html>

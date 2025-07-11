@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Track Machine Learning with Ruby (arbox/machine-learning-with-ruby) Updates Daily - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/arbox/machine-learning-with-ruby/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Track Machine Learning with Ruby Updates Daily" />
+    <meta property="og:description" content="Curated list: Resources for machine learning in Ruby" />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <style>
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 0.5em;
+      }
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Track Machine Learning with Ruby Updates Daily</h1>
+<p>Curated list: Resources for machine learning in Ruby</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/arbox/machine-learning-with-ruby/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/arbox/machine-learning-with-ruby">😺 arbox/machine-learning-with-ruby</a><span> · </span><span>⭐ 2.2K</span><span> · </span><span>🏷️ Computer Science</span></p>
+<p><span>[ </span><span>Daily</span><span> / </span><a href="/arbox/machine-learning-with-ruby/week/">Weekly</a><span> / </span><a href="/arbox/machine-learning-with-ruby/readme/">Overview</a><span> ]</span></p>
+
+<h2><a href="https://www.trackawesomelist.com/2024/12/24/">Dec 24, 2024</a></h2><h3><p>Machine Learning Libraries / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/instruct-rb/instruct" rel="noopener noreferrer">Instruct (⭐51)</a> - Inspired by Guidance; weave code, prompts and completions together to instruct LLMs to do what you want.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/11/29/">Nov 29, 2023</a></h2><h3><p>Community / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://twitter.com/i/communities/1709211359039078677" rel="noopener noreferrer">X Ruby AI group</a></li>
+</ul>
+
+<ul>
+<li><a href="https://ruby.social/@Ruby_AI_and_Data@chirp.social" rel="noopener noreferrer">Mastodon Ruby AI and Data group</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/10/20/">Oct 20, 2023</a></h2><h3><p>Machine Learning Libraries / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/alexrudall/ruby-openai" rel="noopener noreferrer">ruby-openai (⭐3.1k)</a> - OpenAI API wrapper</li>
+</ul>
+<h3><p>Community / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://discord.gg/zDyFJFBTGB" rel="noopener noreferrer">Ruby AI Builders Discord</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/06/12/">Jun 12, 2023</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Vector search</p>
+</h3>
+<ul>
+<li>2022<ul>
+<li><em>Discover Machine Learning in Ruby</em> by <a href="https://twitter.com/TonsOfFun111" rel="noopener noreferrer">Justin Bowen</a> <sup>[<a href="https://www.youtube.com/watch?v=HPbizNgcyFk" rel="noopener noreferrer">video</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/06/04/">Jun 04, 2023</a></h2><h3><p>Machine Learning Libraries / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mariusmuja/flann" rel="noopener noreferrer">flann (⭐2.3k)</a> -
+Ruby bindings for the <a href="https://github.com/flann-lib/flann" rel="noopener noreferrer">FLANN (⭐2.3k)</a> (Fast Library for Approximate Nearest Neighbors). <sup>[<a href="#flann">flann</a>]</sup></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/yoshoku/annoy.rb" rel="noopener noreferrer">annoy-rb (⭐36)</a> -
+Ruby bindings for the <a href="https://github.com/spotify/annoy" rel="noopener noreferrer">Annoy (⭐14k)</a> (Approximate Nearest Neighbors Oh Yeah).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/yoshoku/hnswlib.rb" rel="noopener noreferrer">hnswlib.rb (⭐15)</a> -
+Ruby bindings for the <a href="https://github.com/nmslib/hnswlib" rel="noopener noreferrer">Hnswlib (⭐4.8k)</a> that implements approximate nearest neighbor search with Hierarchical Navigable Small World graphs.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ankane/ngt-ruby" rel="noopener noreferrer">ngt-ruby (⭐53)</a> -
+Ruby bindings for the <a href="https://github.com/yahoojapan/NGT" rel="noopener noreferrer">NGT (⭐1.3k)</a> (Neighborhood Graph and Tree for Indexing High-dimensional data).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/05/26/">May 26, 2023</a></h2><h3><p>Machine Learning Libraries / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/andreibondarev/langchainrb" rel="noopener noreferrer">LangChain.rb (⭐1.9k)</a> -
+Build ML/AI-supercharged applications with Ruby's LangChain.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/04/22/">Apr 22, 2023</a></h2><h3><p>Machine Learning Libraries / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://github.com/andreibondarev/milvus" rel="noopener noreferrer">milvus (⭐29)</a> —
+Ruby client for Milvus Vector DB.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/04/19/">Apr 19, 2023</a></h2><h3><p>Machine Learning Libraries / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ScotterC/pinecone" rel="noopener noreferrer">pinecone (⭐65)</a> —
+Ruby client for Pinecone Vector DB.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/andreibondarev/qdrant-ruby" rel="noopener noreferrer">qdrant-ruby (⭐48)</a> —
+Ruby wrapper for the Qdrant vector search database API.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/andreibondarev/weaviate-ruby" rel="noopener noreferrer">weaviate-ruby (⭐55)</a> —
+Ruby wrapper for the Weaviate vector search database API.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/03/07/">Mar 07, 2021</a></h2><h3><p>Projects and Code Examples / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jdrzj/handwritten-digits-recognition" rel="noopener noreferrer">Handwritten Digits Recognition (⭐6)</a> -
+Handwritten digits recognition using Neural Networks and Ruby.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/11/16/">Nov 16, 2020</a></h2><h3><p>✨ Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://www.honeybadger.io/blog/ruby-neural-networks/" rel="noopener noreferrer">Ruby neural networks</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/10/22/">Oct 22, 2020</a></h2><h3><p>Related Resources / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://github.com/SciRuby/iruby" rel="noopener noreferrer">iRuby (⭐917)</a> - IRuby kernel for Jupyter (formerly IPython).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/07/28/">Jul 28, 2020</a></h2><h3><p>Machine Learning Libraries / Deep learning</p>
+</h3>
+<ul>
+<li><a href="https://github.com/red-data-tools/red-chainer" rel="noopener noreferrer">red-chainer (⭐104)</a> - Deep learning framework for Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mrkn/mxnet.rb" rel="noopener noreferrer">mxnet (⭐48)</a> - Ruby bindings for <a href="https://mxnet.apache.org/" rel="noopener noreferrer">mxnet</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/12/07/">Dec 07, 2019</a></h2><h3><p>Machine Learning Libraries / Deep learning</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ankane/torch-rb" rel="noopener noreferrer">torch-rb (⭐793)</a> - Ruby bindings for <a href="https://github.com/pytorch/pytorch" rel="noopener noreferrer">LibTorch (⭐91k)</a>
+using <a href="https://github.com/jasonroelofs/rice" rel="noopener noreferrer">rice (⭐397)</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/08/26/">Aug 26, 2019</a></h2><h3><p>Machine Learning Libraries / Deep learning</p>
+</h3>
+<ul>
+<li><a href="https://github.com/unagiootoro/ruby-dnn" rel="noopener noreferrer">ruby-dnn (⭐47)</a> - Simple deep learning for Ruby.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/08/21/">Aug 21, 2019</a></h2><h3><p>Related Resources / Vector search</p>
+</h3>
+<ul>
+<li><a></a>
+<a href="https://github.com/microsoft/LightGBM" rel="noopener noreferrer">LightGBM (⭐17k)</a></li>
+</ul>
+
+<ul>
+<li><a></a>
+<a href="https://github.com/dmlc/xgboost" rel="noopener noreferrer">XGBoost (⭐27k)</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/06/03/">Jun 03, 2019</a></h2><h3><p>Machine Learning Libraries / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ankane/eps" rel="noopener noreferrer">eps (⭐681)</a> - Bayesian Classification and Linear Regression with exports
+using <a href="http://dmg.org/pmml/v4-3/GeneralStructure.html" rel="noopener noreferrer">PMML</a> and an alternative backend using <a href="https://www.gnu.org/software/gsl/" rel="noopener noreferrer">GSL</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/06/01/">Jun 01, 2019</a></h2><h3><p>Machine Learning Libraries / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/yoshoku/rumale" rel="noopener noreferrer">rumale (⭐853)</a> -
+Machine Learninig toolkit in Ruby with wide range of implemented algorithms
+(SVM, Logistic Regression, Linear Regression, Random Forest etc.) and
+interfaces similar to <a href="https://scikit-learn.org/stable/index.html" rel="noopener noreferrer">Scikit-Learn</a> in Python.</li>
+</ul>
+<h3><p>Machine Learning Libraries / Deep learning</p>
+</h3>
+<ul>
+<li><a href="https://github.com/somaticio/tensorflow.rb" rel="noopener noreferrer">tensorflow (⭐829)</a> - Ruby bindings for <a href="https://www.tensorflow.org/" rel="noopener noreferrer">TensorFlow</a>.</li>
+</ul>
+<h3><p>Related Resources / Vector search</p>
+</h3>
+<ul>
+<li><a></a>
+[GSL (GNU Scientific Library)][gls]</li>
+</ul>
+
+<ul>
+<li><a></a>
+<a href="https://www.imagemagick.org/script/index.php" rel="noopener noreferrer">ImageMagick</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/02/26/">Feb 26, 2019</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Vector search</p>
+</h3>
+<ul>
+<li>2013<ul>
+<li><em>Sentiment Analysis using Support Vector Machines in Ruby</em> by <a href="https://twitter.com/mjkirk" rel="noopener noreferrer">Matthew Kirk</a> <sup>[<a href="https://www.youtube.com/watch?v=iSug6CgxWxc" rel="noopener noreferrer">video</a> |
+<a href="https://github.com/hexgnu/sentiment_analyzer" rel="noopener noreferrer">code (⭐12)</a>]</sup></li>
+<li><em>Recommender Systems with Ruby</em> by <a href="https://twitter.com/marcelcaraciolo" rel="noopener noreferrer">Marcel Caraciolo</a> <sup>[<a href="https://www.slideshare.net/marcelcaraciolo/recommender-systems-with-ruby-adding-machine-learning-statistics-etc" rel="noopener noreferrer">slides</a>]</sup></li>
+<li><em>Detecting Faces with Ruby: FFI in a Nutshell</em> by <a href="https://github.com/arbox/machine-learning-with-ruby/blob/master/readme.md/" rel="noopener noreferrer">Marc Berszick</a> <sup>[<a href="https://www.sitepoint.com/detecting-faces-with-ruby-ffi-in-a-nutshell/" rel="noopener noreferrer">post</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/01/19/">Jan 19, 2019</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Vector search</p>
+</h3>
+<ul>
+<li>2019<ul>
+<li><em>TensorStream: Bringing Machine Learning to Ruby</em> by <a href="https://www.linkedin.com/in/jdayo/" rel="noopener noreferrer">Joseph Emmanuel Dayo</a> <sup>[<a href="https://medium.com/@joseph.dayo/tensorstream-bringing-machine-learning-to-ruby-114582060e3d" rel="noopener noreferrer">post</a>]</sup></li>
+<li><em>Easy machine learning with Ruby using SVMKit</em> by <a href="https://twitter.com/kojix2dayo" rel="noopener noreferrer">@kojix</a> <sup>[<a href="https://dev.to/kojix2/easy-machine-learning-with-ruby-using-svmkit-4n86" rel="noopener noreferrer">post</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/01/08/">Jan 08, 2019</a></h2><h3><p>Machine Learning Libraries / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/shogun-toolbox/shogun" rel="noopener noreferrer">shogun (⭐3k)</a> - Polyfunctional and mature
+machine learning toolbox with <a href="https://github.com/shogun-toolbox/shogun/tree/develop/src/interfaces/ruby" rel="noopener noreferrer">Ruby bindings (⭐3k)</a>.</li>
+</ul>
+<h3><p>Machine Learning Libraries / Deep learning</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jedld/tensor_stream" rel="noopener noreferrer">tensor_stream (⭐506)</a> -
+Ground-up and standalone reimplementation of TensorFlow for Ruby.</li>
+</ul>
+<h3><p>Articles, Posts, Talks, and Presentations / Vector search</p>
+</h3>
+<ul>
+<li>2018<ul>
+<li><em>Deep Learning Programming on Ruby</em> by <a href="https://twitter.com/mrkn" rel="noopener noreferrer">Kenta Murata</a>
+&amp; <a href="https://twitter.com/hatappi" rel="noopener noreferrer">Yusaku Hatanaka </a> <sup>[<a href="https://speakerdeck.com/mrkn/deep-learning-programming-on-ruby" rel="noopener noreferrer">slides</a> |
+<a href="https://rubykaigi.org/2018/presentations/mrkn.html" rel="noopener noreferrer">page</a>]</sup></li>
+<li><em>How to use trained Keras and TensorFlow machine learning models within Ruby on Rails</em> by <a href="https://twitter.com/denis_sellu" rel="noopener noreferrer">Denis Sellu</a> <sup>[<a href="https://www.cookieshq.co.uk/posts/how-to-use-trained-keras-and-tensorflow-machine-learning-models-within-ruby-on-rails" rel="noopener noreferrer">post</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h3><p>Related Resources / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://scikit-learn.org/stable/tutorial/machine_learning_map/" rel="noopener noreferrer">scikit-learn algorithm cheatsheet</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/04/14/">Apr 14, 2018</a></h2><h3><p>✨ Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://github.com/giuse/machine_learning_workbench/blob/master/examples/neuroevolution.rb" rel="noopener noreferrer">How to <em>evolve</em> neural networks in Ruby using the Machine Learning Workbench (⭐20)</a></li>
+</ul>
+<h3><p>Machine Learning Libraries / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/giuse/machine_learning_workbench" rel="noopener noreferrer">machine_learning_workbench (⭐20)</a> -
+Growing machine learning framework written in pure Ruby, high performance computing using
+<a href="https://github.com/ruby-numo/" rel="noopener noreferrer">Numo</a>, CUDA bindings through <a href="https://github.com/sonots/cumo" rel="noopener noreferrer">Cumo (⭐96)</a>.
+Currently implementating neural networks, evolutionary strategies, vector quantization, and plenty of
+examples and utilities.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/giuse/DNE" rel="noopener noreferrer">Deep NeuroEvolution (⭐125)</a> -
+Experimental setup based on the <a href="https://github.com/giuse/machine_learning_workbench" rel="noopener noreferrer">machine_learning_workbench (⭐20)</a>
+towards searching for deep neural networks (rather than training) using evolutionary algorithms. Applications to the
+<a href="https://github.com/openai/gym" rel="noopener noreferrer">OpenAI Gym (⭐36k)</a> using <a href="https://github.com/mrkn/pycall.rb" rel="noopener noreferrer">PyCall (⭐1.1k)</a>.</li>
+</ul>
+<h3><p>Machine Learning Libraries / Neural networks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/giuse/machine_learning_workbench/tree/master/lib/machine_learning_workbench/neural_network" rel="noopener noreferrer">machine_learning_workbench (⭐20)</a> -
+Framework including pure-Ruby implementation of both feed-forward and recurrent neural networks
+(fully connected). Training available using neuroevolution (Natural Evolution Strategies algorithms).</li>
+</ul>
+<h3><p>Machine Learning Libraries / Evolutionary algorithms</p>
+</h3>
+<ul>
+<li><a href="https://github.com/giuse/machine_learning_workbench/tree/master/lib/machine_learning_workbench/optimizer/natural_evolution_strategies" rel="noopener noreferrer">machine_learning_workbench (⭐20)</a> -
+Framework including pure-Ruby implementations of Natural Evolution Strategy algorithms
+(black-box optimization), specifically Exponential NES (XNES),
+Separable NES (sNES), Block-Diagonal NES (BDNES) and more.
+Applications include neural network search/training (neuroevolution).</li>
+</ul>
+<h3><p>Articles, Posts, Talks, and Presentations / Vector search</p>
+</h3>
+<ul>
+<li>2015<ul>
+<li><em>Machine Learning made simple with Ruby</em> by <a href="https://twitter.com/rugginoso" rel="noopener noreferrer">Lorenzo Masini</a> <sup>[<a href="https://www.leanpanda.com/blog/2015-08-24-machine-learning-automatic-classification/" rel="noopener noreferrer">post</a>]</sup></li>
+<li><em>Using Ruby Machine Learning to Find Paris Hilton Quotes</em> by <a href="https://github.com/RickCarlino" rel="noopener noreferrer">Rick Carlino</a> <sup>[<a href="https://web.archive.org/web/20160414072324/http://datamelon.io/blog/2015/using-ruby-machine-learning-id-paris-hilton-quotes.html" rel="noopener noreferrer">tutorial</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/12/14/">Dec 14, 2017</a></h2><h3><p>Machine Learning Libraries / Neural networks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mikecmpbll/rann" rel="noopener noreferrer">rann (⭐3)</a> -
+Flexible Ruby ANN implementation with backprop (through-time, for recurrent
+nets), gradient checking, adagrad, and parallel batch execution.</li>
+</ul>
+<h3><p>Related Resources / Vector search</p>
+</h3>
+<ul>
+<li><a></a>
+<a href="https://opencv.org/" rel="noopener noreferrer">OpenCV</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/10/02/">Oct 02, 2017</a></h2><h3><p>✨ Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://www.practicalai.io/using-scikit-learn-machine-learning-library-in-ruby-using-pycall/" rel="noopener noreferrer">Using the Python scikit-learn machine learning library in Ruby using PyCall</a> <sup>[<a href="https://github.com/daugaard/scikit-learn-from-ruby" rel="noopener noreferrer">code (⭐4)</a>]</sup></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/09/11/">Sep 11, 2017</a></h2><h3><p>✨ Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://www.practicalai.io/implementing-classification-using-logistic-regression-in-ruby/" rel="noopener noreferrer">How to implement classification using logistic regression in Ruby</a></li>
+</ul>
+
+<ul>
+<li><a href="https://www.practicalai.io/teaching-ai-play-simple-game-using-q-learning/" rel="noopener noreferrer">Teaching an AI to play a simple game using Q-Learning in Ruby</a> <sup>[<a href="https://github.com/daugaard/q-learning-simple-game" rel="noopener noreferrer">code (⭐36)</a>]</sup></li>
+</ul>
+
+<ul>
+<li><a href="https://www.practicalai.io/teaching-a-neural-network-to-play-a-game-with-q-learning/" rel="noopener noreferrer">Teaching a Neural Network to play a game using Q-Learning in Ruby</a> <sup>[<a href="https://github.com/daugaard/q-learning-simple-game/tree/neuralnetwork" rel="noopener noreferrer">code (⭐36)</a>]</sup></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/08/02/">Aug 02, 2017</a></h2><h3><p>✨ Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://www.practicalai.io/unsupervised-learning-using-k-means-clustering-in-ruby/" rel="noopener noreferrer">Unsupervised learning using k-means clustering in Ruby</a> <sup>[<a href="https://github.com/daugaard/example-kmeans-clustering" rel="noopener noreferrer">code (⭐0)</a>]</sup></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/07/16/">Jul 16, 2017</a></h2><h3><p>✨ Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://www.practicalai.io/implementing-classification-using-a-svm-in-ruby/" rel="noopener noreferrer">How to implement classification using a SVM in Ruby</a> <sup>[<a href="https://github.com/daugaard/example-svm" rel="noopener noreferrer">code (⭐6)</a>]</sup></li>
+</ul>
+<h3><p>Machine Learning Libraries / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/aws/aws-sdk-ruby" rel="noopener noreferrer">aws-sdk-machinelearning (⭐3.6k)</a> -
+Machine Learning API of the Amazon Web Services.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Azure/azure-sdk-for-ruby" rel="noopener noreferrer">azure_mgmt_machine_learning (⭐280)</a> -
+Machine Learning API of the Microsoft Azure.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/07/07/">Jul 07, 2017</a></h2><h3><p>Community / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://groups.google.com/forum/#!forum/sciruby-dev" rel="noopener noreferrer">SciRuby Mailing List</a></li>
+</ul>
+
+<ul>
+<li><a href="https://sciruby.slack.com/" rel="noopener noreferrer">SciRuby Slack</a></li>
+</ul>
+
+<ul>
+<li><a href="https://gitter.im/red-data-tools/" rel="noopener noreferrer">Red Data Gitter</a></li>
+</ul>
+
+<ul>
+<li><a href="https://www.reddit.com/r/MachineLearning/search?q=Ruby&amp;restrict_sr=on" rel="noopener noreferrer">Reddit</a></li>
+</ul>
+
+<ul>
+<li><a href="https://stackoverflow.com/search?q=machine+learning+ruby" rel="noopener noreferrer">Stack Overflow</a></li>
+</ul>
+
+<ul>
+<li><a href="https://twitter.com/search?q=Machine%20Learning%20Ruby&amp;src=typd" rel="noopener noreferrer">Twitter</a></li>
+</ul>
+
+<ul>
+<li><a href="https://twitter.com/NonWebRuby" rel="noopener noreferrer">NonWebRuby</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/07/06/">Jul 06, 2017</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Vector search</p>
+</h3>
+<ul>
+<li>2011<ul>
+<li><em>Clustering in Ruby</em> by <a href="https://twitter.com/colinfdrake" rel="noopener noreferrer">Colin Drake</a> <sup>[<a href="https://colindrake.me/post/k-means-clustering-in-ruby/" rel="noopener noreferrer">post</a>]</sup></li>
+<li><em>Text Classification using Support Vector Machines in Ruby</em> by <a href="https://twitter.com/neovintage" rel="noopener noreferrer">Rimas Silkaitis</a> <sup>[<a href="http://neovintage.org/2011/11/14/text-classification-using-support/" rel="noopener noreferrer">post</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/07/05/">Jul 05, 2017</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Vector search</p>
+</h3>
+<ul>
+<li>2017<ul>
+<li><em>Scientific Computing on JRuby</em> by <a href="https://twitter.com/prasun_anand" rel="noopener noreferrer">Prasun Anand</a> <sup>[<a href="https://www.slideshare.net/PrasunAnand2/fosdem2017-scientific-computing-on-jruby" rel="noopener noreferrer">slides</a> |
+<a href="https://ftp.fau.de/fosdem/2017/K.4.201/ruby_scientific_computing_on_jruby.mp4" rel="noopener noreferrer">video</a> |
+<a href="https://www.slideshare.net/PrasunAnand2/scientific-computing-on-jruby" rel="noopener noreferrer">slides</a> |
+<a href="https://www.slideshare.net/PrasunAnand2/scientific-computation-on-jruby" rel="noopener noreferrer">slides</a>]</sup></li>
+<li><em>Is it Food? An Introduction to Machine Learning</em> by <a href="https://twitter.com/halogenandtoast" rel="noopener noreferrer">Matthew Mongeau</a> <sup>[<a href="https://www.youtube.com/watch?v=8G709hKkthY" rel="noopener noreferrer">video</a> |
+<a href="https://www.slideshare.net/halogenandtoast/is-it-food" rel="noopener noreferrer">slides</a>]</sup></li>
+<li><em>Bayes is BAE</em> by <a href="https://twitter.com/schneems" rel="noopener noreferrer">Richard Schneeman</a> <sup>[<a href="https://www.youtube.com/watch?v=bQSzZrDDV80" rel="noopener noreferrer">video</a> |
+<a href="https://speakerdeck.com/schneems/bayes-is-bae" rel="noopener noreferrer">slides</a>]</sup></li>
+<li><em>Ruby Roundtable: Machine Learning in Ruby</em> by <a href="https://rubythursday.com/" rel="noopener noreferrer">RubyThursday</a> <sup>[<a href="https://www.youtube.com/watch?v=ScIFARN0jCo" rel="noopener noreferrer">video</a>]</sup></li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>2016<ul>
+<li><em>Practical Machine Learning with Ruby</em> by <a href="https://twitter.com/jordanhudgens" rel="noopener noreferrer">Jordan Hudgens</a> <sup>[<a href="https://www.crondose.com/2016/12/practical-machine-learning-ruby/" rel="noopener noreferrer">tutorial</a>]</sup></li>
+<li><em>Deep Learning: An Introduction for Ruby Developers</em> by <a href="https://twitter.com/geoffreylitt" rel="noopener noreferrer">Geoffrey Litt</a> <sup>[<a href="https://speakerdeck.com/geoffreylitt/deep-learning-an-introduction-for-ruby-developers" rel="noopener noreferrer">slides</a>]</sup></li>
+<li><em>How I made a pure-Ruby word2vec program more than 3x faster</em> by <a href="https://twitter.com/remore" rel="noopener noreferrer">Kei Sawada</a> <sup>[<a href="https://speakerdeck.com/remore/how-i-made-a-pure-ruby-word2vec-program-more-than-3x-faster" rel="noopener noreferrer">slides</a>]</sup></li>
+<li><em>Dōmo arigatō, Mr. Roboto: Machine Learning with Ruby</em> by <a href="https://twitter.com/ericqweinstein" rel="noopener noreferrer">Eric Weinstein</a> <sup>[<a href="https://speakerdeck.com/ericqweinstein/domo-arigato-mr-roboto-machine-learning-with-ruby" rel="noopener noreferrer">slides</a> |
+<a href="https://www.youtube.com/watch?v=T1nFQ49TyeA" rel="noopener noreferrer">video</a>]</sup></li>
+<li><em>Building a Recommendation Engine with Machine Learning Techniques</em> by <a href="https://twitter.com/bsbodden" rel="noopener noreferrer">Brian Sam-Bodden</a> <sup>[<a href="https://www.youtube.com/watch?v=SRnM_P_ygqI" rel="noopener noreferrer">video</a>]</sup></li>
+<li>✨ <em>SciRuby Machine Learning: Current Status and Future</em> by <a href="https://twitter.com/mrkn" rel="noopener noreferrer">Kenta Murata</a> <sup>[<a href="https://speakerdeck.com/mrkn/sciruby-machine-learning-current-status-and-future" rel="noopener noreferrer">slides</a> |
+<a href="https://www.youtube.com/watch?v=gfQ8XEy7vO4" rel="noopener noreferrer">video: jp</a>]</sup></li>
+<li><em>Ruby Roundtable: Intro to Tensorflow</em> by <a href="https://rubythursday.com/" rel="noopener noreferrer">RubyThursday</a> <sup>[<a href="https://www.youtube.com/watch?v=pYC5mXHUWkc" rel="noopener noreferrer">video</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/07/04/">Jul 04, 2017</a></h2><h3><p>✨ Tutorials</p>
+</h3>
+<ul>
+<li><a href="https://www.practicalai.io/implementing-linear-regression-using-ruby/" rel="noopener noreferrer">How to implement linear regression in Ruby</a> <sup>[<a href="https://github.com/daugaard/example-linear-regression" rel="noopener noreferrer">code (⭐5)</a>]</sup></li>
+</ul>
+
+<ul>
+<li><a href="https://www.practicalai.io/implementing-simple-classification-using-neural-network-in-ruby/" rel="noopener noreferrer">How to implement simple binary classification using a Neural Network in Ruby</a> <sup>[<a href="https://github.com/daugaard/example-neural-network" rel="noopener noreferrer">code (⭐10)</a>]</sup></li>
+</ul>
+<h3><p>Books, Blogs, Channels / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://www.practicalai.io/" rel="noopener noreferrer">Practical Artificial Intelligence</a> -
+Blog about Artificial Intelligence and Machine Learning with tutorials and code samples in Ruby.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/06/28/">Jun 28, 2017</a></h2><h3><p>Machine Learning Libraries / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/himkt/rblearn" rel="noopener noreferrer">rblearn (⭐2)</a> - Feature Extraction and Crossvalidation library.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/giuse/data_modeler" rel="noopener noreferrer">data_modeler (⭐1)</a> -
+Model your data with machine learning. Ample test coverage, examples to start fast, complete documentation. Production ready since 1.0.0.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/06/21/">Jun 21, 2017</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Vector search</p>
+</h3>
+<ul>
+<li>2012<ul>
+<li><em>Machine Learning with Ruby, Part One</em> by <a href="https://twitter.com/vasinov" rel="noopener noreferrer">Vasily Vasinov</a> <sup>[<a href="https://www.vasinov.com/blog/machine-learning-with-ruby-part-one/" rel="noopener noreferrer">tutorial</a>]</sup></li>
+<li><em>Recurrent Neural Networks in Ruby</em> by <a href="https://twitter.com/josephwilk" rel="noopener noreferrer">Joseph Wilk</a> <sup>[<a href="http://blog.josephwilk.net/ruby/recurrent-neural-networks-in-ruby.html" rel="noopener noreferrer">post</a>]</sup></li>
+<li><em>Recommendation Engines using Machine Learning, and JRuby</em> by <a href="https://twitter.com/mjkirk" rel="noopener noreferrer">Matthew Kirk</a> <sup>[<a href="https://www.youtube.com/watch?v=hsZcrlbBg_0" rel="noopener noreferrer">video</a>]</sup></li>
+<li><em>Practical Machine Learning and Rails</em> by <a href="https://twitter.com/tectonic" rel="noopener noreferrer">Andrew Cantino</a>
+and <a href="https://twitter.com/ryanstout" rel="noopener noreferrer">Ryan Stout</a> <sup>[<a href="https://www.youtube.com/watch?v=vy_zQ1-F0JI" rel="noopener noreferrer">video</a>]</sup></li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>2010<ul>
+<li><em>bayes_motel – Bayesian classification for Ruby</em> by <a href="https://twitter.com/mperham" rel="noopener noreferrer">Mike Perham</a> <sup>[<a href="http://www.mikeperham.com/2010/04/28/bayes_motel-bayesian-classification-for-ruby/" rel="noopener noreferrer">post</a>]</sup></li>
+<li><em>Intelligent Ruby: Getting Started with Machine Learning</em> by <a href="https://twitter.com/igrigorik" rel="noopener noreferrer">Ilya Grigorik</a> <sup>[<a href="https://vimeo.com/22513786" rel="noopener noreferrer">video</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/05/18/">May 18, 2017</a></h2><h3><p>Projects and Code Examples / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://github.com/giuse/simple_ga" rel="noopener noreferrer">simple_ga (⭐9)</a> -
+Basic (working) demo of Genetic Algorithms in Ruby.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/05/17/">May 17, 2017</a></h2><h3><p>Machine Learning Libraries / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/asafschers/scoruby" rel="noopener noreferrer">scoruby (⭐69)</a> -
+Ruby scoring API for <a href="http://dmg.org/pmml/v4-3/GeneralStructure.html" rel="noopener noreferrer">PMML</a> (Predictive Model Markup Language).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/05/16/">May 16, 2017</a></h2><h3><p>Machine Learning Libraries / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/paulgoetze/weka-jruby" rel="noopener noreferrer">weka (⭐64)</a> -
+JRuby bindings for Weka, different ML algorithms implemented through Weka.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/SergioFierens/ai4r" rel="noopener noreferrer">ai4r (⭐712)</a> -
+Artificial Intelligence for Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jekyll/classifier-reborn" rel="noopener noreferrer">classifier-reborn (⭐555)</a> -
+General classifier module to allow Bayesian and other types of classifications. <sup>[<a href="#gls">dep: GLS</a>]</sup></li>
+</ul>
+<h3><p>Machine Learning Libraries / Neural networks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/gbuesing/neural-net-ruby" rel="noopener noreferrer">neural-net-ruby (⭐127)</a> -
+Neural network written in Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tangledpath/ruby-fann" rel="noopener noreferrer">ruby-fann (⭐505)</a> -
+Ruby bindings to the <a href="http://leenissen.dk/fann/wp/" rel="noopener noreferrer">Fast Artificial Neural Network Library (FANN)</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/irfansharif/cerebrum" rel="noopener noreferrer">cerebrum (⭐36)</a> -
+Experimental implementation for Artificial Neural Networks in Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/josephwilk/tlearn-rb" rel="noopener noreferrer">tlearn-rb (⭐96)</a> -
+Recurrent Neural Network library for Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jedld/brains-jruby" rel="noopener noreferrer">brains (⭐60)</a> -
+Feed-forward neural networks for JRuby based on
+<a href="https://github.com/jedld/brains" rel="noopener noreferrer">brains (⭐0)</a>.</li>
+</ul>
+<h3><p>Machine Learning Libraries / Bayesian methods</p>
+</h3>
+<ul>
+<li><a href="https://github.com/djcp/linnaeus" rel="noopener noreferrer">linnaeus (⭐38)</a> -
+Redis-backed Bayesian classifier.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/reddavis/Naive-Bayes" rel="noopener noreferrer">naive_bayes (⭐49)</a> -
+Simple Naive Bayes classifier.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/oasic/nbayes" rel="noopener noreferrer">nbayes (⭐154)</a> -
+Full-featured, Ruby implementation of Naive Bayes.</li>
+</ul>
+<h3><p>Machine Learning Libraries / Clustering</p>
+</h3>
+<ul>
+<li><a href="https://github.com/gbuesing/kmeans-clusterer" rel="noopener noreferrer">kmeans-clusterer (⭐97)</a> -
+k-means clustering in Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/reddavis/K-Means" rel="noopener noreferrer">k_means (⭐114)</a> -
+Attempting to build a fast, memory efficient K-Means program.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/reddavis/knn" rel="noopener noreferrer">knn (⭐37)</a> -
+Simple K Nearest Neighbour Algorithm.</li>
+</ul>
+<h3><p>Machine Learning Libraries / Linear classifiers</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tomz/liblinear-ruby-swig" rel="noopener noreferrer">liblinear-ruby-swig (⭐83)</a> -
+Ruby interface to LIBLINEAR (much more efficient than LIBSVM for text classification).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kei500/liblinear-ruby" rel="noopener noreferrer">liblinear-ruby (⭐82)</a> -
+Ruby interface to LIBLINEAR using SWIG.</li>
+</ul>
+<h3><p>Projects and Code Examples / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://github.com/hexgnu/wine_clustering" rel="noopener noreferrer">Wine Clustering (⭐0)</a> -
+Wine quality estimations clustered with different algorithms.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/04/26/">Apr 26, 2017</a></h2><h3><p>Heroku buildpacks / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tomwolfe/heroku-buildpack-gsl-ruby" rel="noopener noreferrer">GSL and Ruby buildpack (⭐3)</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/lilibethdlc/heroku-buildpack-ruby-opencv" rel="noopener noreferrer">OpenCV and Ruby buildpack (⭐3)</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mcollina/heroku-buildpack-imagemagick" rel="noopener noreferrer">ImageMagick buildpack (⭐45)</a></li>
+</ul>
+<h3><p>Related Resources / Vector search</p>
+</h3>
+<ul>
+<li><a></a>
+<a href="http://www.graphviz.org/" rel="noopener noreferrer">Graphviz</a></li>
+</ul>
+
+<ul>
+<li><a></a>
+<a href="http://www.gnuplot.info/" rel="noopener noreferrer">Gnuplot</a></li>
+</ul>
+
+<ul>
+<li><a></a>
+<a href="https://www.xquartz.org/" rel="noopener noreferrer">X11/XQuartz</a></li>
+</ul>
+
+<ul>
+<li><a></a>
+<a href="http://www.r-project.org/" rel="noopener noreferrer">R</a></li>
+</ul>
+
+<ul>
+<li><a></a>
+<a href="https://www.gnu.org/software/octave/" rel="noopener noreferrer">Octave</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/04/21/">Apr 21, 2017</a></h2><h3><p>Books, Blogs, Channels / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://twitter.com/mjkirk" rel="noopener noreferrer">Kirk, Matthew</a>.
+<em>Thoughtful Machine Learning: A Test-Driven Approach</em>. O'Reilly, 2014. <sup>[<a href="https://www.amazon.com/Thoughtful-Machine-Learning-Test-Driven-Approach/dp/1449374069" rel="noopener noreferrer">Amazon</a> |
+<a href="https://github.com/thoughtfulml/examples" rel="noopener noreferrer">code (⭐127)</a>]</sup></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/04/20/">Apr 20, 2017</a></h2><h3><p>Articles, Posts, Talks, and Presentations / Vector search</p>
+</h3>
+<ul>
+<li>2009</li>
+</ul>
+
+<ul>
+<li>2007<ul>
+<li><em>Decision Tree Learning in Ruby</em> by <a href="https://twitter.com/igrigorik" rel="noopener noreferrer">Ilya Grigorik</a> <sup>[<a href="https://www.igvita.com/2007/04/16/decision-tree-learning-in-ruby/" rel="noopener noreferrer">post</a>]</sup></li>
+</ul>
+</li>
+</ul>
+<h3><p>Related Resources / Vector search</p>
+</h3>
+<ul>
+<li><a href="https://github.com/markets/awesome-ruby#natural-language-processing" rel="noopener noreferrer">Awesome Ruby (⭐14k)</a> -
+Among other awesome items a short list of NLP related projects.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/diasks2/ruby-nlp" rel="noopener noreferrer">Ruby NLP (⭐1.3k)</a> -
+State-of-Art collection of Ruby libraries for NLP.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/edobashira/speech-language-processing" rel="noopener noreferrer">Speech and Natural Language Processing (⭐2.2k)</a> -
+General List of NLP related resources (mostly not for Ruby programmers).</li>
+</ul>
+
+<ul>
+<li><a href="http://sciruby.com/" rel="noopener noreferrer">Scientific Ruby</a> -
+Linear Algebra, Visualization and Scientific Computing for Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/thbar/kiba" rel="noopener noreferrer">Kiba (⭐1.8k)</a> -
+Lightweight <a href="https://en.wikipedia.org/wiki/Extract,_transform,_load" rel="noopener noreferrer">ETL</a> (Extract, Transform, Load) pipeline.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kba/awesome-ocr" rel="noopener noreferrer">Awesome OCR (⭐3k)</a> -
+Multitude of OCR (Optical Character Recognition) resources.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jtoy/awesome-tensorflow" rel="noopener noreferrer">Awesome TensorFlow (⭐17k)</a> -
+Machine Learning with TensorFlow libraries.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/SciRuby/rb-gsl" rel="noopener noreferrer">rb-gsl (⭐103)</a> -
+Ruby interface to the <a href="https://www.gnu.org/software/gsl/" rel="noopener noreferrer">GNU Scientific Library</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://silverhammermba.github.io/emberb/" rel="noopener noreferrer">The Definitive Guide to Ruby's C API</a> -
+Modern Reference and Tutorial on Embedding and Extending Ruby using C programming language.</li>
+</ul>
+
+    </main>
+  </body>
+</html>
