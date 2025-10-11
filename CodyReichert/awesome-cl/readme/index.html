@@ -205,7 +205,7 @@ sellers who aren't evil for physical resources.</p>
 <li><a href="#scripting">Scripting</a><ul>
 <li><a href="#running-scripts">Running scripts</a></li>
 <li><a href="#command-line-options-parsers">Command-line options parsers</a></li>
-<li><a href="#readline-ncurses-and-other-graphical-helpers">Readline, ncurses and other graphical helpers</a></li>
+<li><a href="#readline-ncurses-and-other-graphical-tui-helpers">Readline, ncurses and other graphical TUI helpers</a></li>
 <li><a href="#shells-shells-interfaces">Shells, shells interfaces</a></li>
 <li><a href="#system-administration">System administration</a></li>
 <li><a href="#other-scripting-utilities">Other scripting utilities</a></li>
@@ -799,14 +799,22 @@ ASDF, Qlot and Roswell.</li>
 <li><a href="https://shirakumo.github.io/cl-gamepad" rel="noopener noreferrer">cl-gamepad</a> - Access to gamepads and joysticks on Windows, Mac OS, and Linux. <a href="https://directory.fsf.org/wiki/License:Zlib" rel="noopener noreferrer">zlib</a>.</li>
 <li><a href="https://shirakumo.github.io/cl-mpg123" rel="noopener noreferrer">cl-mpg123</a> and <a href="https://shirakumo.github.io/cl-out123" rel="noopener noreferrer">cl-out123</a>, bindings libraries for libmpg123 and libout123 respectively, giving you fast and easy to use mp3 decoding and cross-platform audio output. <a href="https://directory.fsf.org/wiki/License:Zlib" rel="noopener noreferrer">zlib</a>.</li>
 </ul>
+<p>Chess:</p>
+<ul>
+<li><a href="https://github.com/mishoo/queen.lisp" rel="noopener noreferrer">Queen.lisp (⭐56)</a> - Chess Utilities For Common Lisp. MIT.<ul>
+<li>board generation (0x88 method), move generation, FEN/SAN/PGN parser and generator, basic evaluation engine.</li>
+</ul>
+</li>
+</ul>
 <h1 id="graphics"><a class="anchor" aria-hidden="true" tabindex="-1" href="#graphics"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Graphics</h1><p>These are libraries for working with graphics, rather than making GUIs (i.e. widget toolkits), which have their own section.</p>
 <ul>
 <li>⭐ <a href="https://github.com/vydd/sketch" rel="noopener noreferrer">Sketch (⭐1.5k)</a> - A CL framework for the creation of electronic art, graphics, and lots more. <a href="https://opensource.org/licenses/MIT" rel="noopener noreferrer">MIT</a>.</li>
+<li><a href="http://www.xach.com/lisp/vecto/" rel="noopener noreferrer">Vecto</a> - Simple vector drawing library. <a href="https://directory.fsf.org/wiki?title=License:FreeBSD" rel="noopener noreferrer">FreeBSD</a>.</li>
 <li><a href="https://github.com/wmannis/cl-svg" rel="noopener noreferrer">cl-svg (⭐44)</a> - A basic library for producing SVG files. <a href="https://directory.fsf.org/wiki/License:Expat" rel="noopener noreferrer">Expat</a>.</li>
+<li><a href="https://github.com/calsys456/trivial-svg" rel="noopener noreferrer">trivial-svg (⭐23)</a> - render SVG images to PNG using Vecto and zpb-ttf. 0BSD.</li>
 <li><a href="https://github.com/privet-kitty/dufy" rel="noopener noreferrer">dufy (⭐45)</a> - exact color manipulation and conversion in various color models. <a href="https://opensource.org/licenses/MIT" rel="noopener noreferrer">MIT</a>.</li>
 <li><a href="https://github.com/slyrus/opticl" rel="noopener noreferrer">opticl (⭐187)</a> - a library for representing and processing images. <a href="https://directory.fsf.org/wiki/License:BSD_2Clause" rel="noopener noreferrer">BSD_2Clause</a>.</li>
 <li><a href="https://github.com/cbaggers/varjo" rel="noopener noreferrer">Varjo (⭐228)</a> - Lisp to GLSL translator. <a href="https://directory.fsf.org/wiki/License:BSD_2Clause" rel="noopener noreferrer">BSD_2Clause</a>.</li>
-<li><a href="http://www.xach.com/lisp/vecto/" rel="noopener noreferrer">Vecto</a> - Simple vector drawing library. <a href="https://directory.fsf.org/wiki?title=License:FreeBSD" rel="noopener noreferrer">FreeBSD</a>.</li>
 <li><a href="http://www.xach.com/lisp/zpng/" rel="noopener noreferrer">zpng</a> - A library for creating PNG files. <a href="https://directory.fsf.org/wiki?title=License:FreeBSD" rel="noopener noreferrer">FreeBSD</a>.</li>
 <li><a href="https://github.com/lisp-mirror/pngload" rel="noopener noreferrer">pngload-fast (⭐1)</a> - A PNG (Portable Network Graphics) image format decoder in portable Common Lisp with an emphasis on speed. <a href="https://opensource.org/licenses/MIT" rel="noopener noreferrer">MIT</a>.</li>
 <li><a href="https://github.com/tokenrove/imago" rel="noopener noreferrer">imago (⭐56)</a> -  image manipulation library for Common Lisp.<ul>
@@ -1848,11 +1856,16 @@ do better? We can always build a binary.</em></p>
 <h2 id="command-line-options-parsers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#command-line-options-parsers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Command-line options parsers</h2><ul>
 <li>👍 <a href="https://github.com/dnaeon/clingon" rel="noopener noreferrer">Clingon (⭐145)</a> - a rich command-line options parser system.<ul>
 <li>it may have the richest feature set: subcommands, generation of bash completion, support for various kinds of options (integers, booleans, counter, enums…), extensible…</li>
+<li><a href="https://git.sr.ht/~michal_atlas/clingon-scripter" rel="noopener noreferrer">clingon-scripter</a> - define flags as simple <code>defvar</code> declarations.</li>
 </ul>
 </li>
 <li><a href="https://github.com/sjl/adopt/" rel="noopener noreferrer">Adopt (⭐31)</a> - A Damn OPTion parsing library. <a href="https://opensource.org/licenses/MIT" rel="noopener noreferrer">MIT</a>.</li>
 </ul>
-<h2 id="readline-ncurses-and-other-graphical-helpers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#readline-ncurses-and-other-graphical-helpers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Readline, ncurses and other graphical helpers</h2><ul>
+<h2 id="readline-ncurses-and-other-graphical-tui-helpers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#readline-ncurses-and-other-graphical-tui-helpers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Readline, ncurses and other graphical TUI helpers</h2><ul>
+<li>🔥 <a href="https://github.com/atgreen/cl-tuition" rel="noopener noreferrer">cl-tuition (⭐15)</a> -  A Common Lisp library for building rich, responsive TUIs. MIT.<ul>
+<li>model-view-update Elm architecture, reusable widgets (text input, spinner, progress bar…), mouse support, layout helpers…</li>
+</ul>
+</li>
 <li><a href="https://github.com/vindarel/cl-readline" rel="noopener noreferrer">cl-readline (⭐45)</a> - a set of
 functions to edit lines as they are typed in, to maintain a list of
 previously-entered command lines, to recall and reedit them and
@@ -2311,6 +2324,10 @@ and as thus is shipped in many implementations. <a href="https://opensource.org/
 <li><a href="https://codeberg.org/fourier/ppath" rel="noopener noreferrer">ppath</a> - Common Lisp's implementation of the Python's os.path module. <a href="https://directory.fsf.org/wiki/License:BSD_3Clause" rel="noopener noreferrer">BSD</a>.</li>
 <li><a href="https://github.com/Shinmera/mmap" rel="noopener noreferrer">mmap (⭐43)</a> - Portable mmap file memory mapping utility library. <a href="https://directory.fsf.org/wiki/License:Zlib" rel="noopener noreferrer">zlib</a>.</li>
 <li><a href="https://github.com/atlas-engineer/nfiles" rel="noopener noreferrer">nfiles (⭐21)</a> - File persistence, watching, data synchronization, (per user profile) path resolution, and structured data retrieval. Has pre-defined classes for configuration files, remote fetched files, data files, Lisp-readable files and many others. <a href="https://directory.fsf.org/wiki/License:BSD_3Clause" rel="noopener noreferrer">BSD</a>.</li>
+<li><a href="https://github.com/fukamachi/trivial-glob" rel="noopener noreferrer">trivial-glob (⭐4)</a> -  Shell-style glob pattern matching and filesystem globbing for Common Lisp. MIT.<ul>
+<li><code>(glob "**/*.lisp")</code></li>
+</ul>
+</li>
 </ul>
 <p>File watching libraries:</p>
 <ul>
