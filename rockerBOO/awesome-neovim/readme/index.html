@@ -42,7 +42,11 @@
 <p><a href="https://neovim.io/" rel="noopener noreferrer">Neovim</a> is a Vim-based text editor engineered for extensibility and usability, to encourage new applications and contributions.</p>
 <h2 id="contents"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contents"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contents</h2><ul>
 <li><a href="#plugin-manager">Plugin Manager</a></li>
-<li><a href="#lsp">LSP</a></li>
+<li><a href="#lsp">LSP</a><ul>
+<li><a href="#lsp-installer">LSP Installer</a></li>
+<li><a href="#diagnostics">Diagnostics</a></li>
+</ul>
+</li>
 <li><a href="#completion">Completion</a></li>
 <li><a href="#ai">AI</a></li>
 <li><a href="#programming-languages-support">Programming Languages Support</a><ul>
@@ -103,7 +107,10 @@
 <li><a href="#gitlab">GitLab</a></li>
 </ul>
 </li>
-<li><a href="#motion">Motion</a></li>
+<li><a href="#motion">Motion</a><ul>
+<li><a href="#tree-sitter-based">Tree-sitter Based</a></li>
+</ul>
+</li>
 <li><a href="#keybinding">Keybinding</a></li>
 <li><a href="#mouse">Mouse</a></li>
 <li><a href="#scrolling">Scrolling</a><ul>
@@ -161,7 +168,8 @@
 <p><strong><a href="#contents">⬆ back to top</a></strong></p>
 
 
-<h2 id="lsp"><a class="anchor" aria-hidden="true" tabindex="-1" href="#lsp"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>LSP</h2><h3 id="requires-neovim-05"><a class="anchor" aria-hidden="true" tabindex="-1" href="#requires-neovim-05"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>(requires Neovim 0.5)</h3><ul>
+<h2 id="lsp"><a class="anchor" aria-hidden="true" tabindex="-1" href="#lsp"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>LSP</h2><p><strong>(requires Neovim 0.5)</strong></p>
+<ul>
 <li><a href="https://github.com/romus204/referencer.nvim" rel="noopener noreferrer">romus204/referencer.nvim (⭐19)</a> - Lightweight, asynchronous that uses the LSP to show references to functions, methods, types and other.</li>
 <li><a href="https://github.com/Dan7h3x/signup.nvim" rel="noopener noreferrer">Dan7h3x/signup.nvim (⭐51)</a> - a little smart <code>lsp_signature</code> helper with awesome features.</li>
 <li><a href="https://github.com/neovim/nvim-lspconfig" rel="noopener noreferrer">neovim/nvim-lspconfig (⭐13k)</a> - Quickstart configurations for the LSP client.</li>
@@ -225,10 +233,10 @@
 <li><a href="https://github.com/SunnyTamang/neodoc.nvim" rel="noopener noreferrer">SunnyTamang/neodoc.nvim (⭐12)</a> - DocString generator that helps writing function/classes docstrings in formats like <code>google</code>, <code>numpy</code>, <code>sphinx</code> with live preview.</li>
 <li><a href="https://github.com/barreiroleo/ltex_extra.nvim" rel="noopener noreferrer">barreiroleo/ltex_extra.nvim (⭐180)</a> - LTeX LSP extension providing external file handling (rules and dictionaries).</li>
 </ul>
-<h4 id="lsp-installer"><a class="anchor" aria-hidden="true" tabindex="-1" href="#lsp-installer"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>LSP Installer</h4><ul>
+<h3 id="lsp-installer"><a class="anchor" aria-hidden="true" tabindex="-1" href="#lsp-installer"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>LSP Installer</h3><ul>
 <li><a href="https://github.com/williamboman/mason.nvim" rel="noopener noreferrer">williamboman/mason.nvim (⭐9.7k)</a> - Portable package manager that runs everywhere Neovim runs. Easily install and manage LSP servers, DAP servers, linters, and formatters.</li>
 </ul>
-<h4 id="diagnostics"><a class="anchor" aria-hidden="true" tabindex="-1" href="#diagnostics"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Diagnostics</h4><ul>
+<h3 id="diagnostics"><a class="anchor" aria-hidden="true" tabindex="-1" href="#diagnostics"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Diagnostics</h3><ul>
 <li><a href="https://github.com/sontungexpt/better-diagnostic-virtual-text" rel="noopener noreferrer">sontungexpt/better-diagnostic-virtual-text (⭐93)</a> - Enhances the display of virtual text for diagnostics. This function aims to provide a more user-friendly and informative presentation of diagnostic messages directly within the editor.</li>
 <li><a href="https://git.sr.ht/~whynothugo/lsp_lines.nvim" rel="noopener noreferrer">~whynothugo/lsp_lines.nvim</a> - Render diagnostics using virtual lines on top of the real line of code.</li>
 <li><a href="https://github.com/folke/trouble.nvim" rel="noopener noreferrer">folke/trouble.nvim (⭐6.5k)</a> - A pretty diagnostics list to help you solve all the trouble your code is causing.</li>
@@ -255,8 +263,8 @@
 </ul>
 </li>
 <li><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-completion.md" rel="noopener noreferrer">nvim-mini/mini.nvim#mini.completion (⭐8.3k)</a> - Module of <code>mini.nvim</code> for asynchronous two-stage completion. Supports showing completion item info and independent function signature.</li>
-<li><a href="https://github.com/Saghen/blink.cmp" rel="noopener noreferrer">Saghen/blink.cmp (⭐5.5k)</a> - Really fast completion with LSP &amp; snippet support, along with signature help, cmdline completion, and autobracket support (based on semantic tokens).<ul>
-<li><a href="https://github.com/Saghen/blink.compat" rel="noopener noreferrer">Saghen/blink.compat (⭐203)</a> - Compatibility layer for using <code>nvim-cmp</code> sources on <code>blink.cmp</code>.</li>
+<li><a href="https://github.com/saghen/blink.cmp" rel="noopener noreferrer">saghen/blink.cmp (⭐5.5k)</a> - Really fast completion with LSP &amp; snippet support, along with signature help, cmdline completion, and autobracket support (based on semantic tokens).<ul>
+<li><a href="https://github.com/saghen/blink.compat" rel="noopener noreferrer">saghen/blink.compat (⭐203)</a> - Compatibility layer for using <code>nvim-cmp</code> sources on <code>blink.cmp</code>.</li>
 <li><a href="https://github.com/Kaiser-Yang/blink-cmp-git" rel="noopener noreferrer">Kaiser-Yang/blink-cmp-git (⭐75)</a> - <code>blink.cmp</code> source for Git.</li>
 <li><a href="https://github.com/disrupted/blink-cmp-conventional-commits" rel="noopener noreferrer">disrupted/blink-cmp-conventional-commits (⭐22)</a> - <code>blink.cmp</code> source for <a href="https://www.conventionalcommits.org/" rel="noopener noreferrer">Conventional Commits</a>.</li>
 <li><a href="https://github.com/mikavilpas/blink-ripgrep.nvim" rel="noopener noreferrer">mikavilpas/blink-ripgrep.nvim (⭐94)</a> - <code>blink.cmp</code> source for <code>ripgrep</code> / <code>git grep</code>.</li>
@@ -779,7 +787,7 @@
 <li><a href="https://github.com/mcauley-penney/techbase.nvim" rel="noopener noreferrer">mcauley-penney/techbase.nvim (⭐106)</a> - Dark, cold color scheme inspired by sci-fi horror and retro technology.</li>
 <li><a href="https://github.com/y3owk1n/base16-pro-max.nvim" rel="noopener noreferrer">y3owk1n/base16-pro-max.nvim (⭐5)</a> - Base16 for modern Neovim — not just colors.</li>
 <li><a href="https://github.com/ellisonleao/gruvbox.nvim" rel="noopener noreferrer">ellisonleao/gruvbox.nvim (⭐2.4k)</a> - Gruvbox community colorscheme Lua port.</li>
-<li><a href="https://github.com/pmouraguedes/neodarcula.nvim" rel="noopener noreferrer">pmouraguedes/neodarcula.nvim (⭐9)</a> - A dark theme with support for transparency, dimming, LSP semantic tokens and more.</li>
+<li><a href="https://github.com/pmouraguedes/neodarcula.nvim" rel="noopener noreferrer">pmouraguedes/neodarcula.nvim (⭐8)</a> - A dark theme with support for transparency, dimming, LSP semantic tokens and more.</li>
 <li><a href="https://github.com/jpwol/thorn.nvim" rel="noopener noreferrer">jpwol/thorn.nvim (⭐53)</a> - A rich green theme with dark and light options. Supports LSP, transparency, many plugins, and more.</li>
 </ul>
 <h3 id="lua-colorscheme"><a class="anchor" aria-hidden="true" tabindex="-1" href="#lua-colorscheme"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Lua Colorscheme</h3><p>These colorschemes may not specialize in Tree-sitter directly but are written in Lua.</p>
@@ -1052,8 +1060,8 @@
 <li><a href="https://github.com/ravsii/timers.nvim" rel="noopener noreferrer">ravsii/timers.nvim (⭐12)</a> - Timer manager, a clean Lua API, supporting multiple timers, persistence, UI, and plugin integrations.</li>
 <li><a href="https://github.com/francescarpi/buffon.nvim" rel="noopener noreferrer">francescarpi/buffon.nvim (⭐28)</a> - Buffers navigation, reorganize and close.</li>
 <li><a href="https://github.com/ahkohd/buffer-sticks.nvim" rel="noopener noreferrer">ahkohd/buffer-sticks.nvim (⭐57)</a> - Cosmetic buffers indicator &amp; picker.</li>
-<li><a href="https://github.com/gpanders/nvim-moonwalk" rel="noopener noreferrer">gpanders/nvim-moonwalk (⭐76)</a> - Use any language that compiles to Lua anywhere in your Neovim configuration.</li>
-<li><a href="https://github.com/markgandolfo/lightswitch.nvim" rel="noopener noreferrer">markgandolfo/lightswitch.nvim (⭐17)</a> - Toggle various options using the <code>nui.nvim</code> library.</li>
+<li><a href="https://github.com/gpanders/nvim-moonwalk" rel="noopener noreferrer">gpanders/nvim-moonwalk (⭐77)</a> - Use any language that compiles to Lua anywhere in your Neovim configuration.</li>
+<li><a href="https://github.com/markgandolfo/lightswitch.nvim" rel="noopener noreferrer">markgandolfo/lightswitch.nvim (⭐21)</a> - Toggle various options using the <code>nui.nvim</code> library.</li>
 <li><a href="https://github.com/johannww/tts.nvim" rel="noopener noreferrer">johannww/tts.nvim (⭐15)</a> - Text to speech tool based on the Microsoft Edge online services.</li>
 <li><a href="https://github.com/doctorfree/cheatsheet.nvim" rel="noopener noreferrer">doctorfree/cheatsheet.nvim (⭐64)</a> - Searchable cheatsheet.</li>
 <li><a href="https://github.com/gaborvecsei/cryptoprice.nvim" rel="noopener noreferrer">gaborvecsei/cryptoprice.nvim (⭐22)</a> - Check the price of the defined cryptocurrencies.</li>
@@ -1232,8 +1240,8 @@
 <li><a href="https://github.com/YaroSpace/lua-console.nvim" rel="noopener noreferrer">YaroSpace/lua-console.nvim (⭐80)</a> - A handy scratch pad / REPL / debug console for Lua development and Neovim exploration and configuration.</li>
 <li><a href="https://github.com/DrKJeff16/wezterm-types" rel="noopener noreferrer">DrKJeff16/wezterm-types (⭐109)</a> - WezTerm config type annotations for Lua Language Server.</li>
 <li><a href="https://github.com/chrisgve/databox.nvim" rel="noopener noreferrer">chrisgve/databox.nvim (⭐12)</a> - Encrypted storage for Lua tables using <a href="https://github.com/FiloSottile/age" rel="noopener noreferrer">age (⭐20k)</a> or compatible encryption tools for cryptographic safety.</li>
-<li><a href="https://github.com/BirdeeHub/lze" rel="noopener noreferrer">BirdeeHub/lze (⭐76)</a> - A lazy-loading library for Neovim plugins.</li>
-<li><a href="https://github.com/lumen-oss/lz.n" rel="noopener noreferrer">lumen-oss/lz.n (⭐213)</a> - A simple lazy loading library for Neovim plugins.</li>
+<li><a href="https://github.com/BirdeeHub/lze" rel="noopener noreferrer">BirdeeHub/lze (⭐85)</a> - A lazy-loading library for Neovim plugins.</li>
+<li><a href="https://github.com/lumen-oss/lz.n" rel="noopener noreferrer">lumen-oss/lz.n (⭐220)</a> - A simple lazy loading library for Neovim plugins.</li>
 </ul>
 
 
@@ -1305,7 +1313,7 @@
 <li><a href="https://github.com/2KAbhishek/octohub.nvim" rel="noopener noreferrer">2KAbhishek/octohub.nvim (⭐77)</a> - Access all your gihub repos, stats and more in simple keystrokes.</li>
 <li><a href="https://github.com/comatory/gh-co.nvim" rel="noopener noreferrer">comatory/gh-co.nvim (⭐4)</a> - Show the code owner(s) for files according to GitHub's <code>CODEOWNERS</code> specification.</li>
 <li><a href="https://github.com/3ZsForInsomnia/revman.nvim" rel="noopener noreferrer">3ZsForInsomnia/revman.nvim (⭐7)</a> - Track PRs that need review automatically and open them in Octo.nvim.</li>
-<li><a href="https://github.com/cd-4/git-needy.nvim" rel="noopener noreferrer">cd-4/git-needy.nvim (⭐2)</a> - Keeps a tally of workflows that need to be reviewed in your statusbar.</li>
+<li><a href="https://github.com/cd-4/git-needy.nvim" rel="noopener noreferrer">cd-4/git-needy.nvim (⭐3)</a> - Keeps a tally of workflows that need to be reviewed in your statusbar.</li>
 </ul>
 <h3 id="gitlab"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gitlab"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>GitLab</h3><ul>
 <li><a href="https://github.com/harrisoncramer/GitLab.nvim" rel="noopener noreferrer">harrisoncramer/GitLab.nvim (⭐334)</a> - Review pull requests and manage other GitLab resources.</li>
@@ -1385,7 +1393,7 @@
 
 
 <h2 id="scrolling"><a class="anchor" aria-hidden="true" tabindex="-1" href="#scrolling"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Scrolling</h2><ul>
-<li><a href="https://github.com/Saghen/filler-begone.nvim" rel="noopener noreferrer">Saghen/filler-begone.nvim (⭐17)</a> - Prevents scrolling past the bottom of the buffer and showing unnecessary filler lines.</li>
+<li><a href="https://github.com/saghen/filler-begone.nvim" rel="noopener noreferrer">saghen/filler-begone.nvim (⭐18)</a> - Prevents scrolling past the bottom of the buffer and showing unnecessary filler lines.</li>
 <li><a href="https://github.com/karb94/neoscroll.nvim" rel="noopener noreferrer">karb94/neoscroll.nvim (⭐1.9k)</a> - Smooth scrolling.</li>
 <li><a href="https://github.com/declancm/cinnamon.nvim" rel="noopener noreferrer">declancm/cinnamon.nvim (⭐392)</a> - Smooth scrolling for any movement command.</li>
 <li><a href="https://github.com/niuiic/scroll.nvim" rel="noopener noreferrer">niuiic/scroll.nvim (⭐17)</a> - Smooth scrolling, custom smooth strategy.</li>
@@ -1415,13 +1423,9 @@
 <li><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-pairs.md" rel="noopener noreferrer">nvim-mini/mini.nvim#mini.pairs (⭐8.3k)</a> - Module of <code>mini.nvim</code> for autopairs which has minimal defaults and functionality to do per-key mapping.</li>
 <li><a href="https://github.com/m4xshen/autoclose.nvim" rel="noopener noreferrer">m4xshen/autoclose.nvim (⭐614)</a> - A minimalist autoclose plugin written in Lua.</li>
 <li><a href="https://github.com/altermo/ultimate-autopair.nvim" rel="noopener noreferrer">altermo/ultimate-autopair.nvim (⭐560)</a> - Autopair with extensions.</li>
-<li><a href="https://github.com/utilyre/sentiment.nvim" rel="noopener noreferrer">utilyre/sentiment.nvim (⭐148)</a> - Enhanced matchparen.</li>
 <li><a href="https://github.com/monaqa/dial.nvim" rel="noopener noreferrer">monaqa/dial.nvim (⭐1k)</a> - Extended increment/decrement.</li>
 <li><a href="https://github.com/HiPhish/rainbow-delimiters.nvim" rel="noopener noreferrer">HiPhish/rainbow-delimiters.nvim (⭐790)</a> - Rainbow delimiters with Tree-sitter.</li>
 <li><a href="https://github.com/AckslD/nvim-trevJ.lua" rel="noopener noreferrer">AckslD/nvim-trevJ.lua (⭐173)</a> - Does the opposite of join-line (J) for arguments, powered by Tree-sitter.</li>
-<li><a href="https://github.com/pocco81/true-zen.nvim" rel="noopener noreferrer">pocco81/true-zen.nvim (⭐1k)</a> - Clean and elegant distraction-free writing.</li>
-<li><a href="https://github.com/pocco81/high-str.nvim" rel="noopener noreferrer">pocco81/high-str.nvim (⭐318)</a> - Highlight visual selections like in a normal document editor!</li>
-<li><a href="https://github.com/pocco81/auto-save.nvim" rel="noopener noreferrer">pocco81/auto-save.nvim (⭐741)</a> - Save your work before the world collapses or you type :qa!</li>
 <li><a href="https://github.com/okuuva/auto-save.nvim" rel="noopener noreferrer">okuuva/auto-save.nvim (⭐281)</a> - Automatically saves your work as often as needed and as seldom as possible. Customizable with smart defaults. Maintained fork of Pocco81/auto-save.nvim.</li>
 <li><a href="https://github.com/tmillr/sos.nvim" rel="noopener noreferrer">tmillr/sos.nvim (⭐19)</a> - Automatically save all your modified buffers according to a predefined timeout value.</li>
 <li><a href="https://github.com/folke/zen-mode.nvim" rel="noopener noreferrer">folke/zen-mode.nvim (⭐2k)</a> - Distraction-free coding.</li>
@@ -1440,7 +1444,6 @@
 <li><a href="https://github.com/gbprod/cutlass.nvim" rel="noopener noreferrer">gbprod/cutlass.nvim (⭐217)</a> - Plugin that adds a 'cut' operation separate from 'delete'.</li>
 <li><a href="https://github.com/gbprod/substitute.nvim" rel="noopener noreferrer">gbprod/substitute.nvim (⭐705)</a> - Neovim plugin introducing a new operator motions to quickly replace and exchange text.</li>
 <li><a href="https://github.com/gregorias/coerce.nvim" rel="noopener noreferrer">gregorias/coerce.nvim (⭐158)</a> - Change keyword case.</li>
-<li><a href="https://github.com/johmsalas/text-case.nvim" rel="noopener noreferrer">johmsalas/text-case.nvim (⭐541)</a> - Text case changes via keybindings and custom substitute command with Telescope and LSP support.</li>
 <li><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-operators.md" rel="noopener noreferrer">nvim-mini/mini.nvim#mini.operators (⭐8.3k)</a> - Module of <code>mini.nvim</code> with various text edit operators: replace, exchange, multiply, sort, evaluate.</li>
 <li><a href="https://github.com/gbprod/yanky.nvim" rel="noopener noreferrer">gbprod/yanky.nvim (⭐1.2k)</a> - Improved Yank and Put functionalities.</li>
 <li><a href="https://github.com/sQVe/sort.nvim" rel="noopener noreferrer">sQVe/sort.nvim (⭐195)</a> - Sorting plugin that intelligently supports line-wise and delimiter sorting.</li>
@@ -1449,8 +1452,6 @@
 <li><a href="https://github.com/hinell/move.nvim" rel="noopener noreferrer">hinell/move.nvim (⭐13)</a> - Move chunks of text around; fork of <a href="https://github.com/fedepujol/move.nvim" rel="noopener noreferrer">fedepujol/move.nvim (⭐360)</a>.</li>
 <li><a href="https://github.com/willothy/moveline.nvim" rel="noopener noreferrer">willothy/moveline.nvim (⭐150)</a> - Move lines and blocks up and down easily, with indenting handled automatically as you move. Written in Rust.</li>
 <li><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-move.md" rel="noopener noreferrer">nvim-mini/mini.nvim#mini.move (⭐8.3k)</a> - Module of <code>mini.nvim</code> to move any selection (charwise, linewise, blockwise, current line in Normal mode) in any direction. Handles both <code>v:count</code> and undo history.</li>
-<li><a href="https://github.com/anuvyklack/pretty-fold.nvim" rel="noopener noreferrer">anuvyklack/pretty-fold.nvim (⭐453)</a> - Foldtext customization.</li>
-<li><a href="https://github.com/bennypowers/nvim-regexplainer" rel="noopener noreferrer">bennypowers/nvim-regexplainer (⭐741)</a> - Explain the regular expression under the cursor.</li>
 <li><a href="https://github.com/gbprod/stay-in-place.nvim" rel="noopener noreferrer">gbprod/stay-in-place.nvim (⭐99)</a> - Neovim plugin that prevent cursor from moving when using shift and filter actions.</li>
 <li><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-ai.md" rel="noopener noreferrer">nvim-mini/mini.nvim#mini.ai (⭐8.3k)</a> - Module of <code>mini.nvim</code> for extending and creating <code>a</code>/<code>i</code> textobjects. It enhances some builtin textobjects, creates extensive set of new ones (like <code>a*</code>, <code>a&lt;Space&gt;</code>, <code>a?</code>, and more), and allows user to create their own (via Lua patterns or functions). Supports dot-repeat, different search methods, consecutive application, and more.</li>
 <li><a href="https://github.com/Wansmer/treesj" rel="noopener noreferrer">Wansmer/treesj (⭐1.3k)</a> - Splitting/joining blocks of code like arrays, hashes, statements, objects, dictionaries, etc. Using Tree-sitter. Inspired by greatest splitjoin.vim.</li>
@@ -1464,7 +1465,6 @@
 <li><a href="https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-basics.md" rel="noopener noreferrer">nvim-mini/mini.nvim#mini.basics (⭐8.3k)</a> - Module of <code>mini.nvim</code> with customizable configuration presets for common options, mappings, and autocommands.</li>
 <li><a href="https://github.com/niuiic/part-edit.nvim" rel="noopener noreferrer">niuiic/part-edit.nvim (⭐13)</a> - Edit a part of a file individually.</li>
 <li><a href="https://github.com/niuiic/divider.nvim" rel="noopener noreferrer">niuiic/divider.nvim (⭐27)</a> - Custom code divider line.</li>
-<li><a href="https://github.com/CKolkey/ts-node-action" rel="noopener noreferrer">CKolkey/ts-node-action (⭐371)</a> - A framework for executing functional transformations on Tree-sitter nodes - Has a lot of built-in actions for transforming text.</li>
 <li><a href="https://github.com/tomiis4/hypersonic.nvim" rel="noopener noreferrer">tomiis4/hypersonic.nvim (⭐231)</a> - Provides explanation for RegExp.</li>
 <li><a href="https://github.com/chrisgrieser/nvim-puppeteer" rel="noopener noreferrer">chrisgrieser/nvim-puppeteer (⭐70)</a> - Automatically convert strings to f-strings or template strings and back.</li>
 <li><a href="https://github.com/nat-418/boole.nvim" rel="noopener noreferrer">nat-418/boole.nvim (⭐180)</a> - Toggle booleans and common string values.</li>
@@ -1527,6 +1527,7 @@
 <li><a href="https://github.com/wsdjeg/format.nvim" rel="noopener noreferrer">wsdjeg/format.nvim (⭐12)</a> - An asynchronous code formatting plugin.</li>
 </ul>
 <h3 id="indent"><a class="anchor" aria-hidden="true" tabindex="-1" href="#indent"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Indent</h3><ul>
+<li><a href="https://github.com/saghen/blink.indent" rel="noopener noreferrer">saghen/blink.indent (⭐93)</a> - Performant indent guides with scope on every keystroke.</li>
 <li><a href="https://github.com/nvimdev/indentmini.nvim" rel="noopener noreferrer">nvimdev/indentmini.nvim (⭐260)</a> - A minimal and blazing fast indentline plugin by using the <code>nvim_set_decoration_provide</code> API function.</li>
 <li><a href="https://github.com/lukas-reineke/indent-blankline.nvim" rel="noopener noreferrer">lukas-reineke/indent-blankline.nvim (⭐4.8k)</a> - IndentLine replacement in Lua with more features and Tree-sitter support.</li>
 <li><a href="https://github.com/LucasTavaresA/simpleIndentGuides.nvim" rel="noopener noreferrer">LucasTavaresA/simpleIndentGuides.nvim (⭐10)</a> - Indentation guides using the builtin variables.</li>
