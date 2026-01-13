@@ -172,6 +172,7 @@ sellers who aren't evil for physical resources.</p>
 </li>
 <li><a href="#monitoring">Monitoring</a></li>
 <li><a href="#websockets">Websockets</a></li>
+<li><a href="#https">HTTPS</a></li>
 <li><a href="#web-development-utilities">Web development utilities</a><ul>
 <li><a href="#browser-tests">Browser tests</a></li>
 <li><a href="#form-handling">Form handling</a></li>
@@ -402,6 +403,7 @@ before work on Common Music shifted to (scheme-based) cm3.<ul>
 <li>currently archived and unmaintained.</li>
 </ul>
 </li>
+<li><a href="https://codeberg.org/johnlorentzson/asdf-dependency-traverser/" rel="noopener noreferrer">asdf-dependency-traverser</a> - a small utility for traversing the dependency tree of an ASDF system. Zlib.</li>
 </ul>
 <h1 id="compilers-code-generators"><a class="anchor" aria-hidden="true" tabindex="-1" href="#compilers-code-generators"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Compilers, code generators</h1><h2 id="apl"><a class="anchor" aria-hidden="true" tabindex="-1" href="#apl"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>APL</h2><ul>
 <li><a href="https://github.com/phantomics/april" rel="noopener noreferrer">April (⭐642)</a> - The APL programming language (a subset thereof) compiling to Common Lisp. Replace hundreds of lines of number-crunching code with a single line of APL. <a href="https://directory.fsf.org/wiki/License:Apache2.0" rel="noopener noreferrer">Apache2</a>.</li>
@@ -1438,12 +1440,17 @@ Example projects: <a href="https://github.com/quickdocs" rel="noopener noreferre
 </ul>
 <h2 id="parsing-html"><a class="anchor" aria-hidden="true" tabindex="-1" href="#parsing-html"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Parsing html</h2><ul>
 <li>👍 <a href="https://codeberg.org/shinmera/plump" rel="noopener noreferrer">Plump</a> - A lenient HTML/XML parser, tolerant on malformed markup. <a href="https://directory.fsf.org/wiki/License:Zlib" rel="noopener noreferrer">zlib</a>. Best used with <a href="https://codeberg.org/shinmera/lquery" rel="noopener noreferrer">lquery</a> and <a href="https://codeberg.org/shinmera/CLSS" rel="noopener noreferrer">clss</a>.</li>
-</ul>
-<p>See also:</p>
-<ul>
 <li><a href="https://github.com/rotatef/cl-html5-parser" rel="noopener noreferrer">cl-html5-parser (⭐57)</a> -  HTML5 parser for Common Lisp. GPL3.0.<ul>
 <li>a port of the Python library html5lib.</li>
 <li>compared to Plump: Plump is a mix of an XML and an HTML parser and breaks on some HTML rules, while cl-html5-parser is a fully compliant HTML parser.</li>
+</ul>
+</li>
+</ul>
+<p>Sanitizing HTML:</p>
+<ul>
+<li><a href="https://github.com/atgreen/cl-sanitize-html/" rel="noopener noreferrer">cl-sanitize-html (⭐9)</a> - OWASP-style HTML sanitization library for Common Lisp, designed for safely rendering untrusted HTML content (like HTML emails or user-generated content). MIT.<ul>
+<li>partly LLM. <a href="https://old.reddit.com/r/Common_Lisp/comments/1q30bqh/atgreenclsanitizehtml_a_common_lisp_library_for/" rel="noopener noreferrer">reddit announce</a>.</li>
+<li>related: <a href="https://codeberg.org/cage/trivial-sanitize" rel="noopener noreferrer">trivial-sanitize</a></li>
 </ul>
 </li>
 </ul>
@@ -1574,6 +1581,17 @@ out of the box availability for CL:</p>
 </li>
 </ul>
 <p><em>Editor's note: at the time of writing, it seems we don't have a full-featured websocket implementation for Common Lisp. We can however recommend Portal, and we invite you to double-check the current issues of Hunchensocket and websocket-driver.</em></p>
+<h2 id="https"><a class="anchor" aria-hidden="true" tabindex="-1" href="#https"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>HTTPS</h2><ul>
+<li><a href="https://github.com/atgreen/pure-tls" rel="noopener noreferrer">pure-tls (⭐19)</a> -  Pure Common Lisp TLS 1.3 implementation, HTTPS server with automatic Let's Encrypt certificate. MIT<ul>
+<li>warn: new code, partly done with LLMs.</li>
+<li>read:<ul>
+<li><a href="https://atgreen.github.io/repl-yell/posts/pure-tls/" rel="noopener noreferrer">Building a TLS 1.3 implementation in Common Lisp</a></li>
+<li><a href="https://atgreen.github.io/repl-yell/posts/pure-tls-acme/" rel="noopener noreferrer">Automatic TLS Certificates for Common Lisp with pure-tls/acme</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="web-development-utilities"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web-development-utilities"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web development utilities</h2><h3 id="browser-tests"><a class="anchor" aria-hidden="true" tabindex="-1" href="#browser-tests"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Browser tests</h3><ul>
 <li><a href="https://github.com/copyleft/cl-webdriver-client/" rel="noopener noreferrer">cl-webdriver-client (⭐28)</a> - a binding library to WebDriver (supports Selenium 4.0).</li>
 </ul>
