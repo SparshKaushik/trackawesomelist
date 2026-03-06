@@ -108,7 +108,60 @@ RewriteRule \.(jpe?g|png|gif|bmp|webp|avif|svg|ico)$ - [NC,F,L]
 # Options +FollowSymlinks
 RewriteCond %{HTTP_REFERER} somedomain\.com [NC,OR]
 RewriteCond %{HTTP_REFERER} anotherdomain\.com
-RewriteRule .* - [F]</code></pre><h3><p>Miscellaneous / Turn eTags Off</p>
+RewriteRule .* - [F]</code></pre><h3><p>Security / Block Specific User Agents</p>
+</h3>
+<h3 id="block-specific-user-agents"><a class="anchor" aria-hidden="true" tabindex="-1" href="#block-specific-user-agents"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Block Specific User Agents</h3><p>This will block specific user agents from accessing your site, useful for blocking scrapers and bad bots.</p>
+<pre><code>RewriteEngine on
+RewriteCond %{HTTP_USER_AGENT} BadBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} EvilScraper [NC]
+RewriteRule .* - [F,L]</code></pre><h3><p>Security / Content Security Policy (CSP)</p>
+</h3>
+<h3 id="content-security-policy-csp"><a class="anchor" aria-hidden="true" tabindex="-1" href="#content-security-policy-csp"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Content Security Policy (CSP)</h3><p>A Content Security Policy header helps mitigate cross-site scripting (XSS) and other code injection attacks by declaring which dynamic resources are allowed to load.</p>
+<pre><code>&lt;IfModule mod_headers.c&gt;
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'"
+&lt;/IfModule&gt;</code></pre><p>Adjust the directives to fit your needs. See the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" rel="noopener noreferrer">CSP reference</a> for all available directives.</p>
+<h3><p>Security / Prevent MIME Type Sniffing</p>
+</h3>
+<h3 id="prevent-mime-type-sniffing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#prevent-mime-type-sniffing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Prevent MIME Type Sniffing</h3><p>This prevents browsers from trying to guess ("sniff") the MIME type of a resource, which can have security implications. The browser will trust what the server says and block the resource if it doesn't match the expected type.</p>
+<pre><code>&lt;IfModule mod_headers.c&gt;
+    Header set X-Content-Type-Options "nosniff"
+&lt;/IfModule&gt;</code></pre><h3><p>Security / Set Referrer Policy</p>
+</h3>
+<h3 id="set-referrer-policy"><a class="anchor" aria-hidden="true" tabindex="-1" href="#set-referrer-policy"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Set Referrer Policy</h3><p>Control how much referrer information is included with requests. This helps protect user privacy by preventing the full URL from leaking to external sites.</p>
+<pre><code>&lt;IfModule mod_headers.c&gt;
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+&lt;/IfModule&gt;</code></pre><h3><p>Security / Set Permissions Policy</p>
+</h3>
+<h3 id="set-permissions-policy"><a class="anchor" aria-hidden="true" tabindex="-1" href="#set-permissions-policy"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Set Permissions Policy</h3><p>Restrict which browser features your site can use, such as camera, microphone, geolocation, etc.</p>
+<pre><code>&lt;IfModule mod_headers.c&gt;
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+&lt;/IfModule&gt;</code></pre><h3><p>Performance / Remove Server Signature</p>
+</h3>
+<h3 id="remove-server-signature"><a class="anchor" aria-hidden="true" tabindex="-1" href="#remove-server-signature"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Remove Server Signature</h3><p>Prevent Apache from exposing its version number and OS information in HTTP headers and error pages.</p>
+<pre><code>ServerSignature Off</code></pre><h3><p>Performance / Set Cache-Control Headers</p>
+</h3>
+<h3 id="set-cache-control-headers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#set-cache-control-headers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Set Cache-Control Headers</h3><p><code>Cache-Control</code> headers provide more fine-grained control over browser caching than Expires headers. You can use both together for maximum compatibility.</p>
+<pre><code>&lt;IfModule mod_headers.c&gt;
+    # Cache CSS and JS for 1 year
+    &lt;FilesMatch "\.(css|js)$"&gt;
+        Header set Cache-Control "max-age=31536000, public"
+    &lt;/FilesMatch&gt;
+
+    # Cache images for 1 month
+    &lt;FilesMatch "\.(jpe?g|png|gif|webp|avif|svg|ico)$"&gt;
+        Header set Cache-Control "max-age=2592000, public"
+    &lt;/FilesMatch&gt;
+
+    # Cache fonts for 1 month
+    &lt;FilesMatch "\.(woff2?|ttf|otf)$"&gt;
+        Header set Cache-Control "max-age=2592000, public"
+    &lt;/FilesMatch&gt;
+
+    # Do not cache HTML
+    &lt;FilesMatch "\.(html|htm)$"&gt;
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+    &lt;/FilesMatch&gt;
+&lt;/IfModule&gt;</code></pre><h3><p>Miscellaneous / Turn eTags Off</p>
 </h3>
 <h3 id="turn-etags-off"><a class="anchor" aria-hidden="true" tabindex="-1" href="#turn-etags-off"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Turn eTags Off</h3><p>By removing the <code>ETag</code> header, you disable caches and browsers from being able to validate files, so they are forced to rely on your <code>Cache-Control</code> and <code>Expires</code> header. <a href="https://www.askapache.com/htaccess/apache-speed-etags.html" rel="noopener noreferrer">Source</a></p>
 <pre><code>&lt;IfModule mod_headers.c&gt;
@@ -118,7 +171,29 @@ FileETag None</code></pre><h3><p>Miscellaneous / Custom Error Pages</p>
 </h3>
 <h3 id="custom-error-pages"><a class="anchor" aria-hidden="true" tabindex="-1" href="#custom-error-pages"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Custom Error Pages</h3><pre><code>ErrorDocument 500 "Houston, we have a problem."
 ErrorDocument 401 https://error.example.com/mordor.html
-ErrorDocument 404 /errors/halflife3.html</code></pre><h3><p>Miscellaneous / Switch to Another PHP Version</p>
+ErrorDocument 404 /errors/halflife3.html</code></pre><h3><p>Miscellaneous / Custom Maintenance Page</p>
+</h3>
+<h3 id="custom-maintenance-page"><a class="anchor" aria-hidden="true" tabindex="-1" href="#custom-maintenance-page"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Custom Maintenance Page</h3><p>Redirect all traffic to a maintenance page while still allowing access from a specific IP address.</p>
+<pre><code>RewriteEngine on
+RewriteCond %{REMOTE_ADDR} !^xxx\.xxx\.xxx\.xxx
+RewriteCond %{REQUEST_URI} !/maintenance.html$ [NC]
+RewriteCond %{REQUEST_URI} !\.(css|js|png|jpe?g|gif|svg|ico)$ [NC]
+RewriteRule .* /maintenance.html [R=503,L]</code></pre><p>Replace <code>xxx.xxx.xxx.xxx</code> with your IP address to retain access while the site is under maintenance.</p>
+<h3><p>Miscellaneous / Enable CORS</p>
+</h3>
+<h3 id="enable-cors"><a class="anchor" aria-hidden="true" tabindex="-1" href="#enable-cors"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Enable CORS</h3><p>Enable Cross-Origin Resource Sharing (CORS) for your site, allowing other domains to make requests to your server.</p>
+<pre><code>&lt;IfModule mod_headers.c&gt;
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+&lt;/IfModule&gt;</code></pre><p>To restrict access to specific domains, replace <code>*</code> with the domain, e.g. <code>https://example.com</code>.</p>
+<h3><p>Miscellaneous / Set Custom MIME Types</p>
+</h3>
+<h3 id="set-custom-mime-types"><a class="anchor" aria-hidden="true" tabindex="-1" href="#set-custom-mime-types"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Set Custom MIME Types</h3><p>Define custom MIME types for file formats that Apache may not recognize by default.</p>
+<pre><code>AddType application/manifest+json .webmanifest
+AddType application/wasm .wasm
+AddType application/x-ndjson .ndjson
+AddType text/vtt .vtt</code></pre><h3><p>Miscellaneous / Switch to Another PHP Version</p>
 </h3>
 <h3 id="switch-to-another-php-version"><a class="anchor" aria-hidden="true" tabindex="-1" href="#switch-to-another-php-version"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Switch to Another PHP Version</h3><p>If you’re on a shared host, chances are there are more than one version of PHP installed, and sometimes you want a specific version for your website. The following snippet should switch the PHP version for you.</p>
 <pre><code>AddHandler application/x-httpd-php84 .php
@@ -157,7 +232,7 @@ RewriteRule ^(.*)$ index.fcgi/$1 [QSA,L]</code></pre><p>This is a less efficient
         Header set Access-Control-Allow-Origin "*"
     &lt;/FilesMatch&gt;
 &lt;/IfModule&gt;</code></pre><p><a href="https://github.com/h5bp/server-configs-apache/issues/32" rel="noopener noreferrer">Source (⭐3.3k)</a></p>
-<h2><a href="https://www.trackawesomelist.com/2015/02/23/">Feb 23, 2015</a></h2><h3><p>Performance / Prevent Framing the Site</p>
+<h2><a href="https://www.trackawesomelist.com/2015/02/23/">Feb 23, 2015</a></h2><h3><p>Security / Prevent Framing the Site</p>
 </h3>
 <h3 id="prevent-framing-the-site"><a class="anchor" aria-hidden="true" tabindex="-1" href="#prevent-framing-the-site"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Prevent Framing the Site</h3><p>This prevents the website to be framed (i.e. put into an <code>iframe</code> tag), when still allows framing for a specific URI.</p>
 <pre><code>SetEnvIf Request_URI "/starry-night" allow_framing=true
