@@ -16,84 +16,200 @@
     <meta property="og:title" content="Search Awesome Projects" />
     <meta property="og:description" content="We track over 500 awesome list updates, and you can also subscribe to daily or weekly updates via RSS or News Letter." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --link-color: #0969da;
+        --link-hover: #0550ae;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --link-color: #58a6ff;
+        --link-hover: #79c0ff;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
+        padding: 1em 0.5em 0 0.5em;
+        background-color: var(--bg-color) !important;
       }
-      a{
-        color: #000;
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
       }
-      a:hover{
-        color: #000;
+      
+      a {
+        color: var(--link-color);
       }
-      a:visited{
-        color: #000;
+      
+      a:hover {
+        color: var(--link-hover);
       }
-      .search-ui{
-          position:relative
-        }
-      .morsels-root{
-          width: 100%;
-        }
+      
+      a:visited {
+        color: var(--link-color);
+      }
+      
+      .search-ui {
+        position: relative;
+      }
+      
+      .morsels-root {
+        width: 100%;
+      }
+      
       #morsels-search {
-          width: 100%;
-          padding: 1em;
+        width: 100%;
+        padding: 1em;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
       }
     </style>
     <link rel="stylesheet" href="/search-index/assets/search-ui-basic.css" />
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Search <a href="/">Awesome</a> Stuff</h1>
       <div id="search-ui">
         <input type="search" id="morsels-search" placeholder="Search" role="combobox" autocomplete="off" aria-autocomplete="list" aria-controls="morsels-mdbook-target" aria-expanded="false">
         <div id="target">
         </div>
       </div>
-
     </main>
 
     <!--  Search UI script -->
     <script src="/search-index/assets/search-ui.ascii.bundle.js"></script>
     <script>
+      // Theme toggle script
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        setTheme(currentTheme);
+        
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+      
+      // Search script
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get('q');
 
-    // check is there is q query in the url
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q');
-
-
-    morsels.initMorsels({
-      searcherOptions: {
-        // Output folder url specified as the second parameter in the cli command
-        // Urls like '/output/' will work as well
-        url: '/search-index/',
-      },
-      uiOptions: {
-        // Input / source folder url, specified as the first parameter in the cli command
-        mode:"target",
-        sourceFilesUrl: '/',
-        input: 'morsels-search',
-        dropdown:"bottom-start",
-        resultsPerPage:25,
-        target:"target"
-      },
-
-});
-    if(query){
-        // focus input first
+      morsels.initMorsels({
+        searcherOptions: {
+          url: '/search-index/',
+        },
+        uiOptions: {
+          mode: "target",
+          sourceFilesUrl: '/',
+          input: 'morsels-search',
+          dropdown: "bottom-start",
+          resultsPerPage: 25,
+          target: "target"
+        },
+      });
+      
+      if(query){
         const inputElement = document.getElementById("morsels-search");
         inputElement.focus();
-
-            setTimeout(()=>{
-
-        document.getElementById("morsels-search").value = query;
-        // trigger search
-        const changeEvent = new Event('input');
-        inputElement.dispatchEvent(changeEvent);
-    },10)
-    }
-
+        setTimeout(() => {
+          document.getElementById("morsels-search").value = query;
+          const changeEvent = new Event('input');
+          inputElement.dispatchEvent(changeEvent);
+        }, 10);
+      }
     </script>
   </body>
 </html>
