@@ -16,22 +16,107 @@
     <meta property="og:title" content="Track Awesome Mac Updates Weekly" />
     <meta property="og:description" content=" This project is dedicated to collecting high-quality macOS software and organizing them systematically by different categories for easy search and use." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Mac Updates Weekly</h1>
 <p> This project is dedicated to collecting high-quality macOS software and organizing them systematically by different categories for easy search and use.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/jaywcjlove/awesome-mac/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/jaywcjlove/awesome-mac">😺 jaywcjlove/awesome-mac</a><span> · </span><span>⭐ 102K</span><span> · </span><span>🏷️ Platforms</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/jaywcjlove/awesome-mac/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/jaywcjlove/awesome-mac">😺 jaywcjlove/awesome-mac</a><span> · </span><span>⭐ 103K</span><span> · </span><span>🏷️ Platforms</span></p>
 <p><span>[ </span><a href="/jaywcjlove/awesome-mac/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/jaywcjlove/awesome-mac/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/19/">May 11 - May 17, 2026</a></h2><h3><p>Utilities / Menu Bar Tools</p>
+</h3>
+<ul>
+<li><a href="https://notchly.xyz" rel="noopener noreferrer">Notchly</a> - Lightweight native macOS app that turns the MacBook notch into an interactive space for live activities, music, battery, and custom HUDs. <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /> <img src="https://jaywcjlove.github.io/sb/ico/min-native-app.svg" alt="Native App" /></li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/18/">May 04 - May 10, 2026</a></h2><h3><p>Reading and Writing Tools / Markdown Tools <a href="https://github.com/BubuAnabelas/awesome-markdown#tools" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-awesome.svg" alt="Awesome List" /></a></p>
 </h3>
 <ul>
@@ -70,12 +155,12 @@
 <h3><p>Security Tools / Audio Record and Process</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dutkiewiczmaciej/MakLock" rel="noopener noreferrer">MakLock (⭐40)</a> - Lock any macOS app with Touch ID, Apple Watch proximity, or password. Full-screen blur overlay on all monitors. <a href="https://github.com/dutkiewiczmaciej/MakLock" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/dutkiewiczmaciej/MakLock" rel="noopener noreferrer">MakLock (⭐52)</a> - Lock any macOS app with Touch ID, Apple Watch proximity, or password. Full-screen blur overlay on all monitors. <a href="https://github.com/dutkiewiczmaciej/MakLock" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Utilities / Clipboard Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yarasaa/Clippy" rel="noopener noreferrer">Clippy (⭐20)</a> - Smart clipboard manager with content-aware previews, AI transformations, a built-in screenshot editor, and file converter. <a href="https://github.com/yarasaa/Clippy" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/yarasaa/Clippy" rel="noopener noreferrer">Clippy (⭐27)</a> - Smart clipboard manager with content-aware previews, AI transformations, a built-in screenshot editor, and file converter. <a href="https://github.com/yarasaa/Clippy" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Utilities / Menu Bar Tools</p>
 </h3>
@@ -168,7 +253,7 @@
 <h3><p>Design and Product / Screen Recording</p>
 </h3>
 <ul>
-<li><a href="https://github.com/siddharthvaddem/openscreen" rel="noopener noreferrer">OpenScreen (⭐31k)</a> - Open-source tool for creating polished screen demos and walkthrough videos. <a href="https://github.com/siddharthvaddem/openscreen" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/siddharthvaddem/openscreen" rel="noopener noreferrer">OpenScreen (⭐35k)</a> - Open-source tool for creating polished screen demos and walkthrough videos. <a href="https://github.com/siddharthvaddem/openscreen" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>AI Tools / Other Tools</p>
 </h3>
@@ -427,7 +512,7 @@
 <h3><p>Reading and Writing Tools / Markdown Tools <a href="https://github.com/BubuAnabelas/awesome-markdown#tools" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-awesome.svg" alt="Awesome List" /></a></p>
 </h3>
 <ul>
-<li><a href="https://github.com/Applacat/PixleyReader" rel="noopener noreferrer">Pixley Reader (⭐47)</a> - Reader for Markdown specs, docs, and changelogs generated by AI tools. <a href="https://github.com/Applacat/PixleyReader" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <a href="https://apps.apple.com/app/id6758722045?platform=mac" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-app-store.svg" alt="App Store" /></a></li>
+<li><a href="https://github.com/Applacat/PixleyReader" rel="noopener noreferrer">Pixley Reader (⭐48)</a> - Reader for Markdown specs, docs, and changelogs generated by AI tools. <a href="https://github.com/Applacat/PixleyReader" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <a href="https://apps.apple.com/app/id6758722045?platform=mac" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-app-store.svg" alt="App Store" /></a></li>
 </ul>
 
 <ul>
@@ -454,11 +539,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/LeonardoCardoso/Poirot" rel="noopener noreferrer">Poirot (⭐167)</a> - Companion app for browsing Claude Code sessions, reviewing diffs, and rerunning commands. <a href="https://github.com/LeonardoCardoso/Poirot" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/LeonardoCardoso/Poirot" rel="noopener noreferrer">Poirot (⭐174)</a> - Companion app for browsing Claude Code sessions, reviewing diffs, and rerunning commands. <a href="https://github.com/LeonardoCardoso/Poirot" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/productdevbook/port-killer" rel="noopener noreferrer">PortKiller (⭐4.7k)</a> - Tool for inspecting ports, managing forwards and tunnels, and stopping bound processes. <a href="https://github.com/productdevbook/port-killer" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
+<li><a href="https://github.com/productdevbook/port-killer" rel="noopener noreferrer">PortKiller (⭐4.8k)</a> - Tool for inspecting ports, managing forwards and tunnels, and stopping bound processes. <a href="https://github.com/productdevbook/port-killer" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
 </ul>
 
 <ul>
@@ -523,7 +608,7 @@
 <h3><p>Translation Tools / Audio Record and Process</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cosZone/MoePeek" rel="noopener noreferrer">MoePeek (⭐614)</a> - Translation tool with text selection, OCR, clipboard, and manual input support. <a href="https://github.com/cosZone/MoePeek" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/cosZone/MoePeek" rel="noopener noreferrer">MoePeek (⭐641)</a> - Translation tool with text selection, OCR, clipboard, and manual input support. <a href="https://github.com/cosZone/MoePeek" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
@@ -573,7 +658,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/bysiber/cleardisk" rel="noopener noreferrer">ClearDisk (⭐275)</a> - Visualize and clean developer caches to quickly reclaim disk space. <a href="https://github.com/bysiber/cleardisk" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/bysiber/cleardisk" rel="noopener noreferrer">ClearDisk (⭐310)</a> - Visualize and clean developer caches to quickly reclaim disk space. <a href="https://github.com/bysiber/cleardisk" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Utilities / File Organization Tools</p>
 </h3>
@@ -597,7 +682,7 @@
 <h3><p>Utilities / Window Management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/varie-ai/convoker" rel="noopener noreferrer">Convoker (⭐12)</a> - Type an app name, press Enter, all its windows come to you. <a href="https://github.com/varie-ai/convoker" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/varie-ai/convoker" rel="noopener noreferrer">Convoker (⭐14)</a> - Type an app name, press Enter, all its windows come to you. <a href="https://github.com/varie-ai/convoker" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Utilities / Password Management</p>
 </h3>
@@ -626,7 +711,7 @@
 <h3><p>QuickLook Plugins / System Related Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/xykong/flux-markdown" rel="noopener noreferrer">FluxMarkdown (⭐606)</a> - Quick Look extension for Markdown previews with Mermaid, KaTeX, GFM, TOC, and charts. <a href="https://github.com/xykong/flux-markdown" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/xykong/flux-markdown" rel="noopener noreferrer">FluxMarkdown (⭐804)</a> - Quick Look extension for Markdown previews with Mermaid, KaTeX, GFM, TOC, and charts. <a href="https://github.com/xykong/flux-markdown" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
@@ -685,7 +770,7 @@
 <h3><p>Reading and Writing Tools / Note-taking</p>
 </h3>
 <ul>
-<li><a href="https://github.com/0xMassi/stik_app" rel="noopener noreferrer">Stik (⭐170)</a> - Quick-capture markdown notes app with hotkeys and AI semantic search. <a href="https://github.com/0xMassi/stik_app" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/0xMassi/stik_app" rel="noopener noreferrer">Stik (⭐181)</a> - Quick-capture markdown notes app with hotkeys and AI semantic search. <a href="https://github.com/0xMassi/stik_app" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Developer Tools / Developer Utilities</p>
 </h3>
@@ -794,7 +879,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mediar-ai/screenpipe" rel="noopener noreferrer">Screenpipe (⭐18k)</a> - Local screen and microphone recorder with AI search. <a href="https://github.com/mediar-ai/screenpipe" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/mediar-ai/screenpipe" rel="noopener noreferrer">Screenpipe (⭐19k)</a> - Local screen and microphone recorder with AI search. <a href="https://github.com/mediar-ai/screenpipe" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/4/">Jan 26 - Feb 01, 2026</a></h2><h3><p>Developer Tools / Virtualization</p>
 </h3>
@@ -891,12 +976,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Wcowin/OneClip" rel="noopener noreferrer">OneClip (⭐287)</a> - A simple and professional macOS clipboard manager. <a href="https://github.com/Wcowin/OneClip" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/Wcowin/OneClip" rel="noopener noreferrer">OneClip (⭐319)</a> - A simple and professional macOS clipboard manager. <a href="https://github.com/Wcowin/OneClip" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/50/">Dec 15 - Dec 21, 2025</a></h2><h3><p>Utilities / Clipboard Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/praneeth552/clipflow" rel="noopener noreferrer">ClipFlow (⭐6)</a> - Free clipboard history manager with terminal-style navigation. <a href="https://github.com/praneeth552/clipflow" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/praneeth552/clipflow" rel="noopener noreferrer">ClipFlow (⭐8)</a> - Free clipboard history manager with terminal-style navigation. <a href="https://github.com/praneeth552/clipflow" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/49/">Dec 08 - Dec 14, 2025</a></h2><h3><p>Developer Tools / API Development and Analysis</p>
 </h3>
@@ -924,7 +1009,7 @@
 <h3><p>Utilities / System Related Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NullPointerDepressiveDisorder/MiddleDrag" rel="noopener noreferrer">MiddleDrag (⭐176)</a> - Three-finger trackpad gestures for middle-click and middle-drag on macOS. <a href="https://github.com/NullPointerDepressiveDisorder/MiddleDrag" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/NullPointerDepressiveDisorder/MiddleDrag" rel="noopener noreferrer">MiddleDrag (⭐185)</a> - Three-finger trackpad gestures for middle-click and middle-drag on macOS. <a href="https://github.com/NullPointerDepressiveDisorder/MiddleDrag" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/48/">Dec 01 - Dec 07, 2025</a></h2><h3><p>Developer Tools / Version Control</p>
 </h3>
@@ -934,7 +1019,7 @@
 <h3><p>Utilities / Menu Bar Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/designsbymuzeer/Bye-Mac-App" rel="noopener noreferrer">Bye AppQuit (⭐70)</a> - A minimal menu bar app to quickly view and kill running processes. <a href="https://github.com/designsbymuzeer/Bye-Mac-App" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/designsbymuzeer/Bye-Mac-App" rel="noopener noreferrer">Bye AppQuit (⭐73)</a> - A minimal menu bar app to quickly view and kill running processes. <a href="https://github.com/designsbymuzeer/Bye-Mac-App" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/47/">Nov 24 - Nov 30, 2025</a></h2><h3><p>AI Tools / Other Tools</p>
 </h3>
@@ -1049,12 +1134,12 @@
 <h3><p>Audio and Video Tools / File Sharing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ateymoori/lyricglow" rel="noopener noreferrer">LyricGlow (⭐18)</a> - Synced lyrics player with word-by-word glow effects. <a href="https://github.com/ateymoori/lyricglow" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/ateymoori/lyricglow" rel="noopener noreferrer">LyricGlow (⭐19)</a> - Synced lyrics player with word-by-word glow effects. <a href="https://github.com/ateymoori/lyricglow" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/41/">Oct 13 - Oct 19, 2025</a></h2><h3><p>AI Tools / Other Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nbonamy/witsy" rel="noopener noreferrer">Witsy (⭐0)</a> - desktop AI assistant / universal MCP client. <a href="https://github.com/nbonamy/witsy" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
+<li><a href="https://github.com/nbonamy/witsy" rel="noopener noreferrer">Witsy (⭐1)</a> - desktop AI assistant / universal MCP client. <a href="https://github.com/nbonamy/witsy" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
 </ul>
 <h3><p>Translation Tools / Audio Record and Process</p>
 </h3>
@@ -1064,7 +1149,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/40/">Oct 06 - Oct 12, 2025</a></h2><h3><p>Audio and Video Tools / File Sharing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/photangralenphie/MyMedia" rel="noopener noreferrer">MyMedia (⭐92)</a> - Display and watch your local movie and TV show library. <a href="https://github.com/photangralenphie/MyMedia" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/photangralenphie/MyMedia" rel="noopener noreferrer">MyMedia (⭐93)</a> - Display and watch your local movie and TV show library. <a href="https://github.com/photangralenphie/MyMedia" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Utilities / General Tools</p>
 </h3>
@@ -1078,7 +1163,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/bwya77/DockAnchor" rel="noopener noreferrer">DockAnchor (⭐430)</a> - Lock the macOS Dock to a single screen in a multi-monitor setup. <a href="https://github.com/bwya77/DockAnchor" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/bwya77/DockAnchor" rel="noopener noreferrer">DockAnchor (⭐441)</a> - Lock the macOS Dock to a single screen in a multi-monitor setup. <a href="https://github.com/bwya77/DockAnchor" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/38/">Sep 22 - Sep 28, 2025</a></h2><h3><p>Reading and Writing Tools / Note-taking</p>
 </h3>
@@ -1093,7 +1178,7 @@
 <h3><p>Utilities / General Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/RoversX/LaunchNext" rel="noopener noreferrer">LaunchNext (⭐2.4k)</a> - Classic Launchpad experience, relive old macOS. <a href="https://github.com/RoversX/LaunchNext" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/RoversX/LaunchNext" rel="noopener noreferrer">LaunchNext (⭐2.5k)</a> - Classic Launchpad experience, relive old macOS. <a href="https://github.com/RoversX/LaunchNext" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/36/">Sep 08 - Sep 14, 2025</a></h2><h3><p>Utilities / System Related Tools</p>
 </h3>
@@ -1113,7 +1198,7 @@
 <h3><p>Utilities / Productivity</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rewhex/better-launchpad" rel="noopener noreferrer">Better Launchpad (⭐16)</a> - Customizable app launcher with fast search.</li>
+<li><a href="https://github.com/rewhex/better-launchpad" rel="noopener noreferrer">Better Launchpad (⭐18)</a> - Customizable app launcher with fast search.</li>
 </ul>
 
 <ul>
@@ -1122,7 +1207,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/33/">Aug 18 - Aug 24, 2025</a></h2><h3><p>Developer Tools / Developer Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nuance-dev/medio" rel="noopener noreferrer">Medio (⭐220)</a> - A native, lightweight text diff tool with a clean UI and real-time highlighting. <a href="https://github.com/nuance-dev/medio" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
+<li><a href="https://github.com/nuance-dev/medio" rel="noopener noreferrer">Medio (⭐222)</a> - A native, lightweight text diff tool with a clean UI and real-time highlighting. <a href="https://github.com/nuance-dev/medio" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
 </ul>
 <h3><p>Developer Tools / API Development and Analysis</p>
 </h3>
@@ -1141,7 +1226,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/runtime-org/runtime" rel="noopener noreferrer">Runtime (⭐198)</a> - AI taskmate and take control of the web &amp; your office tools</li>
+<li><a href="https://github.com/runtime-org/runtime" rel="noopener noreferrer">Runtime (⭐199)</a> - AI taskmate and take control of the web &amp; your office tools</li>
 </ul>
 <h3><p>Communication / Collaboration and Team Tools</p>
 </h3>
@@ -1161,7 +1246,7 @@
 <h3><p>Browsers / Audio Record and Process</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nuance-dev/Web" rel="noopener noreferrer">Web (⭐658)</a> - Minimal AI browser for macOS, built with SwiftUI. <a href="https://github.com/nuance-dev/Web" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /> <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
+<li><a href="https://github.com/nuance-dev/Web" rel="noopener noreferrer">Web (⭐659)</a> - Minimal AI browser for macOS, built with SwiftUI. <a href="https://github.com/nuance-dev/Web" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /> <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/30/">Jul 28 - Aug 03, 2025</a></h2><h3><p>Developer Tools / Developer Utilities</p>
 </h3>
@@ -1216,7 +1301,7 @@
 <h3><p>Utilities / General Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Swift-open-source/UltraTabSaver" rel="noopener noreferrer">Ultra TabSaver (⭐289)</a> - The Open Source Tab Manager for Safari <a href="https://github.com/Swift-open-source/UltraTabSaver" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
+<li><a href="https://github.com/Swift-open-source/UltraTabSaver" rel="noopener noreferrer">Ultra TabSaver (⭐291)</a> - The Open Source Tab Manager for Safari <a href="https://github.com/Swift-open-source/UltraTabSaver" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
 </ul>
 <h3><p>Utilities / Productivity</p>
 </h3>
@@ -1230,7 +1315,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/wflixu/RClick" rel="noopener noreferrer">RClick (⭐695)</a> - Add new functionality to the macOS Finder context menu.  <a href="https://github.com/wflixu/RClick" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/wflixu/RClick" rel="noopener noreferrer">RClick (⭐722)</a> - Add new functionality to the macOS Finder context menu.  <a href="https://github.com/wflixu/RClick" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Gaming Software / System Related Tools</p>
 </h3>
@@ -1270,7 +1355,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/25/">Jun 23 - Jun 29, 2025</a></h2><h3><p>Reading and Writing Tools / RSS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sopaco/saga-reader" rel="noopener noreferrer">Saga Reader (⭐493)</a> - AI-powered web and RSS reader. <a href="https://github.com/dyerc/Doughnut" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
+<li><a href="https://github.com/sopaco/saga-reader" rel="noopener noreferrer">Saga Reader (⭐506)</a> - AI-powered web and RSS reader. <a href="https://github.com/dyerc/Doughnut" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
 </ul>
 <h3><p>Developer Tools / Developer Utilities</p>
 </h3>
@@ -1337,7 +1422,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/18/">May 05 - May 11, 2025</a></h2><h3><p>Utilities / Window Management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nikitabobko/AeroSpace" rel="noopener noreferrer">AeroSpace (⭐20k)</a> - i3-like tiling window manager for macOS. <a href="https://github.com/nikitabobko/AeroSpace" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/nikitabobko/AeroSpace" rel="noopener noreferrer">AeroSpace (⭐21k)</a> - i3-like tiling window manager for macOS. <a href="https://github.com/nikitabobko/AeroSpace" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
@@ -1361,7 +1446,7 @@
 <h3><p>Audio and Video Tools / File Sharing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/samzong/macmusicplayer" rel="noopener noreferrer">MacMusicPlayer (⭐76)</a> - A clean, lightweight music player for macOS users. <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/samzong/macmusicplayer" rel="noopener noreferrer">MacMusicPlayer (⭐79)</a> - A clean, lightweight music player for macOS users. <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Proxy and VPN Tools / Audio Record and Process</p>
 </h3>
@@ -1413,7 +1498,7 @@
 <h3><p>Developer Tools / Version Control</p>
 </h3>
 <ul>
-<li><a href="https://github.com/maoyama/Tempo" rel="noopener noreferrer">Tempo (⭐220)</a> - GUI Git client. Replace the Git CLI with a clear UI and AI assist. <a href="https://github.com/maoyama/Tempo" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /> <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
+<li><a href="https://github.com/maoyama/Tempo" rel="noopener noreferrer">Tempo (⭐230)</a> - GUI Git client. Replace the Git CLI with a clear UI and AI assist. <a href="https://github.com/maoyama/Tempo" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /> <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
 </ul>
 <h3><p>Download Management Tools / Audio Record and Process</p>
 </h3>
@@ -1428,7 +1513,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/9/">Mar 03 - Mar 09, 2025</a></h2><h3><p>Utilities / Audio Record and Process</p>
 </h3>
 <ul>
-<li><a href="https://github.com/glinford/dns-easy-switcher" rel="noopener noreferrer">DNS Easy Switcher (⭐332)</a> - Menu bar tool for switching DNS providers or custom resolvers. <a href="https://github.com/glinford/dns-easy-switcher" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/glinford/dns-easy-switcher" rel="noopener noreferrer">DNS Easy Switcher (⭐335)</a> - Menu bar tool for switching DNS providers or custom resolvers. <a href="https://github.com/glinford/dns-easy-switcher" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Utilities / Productivity</p>
 </h3>
@@ -1452,7 +1537,7 @@
 <h3><p>Design and Product / Design Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cartesiancs/nugget-app" rel="noopener noreferrer">Nugget (⭐555)</a> - Video editing software designed for motion effects and versatility. <a href="https://github.com/yo-op/sketchcachecleaner" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="OSS" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/cartesiancs/nugget-app" rel="noopener noreferrer">Nugget (⭐564)</a> - Video editing software designed for motion effects and versatility. <a href="https://github.com/yo-op/sketchcachecleaner" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="OSS" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Utilities / Productivity</p>
 </h3>
@@ -1470,7 +1555,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ghostty-org/ghostty" rel="noopener noreferrer">Ghostty (⭐51k)</a> - Fast GPU-accelerated terminal emulator. <a href="https://github.com/ghostty-org/ghostty" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/ghostty-org/ghostty" rel="noopener noreferrer">Ghostty (⭐53k)</a> - Fast GPU-accelerated terminal emulator. <a href="https://github.com/ghostty-org/ghostty" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
@@ -1482,11 +1567,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/kovidgoyal/kitty" rel="noopener noreferrer">kitty (⭐32k)</a> - A cross-platform, fast, feature full, GPU based terminal emulator. <a href="https://github.com/kovidgoyal/kitty" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/kovidgoyal/kitty" rel="noopener noreferrer">kitty (⭐33k)</a> - A cross-platform, fast, feature full, GPU based terminal emulator. <a href="https://github.com/kovidgoyal/kitty" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Eugeny/tabby" rel="noopener noreferrer">Tabby (formerly Terminus) (⭐70k)</a> - Free terminal tool, built with TypeScript, heavily inspired by Hyper. <a href="https://github.com/Eugeny/terminus" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/Eugeny/tabby" rel="noopener noreferrer">Tabby (formerly Terminus) (⭐71k)</a> - Free terminal tool, built with TypeScript, heavily inspired by Hyper. <a href="https://github.com/Eugeny/terminus" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
@@ -1562,7 +1647,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/50/">Dec 09 - Dec 15, 2024</a></h2><h3><p>Utilities / Menu Bar Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Celve/Peninsula" rel="noopener noreferrer">Peninsula (⭐453)</a> - Dynamic Peninsula for macOS, focusing on window switching, notifications, and file storage. <a href="https://github.com/Celve/Peninsula" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/Celve/Peninsula" rel="noopener noreferrer">Peninsula (⭐454)</a> - Dynamic Peninsula for macOS, focusing on window switching, notifications, and file storage. <a href="https://github.com/Celve/Peninsula" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/49/">Dec 02 - Dec 08, 2024</a></h2><h3><p>Developer Tools / IDEs</p>
 </h3>
@@ -1627,7 +1712,7 @@
 <h3><p>Reading and Writing Tools / Writing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vkbo/novelWriter" rel="noopener noreferrer">novelWriter (⭐2.8k)</a> - Open-source plain text editor for writing novels with minimal markdown-like syntax. <a href="https://github.com/vkbo/novelWriter" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="OSS" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/vkbo/novelWriter" rel="noopener noreferrer">novelWriter (⭐2.9k)</a> - Open-source plain text editor for writing novels with minimal markdown-like syntax. <a href="https://github.com/vkbo/novelWriter" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="OSS" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Reading and Writing Tools / Ebooks</p>
 </h3>
@@ -1924,11 +2009,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/viarotel-org/escrcpy" rel="noopener noreferrer">escrcpy (⭐9.3k)</a> -📱 Graphical Scrcpy to display and control Android devices, powered by Electron.<a href="https://github.com/viarotel-org/escrcpy" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/viarotel-org/escrcpy" rel="noopener noreferrer">escrcpy (⭐9.7k)</a> -📱 Graphical Scrcpy to display and control Android devices, powered by Electron.<a href="https://github.com/viarotel-org/escrcpy" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/zenangst/KeyboardCowboy" rel="noopener noreferrer">Keyboard Cowboy (⭐2.1k)</a> - The missing keyboard shortcut utility for macOS. <a href="https://github.com/zenangst/KeyboardCowboy" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
+<li><a href="https://github.com/zenangst/KeyboardCowboy" rel="noopener noreferrer">Keyboard Cowboy (⭐2.2k)</a> - The missing keyboard shortcut utility for macOS. <a href="https://github.com/zenangst/KeyboardCowboy" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
 </ul>
 
 <ul>
@@ -1952,7 +2037,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/45/">Nov 04 - Nov 10, 2024</a></h2><h3><p>Reading and Writing Tools / Journaling</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lostdesign/linked" rel="noopener noreferrer">linked (⭐998)</a> - Link your thoughts to days, distraction free. <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></li>
+<li><a href="https://github.com/lostdesign/linked" rel="noopener noreferrer">linked (⭐1k)</a> - Link your thoughts to days, distraction free. <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></li>
 </ul>
 <h3><p>Design and Product / Design Tools</p>
 </h3>
@@ -1976,7 +2061,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/43/">Oct 21 - Oct 27, 2024</a></h2><h3><p>Audio and Video Tools / File Sharing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/TheAcharya/MarkerData" rel="noopener noreferrer">Marker Data (⭐62)</a> - The avant-garde Marker extraction application crafted for Final Cut Pro. <a href="https://github.com/TheAcharya/MarkerData" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
+<li><a href="https://github.com/TheAcharya/MarkerData" rel="noopener noreferrer">Marker Data (⭐63)</a> - The avant-garde Marker extraction application crafted for Final Cut Pro. <a href="https://github.com/TheAcharya/MarkerData" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
 </ul>
 <h3><p>Download Management Tools / Audio Record and Process</p>
 </h3>
@@ -2036,7 +2121,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/grishka/NearDrop" rel="noopener noreferrer">NearDrop (⭐6k)</a> - An unofficial Google Nearby Share/Quick Share app for macOS. <a href="https://github.com/localsend/localsend" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/grishka/NearDrop" rel="noopener noreferrer">NearDrop (⭐6.1k)</a> - An unofficial Google Nearby Share/Quick Share app for macOS. <a href="https://github.com/localsend/localsend" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
@@ -2078,7 +2163,7 @@
 <h3><p>Utilities / Menu Bar Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jacklandrin/OnlySwitch" rel="noopener noreferrer">OnlySwitch (⭐5.6k)</a> - ⚙️ All-in-One menu bar app, hide 💻MacBook Pro's notch, dark mode, AirPods, Shortcuts<a href="https://github.com/jacklandrin/OnlySwitch" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/jacklandrin/OnlySwitch" rel="noopener noreferrer">OnlySwitch (⭐5.7k)</a> - ⚙️ All-in-One menu bar app, hide 💻MacBook Pro's notch, dark mode, AirPods, Shortcuts<a href="https://github.com/jacklandrin/OnlySwitch" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Remote Login Software / System Related Tools</p>
 </h3>
@@ -2162,7 +2247,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/33/">Aug 12 - Aug 18, 2024</a></h2><h3><p>Utilities / Window Management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/MrKai77/Loop" rel="noopener noreferrer">Loop (⭐10k)</a> - Window management made elegant. <a href="https://jaywcjlove.github.io/sb/ico/min-free.svg" rel="noopener noreferrer">Freeware</a> <a href="https://github.com/MrKai77/Loop" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
+<li><a href="https://github.com/MrKai77/Loop" rel="noopener noreferrer">Loop (⭐11k)</a> - Window management made elegant. <a href="https://jaywcjlove.github.io/sb/ico/min-free.svg" rel="noopener noreferrer">Freeware</a> <a href="https://github.com/MrKai77/Loop" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
 </ul>
 <h3><p>Third Party App Markets / Package Managers</p>
 </h3>
@@ -2306,7 +2391,7 @@
 <h3><p>Utilities / Menu Bar Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jordanbaird/Ice" rel="noopener noreferrer">Ice (⭐27k)</a> - Menu bar manager for hiding icons and organizing layouts. <a href="https://github.com/jordanbaird/Ice" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/jordanbaird/Ice" rel="noopener noreferrer">Ice (⭐28k)</a> - Menu bar manager for hiding icons and organizing layouts. <a href="https://github.com/jordanbaird/Ice" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Utilities / Productivity</p>
 </h3>
@@ -2390,7 +2475,7 @@
 <h3><p>Utilities / General Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gkpln3/CapsLockNoDelay" rel="noopener noreferrer">CapsLockNoDelay (⭐981)</a> - Removes caps-lock key activation delay for fast typers. <a href="https://github.com/gkpln3/CapsLockNoDelay" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
+<li><a href="https://github.com/gkpln3/CapsLockNoDelay" rel="noopener noreferrer">CapsLockNoDelay (⭐985)</a> - Removes caps-lock key activation delay for fast typers. <a href="https://github.com/gkpln3/CapsLockNoDelay" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/52/">Dec 25 - Dec 31, 2023</a></h2><h3><p>Audio and Video Tools / File Sharing</p>
 </h3>
@@ -2463,7 +2548,7 @@
 <h3><p>Security Tools / Audio Record and Process</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Lennolium/swiftGuard" rel="noopener noreferrer">swiftGuard (⭐452)</a> - Tool for protecting USB ports from unauthorized access. <a href="https://github.com/Lennolium/swiftGuard" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/Lennolium/swiftGuard" rel="noopener noreferrer">swiftGuard (⭐456)</a> - Tool for protecting USB ports from unauthorized access. <a href="https://github.com/Lennolium/swiftGuard" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/38/">Sep 18 - Sep 24, 2023</a></h2><h3><p>Reading and Writing Tools / Text Editors</p>
 </h3>
@@ -2585,7 +2670,7 @@
 <h3><p>Audio and Video Tools / File Sharing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bazalp/pulp/releases" rel="noopener noreferrer">Pulp (⭐87)</a> - Audio sample manager. <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /> <a href="https://github.com/bazalp/pulp" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
+<li><a href="https://github.com/bazalp/pulp/releases" rel="noopener noreferrer">Pulp (⭐89)</a> - Audio sample manager. <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /> <a href="https://github.com/bazalp/pulp" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
 </ul>
 <h3><p>Security Tools / Audio Record and Process</p>
 </h3>
@@ -2718,7 +2803,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ivoronin/TomatoBar" rel="noopener noreferrer">TomatoBar (⭐3.2k)</a> - World's neatest Pomodoro timer for macOS menu bar. <a href="https://github.com/ivoronin/TomatoBar" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/ivoronin/TomatoBar" rel="noopener noreferrer">TomatoBar (⭐3.3k)</a> - World's neatest Pomodoro timer for macOS menu bar. <a href="https://github.com/ivoronin/TomatoBar" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/16/">Apr 17 - Apr 23, 2023</a></h2><h3><p>Developer Tools / Version Control</p>
 </h3>
@@ -2796,12 +2881,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/onebadidea/swiftquit/" rel="noopener noreferrer">SwiftQuit (⭐495)</a> - Enables automatic quitting of macOS apps when closing their windows. <a href="https://github.com/onebadidea/swiftquit" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/onebadidea/swiftquit/" rel="noopener noreferrer">SwiftQuit (⭐514)</a> - Enables automatic quitting of macOS apps when closing their windows. <a href="https://github.com/onebadidea/swiftquit" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/12/">Mar 20 - Mar 26, 2023</a></h2><h3><p>Audio and Video Tools / Audio Record and Process</p>
 </h3>
 <ul>
-<li><a href="https://github.com/stargatedaw/stargate" rel="noopener noreferrer">Stargate DAW (⭐831)</a> - An all-in-one digital audio workstation (DAW) and plugin suite. <a href="https://github.com/aria2" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/stargatedaw/stargate" rel="noopener noreferrer">Stargate DAW (⭐837)</a> - An all-in-one digital audio workstation (DAW) and plugin suite. <a href="https://github.com/aria2" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Utilities / File Organization Tools</p>
 </h3>
@@ -2821,7 +2906,7 @@
 <h3><p>Utilities / File Organization Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/raguay/ModalFileManager/" rel="noopener noreferrer">Modal File Manager (⭐164)</a> - Dual-pane file manager with Vim-style hotkeys and customizable extensions. <a href="https://GitHub.com/raguay/ModalFileManager" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/raguay/ModalFileManager/" rel="noopener noreferrer">Modal File Manager (⭐165)</a> - Dual-pane file manager with Vim-style hotkeys and customizable extensions. <a href="https://GitHub.com/raguay/ModalFileManager" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/10/">Mar 06 - Mar 12, 2023</a></h2><h3><p>Proxy and VPN Tools / Audio Record and Process</p>
 </h3>
@@ -2920,7 +3005,7 @@
 <h3><p>Audio and Video Tools / File Sharing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Aegisub/Aegisub" rel="noopener noreferrer">Aegisub (⭐3.3k)</a> - Open-source subtitle editor with timing and styling tools. <a href="https://github.com/Aegisub/Aegisub/" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/Aegisub/Aegisub" rel="noopener noreferrer">Aegisub (⭐3.4k)</a> - Open-source subtitle editor with timing and styling tools. <a href="https://github.com/Aegisub/Aegisub/" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
@@ -2932,7 +3017,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ddddxxx/LyricsX" rel="noopener noreferrer">LyricsX (⭐5.1k)</a> - Lyrics for iTunes, Spotify and Vox. <a href="https://github.com/ddddxxx/LyricsX" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/ddddxxx/LyricsX" rel="noopener noreferrer">LyricsX (⭐5.2k)</a> - Lyrics for iTunes, Spotify and Vox. <a href="https://github.com/ddddxxx/LyricsX" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
@@ -2961,7 +3046,7 @@
 <h3><p>Utilities / Quality of Life Improvements</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rkbhochalya/grayscale-mode" rel="noopener noreferrer">Grayscale Mode (⭐109)</a> - Toggle a grayscale screen filter from the menu bar or a shortcut. <a href="https://github.com/rkbhochalya/grayscale-mode" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/rkbhochalya/grayscale-mode" rel="noopener noreferrer">Grayscale Mode (⭐110)</a> - Toggle a grayscale screen filter from the menu bar or a shortcut. <a href="https://github.com/rkbhochalya/grayscale-mode" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h3><p>Utilities / System Related Tools</p>
 </h3>
@@ -3106,7 +3191,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/section83/MacYTDL" rel="noopener noreferrer">MacYTDL (⭐904)</a> -  A macOS GUI front-end for the youtube-dl video downloader. <a href="https://github.com/section83/MacYTDL" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/section83/MacYTDL" rel="noopener noreferrer">MacYTDL (⭐913)</a> -  A macOS GUI front-end for the youtube-dl video downloader. <a href="https://github.com/section83/MacYTDL" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
@@ -3326,7 +3411,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/52/">Dec 27 - Jan 02, 2021</a></h2><h3><p>Utilities / Menu Bar Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/niteoweb/work-hours-mac" rel="noopener noreferrer">Work Hours (⭐71)</a> - Simple app that tracks your work hours from the menu bar. <a href="https://github.com/niteoweb/work-hours-mac" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
+<li><a href="https://github.com/niteoweb/work-hours-mac" rel="noopener noreferrer">Work Hours (⭐72)</a> - Simple app that tracks your work hours from the menu bar. <a href="https://github.com/niteoweb/work-hours-mac" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
 </ul>
 <h3><p>Utilities / General Tools</p>
 </h3>
@@ -3413,7 +3498,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/37/">Sep 13 - Sep 19, 2021</a></h2><h3><p>Developer Tools / Developer Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sindresorhus/Pasteboard-Viewer" rel="noopener noreferrer">Pasteboard Viewer (⭐828)</a> - Inspect the system pasteboards. <a href="https://github.com/sindresorhus/Pasteboard-Viewer" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /> <a href="https://apps.apple.com/app/id1499215709?platform=mac" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-app-store.svg" alt="App Store" /></a></li>
+<li><a href="https://github.com/sindresorhus/Pasteboard-Viewer" rel="noopener noreferrer">Pasteboard Viewer (⭐832)</a> - Inspect the system pasteboards. <a href="https://github.com/sindresorhus/Pasteboard-Viewer" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /> <a href="https://apps.apple.com/app/id1499215709?platform=mac" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-app-store.svg" alt="App Store" /></a></li>
 </ul>
 <h3><p>Utilities / Productivity</p>
 </h3>
@@ -3438,7 +3523,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/30/">Jul 26 - Aug 01, 2021</a></h2><h3><p>Developer Tools / Databases</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cmushroom/redis-pro" rel="noopener noreferrer">redis-pro (⭐680)</a> - Small, easy to use Redis management, written with SwiftUI, support Dark mode. <a href="https://github.com/cmushroom/redis-pro" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/cmushroom/redis-pro" rel="noopener noreferrer">redis-pro (⭐681)</a> - Small, easy to use Redis management, written with SwiftUI, support Dark mode. <a href="https://github.com/cmushroom/redis-pro" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/29/">Jul 19 - Jul 25, 2021</a></h2><h3><p>Audio and Video Tools / File Sharing</p>
 </h3>
@@ -3588,7 +3673,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/20/">May 18 - May 24, 2020</a></h2><h3><p>Encryption / Audio Record and Process</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alichtman/deadbolt" rel="noopener noreferrer">Deadbolt (⭐407)</a> - Open-source file encryption tool. <a href="https://github.com/alichtman/deadbolt" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/alichtman/deadbolt" rel="noopener noreferrer">Deadbolt (⭐413)</a> - Open-source file encryption tool. <a href="https://github.com/alichtman/deadbolt" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/15/">Apr 13 - Apr 19, 2020</a></h2><h3><p>Design and Product / Other Tools</p>
 </h3>
@@ -3881,7 +3966,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/24/">Jun 17 - Jun 23, 2019</a></h2><h3><p>Reading and Writing Tools / Note-taking</p>
 </h3>
 <ul>
-<li><a href="https://github.com/notable/notable" rel="noopener noreferrer">Notable (⭐23k)</a> - The markdown-based note-taking app that doesn't suck.</li>
+<li><a href="https://github.com/notable/notable" rel="noopener noreferrer">Notable (⭐24k)</a> - The markdown-based note-taking app that doesn't suck.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/22/">Jun 03 - Jun 09, 2019</a></h2><h3><p>Design and Product / Other Tools</p>
 </h3>
@@ -4122,7 +4207,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/AnaghSharma/Carol" rel="noopener noreferrer">Carol (⭐131)</a> - A minimal and beautiful lyrics app for macOS. <a href="https://github.com/AnaghSharma/Carol" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/AnaghSharma/Carol" rel="noopener noreferrer">Carol (⭐133)</a> - A minimal and beautiful lyrics app for macOS. <a href="https://github.com/AnaghSharma/Carol" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
@@ -4283,7 +4368,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/5/">Feb 04 - Feb 10, 2019</a></h2><h3><p>Utilities / System Related Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/KrauseFx/overkill-for-mac" rel="noopener noreferrer">Overkill (⭐536)</a> - Stop iTunes from opening when you connect your iPhone.</li>
+<li><a href="https://github.com/KrauseFx/overkill-for-mac" rel="noopener noreferrer">Overkill (⭐535)</a> - Stop iTunes from opening when you connect your iPhone.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/4/">Jan 28 - Feb 03, 2019</a></h2><h3><p>Download Management Tools / Audio Record and Process</p>
 </h3>
@@ -4754,7 +4839,7 @@
 <h3><p>Utilities / System Related Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/newmarcel/KeepingYouAwake" rel="noopener noreferrer">KeepingYouAwake (⭐6.4k)</a> - Caffeine alternative with dark mode support. <a href="https://github.com/newmarcel/KeepingYouAwake" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
+<li><a href="https://github.com/newmarcel/KeepingYouAwake" rel="noopener noreferrer">KeepingYouAwake (⭐6.5k)</a> - Caffeine alternative with dark mode support. <a href="https://github.com/newmarcel/KeepingYouAwake" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/13/">Mar 26 - Apr 01, 2018</a></h2><h3><p>Reading and Writing Tools / Text Editors</p>
 </h3>
@@ -4842,7 +4927,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/hschmidt/EnvPane" rel="noopener noreferrer">EnvPane (⭐827)</a> - OS X preference pane for environment variables. <a href="https://github.com/hschmidt/EnvPane" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
+<li><a href="https://github.com/hschmidt/EnvPane" rel="noopener noreferrer">EnvPane (⭐835)</a> - OS X preference pane for environment variables. <a href="https://github.com/hschmidt/EnvPane" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></a></li>
 </ul>
 
 <ul>
@@ -5044,7 +5129,7 @@
 <h3><p>Design and Product / Other Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mancunianetz/APNGb" rel="noopener noreferrer">APNGb (⭐324)</a> - PNG image assembler/disassembler app. <a href="https://github.com/mancunianetz/APNGb" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
+<li><a href="https://github.com/mancunianetz/APNGb" rel="noopener noreferrer">APNGb (⭐323)</a> - PNG image assembler/disassembler app. <a href="https://github.com/mancunianetz/APNGb" rel="noopener noreferrer"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" /></a> <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg" alt="Freeware" /></li>
 </ul>
 
 <ul>
@@ -5533,5 +5618,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
