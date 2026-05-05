@@ -16,17 +16,97 @@
     <meta property="og:title" content="Awesome Neovim Overview" />
     <meta property="og:description" content="Collections of awesome neovim plugins." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Neovim Overview</h1>
 <p>Collections of awesome neovim plugins.</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/rockerBOO/awesome-neovim/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/rockerBOO/awesome-neovim">😺 rockerBOO/awesome-neovim</a><span> · </span><span>⭐ 21K</span><span> · </span><span>🏷️ Editors</span></p>
@@ -256,7 +336,7 @@ It has some <a href="https://neovim.io/doc/user/plugins.html#plugins" rel="noope
 <li><a href="https://github.com/lopi-py/luau-lsp.nvim" rel="noopener noreferrer">lopi-py/luau-lsp.nvim (⭐86)</a> - A luau-lsp extension to improve your experience.</li>
 <li><a href="https://github.com/LukasPietzschmann/boo.nvim" rel="noopener noreferrer">LukasPietzschmann/boo.nvim (⭐38)</a> - Quickly pop-up some LSP-powered information of the thing your cursor is on.</li>
 <li><a href="https://github.com/Zeioth/garbage-day.nvim" rel="noopener noreferrer">zeioth/garbage-day.nvim (⭐513)</a> - Garbage collector that stops inactive LSP clients to free RAM.</li>
-<li><a href="https://github.com/ryan-WORK/ohm" rel="noopener noreferrer">ryan-WORK/ohm (⭐4)</a> - A persistent LSP process manager daemon for Neovim. Fixes memory bloat, stuck diagnostics, monorepo server duplication, and session degradation.</li>
+<li><a href="https://github.com/ryan-WORK/ohm" rel="noopener noreferrer">ryan-WORK/ohm (⭐14)</a> - A persistent LSP process manager daemon for Neovim. Fixes memory bloat, stuck diagnostics, monorepo server duplication, and session degradation.</li>
 <li><a href="https://github.com/rachartier/tiny-inline-diagnostic.nvim" rel="noopener noreferrer">rachartier/tiny-inline-diagnostic.nvim (⭐1.6k)</a> - Display prettier diagnostic messages. Display one line diagnostic messages where the cursor is, with icons and colors.</li>
 <li><a href="https://github.com/chrisgrieser/nvim-lsp-endhints" rel="noopener noreferrer">chrisgrieser/nvim-lsp-endhints (⭐238)</a> - Display LSP inlay hints at the end of the line, rather than within the line.</li>
 <li><a href="https://github.com/rachartier/tiny-code-action.nvim" rel="noopener noreferrer">rachartier/tiny-code-action.nvim (⭐480)</a> - Provides a simple way to run and visualize code actions with Telescope.</li>
@@ -343,7 +423,7 @@ It has some <a href="https://neovim.io/doc/user/plugins.html#plugins" rel="noope
 <li><a href="https://github.com/jpmcb/nvim-llama" rel="noopener noreferrer">jpmcb/nvim-llama (⭐273)</a> - LLM (LLaMA 2 and <code>llama.cpp</code>) wrappers.</li>
 <li><a href="https://github.com/David-Kunz/gen.nvim" rel="noopener noreferrer">David-Kunz/gen.nvim (⭐1.5k)</a> - Generate text using LLMs (via Ollama) with customizable prompts.</li>
 <li><a href="https://github.com/kiddos/gemini.nvim" rel="noopener noreferrer">kiddos/gemini.nvim (⭐252)</a> - Bindings to Google Gemini API.</li>
-<li><a href="https://github.com/olimorris/codecompanion.nvim" rel="noopener noreferrer">olimorris/codecompanion.nvim</a> - Copilot Chat like experience, complete with inline assistant. Supports Anthropic, Gemini, Ollama and OpenAI.</li>
+<li><a href="https://github.com/olimorris/codecompanion.nvim" rel="noopener noreferrer">olimorris/codecompanion.nvim (⭐6.5k)</a> - Copilot Chat like experience, complete with inline assistant. Supports Anthropic, Gemini, Ollama and OpenAI.</li>
 <li><a href="https://github.com/you-n-g/simplegpt.nvim" rel="noopener noreferrer">you-n-g/simplegpt.nvim (⭐32)</a> - Provide a simple yet flexible way to construct and send questions to ChatGPT.</li>
 <li><a href="https://github.com/Exafunction/windsurf.nvim" rel="noopener noreferrer">Exafunction/windsurf.nvim (⭐1.3k)</a> - Free, ultrafast Copilot alternative. Supports LSP and Tree-sitter.</li>
 <li><a href="https://github.com/GeorgesAlkhouri/nvim-aider" rel="noopener noreferrer">GeorgesAlkhouri/nvim-aider (⭐374)</a> - Seamlessly integrate Aider for an AI-assisted coding experience.</li>
@@ -352,16 +432,16 @@ It has some <a href="https://neovim.io/doc/user/plugins.html#plugins" rel="noope
 <li><a href="https://github.com/milanglacier/minuet-ai.nvim" rel="noopener noreferrer">milanglacier/minuet-ai.nvim (⭐1.2k)</a> - Minuet offers code completion from LLM providers including OpenAI (compatible), Gemini, Claude, Ollama, Deepseek and more providers, with support for nvim-cmp, blink.cmp and virtual-text frontend.</li>
 <li><a href="https://github.com/yetone/avante.nvim" rel="noopener noreferrer">yetone/avante.nvim (⭐18k)</a> - Chat with your code as if you are in Cursor AI IDE.</li>
 <li><a href="https://github.com/Kurama622/llm.nvim" rel="noopener noreferrer">Kurama622/llm.nvim (⭐470)</a> - Free large language model (LLM) support, provides commands to interact with LLM.</li>
-<li><a href="https://github.com/3v0k4/exit.nvim" rel="noopener noreferrer">3v0k4/exit.nvim</a> - Prompt LLMs (large language models) to write Vim commands.</li>
+<li><a href="https://github.com/3v0k4/exit.nvim" rel="noopener noreferrer">3v0k4/exit.nvim (⭐18)</a> - Prompt LLMs (large language models) to write Vim commands.</li>
 <li><a href="https://github.com/k2589/lluminate.nvim" rel="noopener noreferrer">k2589/LLuMinate.nvim (⭐17)</a> - Enrich context for LLM with LSP hover added to clipboard.</li>
 <li><a href="https://github.com/milanglacier/yarepl.nvim/blob/main/extensions/README.md" rel="noopener noreferrer">milanglacier/yarepl.nvim#aider-extensions (⭐249)</a> - Integration with <a href="https://aider.chat" rel="noopener noreferrer">aider-chat</a>, a TUI AI coding assistant.</li>
 <li><a href="https://github.com/davidyz/vectorcode" rel="noopener noreferrer">Davidyz/VectorCode (⭐855)</a> - Supercharge your LLM experience with repository-level RAG.</li>
 <li><a href="https://github.com/dlants/magenta.nvim" rel="noopener noreferrer">dlants/magenta.nvim (⭐442)</a> - Leverage coding assistants for chat and code generation. Provides tools for the AI/LLM agent to explore and edit your code, like Aider, Cursor and Windsurf.</li>
 <li><a href="https://github.com/Flemma-Dev/flemma.nvim" rel="noopener noreferrer">Flemma-Dev/flemma.nvim (⭐52)</a> - A first-class AI workspace.</li>
 <li><a href="https://github.com/heilgar/nochat.nvim" rel="noopener noreferrer">heilgar/nochat.nvim (⭐11)</a> - Cursor-like effortless natural language generation with multiple AI providers including Ollama, Anthropic (Claude), and ChatGPT.</li>
-<li><a href="https://github.com/julwrites/llm-nvim" rel="noopener noreferrer">julwrites/llm-nvim</a> - Comprehensive integration with the <a href="https://github.com/simonw/llm" rel="noopener noreferrer">LLM (⭐12k)</a> tool.</li>
+<li><a href="https://github.com/julwrites/llm-nvim" rel="noopener noreferrer">julwrites/llm-nvim (⭐8)</a> - Comprehensive integration with the <a href="https://github.com/simonw/llm" rel="noopener noreferrer">LLM (⭐12k)</a> tool.</li>
 <li><a href="https://github.com/azorng/goose.nvim" rel="noopener noreferrer">azorng/goose.nvim (⭐307)</a> - Seamless integration with <a href="https://block.github.io/goose" rel="noopener noreferrer">goose</a> - work with a powerful AI agent without leaving your editor.</li>
-<li><a href="https://github.com/mozanunal/sllm.nvim" rel="noopener noreferrer">mozanunal/sllm.nvim</a> - In-editor chat powered by Simon Willison's LLM CLI: stream replies in a Markdown buffer, manage rich context (files, URLs, selections, diagnostics, shell outputs), switch models interactively, and even see token-usage stats.</li>
+<li><a href="https://github.com/mozanunal/sllm.nvim" rel="noopener noreferrer">mozanunal/sllm.nvim (⭐109)</a> - In-editor chat powered by Simon Willison's LLM CLI: stream replies in a Markdown buffer, manage rich context (files, URLs, selections, diagnostics, shell outputs), switch models interactively, and even see token-usage stats.</li>
 <li><a href="https://github.com/chatvim/chatvim.nvim" rel="noopener noreferrer">chatvim/chatvim.nvim (⭐13)</a> - Chat with Markdown files using AI models from xAI, OpenAI and Anthropic.</li>
 <li><a href="https://github.com/3ZsForInsomnia/code-companion-picker" rel="noopener noreferrer">3ZsForInsomnia/code-companion-picker (⭐7)</a> - Snacks picker integrations for previewing CodeCompanion prompts and Skills (using OpenSkills).</li>
 <li><a href="https://github.com/3ZsForInsomnia/vs-code-companion" rel="noopener noreferrer">3ZsForInsomnia/vs-code-companion (⭐5)</a> - Tool for importing VSCode's Markdown prompts into CodeCompanion.</li>
@@ -382,7 +462,7 @@ It has some <a href="https://neovim.io/doc/user/plugins.html#plugins" rel="noope
 <li><a href="https://github.com/nvim-flutter/flutter-tools.nvim" rel="noopener noreferrer">nvim-flutter/flutter-tools.nvim (⭐1.4k)</a> - Build Flutter and Dart applications using the native LSP.</li>
 <li><a href="https://github.com/brendalf/mix.nvim" rel="noopener noreferrer">brendalf/mix.nvim (⭐28)</a> - Mix (from Elixir) wrapper plugin.</li>
 <li><a href="https://github.com/AckslD/swenv.nvim" rel="noopener noreferrer">AckslD/swenv.nvim (⭐247)</a> - Tiny plugin to quickly switch Python virtual environments without restarting.</li>
-<li><a href="https://github.com/gennaro-tedesco/nvim-jqx" rel="noopener noreferrer">gennaro-tedesco/nvim-jqx</a> - Interactive interface for JSON files.</li>
+<li><a href="https://github.com/gennaro-tedesco/nvim-jqx" rel="noopener noreferrer">gennaro-tedesco/nvim-jqx (⭐337)</a> - Interactive interface for JSON files.</li>
 <li><a href="https://github.com/nanotee/sqls.nvim" rel="noopener noreferrer">nanotee/sqls.nvim (⭐249)</a> - SQL database connection plugin + LSP client.</li>
 <li><a href="https://github.com/dmmulroy/tsc.nvim" rel="noopener noreferrer">dmmulroy/tsc.nvim (⭐543)</a> - Asynchronous project-wide TypeScript type-checking using the TypeScript compiler (<code>tsc</code>) with results loaded into a quickfix list.</li>
 <li><a href="https://github.com/dmmulroy/ts-error-translator.nvim" rel="noopener noreferrer">dmmulroy/ts-error-translator.nvim (⭐422)</a> - A port of Matt Pocock's <code>ts-error-translator</code> for VSCode for turning messy and confusing TypeScript errors into plain English.</li>
@@ -391,9 +471,9 @@ It has some <a href="https://neovim.io/doc/user/plugins.html#plugins" rel="noope
 <li><a href="https://github.com/chomosuke/typst-preview.nvim" rel="noopener noreferrer">chomosuke/typst-preview.nvim (⭐909)</a> - Preview Typst documents in the browser, instant update on each keystroke, and cross jump between code and preview.</li>
 <li><a href="https://github.com/quarto-dev/quarto-nvim" rel="noopener noreferrer">quarto-dev/quarto-nvim (⭐510)</a> - Tools for working with <a href="https://quarto.org/" rel="noopener noreferrer">Quarto</a> documents.</li>
 <li><a href="https://github.com/iabdelkareem/csharp.nvim" rel="noopener noreferrer">iabdelkareem/csharp.nvim (⭐273)</a> - Enhances the development experience for .NET developers.</li>
-<li><a href="https://github.com/neolooong/whichpy.nvim" rel="noopener noreferrer">neolooong/whichpy.nvim</a> - Switch Python interpreter without restarting LSP.</li>
+<li><a href="https://github.com/neolooong/whichpy.nvim" rel="noopener noreferrer">neolooong/whichpy.nvim (⭐34)</a> - Switch Python interpreter without restarting LSP.</li>
 <li><a href="https://github.com/nvim-java/nvim-java" rel="noopener noreferrer">nvim-java/nvim-java (⭐1.6k)</a> - Everything you need for a painless Java experience.</li>
-<li><a href="https://github.com/kiyoon/python-import.nvim" rel="noopener noreferrer">kiyoon/python-import.nvim</a> - Add Python import statements with Tree-sitter, LSP, and more.</li>
+<li><a href="https://github.com/kiyoon/python-import.nvim" rel="noopener noreferrer">kiyoon/python-import.nvim (⭐61)</a> - Add Python import statements with Tree-sitter, LSP, and more.</li>
 <li><a href="https://github.com/kiyoon/haskell-scope-highlighting.nvim" rel="noopener noreferrer">kiyoon/haskell-scope-highlighting.nvim (⭐29)</a> - Haskell syntax highlighting which considers variable scopes. Inspired from "Context Coloring" by prof. Douglas Crockford.</li>
 <li><a href="https://github.com/apyra/nvim-unity" rel="noopener noreferrer">apyra/nvim-unity.nvim (⭐111)</a> - Use Neovim as your default Unity editor with full LSP support via OmniSharp.</li>
 <li><a href="https://github.com/atomicptr/defold.nvim" rel="noopener noreferrer">atomicptr/defold.nvim (⭐27)</a> - Batteries-included development environment for the Defold game engine.</li>
@@ -406,7 +486,7 @@ It has some <a href="https://neovim.io/doc/user/plugins.html#plugins" rel="noope
 <li><a href="https://github.com/romus204/go-tagger.nvim" rel="noopener noreferrer">romus204/go-tagger.nvim (⭐23)</a> - A lightweight plugin to manage struct field tags in Go files.</li>
 <li><a href="https://github.com/ray-x/go.nvim" rel="noopener noreferrer">ray-x/go.nvim (⭐2.6k)</a> - Golang plugin based on LSP and Tree-sitter.</li>
 <li><a href="https://github.com/crusj/structrue-go.nvim" rel="noopener noreferrer">crusj/structrue-go.nvim (⭐48)</a> - A better structured display of Golang symbols information.</li>
-<li><a href="https://github.com/crispgm/nvim-go" rel="noopener noreferrer">crispgm/nvim-go</a> - A minimal implementation of Golang development plugin.</li>
+<li><a href="https://github.com/crispgm/nvim-go" rel="noopener noreferrer">crispgm/nvim-go (⭐152)</a> - A minimal implementation of Golang development plugin.</li>
 <li><a href="https://github.com/olexsmir/gopher.nvim/" rel="noopener noreferrer">olexsmir/gopher.nvim (⭐426)</a> - Plugin for making Golang development easiest.</li>
 <li><a href="https://github.com/rafaelsq/nvim-goc.lua" rel="noopener noreferrer">rafaelsq/nvim-goc.lua (⭐54)</a> - Highlight your buffer with Golang Code Coverage.</li>
 <li><a href="https://github.com/crusj/hierarchy-tree-go.nvim" rel="noopener noreferrer">crusj/hierarchy-tree-go.nvim (⭐35)</a> - Golang integration with <code>callHierarchy</code> UI tree.</li>
@@ -425,28 +505,28 @@ It has some <a href="https://neovim.io/doc/user/plugins.html#plugins" rel="noope
 <h3 id="web-development"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web-development"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web Development</h3><ul>
 <li><a href="https://github.com/rest-nvim/rest.nvim" rel="noopener noreferrer">rest-nvim/rest.nvim (⭐2k)</a> - A fast HTTP client written in Lua.</li>
 <li><a href="https://github.com/lima1909/resty.nvim" rel="noopener noreferrer">lima1909/resty.nvim (⭐53)</a> - Fast and easy-to-use HTTP-Rest-Client.</li>
-<li><a href="https://github.com/mistweaverco/kulala.nvim" rel="noopener noreferrer">mistweaverco/kulala.nvim</a> - A minimal HTTP-client interface.</li>
+<li><a href="https://github.com/mistweaverco/kulala.nvim" rel="noopener noreferrer">mistweaverco/kulala.nvim (⭐2k)</a> - A minimal HTTP-client interface.</li>
 <li><a href="https://github.com/heilgar/nvim-http-client" rel="noopener noreferrer">heilgar/nvim-http-client (⭐22)</a> - Easy to use HTTP client with IntelliJ (JetBrains) HTTP client syntax compatibility.</li>
 <li><a href="https://github.com/farias-hecdin/CSSVarViewer" rel="noopener noreferrer">farias-hecdin/CSSVarViewer (⭐10)</a> - Easily visualize the content of your CSS variables in a virtual text.</li>
 <li><a href="https://github.com/farias-hecdin/CSSVarHighlight" rel="noopener noreferrer">farias-hecdin/CSSVarHighlight (⭐6)</a> - Quickly highlight the color you defined in your CSS variables with the help of <code>mini.hipatterns</code>.</li>
 <li><a href="https://github.com/mawkler/jsx-element.nvim" rel="noopener noreferrer">mawkler/jsx-element.nvim (⭐26)</a> - JSX/TSX text-objects and motions.</li>
-<li><a href="https://github.com/BibekBhusal0/nvim-shadcn" rel="noopener noreferrer">BibekBhusal0/nvim-shadcn</a> - Easily add Shadcn UI components with telescope.</li>
+<li><a href="https://github.com/BibekBhusal0/nvim-shadcn" rel="noopener noreferrer">BibekBhusal0/nvim-shadcn (⭐11)</a> - Easily add Shadcn UI components with telescope.</li>
 <li><a href="https://github.com/azratul/expose-localhost.nvim" rel="noopener noreferrer">azratul/expose-localhost.nvim (⭐6)</a> - Expose your local server to the internet with cloudflared or ngrok.</li>
 <li><a href="https://github.com/yelog/i18n.nvim" rel="noopener noreferrer">yelog/i18n.nvim (⭐59)</a> - Internationalization (i18n) management with LSP support for <code>Vue</code>, <code>React</code>, <code>Java</code> and more.</li>
 <li><a href="https://github.com/Kenzo-Wada/boundary.nvim" rel="noopener noreferrer">Kenzo-Wada/boundary.nvim (⭐27)</a> - Display <code>'use client'</code> markers inline in your JSX code to visualize client component boundaries.</li>
 <li><a href="https://github.com/abidibo/nvim-httpyac" rel="noopener noreferrer">abidibo/nvim-httpyac (⭐14)</a> - Provides integration with <code>httpYac</code>.</li>
 <li><a href="https://github.com/rodrigoscc/nurl.nvim" rel="noopener noreferrer">rodrigoscc/nurl.nvim (⭐10)</a> - HTTP client with requests defined in pure Lua.</li>
 <li><a href="https://github.com/cjodo/convert.nvim" rel="noopener noreferrer">cjodo/convert.nvim (⭐56)</a> - Helps with CSS unit conversions.</li>
-<li><a href="https://github.com/tednguyendev/recent_rails.nvim" rel="noopener noreferrer">tednguyendev/recent_rails.nvim</a> - Telescope picker for recent Rails actions, views, and errors.</li>
+<li><a href="https://github.com/tednguyendev/recent_rails.nvim" rel="noopener noreferrer">tednguyendev/recent_rails.nvim (⭐4)</a> - Telescope picker for recent Rails actions, views, and errors.</li>
 <li><a href="https://github.com/ankushbhagats/liveserver.nvim" rel="noopener noreferrer">ankushbhagats/liveserver.nvim (⭐11)</a> - Live-server integration with smart commands and a clickable lualine toggle.</li>
 </ul>
 <h3 id="markdown-and-latex"><a class="anchor" aria-hidden="true" tabindex="-1" href="#markdown-and-latex"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Markdown and LaTeX</h3><ul>
-<li><a href="https://github.com/iamcco/markdown-preview.nvim" rel="noopener noreferrer">iamcco/markdown-preview.nvim</a> - Preview Markdown on your modern browser with synchronised scrolling and flexible configuration.</li>
+<li><a href="https://github.com/iamcco/markdown-preview.nvim" rel="noopener noreferrer">iamcco/markdown-preview.nvim (⭐7.8k)</a> - Preview Markdown on your modern browser with synchronised scrolling and flexible configuration.</li>
 <li><a href="https://github.com/davidgranstrom/nvim-markdown-preview" rel="noopener noreferrer">davidgranstrom/nvim-markdown-preview (⭐111)</a> - Markdown preview in the browser using pandoc and live-server through the job-control API.</li>
 <li><a href="https://github.com/jghauser/auto-pandoc.nvim" rel="noopener noreferrer">jghauser/auto-pandoc.nvim (⭐41)</a> - Easy pandoc conversion leveraging YAML blocks.</li>
 <li><a href="https://github.com/jghauser/follow-md-links.nvim" rel="noopener noreferrer">jghauser/follow-md-links.nvim (⭐172)</a> - Press enter to follow internal Markdown links.</li>
 <li><a href="https://github.com/jubnzv/mdeval.nvim" rel="noopener noreferrer">jubnzv/mdeval.nvim (⭐225)</a> - Evaluate code blocks inside Markdown documents.</li>
-<li><a href="https://github.com/kdheepak/panvimdoc" rel="noopener noreferrer">kdheepak/panvimdoc</a> - A pandoc to vimdoc GitHub action.</li>
+<li><a href="https://github.com/kdheepak/panvimdoc" rel="noopener noreferrer">kdheepak/panvimdoc (⭐313)</a> - A pandoc to vimdoc GitHub action.</li>
 <li><a href="https://github.com/frabjous/knap" rel="noopener noreferrer">frabjous/knap (⭐386)</a> - Plugin for creating automatic updating-as-you-type previews for Markdown, LaTeX and other documents.</li>
 <li><a href="https://github.com/jbyuki/carrot.nvim" rel="noopener noreferrer">jbyuki/carrot.nvim (⭐27)</a> - Markdown evaluator Lua code blocks.</li>
 <li><a href="https://github.com/Nedra1998/nvim-mdlink" rel="noopener noreferrer">Nedra1998/nvim-mdlink (⭐32)</a> - Simplify creating and following Markdown links.</li>
@@ -655,7 +735,7 @@ It has some <a href="https://neovim.io/doc/user/plugins.html#plugins" rel="noope
 <li><a href="https://github.com/kevinhwang91/rnvimr" rel="noopener noreferrer">kevinhwang91/rnvimr (⭐842)</a> - A simple yet amazing file explorer.</li>
 <li><a href="https://github.com/Xuyuanp/yanil" rel="noopener noreferrer">Xuyuanp/yanil (⭐98)</a> - Yet Another Nerdtree In Lua.</li>
 <li><a href="https://github.com/ms-jpq/chadtree" rel="noopener noreferrer">ms-jpq/chadtree (⭐1.7k)</a> - File manager. Better than NERDTree.</li>
-<li><a href="https://github.com/Rolv-Apneseth/tfm.nvim" rel="noopener noreferrer">rolv-apneseth/tfm.nvim (⭐99)</a> - Similar to <code>fm-nvim</code>, this provides integration for several popular terminal file managers (including <a href="https://github.com/sxyazi/yazi" rel="noopener noreferrer">yazi (⭐37k)</a>).</li>
+<li><a href="https://github.com/Rolv-Apneseth/tfm.nvim" rel="noopener noreferrer">rolv-apneseth/tfm.nvim (⭐99)</a> - Similar to <code>fm-nvim</code>, this provides integration for several popular terminal file managers (including <a href="https://github.com/sxyazi/yazi" rel="noopener noreferrer">yazi (⭐38k)</a>).</li>
 <li><a href="https://github.com/nvim-neo-tree/neo-tree.nvim" rel="noopener noreferrer">nvim-neo-tree/neo-tree.nvim (⭐5.4k)</a> - Browse the file system and other tree-like structures in whatever style suits you, including sidebars, floating windows, <code>netrw</code> split style, or all of them at once.</li>
 <li><a href="https://github.com/TheBlob42/drex.nvim" rel="noopener noreferrer">theblob42/drex.nvim (⭐95)</a> - A simple and configurable file explorer written in Lua.</li>
 <li><a href="https://github.com/SidOfc/carbon.nvim" rel="noopener noreferrer">SidOfc/carbon.nvim (⭐186)</a> - The simple directory tree viewer written in Lua.</li>
@@ -746,6 +826,7 @@ It has some <a href="https://neovim.io/doc/user/plugins.html#plugins" rel="noope
 <li><a href="https://github.com/nvzone/minty" rel="noopener noreferrer">nvzone/minty (⭐591)</a> - Beautifully crafted color tools.</li>
 <li><a href="https://github.com/3ZsForInsomnia/pacer.nvim" rel="noopener noreferrer">3ZsForInsomnia/pacer.nvim (⭐6)</a> - Creates a reading pacer by highlighting one word at a time and dimming all text outside the current paragraph-and-some to help you read faster.</li>
 <li><a href="https://github.com/wsdjeg/cpicker.nvim" rel="noopener noreferrer">wsdjeg/cpicker.nvim (⭐8)</a> - A lightweight color palette plugin that supports a wide range of color models.</li>
+<li><a href="https://github.com/leolaurindo/tunnelvision.nvim" rel="noopener noreferrer">leolaurindo/tunnelvision.nvim (⭐3)</a> - Focus on one symbol at a time by dimming unrelated lines.</li>
 </ul>
 
 
@@ -876,7 +957,7 @@ then it is not supported:</p>
 <li><a href="https://github.com/cryptomilk/nightcity.nvim" rel="noopener noreferrer">cryptomilk/nightcity.nvim (⭐71)</a> - <em><strong><code>[TS][LSP][Lua]</code></strong></em> A dark colorscheme inspired by Inkpot, Jellybeans, Gruvbox and Tokyonight with LSP support.</li>
 <li><a href="https://github.com/polirritmico/monokai-nightasty.nvim" rel="noopener noreferrer">polirritmico/monokai-nightasty.nvim (⭐167)</a> - <em><strong><code>[TS][LSP][L/D][Lua]</code></strong></em> A dark/light theme based on the Monokai color palette written in Lua, support for LSP, Tree-sitter and lots of plugins.</li>
 <li><a href="https://github.com/oxfist/night-owl.nvim" rel="noopener noreferrer">oxfist/night-owl.nvim (⭐344)</a> - <em><strong><code>[TS][LSP][Lua]</code></strong></em> A <a href="https://github.com/sdras/night-owl-vscode-theme" rel="noopener noreferrer">Night Owl colorscheme port from VSCode (⭐2.9k)</a> with support for Tree-sitter and semantic tokens.</li>
-<li><a href="https://github.com/micdzu/aalto.nvim" rel="noopener noreferrer">micdzu/aalto.nvim (⭐0)</a> - <em><strong><code>[TS][LSP][L/D][Lua]</code></strong></em> A semantic colorscheme with a perceptual OKLCH engine, featuring four semantic roles and both dark and light variants.</li>
+<li><a href="https://github.com/micdzu/aalto.nvim" rel="noopener noreferrer">micdzu/aalto.nvim (⭐3)</a> - <em><strong><code>[TS][LSP][L/D][Lua]</code></strong></em> A semantic colorscheme with a perceptual OKLCH engine, featuring four semantic roles and both dark and light variants.</li>
 <li><a href="https://github.com/miikanissi/modus-themes.nvim" rel="noopener noreferrer">miikanissi/modus-themes.nvim (⭐425)</a> - <em><strong><code>[TS][LSP][L/D][Lua]</code></strong></em> Accessible theme, conforming with the highest standard for color contrast (WCAG AAA).</li>
 <li><a href="https://github.com/alexmozaidze/palenight.nvim" rel="noopener noreferrer">alexmozaidze/palenight.nvim (⭐25)</a> - <em><strong><code>[TS][LSP][Fnl]</code></strong></em> Palenight colorscheme supporting Tree-sitter, LSP <em>(including semantic tokens)</em> and lots of plugins.</li>
 <li><a href="https://github.com/scottmckendry/cyberdream.nvim" rel="noopener noreferrer">scottmckendry/cyberdream.nvim (⭐1.3k)</a> - <em><strong><code>[TS][L/D][Lua]</code></strong></em> A high-contrast, futuristic and vibrant coloursheme.</li>
@@ -913,7 +994,7 @@ then it is not supported:</p>
 <li><a href="https://github.com/ankushbhagats/pastel.nvim" rel="noopener noreferrer">ankushbhagats/pastel.nvim (⭐31)</a> - <em><strong><code>[TS][LSP][L/D][Lua]</code></strong></em> Elegant pastel colorschemes with advanced customization, styles, and integrations.</li>
 <li><a href="https://github.com/0x-ximon/acario.nvim" rel="noopener noreferrer">0x-ximon/acario.nvim (⭐11)</a> - <em><strong><code>[TS][LSP][L/D][Lua]</code></strong></em> A port of the clean, high-contrast Doom Emacs Acario theme.</li>
 <li><a href="https://github.com/hyperb1iss/silkcircuit" rel="noopener noreferrer">hyperb1iss/silkcircuit (⭐49)</a> - <em><strong><code>[TS][LSP][L/D][Lua]</code></strong></em> Vibrant cyberpunk color system with five variants, 40+ plugin integrations, WCAG AA compliant. Supports multiple editors, terminals and CLI tools.</li>
-<li><a href="https://github.com/T-b-t-nchos/Aquavium.nvim" rel="noopener noreferrer">T-b-t-nchos/Aquavium.nvim (⭐11)</a> - <em><strong><code>[TS][Lua]</code></strong></em> Aquarium-themed color scheme, designed for use with a transparent terminal background.</li>
+<li><a href="https://github.com/T-b-t-nchos/Aquavium.nvim" rel="noopener noreferrer">T-b-t-nchos/Aquavium.nvim (⭐14)</a> - <em><strong><code>[TS][Lua]</code></strong></em> Aquarium-themed color scheme, designed for use with a transparent terminal background.</li>
 </ul>
 
 
@@ -968,6 +1049,7 @@ then it is not supported:</p>
 <li><a href="https://github.com/mawkler/hml.nvim" rel="noopener noreferrer">mawkler/hml.nvim (⭐35)</a> - Adds <code>H</code>/<code>M</code>/<code>L</code> indicators to your line numbers.</li>
 <li><a href="https://github.com/neur1n/noline.nvim" rel="noopener noreferrer">neur1n/noline.nvim (⭐1)</a> - Fully customizable bars and lines components with no presets nor constraints.</li>
 <li><a href="https://github.com/OXY2DEV/bars.nvim" rel="noopener noreferrer">OXY2DEV/bars.nvim (⭐94)</a> - A starting point/guide for creating custom statusline, statuscolumn, tabline and winbar.</li>
+<li><a href="https://github.com/zaakiy/line-justice.nvim" rel="noopener noreferrer">zaakiy/line-justice.nvim (⭐11)</a> - Shows both absolute and relative line numbers simultaneously.</li>
 </ul>
 <h3 id="statusline"><a class="anchor" aria-hidden="true" tabindex="-1" href="#statusline"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Statusline</h3><ul>
 <li><a href="https://github.com/NTBBloodbath/galaxyline.nvim" rel="noopener noreferrer">NTBBloodbath/galaxyline.nvim (⭐170)</a> - A light-weight and super fast statusline plugin written in Lua.</li>
@@ -1224,6 +1306,7 @@ then it is not supported:</p>
 <li><a href="https://github.com/da-moon/telescope-toggleterm.nvim" rel="noopener noreferrer">da-moon/telescope-toggleterm.nvim (⭐39)</a> - Telescope picker for terminal buffers.</li>
 <li><a href="https://github.com/benoror/gpg.nvim" rel="noopener noreferrer">benoror/gpg.nvim (⭐21)</a> - Edit GPG encrypted files symmetrically.</li>
 <li><a href="https://github.com/gh-liu/nvim-winterm" rel="noopener noreferrer">gh-liu/nvim-winterm (⭐6)</a> - Multi-terminal window manager.</li>
+<li><a href="https://github.com/hawknewton/termyank.nvim" rel="noopener noreferrer">hawknewton/termyank.nvim (⭐2)</a> - Avoid yanking newlines in a terminal buffer.</li>
 </ul>
 
 
@@ -1304,7 +1387,7 @@ then it is not supported:</p>
 <li><a href="https://github.com/idanarye/nvim-moonicipal" rel="noopener noreferrer">idanarye/nvim-moonicipal (⭐19)</a> - Task runner with focus on rapidly changing personal tasks.</li>
 <li><a href="https://github.com/MarcHamamji/runner.nvim" rel="noopener noreferrer">MarcHamamji/runner.nvim (⭐51)</a> - A customizable Lua code runner.</li>
 <li><a href="https://github.com/google/executor.nvim" rel="noopener noreferrer">google/executor.nvim (⭐159)</a> - Allows you to run command line tasks in the background and be notified of results.</li>
-<li><a href="https://github.com/sektant1/executioner.nvim" rel="noopener noreferrer">sektant1/executioner.nvim (⭐1)</a> - Script picker and runner to find and run any script from your project directory, with or without arguments.</li>
+<li><a href="https://github.com/sektant1/executioner.nvim" rel="noopener noreferrer">sektant1/executioner.nvim (⭐5)</a> - Script picker and runner to find and run any script from your project directory, with or without arguments.</li>
 <li><a href="https://github.com/Zeioth/compiler.nvim" rel="noopener noreferrer">Zeioth/compiler.nvim (⭐665)</a> - Compiler for building and running your code without having to configure anything.</li>
 <li><a href="https://github.com/Zeioth/makeit.nvim" rel="noopener noreferrer">Zeioth/makeit.nvim (⭐47)</a> - Makefile runner based on overseer.</li>
 <li><a href="https://github.com/jaytyrrell13/static.nvim" rel="noopener noreferrer">jaytyrrell13/static.nvim (⭐11)</a> - Run static site generator commands.</li>
@@ -2002,5 +2085,47 @@ then it is not supported:</p>
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
