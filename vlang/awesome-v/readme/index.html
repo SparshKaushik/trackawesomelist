@@ -16,17 +16,97 @@
     <meta property="og:title" content="Awesome V Overview" />
     <meta property="og:description" content="A curated list of awesome V frameworks, libraries, software and resources." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome V Overview</h1>
 <p>A curated list of awesome V frameworks, libraries, software and resources.</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/vlang/awesome-v/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/vlang/awesome-v">😺 vlang/awesome-v</a><span> · </span><span>⭐ 2.1K</span><span> · </span><span>🏷️ Programming Languages</span></p>
@@ -100,70 +180,79 @@
 </ul>
 <h2 id="applications"><a class="anchor" aria-hidden="true" tabindex="-1" href="#applications"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Applications</h2><h3 id="build-systems"><a class="anchor" aria-hidden="true" tabindex="-1" href="#build-systems"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Build Systems</h3><ul>
 <li><a href="https://github.com/emmathemartian/clockwork" rel="noopener noreferrer">clockwork (⭐26)</a> - A language-agnostic build tool wrote in V.</li>
-<li><a href="https://github.com/vlang/vab" rel="noopener noreferrer">vab (⭐350)</a> - The official V tool to build and package applications for Android.</li>
+<li><a href="https://github.com/vlang/vab" rel="noopener noreferrer">vab (⭐348)</a> - The official V tool to build and package applications for Android.</li>
 <li><a href="https://github.com/larpon/vab-sdl" rel="noopener noreferrer">vab-sdl (⭐4)</a> - Standalone and extra command for <code>vab</code> to build and package
 SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 </ul>
 <h3 id="command-line"><a class="anchor" aria-hidden="true" tabindex="-1" href="#command-line"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Command-line</h3><ul>
 <li><a href="https://github.com/tailsmails/amdim" rel="noopener noreferrer">amdim (⭐0)</a> - Make your screen dimmer than 0%.</li>
 <li><a href="https://github.com/l1mey112/crepl" rel="noopener noreferrer">crepl (⭐34)</a> - Compile and execute C code on the fly as you type it.</li>
-<li><a href="https://github.com/tailsmails/dnshammer" rel="noopener noreferrer">dnshammer (⭐1)</a> - A covert communication channel that encodes data into DNS cache timing differences.</li>
+<li><a href="https://github.com/tailsmails/dnshammer" rel="noopener noreferrer">dnshammer (⭐2)</a> - A covert communication channel that encodes data into DNS cache timing differences.</li>
 <li><a href="https://github.com/gechandesu/fdup" rel="noopener noreferrer">fdup (⭐8)</a> - Find and remove duplicate files.</li>
 <li><a href="https://github.com/Dracks/repo-download-asset" rel="noopener noreferrer">github-releases (⭐8)</a> - Cli tool to keep track of applications released as GitHub Release (or assets in workflow) and download them.</li>
 <li><a href="https://github.com/BafS/hn-top" rel="noopener noreferrer">HN-top (⭐24)</a> - A simple command to list most recent news from hacker-news.</li>
 <li><a href="https://github.com/hungrybluedev/klonol" rel="noopener noreferrer">klonol (⭐20)</a> - CLI tool to help you "clone all" Git repositories belonging to you. Works with GitHub and Gitea.</li>
 <li><a href="https://github.com/mike-ward/lsv" rel="noopener noreferrer">lsv (⭐72)</a> - <code>ls</code> file lister in the spirit of exa, eza, lsd, pls, natls, ls-go and others.</li>
 <li><a href="https://github.com/tailsmails/mimicfs" rel="noopener noreferrer">mimicfs (⭐1)</a> - An FS that encrypts your app data and keeps them on RAM (with a backup).</li>
+<li><a href="https://github.com/whiter001/minimax-v" rel="noopener noreferrer">minimax-v (⭐5)</a> - Local AI Agent runtime implemented in the V language.</li>
 <li><a href="https://github.com/tailsmails/mushroomtek" rel="noopener noreferrer">mushroomtek (⭐0)</a> - Don't worry about the grid, you are just a radius (Anti-IMSI catcher/Anti-Triangulation...).</li>
+<li><a href="https://github.com/fleximus/pfjson" rel="noopener noreferrer">pfjson (⭐31)</a> - A CLI tool to convert OpenBSD Packet Filter configuration files (<code>pf.conf</code>) to JSON and vice versa.</li>
 <li><a href="https://github.com/apoprotsky/portctl" rel="noopener noreferrer">portctl (⭐12)</a> - CLI tool to manage Docker Swarm resources using Portainer API.</li>
 <li><a href="https://github.com/Naheel-Azawy/runner" rel="noopener noreferrer">runner (⭐27)</a> - A tool that automates running/compiling code written in various programming languages.</li>
-<li><a href="https://github.com/tailsmails/sockslender" rel="noopener noreferrer">sockslender (⭐0)</a> - A lightweight, blazing-fast SOCKS5 proxy failover tool written in V.</li>
+<li><a href="https://github.com/tailsmails/sockslender" rel="noopener noreferrer">sockslender (⭐1)</a> - A lightweight, blazing-fast SOCKS5 proxy failover tool written in V.</li>
 <li><a href="https://github.com/tailsmails/stripshot" rel="noopener noreferrer">stripshot (⭐1)</a> - Strips device/OS fingerprints from screenshots.</li>
 <li><a href="https://github.com/serkonda7/symlinker" rel="noopener noreferrer">symlinker (⭐9)</a> - A small Linux tool to manage symlinks.</li>
 <li><a href="https://github.com/tailsmails/timingless" rel="noopener noreferrer">timingless (⭐1)</a> - A SOCKS5 proxy that sits between your applications and Tor, enforcing constant bandwidth to defeat traffic timing analysis.</li>
+<li><a href="https://github.com/cogrow4/V-Terminal-Apps" rel="noopener noreferrer">v-terminal-apps (⭐4)</a> - A collection of high-quality terminal applications written in V, including job planner, calculator, notes, file browser, quiz game, budget tracker, P2P chat (WIP), and Pomodoro timer.</li>
+<li><a href="https://github.com/sakana-ctf/v_llama_cpp" rel="noopener noreferrer">v_llama_cpp (⭐7)</a> - Lightweight V wrapper for Llama.cpp, enabling efficient LLM execution.</li>
 <li><a href="https://github.com/lydiandy/vast" rel="noopener noreferrer">vast (⭐29)</a> - A simple tool for vlang, generate v source file to AST json file.</li>
 <li><a href="https://github.com/changhz/vcli" rel="noopener noreferrer">vcli (⭐3)</a> - A CLI tool to generate folder structure according to the <a href="https://blog.vlang.io/the-complete-beginners-guide-to-cli-apps-in-v/" rel="noopener noreferrer">guideline</a></li>
 <li><a href="https://github.com/MohammadMD1383/verve" rel="noopener noreferrer">verve (⭐7)</a> - Simple and fast static file server.</li>
-<li><a href="https://github.com/carlosqsilva/vfetch" rel="noopener noreferrer">vfetch (⭐14)</a> - A macOS system information fetch written in V.</li>
+<li><a href="https://github.com/Ict00/vfc" rel="noopener noreferrer">vfc (⭐9)</a> - A simple TUI file manager, made with V.</li>
+<li><a href="https://github.com/carlosqsilva/vfetch" rel="noopener noreferrer">vfetch (⭐15)</a> - A macOS system information fetch written in V.</li>
 <li><a href="https://github.com/changhz/vgoogle" rel="noopener noreferrer">vgoogle (⭐9)</a> - Make google search on the terminal.</li>
+<li><a href="https://github.com/DeoDorqnt387/vin" rel="noopener noreferrer">vin (⭐9)</a> - A Basic Command Line Interface for V.</li>
 <li><a href="https://github.com/wenxuanjun/vindex" rel="noopener noreferrer">vindex (⭐5)</a> - A simple file list server generating json strings, compatible with nginx's autoindex module.</li>
 <li><a href="https://github.com/pranavbaburaj/vinit" rel="noopener noreferrer">vinit (⭐16)</a> - A tool to generate v projects.</li>
 <li><a href="https://github.com/lmangani/vLogQL" rel="noopener noreferrer">vLogQL (⭐17)</a> - A tiny command-line utility to query LogQL APIs.</li>
+<li><a href="https://github.com/vlshcc/vlsh" rel="noopener noreferrer">vlsh (⭐21)</a> - *nix Shell written in V (pipes, plugins, mux mode, etc).</li>
 <li><a href="https://github.com/carlosqsilva/vqrcode" rel="noopener noreferrer">vqrcode (⭐29)</a> - CLI for creating QR Codes.</li>
 <li><a href="https://github.com/zakuro9715/vspect" rel="noopener noreferrer">vspect (⭐2)</a> - A tool to inspect vlang source file. ( Archived )</li>
+<li><a href="https://github.com/quaesitor-scientiam/vsqlite" rel="noopener noreferrer">vsqlite (⭐6)</a> - SQLite CLI and module replacement written in pure V.</li>
 <li><a href="https://github.com/malisipi/vzcc" rel="noopener noreferrer">vzcc (⭐28)</a> - A CLI cross-compiling tool based on Zig CC for V.</li>
-<li><a href="https://github.com/cogrow4/V-Terminal-Apps" rel="noopener noreferrer">v-terminal-apps (⭐4)</a> - A collection of high-quality terminal applications written in V, including job planner, calculator, notes, file browser, quiz game, budget tracker, P2P chat (WIP), and Pomodoro timer.</li>
-<li><a href="https://github.com/DeoDorqnt387/vin" rel="noopener noreferrer">vin (⭐9)</a> - A Basic Command Line Interface for V.</li>
 <li><a href="https://github.com/mike-ward/zilch" rel="noopener noreferrer">zilch (⭐4)</a> - An entertaining and amusing simulation of an installer.</li>
-<li><a href="https://github.com/vlshcc/vlsh" rel="noopener noreferrer">vlsh (⭐20)</a> - *nix Shell written in V (pipes, plugins, mux mode, etc).</li>
 </ul>
 <h3 id="editors"><a class="anchor" aria-hidden="true" tabindex="-1" href="#editors"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Editors</h3><ul>
+<li><a href="https://github.com/tauraamui/lilly" rel="noopener noreferrer">lilly (⭐448)</a> - TUI editor and VIM/Neovim alternative.</li>
 <li><a href="https://github.com/ArtemkaKun/polygon-editor" rel="noopener noreferrer">polygon-editor (⭐7)</a> - A tool to create and edit 2D polygons with sprite lookup, created in V.</li>
-<li><a href="https://github.com/vlang/v/blob/master/examples/term.ui/text_editor.v" rel="noopener noreferrer">text_editor (⭐37k)</a> - Small text editor from the official V examples.</li>
+<li><a href="https://github.com/vlang/v/blob/master/examples/term.ui/text_editor.v" rel="noopener noreferrer">text_editor (⭐38k)</a> - Small text editor from the official V examples.</li>
 <li><a href="https://github.com/vlang/ved" rel="noopener noreferrer">ved (⭐1.5k)</a> - 1 MB text editor written in V with hardware accelerated text rendering. Compiles in &lt;1s.</li>
 <li><a href="https://github.com/Larpon/vee" rel="noopener noreferrer">vee (⭐60)</a> - V Editor Engine. A V module providing the guts of a text editor. Comes with a <a href="https://github.com/Larpon/vee/blob/master/examples/tuieditor/" rel="noopener noreferrer">TUI editor example (⭐60)</a>.</li>
-<li><a href="https://github.com/Volt-Editor-Team/volt" rel="noopener noreferrer">volt (⭐15)</a> - Aims to be a fully featured text editor written entirely in Vlang.</li>
+<li><a href="https://github.com/Volt-Editor-Team/volt" rel="noopener noreferrer">volt (⭐16)</a> - Aims to be a fully featured text editor written entirely in Vlang.</li>
 <li><a href="https://github.com/vlang/pdf" rel="noopener noreferrer">vPDF (⭐85)</a> - A module to simplify PDF file creation using the V programming language.</li>
 </ul>
 <h3 id="games"><a class="anchor" aria-hidden="true" tabindex="-1" href="#games"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Games</h3><ul>
 <li><a href="https://github.com/wenxuanjun/2048" rel="noopener noreferrer">2048 (⭐5)</a> - A 2048 game with several types of traditional AI integrated.</li>
 <li><a href="https://github.com/organization/boundstone" rel="noopener noreferrer">Boundstone (⭐62)</a> - High Performance / Fast Compilation / Lightweight Minecraft: Bedrock Edition Server.</li>
-<li><a href="https://github.com/vlang/v/tree/master/examples/flappylearning" rel="noopener noreferrer">flappylearning-v (⭐37k)</a> - A simple flappy learning demo in v.</li>
+<li><a href="https://github.com/vlang/v/tree/master/examples/flappylearning" rel="noopener noreferrer">flappylearning-v (⭐38k)</a> - A simple flappy learning demo in v.</li>
 <li><a href="https://github.com/FireRedz/kurarin" rel="noopener noreferrer">Kurarin (⭐55)</a> - osu! beatmap visualizer made in V. <a href="https://p153.p0.n0.cdn.getcloudapp.com/items/6quvQjb5/ce3ea737-eb29-4b8c-a5f3-65a804a2f56f.mp4" rel="noopener noreferrer">Example video</a>.</li>
 <li><a href="https://github.com/ali-furkan/minesweeper-v" rel="noopener noreferrer">minesweeper (⭐39)</a> - A simple Minesweeper game written in vlang.</li>
 <li><a href="https://github.com/Larpon/puzzle_vibes" rel="noopener noreferrer">Puzzle Vibes (⭐16)</a> - A jigsaw-like puzzle game written in V using <code>shy</code>.</li>
+<li><a href="https://github.com/hedgeg0d/vchess" rel="noopener noreferrer">vchess (⭐18)</a> - Chess game written in V programming language.</li>
 <li><a href="https://github.com/thebigsmileXD/v-pong" rel="noopener noreferrer">v-pong (⭐13)</a> - A classic paddle game brought back to life through the power of V.</li>
 </ul>
 <h3 id="graphics"><a class="anchor" aria-hidden="true" tabindex="-1" href="#graphics"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Graphics</h3><ul>
 <li><a href="https://github.com/xjunko/mpv-v" rel="noopener noreferrer">mpv-v (⭐34)</a> - World's Simplest Video Player.</li>
+<li><a href="https://github.com/pisaiah/vpaint" rel="noopener noreferrer">vpaint (⭐84)</a> - MS-Paint alternative written in V.</li>
 <li><a href="https://github.com/ali-raheem/vraytracer" rel="noopener noreferrer">vRayTracer (⭐51)</a> - A simple ray tracer written in V.</li>
 </ul>
 <h3 id="interpreterscompilers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#interpreterscompilers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Interpreters/Compilers</h3><ul>
-<li><a href="https://github.com/fermarsan/aixt" rel="noopener noreferrer">Aixt (⭐86)</a> - Programming framework for microcontrollers based on a V-based language and written in V.</li>
+<li><a href="https://github.com/fermarsan/aixt" rel="noopener noreferrer">Aixt (⭐87)</a> - Programming framework for microcontrollers based on a V-based language and written in V.</li>
 <li><a href="https://github.com/cotowali/cotowali" rel="noopener noreferrer">cotowali (⭐620)</a> - A statically typed scripting language that transpiles into POSIX sh.</li>
 <li><a href="https://github.com/Delta456/monkey_v" rel="noopener noreferrer">monkey_v (⭐39)</a> - Implementation of <a href="https://interpreterbook.com/" rel="noopener noreferrer">Thorsten Ball's Monkey Language</a> in V.</li>
+<li><a href="https://github.com/russo-2025/papyrus-compiler" rel="noopener noreferrer">papyrus-compiler (⭐44)</a> - Open-source compiler for Bethesda's Papyrus scripting language (Skyrim SE/AE).</li>
 <li><a href="https://github.com/l1mey112/stas/tree/0.1.0-v-compiler" rel="noopener noreferrer">stas (⭐61)</a> - A stack based compiled programming language. The bootstrap compiler is written in V.</li>
-<li><a href="https://github.com/vlang/v" rel="noopener noreferrer">v (⭐37k)</a> - The language V itself. Simple, fast, safe, compiled language for developing maintainable software.</li>
+<li><a href="https://github.com/vlang/v" rel="noopener noreferrer">v (⭐38k)</a> - The language V itself. Simple, fast, safe, compiled language for developing maintainable software.</li>
 <li><a href="https://github.com/v420v/vas" rel="noopener noreferrer">vas (⭐105)</a> - A simple x86-64 assembler written in V.</li>
 <li><a href="https://github.com/vpervenditti/vbf" rel="noopener noreferrer">vbf (⭐20)</a> - A brainfuck interpreter/compiler.</li>
 <li><a href="https://github.com/ShayokhShorfuddin/VFuck" rel="noopener noreferrer">vfuck</a> - A brainfuck interpreter written in V.</li>
@@ -175,7 +264,7 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/vlang/unikernel" rel="noopener noreferrer">V-Unikernel (⭐22)</a> - A unikernel is a computer program statically linked with the operating system code on which it depends.</li>
 </ul>
 <h3 id="package-managers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#package-managers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Package managers</h3><ul>
-<li><a href="https://github.com/vlang/vpm" rel="noopener noreferrer">vpm (⭐129)</a> - The V language package management tool written in V.</li>
+<li><a href="https://github.com/vlang/vpm" rel="noopener noreferrer">vpm (⭐130)</a> - The V language package management tool written in V.</li>
 </ul>
 <h3 id="project-management"><a class="anchor" aria-hidden="true" tabindex="-1" href="#project-management"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Project management</h3><ul>
 <li><a href="https://github.com/lenra-io/template-v" rel="noopener noreferrer">Lenra template (⭐3)</a> - The Lenra template to write V app for Lenra platform.</li>
@@ -190,26 +279,32 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/emily33901/vproto" rel="noopener noreferrer">vproto (⭐57)</a> - Protobuf compiler and runtime in V.</li>
 </ul>
 <h3 id="utilities"><a class="anchor" aria-hidden="true" tabindex="-1" href="#utilities"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Utilities</h3><ul>
-<li><a href="https://github.com/hyperpolymath/boj-server" rel="noopener noreferrer">boj-server (⭐2)</a> - Unified developer tool server using V for the network adapter layer. Exposes REST (port 7700), gRPC (7701), and GraphQL (7702) from a single V codebase. 18 capability cartridges loaded via Zig FFI with Idris2-verified interfaces.</li>
+<li><a href="https://github.com/hyperpolymath/boj-server" rel="noopener noreferrer">boj-server (⭐3)</a> - Unified developer tool server using V for the network adapter layer. Exposes REST (port 7700), gRPC (7701), and GraphQL (7702) from a single V codebase. 18 capability cartridges loaded via Zig FFI with Idris2-verified interfaces.</li>
 <li><a href="https://github.com/ttytm/emoji-mart-desktop" rel="noopener noreferrer">emoji-mart-desktop (⭐24)</a> - An emoji picker created with V, webview and SvelteKit.</li>
+<li><a href="https://github.com/qptorrent/qptorrent" rel="noopener noreferrer">qptorrent (⭐36)</a> - A minimal GUI/CLI BitTorrent client written in V + vlang/gui.</li>
+<li><a href="https://github.com/Matejsdevelopment/raur" rel="noopener noreferrer">raur (⭐1)</a> - Simple Arch User Repository (AUR) helper coded in Vlang.</li>
+<li><a href="https://github.com/Ddiidev/unix-emulators-win" rel="noopener noreferrer">unix-emulators-win (⭐0)</a> - Collection of 16 UNIX utilities rewritten in V for Windows.</li>
 <li><a href="https://github.com/fanlia/v-nodejs-addon" rel="noopener noreferrer">v-nodejs-addon (⭐7)</a> - An demo of how to create a Node.js addon with V.</li>
 </ul>
 <h3 id="web"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web</h3><ul>
 <li><a href="https://github.com/vlang/gitly" rel="noopener noreferrer">Gitly (⭐1.5k)</a> - A light and fast SCM alternative to GitHub/GitLab written in V.</li>
+<li><a href="https://github.com/davlgd/gitval" rel="noopener noreferrer">gitval (⭐6)</a> - A static site generator for Git repositories, written in V.</li>
 <li><a href="https://github.com/zztkm/heroku-buildpack-v" rel="noopener noreferrer">Heroku Buildpack for V (⭐2)</a> - Deploy V apps on Heroku.</li>
 <li><a href="https://codeberg.org/tamer/highlighter" rel="noopener noreferrer">highlighter</a> - Inject syntax highlighting into HTML files at build time, or via the CLI tool.</li>
 <li><a href="https://github.com/khalyomede/mantis" rel="noopener noreferrer">Mantis (⭐41)</a> - A web framework written in V.</li>
+<li><a href="https://github.com/dy-tea/rr-dl" rel="noopener noreferrer">rr-dl (⭐1)</a> - Royal-Road Novel downloader.</li>
 <li><a href="https://github.com/davlgd/tVeb" rel="noopener noreferrer">Tiniest Veb Server (⭐17)</a> - A &lt; 1MB static hosting web server written in V, based on <code>veb</code>. 🍃</li>
 <li><a href="https://github.com/xiusin/v-system-skeleton" rel="noopener noreferrer">v-admin-skeleton (⭐15)</a> - Backend skeleton written in V.</li>
 <li><a href="https://github.com/v-vite/starter" rel="noopener noreferrer">v-vite starter (⭐5)</a> - A starter kit for Veb applications, preconfigured with Vite.js.</li>
 <li><a href="https://github.com/scurty-labs/vblog" rel="noopener noreferrer">vblog (⭐29)</a> - A simple, fast and responsive blogging system.</li>
-<li><a href="https://github.com/malisipi/Vebview.JS" rel="noopener noreferrer">Vebview.JS (⭐86)</a> - Electron/Neutralino.JS alternative written in V.</li>
+<li><a href="https://github.com/malisipi/Vebview.JS" rel="noopener noreferrer">Vebview.JS (⭐84)</a> - Electron/Neutralino.JS alternative written in V.</li>
+<li><a href="https://github.com/davlgd/Verne" rel="noopener noreferrer">Verne (⭐0)</a> - The other static site generator named after a famous French author.</li>
+<li><a href="https://github.com/KArjmand/vico_bot" rel="noopener noreferrer">vico_bot (⭐19)</a> - Lightweight self-hosted AI chatbot with persistent memory and tool calling.</li>
 <li><a href="https://github.com/ChewingBever/vieter" rel="noopener noreferrer">Vieter (⭐11)</a> - Arch Linux repository server &amp; package build system, written in V.</li>
 <li><a href="https://github.com/ArtemkaKun/VlangBenchmarksVisualization" rel="noopener noreferrer">Vlang Benchmarks Visualization (⭐9)</a> - Fancy statistics and plots for <em><a href="https://fast.vlang.io/" rel="noopener noreferrer">Is V still fast?</a></em>.</li>
-<li><a href="https://github.com/vlang/vorum" rel="noopener noreferrer">vorum (⭐224)</a> - Open-source blogging/forum software written in V.</li>
+<li><a href="https://github.com/vlang/vorum" rel="noopener noreferrer">vorum (⭐225)</a> - Open-source blogging/forum software written in V.</li>
 <li><a href="https://github.com/vssio/vss" rel="noopener noreferrer">vss (⭐44)</a> - Easy-to-use static site generator.</li>
 <li><a href="https://github.com/Sharqo78/VTik" rel="noopener noreferrer">VTik (⭐18)</a> - TikTok and Twitter video downloader app (CLI / Telegram Bot).</li>
-<li><a href="https://github.com/dy-tea/rr-dl" rel="noopener noreferrer">rr-dl (⭐1)</a> - Royal-Road Novel downloader.</li>
 </ul>
 <h2 id="libraries"><a class="anchor" aria-hidden="true" tabindex="-1" href="#libraries"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Libraries</h2><h3 id="audio"><a class="anchor" aria-hidden="true" tabindex="-1" href="#audio"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Audio</h3><ul>
 <li><a href="https://github.com/larpon/miniaudio" rel="noopener noreferrer">miniaudio (⭐57)</a> - Bindings for the excellent miniaudio C audio library.</li>
@@ -217,10 +312,11 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/thecodrr/vspeech" rel="noopener noreferrer">vspeech (⭐50)</a> - Complete V bindings for Mozilla's DeepSpeech TensorFlow based Speech-to-Text library. 📢📜</li>
 </ul>
 <h3 id="automation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#automation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Automation</h3><ul>
+<li><a href="https://github.com/quaesitor-scientiam/v-webdriver" rel="noopener noreferrer">v-webdriver (⭐10)</a> - A V language implementation of the W3C WebDriver protocol for browser automation.</li>
 <li><a href="https://github.com/eioo/vrobot" rel="noopener noreferrer">vrobot (⭐54)</a> - Desktop automation for V. Only supports Windows.</li>
 </ul>
 <h3 id="command-line-interface-cli--terminal--shell"><a class="anchor" aria-hidden="true" tabindex="-1" href="#command-line-interface-cli--terminal--shell"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Command line interface (CLI) / Terminal / Shell</h3><ul>
-<li><a href="https://github.com/tobealive/bartender" rel="noopener noreferrer">bartender (⭐53)</a> - Customizable progress indicators for V terminal applications.</li>
+<li><a href="https://github.com/tobealive/bartender" rel="noopener noreferrer">bartender (⭐52)</a> - Customizable progress indicators for V terminal applications.</li>
 <li><a href="https://github.com/thecodrr/boxx" rel="noopener noreferrer">boxx (⭐106)</a> - Create highly customizable terminal boxes that also look great! 📦</li>
 <li><a href="https://github.com/0xLeif/lol" rel="noopener noreferrer">lol (⭐17)</a> - V version of lolcat (text/character rainbowizer).</li>
 <li><a href="https://github.com/Waqar144/progressbar" rel="noopener noreferrer">progressbar (⭐31)</a> - An easy to use V library for creating progress bars in cli.</li>
@@ -236,7 +332,7 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/vlang/mongo" rel="noopener noreferrer">mongodb (⭐53)</a> - A MongoDB driver for V.</li>
 <li><a href="https://github.com/einar-hjortdal/redict" rel="noopener noreferrer">redict (⭐8)</a> - Client for Redict, a LGPL-3.0-only fork of Redis (compatible with Redis &lt;=7.2.4).</li>
 <li><a href="https://github.com/patrickpissurno/vredis" rel="noopener noreferrer">redis (⭐70)</a> - A Redis client for V, written in V.</li>
-<li><a href="https://github.com/rodabt/vduckdb" rel="noopener noreferrer">vduckdb (⭐47)</a> - A DuckDB client wrapper for V.</li>
+<li><a href="https://github.com/rodabt/vduckdb" rel="noopener noreferrer">vduckdb (⭐46)</a> - A DuckDB client wrapper for V.</li>
 <li><a href="https://github.com/blacktrub/vmemcached" rel="noopener noreferrer">vmemcached (⭐12)</a> - Memcached client for V, written in V.</li>
 <li><a href="https://github.com/xiusin/vredis" rel="noopener noreferrer">vredis (⭐9)</a> - A simple, user-friendly, and comprehensive Redis client.</li>
 <li><a href="https://github.com/lydiandy/vsql" rel="noopener noreferrer">vsql (⭐47)</a> - A sql query builder for V.</li>
@@ -249,7 +345,7 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/9xN/vord" rel="noopener noreferrer">vord (⭐5)</a> - Library for interacting with user account endpoints and gateway (Self-bots, custom clients, etc).</li>
 </ul>
 <h3 id="eventing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#eventing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Eventing</h3><ul>
-<li><a href="https://github.com/vlang/v/tree/master/vlib/eventbus" rel="noopener noreferrer">eventbus (⭐37k)</a> - A simple event bus system for V.</li>
+<li><a href="https://github.com/vlang/v/tree/master/vlib/eventbus" rel="noopener noreferrer">eventbus (⭐38k)</a> - A simple event bus system for V.</li>
 </ul>
 <h3 id="file-handling"><a class="anchor" aria-hidden="true" tabindex="-1" href="#file-handling"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>File handling</h3><ul>
 <li><a href="https://github.com/nedpals/v-mime" rel="noopener noreferrer">v-mime (⭐25)</a> - MIME detection library for V.</li>
@@ -259,7 +355,8 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/larpon/chipmunk2d" rel="noopener noreferrer">chipmunk2d (⭐4)</a> - V wrapper of the Chipmunk2D physics library.</li>
 <li><a href="https://github.com/LouisSchmieder/engine" rel="noopener noreferrer">engine (⭐45)</a> - WIP Vulkan in V.</li>
 <li><a href="https://github.com/irishgreencitrus/raylib.v" rel="noopener noreferrer">raylib.v (⭐71)</a> - Updated V bindings for <a href="https://www.raylib.com" rel="noopener noreferrer">raylib</a> with plans for complete cross-platform support.</li>
-<li><a href="https://github.com/Larpon/shy" rel="noopener noreferrer">shy (⭐61)</a> - A foundation that helps you being creative in V.</li>
+<li><a href="https://github.com/nsauzede/sdl2test" rel="noopener noreferrer">sdl2test (⭐20)</a> - Exhaustive suite of tests and examples for SDL2 with V.</li>
+<li><a href="https://github.com/Larpon/shy" rel="noopener noreferrer">shy (⭐63)</a> - A foundation that helps you being creative in V.</li>
 <li><a href="https://github.com/mohamedLT/V_ecs" rel="noopener noreferrer">V_ecs (⭐19)</a> - ECS library made in V inspired by Bevy ECS.</li>
 <li><a href="https://github.com/mohamedLT/vraylib" rel="noopener noreferrer">vraylib (⭐7)</a> - A V wrapper for the awesome raylib library.</li>
 <li><a href="https://github.com/MajorHard/vraylib" rel="noopener noreferrer">vraylib (⭐49)</a> - V wrapper (bindings) for raylib, the C game development framework.</li>
@@ -271,28 +368,32 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/Avocadocs/svgg" rel="noopener noreferrer">svgg (⭐9)</a> - V module to load and resterize svg file into <code>gg.Image</code> object.</li>
 <li><a href="https://github.com/Larpon/earcut" rel="noopener noreferrer">V Earcut (⭐15)</a> - fast (real-time) polygon triangulation library based on <a href="https://github.com/mapbox/earcut" rel="noopener noreferrer">mapbox/Earcut (⭐2.4k)</a> to handle holes, twisted polygons, degeneracies and self-intersections.</li>
 <li><a href="https://github.com/mohamedLT/V_sokol_gp" rel="noopener noreferrer">V_sokol_gp (⭐4)</a> - A V wrapper for the sokol_gp library for easy and fast 2d graphics.</li>
+<li><a href="https://github.com/vlang/vglyph" rel="noopener noreferrer">vglyph (⭐27)</a> - High-performance text rendering engine for the V programming language, built on Pango, FreeType, and Sokol.</li>
 <li><a href="https://github.com/kjlaw89/viup" rel="noopener noreferrer">viup (⭐46)</a> - V wrapper for the C-based cross-platform UI library, IUP.</li>
 <li><a href="https://github.com/kjlaw89/vsdl" rel="noopener noreferrer">vsdl (⭐13)</a> - V wrapper for the C-based SDL library.</li>
 <li><a href="https://github.com/nsauzede/vsdl2" rel="noopener noreferrer">vsdl2 (⭐47)</a> - A libSDL2 wrapper.</li>
 <li><a href="https://github.com/vlang/vsl/tree/master/vcl#readme" rel="noopener noreferrer">vsl.vcl (⭐393)</a> - VCL is a high level way of writing programs with OpenCL using V. These are highly opinionated OpenCL bindings for V. It tries to make GPU computing easy, with some sugar abstraction, V's concurrency and channels.</li>
 <li><a href="https://github.com/dy-tea/vbmp" rel="noopener noreferrer">vbmp (⭐2)</a> - Read and write bitmap files.</li>
-<li><a href="https://github.com/larpon/voronoi" rel="noopener noreferrer">voronoi (⭐1)</a> - V wrapper of <a href="https://github.com/JCash/voronoi" rel="noopener noreferrer">JCash/voronoi (⭐713)</a>.</li>
+<li><a href="https://github.com/larpon/voronoi" rel="noopener noreferrer">voronoi (⭐1)</a> - V wrapper of <a href="https://github.com/JCash/voronoi" rel="noopener noreferrer">JCash/voronoi (⭐714)</a>.</li>
 <li><a href="https://github.com/Le0Developer/vqoi" rel="noopener noreferrer">vqoi (⭐15)</a> - V: QOI - The "Quite OK Image" format for fast, lossless image compression.</li>
 </ul>
 <h3 id="interoperability"><a class="anchor" aria-hidden="true" tabindex="-1" href="#interoperability"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Interoperability</h3><ul>
 <li><a href="https://github.com/larpon/jni" rel="noopener noreferrer">jni (⭐29)</a> - V wrapper around the C Java Native Interface (Desktop + Android).</li>
+<li><a href="https://github.com/guweigang/vjsx" rel="noopener noreferrer">vjsx (⭐2)</a> - V bindings to quickjs javascript engine. Run JS in V.</li>
+<li><a href="https://github.com/guweigang/vphp" rel="noopener noreferrer">vphp (⭐3)</a> - Vlang library for building PHP extensions natively in Vlang.</li>
 </ul>
 <h3 id="irc"><a class="anchor" aria-hidden="true" tabindex="-1" href="#irc"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>IRC</h3><ul>
 <li><a href="https://github.com/m-242/vitric" rel="noopener noreferrer">vitric (⭐4)</a> - A transparent IRC library.</li>
 </ul>
 <h3 id="networking"><a class="anchor" aria-hidden="true" tabindex="-1" href="#networking"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Networking</h3><ul>
 <li><a href="https://github.com/gechandesu/netaddr" rel="noopener noreferrer">netaddr (⭐5)</a> - IPv4, IPv6 and MAC (EUI-48, EUI-64) addresses manipulation library.</li>
+<li><a href="https://github.com/gechandesu/netio" rel="noopener noreferrer">netio (⭐3)</a> - Low-level networking library for V that gives more control over sockets.</li>
 <li><a href="https://github.com/hyperpolymath/v-grpc" rel="noopener noreferrer">v-grpc (⭐1)</a> - gRPC and Protobuf support for V with Idris2 ABI proofs and Zig FFI.</li>
-<li><a href="https://github.com/tobealive/vibe" rel="noopener noreferrer">vibe (⭐42)</a> - Request library that wraps libcurl to enable fast and reliable requests while providing a higher-level API.</li>
+<li><a href="https://github.com/tobealive/vibe" rel="noopener noreferrer">vibe (⭐41)</a> - Request library that wraps libcurl to enable fast and reliable requests while providing a higher-level API.</li>
 <li><a href="https://github.com/jordan-bonecutter/vmq" rel="noopener noreferrer">vmq (⭐23)</a> -  V wrapper For <a href="https://zeromq.org/" rel="noopener noreferrer">ZMQ</a> (aka ZeroMQ, ØMQ, 0MQ: a high-performance asynchronous messaging library).</li>
 </ul>
 <h3 id="operating-system"><a class="anchor" aria-hidden="true" tabindex="-1" href="#operating-system"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Operating system</h3><ul>
-<li><a href="https://github.com/vlang/v/tree/master/vlib/clipboard" rel="noopener noreferrer">clipboard (⭐37k)</a> - V module for interacting with the OS clipboard. Fully cross-platform.</li>
+<li><a href="https://github.com/vlang/v/tree/master/vlib/clipboard" rel="noopener noreferrer">clipboard (⭐38k)</a> - V module for interacting with the OS clipboard. Fully cross-platform.</li>
 <li><a href="https://github.com/jdonnerstag/vlang-mmap" rel="noopener noreferrer">mmap (⭐7)</a> - Provide native V-lang support for memory-mapping on Linux and Windows.</li>
 <li><a href="https://github.com/asvvvad/vlipboard" rel="noopener noreferrer">vlipboard (⭐12)</a> - An easy to use wrapper of clipboard with Wayland and Termux support.</li>
 <li><a href="https://github.com/ldedev/WindowsRegistry" rel="noopener noreferrer">winreg (⭐5)</a> - MS Windows Registry API. (WIP)</li>
@@ -300,7 +401,7 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <h3 id="scientific-computing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#scientific-computing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Scientific computing</h3><ul>
 <li><a href="https://github.com/erdetn/vplot" rel="noopener noreferrer">vplot (⭐16)</a> - V wrapper for GNU Plot (<code>gnuplot_i</code>).</li>
 <li><a href="https://github.com/vlang/vsl" rel="noopener noreferrer">vsl (⭐393)</a> - A Scientific Library with a great variety of different modules. Although most modules offer pure-V definitions, it also provides modules that wrap known C libraries among other backends that allow high performance computing as an alternative. Also provides opinionated wrappers for OpenBLAS, LAPACKE, MPI, OpenCL among other libraries.</li>
-<li><a href="https://github.com/rodabt/vstats" rel="noopener noreferrer">vstats (⭐3)</a> - A dependency-free Linear Algebra, Statistics, and Machine Learning library written from scratch in V.</li>
+<li><a href="https://github.com/rodabt/vstats" rel="noopener noreferrer">vstats (⭐4)</a> - A dependency-free Linear Algebra, Statistics, and Machine Learning library written from scratch in V.</li>
 <li><a href="https://github.com/vlang/vtl" rel="noopener noreferrer">vtl (⭐161)</a> - The V Tensor Library is a numerical computing library supporting n-dimensional data structure, backed by VSL.</li>
 <li><a href="https://github.com/Eliyaan/NeuralNetworks-V-Module" rel="noopener noreferrer">NeuralNetworks-V-Module (⭐29)</a> - This is a V module to create neural networks.</li>
 </ul>
@@ -326,21 +427,23 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/fanlia/read_xlsx_v" rel="noopener noreferrer">read_xlsx_v (⭐0)</a> - Read xlsx using vlang.</li>
 <li><a href="https://github.com/jdonnerstag/vlang-rosie" rel="noopener noreferrer">Rosie-RPL (⭐6)</a> - A Rosie Pattern Language (RPL) implementation.</li>
 <li><a href="https://github.com/einar-hjortdal/slugify" rel="noopener noreferrer">slugify (⭐3)</a> - Transform Unicode strings to url-friendly human-readable ASCII slugs.</li>
-<li><a href="https://github.com/ArtemkaKun/text-processing" rel="noopener noreferrer">text-processing (⭐6)</a> - V text processing library, that contains common tools to manipulate text data.</li>
+<li><a href="https://github.com/ArtemkaKun/text-processing" rel="noopener noreferrer">text-processing (⭐7)</a> - V text processing library, that contains common tools to manipulate text data.</li>
 <li><a href="https://github.com/spytheman/v-regex" rel="noopener noreferrer">v-regex (⭐15)</a> - A simple regex library for V.</li>
 <li><a href="https://github.com/marcalc/vsoup" rel="noopener noreferrer">vsoup (⭐3)</a> - A fast, JSoup-inspired HTML5 parser and DOM manipulation library for V, powered by Lexbor.</li>
 <li><a href="https://github.com/i582/vxml" rel="noopener noreferrer">vxml (⭐1)</a> - Pure V library for parsing XML to a DOM.</li>
 <li><a href="https://github.com/hungrybluedev/whisker" rel="noopener noreferrer">whisker (⭐39)</a> - Fast, robust template engine for V inspired by mustache.</li>
+<li><a href="https://github.com/hungrybluedev/xlsx" rel="noopener noreferrer">xlsx (⭐29)</a> - V library for reading and writing Microsoft Excel files.</li>
 <li><a href="https://github.com/einar-hjortdal/lexical_uuid" rel="noopener noreferrer">lexical_uuid (⭐4)</a> - Lexicographically-sortable universally unique identifiers.</li>
 </ul>
 <h3 id="user-interface-toolkits"><a class="anchor" aria-hidden="true" tabindex="-1" href="#user-interface-toolkits"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>User Interface toolkits</h3><ul>
+<li><a href="https://github.com/tauraamui/bobatea" rel="noopener noreferrer">bobatea (⭐19)</a> - TUI framework inspired by Bubble Tea.</li>
 <li><a href="https://github.com/isaiahpatton/ui" rel="noopener noreferrer">iUI (⭐153)</a> - Isaiah's cross-platform GUI library for V. Inspired by the syntax of Java's Swing.</li>
 <li><a href="https://github.com/malisipi/mui" rel="noopener noreferrer">mui (⭐114)</a> - A Cross-Platform UI library for Windows, Linux, Android and Web.</li>
 <li><a href="https://github.com/vlang/ui" rel="noopener noreferrer">V UI (⭐2.5k)</a> - Integrated cross platform UI toolkit for Windows, macOS, Linux, Android, iOS and the web.</li>
 <li><a href="https://github.com/vgtk/vgtk3" rel="noopener noreferrer">vgtk3 (⭐63)</a> - A wrapper for GTK3 in V.</li>
 <li><a href="https://github.com/nsauzede/vig" rel="noopener noreferrer">vig (⭐57)</a> - Bindings for <a href="https://github.com/ocornut/imgui" rel="noopener noreferrer">Dear ImGui (⭐73k)</a> GUI toolkit.</li>
 <li><a href="https://github.com/nsauzede/vnk" rel="noopener noreferrer">vnk (⭐53)</a> - Bindings for <a href="https://github.com/vurtun/nuklear" rel="noopener noreferrer">Nuklear (⭐14k)</a> GUI toolkit.</li>
-<li><a href="https://github.com/webui-dev/v-webui" rel="noopener noreferrer">V-WebUI (⭐130)</a> - A wrapper for WebUI. A lightweight library that allows you to use any web browser as a GUI, with V in the backend and HTML5 in the frontend.</li>
+<li><a href="https://github.com/webui-dev/v-webui" rel="noopener noreferrer">V-WebUI (⭐129)</a> - A wrapper for WebUI. A lightweight library that allows you to use any web browser as a GUI, with V in the backend and HTML5 in the frontend.</li>
 <li><a href="https://github.com/ttytm/webview" rel="noopener noreferrer">webview (⭐83)</a> - Bindings for webview. A tiny library to build modern cross-platform GUI applications. It allows to combine V with modern web technologies to design a graphical user interface.</li>
 </ul>
 <h3 id="utility"><a class="anchor" aria-hidden="true" tabindex="-1" href="#utility"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Utility</h3><ul>
@@ -350,6 +453,8 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/magic003/objc" rel="noopener noreferrer">objc (⭐11)</a> - V bindings to Objective-C runtime.</li>
 <li><a href="https://github.com/Delta456/range" rel="noopener noreferrer">range (⭐34)</a> - Functionality of Python's range() in V.</li>
 <li><a href="https://github.com/walkingdevel/ssh-config" rel="noopener noreferrer">ssh-config</a> - A V library for parsing SSH config files.</li>
+<li><a href="https://github.com/gechandesu/structlog" rel="noopener noreferrer">structlog (⭐1)</a> - Structured logs library for V.</li>
+<li><a href="https://github.com/bstnbuck/V-crypto" rel="noopener noreferrer">V-crypto (⭐4)</a> - Implementation of additional cryptographic algorithms.</li>
 <li><a href="https://github.com/ChAoSUnItY/vaker" rel="noopener noreferrer">vaker (⭐18)</a> - A light-weight compile-time-generated data faker written in V.</li>
 <li><a href="https://github.com/tailsmails/vanadium" rel="noopener noreferrer">vanadium (⭐1)</a> - Ada-level runtime safety for the V programming language.</li>
 <li><a href="https://github.com/zztkm/vdotenv" rel="noopener noreferrer">vdotenv (⭐43)</a> - Support for .env files which loads environment variables.</li>
@@ -359,6 +464,7 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 </ul>
 <h3 id="web-1"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web-1"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web</h3><ul>
 <li><a href="https://github.com/einar-hjortdal/blobly" rel="noopener noreferrer">blobly (⭐0)</a> - Central file server.</li>
+<li><a href="https://github.com/Te4nick/jsonrpcv" rel="noopener noreferrer">jsonrpcv (⭐7)</a> - JSON-RPC 2.0 client+server implementation in pure V.</li>
 <li><a href="https://github.com/S-YOU/pico.v" rel="noopener noreferrer">pico.v (⭐133)</a> - A web server in V based on picoev and picohttpparser.</li>
 <li><a href="https://github.com/einar-hjortdal/sessions" rel="noopener noreferrer">sessions (⭐8)</a> - Web-framework-agnostic sessions library.</li>
 <li><a href="https://github.com/hyperpolymath/v-graphql" rel="noopener noreferrer">v-graphql (⭐2)</a> - GraphQL server implementation with schema generation, Idris2 ABI proofs, and Zig FFI.</li>
@@ -368,11 +474,11 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/endeveit/v-validate" rel="noopener noreferrer">validate (⭐22)</a> - A simple library to validate strings in V.</li>
 <li><a href="https://github.com/taojy123/valval" rel="noopener noreferrer">valval (⭐156)</a> - Web framework written in V, improved by vweb.</li>
 <li><a href="https://github.com/mehtaarn000/vcurrency" rel="noopener noreferrer">vcurrency (⭐7)</a> - API wrapper (written in V) for <a href="https://api.exchangeratesapi.io" rel="noopener noreferrer">https://api.exchangeratesapi.io</a>.</li>
-<li><a href="https://github.com/vlang/v/tree/master/vlib/veb" rel="noopener noreferrer">veb (⭐37k)</a> - V's built-in web framework.</li>
+<li><a href="https://github.com/vlang/v/tree/master/vlib/veb" rel="noopener noreferrer">veb (⭐38k)</a> - V's built-in web framework.</li>
 <li><a href="https://github.com/alexferl/vest" rel="noopener noreferrer">vest (⭐7)</a> - A REST client in V.</li>
 <li><a href="https://github.com/nedpals/vex" rel="noopener noreferrer">vex (⭐349)</a> - Web framework written on V inspired by Express and Sinatra.</li>
 <li><a href="https://github.com/withs/vigest" rel="noopener noreferrer">vigest (⭐4)</a> - Simple client for digest authentication (written in V).</li>
-<li><a href="https://github.com/siguici/vite.v" rel="noopener noreferrer">vite.v (⭐14)</a> - Seamless <a href="https://vite.dev" rel="noopener noreferrer">Vite.js</a> integration for Veb applications.</li>
+<li><a href="https://github.com/siguici/vite.v" rel="noopener noreferrer">vite.v (⭐13)</a> - Seamless <a href="https://vite.dev" rel="noopener noreferrer">Vite.js</a> integration for Veb applications.</li>
 <li><a href="https://github.com/WolvesFortress/vxbl-oauth" rel="noopener noreferrer">vxbloauth (⭐8)</a> - A minimalistic Xbox Live authenticator for vweb.</li>
 <li><a href="https://github.com/Dracks/West" rel="noopener noreferrer">west (⭐9)</a> - A wrapper of vweb to work in a similar way as nestjs works with modules and dependency injection.</li>
 </ul>
@@ -386,7 +492,7 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/v-community" rel="noopener noreferrer">V Community</a></li>
 </ul>
 <h3 id="editor-plugins"><a class="anchor" aria-hidden="true" tabindex="-1" href="#editor-plugins"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Editor plugins</h3><h4 id="atom"><a class="anchor" aria-hidden="true" tabindex="-1" href="#atom"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Atom</h4><ul>
-<li><a href="https://github.com/Cutlery-Drawer/language-v" rel="noopener noreferrer">language-v (⭐7)</a> - V language support for Atom (port of vscode-vlang).</li>
+<li><a href="https://github.com/Cutlery-Drawer/language-v" rel="noopener noreferrer">language-v (⭐8)</a> - V language support for Atom (port of vscode-vlang).</li>
 </ul>
 <h4 id="emacs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#emacs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Emacs</h4><ul>
 <li><a href="https://github.com/damon-kwok/v-mode" rel="noopener noreferrer">v-mode (⭐63)</a> - Emacs major mode for the V programming language.</li>
@@ -400,7 +506,7 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/oversoul/vlang-sublime" rel="noopener noreferrer">vlang-sublime (⭐19)</a> - Sublime Text 3 Support for the Vlang Programming Language.</li>
 </ul>
 <h4 id="vs-code"><a class="anchor" aria-hidden="true" tabindex="-1" href="#vs-code"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>VS Code</h4><ul>
-<li><a href="https://github.com/vlang/vscode-vlang" rel="noopener noreferrer">vscode-vlang (⭐404)</a> - V Language extension for Visual Studio Code.</li>
+<li><a href="https://github.com/vlang/vscode-vlang" rel="noopener noreferrer">vscode-vlang (⭐407)</a> - V Language extension for Visual Studio Code.</li>
 <li><a href="https://github.com/vlang/v-analyzer" rel="noopener noreferrer">v-analyzer (⭐201)</a> - Bring IDE features for the V programming language to VS Code.</li>
 </ul>
 <h4 id="vim"><a class="anchor" aria-hidden="true" tabindex="-1" href="#vim"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Vim</h4><ul>
@@ -446,7 +552,7 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 <li><a href="https://github.com/sunnylcw/scite-v-support" rel="noopener noreferrer">scite-v-support (⭐2)</a> - V syntax highlighting for <a href="https://www.scintilla.org/SciTE.html" rel="noopener noreferrer">SciTE</a>.</li>
 </ul>
 <h3 id="tutorials"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tutorials"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tutorials</h3><ul>
-<li><a href="https://github.com/v-community/learn_v_in_y_minutes" rel="noopener noreferrer">Learn V in Y Minutes (⭐60)</a></li>
+<li><a href="https://github.com/v-community/learn_v_in_y_minutes" rel="noopener noreferrer">Learn V in Y Minutes (⭐61)</a></li>
 <li><a href="https://github.com/v-community/v_by_example" rel="noopener noreferrer">V by Example (⭐177)</a> - V book as <a href="https://v-community.gitbook.io/v-by-example/" rel="noopener noreferrer">GitBook</a>.</li>
 <li><a href="https://github.com/Thigidu/vlang-for-nodejs-developers" rel="noopener noreferrer">V for Node Devs (⭐29)</a> - Vlang for node js developers.</li>
 <li><a href="https://github.com/lydiandy/vlang_note" rel="noopener noreferrer">V learning notes (⭐180)</a> - Personal learning notes in Chinese.</li>
@@ -459,5 +565,47 @@ SDL2 and SDL3 based applications importing <code>vlang/sdl</code>.</li>
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
