@@ -16,26 +16,111 @@
     <meta property="og:title" content="Track Awesome Swift Updates Weekly" />
     <meta property="og:description" content="A collaborative list of awesome Swift libraries and resources. Feel free to contribute!" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Swift Updates Weekly</h1>
 <p>A collaborative list of awesome Swift libraries and resources. Feel free to contribute!</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/matteocrippa/awesome-swift/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/matteocrippa/awesome-swift">😺 matteocrippa/awesome-swift</a><span> · </span><span>⭐ 26K</span><span> · </span><span>🏷️ Programming Languages</span></p>
 <p><span>[ </span><a href="/matteocrippa/awesome-swift/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/matteocrippa/awesome-swift/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/19/">May 11 - May 17, 2026</a></h2><h3><p>Chat</p>
+</h3>
+<ul>
+<li><a href="https://github.com/FluidGroup/swiftui-messaging-ui" rel="noopener noreferrer">swiftui-messaging-ui (⭐45)</a> - Primitive SwiftUI chat UI component with stable prepending for loading older messages without scroll jumps.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/15/">Apr 13 - Apr 19, 2026</a></h2><h3><p>AI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/christopherkarani/EdgeRunner" rel="noopener noreferrer">EdgeRunner</a> - Fast, local LLM inference for Apple Silicon. Built in Swift and Metal from the ground up.</li>
+<li><a href="https://github.com/christopherkarani/EdgeRunner" rel="noopener noreferrer">EdgeRunner (⭐32)</a> - Fast, local LLM inference for Apple Silicon. Built in Swift and Metal from the ground up.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/13/">Mar 30 - Apr 05, 2026</a></h2><h3><p>Third party Guides</p>
 </h3>
@@ -54,21 +139,21 @@
 <h3><p>AI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/christopherkarani/Espresso" rel="noopener noreferrer">Espresso (⭐83)</a> - Compile transformers directly for Apple's Neural Engine.</li>
+<li><a href="https://github.com/christopherkarani/Espresso" rel="noopener noreferrer">Espresso (⭐104)</a> - Compile transformers directly for Apple's Neural Engine.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/m13v/fazm" rel="noopener noreferrer">Fazm (⭐94)</a> - A voice-controlled AI agent for macOS using accessibility APIs and ScreenCaptureKit.</li>
+<li><a href="https://github.com/m13v/fazm" rel="noopener noreferrer">Fazm (⭐180)</a> - A voice-controlled AI agent for macOS using accessibility APIs and ScreenCaptureKit.</li>
 </ul>
 <h3><p>API</p>
 </h3>
 <ul>
-<li><a href="https://github.com/M1tsumi/SwiftDisc" rel="noopener noreferrer">SwiftDisc (⭐38)</a> - Discord API library for bots and integrations.</li>
+<li><a href="https://github.com/M1tsumi/SwiftDisc" rel="noopener noreferrer">SwiftDisc (⭐41)</a> - Discord API library for bots and integrations.</li>
 </ul>
 <h3><p>Cache</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yangchenlarkin/Monstra" rel="noopener noreferrer">Monstra (⭐90)</a> - Memory cache framework with TTL, priority-based eviction, and avalanche protection.</li>
+<li><a href="https://github.com/yangchenlarkin/Monstra" rel="noopener noreferrer">Monstra</a> - Memory cache framework with TTL, priority-based eviction, and avalanche protection.</li>
 </ul>
 <h3><p>Chat</p>
 </h3>
@@ -78,7 +163,7 @@
 <h3><p>Command Line</p>
 </h3>
 <ul>
-<li><a href="https://github.com/us/mocker" rel="noopener noreferrer">Mocker (⭐103)</a> - Docker-compatible container CLI for macOS, built on Apple's Containerization framework.</li>
+<li><a href="https://github.com/us/mocker" rel="noopener noreferrer">Mocker (⭐135)</a> - Docker-compatible container CLI for macOS, built on Apple's Containerization framework.</li>
 </ul>
 <h3><p>Images / Barcode</p>
 </h3>
@@ -88,7 +173,7 @@
 <h3><p>Security / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/HMAKT99/UnTouchID" rel="noopener noreferrer">TouchBridge (⭐1)</a> - Use your phone's fingerprint to authenticate on any Mac.</li>
+<li><a href="https://github.com/HMAKT99/UnTouchID" rel="noopener noreferrer">TouchBridge (⭐197)</a> - Use your phone's fingerprint to authenticate on any Mac.</li>
 </ul>
 <h3><p>Streaming / Barcode</p>
 </h3>
@@ -98,16 +183,16 @@
 <h3><p>Text / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zjc19891106/MarkdownDisplayView" rel="noopener noreferrer">MarkdownDisplayView (⭐173)</a> - A Markdown rendering component built on TextKit 2, providing smooth performance, rich customization options, and support for streaming AI-driven conversational interactions.</li>
+<li><a href="https://github.com/zjc19891106/MarkdownDisplayView" rel="noopener noreferrer">MarkdownDisplayView (⭐165)</a> - A Markdown rendering component built on TextKit 2, providing smooth performance, rich customization options, and support for streaming AI-driven conversational interactions.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/davdroman/swiftui-text-builder" rel="noopener noreferrer">TextBuilder (⭐246)</a> - Like a SwiftUI ViewBuilder, but for Text.</li>
+<li><a href="https://github.com/davdroman/swiftui-text-builder" rel="noopener noreferrer">TextBuilder (⭐247)</a> - Like a SwiftUI ViewBuilder, but for Text.</li>
 </ul>
 <h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/melihcolpan/MuscleMap" rel="noopener noreferrer">MuscleMap (⭐18)</a> - Render interactive human body muscle maps with SwiftUI and UIKit.</li>
+<li><a href="https://github.com/melihcolpan/MuscleMap" rel="noopener noreferrer">MuscleMap (⭐161)</a> - Render interactive human body muscle maps with SwiftUI and UIKit.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/11/">Mar 16 - Mar 22, 2026</a></h2><h3><p>Analytics</p>
 </h3>
@@ -117,71 +202,71 @@
 <h3><p>API</p>
 </h3>
 <ul>
-<li><a href="https://github.com/b5i/YouTubeKit" rel="noopener noreferrer">YouTubeKit (⭐120)</a> - Interact with the YouTube API without an API key.</li>
+<li><a href="https://github.com/b5i/YouTubeKit" rel="noopener noreferrer">YouTubeKit (⭐123)</a> - Interact with the YouTube API without an API key.</li>
 </ul>
 <h3><p>App Store</p>
 </h3>
 <ul>
-<li><a href="https://github.com/space-code/flare" rel="noopener noreferrer">Flare (⭐64)</a> - A framework that simplifies working with in-app purchases on iOS, macOS, tvOS, and watchOS, with full support for both StoreKit 1 and StoreKit 2.</li>
+<li><a href="https://github.com/space-code/flare" rel="noopener noreferrer">Flare (⭐65)</a> - A framework that simplifies working with in-app purchases on iOS, macOS, tvOS, and watchOS, with full support for both StoreKit 1 and StoreKit 2.</li>
 </ul>
 <h3><p>Network / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Danie1s/Tiercel" rel="noopener noreferrer">Tiercel</a> - Background downloads, relaunch recovery, resumable transfers, and task management for iOS apps.</li>
+<li><a href="https://github.com/Danie1s/Tiercel" rel="noopener noreferrer">Tiercel (⭐2.9k)</a> - Background downloads, relaunch recovery, resumable transfers, and task management for iOS apps.</li>
 </ul>
 <h3><p>Cryptography / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/amosavian/JWSETKit" rel="noopener noreferrer">JWSETKit (⭐67)</a> - JOSE library with JWS, JWT, JWE, and JWK support.</li>
+<li><a href="https://github.com/amosavian/JWSETKit" rel="noopener noreferrer">JWSETKit</a> - JOSE library with JWS, JWT, JWE, and JWK support.</li>
 </ul>
 <h3><p>Text / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/GIKICoder/GMarkdown" rel="noopener noreferrer">GMarkdown (⭐61)</a> - Markdown rendering library for iOS with support for tables, LaTeX, Mermaid, and code highlighting.</li>
+<li><a href="https://github.com/GIKICoder/GMarkdown" rel="noopener noreferrer">GMarkdown (⭐64)</a> - Markdown rendering library for iOS with support for tables, LaTeX, Mermaid, and code highlighting.</li>
 </ul>
 <h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/diegotid/circular-range-slider" rel="noopener noreferrer">CircularRangeSlider (⭐30)</a> - A customizable SwiftUI component for selecting a range of values using a circular slider.</li>
+<li><a href="https://github.com/diegotid/circular-range-slider" rel="noopener noreferrer">CircularRangeSlider (⭐31)</a> - A customizable SwiftUI component for selecting a range of values using a circular slider.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/brightdigit/swift-build" rel="noopener noreferrer">swift-build (⭐49)</a> - GitHub Action for building and testing Swift packages across all platforms.</li>
+<li><a href="https://github.com/brightdigit/swift-build" rel="noopener noreferrer">swift-build (⭐52)</a> - GitHub Action for building and testing Swift packages across all platforms.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/brightdigit/SyntaxKit" rel="noopener noreferrer">SyntaxKit (⭐105)</a> - Generate Swift code programmatically with a declarative syntax.</li>
+<li><a href="https://github.com/brightdigit/SyntaxKit" rel="noopener noreferrer">SyntaxKit (⭐104)</a> - Generate Swift code programmatically with a declarative syntax.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/3/">Jan 19 - Jan 25, 2026</a></h2><h3><p>App Routing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gabriel/swiftui-routes" rel="noopener noreferrer">SwiftUIRoutes (⭐31)</a> - A minimal and flexible router for SwiftUI apps.</li>
+<li><a href="https://github.com/gabriel/swiftui-routes" rel="noopener noreferrer">SwiftUIRoutes (⭐32)</a> - A minimal and flexible router for SwiftUI apps.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/33/">Aug 18 - Aug 24, 2025</a></h2><h3><p>Audio</p>
 </h3>
 <ul>
-<li><a href="https://github.com/FluidInference/FluidAudio" rel="noopener noreferrer">FluidAudio (⭐1.8k)</a> - SDK for real-time on-device audio intelligence on iOS/macOS (diarization, identification, VAD, separation, embeddings, ASR), with CoreML models converted directly from PyTorch to leverage Apple Neural Engine performance.</li>
+<li><a href="https://github.com/FluidInference/FluidAudio" rel="noopener noreferrer">FluidAudio (⭐1.9k)</a> - SDK for real-time on-device audio intelligence on iOS/macOS (diarization, identification, VAD, separation, embeddings, ASR), with CoreML models converted directly from PyTorch to leverage Apple Neural Engine performance.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/17/">Apr 28 - May 04, 2025</a></h2><h3><p>JSON</p>
 </h3>
 <ul>
-<li><a href="https://github.com/reers/ReerCodable" rel="noopener noreferrer">ReerCodable (⭐446)</a> - Codable extensions using Swift macro.</li>
+<li><a href="https://github.com/reers/ReerCodable" rel="noopener noreferrer">ReerCodable (⭐438)</a> - Codable extensions using Swift macro.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/reers/ReerKit" rel="noopener noreferrer">ReerKit (⭐118)</a> - Powerful Swift foundation library of extensions and providing utility functions to supercharge your iOS/macOS/Linux development workflow.</li>
+<li><a href="https://github.com/reers/ReerKit" rel="noopener noreferrer">ReerKit (⭐117)</a> - Powerful Swift foundation library of extensions and providing utility functions to supercharge your iOS/macOS/Linux development workflow.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/6/">Feb 10 - Feb 16, 2025</a></h2><h3><p>Dependency Managers</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swiftlang/swiftly" rel="noopener noreferrer">Swiftly (⭐896)</a> - Swift CLI toolchain installer to install different versions of Swift.</li>
+<li><a href="https://github.com/swiftlang/swiftly" rel="noopener noreferrer">Swiftly</a> - Swift CLI toolchain installer to install different versions of Swift.</li>
 </ul>
 <h3><p>Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/drewmccormack/Forked" rel="noopener noreferrer">Forked (⭐475)</a> - Generalized approach to managing shared data in Swift applications to support Local-first apps.</li>
+<li><a href="https://github.com/drewmccormack/Forked" rel="noopener noreferrer">Forked (⭐480)</a> - Generalized approach to managing shared data in Swift applications to support Local-first apps.</li>
 </ul>
 <h3><p>Audio</p>
 </h3>
@@ -191,17 +276,17 @@
 <h3><p>Realm</p>
 </h3>
 <ul>
-<li><a href="https://github.com/matghazaryan/Unrealm" rel="noopener noreferrer">Unrealm (⭐533)</a> - Unrealm enables you to easily store Swift native Classes, Structs and Enums into Realm.</li>
+<li><a href="https://github.com/matghazaryan/Unrealm" rel="noopener noreferrer">Unrealm (⭐534)</a> - Unrealm enables you to easily store Swift native Classes, Structs and Enums into Realm.</li>
 </ul>
 <h3><p>XML</p>
 </h3>
 <ul>
-<li><a href="https://github.com/CoreOffice/XMLCoder" rel="noopener noreferrer">XMLCoder (⭐866)</a> - XMLEncoder &amp; XMLDecoder based on Codable protocols from the standard library.</li>
+<li><a href="https://github.com/CoreOffice/XMLCoder" rel="noopener noreferrer">XMLCoder (⭐876)</a> - XMLEncoder &amp; XMLDecoder based on Codable protocols from the standard library.</li>
 </ul>
 <h3><p>Camera</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Mijick/Camera" rel="noopener noreferrer">MijickCamera (⭐610)</a> - Camera made simple. Fully customizable camera library that significantly reduces implementation time and effort.</li>
+<li><a href="https://github.com/Mijick/Camera" rel="noopener noreferrer">MijickCamera (⭐617)</a> - Camera made simple. Fully customizable camera library that significantly reduces implementation time and effort.</li>
 </ul>
 <h3><p>Images / Barcode</p>
 </h3>
@@ -215,7 +300,7 @@
 <h3><p>Quality / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/FlineDev/AnyLint" rel="noopener noreferrer">AnyLint (⭐116)</a> 🐧 - Lint anything by combining the power of Swift &amp; regular expressions.</li>
+<li><a href="https://github.com/FlineDev/AnyLint" rel="noopener noreferrer">AnyLint</a> 🐧 - Lint anything by combining the power of Swift &amp; regular expressions.</li>
 </ul>
 <h3><p>System / Barcode</p>
 </h3>
@@ -238,7 +323,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ihormalovanyi/SweetCurtain" rel="noopener noreferrer">SweetCurtain (⭐116)</a> - Really sweet and easy bottom pullable sheet implementation. You can find a similar implementation in applications like Apple Maps, Find My, Stocks, etc.</li>
+<li><a href="https://github.com/ihormalovanyi/SweetCurtain" rel="noopener noreferrer">SweetCurtain</a> - Really sweet and easy bottom pullable sheet implementation. You can find a similar implementation in applications like Apple Maps, Find My, Stocks, etc.</li>
 </ul>
 <h3><p>Alert / Barcode</p>
 </h3>
@@ -257,7 +342,7 @@
 <h3><p>Transition / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Mijick/NavigationView" rel="noopener noreferrer">MijickNavigattie (⭐328)</a> - Easy navigation with SwiftUI.</li>
+<li><a href="https://github.com/Mijick/NavigationView" rel="noopener noreferrer">MijickNavigattie (⭐324)</a> - Easy navigation with SwiftUI.</li>
 </ul>
 <h3><p>UITableView / Barcode</p>
 </h3>
@@ -282,7 +367,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/45/">Nov 04 - Nov 10, 2024</a></h2><h3><p>Third party Guides</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NicolaLancellotti/about-swift" rel="noopener noreferrer">About Swift (⭐84)</a> - A playground about the Swift language.</li>
+<li><a href="https://github.com/NicolaLancellotti/about-swift" rel="noopener noreferrer">About Swift (⭐85)</a> - A playground about the Swift language.</li>
 </ul>
 <h3><p>REPL</p>
 </h3>
@@ -297,27 +382,27 @@
 <h3><p>HTML / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ZhgChgLi/ZMarkupParser" rel="noopener noreferrer">ZMarkupParser (⭐363)</a> - Helps you convert HTML strings into NSAttributedString with customized styles and tags.</li>
+<li><a href="https://github.com/ZhgChgLi/ZMarkupParser" rel="noopener noreferrer">ZMarkupParser (⭐362)</a> - Helps you convert HTML strings into NSAttributedString with customized styles and tags.</li>
 </ul>
 <h3><p>Testing / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dfed/swift-testing-expectation" rel="noopener noreferrer">swift-testing-expectation (⭐78)</a> - Create an asynchronous expectation in Swift Testing.</li>
+<li><a href="https://github.com/dfed/swift-testing-expectation" rel="noopener noreferrer">swift-testing-expectation (⭐79)</a> - Create an asynchronous expectation in Swift Testing.</li>
 </ul>
 <h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rustq/swiftui-skia" rel="noopener noreferrer">SwiftUISkia (⭐47)</a> - Skia based 2d graphics SwiftUI rendering library, based on Rust to implement software rasterization to perform rendering</li>
+<li><a href="https://github.com/rustq/swiftui-skia" rel="noopener noreferrer">SwiftUISkia (⭐46)</a> - Skia based 2d graphics SwiftUI rendering library, based on Rust to implement software rasterization to perform rendering</li>
 </ul>
 <h3><p>Calendar / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/oBilet/OBCalendar" rel="noopener noreferrer">OBCalendar (⭐169)</a> - OBCalendar is designed for simplicity and customization, it allows you to build beautiful and functional calendar interfaces effortlessly.</li>
+<li><a href="https://github.com/oBilet/OBCalendar" rel="noopener noreferrer">OBCalendar (⭐168)</a> - OBCalendar is designed for simplicity and customization, it allows you to build beautiful and functional calendar interfaces effortlessly.</li>
 </ul>
 <h3><p>Pagination / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/blsage/iPages" rel="noopener noreferrer">iPages (⭐174)</a> - Quickly implement swipable page views in SwiftUI 📝.</li>
+<li><a href="https://github.com/blsage/iPages" rel="noopener noreferrer">iPages (⭐175)</a> - Quickly implement swipable page views in SwiftUI 📝.</li>
 </ul>
 <h3><p>TextField / Barcode</p>
 </h3>
@@ -337,7 +422,7 @@
 <h3><p>Audio</p>
 </h3>
 <ul>
-<li><a href="https://github.com/0thernet/MusicKit" rel="noopener noreferrer">MusicKit (⭐622)</a> - A framework for composing and transforming music.</li>
+<li><a href="https://github.com/0thernet/MusicKit" rel="noopener noreferrer">MusicKit (⭐620)</a> - A framework for composing and transforming music.</li>
 </ul>
 <h3><p>Chart</p>
 </h3>
@@ -347,7 +432,7 @@
 <h3><p>Concurrency</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dfed/swift-async-queue" rel="noopener noreferrer">AsyncQueue (⭐270)</a> 🐧 - A library of queues that enable sending ordered tasks from synchronous to asynchronous contexts.</li>
+<li><a href="https://github.com/dfed/swift-async-queue" rel="noopener noreferrer">AsyncQueue (⭐272)</a> 🐧 - A library of queues that enable sending ordered tasks from synchronous to asynchronous contexts.</li>
 </ul>
 <h3><p>Other Data</p>
 </h3>
@@ -357,7 +442,7 @@
 <h3><p>Dependency Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dfed/safedi" rel="noopener noreferrer">SafeDI (⭐179)</a> - Compile-time safe dependency injection.</li>
+<li><a href="https://github.com/dfed/safedi" rel="noopener noreferrer">SafeDI (⭐184)</a> - Compile-time safe dependency injection.</li>
 </ul>
 <h3><p>Images / Barcode</p>
 </h3>
@@ -367,7 +452,7 @@
 <h3><p>Keychain / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/square/Valet" rel="noopener noreferrer">Valet (⭐4.1k)</a> - Valet lets you securely store data in the Keychain without knowing a thing about how the Keychain works. It’s easy. We promise.</li>
+<li><a href="https://github.com/square/Valet" rel="noopener noreferrer">Valet (⭐4.2k)</a> - Valet lets you securely store data in the Keychain without knowing a thing about how the Keychain works. It’s easy. We promise.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
@@ -377,12 +462,12 @@
 <h2><a href="https://www.trackawesomelist.com/2024/26/">Jun 24 - Jun 30, 2024</a></h2><h3><p>Animation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/exyte/AnimatedGradient" rel="noopener noreferrer">AnimatedGradient (⭐159)</a> - Animated linear gradient library written with SwiftUI</li>
+<li><a href="https://github.com/exyte/AnimatedGradient" rel="noopener noreferrer">AnimatedGradient (⭐160)</a> - Animated linear gradient library written with SwiftUI</li>
 </ul>
 <h3><p>API</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Wei18/github-rest-api-swift-openapi" rel="noopener noreferrer">GitHubRestAPISwiftOpenAPI (⭐20)</a> - Scheduled generated GitHub's REST API as Swift code from OpenAPI specification.</li>
+<li><a href="https://github.com/Wei18/github-rest-api-swift-openapi" rel="noopener noreferrer">GitHubRestAPISwiftOpenAPI (⭐21)</a> - Scheduled generated GitHub's REST API as Swift code from OpenAPI specification.</li>
 </ul>
 <h3><p>Kit / Barcode</p>
 </h3>
@@ -402,7 +487,7 @@
 <h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/exyte/FlagAndCountryCode" rel="noopener noreferrer">FlagAndCountryCode (⭐105)</a> - FlagAndCountryCode provides phone codes and flags for every country. Works on UIKit and SwiftUI</li>
+<li><a href="https://github.com/exyte/FlagAndCountryCode" rel="noopener noreferrer">FlagAndCountryCode (⭐106)</a> - FlagAndCountryCode provides phone codes and flags for every country. Works on UIKit and SwiftUI</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/17/">Apr 22 - Apr 28, 2024</a></h2><h3><p>Patterns</p>
 </h3>
@@ -432,7 +517,7 @@
 <h3><p>Files</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sindresorhus/ExtendedAttributes" rel="noopener noreferrer">ExtendedAttributes (⭐49)</a> - Manage extended attributes for files and folders.</li>
+<li><a href="https://github.com/sindresorhus/ExtendedAttributes" rel="noopener noreferrer">ExtendedAttributes (⭐50)</a> - Manage extended attributes for files and folders.</li>
 </ul>
 <h3><p>Alert / Barcode</p>
 </h3>
@@ -442,12 +527,12 @@
 <h3><p>Tab / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/SwiftKickMobile/SwiftUIMaterialTabs" rel="noopener noreferrer">SwiftUIMaterialTabs (⭐98)</a> - Material 3-style tabs and Sticky Headers rolled into one SwiftUI library</li>
+<li><a href="https://github.com/SwiftKickMobile/SwiftUIMaterialTabs" rel="noopener noreferrer">SwiftUIMaterialTabs (⭐99)</a> - Material 3-style tabs and Sticky Headers rolled into one SwiftUI library</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/9/">Feb 26 - Mar 03, 2024</a></h2><h3><p>Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cpisciotta/xcbeautify" rel="noopener noreferrer">xcbeautify (⭐1.4k)</a> - Little beautifier tool for xcodebuild.</li>
+<li><a href="https://github.com/cpisciotta/xcbeautify" rel="noopener noreferrer">xcbeautify (⭐1.5k)</a> - Little beautifier tool for xcodebuild.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
@@ -462,7 +547,7 @@
 <h3><p>Alert / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Ryu0118/swift-fullscreen-popup" rel="noopener noreferrer">FullscreenPopup (⭐40)</a> - Present any popup above NavigationBar in SwiftUI</li>
+<li><a href="https://github.com/Ryu0118/swift-fullscreen-popup" rel="noopener noreferrer">FullscreenPopup (⭐41)</a> - Present any popup above NavigationBar in SwiftUI</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/46/">Nov 13 - Nov 19, 2023</a></h2><h3><p>Date</p>
 </h3>
@@ -472,17 +557,17 @@
 <h2><a href="https://www.trackawesomelist.com/2023/44/">Oct 30 - Nov 05, 2023</a></h2><h3><p>Chat</p>
 </h3>
 <ul>
-<li><a href="https://github.com/exyte/chat" rel="noopener noreferrer">ExyteChat (⭐1.7k)</a> - SwiftUI Chat UI framework with fully customizable message cells, input view, and a built-in media picker</li>
+<li><a href="https://github.com/exyte/chat" rel="noopener noreferrer">ExyteChat (⭐1.8k)</a> - SwiftUI Chat UI framework with fully customizable message cells, input view, and a built-in media picker</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/38/">Sep 18 - Sep 24, 2023</a></h2><h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NakaokaRei/SwiftAutoGUI" rel="noopener noreferrer">SwiftAutoGUI (⭐80)</a> - Used to programmatically control the mouse &amp; keyboard. A library for manipulating macOS with Swift.</li>
+<li><a href="https://github.com/NakaokaRei/SwiftAutoGUI" rel="noopener noreferrer">SwiftAutoGUI (⭐85)</a> - Used to programmatically control the mouse &amp; keyboard. A library for manipulating macOS with Swift.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/15/">Apr 10 - Apr 16, 2023</a></h2><h3><p>Animation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/MacPaw/CocoaSprings" rel="noopener noreferrer">CocoaSprings (⭐100)</a> - Interactive spring animations for iOS/macOS.</li>
+<li><a href="https://github.com/MacPaw/CocoaSprings" rel="noopener noreferrer">CocoaSprings (⭐101)</a> - Interactive spring animations for iOS/macOS.</li>
 </ul>
 <h3><p>UITableView / Barcode</p>
 </h3>
@@ -497,7 +582,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/13/">Mar 27 - Apr 02, 2023</a></h2><h3><p>Scroll Bars / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/batanus/DMScrollBar" rel="noopener noreferrer">DMScrollBar (⭐40)</a> - Best in class customizable ScrollBar for any type of ScrollView with Decelerating, Bounce &amp; Rubber band mechanisms and many many more.</li>
+<li><a href="https://github.com/batanus/DMScrollBar" rel="noopener noreferrer">DMScrollBar (⭐41)</a> - Best in class customizable ScrollBar for any type of ScrollView with Decelerating, Bounce &amp; Rubber band mechanisms and many many more.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/8/">Feb 20 - Feb 26, 2023</a></h2><h3><p>Newsletter</p>
 </h3>
@@ -512,12 +597,12 @@
 <h3><p>Layout / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/exyte/AnimatedTabBar" rel="noopener noreferrer">AnimatedTabBar (⭐535)</a> - A tabbar with a number of preset animations.</li>
+<li><a href="https://github.com/exyte/AnimatedTabBar" rel="noopener noreferrer">AnimatedTabBar (⭐537)</a> - A tabbar with a number of preset animations.</li>
 </ul>
 <h3><p>Logging / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Esqarrouth/QorumLogs" rel="noopener noreferrer">QorumLogs (⭐783)</a> - Logging Utility for Xcode &amp; Google Docs.</li>
+<li><a href="https://github.com/Esqarrouth/QorumLogs" rel="noopener noreferrer">QorumLogs (⭐781)</a> - Logging Utility for Xcode &amp; Google Docs.</li>
 </ul>
 <h3><p>Network / Barcode</p>
 </h3>
@@ -542,7 +627,7 @@
 <h3><p>UICollectionView / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/GoodRequest/GRProvider" rel="noopener noreferrer">GoodProvider (⭐29)</a> - 🚀 UITableView and UICollectionView provider to simplify basic scenarios of showing the data.</li>
+<li><a href="https://github.com/GoodRequest/GRProvider" rel="noopener noreferrer">GoodProvider</a> - 🚀 UITableView and UICollectionView provider to simplify basic scenarios of showing the data.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
@@ -581,7 +666,7 @@
 <h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/peripheryapp/periphery" rel="noopener noreferrer">Periphery (⭐6k)</a> - A tool to identify unused code in Swift projects.</li>
+<li><a href="https://github.com/peripheryapp/periphery" rel="noopener noreferrer">Periphery (⭐6.1k)</a> - A tool to identify unused code in Swift projects.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/51/">Dec 19 - Dec 25, 2022</a></h2><h3><p>Algorithm</p>
 </h3>
@@ -601,7 +686,7 @@
 <h3><p>Documentation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/SourceDocs/SourceDocs" rel="noopener noreferrer">SourceDocs (⭐421)</a> - Generate Markdown reference documentation that lives with your code.</li>
+<li><a href="https://github.com/SourceDocs/SourceDocs" rel="noopener noreferrer">SourceDocs (⭐423)</a> - Generate Markdown reference documentation that lives with your code.</li>
 </ul>
 <h3><p>Events</p>
 </h3>
@@ -621,27 +706,27 @@
 <h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/FluidGroup/NextGrowingTextView" rel="noopener noreferrer">NextGrowingTextView (⭐1.8k)</a> - The next in the generations of 'growing textviews' optimized for iOS 7 and above.</li>
+<li><a href="https://github.com/FluidGroup/NextGrowingTextView" rel="noopener noreferrer">NextGrowingTextView</a> - The next in the generations of 'growing textviews' optimized for iOS 7 and above.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/48/">Nov 28 - Dec 04, 2022</a></h2><h3><p>Camera</p>
 </h3>
 <ul>
-<li><a href="https://github.com/exyte/mediapicker" rel="noopener noreferrer">MediaPicker (⭐456)</a> - SwiftUI customizable media picker - supports camera and gallery with albums</li>
+<li><a href="https://github.com/exyte/mediapicker" rel="noopener noreferrer">MediaPicker (⭐460)</a> - SwiftUI customizable media picker - supports camera and gallery with albums</li>
 </ul>
 <h3><p>Transition / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/exyte/LiquidSwipe" rel="noopener noreferrer">LiquidSwipe (⭐716)</a> - Liquid navigation animation</li>
+<li><a href="https://github.com/exyte/LiquidSwipe" rel="noopener noreferrer">LiquidSwipe (⭐725)</a> - Liquid navigation animation</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/46/">Nov 14 - Nov 20, 2022</a></h2><h3><p>Auto Layout / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hyperconnect/HypeUI" rel="noopener noreferrer">HypeUI (⭐141)</a> - 🌺 HypeUI is a implementation of Apple's SwiftUI DSL style based on UIKit</li>
+<li><a href="https://github.com/hyperconnect/HypeUI" rel="noopener noreferrer">HypeUI (⭐145)</a> - 🌺 HypeUI is a implementation of Apple's SwiftUI DSL style based on UIKit</li>
 </ul>
 <h3><p>Testing / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Subito-it/SBTUITestTunnel" rel="noopener noreferrer">SBTUITestTunnel (⭐367)</a> - UI testing library for interact with network requests, stub CLLocationManager and UNUserNotificationCenter, and fine grain scrolling in table/collection/scroll views</li>
+<li><a href="https://github.com/Subito-it/SBTUITestTunnel" rel="noopener noreferrer">SBTUITestTunnel (⭐368)</a> - UI testing library for interact with network requests, stub CLLocationManager and UNUserNotificationCenter, and fine grain scrolling in table/collection/scroll views</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/45/">Nov 07 - Nov 13, 2022</a></h2><h3><p>Style Guides</p>
 </h3>
@@ -656,7 +741,7 @@
 <h3><p>Network / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yangKJ/RxNetworks" rel="noopener noreferrer">RxNetworks (⭐239)</a> - Network API With RxSwift + Moya + HandyJSON + Plugins.</li>
+<li><a href="https://github.com/yangKJ/RxNetworks" rel="noopener noreferrer">RxNetworks (⭐237)</a> - Network API With RxSwift + Moya + HandyJSON + Plugins.</li>
 </ul>
 <h3><p>Transition / Barcode</p>
 </h3>
@@ -671,7 +756,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/40/">Oct 03 - Oct 09, 2022</a></h2><h3><p>App Store</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mezhevikin/AppReview" rel="noopener noreferrer">AppReview (⭐122)</a> - A tiny library to request review on the AppStore via SKStoreReviewController.</li>
+<li><a href="https://github.com/mezhevikin/AppReview" rel="noopener noreferrer">AppReview (⭐124)</a> - A tiny library to request review on the AppStore via SKStoreReviewController.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/37/">Sep 12 - Sep 18, 2022</a></h2><h3><p>Official Guides</p>
 </h3>
@@ -696,42 +781,42 @@
 <h2><a href="https://www.trackawesomelist.com/2022/24/">Jun 13 - Jun 19, 2022</a></h2><h3><p>Images / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yangKJ/Harbeth" rel="noopener noreferrer">Harbeth (⭐618)</a> - Metal API for GPU accelerated Graphics and Video and Camera filter framework.</li>
+<li><a href="https://github.com/yangKJ/Harbeth" rel="noopener noreferrer">Harbeth (⭐632)</a> - Metal API for GPU accelerated Graphics and Video and Camera filter framework.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/21/">May 23 - May 29, 2022</a></h2><h3><p>Patterns</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ra1028/swiftui-atom-properties" rel="noopener noreferrer">SwiftUI Atom Properties (⭐319)</a> - A Reactive Data-Binding and Dependency Injection Library for SwiftUI x Concurrency.</li>
+<li><a href="https://github.com/ra1028/swiftui-atom-properties" rel="noopener noreferrer">SwiftUI Atom Properties (⭐337)</a> - A Reactive Data-Binding and Dependency Injection Library for SwiftUI x Concurrency.</li>
 </ul>
 <h3><p>Keyboard / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/isaced/ISEmojiView" rel="noopener noreferrer">ISEmojiView (⭐547)</a> - Emoji Keyboard for iOS</li>
+<li><a href="https://github.com/isaced/ISEmojiView" rel="noopener noreferrer">ISEmojiView (⭐548)</a> - Emoji Keyboard for iOS</li>
 </ul>
 <h3><p>Tab / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/onl1ner/TabBar" rel="noopener noreferrer">TabBar (⭐475)</a> - Highly customizable tab bar for SwiftUI applications.</li>
+<li><a href="https://github.com/onl1ner/TabBar" rel="noopener noreferrer">TabBar (⭐472)</a> - Highly customizable tab bar for SwiftUI applications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/20/">May 16 - May 22, 2022</a></h2><h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sparrowcode/SwiftBoost" rel="noopener noreferrer">SwiftBoost (⭐212)</a> - Collection of Swift-extensions to boost development process.</li>
+<li><a href="https://github.com/sparrowcode/SwiftBoost" rel="noopener noreferrer">SwiftBoost (⭐213)</a> - Collection of Swift-extensions to boost development process.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/19/">May 09 - May 15, 2022</a></h2><h3><p>Calendar / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kvyatkovskys/KVKCalendar" rel="noopener noreferrer">KVKCalendar (⭐777)</a> - A most fully customization calendar for Apple platforms 📅</li>
+<li><a href="https://github.com/kvyatkovskys/KVKCalendar" rel="noopener noreferrer">KVKCalendar (⭐790)</a> - A most fully customization calendar for Apple platforms 📅</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/18/">May 02 - May 08, 2022</a></h2><h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/joomcode/BottomSheet" rel="noopener noreferrer">BottomSheet (⭐353)</a> - Powerful Bottom Sheet component with content based size, interactive dismissal and navigation controller support.</li>
+<li><a href="https://github.com/joomcode/BottomSheet" rel="noopener noreferrer">BottomSheet (⭐352)</a> - Powerful Bottom Sheet component with content based size, interactive dismissal and navigation controller support.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/17/">Apr 25 - May 01, 2022</a></h2><h3><p>Chart</p>
 </h3>
 <ul>
-<li><a href="https://github.com/francescoleoni98/FLCharts" rel="noopener noreferrer">FLCharts (⭐275)</a> - Easy to use and highly customizable charts library for iOS.</li>
+<li><a href="https://github.com/francescoleoni98/FLCharts" rel="noopener noreferrer">FLCharts (⭐276)</a> - Easy to use and highly customizable charts library for iOS.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/16/">Apr 18 - Apr 24, 2022</a></h2><h3><p>Layout / Barcode</p>
 </h3>
@@ -751,7 +836,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/4/">Jan 24 - Jan 30, 2022</a></h2><h3><p>Chart</p>
 </h3>
 <ul>
-<li><a href="https://github.com/willdale/SwiftUICharts" rel="noopener noreferrer">SwiftUICharts (⭐957)</a> - A charts / plotting library for SwiftUI. Works on macOS, iOS, watchOS, and tvOS and has accessibility and Localization features built in.</li>
+<li><a href="https://github.com/willdale/SwiftUICharts" rel="noopener noreferrer">SwiftUICharts</a> - A charts / plotting library for SwiftUI. Works on macOS, iOS, watchOS, and tvOS and has accessibility and Localization features built in.</li>
 </ul>
 <h3><p>Command Line</p>
 </h3>
@@ -761,7 +846,7 @@
 <h3><p>Game Engine</p>
 </h3>
 <ul>
-<li><a href="https://github.com/STREGAsGate/Raylib" rel="noopener noreferrer">Raylib for Swift (⭐133)</a> 🐧 - A Cross-Platform Swift package for Raylib. Builds Raylib from source so no need to fiddle with libraries. Just add as a dependency in you game package and go!</li>
+<li><a href="https://github.com/STREGAsGate/Raylib" rel="noopener noreferrer">Raylib for Swift (⭐134)</a> 🐧 - A Cross-Platform Swift package for Raylib. Builds Raylib from source so no need to fiddle with libraries. Just add as a dependency in you game package and go!</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/2/">Jan 10 - Jan 16, 2022</a></h2><h3><p>Third party Guides</p>
 </h3>
@@ -771,12 +856,12 @@
 <h3><p>Google Colaboratory</p>
 </h3>
 <ul>
-<li><a href="https://github.com/philipturner/swift-colab" rel="noopener noreferrer">swift-colab (⭐113)</a> - Run Swift in a browser.</li>
+<li><a href="https://github.com/philipturner/swift-colab" rel="noopener noreferrer">swift-colab</a> - Run Swift in a browser.</li>
 </ul>
 <h3><p>Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gurhub/surmagic" rel="noopener noreferrer">Surmagic (⭐315)</a> - Create XCFrameworks with ease! A Command Line Tool to create XCFramework for multiple platforms at one shot! iOS, Mac Catalyst, tvOS, macOS, and watchOS.</li>
+<li><a href="https://github.com/gurhub/surmagic" rel="noopener noreferrer">Surmagic</a> - Create XCFrameworks with ease! A Command Line Tool to create XCFramework for multiple platforms at one shot! iOS, Mac Catalyst, tvOS, macOS, and watchOS.</li>
 </ul>
 <h3><p>Location / Barcode</p>
 </h3>
@@ -800,7 +885,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/51/">Dec 20 - Dec 26, 2021</a></h2><h3><p>SVG / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/exyte/SVGView" rel="noopener noreferrer">SVGView (⭐838)</a> - SVG parser and renderer written in SwiftUI.</li>
+<li><a href="https://github.com/exyte/SVGView" rel="noopener noreferrer">SVGView (⭐840)</a> - SVG parser and renderer written in SwiftUI.</li>
 </ul>
 <h3><p>Tab / Barcode</p>
 </h3>
@@ -834,22 +919,22 @@
 <h2><a href="https://www.trackawesomelist.com/2021/42/">Oct 18 - Oct 24, 2021</a></h2><h3><p>Augmented Reality</p>
 </h3>
 <ul>
-<li><a href="https://github.com/philipturner/ARHeadsetKit" rel="noopener noreferrer">ARHeadsetKit (⭐129)</a> - High-level framework for using $5 Google Cardboard to replicate Microsoft Hololens.</li>
+<li><a href="https://github.com/philipturner/ARHeadsetKit" rel="noopener noreferrer">ARHeadsetKit (⭐128)</a> - High-level framework for using $5 Google Cardboard to replicate Microsoft Hololens.</li>
 </ul>
 <h3><p>Alert / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/BastiaanJansen/Toast-Swift" rel="noopener noreferrer">Toast-Swift (⭐777)</a> - An easy to use library to create iOS 14 and newer style toasts.</li>
+<li><a href="https://github.com/BastiaanJansen/Toast-Swift" rel="noopener noreferrer">Toast-Swift (⭐779)</a> - An easy to use library to create iOS 14 and newer style toasts.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swiftyfinch/Rugby" rel="noopener noreferrer">Rugby (⭐713)</a> - 🏈 Cache CocoaPods for faster rebuild and indexing Xcode project.</li>
+<li><a href="https://github.com/swiftyfinch/Rugby" rel="noopener noreferrer">Rugby (⭐715)</a> - 🏈 Cache CocoaPods for faster rebuild and indexing Xcode project.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/41/">Oct 11 - Oct 17, 2021</a></h2><h3><p>Text / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sindresorhus/Regex" rel="noopener noreferrer">Regex by sindresorhus (⭐333)</a> - Swifty regular expressions, fully tested &amp; documented, and with correct Unicode handling.</li>
+<li><a href="https://github.com/sindresorhus/Regex" rel="noopener noreferrer">Regex by sindresorhus (⭐332)</a> - Swifty regular expressions, fully tested &amp; documented, and with correct Unicode handling.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/39/">Sep 27 - Oct 03, 2021</a></h2><h3><p>UI / Barcode</p>
 </h3>
@@ -859,17 +944,17 @@
 <h2><a href="https://www.trackawesomelist.com/2021/37/">Sep 13 - Sep 19, 2021</a></h2><h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sindresorhus/Percentage" rel="noopener noreferrer">Percentage (⭐281)</a> - Make percentages more readable and type-safe.</li>
+<li><a href="https://github.com/sindresorhus/Percentage" rel="noopener noreferrer">Percentage (⭐280)</a> - Make percentages more readable and type-safe.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/36/">Sep 06 - Sep 12, 2021</a></h2><h3><p>Localization / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Asana/locheck" rel="noopener noreferrer">Locheck (⭐110)</a> - Validate .strings and .stringsdict files for errors</li>
+<li><a href="https://github.com/Asana/locheck" rel="noopener noreferrer">Locheck (⭐111)</a> - Validate .strings and .stringsdict files for errors</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/32/">Aug 09 - Aug 15, 2021</a></h2><h3><p>App Routing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/wwt/SwiftCurrent" rel="noopener noreferrer">SwiftCurrent (⭐306)</a> - Manage complex workflows wherever Swift can be built. It comes with built-in support for UIKit, Storyboards, and SwiftUI.</li>
+<li><a href="https://github.com/wwt/SwiftCurrent" rel="noopener noreferrer">SwiftCurrent (⭐305)</a> - Manage complex workflows wherever Swift can be built. It comes with built-in support for UIKit, Storyboards, and SwiftUI.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/29/">Jul 19 - Jul 25, 2021</a></h2><h3><p>Official Guides</p>
 </h3>
@@ -884,31 +969,31 @@
 <h2><a href="https://www.trackawesomelist.com/2021/26/">Jun 28 - Jul 04, 2021</a></h2><h3><p>Patterns</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pointfreeco/swift-composable-architecture" rel="noopener noreferrer">The Composable Architecture (⭐14k)</a> - A library for building applications in a consistent and understandable way, with composition, testing, and ergonomics in mind.</li>
+<li><a href="https://github.com/pointfreeco/swift-composable-architecture" rel="noopener noreferrer">The Composable Architecture (⭐15k)</a> - A library for building applications in a consistent and understandable way, with composition, testing, and ergonomics in mind.</li>
 </ul>
 <h3><p>Images / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Ancestry/FaceCrop" rel="noopener noreferrer">FaceCrop (⭐51)</a> - Detect and center faces in your images using Apple’s Vision Framework.</li>
+<li><a href="https://github.com/Ancestry/FaceCrop" rel="noopener noreferrer">FaceCrop (⭐52)</a> - Detect and center faces in your images using Apple’s Vision Framework.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/swhitty/SwiftDraw" rel="noopener noreferrer">SwiftDraw (⭐587)</a> - Library that converts SVG images to UIImage, NSImage and generates CoreGraphics source code.</li>
+<li><a href="https://github.com/swhitty/SwiftDraw" rel="noopener noreferrer">SwiftDraw (⭐603)</a> - Library that converts SVG images to UIImage, NSImage and generates CoreGraphics source code.</li>
 </ul>
 <h3><p>SOAP / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/priore/SOAPEngine" rel="noopener noreferrer">SOAPEngine (⭐485)</a> - Generic SOAP client to access SOAP Web Services using iOS, Mac OS X, and Apple TV.</li>
+<li><a href="https://github.com/priore/SOAPEngine" rel="noopener noreferrer">SOAPEngine (⭐483)</a> - Generic SOAP client to access SOAP Web Services using iOS, Mac OS X, and Apple TV.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/21/">May 24 - May 30, 2021</a></h2><h3><p>Payment / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tikhop/TPInAppReceipt" rel="noopener noreferrer">TPInAppReceipt (⭐710)</a> - A lightweight, pure-Swift library for reading and validating Apple In App Purchase Receipt locally.</li>
+<li><a href="https://github.com/tikhop/TPInAppReceipt" rel="noopener noreferrer">TPInAppReceipt (⭐711)</a> - A lightweight, pure-Swift library for reading and validating Apple In App Purchase Receipt locally.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/13/">Mar 29 - Apr 04, 2021</a></h2><h3><p>Colors</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Boris-Em/ColorKit" rel="noopener noreferrer">ColorKit (⭐781)</a> - Advanced color manipulation for iOS.</li>
+<li><a href="https://github.com/Boris-Em/ColorKit" rel="noopener noreferrer">ColorKit</a> - Advanced color manipulation for iOS.</li>
 </ul>
 <h3><p>Images / Barcode</p>
 </h3>
@@ -942,7 +1027,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/6/">Feb 08 - Feb 14, 2021</a></h2><h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/MarcoEidinger/SwiftPlantUML" rel="noopener noreferrer">SwiftPlantUML (⭐640)</a> - A command-line tool and Swift Package to generate UML class from your Swift source code. Also available as Xcode Source Editor Extension.</li>
+<li><a href="https://github.com/MarcoEidinger/SwiftPlantUML" rel="noopener noreferrer">SwiftPlantUML (⭐643)</a> - A command-line tool and Swift Package to generate UML class from your Swift source code. Also available as Xcode Source Editor Extension.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/4/">Jan 25 - Jan 31, 2021</a></h2><h3><p>Logging / Barcode</p>
 </h3>
@@ -962,17 +1047,17 @@
 <h3><p>Cards / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/james01/CardNavigation" rel="noopener noreferrer">CardNavigation (⭐49)</a> - A navigation controller that displays its view controllers as an interactive stack of cards.</li>
+<li><a href="https://github.com/james01/CardNavigation" rel="noopener noreferrer">CardNavigation (⭐50)</a> - A navigation controller that displays its view controllers as an interactive stack of cards.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/53/">Jan 04 - Jan 10, 2021</a></h2><h3><p>Network / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/billp/TermiNetwork" rel="noopener noreferrer">TermiNetwork (⭐106)</a> - 🌏 A zero-dependency networking solution for building modern and secure iOS, watchOS, macOS and tvOS applications.</li>
+<li><a href="https://github.com/billp/TermiNetwork" rel="noopener noreferrer">TermiNetwork (⭐105)</a> - 🌏 A zero-dependency networking solution for building modern and secure iOS, watchOS, macOS and tvOS applications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/48/">Nov 30 - Dec 06, 2020</a></h2><h3><p>API</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swiftkube/client" rel="noopener noreferrer">Swiftkube (⭐160)</a> 🐧 - Swift client for Kubernetes.</li>
+<li><a href="https://github.com/swiftkube/client" rel="noopener noreferrer">Swiftkube (⭐165)</a> 🐧 - Swift client for Kubernetes.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/44/">Nov 02 - Nov 08, 2020</a></h2><h3><p>App Routing</p>
 </h3>
@@ -987,12 +1072,12 @@
 <h2><a href="https://www.trackawesomelist.com/2020/42/">Oct 19 - Oct 25, 2020</a></h2><h3><p>Gesture</p>
 </h3>
 <ul>
-<li><a href="https://github.com/delba/Tactile" rel="noopener noreferrer">Tactile (⭐715)</a> - A safer and more idiomatic way to respond to gestures and control events.</li>
+<li><a href="https://github.com/delba/Tactile" rel="noopener noreferrer">Tactile (⭐714)</a> - A safer and more idiomatic way to respond to gestures and control events.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/40/">Oct 05 - Oct 11, 2020</a></h2><h3><p>Logging / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Kitura/HeliumLogger" rel="noopener noreferrer">HeliumLogger (⭐177)</a> 🐧 - IBM's lightweight logging framework.</li>
+<li><a href="https://github.com/Kitura/HeliumLogger" rel="noopener noreferrer">HeliumLogger (⭐176)</a> 🐧 - IBM's lightweight logging framework.</li>
 </ul>
 <h3><p>Network / Barcode</p>
 </h3>
@@ -1002,11 +1087,11 @@
 <h3><p>Socket / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Kitura/BlueSocket" rel="noopener noreferrer">BlueSocket (⭐1.4k)</a> - IBM's cross platform low level socket framework.</li>
+<li><a href="https://github.com/Kitura/BlueSocket" rel="noopener noreferrer">BlueSocket</a> - IBM's cross platform low level socket framework.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Kitura/BlueSSLService" rel="noopener noreferrer">BlueSSLService (⭐100)</a> - SSL/TLS add-in for IBM's low level socket framework.</li>
+<li><a href="https://github.com/Kitura/BlueSSLService" rel="noopener noreferrer">BlueSSLService (⭐101)</a> - SSL/TLS add-in for IBM's low level socket framework.</li>
 </ul>
 <h3><p>Webserver / Barcode</p>
 </h3>
@@ -1025,7 +1110,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Kitura/BlueRSA" rel="noopener noreferrer">BlueRSA (⭐135)</a> - IBM's Cross Platform RSA Crypto library.</li>
+<li><a href="https://github.com/Kitura/BlueRSA" rel="noopener noreferrer">BlueRSA</a> - IBM's Cross Platform RSA Crypto library.</li>
 </ul>
 <h3><p>System / Barcode</p>
 </h3>
@@ -1050,7 +1135,7 @@
 <h3><p>Fonts</p>
 </h3>
 <ul>
-<li><a href="https://github.com/huybuidac/SwiftUIFontIcon" rel="noopener noreferrer">SwiftUI-FontIcon (⭐136)</a> - Font icons for SwiftUI: font awesome, ionicons, material icons.</li>
+<li><a href="https://github.com/huybuidac/SwiftUIFontIcon" rel="noopener noreferrer">SwiftUI-FontIcon (⭐135)</a> - Font icons for SwiftUI: font awesome, ionicons, material icons.</li>
 </ul>
 <h3><p>TextField / Barcode</p>
 </h3>
@@ -1064,7 +1149,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/stleamist/BetterSafariView" rel="noopener noreferrer">BetterSafariView (⭐636)</a> - A better way to present a SFSafariViewController or start a ASWebAuthenticationSession in SwiftUI.</li>
+<li><a href="https://github.com/stleamist/BetterSafariView" rel="noopener noreferrer">BetterSafariView (⭐639)</a> - A better way to present a SFSafariViewController or start a ASWebAuthenticationSession in SwiftUI.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/30/">Jul 27 - Aug 02, 2020</a></h2><h3><p>Chart</p>
 </h3>
@@ -1108,7 +1193,7 @@
 <h3><p>Mock / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Farfetch/mockingbird" rel="noopener noreferrer">Mockingbird (⭐199)</a> - Simplify software testing, by easily mocking any system using HTTP/HTTPS, allowing a team to test and develop against a service that is not complete, unstable or just to reproduce planned cases.</li>
+<li><a href="https://github.com/Farfetch/mockingbird" rel="noopener noreferrer">Mockingbird</a> - Simplify software testing, by easily mocking any system using HTTP/HTTPS, allowing a team to test and develop against a service that is not complete, unstable or just to reproduce planned cases.</li>
 </ul>
 <h3><p>Calendar / Barcode</p>
 </h3>
@@ -1133,7 +1218,7 @@
 <h3><p>AI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/palle-k/DL4S" rel="noopener noreferrer">DL4S (⭐109)</a> - Automatic differentiation, fast tensor operations and dynamic neural networks from CNNs and RNNs to transformers.</li>
+<li><a href="https://github.com/palle-k/DL4S" rel="noopener noreferrer">DL4S (⭐110)</a> - Automatic differentiation, fast tensor operations and dynamic neural networks from CNNs and RNNs to transformers.</li>
 </ul>
 <h3><p>UI / Barcode</p>
 </h3>
@@ -1168,7 +1253,7 @@
 <h3><p>Other Data</p>
 </h3>
 <ul>
-<li><a href="https://github.com/CoreOffice/CoreXLSX" rel="noopener noreferrer">CoreXLSX (⭐898)</a> - Excel spreadsheet (XLSX) format support.</li>
+<li><a href="https://github.com/CoreOffice/CoreXLSX" rel="noopener noreferrer">CoreXLSX (⭐900)</a> - Excel spreadsheet (XLSX) format support.</li>
 </ul>
 <h3><p>Auto Layout / Barcode</p>
 </h3>
@@ -1178,7 +1263,7 @@
 <h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/super-ultra/UltraDrawerView" rel="noopener noreferrer">UltraDrawerView (⭐241)</a> - Lightweight, fast and customizable Drawer View implementation identical to Apple Maps, Stocks and etc.</li>
+<li><a href="https://github.com/super-ultra/UltraDrawerView" rel="noopener noreferrer">UltraDrawerView</a> - Lightweight, fast and customizable Drawer View implementation identical to Apple Maps, Stocks and etc.</li>
 </ul>
 <h3><p>Payment / Barcode</p>
 </h3>
@@ -1188,7 +1273,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/22/">Jun 01 - Jun 07, 2020</a></h2><h3><p>TextField / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ChiliLabs/CHIOTPField" rel="noopener noreferrer">CHIOTPField (⭐282)</a> - A set of textfields that can be used for One-time passwords, SMS codes, PIN codes, etc.</li>
+<li><a href="https://github.com/ChiliLabs/CHIOTPField" rel="noopener noreferrer">CHIOTPField (⭐281)</a> - A set of textfields that can be used for One-time passwords, SMS codes, PIN codes, etc.</li>
 </ul>
 <h3><p>Video / Barcode</p>
 </h3>
@@ -1198,7 +1283,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/20/">May 18 - May 24, 2020</a></h2><h3><p>Logging / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bannzai/gedatsu" rel="noopener noreferrer">Gedatsu (⭐532)</a> - Provide readable format about AutoLayout error console log.</li>
+<li><a href="https://github.com/bannzai/gedatsu" rel="noopener noreferrer">Gedatsu (⭐533)</a> - Provide readable format about AutoLayout error console log.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/19/">May 11 - May 17, 2020</a></h2><h3><p>Alert / Barcode</p>
 </h3>
@@ -1227,7 +1312,7 @@
 <h3><p>Animation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/s2mr/Elephant" rel="noopener noreferrer">Elephant (⭐148)</a> - Elegant SVG animation kit.</li>
+<li><a href="https://github.com/s2mr/Elephant" rel="noopener noreferrer">Elephant (⭐149)</a> - Elegant SVG animation kit.</li>
 </ul>
 <h3><p>API</p>
 </h3>
@@ -1247,7 +1332,7 @@
 <h3><p>Images / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/congnd/FMPhotoPicker" rel="noopener noreferrer">FMPhotoPicker (⭐849)</a> - A modern, simple and zero-dependency photo picker with an elegant and customizable image editor.</li>
+<li><a href="https://github.com/congnd/FMPhotoPicker" rel="noopener noreferrer">FMPhotoPicker (⭐852)</a> - A modern, simple and zero-dependency photo picker with an elegant and customizable image editor.</li>
 </ul>
 <h3><p>Layout / Barcode</p>
 </h3>
@@ -1271,7 +1356,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/yahoo/YMTreeMap" rel="noopener noreferrer">YMTreeMap (⭐160)</a> - Treemap / Heatmap layout engine, based on Squarified.</li>
+<li><a href="https://github.com/yahoo/YMTreeMap" rel="noopener noreferrer">YMTreeMap (⭐161)</a> - Treemap / Heatmap layout engine, based on Squarified.</li>
 </ul>
 <h3><p>UITableView / Barcode</p>
 </h3>
@@ -1291,7 +1376,7 @@
 <h3><p>Core Data</p>
 </h3>
 <ul>
-<li><a href="https://github.com/deeje/CloudCore/" rel="noopener noreferrer">CloudCore (⭐162)</a> - Robust CloudKit synchronization: offline editing, relationships, shared and public databases, and more.</li>
+<li><a href="https://github.com/deeje/CloudCore/" rel="noopener noreferrer">CloudCore (⭐161)</a> - Robust CloudKit synchronization: offline editing, relationships, shared and public databases, and more.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
@@ -1305,7 +1390,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Nero5023/CSVParser" rel="noopener noreferrer">CSVParser (⭐83)</a> 🐧 - Fast parser for CSV.</li>
+<li><a href="https://github.com/Nero5023/CSVParser" rel="noopener noreferrer">CSVParser</a> 🐧 - Fast parser for CSV.</li>
 </ul>
 <h3><p>UI / Barcode</p>
 </h3>
@@ -1315,7 +1400,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/12/">Mar 23 - Mar 29, 2020</a></h2><h3><p>Form / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/haojianzong/ObjectForm" rel="noopener noreferrer">ObjectForm (⭐177)</a> - A simple yet powerful library to build form for your class models.</li>
+<li><a href="https://github.com/haojianzong/ObjectForm" rel="noopener noreferrer">ObjectForm (⭐176)</a> - A simple yet powerful library to build form for your class models.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/11/">Mar 16 - Mar 22, 2020</a></h2><h3><p>Cache</p>
 </h3>
@@ -1325,12 +1410,12 @@
 <h3><p>Date</p>
 </h3>
 <ul>
-<li><a href="https://github.com/davedelong/time" rel="noopener noreferrer">Chronology (⭐2.3k)</a> - Building a better date/time library.</li>
+<li><a href="https://github.com/davedelong/time" rel="noopener noreferrer">Chronology</a> - Building a better date/time library.</li>
 </ul>
 <h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ParkGwangBeom/Windless" rel="noopener noreferrer">Windless (⭐950)</a> - Windless makes it easy to implement invisible layout loading view.</li>
+<li><a href="https://github.com/ParkGwangBeom/Windless" rel="noopener noreferrer">Windless (⭐949)</a> - Windless makes it easy to implement invisible layout loading view.</li>
 </ul>
 <h3><p>3D / Barcode</p>
 </h3>
@@ -1345,7 +1430,7 @@
 <h3><p>Colors</p>
 </h3>
 <ul>
-<li><a href="https://github.com/chrs1885/SheetyColors" rel="noopener noreferrer">SheetyColors (⭐105)</a> - An action sheet styled color picker for iOS.</li>
+<li><a href="https://github.com/chrs1885/SheetyColors" rel="noopener noreferrer">SheetyColors (⭐104)</a> - An action sheet styled color picker for iOS.</li>
 </ul>
 <h3><p>UI / Barcode</p>
 </h3>
@@ -1355,22 +1440,22 @@
 <h2><a href="https://www.trackawesomelist.com/2020/8/">Feb 24 - Mar 01, 2020</a></h2><h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/privacy-tech-lab/privacyflash-pro" rel="noopener noreferrer">PrivacyFlash Pro (⭐162)</a> - Generate a privacy policy for your Swift iOS app from its code.</li>
+<li><a href="https://github.com/privacy-tech-lab/privacyflash-pro" rel="noopener noreferrer">PrivacyFlash Pro (⭐164)</a> - Generate a privacy policy for your Swift iOS app from its code.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/7/">Feb 17 - Feb 23, 2020</a></h2><h3><p>App Store</p>
 </h3>
 <ul>
-<li><a href="https://github.com/apphud/ApphudSDK" rel="noopener noreferrer">Apphud (⭐230)</a> - Lightweight library to easily handle auto-renewable subscriptions with no backend required.</li>
+<li><a href="https://github.com/apphud/ApphudSDK" rel="noopener noreferrer">Apphud (⭐232)</a> - Lightweight library to easily handle auto-renewable subscriptions with no backend required.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sindresorhus/ExceptionCatcher" rel="noopener noreferrer">ExceptionCatcher (⭐178)</a> - Catch Objective-C exceptions.</li>
+<li><a href="https://github.com/sindresorhus/ExceptionCatcher" rel="noopener noreferrer">ExceptionCatcher (⭐179)</a> - Catch Objective-C exceptions.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/6/">Feb 10 - Feb 16, 2020</a></h2><h3><p>Styling / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/onmyway133/EasyTheme" rel="noopener noreferrer">Themes (⭐246)</a> - Theme management.</li>
+<li><a href="https://github.com/onmyway133/EasyTheme" rel="noopener noreferrer">Themes (⭐243)</a> - Theme management.</li>
 </ul>
 <h3><p>Video / Barcode</p>
 </h3>
@@ -1385,7 +1470,7 @@
 <h3><p>Localization / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crowdin/mobile-sdk-ios" rel="noopener noreferrer">CrowdinSDK (⭐133)</a> - Delivers all new translations from Crowdin project to the application immediately.</li>
+<li><a href="https://github.com/crowdin/mobile-sdk-ios" rel="noopener noreferrer">CrowdinSDK (⭐131)</a> - Delivers all new translations from Crowdin project to the application immediately.</li>
 </ul>
 <h3><p>UICollectionView / Barcode</p>
 </h3>
@@ -1400,7 +1485,7 @@
 <h3><p>Quality / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ra1028/swift-mod" rel="noopener noreferrer">swift-mod (⭐114)</a> - A tool for Swift code modification intermediating between code generation and formatting.</li>
+<li><a href="https://github.com/ra1028/swift-mod" rel="noopener noreferrer">swift-mod</a> - A tool for Swift code modification intermediating between code generation and formatting.</li>
 </ul>
 <h3><p>Button / Barcode</p>
 </h3>
@@ -1415,7 +1500,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/51/">Dec 23 - Dec 29, 2019</a></h2><h3><p>Audio</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tanhakabir/SwiftAudioPlayer" rel="noopener noreferrer">SwiftAudioPlayer (⭐622)</a> - Simple audio player for iOS that streams and performs realtime audio manipulations with AVAudioEngine.</li>
+<li><a href="https://github.com/tanhakabir/SwiftAudioPlayer" rel="noopener noreferrer">SwiftAudioPlayer (⭐624)</a> - Simple audio player for iOS that streams and performs realtime audio manipulations with AVAudioEngine.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/47/">Nov 25 - Dec 01, 2019</a></h2><h3><p>Audio</p>
 </h3>
@@ -1445,7 +1530,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/44/">Nov 04 - Nov 10, 2019</a></h2><h3><p>Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/GottaGetSwifty/CodableWrappers" rel="noopener noreferrer">CodableWrappers (⭐710)</a> - A Collection of PropertyWrappers to make custom Serialization of Codable Types easy.</li>
+<li><a href="https://github.com/GottaGetSwifty/CodableWrappers" rel="noopener noreferrer">CodableWrappers (⭐708)</a> - A Collection of PropertyWrappers to make custom Serialization of Codable Types easy.</li>
 </ul>
 <h3><p>Mock / Barcode</p>
 </h3>
@@ -1465,7 +1550,7 @@
 <h3><p>Dependency Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Liftric/DIKit" rel="noopener noreferrer">DIKit (⭐103)</a> - Dependency Injection Framework for Swift, inspired by KOIN.</li>
+<li><a href="https://github.com/Liftric/DIKit" rel="noopener noreferrer">DIKit</a> - Dependency Injection Framework for Swift, inspired by KOIN.</li>
 </ul>
 <h3><p>Quality / Barcode</p>
 </h3>
@@ -1484,7 +1569,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/39/">Sep 30 - Oct 06, 2019</a></h2><h3><p>Tab / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/YuigaWada/PolioPager" rel="noopener noreferrer">PolioPager (⭐179)</a> - A flexible TabBarController with search tab like SNKRS.</li>
+<li><a href="https://github.com/YuigaWada/PolioPager" rel="noopener noreferrer">PolioPager (⭐178)</a> - A flexible TabBarController with search tab like SNKRS.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/37/">Sep 16 - Sep 22, 2019</a></h2><h3><p>Key Value Store</p>
 </h3>
@@ -1523,7 +1608,7 @@
 <h3><p>Alert / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/k-lpmg/AwaitToast" rel="noopener noreferrer">AwaitToast (⭐148)</a> - 🍞 An async waiting toast with basic toast. Inspired by facebook posting toast.</li>
+<li><a href="https://github.com/k-lpmg/AwaitToast" rel="noopener noreferrer">AwaitToast</a> - 🍞 An async waiting toast with basic toast. Inspired by facebook posting toast.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/34/">Aug 26 - Sep 01, 2019</a></h2><h3><p>Command Line</p>
 </h3>
@@ -1533,17 +1618,17 @@
 <h3><p>JSON</p>
 </h3>
 <ul>
-<li><a href="https://github.com/insanoid/SwiftyJSONAccelerator" rel="noopener noreferrer">SwiftyJSONAccelerator (⭐949)</a> - macOS app to generate Swift 5 models for JSON (with Codeable).</li>
+<li><a href="https://github.com/insanoid/SwiftyJSONAccelerator" rel="noopener noreferrer">SwiftyJSONAccelerator (⭐948)</a> - macOS app to generate Swift 5 models for JSON (with Codeable).</li>
 </ul>
 <h3><p>Keyboard / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/chriszielinski/Ribbon" rel="noopener noreferrer">Ribbon (⭐300)</a> - 🎀 A simple cross-platform toolbar/custom input accessory view library for iOS &amp; macOS.</li>
+<li><a href="https://github.com/chriszielinski/Ribbon" rel="noopener noreferrer">Ribbon (⭐301)</a> - 🎀 A simple cross-platform toolbar/custom input accessory view library for iOS &amp; macOS.</li>
 </ul>
 <h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yonat/MultiSelectSegmentedControl" rel="noopener noreferrer">MultiSelectSegmentedControl (⭐303)</a> - UISegmentedControl remake that supports selecting multiple segments, vertical stacking, combining text and images.</li>
+<li><a href="https://github.com/yonat/MultiSelectSegmentedControl" rel="noopener noreferrer">MultiSelectSegmentedControl (⭐301)</a> - UISegmentedControl remake that supports selecting multiple segments, vertical stacking, combining text and images.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/29/">Jul 22 - Jul 28, 2019</a></h2><h3><p>Style Guides</p>
 </h3>
@@ -1563,12 +1648,12 @@
 <h3><p>Events</p>
 </h3>
 <ul>
-<li><a href="https://github.com/noppefoxwolf/Combinative" rel="noopener noreferrer">Combinative (⭐107)</a> - UI event handling using Apple's combine framework.</li>
+<li><a href="https://github.com/noppefoxwolf/Combinative" rel="noopener noreferrer">Combinative (⭐106)</a> - UI event handling using Apple's combine framework.</li>
 </ul>
 <h3><p>Text / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rosberry/texstyle" rel="noopener noreferrer">Texstyle (⭐80)</a> - Texstyle allows you to format attributed strings easily.</li>
+<li><a href="https://github.com/rosberry/texstyle" rel="noopener noreferrer">Texstyle (⭐81)</a> - Texstyle allows you to format attributed strings easily.</li>
 </ul>
 <h3><p>UI / Barcode</p>
 </h3>
@@ -1598,7 +1683,7 @@
 <h3><p>TOML</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dduan/TOMLDecoder" rel="noopener noreferrer">TOMLDecoder (⭐102)</a> - Latest TOML standard, decoded.</li>
+<li><a href="https://github.com/dduan/TOMLDecoder" rel="noopener noreferrer">TOMLDecoder (⭐104)</a> - Latest TOML standard, decoded.</li>
 </ul>
 <h3><p>Files</p>
 </h3>
@@ -1628,7 +1713,7 @@
 <h3><p>Validation / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/SvenTiigi/ValidatedPropertyKit" rel="noopener noreferrer">ValidatedPropertyKit (⭐982)</a> - Easily validate your Properties with Property Wrappers 👮.</li>
+<li><a href="https://github.com/SvenTiigi/ValidatedPropertyKit" rel="noopener noreferrer">ValidatedPropertyKit (⭐984)</a> - Easily validate your Properties with Property Wrappers 👮.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/26/">Jul 01 - Jul 07, 2019</a></h2><h3><p>Network / Barcode</p>
 </h3>
@@ -1638,7 +1723,7 @@
 <h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yonat/MultiSlider" rel="noopener noreferrer">MultiSlider (⭐537)</a> - UISlider clone with multiple thumbs and values, range highlight, optional snap intervals, optional value labels, either vertical or horizontal.</li>
+<li><a href="https://github.com/yonat/MultiSlider" rel="noopener noreferrer">MultiSlider (⭐539)</a> - UISlider clone with multiple thumbs and values, range highlight, optional snap intervals, optional value labels, either vertical or horizontal.</li>
 </ul>
 <h3><p>Button / Barcode</p>
 </h3>
@@ -1658,7 +1743,7 @@
 <h3><p>Text / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/k-lpmg/Tagging" rel="noopener noreferrer">Tagging (⭐127)</a> - A TextView that provides easy to use tagging feature for Mention or Hashtag.</li>
+<li><a href="https://github.com/k-lpmg/Tagging" rel="noopener noreferrer">Tagging (⭐126)</a> - A TextView that provides easy to use tagging feature for Mention or Hashtag.</li>
 </ul>
 <h3><p>Transition / Barcode</p>
 </h3>
@@ -1677,7 +1762,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/22/">Jun 03 - Jun 09, 2019</a></h2><h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jogendra/BadgeHub" rel="noopener noreferrer">BadgeHub (⭐803)</a> - Make any UIView a full fledged animated notification center. It is a way to quickly add a notification badge icon to a UIView.</li>
+<li><a href="https://github.com/jogendra/BadgeHub" rel="noopener noreferrer">BadgeHub (⭐802)</a> - Make any UIView a full fledged animated notification center. It is a way to quickly add a notification badge icon to a UIView.</li>
 </ul>
 
 <ul>
@@ -1691,7 +1776,7 @@
 <h3><p>Game Engine</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cocoatoucher/Glide" rel="noopener noreferrer">glide engine (⭐507)</a> - SpriteKit and GameplayKit based engine for making 2d games, with practical examples and tutorials.</li>
+<li><a href="https://github.com/cocoatoucher/Glide" rel="noopener noreferrer">glide engine (⭐506)</a> - SpriteKit and GameplayKit based engine for making 2d games, with practical examples and tutorials.</li>
 </ul>
 <h3><p>Validation / Barcode</p>
 </h3>
@@ -1736,7 +1821,7 @@
 <h3><p>Key Value Store</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vpeschenkov/SecureDefaults" rel="noopener noreferrer">SecureDefaults (⭐230)</a> - A lightweight wrapper over UserDefaults &amp; NSUserDefaults with an extra AES-256 encryption layer.</li>
+<li><a href="https://github.com/vpeschenkov/SecureDefaults" rel="noopener noreferrer">SecureDefaults (⭐231)</a> - A lightweight wrapper over UserDefaults &amp; NSUserDefaults with an extra AES-256 encryption layer.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
@@ -1775,7 +1860,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/10/">Mar 11 - Mar 17, 2019</a></h2><h3><p>Third party Guides</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zagahr/Conferences.digital" rel="noopener noreferrer">Conferences.digital (⭐761)</a> - Watch conference videos in a native macOS app.</li>
+<li><a href="https://github.com/zagahr/Conferences.digital" rel="noopener noreferrer">Conferences.digital (⭐760)</a> - Watch conference videos in a native macOS app.</li>
 </ul>
 <h3><p>Cache</p>
 </h3>
@@ -1805,7 +1890,7 @@
 <h3><p>Tab / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/softhausHQ/CircleBar" rel="noopener noreferrer">CircleBar (⭐871)</a> - A fun, easy-to-use tab bar navigation controller for iOS.</li>
+<li><a href="https://github.com/softhausHQ/CircleBar" rel="noopener noreferrer">CircleBar (⭐869)</a> - A fun, easy-to-use tab bar navigation controller for iOS.</li>
 </ul>
 <h3><p>UITableView / Barcode</p>
 </h3>
@@ -1815,12 +1900,12 @@
 <h2><a href="https://www.trackawesomelist.com/2019/8/">Feb 25 - Mar 03, 2019</a></h2><h3><p>API</p>
 </h3>
 <ul>
-<li><a href="https://github.com/TheM4hd1/SwiftyInsta" rel="noopener noreferrer">SwiftyInsta (⭐229)</a> - Private and Tokenless Instagram RESTful API.</li>
+<li><a href="https://github.com/TheM4hd1/SwiftyInsta" rel="noopener noreferrer">SwiftyInsta (⭐230)</a> - Private and Tokenless Instagram RESTful API.</li>
 </ul>
 <h3><p>Auto Layout / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alexliubj/EZAnchor" rel="noopener noreferrer">EZLayout (⭐25)</a> - An easier and faster way to code Autolayout.</li>
+<li><a href="https://github.com/alexliubj/EZAnchor" rel="noopener noreferrer">EZLayout</a> - An easier and faster way to code Autolayout.</li>
 </ul>
 <h3><p>Form / Barcode</p>
 </h3>
@@ -1835,12 +1920,12 @@
 <h2><a href="https://www.trackawesomelist.com/2019/7/">Feb 18 - Feb 24, 2019</a></h2><h3><p>Colors</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Gradients/Gradients" rel="noopener noreferrer">Gradients (⭐810)</a> - A curated collection of splendid 180+ gradients.</li>
+<li><a href="https://github.com/Gradients/Gradients" rel="noopener noreferrer">Gradients (⭐809)</a> - A curated collection of splendid 180+ gradients.</li>
 </ul>
 <h3><p>Camera</p>
 </h3>
 <ul>
-<li><a href="https://github.com/CameraKit/camerakit-ios" rel="noopener noreferrer">CameraKit-iOS (⭐734)</a> - Massively increase camera performance and ease of use in your next project.</li>
+<li><a href="https://github.com/CameraKit/camerakit-ios" rel="noopener noreferrer">CameraKit-iOS (⭐735)</a> - Massively increase camera performance and ease of use in your next project.</li>
 </ul>
 <h3><p>Images / Barcode</p>
 </h3>
@@ -1850,12 +1935,12 @@
 <h3><p>UITableView / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/DenTelezhkin/DTTableViewManager" rel="noopener noreferrer">DTTableViewManager (⭐454)</a> - Protocol-oriented UITableView management, powered by generics and associated types.</li>
+<li><a href="https://github.com/DenTelezhkin/DTTableViewManager" rel="noopener noreferrer">DTTableViewManager (⭐451)</a> - Protocol-oriented UITableView management, powered by generics and associated types.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/5/">Feb 04 - Feb 10, 2019</a></h2><h3><p>Calendar / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mmick66/CalendarView" rel="noopener noreferrer">CalendarView (⭐623)</a> - Calendar Component, It features both vertical and horizontal layout (and scrolling) and the display of native calendar events.</li>
+<li><a href="https://github.com/mmick66/CalendarView" rel="noopener noreferrer">CalendarView (⭐625)</a> - Calendar Component, It features both vertical and horizontal layout (and scrolling) and the display of native calendar events.</li>
 </ul>
 <h3><p>UITableView / Barcode</p>
 </h3>
@@ -1875,7 +1960,7 @@
 <h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lilyball/swift-tsao" rel="noopener noreferrer">TSAO (⭐142)</a> - Type-Safe Associated Objects.</li>
+<li><a href="https://github.com/lilyball/swift-tsao" rel="noopener noreferrer">TSAO (⭐138)</a> - Type-Safe Associated Objects.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/3/">Jan 21 - Jan 27, 2019</a></h2><h3><p>Third party Guides</p>
 </h3>
@@ -1919,7 +2004,7 @@
 <h3><p>Dependency Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/devxoul/Pure" rel="noopener noreferrer">Pure (⭐382)</a> - A way to do a dependency injection without a DI container.</li>
+<li><a href="https://github.com/devxoul/Pure" rel="noopener noreferrer">Pure</a> - A way to do a dependency injection without a DI container.</li>
 </ul>
 <h3><p>Events</p>
 </h3>
@@ -1990,12 +2075,12 @@
 <h3><p>Video / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sunlubo/SwiftFFmpeg" rel="noopener noreferrer">SwiftFFmpeg (⭐641)</a> - A wrapper for the FFmpeg C API.</li>
+<li><a href="https://github.com/sunlubo/SwiftFFmpeg" rel="noopener noreferrer">SwiftFFmpeg (⭐644)</a> - A wrapper for the FFmpeg C API.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/52/">Dec 24 - Dec 30, 2018</a></h2><h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gontovnik/HidesNavigationBarWhenPushed" rel="noopener noreferrer">HidesNavigationBarWhenPushed (⭐54)</a> - A library, which adds the ability to hide navigation bar when view controller is pushed via hidesNavigationBarWhenPushed flag.</li>
+<li><a href="https://github.com/gontovnik/HidesNavigationBarWhenPushed" rel="noopener noreferrer">HidesNavigationBarWhenPushed</a> - A library, which adds the ability to hide navigation bar when view controller is pushed via hidesNavigationBarWhenPushed flag.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/51/">Dec 17 - Dec 23, 2018</a></h2><h3><p>Utility / Barcode</p>
 </h3>
@@ -2074,7 +2159,7 @@
 <h3><p>Images / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bakhtiyork/Rough" rel="noopener noreferrer">Rough (⭐105)</a> - Rough lets you draw in a sketchy, hand-drawn-like, style.</li>
+<li><a href="https://github.com/bakhtiyork/Rough" rel="noopener noreferrer">Rough (⭐106)</a> - Rough lets you draw in a sketchy, hand-drawn-like, style.</li>
 </ul>
 <h3><p>Testing / Barcode</p>
 </h3>
@@ -2084,7 +2169,7 @@
 <h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sindresorhus/CircularProgress" rel="noopener noreferrer">CircularProgress (⭐578)</a> - Circular progress indicator for your macOS app.</li>
+<li><a href="https://github.com/sindresorhus/CircularProgress" rel="noopener noreferrer">CircularProgress (⭐576)</a> - Circular progress indicator for your macOS app.</li>
 </ul>
 
 <ul>
@@ -2093,7 +2178,7 @@
 <h3><p>Walkthrough / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NikolaKirev/OnboardKit" rel="noopener noreferrer">OnboardKit (⭐550)</a> - Customisable user onboarding for your iOS app.</li>
+<li><a href="https://github.com/NikolaKirev/OnboardKit" rel="noopener noreferrer">OnboardKit (⭐549)</a> - Customisable user onboarding for your iOS app.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/42/">Oct 15 - Oct 21, 2018</a></h2><h3><p>Authentication</p>
 </h3>
@@ -2108,7 +2193,7 @@
 <h3><p>Video / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/noppefoxwolf/Kitsunebi" rel="noopener noreferrer">Kitsunebi (⭐257)</a> - Overlay alpha channel video animation player view using OpenGLES.</li>
+<li><a href="https://github.com/noppefoxwolf/Kitsunebi" rel="noopener noreferrer">Kitsunebi</a> - Overlay alpha channel video animation player view using OpenGLES.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/41/">Oct 08 - Oct 14, 2018</a></h2><h3><p>Patterns</p>
 </h3>
@@ -2118,7 +2203,7 @@
 <h3><p>Cryptography / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/airsidemobile/JOSESwift" rel="noopener noreferrer">JOSESwift (⭐223)</a> - A framework for the JOSE standards JWS, JWE, and JWK.</li>
+<li><a href="https://github.com/airsidemobile/JOSESwift" rel="noopener noreferrer">JOSESwift (⭐224)</a> - A framework for the JOSE standards JWS, JWE, and JWK.</li>
 </ul>
 <h3><p>Menu / Barcode</p>
 </h3>
@@ -2133,12 +2218,12 @@
 <h2><a href="https://www.trackawesomelist.com/2018/40/">Oct 01 - Oct 07, 2018</a></h2><h3><p>Audio</p>
 </h3>
 <ul>
-<li><a href="https://github.com/algolia/voice-overlay-ios" rel="noopener noreferrer">voice-overlay-ios (⭐556)</a> - An overlay that gets your user’s voice permission and input as text in a customizable UI.</li>
+<li><a href="https://github.com/algolia/voice-overlay-ios" rel="noopener noreferrer">voice-overlay-ios (⭐555)</a> - An overlay that gets your user’s voice permission and input as text in a customizable UI.</li>
 </ul>
 <h3><p>Auto Layout / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cruisediary/DeviceLayout" rel="noopener noreferrer">DeviceLayout (⭐164)</a> - AutoLayout can be set differently for each device.</li>
+<li><a href="https://github.com/cruisediary/DeviceLayout" rel="noopener noreferrer">DeviceLayout (⭐163)</a> - AutoLayout can be set differently for each device.</li>
 </ul>
 <h3><p>Alert / Barcode</p>
 </h3>
@@ -2158,7 +2243,7 @@
 <h3><p>Pagination / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/shima11/FlexiblePageControl" rel="noopener noreferrer">FlexiblePageControl (⭐802)</a> - A flexible UIPageControl like Instagram.</li>
+<li><a href="https://github.com/shima11/FlexiblePageControl" rel="noopener noreferrer">FlexiblePageControl (⭐800)</a> - A flexible UIPageControl like Instagram.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/38/">Sep 17 - Sep 23, 2018</a></h2><h3><p>Misc</p>
 </h3>
@@ -2172,22 +2257,22 @@
 <h3><p>Video / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/HHK1/PryntTrimmerView" rel="noopener noreferrer">PryntTrimmerView (⭐907)</a> - Trim and crop videos.</li>
+<li><a href="https://github.com/HHK1/PryntTrimmerView" rel="noopener noreferrer">PryntTrimmerView (⭐908)</a> - Trim and crop videos.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/36/">Sep 03 - Sep 09, 2018</a></h2><h3><p>Other Awesome Lists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jogendra/example-ios-apps" rel="noopener noreferrer">example-ios-apps (⭐1.3k)</a> - An amazing list for people who are beginners and learning ios development and for ios developers who need any example app or feature.</li>
+<li><a href="https://github.com/jogendra/example-ios-apps" rel="noopener noreferrer">example-ios-apps (⭐1.4k)</a> - An amazing list for people who are beginners and learning ios development and for ios developers who need any example app or feature.</li>
 </ul>
 <h3><p>Tab / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/eggswift/ESTabBarController" rel="noopener noreferrer">ESTabBarController (⭐5.3k)</a> - A highly customizable TabBarController component, which is inherited from UITabBarController.</li>
+<li><a href="https://github.com/eggswift/ESTabBarController" rel="noopener noreferrer">ESTabBarController (⭐5.2k)</a> - A highly customizable TabBarController component, which is inherited from UITabBarController.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/34/">Aug 20 - Aug 26, 2018</a></h2><h3><p>Images / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/altayer-digital/ATGMediaBrowser" rel="noopener noreferrer">ATGMediaBrowser (⭐216)</a> - Image slide-show viewer with multiple predefined transition styles, and with ability to create new transitions with ease.</li>
+<li><a href="https://github.com/altayer-digital/ATGMediaBrowser" rel="noopener noreferrer">ATGMediaBrowser (⭐215)</a> - Image slide-show viewer with multiple predefined transition styles, and with ability to create new transitions with ease.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/33/">Aug 13 - Aug 19, 2018</a></h2><h3><p>Third party Guides</p>
 </h3>
@@ -2212,17 +2297,17 @@
 <h3><p>Colors</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dqhieu/UIGradient" rel="noopener noreferrer">UIGradient (⭐273)</a> - A simple and powerful library for using gradient layer, image, color.</li>
+<li><a href="https://github.com/dqhieu/UIGradient" rel="noopener noreferrer">UIGradient (⭐271)</a> - A simple and powerful library for using gradient layer, image, color.</li>
 </ul>
 <h3><p>Command Line</p>
 </h3>
 <ul>
-<li><a href="https://github.com/andybest/linenoise-swift" rel="noopener noreferrer">LineNoise (⭐153)</a> 🐧 - A zero-dependency replacement for readline.</li>
+<li><a href="https://github.com/andybest/linenoise-swift" rel="noopener noreferrer">LineNoise (⭐154)</a> 🐧 - A zero-dependency replacement for readline.</li>
 </ul>
 <h3><p>JSON</p>
 </h3>
 <ul>
-<li><a href="https://github.com/evermeer/EVReflection" rel="noopener noreferrer">EVReflection (⭐961)</a> - Reflection based JSON encoding and decoding. Including support for NSDictionary, NSCoding, Printable, Hashable and Equatable.</li>
+<li><a href="https://github.com/evermeer/EVReflection" rel="noopener noreferrer">EVReflection (⭐959)</a> - Reflection based JSON encoding and decoding. Including support for NSDictionary, NSCoding, Printable, Hashable and Equatable.</li>
 </ul>
 <h3><p>Key Value Store</p>
 </h3>
@@ -2325,7 +2410,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/29/">Jul 16 - Jul 22, 2018</a></h2><h3><p>ORM</p>
 </h3>
 <ul>
-<li><a href="https://github.com/PerfectlySoft/Perfect-CRUD" rel="noopener noreferrer">Perfect-CRUD (⭐64)</a> 🐧 - CRUD is an object-relational mapping (ORM) system using Codable protocol.</li>
+<li><a href="https://github.com/PerfectlySoft/Perfect-CRUD" rel="noopener noreferrer">Perfect-CRUD (⭐63)</a> 🐧 - CRUD is an object-relational mapping (ORM) system using Codable protocol.</li>
 </ul>
 <h3><p>Network / Barcode</p>
 </h3>
@@ -2360,7 +2445,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/26/">Jun 25 - Jul 01, 2018</a></h2><h3><p>Bots</p>
 </h3>
 <ul>
-<li><a href="https://github.com/givip/Telegrammer" rel="noopener noreferrer">Telegrammer (⭐297)</a> 🐧 - Open-source framework for Telegram Bots developers. It was built on top of Apple/SwiftNIO which help to demonstrate excellent performance.</li>
+<li><a href="https://github.com/givip/Telegrammer" rel="noopener noreferrer">Telegrammer (⭐299)</a> 🐧 - Open-source framework for Telegram Bots developers. It was built on top of Apple/SwiftNIO which help to demonstrate excellent performance.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/25/">Jun 18 - Jun 24, 2018</a></h2><h3><p>Chat</p>
 </h3>
@@ -2419,7 +2504,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/marty-suzuki/TheAnimation" rel="noopener noreferrer">TheAnimation (⭐222)</a> - Type-safe CAAnimation wrapper. It makes preventing to set wrong type values.</li>
+<li><a href="https://github.com/marty-suzuki/TheAnimation" rel="noopener noreferrer">TheAnimation (⭐221)</a> - Type-safe CAAnimation wrapper. It makes preventing to set wrong type values.</li>
 </ul>
 <h3><p>Date</p>
 </h3>
@@ -2458,7 +2543,7 @@
 <h3><p>Logging / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tonystone/tracelog" rel="noopener noreferrer">TraceLog (⭐56)</a> 🐧 - Dead Simple: logging the way it's meant to be!  Runs on iOS, macOS, and Linux.</li>
+<li><a href="https://github.com/tonystone/tracelog" rel="noopener noreferrer">TraceLog (⭐57)</a> 🐧 - Dead Simple: logging the way it's meant to be!  Runs on iOS, macOS, and Linux.</li>
 </ul>
 <h3><p>Webserver / Barcode</p>
 </h3>
@@ -2468,12 +2553,12 @@
 <h3><p>Scripting / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/artemnovichkov/Swift-For-Scripting" rel="noopener noreferrer">Swift for Scripting (⭐312)</a> - A hand-curated collection of useful and informative scripting material.</li>
+<li><a href="https://github.com/artemnovichkov/Swift-For-Scripting" rel="noopener noreferrer">Swift for Scripting (⭐314)</a> - A hand-curated collection of useful and informative scripting material.</li>
 </ul>
 <h3><p>Text / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/JKalash/Croc" rel="noopener noreferrer">Croc (⭐130)</a> - A lightweight Emoji parsing and querying library.</li>
+<li><a href="https://github.com/JKalash/Croc" rel="noopener noreferrer">Croc</a> - A lightweight Emoji parsing and querying library.</li>
 </ul>
 <h3><p>Template / Barcode</p>
 </h3>
@@ -2558,12 +2643,12 @@
 <h3><p>Quality / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/IBDecodable/IBLinter" rel="noopener noreferrer">IBLinter (⭐941)</a> - A linter tool for Interface Builder.</li>
+<li><a href="https://github.com/IBDecodable/IBLinter" rel="noopener noreferrer">IBLinter (⭐942)</a> - A linter tool for Interface Builder.</li>
 </ul>
 <h3><p>Text / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bmoliveira/MarkdownKit" rel="noopener noreferrer">MarkdownKit (⭐899)</a> - A simple and customizable Markdown Parser.</li>
+<li><a href="https://github.com/bmoliveira/MarkdownKit" rel="noopener noreferrer">MarkdownKit (⭐900)</a> - A simple and customizable Markdown Parser.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/12/">Mar 19 - Mar 25, 2018</a></h2><h3><p>Events</p>
 </h3>
@@ -2583,7 +2668,7 @@
 <h3><p>Math / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alejandro-isaza/Upsurge" rel="noopener noreferrer">Upsurge (⭐185)</a> - Simple and fast matrix and vector math.</li>
+<li><a href="https://github.com/alejandro-isaza/Upsurge" rel="noopener noreferrer">Upsurge (⭐186)</a> - Simple and fast matrix and vector math.</li>
 </ul>
 <h3><p>UICollectionView / Barcode</p>
 </h3>
@@ -2593,7 +2678,7 @@
 <h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dreymonde/Delegated" rel="noopener noreferrer">Delegated (⭐697)</a> - Closure-based delegation without memory leaks.</li>
+<li><a href="https://github.com/dreymonde/Delegated" rel="noopener noreferrer">Delegated (⭐696)</a> - Closure-based delegation without memory leaks.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/10/">Mar 05 - Mar 11, 2018</a></h2><h3><p>Pagination / Barcode</p>
 </h3>
@@ -2638,7 +2723,7 @@
 <h3><p>Video / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NextLevel/NextLevelSessionExporter" rel="noopener noreferrer">NextLevelSessionExporter (⭐274)</a> - Export and transcode media.</li>
+<li><a href="https://github.com/NextLevel/NextLevelSessionExporter" rel="noopener noreferrer">NextLevelSessionExporter (⭐275)</a> - Export and transcode media.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/4/">Jan 22 - Jan 28, 2018</a></h2><h3><p>App Store</p>
 </h3>
@@ -2673,7 +2758,7 @@
 <h3><p>Gesture</p>
 </h3>
 <ul>
-<li><a href="https://github.com/KaneCheshire/ShowTime" rel="noopener noreferrer">ShowTime (⭐559)</a> - Show off your iOS taps and gestures for demos and videos with just one line of code.</li>
+<li><a href="https://github.com/KaneCheshire/ShowTime" rel="noopener noreferrer">ShowTime (⭐563)</a> - Show off your iOS taps and gestures for demos and videos with just one line of code.</li>
 </ul>
 <h3><p>UICollectionView / Barcode</p>
 </h3>
@@ -2683,7 +2768,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/2/">Jan 08 - Jan 14, 2018</a></h2><h3><p>2D</p>
 </h3>
 <ul>
-<li><a href="https://github.com/JohnSundell/ImagineEngine" rel="noopener noreferrer">ImagineEngine (⭐1.8k)</a> - Blazing fasst 2D gaming engine.</li>
+<li><a href="https://github.com/JohnSundell/ImagineEngine" rel="noopener noreferrer">ImagineEngine</a> - Blazing fasst 2D gaming engine.</li>
 </ul>
 <h3><p>UI / Barcode</p>
 </h3>
@@ -2693,7 +2778,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/1/">Jan 01 - Jan 07, 2018</a></h2><h3><p>Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yonaskolb/Beak" rel="noopener noreferrer">Beak (⭐590)</a> - A command line interface for your Swift scripts.</li>
+<li><a href="https://github.com/yonaskolb/Beak" rel="noopener noreferrer">Beak (⭐591)</a> - A command line interface for your Swift scripts.</li>
 </ul>
 <h3><p>Animation</p>
 </h3>
@@ -2761,7 +2846,7 @@
 <h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kizitonwose/CountryPickerView" rel="noopener noreferrer">CountryPickerView (⭐514)</a> - A simple, customizable view for efficiently collecting country information in iOS apps.</li>
+<li><a href="https://github.com/kizitonwose/CountryPickerView" rel="noopener noreferrer">CountryPickerView (⭐512)</a> - A simple, customizable view for efficiently collecting country information in iOS apps.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/50/">Dec 11 - Dec 17, 2017</a></h2><h3><p>Other Data</p>
 </h3>
@@ -2771,7 +2856,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/49/">Dec 04 - Dec 10, 2017</a></h2><h3><p>Images / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vpeschenkov/LetterAvatarKit" rel="noopener noreferrer">LetterAvatarKit (⭐221)</a> - A UIImage extension that generates letter-based avatars.</li>
+<li><a href="https://github.com/vpeschenkov/LetterAvatarKit" rel="noopener noreferrer">LetterAvatarKit (⭐220)</a> - A UIImage extension that generates letter-based avatars.</li>
 </ul>
 <h3><p>Localization / Barcode</p>
 </h3>
@@ -2791,7 +2876,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/47/">Nov 20 - Nov 26, 2017</a></h2><h3><p>Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yonaskolb/XcodeGen" rel="noopener noreferrer">XcodeGen (⭐8.3k)</a> - Tool for generating Xcode projects from a YAML file and your project directory.</li>
+<li><a href="https://github.com/yonaskolb/XcodeGen" rel="noopener noreferrer">XcodeGen (⭐8.4k)</a> - Tool for generating Xcode projects from a YAML file and your project directory.</li>
 </ul>
 <h3><p>Events</p>
 </h3>
@@ -2806,7 +2891,7 @@
 <h3><p>XML</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lobodart/CheatyXML" rel="noopener noreferrer">CheatyXML (⭐24)</a> - A powerful framework designed to manage XML easily.</li>
+<li><a href="https://github.com/lobodart/CheatyXML" rel="noopener noreferrer">CheatyXML</a> - A powerful framework designed to manage XML easily.</li>
 </ul>
 <h3><p>Network / Barcode</p>
 </h3>
@@ -2835,12 +2920,12 @@
 <h3><p>UICollectionView / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/filletofish/CardsLayout" rel="noopener noreferrer">CardsLayout (⭐864)</a> - Nice card-designed custom CollectionView layout.</li>
+<li><a href="https://github.com/filletofish/CardsLayout" rel="noopener noreferrer">CardsLayout (⭐863)</a> - Nice card-designed custom CollectionView layout.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/45/">Nov 06 - Nov 12, 2017</a></h2><h3><p>Images / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alexhillc/AXPhotoViewer" rel="noopener noreferrer">AXPhotoViewer (⭐654)</a> - An iPhone/iPad photo gallery viewer, useful for viewing a large (or small!) number of photos.</li>
+<li><a href="https://github.com/alexhillc/AXPhotoViewer" rel="noopener noreferrer">AXPhotoViewer (⭐655)</a> - An iPhone/iPad photo gallery viewer, useful for viewing a large (or small!) number of photos.</li>
 </ul>
 <h3><p>UI / Barcode</p>
 </h3>
@@ -2879,11 +2964,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Kirillzzy/KALoader" rel="noopener noreferrer">KALoader (⭐108)</a> - Beautiful animated placeholders for showing loading of data.</li>
+<li><a href="https://github.com/Kirillzzy/KALoader" rel="noopener noreferrer">KALoader (⭐107)</a> - Beautiful animated placeholders for showing loading of data.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/younatics/MediaBrowser" rel="noopener noreferrer">MediaBrowser (⭐647)</a> - Simple iOS photo and video browser with optional grid view, captions and selections.</li>
+<li><a href="https://github.com/younatics/MediaBrowser" rel="noopener noreferrer">MediaBrowser (⭐646)</a> - Simple iOS photo and video browser with optional grid view, captions and selections.</li>
 </ul>
 <h3><p>Payment / Barcode</p>
 </h3>
@@ -2906,7 +2991,7 @@
 <h3><p>UITableView / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/KyoheiG3/GridView" rel="noopener noreferrer">GridView (⭐855)</a> - Can be customized as a time table, spreadsheet, paging and more.</li>
+<li><a href="https://github.com/KyoheiG3/GridView" rel="noopener noreferrer">GridView</a> - Can be customized as a time table, spreadsheet, paging and more.</li>
 </ul>
 
 <ul>
@@ -2959,7 +3044,7 @@
 <h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vhesener/Closures" rel="noopener noreferrer">Closures (⭐1.8k)</a> - Swifty closures for UIKit and Foundation.</li>
+<li><a href="https://github.com/vhesener/Closures" rel="noopener noreferrer">Closures (⭐1.7k)</a> - Swifty closures for UIKit and Foundation.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/40/">Oct 02 - Oct 08, 2017</a></h2><h3><p>Augmented Reality</p>
 </h3>
@@ -3004,7 +3089,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/35/">Aug 28 - Sep 03, 2017</a></h2><h3><p>Authentication</p>
 </h3>
 <ul>
-<li><a href="https://github.com/spotify/SpotifyLogin" rel="noopener noreferrer">SpotifyLogin (⭐351)</a> - Authenticate with the Spotify API.</li>
+<li><a href="https://github.com/spotify/SpotifyLogin" rel="noopener noreferrer">SpotifyLogin (⭐352)</a> - Authenticate with the Spotify API.</li>
 </ul>
 <h3><p>Video / Barcode</p>
 </h3>
@@ -3019,7 +3104,7 @@
 <h3><p>Events</p>
 </h3>
 <ul>
-<li><a href="https://github.com/roberthein/Observable" rel="noopener noreferrer">Observable (⭐378)</a> - The easiest way to observe values.</li>
+<li><a href="https://github.com/roberthein/Observable" rel="noopener noreferrer">Observable (⭐379)</a> - The easiest way to observe values.</li>
 </ul>
 <h3><p>Images / Barcode</p>
 </h3>
@@ -3033,7 +3118,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/HamzaGhazouani/HGPlaceholders" rel="noopener noreferrer">HGPlaceholders (⭐2.3k)</a> - Nice library to show placeholders and Empty States for any UITableView/UICollectionView in your project.</li>
+<li><a href="https://github.com/HamzaGhazouani/HGPlaceholders" rel="noopener noreferrer">HGPlaceholders (⭐2.2k)</a> - Nice library to show placeholders and Empty States for any UITableView/UICollectionView in your project.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/33/">Aug 14 - Aug 20, 2017</a></h2><h3><p>Colors</p>
 </h3>
@@ -3048,7 +3133,7 @@
 <h3><p>Auto Layout / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tribalworldwidelondon/CassowarySwift" rel="noopener noreferrer">Cassowary (⭐112)</a> - A linear constraint solving library using the same algorithm as AutoLayout.</li>
+<li><a href="https://github.com/tribalworldwidelondon/CassowarySwift" rel="noopener noreferrer">Cassowary (⭐111)</a> - A linear constraint solving library using the same algorithm as AutoLayout.</li>
 </ul>
 <h3><p>Menu / Barcode</p>
 </h3>
@@ -3093,7 +3178,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/30/">Jul 24 - Jul 30, 2017</a></h2><h3><p>Animation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jindulys/ChainPageCollectionView" rel="noopener noreferrer">ChainPageCollectionView (⭐788)</a> - Fancy two-level collection view layout and animation.</li>
+<li><a href="https://github.com/jindulys/ChainPageCollectionView" rel="noopener noreferrer">ChainPageCollectionView (⭐789)</a> - Fancy two-level collection view layout and animation.</li>
 </ul>
 
 <ul>
@@ -3186,7 +3271,7 @@
 <h3><p>Text / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/M2Mobi/Marky-Mark" rel="noopener noreferrer">MarkyMark (⭐316)</a> - Converts Markdown into native views or attributed strings.</li>
+<li><a href="https://github.com/M2Mobi/Marky-Mark" rel="noopener noreferrer">MarkyMark</a> - Converts Markdown into native views or attributed strings.</li>
 </ul>
 <h3><p>UICollectionView / Barcode</p>
 </h3>
@@ -3196,7 +3281,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/25/">Jun 19 - Jun 25, 2017</a></h2><h3><p>Analytics</p>
 </h3>
 <ul>
-<li><a href="https://github.com/devxoul/Umbrella" rel="noopener noreferrer">Umbrella (⭐614)</a> - Analytics abstraction layer.</li>
+<li><a href="https://github.com/devxoul/Umbrella" rel="noopener noreferrer">Umbrella (⭐615)</a> - Analytics abstraction layer.</li>
 </ul>
 <h3><p>XML</p>
 </h3>
@@ -3211,7 +3296,7 @@
 <h3><p>Images / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kawoou/FlexibleImage" rel="noopener noreferrer">FlexibleImage (⭐823)</a> - A simple way to play with images.</li>
+<li><a href="https://github.com/kawoou/FlexibleImage" rel="noopener noreferrer">FlexibleImage (⭐822)</a> - A simple way to play with images.</li>
 </ul>
 <h3><p>Auto Layout / Barcode</p>
 </h3>
@@ -3246,7 +3331,7 @@
 <h3><p>Template / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/100mango/SwiftCssParser" rel="noopener noreferrer">SwiftCssParser (⭐278)</a> - Extensible CSS parser.</li>
+<li><a href="https://github.com/100mango/SwiftCssParser" rel="noopener noreferrer">SwiftCssParser (⭐277)</a> - Extensible CSS parser.</li>
 </ul>
 <h3><p>TextField / Barcode</p>
 </h3>
@@ -3270,7 +3355,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/LeonardoCardoso/SectionedSlider" rel="noopener noreferrer">SectionedSlider (⭐367)</a> - Control Center Slider.</li>
+<li><a href="https://github.com/LeonardoCardoso/SectionedSlider" rel="noopener noreferrer">SectionedSlider (⭐368)</a> - Control Center Slider.</li>
 </ul>
 <h3><p>Menu / Barcode</p>
 </h3>
@@ -3285,7 +3370,7 @@
 <h3><p>Third party Guides</p>
 </h3>
 <ul>
-<li><a href="https://github.com/allenwong/30DaysofSwift" rel="noopener noreferrer">30 Days of Swift (⭐12k)</a> - A cool 30 days tutorial.</li>
+<li><a href="https://github.com/allenwong/30DaysofSwift" rel="noopener noreferrer">30 Days of Swift (⭐11k)</a> - A cool 30 days tutorial.</li>
 </ul>
 
 <ul>
@@ -3298,12 +3383,12 @@
 <h3><p>Emacs</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swift-emacs/swift-mode" rel="noopener noreferrer">swift-mode (⭐379)</a> - Emacs support, including partial flycheck error support.</li>
+<li><a href="https://github.com/swift-emacs/swift-mode" rel="noopener noreferrer">swift-mode (⭐381)</a> - Emacs support, including partial flycheck error support.</li>
 </ul>
 <h3><p>Vim</p>
 </h3>
 <ul>
-<li><a href="https://github.com/keith/swift.vim" rel="noopener noreferrer">swift-vim (⭐823)</a> - Vim runtime files.</li>
+<li><a href="https://github.com/keith/swift.vim" rel="noopener noreferrer">swift-vim (⭐822)</a> - Vim runtime files.</li>
 </ul>
 
 <ul>
@@ -3417,7 +3502,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/vadymmarkov/Beethoven" rel="noopener noreferrer">Beethoven (⭐865)</a> - An audio processing library for pitch detection of musical signals.</li>
+<li><a href="https://github.com/vadymmarkov/Beethoven" rel="noopener noreferrer">Beethoven (⭐869)</a> - An audio processing library for pitch detection of musical signals.</li>
 </ul>
 
 <ul>
@@ -3430,7 +3515,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/evermeer/EVURLCache" rel="noopener noreferrer">EVURLCache (⭐298)</a> - If you want to make your app still works when it's offline.</li>
+<li><a href="https://github.com/evermeer/EVURLCache" rel="noopener noreferrer">EVURLCache (⭐296)</a> - If you want to make your app still works when it's offline.</li>
 </ul>
 <h3><p>Chart</p>
 </h3>
@@ -3458,7 +3543,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jakeheis/SwiftCLI" rel="noopener noreferrer">SwiftCLI (⭐876)</a> 🐧 - A powerful framework that can be used to develop a CLI.</li>
+<li><a href="https://github.com/jakeheis/SwiftCLI" rel="noopener noreferrer">SwiftCLI (⭐878)</a> 🐧 - A powerful framework that can be used to develop a CLI.</li>
 </ul>
 
 <ul>
@@ -3471,7 +3556,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/malcommac/Hydra" rel="noopener noreferrer">Hydra (⭐2.1k)</a> - Promises &amp; Await - Write better async code.</li>
+<li><a href="https://github.com/malcommac/Hydra" rel="noopener noreferrer">Hydra (⭐2k)</a> - Promises &amp; Await - Write better async code.</li>
 </ul>
 
 <ul>
@@ -3489,7 +3574,7 @@
 <h3><p>JSON</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tristanhimmelman/AlamofireObjectMapper" rel="noopener noreferrer">AlamofireObjectMapper (⭐2.7k)</a> - An Alamofire extension which converts JSON response data into objects using ObjectMapper.</li>
+<li><a href="https://github.com/tristanhimmelman/AlamofireObjectMapper" rel="noopener noreferrer">AlamofireObjectMapper (⭐2.6k)</a> - An Alamofire extension which converts JSON response data into objects using ObjectMapper.</li>
 </ul>
 
 <ul>
@@ -3497,7 +3582,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/freshOS/Arrow" rel="noopener noreferrer">Arrow (⭐387)</a> - Elegant JSON Parsing.</li>
+<li><a href="https://github.com/freshOS/Arrow" rel="noopener noreferrer">Arrow (⭐386)</a> - Elegant JSON Parsing.</li>
 </ul>
 
 <ul>
@@ -3513,12 +3598,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/isair/JSONHelper" rel="noopener noreferrer">JSONHelper (⭐776)</a> - Lightning fast JSON deserialization and value conversion library for iOS &amp; OS X.</li>
+<li><a href="https://github.com/isair/JSONHelper" rel="noopener noreferrer">JSONHelper (⭐778)</a> - Lightning fast JSON deserialization and value conversion library for iOS &amp; OS X.</li>
 </ul>
 <h3><p>Key Value Store</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hemantasapkota/SwiftStore" rel="noopener noreferrer">SwiftStore (⭐128)</a> - A Key-Value store backed by LevelDB.</li>
+<li><a href="https://github.com/hemantasapkota/SwiftStore" rel="noopener noreferrer">SwiftStore (⭐129)</a> - A Key-Value store backed by LevelDB.</li>
 </ul>
 <h3><p>MongoDB</p>
 </h3>
@@ -3559,7 +3644,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/FahimF/SQLiteDB" rel="noopener noreferrer">SQLiteDB (⭐593)</a> - SQLite wrapper.</li>
+<li><a href="https://github.com/FahimF/SQLiteDB" rel="noopener noreferrer">SQLiteDB (⭐594)</a> - SQLite wrapper.</li>
 </ul>
 <h3><p>XML</p>
 </h3>
@@ -3595,7 +3680,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/instacart/TrueTime.swift" rel="noopener noreferrer">TrueTime.swift (⭐641)</a> - Get the true current time impervious to device clock time changes (NTP library).</li>
+<li><a href="https://github.com/instacart/TrueTime.swift" rel="noopener noreferrer">TrueTime.swift (⭐633)</a> - Get the true current time impervious to device clock time changes (NTP library).</li>
 </ul>
 <h3><p>Dependency Injection</p>
 </h3>
@@ -3623,7 +3708,7 @@
 <h3><p>Events</p>
 </h3>
 <ul>
-<li><a href="https://github.com/aleclarson/emitter-kit" rel="noopener noreferrer">EmitterKit (⭐564)</a> - Implementation of event emitters and listeners.</li>
+<li><a href="https://github.com/aleclarson/emitter-kit" rel="noopener noreferrer">EmitterKit (⭐563)</a> - Implementation of event emitters and listeners.</li>
 </ul>
 
 <ul>
@@ -3714,7 +3799,7 @@
 <h3><p>Haptic Feedback / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/efremidze/Haptica" rel="noopener noreferrer">Haptica (⭐815)</a> - Easy Haptic Feedback Generator.</li>
+<li><a href="https://github.com/efremidze/Haptica" rel="noopener noreferrer">Haptica (⭐818)</a> - Easy Haptic Feedback Generator.</li>
 </ul>
 <h3><p>iBeacon / Barcode</p>
 </h3>
@@ -3724,7 +3809,7 @@
 <h3><p>Images / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/JanGorman/Agrume" rel="noopener noreferrer">Agrume (⭐884)</a> - A lemony fresh iOS image viewer.</li>
+<li><a href="https://github.com/JanGorman/Agrume" rel="noopener noreferrer">Agrume (⭐885)</a> - A lemony fresh iOS image viewer.</li>
 </ul>
 
 <ul>
@@ -3825,7 +3910,7 @@
 <h3><p>Localization / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/PiXeL16/IBLocalizable" rel="noopener noreferrer">IBLocalizable (⭐456)</a> - Localize your views directly in Interface Builder with IBLocalizable.</li>
+<li><a href="https://github.com/PiXeL16/IBLocalizable" rel="noopener noreferrer">IBLocalizable (⭐455)</a> - Localize your views directly in Interface Builder with IBLocalizable.</li>
 </ul>
 
 <ul>
@@ -3892,7 +3977,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/snipsco/Postal" rel="noopener noreferrer">Postal (⭐657)</a> - Framework providing simple access to common email providers.</li>
+<li><a href="https://github.com/snipsco/Postal" rel="noopener noreferrer">Postal (⭐656)</a> - Framework providing simple access to common email providers.</li>
 </ul>
 
 <ul>
@@ -3961,7 +4046,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/uxmstudio/UXMPDFKit" rel="noopener noreferrer">UXMPDFKit (⭐276)</a> - A PDF viewer and annotator that can be embedded in iOS applications.</li>
+<li><a href="https://github.com/uxmstudio/UXMPDFKit" rel="noopener noreferrer">UXMPDFKit (⭐274)</a> - A PDF viewer and annotator that can be embedded in iOS applications.</li>
 </ul>
 <h3><p>Quality / Barcode</p>
 </h3>
@@ -3987,7 +4072,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jedisct1/swift-sodium" rel="noopener noreferrer">Swift-Sodium (⭐546)</a> - Interface to the Sodium library for common crypto operations for iOS and OS X.</li>
+<li><a href="https://github.com/jedisct1/swift-sodium" rel="noopener noreferrer">Swift-Sodium (⭐547)</a> - Interface to the Sodium library for common crypto operations for iOS and OS X.</li>
 </ul>
 <h3><p>Keychain / Barcode</p>
 </h3>
@@ -4001,12 +4086,12 @@
 <h3><p>System / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/beltex/SystemKit/" rel="noopener noreferrer">SystemKit (⭐359)</a> - OS X system library.</li>
+<li><a href="https://github.com/beltex/SystemKit/" rel="noopener noreferrer">SystemKit</a> - OS X system library.</li>
 </ul>
 <h3><p>Testing / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/venmo/DVR" rel="noopener noreferrer">DVR (⭐645)</a> - A simple network testing framework.</li>
+<li><a href="https://github.com/venmo/DVR" rel="noopener noreferrer">DVR (⭐646)</a> - A simple network testing framework.</li>
 </ul>
 
 <ul>
@@ -4018,7 +4103,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/kylef/Spectre" rel="noopener noreferrer">Spectre (⭐407)</a> 🐧 - BDD Framework.</li>
+<li><a href="https://github.com/kylef/Spectre" rel="noopener noreferrer">Spectre (⭐406)</a> 🐧 - BDD Framework.</li>
 </ul>
 <h3><p>Mock / Barcode</p>
 </h3>
@@ -4056,11 +4141,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/malcommac/SwiftRichString" rel="noopener noreferrer">SwiftRichString (⭐3.2k)</a> - Elegant &amp; Painless Attributed Strings Management Library.</li>
+<li><a href="https://github.com/malcommac/SwiftRichString" rel="noopener noreferrer">SwiftRichString (⭐3.1k)</a> - Elegant &amp; Painless Attributed Strings Management Library.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/VerbalExpressions/SwiftVerbalExpressions" rel="noopener noreferrer">SwiftVerbalExpressions (⭐594)</a> - VerbalExpressions porting.</li>
+<li><a href="https://github.com/VerbalExpressions/SwiftVerbalExpressions" rel="noopener noreferrer">SwiftVerbalExpressions (⭐593)</a> - VerbalExpressions porting.</li>
 </ul>
 
 <ul>
@@ -4073,7 +4158,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/yannickl/AwaitKit" rel="noopener noreferrer">AwaitKit (⭐749)</a> - The ES7 Async/Await control flow.</li>
+<li><a href="https://github.com/yannickl/AwaitKit" rel="noopener noreferrer">AwaitKit (⭐747)</a> - The ES7 Async/Await control flow.</li>
 </ul>
 
 <ul>
@@ -4102,7 +4187,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mukeshthawani/faqview" rel="noopener noreferrer">FAQView (⭐473)</a> - An easy to use FAQ view for iOS.</li>
+<li><a href="https://github.com/mukeshthawani/faqview" rel="noopener noreferrer">FAQView</a> - An easy to use FAQ view for iOS.</li>
 </ul>
 
 <ul>
@@ -4110,7 +4195,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/groue/GRMustache.swift" rel="noopener noreferrer">GRMustache (⭐625)</a> - Flexible Mustache templates.</li>
+<li><a href="https://github.com/groue/GRMustache.swift" rel="noopener noreferrer">GRMustache</a> - Flexible Mustache templates.</li>
 </ul>
 
 <ul>
@@ -4122,7 +4207,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/iGenius-Srl/IGColorPicker" rel="noopener noreferrer">IGColorPicker (⭐278)</a> - A customizable color picker for iOS.</li>
+<li><a href="https://github.com/iGenius-Srl/IGColorPicker" rel="noopener noreferrer">IGColorPicker (⭐277)</a> - A customizable color picker for iOS.</li>
 </ul>
 
 <ul>
@@ -4154,7 +4239,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/m1entus/MZFormSheetPresentationController" rel="noopener noreferrer">MZFormSheetPresentationController (⭐968)</a> - Provides an alternative to the native iOS UIModalPresentationFormSheet, adding support for iPhone and additional opportunities to setup controller size and feel form sheet.</li>
+<li><a href="https://github.com/m1entus/MZFormSheetPresentationController" rel="noopener noreferrer">MZFormSheetPresentationController (⭐967)</a> - Provides an alternative to the native iOS UIModalPresentationFormSheet, adding support for iPhone and additional opportunities to setup controller size and feel form sheet.</li>
 </ul>
 
 <ul>
@@ -4228,7 +4313,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/LeonardoCardoso/NFDownloadButton" rel="noopener noreferrer">NFDownloadButton (⭐438)</a> - Revamped Download Button. It's kinda a reverse engineering of Netflix's app download button.</li>
+<li><a href="https://github.com/LeonardoCardoso/NFDownloadButton" rel="noopener noreferrer">NFDownloadButton (⭐439)</a> - Revamped Download Button. It's kinda a reverse engineering of Netflix's app download button.</li>
 </ul>
 
 <ul>
@@ -4259,7 +4344,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/lexrus/LTMorphingLabel" rel="noopener noreferrer">LTMorphingLabel (⭐8.2k)</a> - Graceful morphing effects for UILabel.</li>
+<li><a href="https://github.com/lexrus/LTMorphingLabel" rel="noopener noreferrer">LTMorphingLabel (⭐8.1k)</a> - Graceful morphing effects for UILabel.</li>
 </ul>
 
 <ul>
@@ -4325,7 +4410,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/serralvo/TextFieldCounter" rel="noopener noreferrer">TextFieldCounter (⭐435)</a> - UITextField character counter with lovable UX.</li>
+<li><a href="https://github.com/serralvo/TextFieldCounter" rel="noopener noreferrer">TextFieldCounter (⭐436)</a> - UITextField character counter with lovable UX.</li>
 </ul>
 
 <ul>
@@ -4338,7 +4423,7 @@
 <h3><p>Transition / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/xxxAIRINxxx/MusicPlayerTransition" rel="noopener noreferrer">MusicPlayerTransition (⭐642)</a> - Custom interactive transition like Apple Music iOS App.</li>
+<li><a href="https://github.com/xxxAIRINxxx/MusicPlayerTransition" rel="noopener noreferrer">MusicPlayerTransition (⭐639)</a> - Custom interactive transition like Apple Music iOS App.</li>
 </ul>
 
 <ul>
@@ -4363,7 +4448,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/riteshhgupta/TagCellLayout" rel="noopener noreferrer">TagCellLayout (⭐357)</a> - UICollectionView layout for Tags with Left, Center &amp; Right alignments.</li>
+<li><a href="https://github.com/riteshhgupta/TagCellLayout" rel="noopener noreferrer">TagCellLayout (⭐356)</a> - UICollectionView layout for Tags with Left, Center &amp; Right alignments.</li>
 </ul>
 <h3><p>UITableView / Barcode</p>
 </h3>
@@ -4394,11 +4479,11 @@
 <h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/choefele/AlexaSkillsKit" rel="noopener noreferrer">AlexaSkillsKit (⭐184)</a> - Develop custom Alexa Skills.</li>
+<li><a href="https://github.com/choefele/AlexaSkillsKit" rel="noopener noreferrer">AlexaSkillsKit (⭐185)</a> - Develop custom Alexa Skills.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/typelift/Basis" rel="noopener noreferrer">Basis (⭐317)</a> - Pure Declarative Programming.</li>
+<li><a href="https://github.com/typelift/Basis" rel="noopener noreferrer">Basis (⭐318)</a> - Pure Declarative Programming.</li>
 </ul>
 
 <ul>
@@ -4406,7 +4491,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/thoughtbot/Curry" rel="noopener noreferrer">Curry (⭐497)</a> - Function currying.</li>
+<li><a href="https://github.com/thoughtbot/Curry" rel="noopener noreferrer">Curry (⭐495)</a> - Function currying.</li>
 </ul>
 
 <ul>
@@ -4414,11 +4499,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/marmelroy/ObjectiveKit" rel="noopener noreferrer">ObjectiveKit (⭐840)</a> - API for Objective C runtime functions.</li>
+<li><a href="https://github.com/marmelroy/ObjectiveKit" rel="noopener noreferrer">ObjectiveKit (⭐838)</a> - API for Objective C runtime functions.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/alexeyxo/protobuf-swift" rel="noopener noreferrer">protobuf-swift (⭐940)</a> - ProtocolBuffers.</li>
+<li><a href="https://github.com/alexeyxo/protobuf-swift" rel="noopener noreferrer">protobuf-swift (⭐938)</a> - ProtocolBuffers.</li>
 </ul>
 
 <ul>
@@ -4430,11 +4515,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/exyte/ReadabilityKit" rel="noopener noreferrer">ReadabilityKit (⭐837)</a> - Preview extractor for news, articles and full-texts.</li>
+<li><a href="https://github.com/exyte/ReadabilityKit" rel="noopener noreferrer">ReadabilityKit (⭐836)</a> - Preview extractor for news, articles and full-texts.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/bannzai/ResourceKit" rel="noopener noreferrer">ResourceKit (⭐88)</a> - Enable autocomplete use resources.</li>
+<li><a href="https://github.com/bannzai/ResourceKit" rel="noopener noreferrer">ResourceKit (⭐87)</a> - Enable autocomplete use resources.</li>
 </ul>
 
 <ul>
@@ -4450,7 +4535,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/thellimist/SwiftRandom" rel="noopener noreferrer">SwiftRandom (⭐557)</a> - A tiny generator of random data.</li>
+<li><a href="https://github.com/thellimist/SwiftRandom" rel="noopener noreferrer">SwiftRandom (⭐556)</a> - A tiny generator of random data.</li>
 </ul>
 
 <ul>
@@ -4479,7 +4564,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/RedMadRobot/input-mask-ios" rel="noopener noreferrer">Input Mask (⭐591)</a> - Pattern-based user input formatter, parser and validator for iOS.</li>
+<li><a href="https://github.com/RedMadRobot/input-mask-ios" rel="noopener noreferrer">Input Mask (⭐589)</a> - Pattern-based user input formatter, parser and validator for iOS.</li>
 </ul>
 
 <ul>
@@ -4511,7 +4596,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/47/">Nov 21 - Nov 27, 2016</a></h2><h3><p>UI / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/HamzaGhazouani/HGCircularSlider" rel="noopener noreferrer">HGCircularSlider (⭐2.7k)</a> - A custom reusable circular slider control for iOS application.</li>
+<li><a href="https://github.com/HamzaGhazouani/HGCircularSlider" rel="noopener noreferrer">HGCircularSlider (⭐2.6k)</a> - A custom reusable circular slider control for iOS application.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/46/">Nov 14 - Nov 20, 2016</a></h2><h3><p>Network / Barcode</p>
 </h3>
@@ -4526,12 +4611,12 @@
 <h2><a href="https://www.trackawesomelist.com/2016/45/">Nov 07 - Nov 13, 2016</a></h2><h3><p>Device</p>
 </h3>
 <ul>
-<li><a href="https://github.com/andrealufino/Luminous" rel="noopener noreferrer">Luminous (⭐348)</a> - Get everything you need to know about the device.</li>
+<li><a href="https://github.com/andrealufino/Luminous" rel="noopener noreferrer">Luminous (⭐349)</a> - Get everything you need to know about the device.</li>
 </ul>
 <h3><p>Text / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ruddfawcett/Notepad" rel="noopener noreferrer">Notepad (⭐901)</a> - A fully themeable markdown editor with live syntax highlighting.</li>
+<li><a href="https://github.com/ruddfawcett/Notepad" rel="noopener noreferrer">Notepad (⭐905)</a> - A fully themeable markdown editor with live syntax highlighting.</li>
 </ul>
 <h3><p>Calendar / Barcode</p>
 </h3>
@@ -4588,12 +4673,12 @@
 <h2><a href="https://www.trackawesomelist.com/2016/40/">Oct 03 - Oct 09, 2016</a></h2><h3><p>Chart</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gpbl/SwiftChart" rel="noopener noreferrer">SwiftChart (⭐1.1k)</a> - A simple line and area charting library for iOS. Supports multiple series, partially filled series and touch events.</li>
+<li><a href="https://github.com/gpbl/SwiftChart" rel="noopener noreferrer">SwiftChart (⭐1k)</a> - A simple line and area charting library for iOS. Supports multiple series, partially filled series and touch events.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/39/">Sep 26 - Oct 02, 2016</a></h2><h3><p>Audio</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tbaranes/AudioPlayerSwift" rel="noopener noreferrer">AudioPlayerSwift (⭐276)</a> - AudioPlayer is a simple class for playing audio (basic and advanced usage) in iOS, OS X and tvOS apps.</li>
+<li><a href="https://github.com/tbaranes/AudioPlayerSwift" rel="noopener noreferrer">AudioPlayerSwift (⭐277)</a> - AudioPlayer is a simple class for playing audio (basic and advanced usage) in iOS, OS X and tvOS apps.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/38/">Sep 19 - Sep 25, 2016</a></h2><h3><p>Date</p>
 </h3>
@@ -4613,7 +4698,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/34/">Aug 22 - Aug 28, 2016</a></h2><h3><p>Kit / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/C4Labs/C4iOS" rel="noopener noreferrer">C4iOS (⭐980)</a> - Harnesses the power of native iOS programming with a simplified API.</li>
+<li><a href="https://github.com/C4Labs/C4iOS" rel="noopener noreferrer">C4iOS (⭐976)</a> - Harnesses the power of native iOS programming with a simplified API.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/33/">Aug 15 - Aug 21, 2016</a></h2><h3><p>Core Data</p>
 </h3>
@@ -4627,7 +4712,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/marty-suzuki/URLEmbeddedView" rel="noopener noreferrer">URLEmbeddedView (⭐648)</a> - Automatically caches the object that is confirmed the Open Graph Protocol, and displays it as URL embedded card.</li>
+<li><a href="https://github.com/marty-suzuki/URLEmbeddedView" rel="noopener noreferrer">URLEmbeddedView (⭐649)</a> - Automatically caches the object that is confirmed the Open Graph Protocol, and displays it as URL embedded card.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/32/">Aug 08 - Aug 14, 2016</a></h2><h3><p>Files</p>
 </h3>
@@ -4720,7 +4805,7 @@
 <h3><p>HUD / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/krimpedance/KRProgressHUD" rel="noopener noreferrer">KRProgressHUD (⭐692)</a> - A beautiful and customizable progress HUD.</li>
+<li><a href="https://github.com/krimpedance/KRProgressHUD" rel="noopener noreferrer">KRProgressHUD</a> - A beautiful and customizable progress HUD.</li>
 </ul>
 
 <ul>
@@ -4729,7 +4814,7 @@
 <h3><p>Utility / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ceeK/Solar" rel="noopener noreferrer">Solar (⭐610)</a> - Calculate sunrise and sunset times given a location.</li>
+<li><a href="https://github.com/ceeK/Solar" rel="noopener noreferrer">Solar (⭐612)</a> - Calculate sunrise and sunset times given a location.</li>
 </ul>
 <h3><p>Version Manager / Barcode</p>
 </h3>
@@ -4743,7 +4828,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/26/">Jun 27 - Jul 03, 2016</a></h2><h3><p>Images / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/evgenyneu/moa" rel="noopener noreferrer">Moa (⭐335)</a> - An image download extension of the image view for iOS, tvOS and macOS.</li>
+<li><a href="https://github.com/evgenyneu/moa" rel="noopener noreferrer">Moa (⭐334)</a> - An image download extension of the image view for iOS, tvOS and macOS.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
@@ -4753,7 +4838,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/25/">Jun 20 - Jun 26, 2016</a></h2><h3><p>Math / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/evgenyneu/SigmaSwiftStatistics" rel="noopener noreferrer">SigmaSwiftStatistics (⭐706)</a> - A collection of functions for statistical calculation.</li>
+<li><a href="https://github.com/evgenyneu/SigmaSwiftStatistics" rel="noopener noreferrer">SigmaSwiftStatistics (⭐707)</a> - A collection of functions for statistical calculation.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/24/">Jun 13 - Jun 19, 2016</a></h2><h3><p>Network / Barcode</p>
 </h3>
@@ -4844,12 +4929,12 @@
 <h2><a href="https://www.trackawesomelist.com/2016/20/">May 16 - May 22, 2016</a></h2><h3><p>Other Awesome Lists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dkhamsing/open-source-ios-apps" rel="noopener noreferrer">open-source-ios-apps (⭐49k)</a> - A collaborative list of open-source iOS Apps.</li>
+<li><a href="https://github.com/dkhamsing/open-source-ios-apps" rel="noopener noreferrer">open-source-ios-apps (⭐50k)</a> - A collaborative list of open-source iOS Apps.</li>
 </ul>
 <h3><p>API</p>
 </h3>
 <ul>
-<li><a href="https://github.com/poulpix/PXGoogleDirections" rel="noopener noreferrer">PXGoogleDirections (⭐270)</a> - Google Directions API helper.</li>
+<li><a href="https://github.com/poulpix/PXGoogleDirections" rel="noopener noreferrer">PXGoogleDirections (⭐268)</a> - Google Directions API helper.</li>
 </ul>
 
 <ul>
@@ -4863,7 +4948,7 @@
 <h3><p>Other Data</p>
 </h3>
 <ul>
-<li><a href="https://github.com/evermeer/EVCloudKitDao" rel="noopener noreferrer">EVCloudKitDao (⭐644)</a> - Simplified access to CloudKit with support for subscriptions and local caching.</li>
+<li><a href="https://github.com/evermeer/EVCloudKitDao" rel="noopener noreferrer">EVCloudKitDao (⭐645)</a> - Simplified access to CloudKit with support for subscriptions and local caching.</li>
 </ul>
 <h3><p>Auto Layout / Barcode</p>
 </h3>
@@ -4888,11 +4973,11 @@
 <h2><a href="https://www.trackawesomelist.com/2016/18/">May 02 - May 08, 2016</a></h2><h3><p>StackView / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/seedco/StackViewController" rel="noopener noreferrer">StackViewController (⭐867)</a> - Simplify the use of UIStackView.</li>
+<li><a href="https://github.com/seedco/StackViewController" rel="noopener noreferrer">StackViewController (⭐866)</a> - Simplify the use of UIStackView.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/tomvanzummeren/TZStackView" rel="noopener noreferrer">TZStackView (⭐1.2k)</a> - An iOS9 UIStackView layout component re-implemented for iOS 7 and 8.</li>
+<li><a href="https://github.com/tomvanzummeren/TZStackView" rel="noopener noreferrer">TZStackView</a> - An iOS9 UIStackView layout component re-implemented for iOS 7 and 8.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
@@ -5000,12 +5085,12 @@
 <h2><a href="https://www.trackawesomelist.com/2016/1/">Jan 04 - Jan 10, 2016</a></h2><h3><p>Colors</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yeahdongcn/UIColor-Hex-Swift" rel="noopener noreferrer">UIColor-Hex-Swift (⭐1.3k)</a> - Hex to UIColor converter.</li>
+<li><a href="https://github.com/yeahdongcn/UIColor-Hex-Swift" rel="noopener noreferrer">UIColor-Hex-Swift (⭐1.2k)</a> - Hex to UIColor converter.</li>
 </ul>
 <h3><p>Images / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/evermeer/PassportScanner" rel="noopener noreferrer">PassportScanner (⭐471)</a> - Scan the MRZ code of a passport and extract the first name, last name, passport number, nationality, date of birth, expiration date and personal number.</li>
+<li><a href="https://github.com/evermeer/PassportScanner" rel="noopener noreferrer">PassportScanner</a> - Scan the MRZ code of a passport and extract the first name, last name, passport number, nationality, date of birth, expiration date and personal number.</li>
 </ul>
 <h3><p>Utility / Barcode</p>
 </h3>
@@ -5015,7 +5100,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/51/">Dec 21 - Dec 27, 2015</a></h2><h3><p>Alert / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/wxxsw/GSMessages" rel="noopener noreferrer">GSMessage (⭐698)</a> - A simple style messages/notifications for iOS 7+.</li>
+<li><a href="https://github.com/wxxsw/GSMessages" rel="noopener noreferrer">GSMessage (⭐697)</a> - A simple style messages/notifications for iOS 7+.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/50/">Dec 14 - Dec 20, 2015</a></h2><h3><p>Colors</p>
 </h3>
@@ -5049,7 +5134,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/glenyi/FloatRatingView" rel="noopener noreferrer">FloatRatingView (⭐546)</a> - Floating rating system.</li>
+<li><a href="https://github.com/glenyi/FloatRatingView" rel="noopener noreferrer">FloatRatingView (⭐545)</a> - Floating rating system.</li>
 </ul>
 <h3><p>Menu / Barcode</p>
 </h3>
@@ -5063,7 +5148,7 @@
 <h3><p>Transition / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/demonnico/PinterestSwift" rel="noopener noreferrer">PinterestSwift (⭐1.9k)</a> - Pinterest style transition.</li>
+<li><a href="https://github.com/demonnico/PinterestSwift" rel="noopener noreferrer">PinterestSwift</a> - Pinterest style transition.</li>
 </ul>
 
 <ul>
@@ -5077,12 +5162,12 @@
 <h2><a href="https://www.trackawesomelist.com/2015/49/">Dec 07 - Dec 13, 2015</a></h2><h3><p>Testing / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/phimage/Erik" rel="noopener noreferrer">Erik (⭐614)</a> - An headless browser to access and manipulate webpages using javascript allowing to run functional tests.</li>
+<li><a href="https://github.com/phimage/Erik" rel="noopener noreferrer">Erik (⭐613)</a> - An headless browser to access and manipulate webpages using javascript allowing to run functional tests.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/48/">Nov 30 - Dec 06, 2015</a></h2><h3><p>Key Value Store</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ArtSabintsev/Zephyr" rel="noopener noreferrer">Zephyr (⭐944)</a> - Effortlessly synchronize NSUserDefaults over iCloud.</li>
+<li><a href="https://github.com/ArtSabintsev/Zephyr" rel="noopener noreferrer">Zephyr (⭐945)</a> - Effortlessly synchronize NSUserDefaults over iCloud.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/47/">Nov 23 - Nov 29, 2015</a></h2><h3><p>Key Value Store</p>
 </h3>
@@ -5126,7 +5211,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/40/">Oct 05 - Oct 11, 2015</a></h2><h3><p>Math / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/davedelong/DDMathParser" rel="noopener noreferrer">DDMathParser (⭐866)</a> - DDMathParser makes it easy to parse a String and evaluate it as a mathematical expression.</li>
+<li><a href="https://github.com/davedelong/DDMathParser" rel="noopener noreferrer">DDMathParser (⭐865)</a> - DDMathParser makes it easy to parse a String and evaluate it as a mathematical expression.</li>
 </ul>
 <h3><p>Testing / Barcode</p>
 </h3>
@@ -5185,7 +5270,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/19/">May 11 - May 17, 2015</a></h2><h3><p>Audio</p>
 </h3>
 <ul>
-<li><a href="https://github.com/delannoyk/AudioPlayer" rel="noopener noreferrer">AudioPlayer (⭐756)</a> - A wrapper around AVPlayer with some cool features.</li>
+<li><a href="https://github.com/delannoyk/AudioPlayer" rel="noopener noreferrer">AudioPlayer (⭐755)</a> - A wrapper around AVPlayer with some cool features.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/14/">Apr 06 - Apr 12, 2015</a></h2><h3><p>UI / Barcode</p>
 </h3>
@@ -5205,7 +5290,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/9/">Mar 02 - Mar 08, 2015</a></h2><h3><p>Network / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/daltoniam/SwiftHTTP" rel="noopener noreferrer">SwiftHTTP (⭐2k)</a> - NSURLSession wrapper.</li>
+<li><a href="https://github.com/daltoniam/SwiftHTTP" rel="noopener noreferrer">SwiftHTTP (⭐1.9k)</a> - NSURLSession wrapper.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/7/">Feb 16 - Feb 22, 2015</a></h2><h3><p>Events</p>
 </h3>
@@ -5220,7 +5305,7 @@
 <h2><a href="https://www.trackawesomelist.com/2014/43/">Oct 27 - Nov 02, 2014</a></h2><h3><p>Alert / Barcode</p>
 </h3>
 <ul>
-<li><a href="https://github.com/peterprokop/SwiftOverlays" rel="noopener noreferrer">SwiftOverlays (⭐627)</a> - various popups and notifications.</li>
+<li><a href="https://github.com/peterprokop/SwiftOverlays" rel="noopener noreferrer">SwiftOverlays (⭐628)</a> - various popups and notifications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2014/34/">Aug 25 - Aug 31, 2014</a></h2><h3><p>Network / Barcode</p>
 </h3>
@@ -5234,5 +5319,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
