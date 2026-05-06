@@ -16,20 +16,100 @@
     <meta property="og:title" content="Awesome Jmeter Overview" />
     <meta property="og:description" content="A collection of resources covering different aspects of JMeter usage." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Jmeter Overview</h1>
 <p>A collection of resources covering different aspects of JMeter usage.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/aliesbelik/awesome-jmeter/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/aliesbelik/awesome-jmeter">😺 aliesbelik/awesome-jmeter</a><span> · </span><span>⭐ 775</span><span> · </span><span>🏷️ Testing</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/aliesbelik/awesome-jmeter/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/aliesbelik/awesome-jmeter">😺 aliesbelik/awesome-jmeter</a><span> · </span><span>⭐ 787</span><span> · </span><span>🏷️ Testing</span></p>
 <p><span>[ </span><a href="/aliesbelik/awesome-jmeter/">Daily</a><span> / </span><a href="/aliesbelik/awesome-jmeter/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
 <h1 id="awesome-jmeter-awesome"><a class="anchor" aria-hidden="true" tabindex="-1" href="#awesome-jmeter-awesome"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Awesome JMeter <a href="https://awesome.re" rel="noopener noreferrer"><img src="https://awesome.re/badge.svg" alt="Awesome" /></a></h1>
 
@@ -44,7 +124,7 @@
 </blockquote>
 
 
-<p>This list grew up from <a href="https://sqa.stackexchange.com/a/2552/1842" rel="noopener noreferrer">an occasional answer</a> on Stack Exchange and personal JMeter-related links collection, got further inspiration from <a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">awesome (⭐444k)</a> project and improved by these <a href="https://github.com/aliesbelik/awesome-jmeter/blob/main/README.md/CONTRIBUTORS.md" rel="noopener noreferrer">amazing contributors</a>.</p>
+<p>This list grew up from <a href="https://sqa.stackexchange.com/a/2552/1842" rel="noopener noreferrer">an occasional answer</a> on Stack Exchange and personal JMeter-related links collection, got further inspiration from <a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">awesome (⭐458k)</a> project and improved by these <a href="https://github.com/aliesbelik/awesome-jmeter/blob/main/README.md/CONTRIBUTORS.md" rel="noopener noreferrer">amazing contributors</a>.</p>
 <h2 id="contents"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contents"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contents</h2>
 
 <ul>
@@ -88,6 +168,7 @@
 <li><a href="#ide-integration">IDE Integration</a></li>
 <li><a href="#editors">Editors</a></li>
 <li><a href="#utilities">Utilities</a></li>
+<li><a href="#ai">AI</a></li>
 </ul>
 </li>
 <li><a href="#apm-integration">APM Integration</a></li>
@@ -113,7 +194,7 @@
 
 <ul>
 <li><a href="https://jmeter.apache.org/" rel="noopener noreferrer">Apache JMeter Project</a> - Apache JMeter official website.</li>
-<li><a href="https://github.com/apache/jmeter" rel="noopener noreferrer">GitHub Repository (⭐9.3k)</a> - Apache JMeter source code repository.</li>
+<li><a href="https://github.com/apache/jmeter" rel="noopener noreferrer">GitHub Repository (⭐9.4k)</a> - Apache JMeter source code repository.</li>
 <li><a href="https://cwiki.apache.org/confluence/display/jmeter" rel="noopener noreferrer">JMeter Wiki</a> - Apache JMeter official documentation.</li>
 <li><a href="https://jmeter.apache.org/issues.html" rel="noopener noreferrer">Issue Tracking</a> - Apache JMeter issue tracking system.</li>
 <li><a href="https://jmeter.apache.org/mail2.html" rel="noopener noreferrer">Mailing Lists</a> - Apache JMeter mailing lists.</li>
@@ -156,11 +237,11 @@
 <li><a href="https://github.com/eldaduzman/pymeter" rel="noopener noreferrer">pymeter (⭐141)</a> - Simple JMeter performance tests API for Python.</li>
 </ul>
 <h3 id="packages"><a class="anchor" aria-hidden="true" tabindex="-1" href="#packages"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Packages</h3><ul>
-<li><a href="https://github.com/tmobile/loadtest" rel="noopener noreferrer">loadtest (⭐91)</a> - An R package for load testing using JMeter.</li>
+<li><a href="https://github.com/tmobile/loadtest" rel="noopener noreferrer">loadtest (⭐92)</a> - An R package for load testing using JMeter.</li>
 </ul>
 <h3 id="frameworks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#frameworks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Frameworks</h3><ul>
 <li><a href="https://gettaurus.org/" rel="noopener noreferrer">Taurus</a> - Automation-friendly framework for Continuous Testing.</li>
-<li><a href="https://github.com/serputko/performance-testing-framework" rel="noopener noreferrer">Performance testing framework (⭐413)</a> - Framework both for backend load testing with Apache JMeter and frontend load testing with sitespeed.io + webpagetest private instance.</li>
+<li><a href="https://github.com/serputko/performance-testing-framework" rel="noopener noreferrer">Performance testing framework (⭐415)</a> - Framework both for backend load testing with Apache JMeter and frontend load testing with sitespeed.io + webpagetest private instance.</li>
 <li><a href="https://github.com/innogames/ltc" rel="noopener noreferrer">JMeter Load Testing Center (⭐204)</a> - Online web-application/dashboard to run, monitor and analyze results of load tests using JMeter.</li>
 <li><a href="https://github.com/metersphere/metersphere" rel="noopener noreferrer">MeterSphere (⭐13k)</a> - One-stop open-source enterprise-class continuous testing platform, compatible with open-source standards such as JMeter 🇨🇳.</li>
 <li><a href="https://github.com/carrier-io" rel="noopener noreferrer">Carrier</a> - Continuous test execution platform with ability to perform load testing using customized JMeter and Gatling containers.</li>
@@ -168,14 +249,14 @@
 <h3 id="conversion"><a class="anchor" aria-hidden="true" tabindex="-1" href="#conversion"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Conversion</h3><ul>
 <li><a href="https://github.com/Pactortester/swaggerjmx" rel="noopener noreferrer">swaggerjmx (⭐115)</a> - Tool to convert Swagger UI specification into JMeter test plans.</li>
 <li><a href="https://github.com/Loadium/postman2jmx" rel="noopener noreferrer">postman2jmx (⭐190)</a> - Postman collection to JMeter jmx file converter.</li>
-<li><a href="https://github.com/sercheo87/convert-postman-jmeter" rel="noopener noreferrer">convert-postman-jmeter (⭐11)</a> - Convert Postman projects to JMeter.</li>
+<li><a href="https://github.com/sercheo87/convert-postman-jmeter" rel="noopener noreferrer">convert-postman-jmeter (⭐14)</a> - Convert Postman projects to JMeter.</li>
 <li><a href="https://github.com/dperfly/fiddler2jmeter" rel="noopener noreferrer">fiddler2jmeter (⭐50)</a> - Fiddler or Charles to JMeter script convertor.</li>
 <li><a href="https://github.com/vdaburon/har-convertor-jmeter-plugin" rel="noopener noreferrer">har-convertor-jmeter-tool (⭐23)</a> - Apache JMeter Plugin to convert a HAR file to a JMeter script and Record XML file.</li>
 <li><a href="https://github.com/Qytera-Gmbh/JMeterHARImporterPlugin" rel="noopener noreferrer">JMeter HAR Importer Plugin (⭐19)</a> - JMeter plugin to import HTTP Archive (HAR) files into Apache JMeter.</li>
 </ul>
 <h2 id="ci"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ci"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>CI</h2><h3 id="tools--plugins"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tools--plugins"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tools &amp; Plugins</h3><ul>
 <li><a href="https://github.com/jfifield/ant-jmeter" rel="noopener noreferrer">JMeter Ant Task (⭐27)</a> - Ant task to automate running JMeter test plans.</li>
-<li><a href="https://github.com/jmeter-maven-plugin/jmeter-maven-plugin" rel="noopener noreferrer">JMeter Maven Plugin (⭐437)</a> - Maven plugin that provides the ability to run JMeter tests as part of the build.</li>
+<li><a href="https://github.com/jmeter-maven-plugin/jmeter-maven-plugin" rel="noopener noreferrer">JMeter Maven Plugin (⭐438)</a> - Maven plugin that provides the ability to run JMeter tests as part of the build.</li>
 <li><a href="https://github.com/jmeter-gradle-plugin/jmeter-gradle-plugin" rel="noopener noreferrer">JMeter Gradle Plugin (⭐51)</a> - Gradle plugin to execute JMeter tests.</li>
 <li><a href="https://plugins.jenkins.io/performance/" rel="noopener noreferrer">Jenkins Performance Plugin</a> - Jenkins plugin to capture reports from JMeter and generate graphic charts with the trend report of performance and robustness.</li>
 <li><a href="https://github.com/jtorgan/jmeter_plugin" rel="noopener noreferrer">TeamCity Performance Tests Analysis Plugin (⭐21)</a> - TeamCity plugin to organize simplest performance testing in CI 💀.</li>
@@ -229,14 +310,14 @@
 </li>
 <li>Testing in Cloud<ul>
 <li>Kubernetes<ul>
-<li><a href="https://github.com/kubernauts/jmeter-kubernetes" rel="noopener noreferrer">jmeter-kubernetes (⭐367)</a> - JMeter cluster support for Kubernetes and OpenShift.</li>
+<li><a href="https://github.com/kubernauts/jmeter-kubernetes" rel="noopener noreferrer">jmeter-kubernetes (⭐366)</a> - JMeter cluster support for Kubernetes and OpenShift.</li>
 <li><a href="https://github.com/Rbillon59/jmeter-k8s-starterkit" rel="noopener noreferrer">jmeter-k8s-starterkit (⭐91)</a> - JMeter Kubernetes starter kit, with live test reporting, JMeter monitoring, Kubernetes monitoring and mock as a service.</li>
 <li><a href="https://github.com/hellofresh/kangal" rel="noopener noreferrer">kangal (⭐172)</a> - Kubernetes and Go Automatic Loader solution to run performance tests in Kubernetes cluster using multiple load generators.</li>
 <li><a href="https://github.com/petegrimsdale/aks_testing_fwk" rel="noopener noreferrer">aks_testing_fwk (⭐37)</a> - AKS-based scalable JMeter test framework with Grafana reporting.</li>
 </ul>
 </li>
 <li>Amazon Web Services<ul>
-<li><a href="https://github.com/oliverlloyd/jmeter-ec2/" rel="noopener noreferrer">jmeter-ec2 (⭐461)</a> - Automates running Apache JMeter on Amazon EC2.</li>
+<li><a href="https://github.com/oliverlloyd/jmeter-ec2/" rel="noopener noreferrer">jmeter-ec2 (⭐460)</a> - Automates running Apache JMeter on Amazon EC2.</li>
 <li><a href="https://github.com/kowalcj0/gee" rel="noopener noreferrer">gee (⭐16)</a> - A modified version of JMeter-EC2 project.</li>
 <li><a href="https://github.com/Aptimyze/os-jmeter-aws" rel="noopener noreferrer">os-jmeter-aws (⭐1)</a> - Run JMeter on multiple Amazon EC2 instances, view results in ELK.</li>
 <li><a href="https://medium.com/@alttaf/load-testing-with-jmeter-and-amazon-ec2-e143a7350596" rel="noopener noreferrer">Load Testing with JMeter and Amazon EC2</a></li>
@@ -275,7 +356,7 @@
 <li><a href="https://cwiki.apache.org/confluence/display/jmeter/LogAnalysis" rel="noopener noreferrer">JMeter Log Analysis</a> - Suggestions and recipes for JMeter log analysis.</li>
 <li><a href="https://www.datazoo.de/articles/158/performance-testing-analyzing-jmeter-results" rel="noopener noreferrer">Analyzing JMeter Results</a></li>
 <li><a href="https://blog.octoperf.com/jmeter-result-analysis-the-ultimate-guide/" rel="noopener noreferrer">JMeter Result Analysis: The Ultimate Guide</a></li>
-<li><a href="https://github.com/ludeknovy/jtl-reporter" rel="noopener noreferrer">JtlReporter (⭐150)</a> - Online reporting application to generate reports by uploading JTL file.</li>
+<li><a href="https://github.com/ludeknovy/jtl-reporter" rel="noopener noreferrer">JtlReporter (⭐151)</a> - Online reporting application to generate reports by uploading JTL file.</li>
 <li><a href="https://github.com/afranken/jmeter-analysis-maven-plugin" rel="noopener noreferrer">JMeter Result Analysis Plugin (⭐57)</a> - Maven plugin that parses JMeter test results and generates detailed reports with charts.</li>
 <li><a href="https://sourceforge.net/projects/jmstats/" rel="noopener noreferrer">JMeter Results Analyser</a> - Web-based application for collating, analysing and reporting JMeter test results.</li>
 <li><a href="https://github.com/vdaburon/jmeter-graph-tool-maven-plugin" rel="noopener noreferrer">JMeter Graph Tool Maven Plugin (⭐11)</a> - Maven plugin to create graphs and filter results using CMDRunner and Filter Results Tools from <a href="#plugins">JMeter Plugins</a>; usually used along with the <a href="#tools--plugins">JMeter Maven Plugin</a> and  set of <a href="https://github.com/vdaburon/jmeter-graph-tool-maven-plugin#compagnion-tools" rel="noopener noreferrer">companion plugins (⭐11)</a>.</li>
@@ -303,7 +384,7 @@
 <li><a href="https://blog.vinsguru.com/category/influxdb/" rel="noopener noreferrer">Using JMeter with InfluxDB &amp; Grafana</a> - Collection of guides to collect and visualize real-time test results and server monitoring stats using InfluxDB &amp; Grafana.</li>
 <li><a href="https://dzone.com/articles/how-to-use-grafana-to-monitor-jmeter-non-gui-resul" rel="noopener noreferrer">How to Use Grafana to Monitor JMeter Non-GUI Results</a></li>
 <li><a href="https://github.com/kirillyu/jmeterReports" rel="noopener noreferrer">jmeterReports (⭐27)</a> - Autogenerated JMeter test-run results reported into Confluence, using Grafana custom dashboards 🇷🇺.</li>
-<li><a href="https://github.com/influxdata/community-templates/tree/master/apache_jmeter" rel="noopener noreferrer">InfluxDB Community Template for JMeter (⭐369)</a> - Prepackaged InfluxDB configurations that contain everything from dashboards and Telegraf configurations to notifications and alerts in a single manifest file.</li>
+<li><a href="https://github.com/influxdata/community-templates/tree/master/apache_jmeter" rel="noopener noreferrer">InfluxDB Community Template for JMeter (⭐370)</a> - Prepackaged InfluxDB configurations that contain everything from dashboards and Telegraf configurations to notifications and alerts in a single manifest file.</li>
 <li>Grafana Dashboards<ul>
 <li><a href="https://grafana.com/grafana/dashboards/1152-jmeter-load-test/" rel="noopener noreferrer">JMeter Load Test Dashboard</a> - Grafana dashboard shows live load test metrics provided by JMeter (by NovaTec-APM).</li>
 <li><a href="https://grafana.com/grafana/dashboards/5496-apache-jmeter-dashboard-by-ubikloadpack/" rel="noopener noreferrer">JMeter Dashboard using Core InfluxdbBackendListenerClient</a> - Monitor your Apache JMeter load test in real time with InfluxDB and Grafana (by Philippe M).</li>
@@ -322,7 +403,7 @@
 </ul>
 </li>
 <li>Prometheus<ul>
-<li><a href="https://github.com/johrstrom/jmeter-prometheus-plugin" rel="noopener noreferrer">jmeter-prometheus-plugin (⭐186)</a> - A Prometheus Listener for Apache JMeter that exposes results in HTTP API.</li>
+<li><a href="https://github.com/johrstrom/jmeter-prometheus-plugin" rel="noopener noreferrer">jmeter-prometheus-plugin (⭐187)</a> - A Prometheus Listener for Apache JMeter that exposes results in HTTP API.</li>
 <li><a href="https://github.com/kolesnikovm/jmeter-prometheus-listener" rel="noopener noreferrer">jmeter-prometheus-listener (⭐20)</a> - Apache JMeter Backend Listener implementation for Prometheus metrics exporting.</li>
 <li><a href="https://github.com/ubikingenierie/ulp-observability-plugin" rel="noopener noreferrer">ulp-observability-plugin (⭐6)</a> - Allows you to monitor your JMeter CLI performance test from your favorite browser without having to start JMeter in GUI mode.</li>
 </ul>
@@ -333,9 +414,9 @@
 </ul>
 </li>
 <li>Backend Listener Implementations<ul>
-<li><a href="https://github.com/anthonygauthier/jmeter-elasticsearch-backend-listener" rel="noopener noreferrer">jmeter-elasticsearch-backend-listener (⭐99)</a> - JMeter plugin to send test results to an Elasticsearch engine.</li>
+<li><a href="https://github.com/anthonygauthier/jmeter-elasticsearch-backend-listener" rel="noopener noreferrer">jmeter-elasticsearch-backend-listener (⭐100)</a> - JMeter plugin to send test results to an Elasticsearch engine.</li>
 <li><a href="https://github.com/adrianmo/jmeter-backend-azure" rel="noopener noreferrer">jmeter-backend-azure (⭐32)</a> - JMeter plugin to send test results to Azure Application Insights.</li>
-<li><a href="https://github.com/veeranalyticsltd/jmeter-backend-listener-kafka" rel="noopener noreferrer">jmeter-backend-listener-kafka (⭐32)</a> - JMeter plugin to send test results to a Kafka server.</li>
+<li><a href="https://github.com/veeranalyticsltd/jmeter-backend-listener-kafka" rel="noopener noreferrer">jmeter-backend-listener-kafka (⭐33)</a> - JMeter plugin to send test results to a Kafka server.</li>
 <li><a href="https://gitlab.com/testload/jmeter-listener" rel="noopener noreferrer">jmeter-listener</a> - JMeter plugin to write load test data on-the-fly to ClickHouse, InfluxDB, Elasticsearch.</li>
 <li><a href="https://github.com/mderevyankoaqa/jmeter-influxdb2-listener-plugin" rel="noopener noreferrer">jmeter-influxdb2-listener-plugin (⭐134)</a> - InfluxDB v2.0 listener plugin for Apache JMeter.</li>
 <li><a href="https://github.com/DataDog/jmeter-datadog-backend-listener" rel="noopener noreferrer">jmeter-datadog-backend-listener (⭐13)</a> - Send JMeter test results to Datadog.</li>
@@ -371,8 +452,8 @@
 </ul>
 <h3 id="rpc-frameworks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#rpc-frameworks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>RPC Frameworks</h3><ul>
 <li><a href="https://github.com/zalopay-oss/jmeter-grpc-plugin" rel="noopener noreferrer">JMeter gRPC Plugin (⭐45)</a> - JMeter plugin supports load test gRPC.</li>
-<li><a href="https://github.com/zalopay-oss/jmeter-grpc-request" rel="noopener noreferrer">JMeter gRPC Request (⭐190)</a> - JMeter sampler to send an gRPC request to a server.</li>
-<li><a href="https://github.com/thubbo/jmeter-plugins-for-apache-dubbo" rel="noopener noreferrer">JMeter Dubbo Plugin (⭐571)</a> - JMeter plugin for Apache Dubbo.</li>
+<li><a href="https://github.com/zalopay-oss/jmeter-grpc-request" rel="noopener noreferrer">JMeter gRPC Request (⭐191)</a> - JMeter sampler to send an gRPC request to a server.</li>
+<li><a href="https://github.com/thubbo/jmeter-plugins-for-apache-dubbo" rel="noopener noreferrer">JMeter Dubbo Plugin (⭐570)</a> - JMeter plugin for Apache Dubbo.</li>
 </ul>
 <h3 id="restful-api"><a class="anchor" aria-hidden="true" tabindex="-1" href="#restful-api"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>RESTful API</h3><ul>
 <li><a href="https://blog.octoperf.com/rest-api-testing-with-jmeter-step-by-step-guide/" rel="noopener noreferrer">REST API Testing with JMeter. Step by Step Guide</a></li>
@@ -409,12 +490,15 @@
 
 <ul>
 <li><a href="https://jmeter-plugins.org/editor/" rel="noopener noreferrer">BlocklyJMX Editor</a> - A web-based viewer and editor for JMeter test plan files (part of <a href="#plugins">JMeter Plugins</a> project).</li>
-<li><a href="https://github.com/QAInsights/JEval" rel="noopener noreferrer">JEval (⭐32)</a> - A Python-based utility which evaluates JMeter test plan and provides recommendations and best practices by analyzing each element.</li>
+<li><a href="https://github.com/QAInsights/JEval" rel="noopener noreferrer">JEval (⭐33)</a> - A Python-based utility which evaluates JMeter test plan and provides recommendations and best practices by analyzing each element.</li>
 <li><a href="https://www.jmxenhancer.com/" rel="noopener noreferrer">JMX Enhancer</a> - A solution to expedite preparation of JMeter test plans.</li>
 <li><a href="https://www.vinodkd.org/jmx.js/" rel="noopener noreferrer">jmx.js</a> - Web-based editor for JMeter JMX files 💀.</li>
 </ul>
 <h3 id="utilities"><a class="anchor" aria-hidden="true" tabindex="-1" href="#utilities"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Utilities</h3><ul>
 <li><a href="https://github.com/QAInsights/hamster" rel="noopener noreferrer">Hamster (⭐16)</a> - Swiftly launch your JMeter test plans from Mac menubar.</li>
+</ul>
+<h3 id="ai"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ai"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>AI</h3><ul>
+<li><a href="https://jmeter.ai" rel="noopener noreferrer">Feather Wand</a> - An AI agent in JMeter with Claude Code, Codex, OpenCode, and Gemini integration.</li>
 </ul>
 <h2 id="apm-integration"><a class="anchor" aria-hidden="true" tabindex="-1" href="#apm-integration"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>APM Integration</h2><p><em>Integration with Application Performance Monitoring (APM) tools to analyze the performance of application servers, database servers, and web services.</em></p>
 
@@ -494,19 +578,61 @@
 </ul>
 <h2 id="related"><a class="anchor" aria-hidden="true" tabindex="-1" href="#related"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Related</h2><h3 id="awesome-lists"><a class="anchor" aria-hidden="true" tabindex="-1" href="#awesome-lists"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Awesome Lists</h3><ul>
 <li><a href="https://github.com/ligurio/sqa-wiki" rel="noopener noreferrer">Awesome Software Quality (⭐2.3k)</a> - A list of free software testing and verification resources.</li>
-<li><a href="https://github.com/TheJambo/awesome-testing" rel="noopener noreferrer">Awesome Testing (⭐2.2k)</a> - A curated list of testing resources.</li>
+<li><a href="https://github.com/TheJambo/awesome-testing" rel="noopener noreferrer">Awesome Testing (⭐2.3k)</a> - A curated list of testing resources.</li>
 <li><a href="https://github.com/aliesbelik/awesome-tsung" rel="noopener noreferrer">Awesome Tsung (⭐23)</a> - Open-source multi-protocol distributed load testing tool, developed in Erlang.</li>
-<li><a href="https://github.com/aliesbelik/awesome-gatling" rel="noopener noreferrer">Awesome Gatling (⭐77)</a> - Open-source load and performance testing framework based on Scala, Akka and Netty.</li>
-<li><a href="https://github.com/grafana/awesome-k6" rel="noopener noreferrer">Awesome k6 (⭐743)</a> - Open-source, developer-centric performance monitoring and load testing solution.</li>
+<li><a href="https://github.com/aliesbelik/awesome-gatling" rel="noopener noreferrer">Awesome Gatling (⭐76)</a> - Open-source load and performance testing framework based on Scala, Akka and Netty.</li>
+<li><a href="https://github.com/grafana/awesome-k6" rel="noopener noreferrer">Awesome k6 (⭐755)</a> - Open-source, developer-centric performance monitoring and load testing solution.</li>
 <li><a href="https://github.com/aliesbelik/awesome-locust" rel="noopener noreferrer">Awesome Locust (⭐111)</a> - Open-source scalable load testing framework written in Python.</li>
 </ul>
 <h3 id="other"><a class="anchor" aria-hidden="true" tabindex="-1" href="#other"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Other</h3><ul>
-<li><a href="https://github.com/aliesbelik/how-they-load" rel="noopener noreferrer">How They Load Test (⭐151)</a> - A curated collection of publicly available resources on how companies around the world perform load testing.</li>
-<li><a href="https://github.com/aliesbelik/load-testing-toolkit" rel="noopener noreferrer">Load Testing Toolkit (⭐234)</a> - Collection of open-source tools for debugging, benchmarking, load and stress testing your code or services.</li>
+<li><a href="https://github.com/aliesbelik/how-they-load" rel="noopener noreferrer">How They Load Test (⭐159)</a> - A curated collection of publicly available resources on how companies around the world perform load testing.</li>
+<li><a href="https://github.com/aliesbelik/load-testing-toolkit" rel="noopener noreferrer">Load Testing Toolkit (⭐238)</a> - Collection of open-source tools for debugging, benchmarking, load and stress testing your code or services.</li>
 </ul>
 <h2 id="contributing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contributing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contributing</h2><p>Please take a look at the <a href="https://github.com/aliesbelik/awesome-jmeter/blob/main/README.md/CONTRIBUTING.md" rel="noopener noreferrer">CONTRIBUTING</a> guidelines first.</p>
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
