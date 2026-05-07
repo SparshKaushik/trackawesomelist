@@ -16,20 +16,100 @@
     <meta property="og:title" content="Free Programming Books (English, By Subjects) Overview" />
     <meta property="og:description" content=":books: Freely available programming books" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Free Programming Books (English, By Subjects) Overview</h1>
 <p>:books: Freely available programming books</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/EbookFoundation/free-programming-books/books/free-programming-books-subjects/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-subjects.md">😺 EbookFoundation/free-programming-books</a><span> · </span><span>⭐ 384K</span><span> · </span><span>🏷️ Books</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/EbookFoundation/free-programming-books/books/free-programming-books-subjects/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-subjects.md">😺 EbookFoundation/free-programming-books</a><span> · </span><span>⭐ 388K</span><span> · </span><span>🏷️ Books</span></p>
 <p><span>[ </span><a href="/EbookFoundation/free-programming-books/books/free-programming-books-subjects/">Daily</a><span> / </span><a href="/EbookFoundation/free-programming-books/books/free-programming-books-subjects/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
 <h2 id="by-subject"><a class="anchor" aria-hidden="true" tabindex="-1" href="#by-subject"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>BY SUBJECT</h2><p>This list, organized by subject, is for books that cover a programming-related subject in a programming-language agnostic way.
 Books that cover a specific programming language can be found in the <a href="https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-subjects.md/free-programming-books-langs.md" rel="noopener noreferrer">BY PROGRAMMING LANGUAGE</a> list.</p>
@@ -90,7 +170,7 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="https://www.atariarchives.org" rel="noopener noreferrer">Atariarchives.org</a> - Atariarchives.org makes books, information, and software for Atari and other classic computers available on the Web.</li>
 <li><a href="https://www.bento.io" rel="noopener noreferrer">Bento</a></li>
 <li><a href="http://bitsavers.trailing-edge.com" rel="noopener noreferrer">Bitsavers.org</a></li>
-<li><a href="https://github.com/codecrafters-io/build-your-own-x" rel="noopener noreferrer">Build your own X (⭐482k)</a></li>
+<li><a href="https://github.com/codecrafters-io/build-your-own-x" rel="noopener noreferrer">Build your own X (⭐500k)</a></li>
 <li><a href="https://codecatalog.org" rel="noopener noreferrer">Code Catalog: A Collection of Code Examples from Prominent Open Source Projects</a></li>
 <li><a href="https://conceptf1.blogspot.com/2013/11/list-of-freely-available-programming.html" rel="noopener noreferrer">conceptf1.blogspot.com</a></li>
 <li><a href="https://www.dbooks.org" rel="noopener noreferrer">dBooks - Free download open books</a></li>
@@ -108,7 +188,7 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="https://blogs.msdn.microsoft.com/mssmallbiz/2012/07/30/another-large-collection-of-free-microsoft-ebooks-and-resource-kits-for-you-including-sharepoint-2013-office-2013-office-365-duet-2-0-azure-cloud-windows-phone-lync-dynamics-crm-and-more/" rel="noopener noreferrer">Microsoft Technologies 2, including books on Windows Azure, SharePoint, Visual Studio Guide, Windows phone development, ASP.net, etc. collection by Eric Ligman</a></li>
 <li><a href="https://raw.githubusercontent.com/dotnet-architecture/eBooks/main/current/devops-aspnet-core/DevOps-for-ASP.NET-Core-Developers.pdf" rel="noopener noreferrer">Microsoft Technologies 3, DevOps for ASP.NET Core Developers</a> - Cam Soper, Scott Addie, Colin Dembovsky (PDF)</li>
 <li><a href="https://www.oreilly.com/openbook/" rel="noopener noreferrer">O'Reilly's Open Books Project</a></li>
-<li><a href="https://github.com/papers-we-love/papers-we-love" rel="noopener noreferrer">Papers we love (⭐104k)</a></li>
+<li><a href="https://github.com/papers-we-love/papers-we-love" rel="noopener noreferrer">Papers we love (⭐105k)</a></li>
 <li><a href="https://www.red-gate.com/hub/books/" rel="noopener noreferrer">Red Gate Books</a></li>
 <li><a href="https://riptutorial.com/ebook" rel="noopener noreferrer">Rip Tutorials</a></li>
 <li><a href="http://stephane.ducasse.free.fr/FreeBooks/" rel="noopener noreferrer">Stef's Free Online Smalltalk Books</a></li>
@@ -194,14 +274,14 @@ Books that cover a specific programming language can be found in the <a href="ht
 <h3 id="blockchain"><a class="anchor" aria-hidden="true" tabindex="-1" href="#blockchain"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Blockchain</h3><ul>
 <li><a href="https://bitcoinbook.cs.princeton.edu" rel="noopener noreferrer">Bitcoin and Cryptocurrency Technologies</a> - Arvind Narayanan, Joseph Bonneau, Edward Felten, Andrew Miller, Steven Goldfeder, Jeremy Clark (PDF)</li>
 <li><a href="https://www.ibm.com/downloads/cas/36KBMBOG" rel="noopener noreferrer">Blockchain for Dummies, 2nd IBM Limited Edition</a> - Manav Gupta (PDF)</li>
-<li><a href="https://github.com/volodymyrprokopyuk/go-blockchain" rel="noopener noreferrer">Build a Blockchain from Scratch in Go with gRPC (⭐527)</a> - Volodymyr Prokopyuk</li>
+<li><a href="https://github.com/volodymyrprokopyuk/go-blockchain" rel="noopener noreferrer">Build a Blockchain from Scratch in Go with gRPC (⭐536)</a> - Volodymyr Prokopyuk</li>
 <li><a href="https://web.archive.org/web/20220127020549/https://chain.courses/" rel="noopener noreferrer">chain.courses</a> - James Gan, Rishub Kumar <em>( :card_file_box: archived)</em></li>
 <li><a href="https://www.ibm.com/downloads/cas/RYWXAR0M" rel="noopener noreferrer">Getting Started with Enterprise Blockchain: A Guide to Design and Development</a> - Michael Bradley, David Gorman, Matt Lucas, Matthew Golby-Kirk (PDF)</li>
 <li><a href="https://rosenbaum.se/book/" rel="noopener noreferrer">Grokking Bitcoin</a> - Kalle Rosenbaum (HTML) <code>(CC BY-NC-SA)</code></li>
 <li><a href="https://www.ibm.com/downloads/cas/GZPPMWM5" rel="noopener noreferrer">IBM Blockchain: The Founder’s Handbook, Third Edition</a> - Antonio Banda, Matthew Hamilton, Eileen Lowry, John Widdifield, et al. (PDF)</li>
 <li><a href="https://github.com/BlockchainCommons/Learning-Bitcoin-from-the-Command-Line" rel="noopener noreferrer">Learning Bitcoin from the Command Line (⭐3.4k)</a> - Christopher Allen, Shannon Appelcline, et al. (HTML)</li>
 <li><a href="https://github.com/bitcoinbook/bitcoinbook" rel="noopener noreferrer">Mastering Bitcoin - Unlocking digital currencies (2017), 2nd Edition (⭐25k)</a> - Andreas M. Antonopoulos (AsciiDoc) <code>(CC BY-NC-ND)</code></li>
-<li><a href="https://github.com/ethereumbook/ethereumbook" rel="noopener noreferrer">Mastering Ethereum (2018), 1st Edition (⭐21k)</a> - Andreas M. Antonopoulos, Gavin Wood (AsciiDoc)</li>
+<li><a href="https://github.com/ethereumbook/ethereumbook" rel="noopener noreferrer">Mastering Ethereum (2018), 1st Edition (⭐22k)</a> - Andreas M. Antonopoulos, Gavin Wood (AsciiDoc)</li>
 <li><a href="https://github.com/lnbook/lnbook" rel="noopener noreferrer">Mastering the Lightning Network (⭐2.9k)</a> - Andreas M. Antonopoulos, Olaoluwa Osuntokun, Rene Pickhardt (AsciiDoc)</li>
 <li><a href="https://schadokar.dev/ebooks/playtime-with-hyperledger-composer/" rel="noopener noreferrer">Playtime with Hyperledger Composer</a> - Shubham Chadokar (PDF)</li>
 </ul>
@@ -239,7 +319,7 @@ Books that cover a specific programming language can be found in the <a href="ht
 <h3 id="compiler-design"><a class="anchor" aria-hidden="true" tabindex="-1" href="#compiler-design"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Compiler Design</h3><ul>
 <li><a href="https://web.archive.org/web/20170326232435/http://www.network-theory.co.uk/docs/gccintro/index.html" rel="noopener noreferrer">An Introduction to GCC</a> - Brian Gough <em>( :card_file_box: archived)</em></li>
 <li><a href="http://www.diku.dk/~torbenm/Basics/" rel="noopener noreferrer">Basics of Compiler Design (Anniversary Edition)</a> - Torben Mogensen</li>
-<li><a href="https://github.com/mmj-the-fighter/slang_for_dot_net_revision/blob/main/bookA4Desk.pdf" rel="noopener noreferrer">Compiler Construction using C# (SLANGFOR.NET) (⭐1)</a> - Praseed Pai (PDF)</li>
+<li><a href="https://github.com/mmj-the-fighter/slang_for_dot_net_revision/blob/main/bookA4Desk.pdf" rel="noopener noreferrer">Compiler Construction using C# (SLANGFOR.NET) (⭐0)</a> - Praseed Pai (PDF)</li>
 <li><a href="https://holub.com/goodies/compiler/compilerDesignInC.pdf" rel="noopener noreferrer">Compiler Design in C (1990)</a> - Allen Holub, Prentice Hall (PDF)</li>
 <li><a href="https://web.archive.org/web/20230816024714/http://elvis.rowan.edu/~bergmann/books/Compiler_Design/c_cpp/Text/C_CppEd.pdf" rel="noopener noreferrer">Compiler Design: Theory, Tools, and Examples, C/C++ Edition</a> - Seth D. Bergmann (PDF) <em>( :card_file_box: archived)</em></li>
 <li><a href="https://web.archive.org/web/20230816024714/http://elvis.rowan.edu/~bergmann/books/Compiler_Design/java/CompilerDesignBook.pdf" rel="noopener noreferrer">Compiler Design: Theory, Tools, and Examples, Java Edition</a> - Seth D. Bergmann (PDF) <em>( :card_file_box: archived)</em></li>
@@ -279,8 +359,8 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="http://programmingcomputervision.com" rel="noopener noreferrer">Programming Computer Vision with Python</a> - Jan Erik Solem</li>
 </ul>
 <h3 id="containers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#containers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Containers</h3><ul>
-<li><a href="https://github.com/semaphoreci/book-monorepo-cicd" rel="noopener noreferrer">CI/CD for Monorepos: Effectively building, testing, and deploying code with monorepos (⭐96)</a> - Pablo Tomas Fernandez Zavalia, Marko Anastasov, SemaphoreCI (PDF, EPUB, Kindle)</li>
-<li><a href="https://github.com/semaphoreci/book-cicd-docker-kubernetes" rel="noopener noreferrer">CI/CD with Docker and Kubernetes Book (⭐211)</a> - Marko Anastasov, Jérôme Petazzoni, Pablo Tom F. Zavalia, SemaphoreCI (PDF, EPUB, Kindle)</li>
+<li><a href="https://github.com/semaphoreci/book-monorepo-cicd" rel="noopener noreferrer">CI/CD for Monorepos: Effectively building, testing, and deploying code with monorepos (⭐98)</a> - Pablo Tomas Fernandez Zavalia, Marko Anastasov, SemaphoreCI (PDF, EPUB, Kindle)</li>
+<li><a href="https://github.com/semaphoreci/book-cicd-docker-kubernetes" rel="noopener noreferrer">CI/CD with Docker and Kubernetes Book (⭐213)</a> - Marko Anastasov, Jérôme Petazzoni, Pablo Tom F. Zavalia, SemaphoreCI (PDF, EPUB, Kindle)</li>
 <li><a href="https://odewahn.github.io/docker-jumpstart/" rel="noopener noreferrer">Docker Jumpstart</a> - Andrew Odewahn</li>
 <li><a href="https://people.irisa.fr/Anthony.Baire/docker-tutorial.pdf" rel="noopener noreferrer">Docker Tutorial</a> - Anthony Baire (PDF) (CC BY-NC-ND)</li>
 <li><a href="https://www.tutorialspoint.com/docker/" rel="noopener noreferrer">Docker Tutorial</a> - Tutorials Point (HTML, PDF)</li>
@@ -337,7 +417,7 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="https://freertos.org/Documentation/RTOS_book.html" rel="noopener noreferrer">Mastering the FreeRTOS Real Time Kernel - a Hands On Tutorial Guide</a> - freertos.org (<a href="https://freertos.org/fr-content-src/uploads/2018/07/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf" rel="noopener noreferrer">PDF</a>)</li>
 </ul>
 <h3 id="game-development"><a class="anchor" aria-hidden="true" tabindex="-1" href="#game-development"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Game Development</h3><ul>
-<li><a href="https://github.com/Penaz91/2DGD_F0TH" rel="noopener noreferrer">2D Game Development: From Zero To Hero (⭐446)</a> - Daniele Penazzo (HTML, <a href="https://therealpenaz91.itch.io/2dgd-f0th#download" rel="noopener noreferrer">PDF, EBPUB, Kindle...</a>) <em>( 🚧 in process)</em></li>
+<li><a href="https://github.com/Penaz91/2DGD_F0TH" rel="noopener noreferrer">2D Game Development: From Zero To Hero (⭐453)</a> - Daniele Penazzo (HTML, <a href="https://therealpenaz91.itch.io/2dgd-f0th#download" rel="noopener noreferrer">PDF, EBPUB, Kindle...</a>) <em>( 🚧 in process)</em></li>
 <li><a href="https://gamemath.com/book/intro.html" rel="noopener noreferrer">3D Math Primer for Graphics and Game Development</a> - Fletcher Dunn (HTML)</li>
 <li><a href="https://mud.co.uk/richard/DesigningVirtualWorlds.pdf" rel="noopener noreferrer">Designing Virtual Worlds</a> - Richard A. Bartle (PDF)</li>
 <li><a href="https://www.gameaipro.com" rel="noopener noreferrer">Game AI Pro</a> - Steve Rabin</li>
@@ -347,7 +427,7 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="https://pcgbook.com" rel="noopener noreferrer">Procedural Content Generation in Games</a> - Noor Shaker, Julian Togelius, Mark Nelson</li>
 </ul>
 <h3 id="graphics-programming"><a class="anchor" aria-hidden="true" tabindex="-1" href="#graphics-programming"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Graphics Programming</h3><ul>
-<li><a href="https://github.com/lettier/3d-game-shaders-for-beginners" rel="noopener noreferrer">3D Game Shaders For Beginners (⭐19k)</a> - David Lettier (Git) <a href="https://lettier.github.io/3d-game-shaders-for-beginners" rel="noopener noreferrer">(HTML)</a></li>
+<li><a href="https://github.com/lettier/3d-game-shaders-for-beginners" rel="noopener noreferrer">3D Game Shaders For Beginners (⭐20k)</a> - David Lettier (Git) <a href="https://lettier.github.io/3d-game-shaders-for-beginners" rel="noopener noreferrer">(HTML)</a></li>
 <li><a href="https://en.wikibooks.org/wiki/Blender_3D%3A_Noob_to_Pro" rel="noopener noreferrer">Blender 3D: Noob to Pro</a> - Wikibooks</li>
 <li><a href="https://docs.blender.org/manual/en/latest" rel="noopener noreferrer">Blender Manual</a></li>
 <li><a href="http://gabrielgambetta.com/computer-graphics-from-scratch" rel="noopener noreferrer">Computer Graphics from scratch</a> - Gabriel Gambetta <em>( 🚧 in process)</em></li>
@@ -444,7 +524,7 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="https://mila.quebec/wp-content/uploads/2019/08/TR1312.pdf" rel="noopener noreferrer">Learning Deep Architectures for AI</a> - Yoshua Bengio (PDF)</li>
 <li><a href="https://www.intechopen.com/books/machine_learning" rel="noopener noreferrer">Machine Learning</a></li>
 <li><a href="https://developers.google.com/machine-learning/crash-course" rel="noopener noreferrer">Machine Learning Crash Course</a> - Google (HTML)</li>
-<li><a href="https://github.com/Microsoft/ML-For-Beginners" rel="noopener noreferrer">Machine Learning for Beginners (⭐85k)</a> - Microsoft</li>
+<li><a href="https://github.com/Microsoft/ML-For-Beginners" rel="noopener noreferrer">Machine Learning for Beginners (⭐86k)</a> - Microsoft</li>
 <li><a href="https://moa.cms.waikato.ac.nz/book-html/" rel="noopener noreferrer">Machine Learning for Data Streams</a> - Albert Bifet, Ricard Gavaldà, Geoff Holmes, Bernhard Pfahringer</li>
 <li><a href="https://dafriedman97.github.io/mlbook/" rel="noopener noreferrer">Machine Learning from Scratch</a> - Danny Friedman (HTML, PDF, Jupyter Book)</li>
 <li><a href="https://www1.maths.leeds.ac.uk/~charles/statlog/" rel="noopener noreferrer">Machine Learning, Neural and Statistical Classification</a> - D. Michie, D.J. Spiegelhalter, C.C. Taylor</li>
@@ -458,7 +538,7 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="https://mlstory.org/pdf/patterns.pdf" rel="noopener noreferrer">Patterns, Predictions, And Actions: A story about machine learning</a> - Moritz Hardt, Benjamin Recht (PDF)</li>
 <li><a href="https://course.fast.ai" rel="noopener noreferrer">Practical Deep Learning for Coders</a> - fast.ai</li>
 <li><a href="https://services.google.com/fh/files/misc/practitioners_guide_to_mlops_whitepaper.pdf" rel="noopener noreferrer">Practitioners guide to MLOps</a> - Khalid Samala, Jarek Kazmierczak, Donna Schut (PDF)</li>
-<li><a href="https://github.com/probml/pml-book/releases/latest/download/book1.pdf" rel="noopener noreferrer">Probabilistic Machine Learning - An Introduction (⭐5.5k)</a> - Kevin P. Murphy (PDF)</li>
+<li><a href="https://github.com/probml/pml-book/releases/latest/download/book1.pdf" rel="noopener noreferrer">Probabilistic Machine Learning - An Introduction (⭐5.6k)</a> - Kevin P. Murphy (PDF)</li>
 <li><a href="https://probml.github.io/pml-book/book2.html" rel="noopener noreferrer">Probabilistic Machine Learning: Advanced Topics</a> - Kevin P. Murphy (PDF)</li>
 <li><a href="https://www.digitalocean.com/community/books/python-machine-learning-projects-a-digitalocean-ebook" rel="noopener noreferrer">Python Machine Learning Projects</a> - Lisa Tagliaferri, Brian Boucheron, Michelle Morales, Ellie Birkbeck, Alvin Wan (PDF, EPUB, Kindle)</li>
 <li><a href="http://incompleteideas.net/book/RLbook2020.pdf" rel="noopener noreferrer">Reinforcement Learning: An Introduction</a> - Richard S. Sutton, Andrew G. Barto (PDF) (CC BY-NC-ND)</li>
@@ -536,7 +616,7 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="https://home.iitk.ac.in/~psraj/mth101/" rel="noopener noreferrer">Mathematics, MTH101A</a> - P. Shunmugaraj, IIT Kanpur</li>
 <li><a href="http://luc.devroye.org/rnbookindex.html" rel="noopener noreferrer">Non-Uniform Random Variate Generation</a> - Luc Devroye (PDF)</li>
 <li><a href="https://www.jirka.org/diffyqs/" rel="noopener noreferrer">Notes on Diffy Qs</a> - Jiří Lebl</li>
-<li><a href="https://github.com/holdenlee/number-theory" rel="noopener noreferrer">Number Theory (⭐64)</a> - Holden Lee MIT</li>
+<li><a href="https://github.com/holdenlee/number-theory" rel="noopener noreferrer">Number Theory (⭐65)</a> - Holden Lee MIT</li>
 <li><a href="https://math.gordon.edu/ntic/" rel="noopener noreferrer">Number Theory: In Context and Interactive</a> - Karl-Dieter Crisman (HTML, PDF)</li>
 <li><a href="https://jonathanweisberg.org/vip/" rel="noopener noreferrer">Odds and Ends: Introducing Probability &amp; Decision with a Visual Emphasis</a> - Jonathan Weisberg</li>
 <li><a href="https://onlinestatbook.com" rel="noopener noreferrer">Online Statistics Education</a> - David Lane</li>
@@ -582,7 +662,7 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="http://joshua.smcvt.edu/linearalgebra/" rel="noopener noreferrer">Linear Algebra</a> - Jim Hefferon</li>
 <li><a href="https://linear.axler.net" rel="noopener noreferrer">Linear Algebra Done Right</a> - Sheldon Axler</li>
 <li><a href="https://www.math.brown.edu/streil/papers/LADW/LADW.html" rel="noopener noreferrer">Linear Algebra Done Wrong</a> - Sergei Treil</li>
-<li><a href="https://people.math.gatech.edu/~herod/Hspace/Hspace.html" rel="noopener noreferrer">Linear Algebra, Infinite Dimensions, and Maple</a> - James Herod</li>
+<li><a href="https://web.archive.org/web/20240313042212/https://herod.math.gatech.edu/Hspace/Hspace.html" rel="noopener noreferrer">Linear Algebra, Infinite Dimensions, and Maple</a> - James Herod (HTML) <em>( :card_file_box: archived)</em></li>
 <li><a href="https://spaces.pcc.edu/pages/viewpage.action?pageId=52729944" rel="noopener noreferrer">ORCCA: Open Resources for Community College Algebra</a> - Portland Community College</li>
 <li><a href="https://tutorial.math.lamar.edu" rel="noopener noreferrer">Paul's Online Notes: Algebra, Calculus I-III and Differential Equations</a> - Paul Dawkins @ Lamar University</li>
 <li><a href="http://djm.cc/library/Second_Algebra_Hawkes_Luby_Touton_edited.pdf" rel="noopener noreferrer">Second Course in Algebra</a> - Herbert E. Hawkes, William A. Luby, Frank C. Touton (PDF)</li>
@@ -643,7 +723,7 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="https://www.interaction-design.org/literature/book/the-encyclopedia-of-human-computer-interaction-2nd-ed" rel="noopener noreferrer">Encyclopedia of Human Computer Interaction 2nd Edition</a></li>
 <li><a href="https://images.guide" rel="noopener noreferrer">Essential Image Optimization</a> - Addy Osmani</li>
 <li><a href="https://openmymind.net/FoundationsOfProgramming.pdf" rel="noopener noreferrer">Foundations of Programming</a> - Karl Seguin (PDF)</li>
-<li><a href="https://github.com/lala-hakobyan/front-end-debugging-handbook" rel="noopener noreferrer">Front-end Debugging Tools Handbook (⭐40)</a> - Lala Hakobyan</li>
+<li><a href="https://github.com/lala-hakobyan/front-end-debugging-handbook" rel="noopener noreferrer">Front-end Debugging Tools Handbook (⭐47)</a> - Lala Hakobyan</li>
 <li><a href="https://frontendmasters.com/guides/front-end-handbook/2016/" rel="noopener noreferrer">Front-End Developer Handbook 2016</a> - Cody Lindley (HTML)</li>
 <li><a href="https://frontendmasters.com/guides/front-end-handbook/2017/" rel="noopener noreferrer">Front-End Developer Handbook 2017</a> - Cody Lindley (HTML)</li>
 <li><a href="https://frontendmasters.com/guides/front-end-handbook/2018/" rel="noopener noreferrer">Front-End Developer Handbook 2018</a> - Cody Lindley (HTML)</li>
@@ -690,8 +770,8 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="https://jamesg.blog/book.pdf" rel="noopener noreferrer">Software Technical Writing: A Guidebook</a> - James Gallagher (PDF)</li>
 <li><a href="https://theartofhpc.com/istc/index.html" rel="noopener noreferrer">The Art of High Perfomance Computing - Volume 1: The Science of Computing</a> - Victor Eijkhout (HTML)</li>
 <li><a href="https://theartofhpc.com/pcse/index.html" rel="noopener noreferrer">The Art of High Perfomance Computing - Volume 2: Parallel Programming for Science Engineering</a> - Victor Eijkhout (HTML)</li>
-<li><a href="https://github.com/VictorEijkhout/TheArtofHPC_pdfs/blob/main/vol3/EijkhoutIntroSciProgramming-book.pdf" rel="noopener noreferrer">The Art of High Perfomance Computing - Volume 3: Introduction to Scientific Programming (⭐790)</a> - Victor Eijkhout (PDF)</li>
-<li><a href="https://github.com/VictorEijkhout/TheArtofHPC_pdfs/blob/main/vol4/EijkhoutHPCtutorials.pdf" rel="noopener noreferrer">The Art of High Perfomance Computing - Volume 4: HPC Carpentry (⭐790)</a> - Victor Eijkhout (PDF)</li>
+<li><a href="https://github.com/VictorEijkhout/TheArtofHPC_pdfs/blob/main/vol3/EijkhoutIntroSciProgramming-book.pdf" rel="noopener noreferrer">The Art of High Perfomance Computing - Volume 3: Introduction to Scientific Programming (⭐817)</a> - Victor Eijkhout (PDF)</li>
+<li><a href="https://github.com/VictorEijkhout/TheArtofHPC_pdfs/blob/main/vol4/EijkhoutHPCtutorials.pdf" rel="noopener noreferrer">The Art of High Perfomance Computing - Volume 4: HPC Carpentry (⭐817)</a> - Victor Eijkhout (PDF)</li>
 <li><a href="https://sre.google/workbook/table-of-contents/" rel="noopener noreferrer">The Site Reliability Workbook - Practical Ways to Implement SRE</a> - Betsy Beyer, Niall Richard Murphy, David K. Rensin, Kent Kawahara, Stephen Thorne (HTML)</li>
 <li><a href="https://github.com/frontenddogma/web-development-glossary" rel="noopener noreferrer">The Web Development Glossary (⭐6)</a> – Jens Oliver Meiert</li>
 <li><a href="http://www.usingz.com/usingz.pdf" rel="noopener noreferrer">Using Z Specification, Refinement, and Proof</a> -  Jim Woodcock, Jim Davies (PDF)</li>
@@ -731,7 +811,7 @@ Books that cover a specific programming language can be found in the <a href="ht
 </ul>
 <h3 id="open-source-ecosystem"><a class="anchor" aria-hidden="true" tabindex="-1" href="#open-source-ecosystem"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Open Source Ecosystem</h3><ul>
 <li><a href="https://github.com/aosabook/500lines" rel="noopener noreferrer">500 lines or less (⭐30k)</a> - Build from Source Code</li>
-<li><a href="https://github.com/Mte90/Contribute-to-opensource-the-right-way" rel="noopener noreferrer">Contributing to opensource: the right way (⭐143)</a> - Daniele Scasciafratte</li>
+<li><a href="https://github.com/Mte90/Contribute-to-opensource-the-right-way" rel="noopener noreferrer">Contributing to opensource: the right way (⭐144)</a> - Daniele Scasciafratte</li>
 <li><a href="https://datajournalismhandbook.org" rel="noopener noreferrer">Data Journalism Handbook</a></li>
 <li><a href="https://archive.org/details/faif-2.0" rel="noopener noreferrer">Free as in Freedom: Richard Stallman and the free software revolution</a> - Sam Williams (PDF)</li>
 <li><a href="https://unglue.it/work/136445/" rel="noopener noreferrer">Free for All</a> - Peter Wayner</li>
@@ -758,11 +838,11 @@ Books that cover a specific programming language can be found in the <a href="ht
 <li><a href="https://markburgess.org/os/os.pdf" rel="noopener noreferrer">A short introduction to operating systems (2001)</a> - Mark Burgess (PDF)</li>
 <li><a href="https://www.bottomupcs.com" rel="noopener noreferrer">Computer Science from the Bottom Up</a> - Ian Wienand (PDF)</li>
 <li><a href="https://aaltodoc.aalto.fi/handle/123456789/6318" rel="noopener noreferrer">Flexible Operating System Internals: The Design and Implementation of the Anykernel and Rump Kernels</a> - Antti Kantee (PDF)</li>
-<li><a href="https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System" rel="noopener noreferrer">How to Make a Computer Operating System (⭐23k)</a> - Samy Pesse  <em>( 🚧 in process)</em></li>
+<li><a href="https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System" rel="noopener noreferrer">How to Make a Computer Operating System (⭐22k)</a> - Samy Pesse  <em>( 🚧 in process)</em></li>
 <li><a href="https://mikeos.sourceforge.net/write-your-own-os.html" rel="noopener noreferrer">How to write a simple operating system in assembly language</a> - Mike Saunders (HTML)</li>
 <li><a href="http://www.linuxtopia.org/online_books/linux_kernel/kernel_configuration" rel="noopener noreferrer">Linux Kernel in a Nutshell</a> - Greg Kroah-Hartman (HTML)</li>
 <li><a href="https://www.digitalocean.com/community/books/sysadmin-ebook-making-servers-work" rel="noopener noreferrer">Making Servers Work: A Practical Guide to Linux System Administration</a> - Jamon Camisso (PDF, EPUB)</li>
-<li><a href="https://github.com/tuhdo/os01/releases/tag/0.0.1" rel="noopener noreferrer">Operating Systems: From 0 to 1 (⭐13k)</a> - Tu, Ho Doang (PDF) ( 🚧 <em>in process</em>)</li>
+<li><a href="https://github.com/tuhdo/os01/releases/tag/0.0.1" rel="noopener noreferrer">Operating Systems: From 0 to 1 (⭐14k)</a> - Tu, Ho Doang (PDF) ( 🚧 <em>in process</em>)</li>
 <li><a href="https://pages.cs.wisc.edu/~remzi/OSTEP/" rel="noopener noreferrer">Operating Systems: Three Easy Pieces</a> - Remzi H. Arpaci-Dusseau, Andrea C. Arpaci-Dusseau (PDF)</li>
 <li><a href="https://www.nobius.org/~dbg/practical-file-system-design.pdf" rel="noopener noreferrer">Practical File System Design: The Be File System</a> - Dominic Giampaolo (PDF)</li>
 <li><a href="https://people.inf.ethz.ch/wirth/ProjectOberon/index.html" rel="noopener noreferrer">Project Oberon: The Design of an Operating System, a Compiler, and a Computer</a> - Niklaus Wirth, Jürg Gutknecht (PDF)</li>
@@ -794,7 +874,7 @@ Kerridge (PDF) (email address <em>requested</em>, not required)</li>
 <li><a href="https://www.red-gate.com/library/dont-just-roll-the-dice" rel="noopener noreferrer">Don't Just Roll the Dice</a> - Neil Davidson (PDF)</li>
 <li><a href="https://leanpub.com/dowhatyoulove/read" rel="noopener noreferrer">How to Do What You Love &amp; Earn What You’re Worth as a Programmer</a> - Reginald Braithwaite</li>
 <li><a href="https://www.freecodecamp.org/news/learn-to-code-book" rel="noopener noreferrer">How to Learn to Code &amp; Get a Developer Job in 2023</a> - Quincy Larson</li>
-<li><a href="https://github.com/lvndry/how-to-stand-out-as-a-software-engineer/blob/main/how_to_stand_out_as_a_software_engineer.pdf" rel="noopener noreferrer">How to Stand Out as a Software Engineer (⭐7)</a> - Landry Monga (PDF)</li>
+<li><a href="https://github.com/lvndry/how-to-stand-out-as-a-software-engineer/blob/main/how_to_stand_out_as_a_software_engineer.pdf" rel="noopener noreferrer">How to Stand Out as a Software Engineer (⭐8)</a> - Landry Monga (PDF)</li>
 <li><a href="https://mixmastamyk.bitbucket.io/pro_soft_dev/intro.html" rel="noopener noreferrer">Professional Software Development For Students</a> - Mike G. Miller</li>
 <li><a href="https://abseil.io/resources/swe-book" rel="noopener noreferrer">Software Engineering at Google</a> - Titus Winters, Tom Manshreck, Hyrum Wright</li>
 <li><a href="https://softwareconcepts.vercel.app" rel="noopener noreferrer">Software Environment Concepts</a> - Amr Elmohamady <em>( 🚧 in process)</em></li>
@@ -863,7 +943,7 @@ Kerridge (PDF) (email address <em>requested</em>, not required)</li>
 <li><a href="https://www.pistocop.dev/posts/es_engineer_exam_notes/" rel="noopener noreferrer">Elasticsearch Certified Engineer notes </a> - (HTML)</li>
 <li><a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/index.html" rel="noopener noreferrer">Elasticsearch: The Definitive Guide</a> (<a href="https://github.com/elastic/elasticsearch-definitive-guide" rel="noopener noreferrer">fork it on GH (⭐3.6k)</a>)</li>
 <li><a href="https://ciir.cs.umass.edu/irbook" rel="noopener noreferrer">Search Engines: Information Retrieval in Practice</a> - W. Bruce Croft, Donald Metzler, Trevor Strohman (PDF)</li>
-<li><a href="https://github.com/hectorcorrea/solr-for-newbies" rel="noopener noreferrer">Solr for newbies workshop (2019) (⭐87)</a> - Hector Correa (<a href="https://github.com/hectorcorrea/solr-for-newbies/blob/master/tutorial.pdf" rel="noopener noreferrer">PDF (⭐87)</a>)</li>
+<li><a href="https://github.com/hectorcorrea/solr-for-newbies" rel="noopener noreferrer">Solr for newbies workshop (2019) (⭐90)</a> - Hector Correa (<a href="https://github.com/hectorcorrea/solr-for-newbies/blob/master/tutorial.pdf" rel="noopener noreferrer">PDF (⭐90)</a>)</li>
 </ul>
 <h3 id="security--privacy"><a class="anchor" aria-hidden="true" tabindex="-1" href="#security--privacy"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Security &amp; Privacy</h3><ul>
 <li><a href="https://toc.cryptobook.us" rel="noopener noreferrer">A Graduate Course in Applied Cryptography</a></li>
@@ -882,7 +962,7 @@ Kerridge (PDF) (email address <em>requested</em>, not required)</li>
 <li><a href="https://www.open.edu/openlearn/digital-computing/network-security/altformat-printable" rel="noopener noreferrer">Network Security</a> - OpenLearn (PDF)</li>
 <li><a href="https://www.feistyduck.com/library/openssl-cookbook/" rel="noopener noreferrer">OpenSSL Cookbook</a></li>
 <li><a href="https://mobile-security.gitbook.io/mobile-security-testing-guide/" rel="noopener noreferrer">OWASP Mobile Security Testing Guide</a> - Bernhard Mueller et al.</li>
-<li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/" rel="noopener noreferrer">OWASP Testing Guide 4.2</a> - The OWASP® Foundation (HTML, <a href="https://github.com/OWASP/wstg/releases/download/v4.2/wstg-v4.2.pdf" rel="noopener noreferrer">PDF (⭐9k)</a>)</li>
+<li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/" rel="noopener noreferrer">OWASP Testing Guide 4.2</a> - The OWASP® Foundation (HTML, <a href="https://github.com/OWASP/wstg/releases/download/v4.2/wstg-v4.2.pdf" rel="noopener noreferrer">PDF (⭐9.2k)</a>)</li>
 <li><a href="https://www.troyhunt.com/2011/12/free-ebook-owasp-top-10-for-net.html" rel="noopener noreferrer">OWASP Top 10 for .NET Developers</a></li>
 <li><a href="https://cryptobook.nakov.com" rel="noopener noreferrer">Practical Cryptography for Developer</a> - Svetlin Nakov (GitBook) ( 🚧 <em>in process</em>)</li>
 <li><a href="https://programming-dp.com" rel="noopener noreferrer">Programming Differential Privacy</a> - Joseph Near, Chiké Abuah (HTML, PDF)</li>
@@ -891,12 +971,12 @@ Kerridge (PDF) (email address <em>requested</em>, not required)</li>
 <li><a href="https://learning.lpi.org/en/learning-materials/020-100/" rel="noopener noreferrer">Security Essentials</a> -  by Linux Professional Institute (PDF)</li>
 <li><a href="https://joyofcryptography.com/pdf/book.pdf" rel="noopener noreferrer">The Joy of Cryptography (2021)</a> - Mike Rosulek (PDF)</li>
 <li><a href="https://leastauthority.com/community-matters/moonmath-manual/" rel="noopener noreferrer">The MoonMath Manual to zk-SNARKs</a> - Least Authority</li>
-<li><a href="https://github.com/mairin/selinux-coloring-book" rel="noopener noreferrer">The SELINUX Coloring Book (⭐532)</a> -  Daniel J Walsh, Máirín Duffy (PDF) (CC BY-SA)</li>
-<li><a href="https://github.com/SELinuxProject/selinux-notebook" rel="noopener noreferrer">The SELinux Notebook (⭐727)</a> - Richard Haines, Paul Moore, SELinux Community (HTML, PDF, EPUB, azw3) (GFDL)</li>
+<li><a href="https://github.com/mairin/selinux-coloring-book" rel="noopener noreferrer">The SELINUX Coloring Book (⭐533)</a> -  Daniel J Walsh, Máirín Duffy (PDF) (CC BY-SA)</li>
+<li><a href="https://github.com/SELinuxProject/selinux-notebook" rel="noopener noreferrer">The SELinux Notebook (⭐732)</a> - Richard Haines, Paul Moore, SELinux Community (HTML, PDF, EPUB, azw3) (GFDL)</li>
 </ul>
 <h3 id="software-architecture"><a class="anchor" aria-hidden="true" tabindex="-1" href="#software-architecture"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Software Architecture</h3><ul>
 <li><a href="https://launchschool.com/books/agile_planning" rel="noopener noreferrer">Agile Planning: From Ideas to Story Cards</a> - Launch School</li>
-<li><a href="https://github.com/denyspoltorak/publications/tree/main/ArchitecturalMetapatterns" rel="noopener noreferrer">Architectural Metapatterns: The Pattern Language of Software Architecture (⭐724)</a> - Denys Poltorak, <code>edt.:</code> Lars Noodén (PDF, EPUB, ODT) (CC BY)</li>
+<li><a href="https://github.com/denyspoltorak/publications/tree/main/ArchitecturalMetapatterns" rel="noopener noreferrer">Architectural Metapatterns: The Pattern Language of Software Architecture (⭐745)</a> - Denys Poltorak, <code>edt.:</code> Lars Noodén (PDF, EPUB, ODT) (CC BY)</li>
 <li><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm" rel="noopener noreferrer">Architectural Styles and the Design of Network-based Software Architectures</a> - Roy Thomas Fielding</li>
 <li><a href="https://smartbear.com/lp/ebook/collaborator/secrets-of-peer-code-review/" rel="noopener noreferrer">Best Kept Secrets of Peer Code Review</a></li>
 <li><a href="https://static.googleusercontent.com/media/landing.google.com/en//sre/static/pdf/Building_Secure_and_Reliable_Systems.pdf" rel="noopener noreferrer">Building Secure &amp; Reliable Systems</a> - Heather Adkins, Betsy Beyer, Paul Blankinship, Piotr Lewandowski, Ana Oprea, Adam Stubblefield (PDF)</li>
@@ -924,7 +1004,7 @@ Kerridge (PDF) (email address <em>requested</em>, not required)</li>
 <li><a href="https://www.lightbend.com/ebooks/reactive-microservices-architecture-design-principles-for-distributed-systems-oreilly" rel="noopener noreferrer">Reactive Microservices Architecture</a> (email address <em>requested</em>)</li>
 <li><a href="https://www.lightbend.com/ebooks/reactive-microsystems-evolution-of-microservices-scalability-oreilly" rel="noopener noreferrer">Reactive Microsystems: The Evolution of Microservices at Scale</a> (email address <em>requested</em>)</li>
 <li><a href="https://github.com/bespoyasov/refactor-like-a-superhero-online-book/blob/main/manuscript-en/README.md" rel="noopener noreferrer">Refactor Like a Superhero (⭐1.1k)</a> - Alex Bespoyasov</li>
-<li><a href="https://github.com/SanQri/safe-by-design" rel="noopener noreferrer">Safe by design (⭐54)</a> - Mykola Haliullin</li>
+<li><a href="https://github.com/SanQri/safe-by-design" rel="noopener noreferrer">Safe by design (⭐57)</a> - Mykola Haliullin</li>
 <li><a href="https://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2" rel="noopener noreferrer">Scrum and XP from the Trenches</a></li>
 <li><a href="https://docs.microsoft.com/en-us/dotnet/standard/serverless-architecture/" rel="noopener noreferrer">Serverless apps: Architecture, patterns, and Azure implementation</a></li>
 <li><a href="https://www.packtpub.com/free-ebooks/serverless-design-patterns-and-best-practices" rel="noopener noreferrer">Serverless Design Patterns and Best Practices</a> - Brian Zambrano (Packt account <em>required</em>)</li>
@@ -933,8 +1013,8 @@ Kerridge (PDF) (email address <em>requested</em>, not required)</li>
 <li><a href="https://www.oreilly.com/programming/free/software-architecture-patterns.csp" rel="noopener noreferrer">Software Architecture Patterns</a> (email address <em>requested</em>, not required)</li>
 <li><a href="https://philip.greenspun.com/seia/" rel="noopener noreferrer">Software Engineering for Internet Applications</a></li>
 <li><a href="https://sourcemaking.com/design_patterns" rel="noopener noreferrer">Source Making Design Patterns and UML</a></li>
-<li><a href="https://github.com/grzesiek-galezowski/tdd-ebook" rel="noopener noreferrer">Test Driven Development, Extensive Tutorial (⭐368)</a> - Grzegorz Gałęzowski</li>
-<li><a href="https://github.com/subhashchy/The-Accidental-CTO" rel="noopener noreferrer">The Accidental CTO: How I Scaled from Zero to a Million Stores on Dukaan, Without a CS Degree (⭐3.2k)</a> - Subhash Choudhary</li>
+<li><a href="https://github.com/grzesiek-galezowski/tdd-ebook" rel="noopener noreferrer">Test Driven Development, Extensive Tutorial (⭐370)</a> - Grzegorz Gałęzowski</li>
+<li><a href="https://github.com/subhashchy/The-Accidental-CTO" rel="noopener noreferrer">The Accidental CTO: How I Scaled from Zero to a Million Stores on Dukaan, Without a CS Degree (⭐3.5k)</a> - Subhash Choudhary</li>
 <li><a href="https://refactoring.guru/design-patterns/catalog" rel="noopener noreferrer">The Catalog of Design Patterns</a></li>
 <li><a href="https://landing.google.com/sre/workbook/toc/" rel="noopener noreferrer">The Site Reliability Workbook</a> - Betsy Beyer, Niall Richard Murphy, David K. Rensin, Kent Kawahara, Stephen Thorne</li>
 <li><a href="https://pages.apigee.com/rs/apigee/images/api-design-ebook-2012-03.pdf" rel="noopener noreferrer">Web API Design</a> - Brian Mulloy (PDF)</li>
@@ -944,7 +1024,7 @@ Kerridge (PDF) (email address <em>requested</em>, not required)</li>
 </ul>
 <h3 id="standards"><a class="anchor" aria-hidden="true" tabindex="-1" href="#standards"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Standards</h3><ul>
 <li><a href="https://refspecs.linuxfoundation.org/lsb.shtml" rel="noopener noreferrer">Linux Standard Base</a></li>
-<li><a href="https://github.com/geoff-codes/posix-standard" rel="noopener noreferrer">UNIX - The POSIX Standard - IEEE Std 1003.1 (⭐197)</a></li>
+<li><a href="https://github.com/geoff-codes/posix-standard" rel="noopener noreferrer">UNIX - The POSIX Standard - IEEE Std 1003.1 (⭐198)</a></li>
 </ul>
 <h3 id="theoretical-computer-science"><a class="anchor" aria-hidden="true" tabindex="-1" href="#theoretical-computer-science"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Theoretical Computer Science</h3><ul>
 <li><a href="https://mfleck.cs.illinois.edu/building-blocks/index.html" rel="noopener noreferrer">Building Blocks for Theoretical Computer Science</a> - Margaret M. Fleck</li>
@@ -983,10 +1063,10 @@ Kerridge (PDF) (email address <em>requested</em>, not required)</li>
 <li><a href="https://web.archive.org/web/20210910133251/http://documentup.com/skwp/git-workflows-book" rel="noopener noreferrer">Git Workflows</a> - Yan Pritzker <em>( :card_file_box: archived)</em></li>
 <li><a href="https://happygitwithr.com" rel="noopener noreferrer">Happy Git and GitHub for the useR</a> - Jenny Bryan</li>
 <li><a href="https://hginit.github.io" rel="noopener noreferrer">Hg Init: a Mercurial Tutorial</a> - Joel Spolsky</li>
-<li><a href="https://github.com/eonist/How-to-collaborate-on-github" rel="noopener noreferrer">How to Collaborate on GitHub: A mini book about collaborating on GitHub (⭐384)</a> - André J</li>
+<li><a href="https://github.com/eonist/How-to-collaborate-on-github" rel="noopener noreferrer">How to Collaborate on GitHub: A mini book about collaborating on GitHub (⭐386)</a> - André J</li>
 <li><a href="https://launchschool.com/books/git" rel="noopener noreferrer">Introduction to Git and Github</a> - Launch School</li>
 <li><a href="https://cse.unl.edu/~cbourke/gitTutorial.pdf" rel="noopener noreferrer">Introduction to Git and Github - Tutorial</a> - Chris Bourke (PDF)</li>
-<li><a href="https://github.com/bobbyiliev/introduction-to-git-and-github-ebook" rel="noopener noreferrer">Introduction to Git and GitHub eBook (⭐1k)</a> - Bobby Iliev (Markdown, PDF)</li>
+<li><a href="https://github.com/bobbyiliev/introduction-to-git-and-github-ebook" rel="noopener noreferrer">Introduction to Git and GitHub eBook (⭐1.1k)</a> - Bobby Iliev (Markdown, PDF)</li>
 <li><a href="https://www.git-tower.com/learn/git/ebook/command-line/introduction" rel="noopener noreferrer">Learn Git - Learn Version Control with Git</a> - Tobias Günther</li>
 <li><a href="http://hgbook.red-bean.com" rel="noopener noreferrer">Mercurial: The Definitive Guide</a> - Bryan O'Sullivan</li>
 <li><a href="https://book.mercurial-scm.org" rel="noopener noreferrer">Mercurial: The Definitive Guide 2nd edition</a> - Bryan O'Sullivan</li>
@@ -1013,5 +1093,47 @@ Kerridge (PDF) (email address <em>requested</em>, not required)</li>
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
