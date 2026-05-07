@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Track Awesome Gemini Cli (Piebald-AI/awesome-gemini-cli) Updates Weekly - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/Piebald-AI/awesome-gemini-cli/week/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Track Awesome Gemini Cli Updates Weekly" />
+    <meta property="og:description" content="A curated list of awesome tools, extensions, and resources for Gemini CLI." />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
+    <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
+      }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Track Awesome Gemini Cli Updates Weekly</h1>
+<p>A curated list of awesome tools, extensions, and resources for Gemini CLI.</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/Piebald-AI/awesome-gemini-cli/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/Piebald-AI/awesome-gemini-cli">😺 Piebald-AI/awesome-gemini-cli</a><span> · </span><span>⭐ 437</span><span> · </span><span>🏷️ Agentic AI</span></p>
+<p><span>[ </span><a href="/Piebald-AI/awesome-gemini-cli/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/Piebald-AI/awesome-gemini-cli/readme/">Overview</a><span> ]</span></p>
+
+<h2><a href="https://www.trackawesomelist.com/2026/19/">May 11 - May 17, 2026</a></h2><h3><p>Agent Orchestration &amp; CLI Tools</p>
+</h3>
+<ul>
+<li><a href="https://github.com/toutkit/toutkit" rel="noopener noreferrer">ToutKit (⭐2)</a> - Desktop notebook with a built-in terminal that runs Gemini CLI alongside Claude Code and Codex; an in-app webview renders whatever the agent writes inline, and each note is a self-contained folder with its own SQLite, files, and scripts. Local-first, Electron, AGPL-3.0.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/18/">May 04 - May 10, 2026</a></h2><h3><p>Development Tools &amp; Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/MohamedAbdallah-14/unslop" rel="noopener noreferrer">unslop (⭐17)</a> - CLI and MCP server that removes AI writing patterns from text: tricolons, em-dash overuse, hedging stacks, sycophancy openers, and overused vocabulary. Works with any MCP client including Gemini CLI. Five intensity levels and a lint-only audit mode. Useful for cleaning commit messages, PR descriptions, and documentation.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mishanefedov/agentwatch" rel="noopener noreferrer">agentwatch (⭐6)</a> - Local-only TUI + web dashboard that tails Gemini CLI sessions alongside Claude Code, Codex, Cursor, Hermes, and OpenClaw on one unified timeline. Parses tokens, tools, and per-turn cost from each Gemini CLI session (gemini-2.5-pro / flash rates), plus context compaction visualizer, MAD z-score anomaly detection, MCP server mode, and OpenTelemetry exporter. No cloud, no telemetry. macOS + Linux. MIT.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/luoyuctl/agenttrace" rel="noopener noreferrer">agenttrace (⭐3)</a> - Local-first TUI for Gemini CLI and AI coding agent session observability. Parses local logs for cost, tokens, tool failures, latency, anomalies, health gates, and diffs across Gemini CLI, Claude Code, Codex CLI, Aider, Cursor exports, OpenCode, and more.</li>
+</ul>
+<h3><p>MCP Servers</p>
+</h3>
+<ul>
+<li><a href="https://github.com/kubestellar/console" rel="noopener noreferrer">KubeStellar Console kc-agent (⭐62)</a> - Multi-cluster Kubernetes MCP server bridging Gemini CLI to kubeconfig and Kubernetes APIs. Manage clusters, policies, and 20+ CNCF project integrations across edge and cloud. Install via <code>brew tap kubestellar/tap &amp;&amp; brew install kc-agent</code>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/MohamedAbdallah-14/prompt-to-asset" rel="noopener noreferrer">prompt-to-asset (⭐3)</a> - MCP server that generates production-ready visual assets (app icons, favicons, OG images, logos, wordmarks) by routing requests across 30+ image generation models. Zero API key required for first run via Pollinations and Stable Horde free tiers. Works with any MCP client including Gemini CLI.</li>
+</ul>
+<h3><p>Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/megabytespace/claude-skills" rel="noopener noreferrer">Emdash Skills (⭐3)</a> - 14-category autonomous product-building OS with 18 specialized agents. Turns one-line prompts into deployed products. Includes GEMINI.md compatibility for cross-tool portability. Skills cover architecture, planning, quality, brand, media, observability, and deployment on Cloudflare Workers.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/17/">Apr 27 - May 03, 2026</a></h2><h3><p>MCP Servers</p>
+</h3>
+<ul>
+<li><a href="https://github.com/connerlambden/helium-mcp" rel="noopener noreferrer">Helium MCP (⭐3)</a> - Real-time news with bias scoring across 5,000+ sources, live stock/ETF/crypto data with AI bull/bear cases, ML options pricing, and balanced news synthesis. 9 tools, free tier. Works with any MCP client including Gemini CLI.</li>
+</ul>
+<h3><p>Development Tools &amp; Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jazzyalex/agent-sessions" rel="noopener noreferrer">Agent Sessions (⭐522)</a> - Local-first macOS app to search, browse, and resume Gemini CLI sessions alongside Codex CLI, Claude Code, OpenCode, and other agents, with live iTerm2 monitoring via Agent Cockpit.</li>
+</ul>
+<h3><p>Non-Gemini CLI</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nowork-studio/toprank" rel="noopener noreferrer">toprank (⭐1.6k)</a> - Claude Code plugin for SEO and Google Ads that includes a Gemini cross-model review skill. Uses Gemini for second-opinion reviews on Google Ads campaigns, SEO metadata, and schema markup — leveraging Gemini's native Google ecosystem knowledge for higher-quality decisions than Claude alone. MIT, 107 stars.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/16/">Apr 20 - Apr 26, 2026</a></h2><h3><p>Commands &amp; Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/openaccountants/openaccountants" rel="noopener noreferrer">OpenAccountants (⭐49)</a> - 371 tax classification skills across 134 countries. Classify bank statement transactions into VAT/GST, income tax, and social contribution categories with conservative defaults.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/15/">Apr 13 - Apr 19, 2026</a></h2><h3><p>Commands &amp; Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/drpcorg/drpc-agent-skills" rel="noopener noreferrer">dRPC Agent Skills (⭐17)</a> - Query blockchain RPCs from Gemini CLI. Fetch balances, read contracts, and check gas prices via dRPC.</li>
+</ul>
+<h3><p>Development Tools &amp; Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Moresl/cchub" rel="noopener noreferrer">CCHub</a> - Desktop app for managing MCP servers and AI coding tool configs across Claude Code, Codex, Gemini CLI, and OpenCode. MCP marketplace, config profile switching, workflow templates, security audit. Built with Tauri + React + Rust.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/yujiachen-y/codebase-recon-skill" rel="noopener noreferrer">codebase-recon (⭐10)</a> - AI agent skill that analyzes git history to reveal codebase hotspots, bug magnets, bus factor risks, and development momentum before reading any code. Works with Gemini CLI, Claude Code, Cursor, and 20+ other coding agents.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/14/">Apr 06 - Apr 12, 2026</a></h2><h3><p>Agent Orchestration &amp; CLI Tools</p>
+</h3>
+<ul>
+<li><a href="https://github.com/johannesjo/parallel-code" rel="noopener noreferrer">Parallel Code (⭐602)</a> - Desktop app for orchestrating multiple AI coding agents (Claude Code, Codex CLI, Gemini CLI) simultaneously in isolated git worktrees.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/chernistry/bernstein" rel="noopener noreferrer">Bernstein (⭐258)</a> - Multi-agent orchestrator that coordinates Gemini CLI alongside Claude Code and Codex CLI. Spawns parallel coding agents from a single goal, verifies with tests, auto-commits. Deterministic Python coordination, zero LLM tokens on orchestration.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/rustykuntz/clideck" rel="noopener noreferrer">clideck (⭐65)</a> - WhatsApp-like dashboard for managing multiple AI coding agents (including Gemini CLI) in one browser window. Live status, session resume, autopilot that routes work between agents while afk, mobile remote to check in from a phone.</li>
+</ul>
+<h3><p>Interfaces</p>
+</h3>
+<ul>
+<li><a href="https://yaw.sh" rel="noopener noreferrer">Yaw</a> - Cross-platform terminal that auto-detects Gemini CLI and opens a split-pane workflow with a companion terminal.</li>
+</ul>
+
+<ul>
+<li><a href="https://termly.dev/" rel="noopener noreferrer">Termly</a> - Free native iOS and Android app to monitor and control Gemini CLI (and other CLI AI assistants) remotely. Zero-knowledge E2E encryption, pairs in under 60 seconds via QR code. No subscriptions, no usage limits.</li>
+</ul>
+<h3><p>Commands &amp; Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/hyhmrright/brooks-lint" rel="noopener noreferrer">brooks-lint (⭐97)</a> - AI code reviews grounded in six classic engineering books. Diagnoses decay risks with structured findings (Symptom → Source → Consequence → Remedy).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/talkstream/ru-text" rel="noopener noreferrer"><strong>ru-text</strong></a> - Russian text quality — ~1,040 rules for typography, info-style, editorial, UX writing, business correspondence.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/henu-wang/tokrepo-search-skill" rel="noopener noreferrer">TokRepo Search Skill (⭐4)</a> - Cross-platform TokRepo skill with Gemini extension files for finding and installing AI assets such as prompts, MCP configs, workflows, and reusable skills.</li>
+</ul>
+<h3><p>MCP Servers</p>
+</h3>
+<ul>
+<li><a href="https://github.com/henu-wang/tokrepo-mcp-server" rel="noopener noreferrer">TokRepo MCP Server (⭐0)</a> - Search and install AI skills, prompts, MCP configs, and workflows from TokRepo from Gemini CLI and other MCP clients.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/12/">Mar 23 - Mar 29, 2026</a></h2><h3><p>Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/josstei/maestro-gemini" rel="noopener noreferrer">Maestro (⭐394)</a> - Turn Gemini CLI into a multi-agent platform — 12 specialized subagents, parallel dispatch, 4-phase orchestration, and standalone dev tools for code review, debugging, security, and performance.</li>
+</ul>
+<h3><p>Commands &amp; Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/davidwiet/task-monitor" rel="noopener noreferrer">Task Monitor (⭐5)</a> - Prevents agent loops via message tracking and plays auditory notifications for long tasks or out-of-focus prompts.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/atxp-dev/atxp" rel="noopener noreferrer">ATXP (⭐24)</a> - Give your Gemini CLI agent a wallet, email address, phone number, and 100+ paid MCP tools (web search, image gen, SMS, voice, LLM gateway). Self-register with <code>gemini extensions install https://github.com/atxp-dev/atxp</code> — no human login required, $5 free credits included.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/thoreinstein/gemini-notifier" rel="noopener noreferrer">gemini-notifier (⭐22)</a> - A Gemini extension to send native system-level notifications when Gemini requests permissions.</li>
+</ul>
+
+<ul>
+<li><a href="http://github.com/galz10/pickle-rick-extension" rel="noopener noreferrer">Pickle Rick (⭐451)</a> - This extension transforms the Gemini CLI into "Pickle Rick," a hyper-intelligent, arrogant, yet extremely competent engineering persona. It enforces a rigid, iterative software development lifecycle through continuous AI agent loops.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/thoreinstein/gemini-beads" rel="noopener noreferrer">gemini-beads (⭐25)</a> - Git-backed persistent memory and task management for Gemini CLI.</li>
+</ul>
+
+<ul>
+<li><a href="http://github.com/gemini-cli-extensions/conductor" rel="noopener noreferrer">Conductor (⭐3.5k)</a> - Conductor is a Gemini CLI extension that allows you to specify, plan, and implement software features.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/automateyournetwork/GeminiCLI_Listen_Extension" rel="noopener noreferrer">Listen (⭐14)</a> - Run Gemini CLI as a server with /listen commands.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/automateyournetwork/GeminiCLI_ScreenShare_Extension" rel="noopener noreferrer">Screenshare (⭐21)</a> - Screen sharing via MCP and custom slash commands.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/automateyournetwork/pyATS_GeminiCLI_Extension" rel="noopener noreferrer">pyATS (⭐10)</a> - pyATS integration for network testing.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/automateyournetwork/GeminiCLI_SubnetCalculator_Extension" rel="noopener noreferrer">Subnet calculator (⭐3)</a> - An extension for GeminiCLI that performs subnet calculation.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/automateyournetwork/GeminiCLI_Packet_Buddy_Extension" rel="noopener noreferrer">Packet Buddy (⭐20)</a> - A Gemini CLI extension that uses RAG and MCP and Custom Slash Commands to analyze packet captures.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/flutter/gemini-cli-extension" rel="noopener noreferrer">Flutter Gemini CLI extension</a> - Official extension for Gemini CLI that assists with creating and maintaining Flutter code.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/d3j/gemini-cli-on-vscode" rel="noopener noreferrer">gemini-cli-on-vscode (⭐15)</a> - MAGUS Council: World's first? 4-AI consultation system (Gemini+Claude+GPT-5+Qwen) in VS Code - Revolutionary multi-agent development environment</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/automateyournetwork/GeminiCLI_Slash_Listen" rel="noopener noreferrer">GeminiCLI_Slash_Listen (⭐20)</a> - Innovative <code>/listen</code> command enabling remote Gemini CLI access through Slack, perfect for collaborative coding and remote assistance scenarios.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/amitkmaraj/gemini-cli-custom-slash-commands" rel="noopener noreferrer">gemini-cli-custom-slash-commands (⭐168)</a> - Curated collection of productivity-boosting custom slash commands that extend Gemini CLI with specialized workflows and shortcuts.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/clduab11/gemini-flow" rel="noopener noreferrer">gemini-flow (⭐382)</a> - Transforms Gemini CLI into an autonomous AI development team using proven Claude-Flow patterns, enabling complex multi-agent workflows.</li>
+</ul>
+<h3><p>Development Tools &amp; Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/heurema/signum" rel="noopener noreferrer">Signum (⭐16)</a> - Evidence-driven development pipeline that uses Gemini CLI as one of three independent reviewers in a multi-model code audit panel (alongside Claude and Codex).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/avifenesh/agnix" rel="noopener noreferrer">agnix (⭐223)</a> - Linter for AI agent configurations. Validates GEMINI.md, SKILL.md, hooks, MCP, and more with 156 rules, auto-fix, and LSP server for real-time editor diagnostics.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/nordluf/gemini-dockerized-cli" rel="noopener noreferrer">Gemini Dockerized CLI (⭐4)</a> - Gemini Dockerized CLI with small improvements.</li>
+</ul>
+<h3><p>Agent Orchestration &amp; CLI Tools</p>
+</h3>
+<ul>
+<li><a href="https://tars.saccolabs.com" rel="noopener noreferrer">Tars</a> - A local-first autonomous supervisor and sidekick powered by Google Gemini. Features background persistence (heartbeat), tiered local memory, multi-channel notifications (Discord/WhatsApp), and self-healing background services. Designed for reliable, long-running agentic orchestration in the terminal.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/11/">Mar 16 - Mar 22, 2026</a></h2><h3><p>Agent Orchestration &amp; CLI Tools</p>
+</h3>
+<ul>
+<li><a href="https://github.com/littlebearapps/untether" rel="noopener noreferrer">Untether (⭐44)</a> - Telegram bridge for Gemini CLI (and 5 other agents). Send tasks by voice, stream progress, configure approval mode (read-only/edit files/full access) via inline buttons. Self-hosted, MIT licensed.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/almogdepaz/wolfpack" rel="noopener noreferrer">wolfpack (⭐28)</a> - Mobile &amp; desktop command center for controlling AI coding agents (Claude, Codex, Gemini) across machines from your phone. Secured by Tailscale. Self-hosted.</li>
+</ul>
+<h3><p>MCP Servers</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Xquik-dev/x-twitter-scraper" rel="noopener noreferrer">Xquik MCP (⭐64)</a> - X/Twitter data MCP server with 76 REST API endpoints, 20 extraction tools, account monitoring, and giveaway draws. Works with any MCP client including Gemini CLI.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/9/">Mar 02 - Mar 08, 2026</a></h2><h3><p>Development Tools &amp; Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nedcodes-ok/rule-gen" rel="noopener noreferrer">rule-gen (⭐6)</a> - Generate AI coding rules from your actual codebase using Google Gemini. Feeds source files into Gemini's 1M token context window and produces project-specific rules. Supports Cursor (.mdc), Claude Code (CLAUDE.md), Copilot, and Windsurf output formats. Zero dependencies.</li>
+</ul>
+<h3><p>MCP Servers</p>
+</h3>
+<ul>
+<li><a href="https://github.com/connerlambden/bgpt-mcp" rel="noopener noreferrer">BGPT MCP (⭐17)</a> - Search scientific papers and get structured experimental data (methods, results, sample sizes, quality scores) from full-text studies. Works with any MCP client including Gemini CLI.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/8/">Feb 23 - Mar 01, 2026</a></h2><h3><p>Agent Orchestration &amp; CLI Tools</p>
+</h3>
+<ul>
+<li><a href="https://github.com/aannoo/hcom" rel="noopener noreferrer">hcom (⭐239)</a> - Let AI agents message, watch, and spawn each other across terminals. First-class Gemini CLI support with hooks integration and PTY wrapper. Also works with Claude Code, Codex, and OpenCode.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/agents-squads/squads-cli" rel="noopener noreferrer">squads-cli (⭐43)</a> - Open source CLI for AI agent coordination that organizes agents into domain-aligned squads with persistent memory, goal tracking, and Git-native state.  Works with Gemini CLI.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/6/">Feb 09 - Feb 15, 2026</a></h2><h3><p>Non-Gemini CLI</p>
+</h3>
+<ul>
+<li><a href="https://github.com/abduznik/Git-Alchemist" rel="noopener noreferrer">Git-Alchemist (⭐22)</a> - A unified AI-powered CLI tool for automating GitHub repository management (issues, PRs, topics, profiles) powered by Gemini 3 and Gemma 3.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/5/">Feb 02 - Feb 08, 2026</a></h2><h3><p>Development Tools &amp; Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/stevenAthompson/self-command" rel="noopener noreferrer">Self Command (⭐24)</a> - Allows the Gemini CLI to send commands to itself, run very long commands in the background and be woken, sleep for a specified amount of time, watch logs and receive notifications, etc by leveraging tmux. Reduces usage and improves reliability by avoiding loop detection. After installing the extension you must lauch gemini-cli into a tmux session named "gemini-cli".</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/nicepkg/vsync" rel="noopener noreferrer">vsync (⭐44)</a> - Sync Skills, MCP servers, Agents &amp; Commands across Claude Code, Cursor, OpenCode, Codex, and Gemini CLI with automatic format conversion (JSON ↔ TOML ↔ JSONC).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/2/">Jan 12 - Jan 18, 2026</a></h2><h3><p>Documentation &amp; Examples</p>
+</h3>
+<ul>
+<li><a href="https://github.com/addyosmani/gemini-cli-tips" rel="noopener noreferrer">Gemini CLI Tips by Addy Osmani (⭐2.4k)</a> - ~30 pro-tips for effectively using Gemini CLI for agentic coding.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/48/">Dec 01 - Dec 07, 2025</a></h2><h3><p>Development Tools &amp; Utilities</p>
+</h3>
+<ul>
+<li><a href="https://issue-queue.readthedocs.io/en/latest/llm_agents.html" rel="noopener noreferrer">IssueDB</a> - LLM frendly command-line issue tracking system for software development projects, with built-in interface, context support and prompt providers for Gemini CLI and others.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/45/">Nov 10 - Nov 16, 2025</a></h2><h3><p>Official</p>
+</h3>
+<ul>
+<li><a href="https://github.com/google-github-actions/run-gemini-cli" rel="noopener noreferrer">Run Gemini CLI (⭐2k)</a> - Official GitHub Action that seamlessly integrates Gemini into your CI/CD pipeline, enabling automated code reviews, testing, and documentation generation.</li>
+</ul>
+<h3><p>Interfaces</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Piebald-AI/gemini-CLI-desktop" rel="noopener noreferrer">Gemini CLI Desktop (⭐425)</a> - Beautiful desktop and web UI that makes Gemini CLI accessible to non-terminal/mobile users while preserving all its powerful features.</li>
+</ul>
+<h3><p>Fun</p>
+</h3>
+<ul>
+<li><a href="https://github.com/shinshin86/oh-my-logo" rel="noopener noreferrer">Oh My Logo (⭐1.5k)</a> - Adds personality to your terminal with giant ASCII-art logos featuring beautiful color gradients, perfect for customizing your Gemini CLI startup experience.</li>
+</ul>
+<h3><p>Development Tools &amp; Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tgagor/docker-gemini-cli" rel="noopener noreferrer">Docker Gemini CLI (⭐16)</a> - Gemini CLI wrapped as a Docker image, so you don't need to trash your OS with Node and its dependencies.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/numtide/nix-ai-tools" rel="noopener noreferrer">Nix AI Tools (⭐1.1k)</a> - Seamless Nix integration for reproducible Gemini CLI installations. Ensures consistent environments across teams and simplifies deployment with declarative configuration.</li>
+</ul>
+<h3><p>Browser Extensions</p>
+</h3>
+<ul>
+<li><a href="https://github.com/VjayC/SRT-Subtitle-Translator-Validator" rel="noopener noreferrer">SRT Subtitle Translator Validator (⭐69)</a> - Browser-based tool to translate SRT subtitles using your Gemini subscription via CLI Proxy API with automatic validation/error correction - no API keys needed.</li>
+</ul>
+<h3><p>SDKs</p>
+</h3>
+<ul>
+<li><a href="https://github.com/oneryalcin/gemini-cli-sdk" rel="noopener noreferrer">Python Gemini CLI SDK (⭐18)</a> - Python SDK for Gemini CLI; API-compatible with Claude Code SDK.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ben-vargas/ai-sdk-provider-gemini-cli" rel="noopener noreferrer">Gemini CLI Vercel AI SDK Provider (⭐72)</a> - Seamless Vercel AI SDK integration that unlocks Gemini's capabilities in Next.js and React applications with minimal configuration.</li>
+</ul>
+<h3><p>API Bridges &amp; Proxies</p>
+</h3>
+<ul>
+<li><a href="https://github.com/print-yuhuan/Gemini-CLI-Termux" rel="noopener noreferrer">Gemini CLI Termux (⭐166)</a> - Provides a one-click deployment solution for Gemini CLI reverse proxy service for Android Termux users.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/router-form-me/CLIProxyAPI" rel="noopener noreferrer">CLIProxyAPI</a> - Wrap Gemini CLI as an OpenAI/Gemini/Claude compatible API service, allowing you to enjoy the free Gemini 2.5 Pro model through API.</li>
+</ul>
+<h3><p>Neovim Plugins</p>
+</h3>
+<ul>
+<li><a href="https://github.com/gutsavgupta/nvim-gemini-companion" rel="noopener noreferrer">nvim Gemini Companion (⭐82)</a> - A Neovim plugin to integrate Gemini CLI well (+ Qwen Code now).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/43/">Oct 27 - Nov 02, 2025</a></h2><h3><p>Forks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/vybestack/llxprt-code" rel="noopener noreferrer">LLxprt Code (⭐673)</a> - An open-source multi-provider (including local) fork of Gemini CLI. Use whatever LLM you want to code in your terminal.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/41/">Oct 13 - Oct 19, 2025</a></h2><h3><p>Interfaces</p>
+</h3>
+<ul>
+<li><a href="https://github.com/iOfficeAI/AionUi" rel="noopener noreferrer">AionUi (⭐24k)</a> - Free, local, open-source GUI app for Gemini CLI — Better Chat UI, File Management, AI image editing, multi-agent support, multi-LLMs &amp; apikey polling, code diff view &amp; more.</li>
+</ul>
+<h3><p>Development Tools &amp; Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dyoshikawa/rulesync" rel="noopener noreferrer">Rulesync (⭐1.1k)</a> - The Node.js CLI tool that automatically generates configs (rules, ignore files, MCP servers, commands, and subagents) for various AI coding agents. Rulesync can convert configs between Gemini CLI and other AI agents in both directions.</li>
+</ul>
+<h3><p>Prompts</p>
+</h3>
+<ul>
+<li><a href="https://github.com/harish-garg/gemini-cli-prompt-library" rel="noopener noreferrer">gemini-cli-prompt-library (⭐397)</a> - 30+ professional prompts for Gemini CLI.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/40/">Oct 06 - Oct 12, 2025</a></h2><h3><p>Documentation &amp; Examples</p>
+</h3>
+<ul>
+<li><a href="https://github.com/vladkol/gemini-cli-media-generation" rel="noopener noreferrer">gemini-cli-media-generation (⭐19)</a> - An example of using Gemini CLI with MCP Servers for Genmedia and Gemini 2.5 Flash Image model (Nano-banana)</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/38/">Sep 22 - Sep 28, 2025</a></h2><h3><p>Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/openmule/gacua" rel="noopener noreferrer">GACUA (⭐133)</a> - The world's first out-of-the-box computer use agent powered by Gemini CLI @openmule.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/36/">Sep 08 - Sep 14, 2025</a></h2><h3><p>Official</p>
+</h3>
+<ul>
+<li><a href="https://github.com/google-gemini/gemini-cli" rel="noopener noreferrer">Gemini CLI (⭐103k)</a> - The official open-source AI agent that brings the power of Gemini directly into your terminal. Features context-aware coding assistance, file manipulation, and command execution capabilities.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/google-gemini/cookbook" rel="noopener noreferrer">Gemini CLI cookbook (⭐17k)</a> - Official collection of examples and guides demonstrating best practices for using the Gemini API. Essential resource for developers getting started.</li>
+</ul>
+<h3><p>Forks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/iflow-ai/iflow-cli" rel="noopener noreferrer">iFlow CLI (⭐5.1k)</a> - Powerful fork that extends Gemini CLI with repository analysis, context interpretation, and complex workflow automation. Perfect for teams needing advanced orchestration capabilities.</li>
+</ul>
+<h3><p>Development Tools &amp; Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/BA-CalderonMorales/terminal-jarvis" rel="noopener noreferrer">Terminal Jarvis (⭐130)</a> - Ultimate command center unifying multiple AI coding assistants in one elegant interface. Switch between tools seamlessly and manage sessions efficiently.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Piebald-AI/splitrail" rel="noopener noreferrer">Splitrail (⭐175)</a> - Comprehensive usage analytics platform that tracks and optimizes your Gemini CLI workflows, helping teams understand and improve their AI-assisted development patterns.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kbwo/ccmanager" rel="noopener noreferrer">ccmanager (⭐1k)</a> - Essential session management tool that saves, restores, and organizes multiple Gemini CLI sessions, perfect for juggling multiple projects or experiments.</li>
+</ul>
+<h3><p>API Bridges &amp; Proxies</p>
+</h3>
+<ul>
+<li><a href="https://github.com/gzzhongqi/geminicli2api" rel="noopener noreferrer">geminicli2api (⭐582)</a> - Powerful FastAPI proxy that transforms Gemini CLI into standard API endpoints, enabling integration with any OpenAI-compatible tool or service.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Brioch/gemini-openai-proxy" rel="noopener noreferrer">gemini-openai-proxy (⭐54)</a> - Universal compatibility layer serving Gemini 2.5 Pro/Flash through OpenAI protocol. Works instantly with existing tools like LangChain, llama.cpp, and VS Code extensions.</li>
+</ul>
+<h3><p>MCP Servers</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tanaikech/ToolsForMCPServer" rel="noopener noreferrer">ToolsForMCPServer (⭐101)</a> - Bridges Gemini CLI with Google Workspace through Apps Script integration, automating document processing, spreadsheet manipulation, and workflow automation.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jamubc/gemini-mcp-tool" rel="noopener noreferrer">gemini-mcp-tool (⭐2.2k)</a> - Leverages Gemini's industry-leading 2M token context window through MCP, enabling analysis of entire codebases and large documents that other tools can't handle.</li>
+</ul>
+<h3><p>Neovim Plugins</p>
+</h3>
+<ul>
+<li><a href="https://github.com/JonRoosevelt/gemini-cli.nvim" rel="noopener noreferrer">gemini-cli.nvim (⭐55)</a> - Native Neovim integration bringing Gemini's AI capabilities directly into your editor with keybindings, commands, and buffer manipulation support.</li>
+</ul>
+<h3><p>Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Theopsguide/gemini-code-flow" rel="noopener noreferrer">gemini-code-flow (⭐155)</a> - Enterprise-grade orchestration framework that coordinates multiple Gemini CLI instances for complex development tasks, based on battle-tested Claude Code Flow patterns.</li>
+</ul>
+<h3><p>Documentation &amp; Examples</p>
+</h3>
+<ul>
+<li><a href="https://github.com/philschmid/gemini-cli-extension" rel="noopener noreferrer">gemini-cli-extension (⭐148)</a> - Essential collection of extensions and commands that enhance Gemini CLI with additional capabilities and workflow improvements.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/palladius/gemini-cli-demos" rel="noopener noreferrer">gemini-cli-demos (⭐14)</a> - Ready-to-run demonstration scenarios showcasing Gemini CLI's capabilities, perfect for learning, presenting, or evaluating the tool.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/33/">Aug 18 - Aug 24, 2025</a></h2><h3><p>Forks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/QwenLM/qwen-code/" rel="noopener noreferrer">Qwen Code (⭐24k)</a> - Fork by the team behind Qwen LLM. Uses Qwen instead of Gemini.</li>
+</ul>
+<h3><p>Development Tools &amp; Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Manamama/Puzzles_for_AIs/tree/main/code/Gemini%20CLI%20logs%20prettifier" rel="noopener noreferrer">Gemini CLI Logs Prettifier (⭐13)</a> - Renders the logs human readable (prettifies them) and browsable as interlinked HTML, with thoughtful explanations and clickable links.</li>
+</ul>
+<h3><p>API Bridges &amp; Proxies</p>
+</h3>
+<ul>
+<li><a href="https://github.com/GewoonJaap/gemini-cli-openai" rel="noopener noreferrer">gemini-cli-openai (⭐878)</a> - Transform Google's Gemini models into OpenAI-compatible endpoints using Cloudflare Workers, powered the same infrastructure that drives the official Gemini CLI.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/nettee/gemini-cli-proxy" rel="noopener noreferrer">gemini-cli-proxy (⭐143)</a> - OpenAI-compatible API wrapper for Gemini CLI as an OpenAI-compatible API service, allowing you to enjoy the free Gemini 2.5 Pro model through API!</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Intelligent-Internet/gemini-cli-mcp-openai-bridge" rel="noopener noreferrer">gemini-cli-mcp-openai-bridge (⭐138)</a> - Server application that extends the Google Gemini CLI with MCP toolkit and OpenAI-compatible API bridge.</li>
+</ul>
+<h3><p>MCP Servers</p>
+</h3>
+<ul>
+<li><a href="https://github.com/choplin/mcp-gemini-cli" rel="noopener noreferrer">mcp-gemini-cli (⭐101)</a> - A simple MCP (Model Context Protocol) server wrapper for Google's Gemini CLI.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/InfolabAI/gemini-cli-mcp" rel="noopener noreferrer">gemini-cli-mcp (⭐29)</a> - Tool that enables using Gemini AI as an MCP server within Claude Code with large file analysis and token savings.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/neriousy/gemini-mcp" rel="noopener noreferrer">gemini-mcp (⭐8)</a> - A simple MCP server for using the Gemini CLI.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/0xmountaintop/gemini-cli-mcp" rel="noopener noreferrer">gemini-cli-mcp</a> - A Model Context Protocol (MCP) wrapper for Google Gemini CLI that enables AI development tools to interact with Gemini.</li>
+</ul>
+<h3><p>Neovim Plugins</p>
+</h3>
+<ul>
+<li><a href="https://github.com/JunYang-tes/gemini-nvim" rel="noopener noreferrer">gemini-nvim (⭐6)</a> - Gemini CLI in neovim - An unofficial Neovim plugin for interacting with Google Gemini CLI.</li>
+</ul>
+<h3><p>Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/pauldatta/gemini-cli-commands-demo" rel="noopener noreferrer">gemini-cli-commands-demo (⭐92)</a> - A proof-of-concept demonstrating a sub-agent orchestration system built within the Gemini CLI.</li>
+</ul>
+<h3><p>Documentation &amp; Examples</p>
+</h3>
+<ul>
+<li><a href="https://github.com/markmcd/gemini-docs-ext" rel="noopener noreferrer">gemini-docs-ext (⭐52)</a> - Gemini CLI extension that adds Gemini API docs and MCP.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ptone/cli-demo-cookbook" rel="noopener noreferrer">cli-demo-cookbook (⭐11)</a> - Collection of demo scenario and casts for Gemini CLI.</li>
+</ul>
+
+    </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
+  </body>
+</html>
