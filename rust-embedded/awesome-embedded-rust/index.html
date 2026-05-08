@@ -16,22 +16,107 @@
     <meta property="og:title" content="Track Awesome Embedded Rust Updates Daily" />
     <meta property="og:description" content="Curated list of resources for Embedded and Low-level development in the Rust programming language" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Embedded Rust Updates Daily</h1>
 <p>Curated list of resources for Embedded and Low-level development in the Rust programming language</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/rust-embedded/awesome-embedded-rust/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/rust-embedded/awesome-embedded-rust">😺 rust-embedded/awesome-embedded-rust</a><span> · </span><span>⭐ 7.8K</span><span> · </span><span>🏷️ Programming Languages</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/rust-embedded/awesome-embedded-rust/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/rust-embedded/awesome-embedded-rust">😺 rust-embedded/awesome-embedded-rust</a><span> · </span><span>⭐ 7.9K</span><span> · </span><span>🏷️ Programming Languages</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/rust-embedded/awesome-embedded-rust/week/">Weekly</a><span> / </span><a href="/rust-embedded/awesome-embedded-rust/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/05/08/">May 08, 2026</a></h2><h3><p>Driver crates / WIP</p>
+</h3>
+<ul>
+<li><a href="https://github.com/coffiot/tmag5273-rs" rel="noopener noreferrer">tmag5273 (⭐0)</a> - I2C - TI TMAG5273 3-axis Hall-effect sensor with hardware CORDIC angle engine and typestate API - <a href="https://crates.io/crates/tmag5273" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/tmag5273.svg" alt="crates.io" /></a></li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/04/29/">Apr 29, 2026</a></h2><h3><p>Board support crates / Special Purpose</p>
 </h3>
 <ul>
@@ -45,17 +130,17 @@
 <h2><a href="https://www.trackawesomelist.com/2026/04/16/">Apr 16, 2026</a></h2><h3><p>Firmware projects / WIP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/willamhou/hypervisor" rel="noopener noreferrer">🤖 hypervisor (⭐4)</a>: Bare-metal ARM64 Type-1 hypervisor in <code>no_std</code> Rust (single dependency: <code>fdt</code>). Runs at EL2, boots Linux with 4 vCPUs, virtio-blk/net, FF-A v1.1 SPMC at S-EL2. Targets QEMU virt machine (no real hardware tested yet).</li>
+<li><a href="https://github.com/willamhou/hypervisor" rel="noopener noreferrer">🤖 hypervisor (⭐5)</a>: Bare-metal ARM64 Type-1 hypervisor in <code>no_std</code> Rust (single dependency: <code>fdt</code>). Runs at EL2, boots Linux with 4 vCPUs, virtio-blk/net, FF-A v1.1 SPMC at S-EL2. Targets QEMU virt machine (no real hardware tested yet).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/02/24/">Feb 24, 2026</a></h2><h3><p>no-std crates / WIP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/elagil/usbpd" rel="noopener noreferrer">usbpd (⭐25)</a>: USB-PD library and traits, supports Sink mode, with Source functionality planned.</li>
+<li><a href="https://github.com/elagil/usbpd" rel="noopener noreferrer">usbpd (⭐26)</a>: USB-PD library and traits, supports Sink mode, with Source functionality planned.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/02/20/">Feb 20, 2026</a></h2><h3><p>no-std crates / WIP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ADNTIO/crispy-bootloader-rp2040-rs" rel="noopener noreferrer">🤖 crispy-bootloader (⭐7)</a>: Minimal dual-bank bootloader for RP2040 with USB firmware upload, A/B bank switching, and CRC verification.</li>
+<li><a href="https://github.com/ADNTIO/crispy-bootloader-rp2040-rs" rel="noopener noreferrer">🤖 crispy-bootloader (⭐9)</a>: Minimal dual-bank bootloader for RP2040 with USB firmware upload, A/B bank switching, and CRC verification.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/12/15/">Dec 15, 2025</a></h2><h3><p>no-std crates / WIP</p>
 </h3>
@@ -65,17 +150,17 @@
 <h2><a href="https://www.trackawesomelist.com/2025/11/14/">Nov 14, 2025</a></h2><h3><p>Tools / Paid and commercially available materials</p>
 </h3>
 <ul>
-<li><a href="https://github.com/probe-rs/embedded-test" rel="noopener noreferrer">embedded-test (⭐166)</a>: A versatile test harness for embedded devices, supporting unit tests, integration tests, async tests, and more.</li>
+<li><a href="https://github.com/probe-rs/embedded-test" rel="noopener noreferrer">embedded-test (⭐169)</a>: A versatile test harness for embedded devices, supporting unit tests, integration tests, async tests, and more.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/10/09/">Oct 09, 2025</a></h2><h3><p>no-std crates / WIP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Vaishnav-Sabari-Girish/Hayasen" rel="noopener noreferrer">hayasen (⭐29)</a>: An Embedded Rust crate with support for multiple sensors.  <a href="https://crates.io/crates/hayasen" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/hayasen.svg" alt="crates.io" /></a></li>
+<li><a href="https://github.com/Vaishnav-Sabari-Girish/Hayasen" rel="noopener noreferrer">hayasen (⭐30)</a>: An Embedded Rust crate with support for multiple sensors.  <a href="https://crates.io/crates/hayasen" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/hayasen.svg" alt="crates.io" /></a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/10/03/">Oct 03, 2025</a></h2><h3><p>Driver crates / Other</p>
 </h3>
 <ul>
-<li><a href="https://crates.io/crates/ap33772s-rs" rel="noopener noreferrer">AP33772S-rs</a> - I2C - no-std sync and async compatible rust driver for the AP33772S USB C Power Delivery with Extended Power Range I2C chip - <a href="https://github.com/ScottGibb/AP33772S-rs" rel="noopener noreferrer">github (⭐1)</a> - <a href="https://crates.io/crates/ap33772s-rs" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/ap33772s-rs.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/ap33772s-rs" rel="noopener noreferrer">AP33772S-rs</a> - I2C - no-std sync and async compatible rust driver for the AP33772S USB C Power Delivery with Extended Power Range I2C chip - <a href="https://github.com/ScottGibb/AP33772S-rs" rel="noopener noreferrer">github (⭐2)</a> - <a href="https://crates.io/crates/ap33772s-rs" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/ap33772s-rs.svg" alt="crates.io" /></a></li>
 </ul>
 <h3><p>no-std crates / WIP</p>
 </h3>
@@ -133,7 +218,7 @@
 <h3><p>Tools / Paid and commercially available materials</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dysonltd/commitment-issues" rel="noopener noreferrer">commitment-issues (⭐16)</a> Compile git metadata into your binary.</li>
+<li><a href="https://github.com/dysonltd/commitment-issues" rel="noopener noreferrer">commitment-issues (⭐17)</a> Compile git metadata into your binary.</li>
 </ul>
 <h3><p>Peripheral Access Crates / Texas Instruments</p>
 </h3>
@@ -153,10 +238,6 @@
 </ul>
 <h3><p>Driver crates / WIP</p>
 </h3>
-<ul>
-<li><a href="https://github.com/dysonltd/tmag5273" rel="noopener noreferrer">tmag5273</a> - Cross-platform no_std compatible i2c library for 3-axis Hall Effect sensor.</li>
-</ul>
-
 <ul>
 <li><a href="https://github.com/dysonltd/paa5100je-pwm3901" rel="noopener noreferrer">paa5100je-pwm3901 (⭐3)</a> - Cross platform no-std compatible spi async library for an Optical Flow Sensor.</li>
 </ul>
@@ -204,7 +285,7 @@
 <h3><p>Board support crates / Sodaq</p>
 </h3>
 <ul>
-<li><a href="https://crates.io/crates/sodaq_one" rel="noopener noreferrer"><code>sodaq_one</code></a> - Board support for the <a href="https://support.sodaq.com/Boards/One/" rel="noopener noreferrer">Sodaq one board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/sodaq_one" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/sodaq_one.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/sodaq_one" rel="noopener noreferrer"><code>sodaq_one</code></a> - Board support for the <a href="https://support.sodaq.com/Boards/One/" rel="noopener noreferrer">Sodaq one board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/sodaq_one" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/sodaq_one.svg" alt="crates.io" /></a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/02/09/">Feb 09, 2025</a></h2><h3><p>Driver crates / Other</p>
 </h3>
@@ -274,11 +355,11 @@
 <h2><a href="https://www.trackawesomelist.com/2025/01/13/">Jan 13, 2025</a></h2><h3><p>Books, blogs, and training materials / Free and public materials</p>
 </h3>
 <ul>
-<li><a href="https://esp32.implrust.com/" rel="noopener noreferrer">impl Rust on ESP32 Book</a> - A hands-on guide that uses the ESP32 DevKit V1 to demonstrate how to work with various modules and sensors. (<a href="https://github.com/ImplFerris/esp32-book" rel="noopener noreferrer">github source (⭐198)</a>)</li>
+<li><a href="https://esp32.implrust.com/" rel="noopener noreferrer">impl Rust on ESP32 Book</a> - A hands-on guide that uses the ESP32 DevKit V1 to demonstrate how to work with various modules and sensors. (<a href="https://github.com/ImplFerris/esp32-book" rel="noopener noreferrer">github source (⭐201)</a>)</li>
 </ul>
 
 <ul>
-<li><a href="https://pico.implrust.com/" rel="noopener noreferrer">Pico Pico Book</a> - A hands-on guide that uses the Pico 2 (RP2350) to demonstrate how to work with various modules and sensors. (<a href="https://github.com/ImplFerris/pico-pico" rel="noopener noreferrer">github source (⭐139)</a>)</li>
+<li><a href="https://pico.implrust.com/" rel="noopener noreferrer">Pico Pico Book</a> - A hands-on guide that uses the Pico 2 (RP2350) to demonstrate how to work with various modules and sensors. (<a href="https://github.com/ImplFerris/pico-pico" rel="noopener noreferrer">github source (⭐146)</a>)</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/12/27/">Dec 27, 2024</a></h2><h3><p>Peripheral Access Crates / NXP</p>
 </h3>
@@ -356,7 +437,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/11/21/">Nov 21, 2024</a></h2><h3><p>Tools / Paid and commercially available materials</p>
 </h3>
 <ul>
-<li><a href="https://github.com/japaric/xargo" rel="noopener noreferrer">xargo (⭐1.1k)</a> Rust package manager with support for non-default std libraries — build Rust runtime for your embedded system.<ul>
+<li><a href="https://github.com/japaric/xargo" rel="noopener noreferrer">xargo</a> Rust package manager with support for non-default std libraries — build Rust runtime for your embedded system.<ul>
 <li>xargo is great, but since it's in maintenance mode, <a href="https://github.com/rust-osdev/cargo-xbuild" rel="noopener noreferrer">cargo-xbuild (⭐268)</a> is catching up as its intended replacement.</li>
 </ul>
 </li>
@@ -365,9 +446,9 @@
 <ul>
 <li><a href="https://knurling.ferrous-systems.com/tools/" rel="noopener noreferrer">Knurling Tools</a> are developed by <a href="https://ferrous-systems.com" rel="noopener noreferrer">Ferrous Systems</a> to ease the development process for building, debugging, and testing embedded Rust systems. These tools include:<ul>
 <li><a href="https://github.com/knurling-rs/defmt" rel="noopener noreferrer">defmt (⭐1.2k)</a>: a highly efficient logging framework that targets resource-constrained devices, like microcontrollers.</li>
-<li><a href="https://github.com/knurling-rs/derive-mmio" rel="noopener noreferrer">derive-mmio (⭐18)</a>: Creating MMIO-friendly APIs for embedded peripherals.</li>
-<li><a href="https://github.com/knurling-rs/flip-link" rel="noopener noreferrer">flip-link (⭐404)</a>, a linker wrapper that provides stack overflow protection without an MMU by flipping the standard memory layout of ARM Cortex-M programs</li>
-<li><a href="https://github.com/knurling-rs/app-template" rel="noopener noreferrer">app-template (⭐454)</a>, a <code>cargo-generate</code> powered project template for quickly setting up new projects using the Knurling Tools.</li>
+<li><a href="https://github.com/knurling-rs/derive-mmio" rel="noopener noreferrer">derive-mmio (⭐19)</a>: Creating MMIO-friendly APIs for embedded peripherals.</li>
+<li><a href="https://github.com/knurling-rs/flip-link" rel="noopener noreferrer">flip-link (⭐413)</a>, a linker wrapper that provides stack overflow protection without an MMU by flipping the standard memory layout of ARM Cortex-M programs</li>
+<li><a href="https://github.com/knurling-rs/app-template" rel="noopener noreferrer">app-template (⭐458)</a>, a <code>cargo-generate</code> powered project template for quickly setting up new projects using the Knurling Tools.</li>
 <li><a href="https://github.com/knurling-rs/defmt-test" rel="noopener noreferrer">defmt-test (⭐10)</a>, an embedded test harness that lets you write and run unit tests as if you were using the built-in <code>#[test]</code> attribute, but will run on an embedded target</li>
 </ul>
 </li>
@@ -475,11 +556,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/esp-rs/espflash" rel="noopener noreferrer">espflash (⭐687)</a> Serial flasher utility for Espressif SoCs and modules. - <a href="https://crates.io/crates/espflash" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/espflash.svg" alt="crates.io" /></a></li>
+<li><a href="https://github.com/esp-rs/espflash" rel="noopener noreferrer">espflash (⭐699)</a> Serial flasher utility for Espressif SoCs and modules. - <a href="https://crates.io/crates/espflash" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/espflash.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/esp-rs/espup" rel="noopener noreferrer">espup (⭐412)</a> Tool for installing and maintaining Espressif Rust ecosystem. - <a href="https://crates.io/crates/espup" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/espup.svg" alt="crates.io" /></a></li>
+<li><a href="https://github.com/esp-rs/espup" rel="noopener noreferrer">espup (⭐418)</a> Tool for installing and maintaining Espressif Rust ecosystem. - <a href="https://crates.io/crates/espup" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/espup.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
@@ -1001,23 +1082,23 @@
 <h3><p>Board support crates / Adafruit</p>
 </h3>
 <ul>
-<li><a href="https://crates.io/crates/metro_m0" rel="noopener noreferrer"><code>metro_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/3505" rel="noopener noreferrer">Metro M0 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐648)</a> board. <a href="https://crates.io/crates/metro_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/metro_m0.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/metro_m0" rel="noopener noreferrer"><code>metro_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/3505" rel="noopener noreferrer">Metro M0 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐649)</a> board. <a href="https://crates.io/crates/metro_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/metro_m0.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/metro_m4" rel="noopener noreferrer"><code>metro_m4</code></a> - Board support for the <a href="https://www.adafruit.com/product/3382" rel="noopener noreferrer">Metro M4 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐648)</a> board. <a href="https://crates.io/crates/metro_m4" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/metro_m4.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/metro_m4" rel="noopener noreferrer"><code>metro_m4</code></a> - Board support for the <a href="https://www.adafruit.com/product/3382" rel="noopener noreferrer">Metro M4 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐649)</a> board. <a href="https://crates.io/crates/metro_m4" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/metro_m4.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/pyportal" rel="noopener noreferrer"><code>pyportal</code></a> - Board support for the <a href="https://www.adafruit.com/product/4116" rel="noopener noreferrer">PyPortal board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/pyportal" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/pyportal.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/pyportal" rel="noopener noreferrer"><code>pyportal</code></a> - Board support for the <a href="https://www.adafruit.com/product/4116" rel="noopener noreferrer">PyPortal board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/pyportal" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/pyportal.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/pygamer" rel="noopener noreferrer"><code>pygamer</code></a> - Board support for the <a href="https://www.adafruit.com/product/4242" rel="noopener noreferrer">PyGamer board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐648)</a> board. <a href="https://crates.io/crates/pygamer" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/pygamer.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/pygamer" rel="noopener noreferrer"><code>pygamer</code></a> - Board support for the <a href="https://www.adafruit.com/product/4242" rel="noopener noreferrer">PyGamer board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐649)</a> board. <a href="https://crates.io/crates/pygamer" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/pygamer.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/trellis_m4" rel="noopener noreferrer"><code>trellis_m4</code></a> - Board support for the <a href="https://www.adafruit.com/product/3938" rel="noopener noreferrer">NeoTrellis M4 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/trellis_m4" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/trellis_m4.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/trellis_m4" rel="noopener noreferrer"><code>trellis_m4</code></a> - Board support for the <a href="https://www.adafruit.com/product/3938" rel="noopener noreferrer">NeoTrellis M4 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/trellis_m4" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/trellis_m4.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
@@ -1025,68 +1106,68 @@
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/feather_m0" rel="noopener noreferrer"><code>feather_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/2772" rel="noopener noreferrer">Feather M0 board</a>, and some variants in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐648)</a> board. <a href="https://crates.io/crates/feather_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/feather_m0.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/feather_m0" rel="noopener noreferrer"><code>feather_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/2772" rel="noopener noreferrer">Feather M0 board</a>, and some variants in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐649)</a> board. <a href="https://crates.io/crates/feather_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/feather_m0.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/feather_m4" rel="noopener noreferrer"><code>feather_m4</code></a> - Board support for the <a href="https://www.adafruit.com/product/3857" rel="noopener noreferrer">Feather M4 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐648)</a> board. <a href="https://crates.io/crates/feather_m4" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/feather_m4.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/feather_m4" rel="noopener noreferrer"><code>feather_m4</code></a> - Board support for the <a href="https://www.adafruit.com/product/3857" rel="noopener noreferrer">Feather M4 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐649)</a> board. <a href="https://crates.io/crates/feather_m4" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/feather_m4.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/circuit_playground_express" rel="noopener noreferrer"><code>circuit_playground_express</code></a> - Board support for the <a href="https://www.adafruit.com/product/3333" rel="noopener noreferrer">Circuit Playground Express board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/circuit_playground_express" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/circuit_playground_express.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/circuit_playground_express" rel="noopener noreferrer"><code>circuit_playground_express</code></a> - Board support for the <a href="https://www.adafruit.com/product/3333" rel="noopener noreferrer">Circuit Playground Express board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/circuit_playground_express" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/circuit_playground_express.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/edgebadge" rel="noopener noreferrer"><code>edgebadge</code></a> - Board support for the <a href="https://www.adafruit.com/product/4400" rel="noopener noreferrer">EdgeBadge board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/edgebadge" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/edgebadge.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/edgebadge" rel="noopener noreferrer"><code>edgebadge</code></a> - Board support for the <a href="https://www.adafruit.com/product/4400" rel="noopener noreferrer">EdgeBadge board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/edgebadge" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/edgebadge.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/gemma_m0" rel="noopener noreferrer"><code>gemma_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/3501" rel="noopener noreferrer">Gemma M0 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/gemma_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/gemma_m0.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/gemma_m0" rel="noopener noreferrer"><code>gemma_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/3501" rel="noopener noreferrer">Gemma M0 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/gemma_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/gemma_m0.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/itsybitsy_m0" rel="noopener noreferrer"><code>itsybitsy_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/3727" rel="noopener noreferrer">ItsyBitsy M0 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/itsybitsy_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/itsybitsy_m0.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/itsybitsy_m0" rel="noopener noreferrer"><code>itsybitsy_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/3727" rel="noopener noreferrer">ItsyBitsy M0 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/itsybitsy_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/itsybitsy_m0.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/itsybitsy_m4" rel="noopener noreferrer"><code>itsybitsy_m4</code></a> - Board support for the <a href="https://www.adafruit.com/product/3800" rel="noopener noreferrer">ItsyBitsy M4 Express board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/itsybitsy_m4" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/itsybitsy_m4.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/itsybitsy_m4" rel="noopener noreferrer"><code>itsybitsy_m4</code></a> - Board support for the <a href="https://www.adafruit.com/product/3800" rel="noopener noreferrer">ItsyBitsy M4 Express board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/itsybitsy_m4" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/itsybitsy_m4.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/trinket_m0" rel="noopener noreferrer"><code>trinket_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/3500" rel="noopener noreferrer">Trinket M0 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/trinket_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/trinket_m0.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/trinket_m0" rel="noopener noreferrer"><code>trinket_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/3500" rel="noopener noreferrer">Trinket M0 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/trinket_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/trinket_m0.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/neo_trinkey" rel="noopener noreferrer"><code>neo_trinkey</code></a> - Board support for the <a href="https://www.adafruit.com/product/4870" rel="noopener noreferrer">neo trinkey board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/neo_trinkey" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/neo_trinkey.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/neo_trinkey" rel="noopener noreferrer"><code>neo_trinkey</code></a> - Board support for the <a href="https://www.adafruit.com/product/4870" rel="noopener noreferrer">neo trinkey board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/neo_trinkey" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/neo_trinkey.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/neokey_trinkey" rel="noopener noreferrer"><code>neokey_trinkey</code></a> - Board support for the <a href="https://www.adafruit.com/product/5020" rel="noopener noreferrer">neokey trinkey board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/neokey_trinkey" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/neokey_trinkey.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/neokey_trinkey" rel="noopener noreferrer"><code>neokey_trinkey</code></a> - Board support for the <a href="https://www.adafruit.com/product/5020" rel="noopener noreferrer">neokey trinkey board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/neokey_trinkey" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/neokey_trinkey.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/grand_central_m4" rel="noopener noreferrer"><code>grand_central_m4</code></a> - Board support for the <a href="https://www.adafruit.com/product/4064" rel="noopener noreferrer">grand central m4 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/grand_central_m4" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/grand_central_m4.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/grand_central_m4" rel="noopener noreferrer"><code>grand_central_m4</code></a> - Board support for the <a href="https://www.adafruit.com/product/4064" rel="noopener noreferrer">grand central m4 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/grand_central_m4" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/grand_central_m4.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/qt_py_m0" rel="noopener noreferrer"><code>qt_py_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/4600" rel="noopener noreferrer">QT Py board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/qt_py_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/qt_py_m0.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/qt_py_m0" rel="noopener noreferrer"><code>qt_py_m0</code></a> - Board support for the <a href="https://www.adafruit.com/product/4600" rel="noopener noreferrer">QT Py board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/qt_py_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/qt_py_m0.svg" alt="crates.io" /></a></li>
 </ul>
 <h3><p>Board support crates / Arduino</p>
 </h3>
 <ul>
-<li><a href="https://crates.io/crates/arduino_mkr1000" rel="noopener noreferrer"><code>arduino_mkr1000</code></a> - Board support for the <a href="https://docs.arduino.cc/hardware/mkr-1000-wifi" rel="noopener noreferrer">MKR 1000 WiFi board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/arduino_mkr1000" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/arduino_mkr1000.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/arduino_mkr1000" rel="noopener noreferrer"><code>arduino_mkr1000</code></a> - Board support for the <a href="https://docs.arduino.cc/hardware/mkr-1000-wifi" rel="noopener noreferrer">MKR 1000 WiFi board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/arduino_mkr1000" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/arduino_mkr1000.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/arduino_mkrvidor4000" rel="noopener noreferrer"><code>arduino_mkrvidor4000</code></a> - Board support for the <a href="https://store.arduino.cc/usa/mkr-vidor-4000" rel="noopener noreferrer">MKR Vidor board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/arduino_mkrvidor4000" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/arduino_mkrvidor4000.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/arduino_mkrvidor4000" rel="noopener noreferrer"><code>arduino_mkrvidor4000</code></a> - Board support for the <a href="https://store.arduino.cc/usa/mkr-vidor-4000" rel="noopener noreferrer">MKR Vidor board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/arduino_mkrvidor4000" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/arduino_mkrvidor4000.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/arduino_mkrzero" rel="noopener noreferrer"><code>arduino_mkrzero</code></a> - Board support for the <a href="https://store.arduino.cc/arduino-mkrzero" rel="noopener noreferrer">mkrzero board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/arduino_mkrzero" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/arduino_mkrzero.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/arduino_mkrzero" rel="noopener noreferrer"><code>arduino_mkrzero</code></a> - Board support for the <a href="https://store.arduino.cc/arduino-mkrzero" rel="noopener noreferrer">mkrzero board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/arduino_mkrzero" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/arduino_mkrzero.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/arduino_nano33iot" rel="noopener noreferrer"><code>arduino_nano33iot</code></a> - Board support for the <a href="https://store.arduino.cc/products/arduino-nano-33-iot" rel="noopener noreferrer">Arduino Nano 33 IoT</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/arduino_nano33iot" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/arduino_nano33iot.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/arduino_nano33iot" rel="noopener noreferrer"><code>arduino_nano33iot</code></a> - Board support for the <a href="https://store.arduino.cc/products/arduino-nano-33-iot" rel="noopener noreferrer">Arduino Nano 33 IoT</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/arduino_nano33iot" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/arduino_nano33iot.svg" alt="crates.io" /></a></li>
 </ul>
 <h3><p>Board support crates / Nordic</p>
 </h3>
@@ -1113,24 +1194,24 @@
 <h3><p>Board support crates / Sparkfun</p>
 </h3>
 <ul>
-<li><a href="https://crates.io/crates/samd21_mini" rel="noopener noreferrer"><code>samd21_mini</code></a> - Board support for the <a href="https://www.sparkfun.com/products/13664" rel="noopener noreferrer">SAMD21 Mini Breakout</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/samd21_mini" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/samd21_mini.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/samd21_mini" rel="noopener noreferrer"><code>samd21_mini</code></a> - Board support for the <a href="https://www.sparkfun.com/products/13664" rel="noopener noreferrer">SAMD21 Mini Breakout</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/samd21_mini" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/samd21_mini.svg" alt="crates.io" /></a></li>
 </ul>
 <h3><p>Board support crates / SeeedStudio</p>
 </h3>
 <ul>
-<li><a href="https://crates.io/crates/xiao_m0" rel="noopener noreferrer"><code>xiao_m0</code></a> - Board support for the <a href="http://wiki.seeedstudio.com/Seeeduino-XIAO/" rel="noopener noreferrer">Seeed Studio Seeeduino XIAO</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/xiao_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/xiao_m0.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/xiao_m0" rel="noopener noreferrer"><code>xiao_m0</code></a> - Board support for the <a href="http://wiki.seeedstudio.com/Seeeduino-XIAO/" rel="noopener noreferrer">Seeed Studio Seeeduino XIAO</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/xiao_m0" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/xiao_m0.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/wio_lite_mg126" rel="noopener noreferrer"><code>wio_lite_mg126</code></a> - Board support for the <a href="https://wiki.seeedstudio.com/Wio-Lite-MG126" rel="noopener noreferrer">Seeed Studio wio_lite_mg126</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/wio_lite_mg126" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/wio_lite_mg126.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/wio_lite_mg126" rel="noopener noreferrer"><code>wio_lite_mg126</code></a> - Board support for the <a href="https://wiki.seeedstudio.com/Wio-Lite-MG126" rel="noopener noreferrer">Seeed Studio wio_lite_mg126</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/wio_lite_mg126" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/wio_lite_mg126.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/wio_lite_w600" rel="noopener noreferrer"><code>wio_lite_w600</code></a> - Board support for the <a href="https://wiki.seeedstudio.com/Wio-Lite-W600/" rel="noopener noreferrer">Seeed Studio wio_lite_w600</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/wio_lite_w600" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/wio_lite_w600.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/wio_lite_w600" rel="noopener noreferrer"><code>wio_lite_w600</code></a> - Board support for the <a href="https://wiki.seeedstudio.com/Wio-Lite-W600/" rel="noopener noreferrer">Seeed Studio wio_lite_w600</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/wio_lite_w600" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/wio_lite_w600.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/wio_terminal" rel="noopener noreferrer"><code>wio_terminal</code></a> - Board support for the <a href="https://wiki.seeedstudio.com/Wio-Terminal-Getting-Started/" rel="noopener noreferrer">Seeed Studio wio_terminal</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐648)</a> board <a href="https://crates.io/crates/wio_terminal" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/wio_terminal.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/wio_terminal" rel="noopener noreferrer"><code>wio_terminal</code></a> - Board support for the <a href="https://wiki.seeedstudio.com/Wio-Terminal-Getting-Started/" rel="noopener noreferrer">Seeed Studio wio_terminal</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 1 support (⭐649)</a> board <a href="https://crates.io/crates/wio_terminal" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/wio_terminal.svg" alt="crates.io" /></a></li>
 </ul>
 <h3><p>Board support crates / SiFive</p>
 </h3>
@@ -1170,16 +1251,16 @@
 <h3><p>Board support crates / Sodaq</p>
 </h3>
 <ul>
-<li><a href="https://crates.io/crates/sodaq_sara_aff" rel="noopener noreferrer"><code>sodaq_sara_aff</code></a> - Board support for the <a href="https://shop.sodaq.com/sodaq-sara-sff-r410m.html" rel="noopener noreferrer">Sodaq sara aff board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/sodaq_sara_aff" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/sodaq_sara_aff.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/sodaq_sara_aff" rel="noopener noreferrer"><code>sodaq_sara_aff</code></a> - Board support for the <a href="https://shop.sodaq.com/sodaq-sara-sff-r410m.html" rel="noopener noreferrer">Sodaq sara aff board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/sodaq_sara_aff" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/sodaq_sara_aff.svg" alt="crates.io" /></a></li>
 </ul>
 <h3><p>Board support crates / Other</p>
 </h3>
 <ul>
-<li><a href="https://crates.io/crates/serpente" rel="noopener noreferrer"><code>serpente</code></a> - Board support for the <a href="https://www.solder.party/docs/serpente/" rel="noopener noreferrer">serpente board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/serpente" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/serpente.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/serpente" rel="noopener noreferrer"><code>serpente</code></a> - Board support for the <a href="https://www.solder.party/docs/serpente/" rel="noopener noreferrer">serpente board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/serpente" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/serpente.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/p1am_100" rel="noopener noreferrer"><code>p1am_100</code></a> - Board support for the <a href="https://facts-engineering.github.io" rel="noopener noreferrer">p1am_100 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐648)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐648)</a> board. <a href="https://crates.io/crates/p1am_100" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/p1am_100.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/p1am_100" rel="noopener noreferrer"><code>p1am_100</code></a> - Board support for the <a href="https://facts-engineering.github.io" rel="noopener noreferrer">p1am_100 board</a> in the <a href="https://github.com/atsamd-rs/atsamd" rel="noopener noreferrer">atsamd-rs (⭐649)</a> repo. It is an <a href="https://github.com/atsamd-rs/atsamd#how-to-use-a-bsp-ie-getting-started-writing-your-own-code" rel="noopener noreferrer">atsamd-rs tier 2 support (⭐649)</a> board. <a href="https://crates.io/crates/p1am_100" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/p1am_100.svg" alt="crates.io" /></a></li>
 </ul>
 <h3><p>Component abstraction crates / Other</p>
 </h3>
@@ -1477,11 +1558,11 @@
 </ul>
 
 <ul>
-<li><a href="http://crates.io/crates/usbd-serial" rel="noopener noreferrer">usbd-serial</a> - USB CDC-ACM class (serial) implementation - <a href="https://github.com/mvirkkunen/usbd-serial" rel="noopener noreferrer">github (⭐133)</a> - <a href="https://crates.io/crates/usbd-serial" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/usbd-serial.svg" alt="crates.io" /></a></li>
+<li><a href="http://crates.io/crates/usbd-serial" rel="noopener noreferrer">usbd-serial</a> - USB CDC-ACM class (serial) implementation - <a href="https://github.com/mvirkkunen/usbd-serial" rel="noopener noreferrer">github (⭐134)</a> - <a href="https://crates.io/crates/usbd-serial" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/usbd-serial.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
-<li><a href="http://crates.io/crates/usbd-hid" rel="noopener noreferrer">usbd-hid</a> - USB HID class implementation - <a href="https://github.com/twitchyliquid64/usbd-hid" rel="noopener noreferrer">github (⭐111)</a> - <a href="https://crates.io/crates/usbd-hid" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/usbd-hid.svg" alt="crates.io" /></a></li>
+<li><a href="http://crates.io/crates/usbd-hid" rel="noopener noreferrer">usbd-hid</a> - USB HID class implementation - <a href="https://github.com/twitchyliquid64/usbd-hid" rel="noopener noreferrer">github (⭐110)</a> - <a href="https://crates.io/crates/usbd-hid" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/usbd-hid.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
@@ -1533,7 +1614,7 @@
 </ul>
 
 <ul>
-<li><a href="https://crates.io/crates/sht31" rel="noopener noreferrer">SHT31-rs</a> - I2C - Fully supported SHT temperature / humidity sensors - <a href="https://github.com/FloppyDisck/SHT31-rs" rel="noopener noreferrer">github (⭐6)</a> - <a href="https://crates.io/crates/sht31" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/sht31.svg" alt="crates.io" /></a></li>
+<li><a href="https://crates.io/crates/sht31" rel="noopener noreferrer">SHT31-rs</a> - I2C - Fully supported SHT temperature / humidity sensors - <a href="https://github.com/FloppyDisck/SHT31-rs" rel="noopener noreferrer">github (⭐7)</a> - <a href="https://crates.io/crates/sht31" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/sht31.svg" alt="crates.io" /></a></li>
 </ul>
 <h3><p>Driver crates / WIP</p>
 </h3>
@@ -1654,7 +1735,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/rafaelcaricio/lvgl-rs" rel="noopener noreferrer">lvgl (⭐904)</a> - no_std <a href="https://github.com/littlevgl/lvgl" rel="noopener noreferrer">LittleVGL (⭐23k)</a> port - <a href="https://crates.io/crates/lvgl" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/lvgl.svg" alt="crates.io" /></a></li>
+<li><a href="https://github.com/rafaelcaricio/lvgl-rs" rel="noopener noreferrer">lvgl (⭐909)</a> - no_std <a href="https://github.com/littlevgl/lvgl" rel="noopener noreferrer">LittleVGL (⭐23k)</a> port - <a href="https://crates.io/crates/lvgl" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/lvgl.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
@@ -1810,7 +1891,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/chocol4te/vesc-comm" rel="noopener noreferrer">vesc-comm (⭐1)</a> - A driver for communicating with <a href="http://vedder.se/2015/01/vesc-open-source-esc/" rel="noopener noreferrer">VESC-compatible electronic speed controllers</a> <a href="https://crates.io/crates/vesc-comm" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/vesc-comm.svg" alt="crates.io" /></a></li>
+<li><a href="https://github.com/chocol4te/vesc-comm" rel="noopener noreferrer">vesc-comm (⭐2)</a> - A driver for communicating with <a href="http://vedder.se/2015/01/vesc-open-source-esc/" rel="noopener noreferrer">VESC-compatible electronic speed controllers</a> <a href="https://crates.io/crates/vesc-comm" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/vesc-comm.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
@@ -1907,7 +1988,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ethercrab-rs/ethercrab" rel="noopener noreferrer">ethercrab (⭐405)</a>: A Rust implementation of the <a href="https://ethercat.org" rel="noopener noreferrer">EtherCAT</a> industrial automation protocol - <a href="https://crates.io/crates/ethercrab" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/ethercrab.svg" alt="crates.io" /></a></li>
+<li><a href="https://github.com/ethercrab-rs/ethercrab" rel="noopener noreferrer">ethercrab (⭐410)</a>: A Rust implementation of the <a href="https://ethercat.org" rel="noopener noreferrer">EtherCAT</a> industrial automation protocol - <a href="https://crates.io/crates/ethercrab" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/ethercrab.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
@@ -1963,7 +2044,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/NeoBirth/micromath" rel="noopener noreferrer">micromath (⭐485)</a>: Embedded Rust math library featuring fast, safe floating point approximations for common arithmetic operations, 2D and 3D vector types, and statistical analysis - <a href="https://crates.io/crates/micromath" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/micromath.svg" alt="crates.io" /></a></li>
+<li><a href="https://github.com/NeoBirth/micromath" rel="noopener noreferrer">micromath (⭐486)</a>: Embedded Rust math library featuring fast, safe floating point approximations for common arithmetic operations, 2D and 3D vector types, and statistical analysis - <a href="https://crates.io/crates/micromath" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/micromath.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
@@ -2007,7 +2088,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/rust-embedded/register-rs" rel="noopener noreferrer">register-rs (⭐49)</a>: Unified interface for MMIO and CPU registers. Provides type-safe bitfield manipulation. <code>register-rs</code> is Tock registers with added support for CPU register definitions using the same API as for the MMIO registers. This enables homogeneous interfaces to registers of all kinds. - <a href="https://crates.io/crates/register" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/register.svg" alt="crates.io" /></a></li>
+<li><a href="https://github.com/rust-embedded/register-rs" rel="noopener noreferrer">register-rs (⭐50)</a>: Unified interface for MMIO and CPU registers. Provides type-safe bitfield manipulation. <code>register-rs</code> is Tock registers with added support for CPU register definitions using the same API as for the MMIO registers. This enables homogeneous interfaces to registers of all kinds. - <a href="https://crates.io/crates/register" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/register.svg" alt="crates.io" /></a></li>
 </ul>
 
 <ul>
@@ -2065,7 +2146,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/08/12/">Aug 12, 2024</a></h2><h3><p>no-std crates / WIP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/c410-f3r/wtx" rel="noopener noreferrer">wtx (⭐350)</a>: Among other things, provides implementations to interact with HTTP, WebSockets and Databases.</li>
+<li><a href="https://github.com/c410-f3r/wtx" rel="noopener noreferrer">wtx (⭐354)</a>: Among other things, provides implementations to interact with HTTP, WebSockets and Databases.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/07/03/">Jul 03, 2024</a></h2><h3><p>Books, blogs, and training materials / Free and public materials</p>
 </h3>
@@ -2110,7 +2191,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ferrous-systems/embedded-trainings-2020" rel="noopener noreferrer">Ferrous Systems' Embedded Training Courses: 2020-current edition (⭐258)</a> A hands-on training course for beginner and advanced learners of Embedded Rust, based on Nordic Semiconductor's nRF52840 hardware. This training was given at Oxidize Conferences and by <a href="https://ferrous-systems.com" rel="noopener noreferrer">Ferrous Systems</a> to corporate customers.</li>
+<li><a href="https://github.com/ferrous-systems/embedded-trainings-2020" rel="noopener noreferrer">Ferrous Systems' Embedded Training Courses: 2020-current edition (⭐259)</a> A hands-on training course for beginner and advanced learners of Embedded Rust, based on Nordic Semiconductor's nRF52840 hardware. This training was given at Oxidize Conferences and by <a href="https://ferrous-systems.com" rel="noopener noreferrer">Ferrous Systems</a> to corporate customers.</li>
 </ul>
 
 <ul>
@@ -2118,7 +2199,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jacobrosenthal/dsp-discoveryf4-rust/" rel="noopener noreferrer">DSP on STM32F407G-DISC1 (⭐35)</a> Unofficial oxidization of the <a href="https://www.amazon.com/Digital-Signal-Processing-Cortex-M-Microcontrollers/dp/1911531166" rel="noopener noreferrer">Digital Signal Processing using Arm Cortex-M based Microcontrollers: Theory and Practice</a> book. The book isn't necessary to enjoy the examples and learn a functional DSP Rust coding style.</li>
+<li><a href="https://github.com/jacobrosenthal/dsp-discoveryf4-rust/" rel="noopener noreferrer">DSP on STM32F407G-DISC1 (⭐36)</a> Unofficial oxidization of the <a href="https://www.amazon.com/Digital-Signal-Processing-Cortex-M-Microcontrollers/dp/1911531166" rel="noopener noreferrer">Digital Signal Processing using Arm Cortex-M based Microcontrollers: Theory and Practice</a> book. The book isn't necessary to enjoy the examples and learn a functional DSP Rust coding style.</li>
 </ul>
 
 <ul>
@@ -2134,7 +2215,7 @@
 </ul>
 
 <ul>
-<li><a href="https://youtube.com/playlist?list=PLkch9g9DEE0Lkm1LqcD7pZNDmXEczOo-a" rel="noopener noreferrer">ESP32-C3 Rust Tutorials</a> Short videos and <a href="https://github.com/shanemmattner/ESP32-C3_Rust_Tutorials" rel="noopener noreferrer">Github project (⭐78)</a> implementing various peripherals of the ESP32-C3 with the end goal of creating a complete data logger application.</li>
+<li><a href="https://youtube.com/playlist?list=PLkch9g9DEE0Lkm1LqcD7pZNDmXEczOo-a" rel="noopener noreferrer">ESP32-C3 Rust Tutorials</a> Short videos and <a href="https://github.com/shanemmattner/ESP32-C3_Rust_Tutorials" rel="noopener noreferrer">Github project (⭐79)</a> implementing various peripherals of the ESP32-C3 with the end goal of creating a complete data logger application.</li>
 </ul>
 
 <ul>
@@ -2152,7 +2233,7 @@
 <h3><p>Tools / Paid and commercially available materials</p>
 </h3>
 <ul>
-<li><a href="https://github.com/japaric/svd2rust" rel="noopener noreferrer">svd2rust (⭐834)</a> Generate Rust structs with register mappings from SVD files.</li>
+<li><a href="https://github.com/japaric/svd2rust" rel="noopener noreferrer">svd2rust (⭐837)</a> Generate Rust structs with register mappings from SVD files.</li>
 </ul>
 
 <ul>
@@ -2189,7 +2270,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/lobaro/FreeRTOS-rust" rel="noopener noreferrer">FreeRTOS-rust (⭐482)</a> Rust interface for FreeRTOS with Rust entry point and build support crate.</li>
+<li><a href="https://github.com/lobaro/FreeRTOS-rust" rel="noopener noreferrer">FreeRTOS-rust (⭐477)</a> Rust interface for FreeRTOS with Rust entry point and build support crate.</li>
 </ul>
 
 <ul>
@@ -2253,7 +2334,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/05/29/">May 29, 2024</a></h2><h3><p>no-std crates / WIP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lora-rs/lora-rs/tree/main/lorawan-encoding" rel="noopener noreferrer">lorawan-encoding (⭐435)</a>: A LoRaWAN packet codec.</li>
+<li><a href="https://github.com/lora-rs/lora-rs/tree/main/lorawan-encoding" rel="noopener noreferrer">lorawan-encoding (⭐445)</a>: A LoRaWAN packet codec.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/05/21/">May 21, 2024</a></h2><h3><p>Firmware projects / WIP</p>
 </h3>
@@ -2273,7 +2354,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/01/24/">Jan 24, 2024</a></h2><h3><p>no-std crates / WIP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lora-rs/lora-rs/tree/main/lorawan-device" rel="noopener noreferrer">lorawan-device (⭐435)</a>: A LoRaWAN MAC implementation supporting both event-driven and async mode.</li>
+<li><a href="https://github.com/lora-rs/lora-rs/tree/main/lorawan-device" rel="noopener noreferrer">lorawan-device (⭐445)</a>: A LoRaWAN MAC implementation supporting both event-driven and async mode.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/12/20/">Dec 20, 2023</a></h2><h3><p>Books, blogs, and training materials / Free and public materials</p>
 </h3>
@@ -2335,7 +2416,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/07/18/">Jul 18, 2023</a></h2><h3><p>Firmware projects / WIP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/quartiq/stabilizer" rel="noopener noreferrer">Stabilizer (⭐140)</a>: Firmware for a DSP tool used in quantum physics experimentation, includes telemetry via MQTT and run-time configuration</li>
+<li><a href="https://github.com/quartiq/stabilizer" rel="noopener noreferrer">Stabilizer (⭐142)</a>: Firmware for a DSP tool used in quantum physics experimentation, includes telemetry via MQTT and run-time configuration</li>
 </ul>
 
 <ul>
@@ -2368,7 +2449,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/04/19/">Apr 19, 2023</a></h2><h3><p>Firmware projects / WIP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dotcypress/ula" rel="noopener noreferrer">μLA (⭐917)</a>: Micro Logic Analyzer for RP2040</li>
+<li><a href="https://github.com/dotcypress/ula" rel="noopener noreferrer">μLA (⭐925)</a>: Micro Logic Analyzer for RP2040</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/04/01/">Apr 01, 2023</a></h2><h3><p>Community / Community Chat Rooms</p>
 </h3>
@@ -2398,7 +2479,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/07/18/">Jul 18, 2022</a></h2><h3><p>no-std crates / WIP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jhbruhn/moonboot" rel="noopener noreferrer">moonboot (⭐28)</a>: OTA Bootloader Construction Framework for Rust no_std environments, especially embedded devices without an OS</li>
+<li><a href="https://github.com/jhbruhn/moonboot" rel="noopener noreferrer">moonboot (⭐29)</a>: OTA Bootloader Construction Framework for Rust no_std environments, especially embedded devices without an OS</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/06/15/">Jun 15, 2022</a></h2><h3><p>no-std crates / WIP</p>
 </h3>
@@ -2415,7 +2496,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/drogue-iot/embedded-tls" rel="noopener noreferrer">embedded-tls (⭐226)</a>: A TLS 1.3 implementation that runs in a no-std environment.</li>
+<li><a href="https://github.com/drogue-iot/embedded-tls" rel="noopener noreferrer">embedded-tls (⭐228)</a>: A TLS 1.3 implementation that runs in a no-std environment.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/04/03/">Apr 03, 2022</a></h2><h3><p>Board support crates / STMicroelectronics</p>
 </h3>
@@ -2450,7 +2531,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/12/20/">Dec 20, 2021</a></h2><h3><p>Tools / Paid and commercially available materials</p>
 </h3>
 <ul>
-<li><a href="https://github.com/titanclass/embassy-start" rel="noopener noreferrer">Embassy start (⭐27)</a> is a GitHub repo template for setting up async embedded Rust projects that use <a href="https://github.com/embassy-rs/embassy" rel="noopener noreferrer">Embassy (⭐9.1k)</a>. This particular template targets nRF hardware and networking using the Uarte for the purposes of illustration only.</li>
+<li><a href="https://github.com/titanclass/embassy-start" rel="noopener noreferrer">Embassy start (⭐27)</a> is a GitHub repo template for setting up async embedded Rust projects that use <a href="https://github.com/embassy-rs/embassy" rel="noopener noreferrer">Embassy (⭐9.2k)</a>. This particular template targets nRF hardware and networking using the Uarte for the purposes of illustration only.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/12/17/">Dec 17, 2021</a></h2><h3><p>HAL implementation crates / Vorago</p>
 </h3>
@@ -2663,7 +2744,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/yuri91/ili9341-rs" rel="noopener noreferrer">ILI9341 (⭐70)</a> - SPI - TFT LCD display</li>
+<li><a href="https://github.com/yuri91/ili9341-rs" rel="noopener noreferrer">ILI9341 (⭐71)</a> - SPI - TFT LCD display</li>
 </ul>
 
 <ul>
@@ -2715,7 +2796,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/stm32-rs/stm32-eth" rel="noopener noreferrer">stm32-eth (⭐161)</a> - MCU - Ethernet</li>
+<li><a href="https://github.com/stm32-rs/stm32-eth" rel="noopener noreferrer">stm32-eth (⭐160)</a> - MCU - Ethernet</li>
 </ul>
 
 <ul>
@@ -2728,7 +2809,7 @@
 <h3><p>no-std crates / WIP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Michael-F-Bryan/gcode-rs" rel="noopener noreferrer">gcode (⭐103)</a>: A gcode parser for no-std applications - <a href="https://crates.io/crates/gcode" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/gcode.svg" alt="crates.io" /></a></li>
+<li><a href="https://github.com/Michael-F-Bryan/gcode-rs" rel="noopener noreferrer">gcode (⭐104)</a>: A gcode parser for no-std applications - <a href="https://crates.io/crates/gcode" rel="noopener noreferrer"><img src="https://img.shields.io/crates/v/gcode.svg" alt="crates.io" /></a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/12/29/">Dec 29, 2019</a></h2><h3><p>Peripheral Access Crates / Microchip</p>
 </h3>
@@ -2821,5 +2902,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
