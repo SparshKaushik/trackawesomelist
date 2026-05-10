@@ -16,26 +16,121 @@
     <meta property="og:title" content="Track Awesome Testing Updates Daily" />
     <meta property="og:description" content="A curated list of testing resources" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Testing Updates Daily</h1>
 <p>A curated list of testing resources</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/TheJambo/awesome-testing/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/TheJambo/awesome-testing">😺 TheJambo/awesome-testing</a><span> · </span><span>⭐ 2.2K</span><span> · </span><span>🏷️ Testing</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/TheJambo/awesome-testing/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/TheJambo/awesome-testing">😺 TheJambo/awesome-testing</a><span> · </span><span>⭐ 2.3K</span><span> · </span><span>🏷️ Testing</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/TheJambo/awesome-testing/week/">Weekly</a><span> / </span><a href="/TheJambo/awesome-testing/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/05/10/">May 10, 2026</a></h2><h3><p>Software / API Testing</p>
+</h3>
+<ul>
+<li><a href="https://kusho.ai/" rel="noopener noreferrer">KushoAI</a> - AI-native platform for API contract testing, end-to-end testing, UI testing, and continuous security scanning, with self-healing tests that automatically adapt to code changes in CI/CD.</li>
+</ul>
+<h3><p>Software / AI &amp; LLM Testing</p>
+</h3>
+<ul>
+<li><a href="https://github.com/evaliphy/evaliphy" rel="noopener noreferrer">Evaliphy (⭐16)</a> - Test your AI system end-to-end with Evaliphy. It uses a Playwright-style testing approach and generates HTML reports.</li>
+</ul>
+<h3><p>Software / Visual Testing</p>
+</h3>
+<ul>
+<li><a href="https://lastest.cloud" rel="noopener noreferrer">Lastest</a> - Visual regression testing for Playwright with AI flake triage and baseline review.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/04/23/">Apr 23, 2026</a></h2><h3><p>Software / Service Virtualization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/faiscadev/fakecloud" rel="noopener noreferrer">fakecloud (⭐160)</a> - Free, open-source local AWS cloud emulator for integration tests, with 23 services at 100% conformance and first-party test-assertion SDKs in 6 languages.</li>
+<li><a href="https://github.com/faiscadev/fakecloud" rel="noopener noreferrer">fakecloud (⭐278)</a> - Free, open-source local AWS cloud emulator for integration tests, with 23 services at 100% conformance and first-party test-assertion SDKs in 6 languages.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/04/21/">Apr 21, 2026</a></h2><h3><p>Software / AI &amp; LLM Testing</p>
 </h3>
@@ -50,12 +145,7 @@
 <h2><a href="https://www.trackawesomelist.com/2026/04/08/">Apr 08, 2026</a></h2><h3><p>Software / AI &amp; LLM Testing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tenro-ai/tenro-python" rel="noopener noreferrer">Tenro (⭐1)</a> - Open-source testing framework for AI agents. Simulate LLM and tool calls to test edge cases, failure paths, and agent logic without live API calls.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2026/03/30/">Mar 30, 2026</a></h2><h3><p>Software / AI &amp; LLM Testing</p>
-</h3>
-<ul>
-<li><a href="https://github.com/rylinjames/litmus" rel="noopener noreferrer">Litmus (⭐3)</a> - Record and replay AI agent LLM calls deterministically for testing and CI, with fault injection and reliability scoring.</li>
+<li><a href="https://github.com/tenro-ai/tenro-python" rel="noopener noreferrer">Tenro</a> - Open-source testing framework for AI agents. Simulate LLM and tool calls to test edge cases, failure paths, and agent logic without live API calls.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/03/24/">Mar 24, 2026</a></h2><h3><p>Software / Test Data Management</p>
 </h3>
@@ -91,15 +181,10 @@
 <ul>
 <li>[Polarity])<a href="https://www.polarity.so" rel="noopener noreferrer">https://www.polarity.so</a>) - Full visual and desktop environments showcasing complete E2E testsing for all UI/UX features. Generated you Playwrite, Cypress, and other code for you as the test runs.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2026/03/15/">Mar 15, 2026</a></h2><h3><p>Software / Test Management</p>
+<h2><a href="https://www.trackawesomelist.com/2026/03/15/">Mar 15, 2026</a></h2><h3><p>Software / Test Automation Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://www.gwirian.com" rel="noopener noreferrer">Gwirian</a> - Open source BDD test management for QA teams. Given/When/Then scenarios, search, dashboards; self-host or hosted.</li>
-</ul>
-<h3><p>Software / Test Automation Frameworks</p>
-</h3>
-<ul>
-<li><a href="https://github.com/aiqualitylab/ai-natural-language-tests" rel="noopener noreferrer">ai-natural-language-tests (⭐15)</a> - Generates Cypress and Playwright E2E tests from natural language requirements using LangGraph, ChromaDB, and multi-provider LLM support.</li>
+<li><a href="https://github.com/aiqualitylab/ai-natural-language-tests" rel="noopener noreferrer">ai-natural-language-tests (⭐17)</a> - Generates Cypress and Playwright E2E tests from natural language requirements using LangGraph, ChromaDB, and multi-provider LLM support.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/03/14/">Mar 14, 2026</a></h2><h3><p>Software / Test Automation Frameworks</p>
 </h3>
@@ -109,7 +194,7 @@
 <h2><a href="https://www.trackawesomelist.com/2026/03/05/">Mar 05, 2026</a></h2><h3><p>Software / Visual Testing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/OzorOwn/frostbyte-screenshot-action" rel="noopener noreferrer">Frostbyte Screenshot Action (⭐0)</a> - GitHub Action for automated website screenshots in CI/CD pipelines. Supports multiple viewports, full-page capture, and dark mode emulation.</li>
+<li><a href="https://github.com/OzorOwn/frostbyte-screenshot-action" rel="noopener noreferrer">Frostbyte Screenshot Action</a> - GitHub Action for automated website screenshots in CI/CD pipelines. Supports multiple viewports, full-page capture, and dark mode emulation.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/03/02/">Mar 02, 2026</a></h2><h3><p>Software / API Testing</p>
 </h3>
@@ -133,17 +218,17 @@
 <h2><a href="https://www.trackawesomelist.com/2026/02/24/">Feb 24, 2026</a></h2><h3><p>Software / Service Virtualization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/getmockd/mockd" rel="noopener noreferrer">mockd (⭐116)</a> - Open-source multi-protocol mock server supporting HTTP, gRPC, GraphQL, WebSocket, MQTT, and SOAP with chaos engineering and proxy recording.</li>
+<li><a href="https://github.com/getmockd/mockd" rel="noopener noreferrer">mockd (⭐121)</a> - Open-source multi-protocol mock server supporting HTTP, gRPC, GraphQL, WebSocket, MQTT, and SOAP with chaos engineering and proxy recording.</li>
 </ul>
 <h3><p>Blogs / A/B Testing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ChristoWolf/awesome-testing-blogs" rel="noopener noreferrer">And others (⭐107)</a></li>
+<li><a href="https://github.com/ChristoWolf/awesome-testing-blogs" rel="noopener noreferrer">And others (⭐108)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/02/19/">Feb 19, 2026</a></h2><h3><p>Software / Visual Testing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sherlo-io/sherlo" rel="noopener noreferrer">Sherlo (⭐76)</a> - Visual testing platform for React Native Storybook. Captures screenshots on iOS and Android simulators in the cloud and detects visual changes automatically.</li>
+<li><a href="https://github.com/sherlo-io/sherlo" rel="noopener noreferrer">Sherlo</a> - Visual testing platform for React Native Storybook. Captures screenshots on iOS and Android simulators in the cloud and detects visual changes automatically.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/02/18/">Feb 18, 2026</a></h2><h3><p>Software / API Testing</p>
 </h3>
@@ -153,12 +238,12 @@
 <h2><a href="https://www.trackawesomelist.com/2026/02/17/">Feb 17, 2026</a></h2><h3><p>Suggested Awesome Lists / Useful References</p>
 </h3>
 <ul>
-<li><a href="https://github.com/be-next/awesome-performance-engineering" rel="noopener noreferrer">Awesome Performance Engineering (⭐21)</a> - A curated collection of tools and resources for performance engineering, covering observability and performance testing.</li>
+<li><a href="https://github.com/be-next/awesome-performance-engineering" rel="noopener noreferrer">Awesome Performance Engineering (⭐23)</a> - A curated collection of tools and resources for performance engineering, covering observability and performance testing.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/02/15/">Feb 15, 2026</a></h2><h3><p>Software / AI &amp; LLM Testing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/voicetestdev/voicetest" rel="noopener noreferrer">voicetest (⭐14)</a> - Open-source test harness for voice AI agents supporting Retell, VAPI, LiveKit, and Bland with autonomous simulations and LLM-based evaluation.</li>
+<li><a href="https://github.com/voicetestdev/voicetest" rel="noopener noreferrer">voicetest (⭐19)</a> - Open-source test harness for voice AI agents supporting Retell, VAPI, LiveKit, and Bland with autonomous simulations and LLM-based evaluation.</li>
 </ul>
 <h3><p>Software / Visual Testing</p>
 </h3>
@@ -168,7 +253,7 @@
 <h3><p>Software / UI &amp; End-to-End Testing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ai-dashboad/flutter-skill" rel="noopener noreferrer">flutter-skill (⭐176)</a> - AI-powered E2E testing via MCP for Flutter, React Native, iOS, Android, Electron, Tauri, KMP, and .NET MAUI. Zero test code.</li>
+<li><a href="https://github.com/ai-dashboad/flutter-skill" rel="noopener noreferrer">flutter-skill (⭐240)</a> - AI-powered E2E testing via MCP for Flutter, React Native, iOS, Android, Electron, Tauri, KMP, and .NET MAUI. Zero test code.</li>
 </ul>
 
 <ul>
@@ -201,7 +286,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/12/22/">Dec 22, 2025</a></h2><h3><p>Software / AI &amp; LLM Testing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/promptfoo/promptfoo" rel="noopener noreferrer">promptfoo (⭐20k)</a> - Open-source framework for testing and red teaming LLM applications. Compare prompts, test RAG architectures, run multi-turn adversarial attacks, and catch security vulnerabilities with CI/CD integration.</li>
+<li><a href="https://github.com/promptfoo/promptfoo" rel="noopener noreferrer">promptfoo (⭐21k)</a> - Open-source framework for testing and red teaming LLM applications. Compare prompts, test RAG architectures, run multi-turn adversarial attacks, and catch security vulnerabilities with CI/CD integration.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/12/03/">Dec 03, 2025</a></h2><h3><p>Software / UI &amp; End-to-End Testing</p>
 </h3>
@@ -226,7 +311,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/07/16/">Jul 16, 2025</a></h2><h3><p>Software / API Testing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/justiceo/spectest" rel="noopener noreferrer">SpecTest (⭐30)</a> - Truly declarative API testing framework in Js, or plain JSON.</li>
+<li><a href="https://github.com/justiceo/spectest" rel="noopener noreferrer">SpecTest (⭐23)</a> - Truly declarative API testing framework in Js, or plain JSON.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/05/06/">May 06, 2025</a></h2><h3><p>Software / API Testing</p>
 </h3>
@@ -235,7 +320,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Nikita-Filonov/swagger-coverage-tool" rel="noopener noreferrer">Swagger Coverage Tool (⭐20)</a> - The Swagger Coverage Tool is designed to measure API test coverage based on Swagger documentation. It provides automated tracking and reporting of test coverage for APIs, helping ensure that your endpoints and services are well-tested.</li>
+<li><a href="https://github.com/Nikita-Filonov/swagger-coverage-tool" rel="noopener noreferrer">Swagger Coverage Tool (⭐22)</a> - The Swagger Coverage Tool is designed to measure API test coverage based on Swagger documentation. It provides automated tracking and reporting of test coverage for APIs, helping ensure that your endpoints and services are well-tested.</li>
 </ul>
 <h3><p>Software / UI &amp; End-to-End Testing</p>
 </h3>
@@ -277,7 +362,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/xnbox/DeepfakeHTTP" rel="noopener noreferrer">DeepfakeHTTP (⭐531)</a> - Web server using HTTP dumps as a response source for API simulation.</li>
+<li><a href="https://github.com/xnbox/DeepfakeHTTP" rel="noopener noreferrer">DeepfakeHTTP (⭐528)</a> - Web server using HTTP dumps as a response source for API simulation.</li>
 </ul>
 
 <ul>
@@ -290,7 +375,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dashcamio/goodlooks" rel="noopener noreferrer">GoodLooks (⭐51)</a> - AI-powered visual validation for Playwright tests.</li>
+<li><a href="https://github.com/dashcamio/goodlooks" rel="noopener noreferrer">GoodLooks (⭐52)</a> - AI-powered visual validation for Playwright tests.</li>
 </ul>
 
 <ul>
@@ -323,7 +408,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/test-zeus-ai/testzeus-hercules" rel="noopener noreferrer">Hercules (⭐969)</a> - Open-source end-to-end testing agent.</li>
+<li><a href="https://github.com/test-zeus-ai/testzeus-hercules" rel="noopener noreferrer">Hercules (⭐1k)</a> - Open-source end-to-end testing agent.</li>
 </ul>
 
 <ul>
@@ -331,7 +416,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/vitalets/playwright-bdd" rel="noopener noreferrer">playwright-bdd (⭐645)</a> - BDD-style Playwright testing.</li>
+<li><a href="https://github.com/vitalets/playwright-bdd" rel="noopener noreferrer">playwright-bdd (⭐666)</a> - BDD-style Playwright testing.</li>
 </ul>
 
 <ul>
@@ -357,7 +442,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/trytouca/trytouca" rel="noopener noreferrer">Touca (⭐509)</a> - Continuous regression testing for behavioral and performance comparisons.</li>
+<li><a href="https://github.com/trytouca/trytouca" rel="noopener noreferrer">Touca (⭐511)</a> - Continuous regression testing for behavioral and performance comparisons.</li>
 </ul>
 
 <ul>
@@ -437,10 +522,6 @@
 <ul>
 <li><a href="https://github.com/MathewSachin/Captura" rel="noopener noreferrer">Captura (⭐11k)</a> - Open-source video recording tool.</li>
 </ul>
-
-<ul>
-<li><a href="https://replayable.io" rel="noopener noreferrer">Replayable</a> - Desktop dashcam for capturing manual testing sessions.</li>
-</ul>
 <h3><p>Software / Mind Mapping &amp; Documentation</p>
 </h3>
 <ul>
@@ -482,7 +563,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/12/10/">Dec 10, 2020</a></h2><h3><p>QA and Testing Road Map / Useful References</p>
 </h3>
 <ul>
-<li><a href="https://github.com/fityanos/Quality-Assurance-Road-Map" rel="noopener noreferrer">How to start QA and Testing career (⭐2.1k)</a> - A wide and rich list of strategies, topics, and skills that you need to start a career in software testing and automation.</li>
+<li><a href="https://github.com/fityanos/Quality-Assurance-Road-Map" rel="noopener noreferrer">How to start QA and Testing career</a> - A wide and rich list of strategies, topics, and skills that you need to start a career in software testing and automation.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/12/04/">Dec 04, 2020</a></h2><h3><p>Newsletters / A/B Testing</p>
 </h3>
@@ -507,7 +588,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/04/10/">Apr 10, 2020</a></h2><h3><p>Suggested Awesome Lists / Useful References</p>
 </h3>
 <ul>
-<li><a href="https://github.com/abhivaikar/howtheytest" rel="noopener noreferrer">How They Test (⭐6.6k)</a> - A curated collection of public resources from tech companies on how they test their software and build a quality culture</li>
+<li><a href="https://github.com/abhivaikar/howtheytest" rel="noopener noreferrer">How They Test (⭐6.8k)</a> - A curated collection of public resources from tech companies on how they test their software and build a quality culture</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/11/23/">Nov 23, 2019</a></h2><h3><p>Blogs / A/B Testing</p>
 </h3>
@@ -517,7 +598,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/10/22/">Oct 22, 2019</a></h2><h3><p>Suggested Awesome Lists / Useful References</p>
 </h3>
 <ul>
-<li><a href="https://github.com/aliesbelik/awesome-jmeter" rel="noopener noreferrer">Awesome JMeter (⭐782)</a> - A curated collection of resources around Apache JMeter.</li>
+<li><a href="https://github.com/aliesbelik/awesome-jmeter" rel="noopener noreferrer">Awesome JMeter (⭐786)</a> - A curated collection of resources around Apache JMeter.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/04/08/">Apr 08, 2019</a></h2><h3><p>Suggested Awesome Lists / Useful References</p>
 </h3>
@@ -527,7 +608,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/01/09/">Jan 09, 2019</a></h2><h3><p>Others / Useful References</p>
 </h3>
 <ul>
-<li><a href="https://github.com/TheJambo/ToDoInterviewTest" rel="noopener noreferrer">Software Testing Interview Tool (⭐51)</a> - A very buggy To Do List to facilitate face to face interviews.</li>
+<li><a href="https://github.com/TheJambo/ToDoInterviewTest" rel="noopener noreferrer">Software Testing Interview Tool (⭐52)</a> - A very buggy To Do List to facilitate face to face interviews.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/08/02/">Aug 02, 2018</a></h2><h3><p>Books / A/B Testing</p>
 </h3>
@@ -592,7 +673,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/02/19/">Feb 19, 2017</a></h2><h3><p>Suggested Awesome Lists / Useful References</p>
 </h3>
 <ul>
-<li><a href="https://github.com/karlhorky/learn-to-program" rel="noopener noreferrer">Learn to Code (⭐4.7k)</a> - Learning to code, for those looking to make the move to automation</li>
+<li><a href="https://github.com/karlhorky/learn-to-program" rel="noopener noreferrer">Learn to Code (⭐4.8k)</a> - Learning to code, for those looking to make the move to automation</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/01/26/">Jan 26, 2017</a></h2><h3><p>Suggested Awesome Lists / Must Read</p>
 </h3>
@@ -605,12 +686,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jagracey/Awesome-Unicode" rel="noopener noreferrer">Unicode (⭐970)</a> - A great resource for learning how unicode works and the issues it can cause.</li>
+<li><a href="https://github.com/jagracey/Awesome-Unicode" rel="noopener noreferrer">Unicode (⭐971)</a> - A great resource for learning how unicode works and the issues it can cause.</li>
 </ul>
 <h3><p>Suggested Awesome Lists / Useful References</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">The Original (⭐453k)</a> - The awesome list of awesome lists.</li>
+<li><a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">The Original (⭐464k)</a> - The awesome list of awesome lists.</li>
 </ul>
 
 <ul>
@@ -648,5 +729,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
