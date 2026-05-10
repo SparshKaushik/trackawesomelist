@@ -16,22 +16,107 @@
     <meta property="og:title" content="Track Free Programming Books (Japanese) Updates Daily" />
     <meta property="og:description" content=":books: Freely available programming books" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Free Programming Books (Japanese) Updates Daily</h1>
 <p>:books: Freely available programming books</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/EbookFoundation/free-programming-books/books/free-programming-books-ja/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-ja.md">😺 EbookFoundation/free-programming-books</a><span> · </span><span>⭐ 365K</span><span> · </span><span>🏷️ Books</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/EbookFoundation/free-programming-books/books/free-programming-books-ja/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-ja.md">😺 EbookFoundation/free-programming-books</a><span> · </span><span>⭐ 388K</span><span> · </span><span>🏷️ Books</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/EbookFoundation/free-programming-books/books/free-programming-books-ja/week/">Weekly</a><span> / </span><a href="/EbookFoundation/free-programming-books/books/free-programming-books-ja/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/05/10/">May 10, 2026</a></h2><h3><p>JavaScript / Vue.js</p>
+</h3>
+<ul>
+<li><a href="https://book.chibivue.land/ja.html" rel="noopener noreferrer">The chibivue Book</a> - ubugeeei</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2025/08/17/">Aug 17, 2025</a></h2><h3><p>0 - 言語非依存 / ゲーム開発</p>
 </h3>
 <ul>
@@ -114,7 +199,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jlevy/the-art-of-command-line/blob/master/README-ja.md" rel="noopener noreferrer">The Art of Command Line (⭐158k)</a> - Joshua Levy, <code>trl:</code> Hayato Matsuura</li>
+<li><a href="https://github.com/jlevy/the-art-of-command-line/blob/master/README-ja.md" rel="noopener noreferrer">The Art of Command Line (⭐161k)</a> - Joshua Levy, <code>trl:</code> Hayato Matsuura</li>
 </ul>
 <h3><p>C++ / 理論計算機科学</p>
 </h3>
@@ -138,11 +223,6 @@
 
 <ul>
 <li><a href="https://minghai.github.io/library/coffeescript" rel="noopener noreferrer">The Little Book on CoffeeScript</a> - Alex MacCaw, <code>trl:</code> Narumi Katoh</li>
-</ul>
-<h3><p>Coq / 理論計算機科学</p>
-</h3>
-<ul>
-<li><a href="http://proofcafe.org/sf" rel="noopener noreferrer">ソフトウェアの基礎</a> - Benjamin C. Pierce, Chris Casinghino, Michael Greenberg, Vilhelm Sjöberg, Brent Yorgey, <code>trl:</code> 梅村晃広, <code>trl:</code> 片山功士, <code>trl:</code> 水野洋樹, <code>trl:</code> 大橋台地, <code>trl:</code> 増子萌, <code>trl:</code> 今井宜洋</li>
 </ul>
 <h3><p>Go / 理論計算機科学</p>
 </h3>
@@ -208,7 +288,7 @@
 <ul>
 <li><a href="https://js.studio-kingdom.com/react" rel="noopener noreferrer">React 0.13 日本語リファレンス</a> - <code>trl:</code> @tomof</li>
 </ul>
-<h3><p>Linux / Svelte</p>
+<h3><p>Linux / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://lfsbookja.osdn.jp/7.4.ja/" rel="noopener noreferrer">Linux from Scratch (Version 7.4)</a> - Gerard Beekmans, <code>trl:</code> 松山道夫</li>
@@ -217,12 +297,12 @@
 <ul>
 <li><a href="https://linuxjf.osdn.jp/JFdocs/Secure-Programs-HOWTO" rel="noopener noreferrer">Secure Programming for Linux and Unix HOWTO</a> - David A. Wheeler, <code>trl:</code> 高橋聡</li>
 </ul>
-<h3><p>Lisp / Svelte</p>
+<h3><p>Lisp / Vue.js</p>
 </h3>
 <ul>
 <li><a href="http://www.asahi-net.or.jp/~kc7k-nd" rel="noopener noreferrer">On Lisp (草稿)</a> - Paul Graham, <code>trl:</code> 野田開</li>
 </ul>
-<h3><p>Mercurial / Svelte</p>
+<h3><p>Mercurial / Vue.js</p>
 </h3>
 <ul>
 <li><a href="http://foozy.bitbucket.org/hgbook-ja/index.ja.html" rel="noopener noreferrer">Mercurial: The Definitive Guide</a> - Bryan O'Sullivan, <code>trl:</code> 藤原克則</li>
@@ -231,16 +311,16 @@
 <ul>
 <li><a href="https://mmitou.hatenadiary.org/entry/20100501/1272680474" rel="noopener noreferrer">Mercurial チュートリアル hginit.com の和訳</a> - Joel Spolsky, <code>trl:</code> mmitou</li>
 </ul>
-<h3><p>NoSQL / Svelte</p>
+<h3><p>NoSQL / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://www.cuspy.org/diary/2012-04-17/the-little-mongodb-book-ja.pdf" rel="noopener noreferrer">MongoDBの薄い本</a> - Karl Seguin, <code>trl: 濱野司</code> (PDF)</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/craftgear/the-little-redis-book" rel="noopener noreferrer">The Little Redis Book (⭐161)</a> - Karl Seguin, <code>trl.:</code> @craftgear</li>
+<li><a href="https://github.com/craftgear/the-little-redis-book" rel="noopener noreferrer">The Little Redis Book (⭐159)</a> - Karl Seguin, <code>trl.:</code> @craftgear</li>
 </ul>
-<h3><p>Objective-C / Svelte</p>
+<h3><p>Objective-C / Vue.js</p>
 </h3>
 <ul>
 <li><a href="http://www.textdrop.net/google-styleguide-ja/objcguide.xml" rel="noopener noreferrer">Google Objective-C スタイルガイド 日本語訳</a> - Mike Pinkerton, Greg Miller, Dave MacLachlan, <code>trl:</code> Takashi Sasai</li>
@@ -249,7 +329,7 @@
 <ul>
 <li><a href="https://fn7.hatenadiary.org/entry/20100203/1265207098" rel="noopener noreferrer">Objective-C 最速基礎文法マスター</a> - @fn7</li>
 </ul>
-<h3><p>Perl / Svelte</p>
+<h3><p>Perl / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://qntm.org/files/perl/perl_jp.html" rel="noopener noreferrer">2時間半で学ぶPerl</a> - Sam Hughes, <code>trl:</code> Kato Atsusi</li>
@@ -305,6 +385,11 @@
 <ul>
 <li><a href="https://cran.r-project.org/doc/contrib/manuals-jp/R-intro-170.jp.pdf" rel="noopener noreferrer">R 入門</a> - W. N. Venables, D. M. Smith, R Development Core Team, <code>trl:</code> 間瀬茂 (PDF)</li>
 </ul>
+<h3><p>Rocq Prover / Flask</p>
+</h3>
+<ul>
+<li><a href="http://proofcafe.org/sf" rel="noopener noreferrer">ソフトウェアの基礎</a> - Benjamin C. Pierce, Chris Casinghino, Michael Greenberg, Vilhelm Sjöberg, Brent Yorgey, <code>trl:</code> 梅村晃広, <code>trl:</code> 片山功士, <code>trl:</code> 水野洋樹, <code>trl:</code> 大橋台地, <code>trl:</code> 増子萌, <code>trl:</code> 今井宜洋</li>
+</ul>
 <h3><p>Ruby / Flask</p>
 </h3>
 <ul>
@@ -346,7 +431,7 @@
 <ul>
 <li><a href="https://nattou-curry-2.hatenadiary.org/entry/20100129/1264787849" rel="noopener noreferrer">VBA基礎文法最速マスター</a> - @nattou_curry</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2023/10/11/">Oct 11, 2023</a></h2><h3><p>Lisp / Svelte</p>
+<h2><a href="https://www.trackawesomelist.com/2023/10/11/">Oct 11, 2023</a></h2><h3><p>Lisp / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://www.haun.org/kent/lisp1/" rel="noopener noreferrer">Lisp 一夜漬け</a> - TAMURA Kent</li>
@@ -365,7 +450,7 @@
 <ul>
 <li><a href="https://developer.mozilla.org/ja/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_getting_started" rel="noopener noreferrer">Svelte をはじめる</a> - MDN</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2022/10/12/">Oct 12, 2022</a></h2><h3><p>PHP / Svelte</p>
+<h2><a href="https://www.trackawesomelist.com/2022/10/12/">Oct 12, 2022</a></h2><h3><p>PHP / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://net-newbie.com/prev/support/pdf2/" rel="noopener noreferrer">PHP4徹底攻略改訂版</a></li>
@@ -377,7 +462,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.ja.md" rel="noopener noreferrer">GitHubカンニング・ペーパー (⭐52k)</a> - Tim Green, <code>trl.:</code> marocchino (HTML)</li>
+<li><a href="https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.ja.md" rel="noopener noreferrer">GitHubカンニング・ペーパー (⭐57k)</a> - Tim Green, <code>trl.:</code> marocchino (HTML)</li>
 </ul>
 
 <ul>
@@ -392,7 +477,7 @@
 <ul>
 <li><a href="https://nanasi.jp/code.html" rel="noopener noreferrer">Vim スクリプトリファレンス</a> - 小見拓</li>
 </ul>
-<h3><p>Lisp / Svelte</p>
+<h3><p>Lisp / Vue.js</p>
 </h3>
 <ul>
 <li><a href="http://www.nct9.ne.jp/m_hiroi/xyzzy_lisp.html#abclisp" rel="noopener noreferrer">Common Lisp 入門</a> - 広井誠</li>
@@ -431,9 +516,9 @@
 <h3><p>JavaScript / AngularJS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mgechev/angularjs-style-guide/blob/master/README-ja-jp.md" rel="noopener noreferrer">AngularJSスタイルガイド (⭐5k)</a> - Minko Gechev, Morita Naoki, Yohei Sugigami, et al.</li>
+<li><a href="https://github.com/mgechev/angularjs-style-guide/blob/master/README-ja-jp.md" rel="noopener noreferrer">AngularJSスタイルガイド (⭐4.9k)</a> - Minko Gechev, Morita Naoki, Yohei Sugigami, et al.</li>
 </ul>
-<h3><p>Lua / Svelte</p>
+<h3><p>Lua / Vue.js</p>
 </h3>
 <ul>
 <li><a href="http://milkpot.sakura.ne.jp/lua/lua52_manual_ja.html" rel="noopener noreferrer">Lua 5.2 リファレンスマニュアル</a> - Lua.org, PUC-Rio</li>
@@ -779,47 +864,47 @@
 <ul>
 <li><a href="http://semooh.jp/jquery" rel="noopener noreferrer">jQuery日本語リファレンス</a> - semooh.jp</li>
 </ul>
-<h3><p>LaTeX / Svelte</p>
+<h3><p>LaTeX / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://www.comp.tmu.ac.jp/tsakai/lectures/intro_tex.html" rel="noopener noreferrer">TeX入門</a> - 酒井高司</li>
 </ul>
-<h3><p>Linux / Svelte</p>
+<h3><p>Linux / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://www.mech.tohoku-gakuin.ac.jp/rde/contents/linux/drivers/indexframe.html" rel="noopener noreferrer">Linux Device Driver</a> - 熊谷正朗</li>
 </ul>
-<h3><p>Lua / Svelte</p>
+<h3><p>Lua / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://densan-labs.net/tech/lua" rel="noopener noreferrer">Luaプログラミング入門</a> - @nishio_dens</li>
 </ul>
-<h3><p>Maven / Svelte</p>
+<h3><p>Maven / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://www.techscore.com/tech/Java/ApacheJakarta/Maven" rel="noopener noreferrer">Maven</a> - シナジーマーケティング株式会社</li>
 </ul>
-<h3><p>ML / Svelte</p>
+<h3><p>ML / Vue.js</p>
 </h3>
 <ul>
 <li><a href="http://jats-ug.metasepi.org/doc/ATS2/INT2PROGINATS" rel="noopener noreferrer">ATSプログラミング入門</a></li>
 </ul>
-<h3><p>NoSQL / Svelte</p>
+<h3><p>NoSQL / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://hibari.github.io/hibari-doc/hibari-app-developer-guide.ja.html" rel="noopener noreferrer">Hibari アプリケーション開発者ガイド</a></li>
 </ul>
-<h3><p>Objective-C / Svelte</p>
+<h3><p>Objective-C / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://marycore.jp/prog/objective-c/basic-syntax" rel="noopener noreferrer">Objective-C 2.0 基礎文法最速マスター</a> - @_marycore</li>
 </ul>
-<h3><p>Perl / Svelte</p>
+<h3><p>Perl / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://perldoc.jp/index/core" rel="noopener noreferrer">Perl のコアドキュメント</a> - 一般社団法人 Japan Perl Association (JPA)</li>
 </ul>
-<h3><p>PHP / Svelte</p>
+<h3><p>PHP / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://www.php.net/manual/ja" rel="noopener noreferrer">PHP マニュアル</a> - The PHP Group</li>
@@ -968,10 +1053,10 @@
 <ul>
 <li><a href="https://www.tohoho-web.com/js" rel="noopener noreferrer">とほほのJavaScriptリファレンス</a> - 杜甫々</li>
 </ul>
-<h3><p>Julia / Svelte</p>
+<h3><p>Julia / Vue.js</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cometscome/Julianotes" rel="noopener noreferrer">物理で使う数値計算入門：Julia言語による簡単数値計算 (⭐7)</a> - 永井佑紀</li>
+<li><a href="https://github.com/cometscome/Julianotes" rel="noopener noreferrer">物理で使う数値計算入門：Julia言語による簡単数値計算 (⭐8)</a> - 永井佑紀</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/05/07/">May 07, 2021</a></h2><h3><p>Go / 理論計算機科学</p>
 </h3>
@@ -1014,7 +1099,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/oss-gate/first-feedback-guidebook" rel="noopener noreferrer">これでできる！ はじめてのOSSフィードバックガイド ～ #駆け出しエンジニアと繋がりたい と言ってた私が野生のつよいエンジニアとつながるのに必要だったこと～ (⭐92)</a> - OSS Gate, 結城洋志 / Piro</li>
+<li><a href="https://github.com/oss-gate/first-feedback-guidebook" rel="noopener noreferrer">これでできる！ はじめてのOSSフィードバックガイド ～ #駆け出しエンジニアと繋がりたい と言ってた私が野生のつよいエンジニアとつながるのに必要だったこと～ (⭐97)</a> - OSS Gate, 結城洋志 / Piro</li>
 </ul>
 <h3><p>0 - 言語非依存 / ガベージコレクション</p>
 </h3>
@@ -1023,7 +1108,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/authorNari/g1gc-impl-book/" rel="noopener noreferrer">徹底解剖「G1GC」実装編 (⭐340)</a> - 中村成洋</li>
+<li><a href="https://github.com/authorNari/g1gc-impl-book/" rel="noopener noreferrer">徹底解剖「G1GC」実装編 (⭐339)</a> - 中村成洋</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/10/28/">Oct 28, 2020</a></h2><h3><p>Clojure / 理論計算機科学</p>
 </h3>
@@ -1132,27 +1217,27 @@
 <ul>
 <li><a href="http://www.nct9.ne.jp/m_hiroi/light/javascript.html" rel="noopener noreferrer">お気楽 JavaScript プログラミング超入門</a> - 広井誠</li>
 </ul>
-<h3><p>Julia / Svelte</p>
+<h3><p>Julia / Vue.js</p>
 </h3>
 <ul>
 <li><a href="http://www.nct9.ne.jp/m_hiroi/light/julia.html" rel="noopener noreferrer">Julia Language Programming</a> - 広井誠</li>
 </ul>
-<h3><p>LaTeX / Svelte</p>
+<h3><p>LaTeX / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://texwiki.texjp.org/?TeX%E5%85%A5%E9%96%80" rel="noopener noreferrer">TeX入門 TeX Wiki</a> - 奥村晴彦</li>
 </ul>
-<h3><p>Lua / Svelte</p>
+<h3><p>Lua / Vue.js</p>
 </h3>
 <ul>
 <li><a href="http://www.nct9.ne.jp/m_hiroi/light/lua.html" rel="noopener noreferrer">Lua Programming</a> - 広井誠</li>
 </ul>
-<h3><p>OCaml / Svelte</p>
+<h3><p>OCaml / Vue.js</p>
 </h3>
 <ul>
 <li><a href="http://www.nct9.ne.jp/m_hiroi/func/ocaml.html" rel="noopener noreferrer">お気楽 OCaml プログラミング入門</a> - 広井誠</li>
 </ul>
-<h3><p>Perl / Svelte</p>
+<h3><p>Perl / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://tutorial.perlzemi.com/blog/20091226126425.html" rel="noopener noreferrer">Perl 基礎文法最速マスター</a> - 木本裕紀</li>
@@ -1223,7 +1308,7 @@
 <ul>
 <li><a href="https://developer.apple.com/jp/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html" rel="noopener noreferrer">iOS OpenGL ES プログラミングガイド</a> - Apple Developer (HTML)</li>
 </ul>
-<h3><p>OCaml / Svelte</p>
+<h3><p>OCaml / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://web.archive.org/web/20161128072705/http://www.fos.kuis.kyoto-u.ac.jp:80/~t-sekiym/classes/isle4/mltext/ocaml.html" rel="noopener noreferrer">Objective Caml 入門</a> - 五十嵐淳</li>
@@ -1233,17 +1318,17 @@
 <ul>
 <li><a href="https://developer.apple.com/jp/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html" rel="noopener noreferrer">iOSアプリケーション プログラミングガイド</a> - Apple Developer (PDF)</li>
 </ul>
-<h3><p>Objective-C / Svelte</p>
+<h3><p>Objective-C / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://developer.apple.com/jp/documentation/ProgrammingWithObjectiveC.pdf" rel="noopener noreferrer">Objective-C プログラミング言語</a> - Apple Developer (PDF)</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2016/04/04/">Apr 04, 2016</a></h2><h3><p>Perl / Svelte</p>
+<h2><a href="https://www.trackawesomelist.com/2016/04/04/">Apr 04, 2016</a></h2><h3><p>Perl / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://github.com/hatena/Hatena-Textbook/blob/master/database-programming-perl.md" rel="noopener noreferrer">Perl でのデータベース操作 (⭐2.2k)</a> - はてな教科書</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2016/03/07/">Mar 07, 2016</a></h2><h3><p>Julia / Svelte</p>
+<h2><a href="https://www.trackawesomelist.com/2016/03/07/">Mar 07, 2016</a></h2><h3><p>Julia / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://www.dropbox.com/s/lk7y8lifjcr1vf2/JuliaBook-20151201.pdf" rel="noopener noreferrer">実例で学ぶ Julia-0.4.1</a> - Yuichi Motoyama (PDF)</li>
@@ -1271,7 +1356,7 @@
 <h3><p>Android / 理論計算機科学</p>
 </h3>
 <ul>
-<li><a href="https://github.com/TechBooster/AndroidOpenTextbook" rel="noopener noreferrer">Android Open Text book (⭐252)</a> - TechBooster</li>
+<li><a href="https://github.com/TechBooster/AndroidOpenTextbook" rel="noopener noreferrer">Android Open Text book (⭐253)</a> - TechBooster</li>
 </ul>
 
 <ul>
@@ -1300,7 +1385,7 @@
 <h3><p>Git / 理論計算機科学</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hatena/Git-for-Designers" rel="noopener noreferrer">デザイナのための Git (⭐233)</a> - はてな教科書</li>
+<li><a href="https://github.com/hatena/Git-for-Designers" rel="noopener noreferrer">デザイナのための Git (⭐230)</a> - はてな教科書</li>
 </ul>
 <h3><p>JavaScript / Spock Framework</p>
 </h3>
@@ -1314,9 +1399,9 @@
 <h3><p>JavaScript / Node.js</p>
 </h3>
 <ul>
-<li><a href="https://github.com/omatoro/NodeSample" rel="noopener noreferrer">node.js 怒濤の50サンプル!! – socket.io編 (⭐24)</a> - omatoro</li>
+<li><a href="https://github.com/omatoro/NodeSample" rel="noopener noreferrer">node.js 怒濤の50サンプル!! – socket.io編 (⭐23)</a> - omatoro</li>
 </ul>
-<h3><p>PHP / Svelte</p>
+<h3><p>PHP / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://web.archive.org/web/20140703001758/http://www.doyouphp.jp/book/book_phpdp.shtml" rel="noopener noreferrer">PHP によるデザインパターン入門</a></li>
@@ -1340,17 +1425,17 @@
 <ul>
 <li><a href="https://cpprefjp.github.io" rel="noopener noreferrer">cpprefjp - C++ Reference Site in Japanese</a></li>
 </ul>
-<h3><p>LaTeX / Svelte</p>
+<h3><p>LaTeX / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://ja.wikibooks.org/wiki/TeX/LaTeX%E5%85%A5%E9%96%80" rel="noopener noreferrer">TeX/LaTeX入門</a> - Wikibooks</li>
 </ul>
-<h3><p>Maven / Svelte</p>
+<h3><p>Maven / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://github.com/KengoTODA/what-is-maven" rel="noopener noreferrer">What is Maven? (⭐47)</a> - Kengo TODA</li>
 </ul>
-<h3><p>Perl / Svelte</p>
+<h3><p>Perl / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://ja.wikibooks.org/wiki/Perl" rel="noopener noreferrer">Perl</a> - Wikibooks</li>
@@ -1375,7 +1460,7 @@
 <ul>
 <li><a href="https://github.com/yamkazu/spock-workshop/tree/master/docs" rel="noopener noreferrer">G*ワークショップZ May 2013 - Spockハンズオンの資料 (⭐47)</a> - Kazuki YAMAMOTO</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2013/11/15/">Nov 15, 2013</a></h2><h3><p>PHP / Svelte</p>
+<h2><a href="https://www.trackawesomelist.com/2013/11/15/">Nov 15, 2013</a></h2><h3><p>PHP / Vue.js</p>
 </h3>
 <ul>
 <li><a href="https://github.com/maosanhioro/fig-standards/blob/master/translation/PSR-2-coding-style-guide.md" rel="noopener noreferrer">PSR-2 – コーディングスタイルガイド (⭐33)</a> - maosanhioro</li>
@@ -1383,7 +1468,7 @@
 <h2><a href="https://www.trackawesomelist.com/2013/11/10/">Nov 10, 2013</a></h2><h3><p>JavaScript / Backbone.js</p>
 </h3>
 <ul>
-<li><a href="https://github.com/enja-oss/Backbone" rel="noopener noreferrer">Backboneドキュメント日本語訳 (⭐210)</a> - Jeremy Ashkenas, @studiomohawk(監訳)</li>
+<li><a href="https://github.com/enja-oss/Backbone" rel="noopener noreferrer">Backboneドキュメント日本語訳 (⭐214)</a> - Jeremy Ashkenas, @studiomohawk(監訳)</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2013/11/03/">Nov 03, 2013</a></h2><h3><p>PowerShell / Yii</p>
 </h3>
@@ -1397,5 +1482,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
