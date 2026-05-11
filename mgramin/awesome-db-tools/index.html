@@ -16,22 +16,107 @@
     <meta property="og:title" content="Track Awesome Db Tools Updates Daily" />
     <meta property="og:description" content="Everything that makes working with databases easier" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Db Tools Updates Daily</h1>
 <p>Everything that makes working with databases easier</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/mgramin/awesome-db-tools/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/mgramin/awesome-db-tools">😺 mgramin/awesome-db-tools</a><span> · </span><span>⭐ 5.1K</span><span> · </span><span>🏷️ Databases</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/mgramin/awesome-db-tools/week/">Weekly</a><span> / </span><a href="/mgramin/awesome-db-tools/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/05/11/">May 11, 2026</a></h2><h3><p>CLI</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ayarotsky/diesel-guard" rel="noopener noreferrer">diesel-guard (⭐111)</a> - Linter for dangerous PostgreSQL migration patterns. It works seamlessly with PostgreSQL SQL files and integrates natively with projects using Diesel and SQLx.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/04/30/">Apr 30, 2026</a></h2><h3><p>SQL / Über SQL</p>
 </h3>
 <ul>
@@ -58,7 +143,7 @@
 <h2><a href="https://www.trackawesomelist.com/2026/02/12/">Feb 12, 2026</a></h2><h3><p>Data / Generation/Masking/Subsetting</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ppomes/myanon" rel="noopener noreferrer">myanon (⭐118)</a> - Streaming anonymizer for MySQL dump files. Reads mysqldump from stdin, writes anonymized version to stdout. Supports deterministic hashing, fixed values, JSON field anonymization, and Python extensions.</li>
+<li><a href="https://github.com/ppomes/myanon" rel="noopener noreferrer">myanon (⭐120)</a> - Streaming anonymizer for MySQL dump files. Reads mysqldump from stdin, writes anonymized version to stdout. Supports deterministic hashing, fixed values, JSON field anonymization, and Python extensions.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/01/29/">Jan 29, 2026</a></h2><h3><p>Backup / Samples</p>
 </h3>
@@ -73,11 +158,11 @@
 <h2><a href="https://www.trackawesomelist.com/2026/01/05/">Jan 05, 2026</a></h2><h3><p>Backup / Samples</p>
 </h3>
 <ul>
-<li><a href="https://github.com/databasus/databasus" rel="noopener noreferrer">Databasus (⭐6.4k)</a> - Tool for scheduled PostgreSQL backups via web UI with external storages (local, S3, FTP, Google Drive, etc.), notifications (webhook, Discord, Slack, etc.) and team management.</li>
+<li><a href="https://github.com/databasus/databasus" rel="noopener noreferrer">Databasus (⭐6.7k)</a> - Tool for scheduled PostgreSQL backups via web UI with external storages (local, S3, FTP, Google Drive, etc.), notifications (webhook, Discord, Slack, etc.) and team management.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/postgrespro/pg_probackup" rel="noopener noreferrer">pg_probackup (⭐785)</a> - A backup and recovery manager for PostgreSQL.</li>
+<li><a href="https://github.com/postgrespro/pg_probackup" rel="noopener noreferrer">pg_probackup (⭐789)</a> - A backup and recovery manager for PostgreSQL.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/12/18/">Dec 18, 2025</a></h2><h3><p>Data / Data Profilers</p>
 </h3>
@@ -110,7 +195,7 @@
 <h3><p>Kubernetes / Zabbix</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zalando/postgres-operator" rel="noopener noreferrer">PostgreSQL operator (⭐5.1k)</a> - The PostgreSQL Operator enables highly-available PostgreSQL clusters on Kubernetes (Kubernetes) powered by Patroni.</li>
+<li><a href="https://github.com/zalando/postgres-operator" rel="noopener noreferrer">PostgreSQL operator (⭐5.2k)</a> - The PostgreSQL Operator enables highly-available PostgreSQL clusters on Kubernetes (Kubernetes) powered by Patroni.</li>
 </ul>
 <h3><p>SQL / Scripts</p>
 </h3>
@@ -120,12 +205,12 @@
 <h3><p>Data / Generation/Masking/Subsetting</p>
 </h3>
 <ul>
-<li><a href="https://github.com/miit-daga/quick-seed" rel="noopener noreferrer">quick-seed (⭐25)</a> - Database-agnostic seeding tool for generating realistic test data with support for PostgreSQL, MySQL, SQLite, Prisma, and Drizzle ORM.</li>
+<li><a href="https://github.com/miit-daga/quick-seed" rel="noopener noreferrer">quick-seed (⭐27)</a> - Database-agnostic seeding tool for generating realistic test data with support for PostgreSQL, MySQL, SQLite, Prisma, and Drizzle ORM.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/02/07/">Feb 07, 2025</a></h2><h3><p>HA/Failover/Sharding / Zabbix</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vitabaks/autobase" rel="noopener noreferrer">autobase (⭐4.1k)</a> - Open-source DBaaS that automates the deployment and management of highly available PostgreSQL clusters.</li>
+<li><a href="https://github.com/vitabaks/autobase" rel="noopener noreferrer">autobase (⭐4.2k)</a> - Open-source DBaaS that automates the deployment and management of highly available PostgreSQL clusters.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/01/29/">Jan 29, 2025</a></h2><h3><p>Schema / Diagrams</p>
 </h3>
@@ -145,7 +230,7 @@
 <h3><p>SQL / Formatters</p>
 </h3>
 <ul>
-<li><a href="https://github.com/manticore-projects/jsqlformatter" rel="noopener noreferrer">JSQLFormatter (⭐41)</a> - Open Source Java SQL Formatter for many RDBMS based on JSqlParser.</li>
+<li><a href="https://github.com/manticore-projects/jsqlformatter" rel="noopener noreferrer">JSQLFormatter (⭐43)</a> - Open Source Java SQL Formatter for many RDBMS based on JSqlParser.</li>
 </ul>
 
 <ul>
@@ -163,7 +248,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dbkangaroo/kangaroo" rel="noopener noreferrer">Kangaroo (⭐466)</a> - A AI-powered SQL client and admin tool for popular databases(SQLite / MySQL / PostgreSQL / etc) on Windows / macOS / Linux, support table design, query, model, sync, export/import etc, focus on comfortable, fun and developer friendly.</li>
+<li><a href="https://github.com/dbkangaroo/kangaroo" rel="noopener noreferrer">Kangaroo (⭐469)</a> - A AI-powered SQL client and admin tool for popular databases(SQLite / MySQL / PostgreSQL / etc) on Windows / macOS / Linux, support table design, query, model, sync, export/import etc, focus on comfortable, fun and developer friendly.</li>
 </ul>
 <h3><p>SQL / Games</p>
 </h3>
@@ -183,7 +268,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/09/07/">Sep 07, 2024</a></h2><h3><p>GUI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/clidey/whodb" rel="noopener noreferrer">Clidey WhoDB (⭐4.7k)</a> - A lightweight database explorer with next-gen UX for all SQL, NoSQL, Caches, and Queues.</li>
+<li><a href="https://github.com/clidey/whodb" rel="noopener noreferrer">Clidey WhoDB (⭐4.8k)</a> - A lightweight database explorer with next-gen UX for all SQL, NoSQL, Caches, and Queues.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/06/21/">Jun 21, 2024</a></h2><h3><p>IDE</p>
 </h3>
@@ -228,7 +313,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/11/17/">Nov 17, 2023</a></h2><h3><p>SQL / Über SQL</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vlsi/mat-calcite-plugin" rel="noopener noreferrer">MAT Calcite plugin (⭐176)</a> - This plugin for Eclipse Memory Analyzer allows to query heap dump via SQL.</li>
+<li><a href="https://github.com/vlsi/mat-calcite-plugin" rel="noopener noreferrer">MAT Calcite plugin (⭐177)</a> - This plugin for Eclipse Memory Analyzer allows to query heap dump via SQL.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/11/07/">Nov 07, 2023</a></h2><h3><p>IDE</p>
 </h3>
@@ -264,7 +349,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/10/16/">Oct 16, 2023</a></h2><h3><p>IDE</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pinterest/querybook" rel="noopener noreferrer">Querybook (⭐2.2k)</a> - Pinterest open-source Big Data Querying UI, combining collocated table metadata and a simple notebook IDE interface.</li>
+<li><a href="https://github.com/pinterest/querybook" rel="noopener noreferrer">Querybook (⭐2.3k)</a> - Pinterest open-source Big Data Querying UI, combining collocated table metadata and a simple notebook IDE interface.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/10/11/">Oct 11, 2023</a></h2><h3><p>Monitoring/Statistics/Perfomance / Samples</p>
 </h3>
@@ -338,7 +423,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/07/22/">Jul 22, 2022</a></h2><h3><p>SQL / Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/smpetersgithub/AdvancedSQLPuzzles" rel="noopener noreferrer">Advanced SQL Puzzles (⭐874)</a> - Difficult set-based SQL puzzles.</li>
+<li><a href="https://github.com/smpetersgithub/AdvancedSQLPuzzles" rel="noopener noreferrer">Advanced SQL Puzzles (⭐887)</a> - Difficult set-based SQL puzzles.</li>
 </ul>
 
 <ul>
@@ -391,7 +476,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/tanelpoder/tpt-oracle" rel="noopener noreferrer">TPT (⭐720)</a> - These sqlplus scripts are for Oracle Database performance optimization &amp; troubleshooting.</li>
+<li><a href="https://github.com/tanelpoder/tpt-oracle" rel="noopener noreferrer">TPT (⭐724)</a> - These sqlplus scripts are for Oracle Database performance optimization &amp; troubleshooting.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/07/07/">Jul 07, 2022</a></h2><h3><p>Application platforms / Samples</p>
 </h3>
@@ -441,12 +526,12 @@
 <h2><a href="https://www.trackawesomelist.com/2022/06/02/">Jun 02, 2022</a></h2><h3><p>Monitoring/Statistics/Perfomance / Prometheus</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Vonng/pg_exporter" rel="noopener noreferrer">pg_exporter (⭐341)</a> - Fully customizable Prometheus exporter for PostgreSQL &amp; Pgbouncer with fine-grained execution control.</li>
+<li><a href="https://github.com/Vonng/pg_exporter" rel="noopener noreferrer">pg_exporter (⭐347)</a> - Fully customizable Prometheus exporter for PostgreSQL &amp; Pgbouncer with fine-grained execution control.</li>
 </ul>
 <h3><p>Distributions / Zabbix</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Vonng/pigsty" rel="noopener noreferrer">Pigsty (⭐5k)</a> - Battery-Included Open-Source Distribution for PostgreSQL with ultimate observability &amp; Database-as-Code toolbox for developers.</li>
+<li><a href="https://github.com/Vonng/pigsty" rel="noopener noreferrer">Pigsty (⭐5.1k)</a> - Battery-Included Open-Source Distribution for PostgreSQL with ultimate observability &amp; Database-as-Code toolbox for developers.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/05/31/">May 31, 2022</a></h2><h3><p>GUI</p>
 </h3>
@@ -510,22 +595,22 @@
 <h2><a href="https://www.trackawesomelist.com/2022/04/27/">Apr 27, 2022</a></h2><h3><p>SQL / Parsers</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tobymao/sqlglot" rel="noopener noreferrer">SQLGlot (⭐9.1k)</a> - Pure Python SQL parser, transpiler, and builder.</li>
+<li><a href="https://github.com/tobymao/sqlglot" rel="noopener noreferrer">SQLGlot (⭐9.2k)</a> - Pure Python SQL parser, transpiler, and builder.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/04/05/">Apr 05, 2022</a></h2><h3><p>Schema / Changes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/shayonj/pg-osc" rel="noopener noreferrer">pg-osc (⭐613)</a> - Easy CLI tool for making zero downtime schema changes and backfills in PostgreSQL.</li>
+<li><a href="https://github.com/shayonj/pg-osc" rel="noopener noreferrer">pg-osc (⭐614)</a> - Easy CLI tool for making zero downtime schema changes and backfills in PostgreSQL.</li>
 </ul>
 <h3><p>Schema / Design</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alextanhongpin/database-design" rel="noopener noreferrer">Database Design (⭐498)</a> - Useful tips for designing robust database schema.</li>
+<li><a href="https://github.com/alextanhongpin/database-design" rel="noopener noreferrer">Database Design (⭐500)</a> - Useful tips for designing robust database schema.</li>
 </ul>
 <h3><p>Monitoring/Statistics/Perfomance / Samples</p>
 </h3>
 <ul>
-<li><a href="https://github.com/CrunchyData/pgmonitor" rel="noopener noreferrer">pgMonitor (⭐702)</a> - All-in-one tool to easily create an environment to visualize the health and performance of your PostgreSQL cluster.</li>
+<li><a href="https://github.com/CrunchyData/pgmonitor" rel="noopener noreferrer">pgMonitor (⭐705)</a> - All-in-one tool to easily create an environment to visualize the health and performance of your PostgreSQL cluster.</li>
 </ul>
 
 <ul>
@@ -538,7 +623,7 @@
 <h3><p>SQL / Parsers</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pganalyze/libpg_query" rel="noopener noreferrer">libpg_query (⭐1.4k)</a> - C library for accessing the PostgreSQL parser outside of the server environment.</li>
+<li><a href="https://github.com/pganalyze/libpg_query" rel="noopener noreferrer">libpg_query (⭐1.5k)</a> - C library for accessing the PostgreSQL parser outside of the server environment.</li>
 </ul>
 <h3><p>SQL / Plan</p>
 </h3>
@@ -630,12 +715,12 @@
 <h3><p>Schema / Samples</p>
 </h3>
 <ul>
-<li><a href="https://github.com/oracle/db-sample-schemas" rel="noopener noreferrer">Oracle Database Sample Schemas (⭐913)</a> - Sample schemas for Oracle Database.</li>
+<li><a href="https://github.com/oracle/db-sample-schemas" rel="noopener noreferrer">Oracle Database Sample Schemas (⭐920)</a> - Sample schemas for Oracle Database.</li>
 </ul>
 <h3><p>Monitoring/Statistics/Perfomance / Samples</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dalibo/pgbadger" rel="noopener noreferrer">pgbadger (⭐25)</a> - A fast PostgreSQL Log Analyzer.</li>
+<li><a href="https://github.com/dalibo/pgbadger" rel="noopener noreferrer">pgbadger (⭐26)</a> - A fast PostgreSQL Log Analyzer.</li>
 </ul>
 
 <ul>
@@ -654,7 +739,7 @@
 <h3><p>Data / Generation/Masking/Subsetting</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rapiddweller/rapiddweller-benerator-ce" rel="noopener noreferrer">Benerator (⭐158)</a> - Generate, obfuscate (anonymize / pseudonymize) and migrate data for development, testing and training purposes.</li>
+<li><a href="https://github.com/rapiddweller/rapiddweller-benerator-ce" rel="noopener noreferrer">Benerator (⭐157)</a> - Generate, obfuscate (anonymize / pseudonymize) and migrate data for development, testing and training purposes.</li>
 </ul>
 
 <ul>
@@ -688,11 +773,11 @@
 <h3><p>Data / Replication</p>
 </h3>
 <ul>
-<li><a href="https://github.com/actiontech/dtle" rel="noopener noreferrer">dtle (⭐560)</a> - Distributed Data Transfer Service for MySQL.</li>
+<li><a href="https://github.com/actiontech/dtle" rel="noopener noreferrer">dtle (⭐559)</a> - Distributed Data Transfer Service for MySQL.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/benbjohnson/litestream" rel="noopener noreferrer">Litestream (⭐13k)</a> - Streaming replication for SQLite.</li>
+<li><a href="https://github.com/benbjohnson/litestream" rel="noopener noreferrer">Litestream (⭐14k)</a> - Streaming replication for SQLite.</li>
 </ul>
 
 <ul>
@@ -700,7 +785,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/the4thdoctor/pg_chameleon" rel="noopener noreferrer">pg_chameleon (⭐434)</a> - MySQL to PostgreSQL replica system written in Python 3. The system use the library mysql-replication to pull the row images from MySQL which are stored into PostgreSQL as JSONB.</li>
+<li><a href="https://github.com/the4thdoctor/pg_chameleon" rel="noopener noreferrer">pg_chameleon (⭐436)</a> - MySQL to PostgreSQL replica system written in Python 3. The system use the library mysql-replication to pull the row images from MySQL which are stored into PostgreSQL as JSONB.</li>
 </ul>
 
 <ul>
@@ -736,7 +821,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/denishpatel/pg-clone-schema" rel="noopener noreferrer">clone_schema (⭐202)</a> - PostgreSQL clone schema utility without need of going outside of database.</li>
+<li><a href="https://github.com/denishpatel/pg-clone-schema" rel="noopener noreferrer">clone_schema (⭐203)</a> - PostgreSQL clone schema utility without need of going outside of database.</li>
 </ul>
 
 <ul>
@@ -779,7 +864,7 @@
 <h3><p>Papers / Compare</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mgramin/database-as-code" rel="noopener noreferrer">The "Database as Code" Manifesto (⭐113)</a> - Treat your database as Code.</li>
+<li><a href="https://github.com/mgramin/database-as-code" rel="noopener noreferrer">The "Database as Code" Manifesto (⭐114)</a> - Treat your database as Code.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/02/20/">Feb 20, 2022</a></h2><h3><p>Security / Zabbix</p>
 </h3>
@@ -802,7 +887,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/tsqllint/tsqllint" rel="noopener noreferrer">TSQLLint (⭐233)</a> - A tool for describing, identifying, and reporting the presence of anti-patterns in TSQL scripts.</li>
+<li><a href="https://github.com/tsqllint/tsqllint" rel="noopener noreferrer">TSQLLint (⭐231)</a> - A tool for describing, identifying, and reporting the presence of anti-patterns in TSQL scripts.</li>
 </ul>
 <h3><p>SQL / Extensions</p>
 </h3>
@@ -850,7 +935,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/klahnakoski/mo-sql-parsing" rel="noopener noreferrer">More SQL Parsing! (⭐293)</a> - Parse SQL into JSON.</li>
+<li><a href="https://github.com/klahnakoski/mo-sql-parsing" rel="noopener noreferrer">More SQL Parsing! (⭐294)</a> - Parse SQL into JSON.</li>
 </ul>
 
 <ul>
@@ -864,21 +949,21 @@
 <h2><a href="https://www.trackawesomelist.com/2022/01/08/">Jan 08, 2022</a></h2><h3><p>CLI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/julianhyde/sqlline" rel="noopener noreferrer">SQLLine (⭐656)</a> - Command-line shell for issuing SQL to relational databases via JDBC.</li>
+<li><a href="https://github.com/julianhyde/sqlline" rel="noopener noreferrer">SQLLine (⭐657)</a> - Command-line shell for issuing SQL to relational databases via JDBC.</li>
 </ul>
 <h3><p>Backup / Samples</p>
 </h3>
 <ul>
-<li><a href="https://github.com/2ndquadrant-it/barman" rel="noopener noreferrer">BaRMan (⭐2.8k)</a> - Backup and Recovery Manager for PostgreSQL.</li>
+<li><a href="https://github.com/2ndquadrant-it/barman" rel="noopener noreferrer">BaRMan (⭐3.1k)</a> - Backup and Recovery Manager for PostgreSQL.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/pgbackrest/pgbackrest" rel="noopener noreferrer">pgbackrest (⭐3.7k)</a> - Reliable PostgreSQL Backup &amp; Restore.</li>
+<li><a href="https://github.com/pgbackrest/pgbackrest" rel="noopener noreferrer">pgbackrest (⭐4k)</a> - Reliable PostgreSQL Backup &amp; Restore.</li>
 </ul>
 <h3><p>SQL / Language Server Protocol</p>
 </h3>
 <ul>
-<li><a href="https://github.com/joe-re/sql-language-server" rel="noopener noreferrer">SQLLanguageServer (⭐771)</a> - SQL Language Server.</li>
+<li><a href="https://github.com/joe-re/sql-language-server" rel="noopener noreferrer">SQLLanguageServer (⭐775)</a> - SQL Language Server.</li>
 </ul>
 
 <ul>
@@ -892,7 +977,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/11/11/">Nov 11, 2021</a></h2><h3><p>GUI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dbgate/dbgate" rel="noopener noreferrer">DbGate (⭐6.9k)</a> - Database manager for MySQL, PostgreSQL, SQL Server, MongoDB, SQLite and others. Runs under Windows, Linux, Mac or as web application.</li>
+<li><a href="https://github.com/dbgate/dbgate" rel="noopener noreferrer">DbGate (⭐7k)</a> - Database manager for MySQL, PostgreSQL, SQL Server, MongoDB, SQLite and others. Runs under Windows, Linux, Mac or as web application.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/09/06/">Sep 06, 2021</a></h2><h3><p>GUI</p>
 </h3>
@@ -945,7 +1030,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/05/30/">May 30, 2020</a></h2><h3><p>Schema / Changes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rdagumampan/yuniql" rel="noopener noreferrer">yuniql (⭐426)</a> - Yet another schema versioning and migration tool just made with native .NET Core 3.0+ and hopefully better.</li>
+<li><a href="https://github.com/rdagumampan/yuniql" rel="noopener noreferrer">yuniql (⭐427)</a> - Yet another schema versioning and migration tool just made with native .NET Core 3.0+ and hopefully better.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/03/22/">Mar 22, 2020</a></h2><h3><p>Distributions / Zabbix</p>
 </h3>
@@ -993,7 +1078,7 @@
 <h3><p>Monitoring/Statistics/Perfomance / Samples</p>
 </h3>
 <ul>
-<li><a href="https://github.com/akardapolov/ASH-Viewer" rel="noopener noreferrer">ASH Viewer (⭐203)</a> - Provides a graphical view of active session history data within the Oracle and PostgreSQL DB.</li>
+<li><a href="https://github.com/akardapolov/ASH-Viewer" rel="noopener noreferrer">ASH Viewer (⭐206)</a> - Provides a graphical view of active session history data within the Oracle and PostgreSQL DB.</li>
 </ul>
 
 <ul>
@@ -1002,12 +1087,12 @@
 <h3><p>Testing / Zabbix</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dimitri/regresql" rel="noopener noreferrer">RegreSQL (⭐352)</a> - Regression Testing your SQL queries.</li>
+<li><a href="https://github.com/dimitri/regresql" rel="noopener noreferrer">RegreSQL (⭐354)</a> - Regression Testing your SQL queries.</li>
 </ul>
 <h3><p>Configuration Tuning / Zabbix</p>
 </h3>
 <ul>
-<li><a href="https://github.com/major/MySQLTuner-perl" rel="noopener noreferrer">MySQLTuner-perl (⭐9.4k)</a> - Script written in Perl that allows you to review a MySQL installation quickly and make adjustments to increase performance and stability.</li>
+<li><a href="https://github.com/major/MySQLTuner-perl" rel="noopener noreferrer">MySQLTuner-perl (⭐9.5k)</a> - Script written in Perl that allows you to review a MySQL installation quickly and make adjustments to increase performance and stability.</li>
 </ul>
 
 <ul>
@@ -1028,7 +1113,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/credativ/elephant-shed" rel="noopener noreferrer">Elephant Shed (⭐228)</a> - Web-based PostgreSQL management front-end that bundles several utilities and applications for use with PostgreSQL.</li>
+<li><a href="https://github.com/credativ/elephant-shed" rel="noopener noreferrer">Elephant Shed (⭐229)</a> - Web-based PostgreSQL management front-end that bundles several utilities and applications for use with PostgreSQL.</li>
 </ul>
 <h3><p>Security / Zabbix</p>
 </h3>
@@ -1066,7 +1151,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/percona/percona-xtradb-cluster" rel="noopener noreferrer">Percona XtraDB Cluster (⭐378)</a> - A High Scalability Solution for MySQL Clustering and High Availability.</li>
+<li><a href="https://github.com/percona/percona-xtradb-cluster" rel="noopener noreferrer">Percona XtraDB Cluster (⭐381)</a> - A High Scalability Solution for MySQL Clustering and High Availability.</li>
 </ul>
 
 <ul>
@@ -1105,7 +1190,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/11/08/">Nov 08, 2019</a></h2><h3><p>Monitoring/Statistics/Perfomance / Zabbix</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pg-monz/pg_monz" rel="noopener noreferrer">pg_monz (⭐162)</a> - This is the Zabbix monitoring template for PostgreSQL Database.</li>
+<li><a href="https://github.com/pg-monz/pg_monz" rel="noopener noreferrer">pg_monz (⭐161)</a> - This is the Zabbix monitoring template for PostgreSQL Database.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/11/06/">Nov 06, 2019</a></h2><h3><p>Monitoring/Statistics/Perfomance / Zabbix</p>
 </h3>
@@ -1114,7 +1199,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/anetrusov/ZabbixDBA" rel="noopener noreferrer">ZabbixDBA (⭐100)</a> - Fast, flexible, and continuously developing plugin to monitor your RDBMS.</li>
+<li><a href="https://github.com/anetrusov/ZabbixDBA" rel="noopener noreferrer">ZabbixDBA (⭐99)</a> - Fast, flexible, and continuously developing plugin to monitor your RDBMS.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/07/09/">Jul 09, 2019</a></h2><h3><p>IDE</p>
 </h3>
@@ -1165,7 +1250,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/tora-tool/tora" rel="noopener noreferrer">TOra (⭐295)</a> - Open source SQL IDE for Oracle, MySQL and PostgreSQL dbs.</li>
+<li><a href="https://github.com/tora-tool/tora" rel="noopener noreferrer">TOra (⭐294)</a> - Open source SQL IDE for Oracle, MySQL and PostgreSQL dbs.</li>
 </ul>
 
 <ul>
@@ -1350,11 +1435,11 @@
 <h3><p>Monitoring/Statistics/Perfomance / Samples</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pganalyze/collector" rel="noopener noreferrer">pganalyze collector (⭐396)</a> - Pganalyze statistics collector for gathering PostgreSQL metrics and log data.</li>
+<li><a href="https://github.com/pganalyze/collector" rel="noopener noreferrer">pganalyze collector (⭐399)</a> - Pganalyze statistics collector for gathering PostgreSQL metrics and log data.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ankane/pghero" rel="noopener noreferrer">PgHero (⭐8.8k)</a> - A performance dashboard for PostgreSQL - health checks, suggested indexes, and more.</li>
+<li><a href="https://github.com/ankane/pghero" rel="noopener noreferrer">PgHero (⭐8.9k)</a> - A performance dashboard for PostgreSQL - health checks, suggested indexes, and more.</li>
 </ul>
 <h3><p>DevOps / Zabbix</p>
 </h3>
@@ -1436,7 +1521,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/formio/resquel" rel="noopener noreferrer">resquel (⭐128)</a> - Easily convert your SQL database into a REST API.</li>
+<li><a href="https://github.com/formio/resquel" rel="noopener noreferrer">resquel (⭐127)</a> - Easily convert your SQL database into a REST API.</li>
 </ul>
 <h3><p>Monitoring/Statistics/Perfomance / Samples</p>
 </h3>
@@ -1465,7 +1550,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/05/18/">May 18, 2018</a></h2><h3><p>GUI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/TablePlus/TablePlus" rel="noopener noreferrer">TablePlus (⭐3.7k)</a> - Modern, native, and friendly GUI tool for relational databases: MySQL, PostgreSQL, SQLite &amp; more.</li>
+<li><a href="https://github.com/TablePlus/TablePlus" rel="noopener noreferrer">TablePlus (⭐3.8k)</a> - Modern, native, and friendly GUI tool for relational databases: MySQL, PostgreSQL, SQLite &amp; more.</li>
 </ul>
 <h3><p>Schema / Changes</p>
 </h3>
@@ -1474,7 +1559,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/flyway/flyway" rel="noopener noreferrer">flyway (⭐9.7k)</a> - Database migration tool.</li>
+<li><a href="https://github.com/flyway/flyway" rel="noopener noreferrer">flyway (⭐9.8k)</a> - Database migration tool.</li>
 </ul>
 
 <ul>
@@ -1495,5 +1580,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>

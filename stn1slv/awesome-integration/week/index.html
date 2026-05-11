@@ -16,44 +16,182 @@
     <meta property="og:title" content="Track Awesome Integration Updates Weekly" />
     <meta property="og:description" content="A curated list of awesome system integration software and resources." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Integration Updates Weekly</h1>
 <p>A curated list of awesome system integration software and resources.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/stn1slv/awesome-integration/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/stn1slv/awesome-integration">😺 stn1slv/awesome-integration</a><span> · </span><span>⭐ 523</span><span> · </span><span>🏷️ Platforms</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/stn1slv/awesome-integration/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/stn1slv/awesome-integration">😺 stn1slv/awesome-integration</a><span> · </span><span>⭐ 528</span><span> · </span><span>🏷️ Platforms</span></p>
 <p><span>[ </span><a href="/stn1slv/awesome-integration/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/stn1slv/awesome-integration/readme/">Overview</a><span> ]</span></p>
 
-<h2><a href="https://www.trackawesomelist.com/2026/18/">May 04 - May 10, 2026</a></h2><h3><p>Projects / API Management</p>
+<h2><a href="https://www.trackawesomelist.com/2026/20/">May 18 - May 24, 2026</a></h2><h3><p>Projects / API Management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gravitee-io/gravitee-api-management" rel="noopener noreferrer">Gravitee.io API Management (⭐410) (⭐405)</a> - A lightweight, open-source platform offering flexible API governance, robust security, and straightforward configuration.</li>
+<li><a href="https://github.com/gravitee-io/gravitee-api-management" rel="noopener noreferrer">Gravitee.io API Management (⭐415) (⭐415)</a> - A lightweight, open-source platform offering flexible API governance, robust security, and straightforward configuration.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/wso2/product-apim" rel="noopener noreferrer">WSO2 API Manager (⭐979) (⭐979)</a> - A fully open-source API platform offering robust governance, flexible deployment, and community-driven innovation.</li>
 </ul>
 <h3><p>Projects / API Documentation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/stoplightio/elements" rel="noopener noreferrer">Stoplight Elements (⭐2.4k) (⭐2.4k)</a> - Provides modular, attractive UI components for building comprehensive API reference and tutorial documentation.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/zuplo/zudoku" rel="noopener noreferrer">Zudoku (⭐516) (⭐504)</a> - A customizable framework built on OpenAPI, focused on delivering exceptional developer experiences through quality documentation.</li>
+<li><a href="https://github.com/zuplo/zudoku" rel="noopener noreferrer">Zudoku (⭐524) (⭐524)</a> - A customizable framework built on OpenAPI, focused on delivering exceptional developer experiences through quality documentation.</li>
 </ul>
 <h3><p>Projects / API Gateway</p>
 </h3>
 <ul>
-<li><a href="https://github.com/apache/shenyu" rel="noopener noreferrer">Apache ShenYu (⭐8.8k) (⭐8.8k)</a> - A Java-native gateway excelling in protocol conversion, service proxying, and comprehensive API governance.</li>
+<li><a href="https://github.com/apache/shenyu" rel="noopener noreferrer">Apache ShenYu (⭐8.7k) (⭐8.8k)</a> - A Java-native gateway excelling in protocol conversion, service proxying, and comprehensive API governance.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/solo-io/gloo" rel="noopener noreferrer">Gloo Edge (⭐160) (⭐159)</a> - An Envoy Proxy–based gateway offering advanced traffic control, enhanced security, and observability for microservices ecosystems.</li>
+<li><a href="https://github.com/ThreeMammals/Ocelot" rel="noopener noreferrer">Ocelot (⭐8.7k) (⭐8.7k)</a> - A .NET-based gateway offering intuitive routing and easy integration for lightweight API management.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/traefik/traefik" rel="noopener noreferrer">Traefik API Gateway (⭐63k) (⭐63k)</a> - Combines Traefik Proxy, a fully declarative application proxy with enterprise-grade access control, distributed security, and premium integrations.</li>
+</ul>
+<h3><p>Projects / Business Rules Engine</p>
+</h3>
+<ul>
+<li><a href="https://github.com/openl-tablets/openl-tablets" rel="noopener noreferrer">OpenL Tablets (⭐197) (⭐197)</a> - Flexible open-source decision management system that simplifies defining and executing business rules and decision tables.</li>
+</ul>
+<h3><p>Projects / Data Integration</p>
+</h3>
+<ul>
+<li><a href="https://github.com/estuary/flow" rel="noopener noreferrer">Estuary Flow (⭐919) (⭐919)</a> - Versatile, scalable platform that provides both real-time and batch data integration for ETL and ELT pipelines.</li>
+</ul>
+<h3><p>Projects / Data Mapping Solution</p>
+</h3>
+<ul>
+<li><a href="https://github.com/schibsted/jslt" rel="noopener noreferrer">JSLT (⭐692) (⭐692)</a> - Powerful JSON query and transformation language inspired by jq and XPath, designed for rapid and flexible data manipulation.</li>
+</ul>
+<h3><p>Projects / Enterprise Service Bus</p>
+</h3>
+<ul>
+<li><a href="https://github.com/wso2/product-ei" rel="noopener noreferrer">WSO2 Enterprise Integrator (⭐399) (⭐399)</a> - API-centric, cloud-native integration platform offering robust, distributed capabilities for modern software architectures.</li>
+</ul>
+<h3><p>Projects / Message Broker</p>
+</h3>
+<ul>
+<li><a href="https://github.com/cloudamqp/lavinmq" rel="noopener noreferrer">LavinMQ (⭐934) (⭐936)</a> - High-performance message queue server implementing AMQP 0-9-1 and MQTT protocols, built with Crystal for exceptional throughput and minimal resource usage.</li>
+</ul>
+<h3><p>Projects / Self-Service Integration</p>
+</h3>
+<ul>
+<li><a href="https://github.com/n8n-io/n8n" rel="noopener noreferrer">n8n (⭐187k) (⭐187k)</a> - Open-source workflow automation tool with 400+ connectors, giving you full control over your data and integrations.</li>
+</ul>
+<h3><p>Projects / Workflow Engine</p>
+</h3>
+<ul>
+<li><a href="https://github.com/bonitasoft/bonita-engine" rel="noopener noreferrer">Bonita (⭐175) (⭐175)</a> - Open-source BPMN engine with a designer interface to build and automate complex business processes.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/temporalio/temporal" rel="noopener noreferrer">Temporal (⭐20k) (⭐20k)</a> - Open-source workflow-as-code platform designed for building reliable, scalable, and fault-tolerant applications.</li>
+</ul>
+<h3><p>Resources / API Specification</p>
+</h3>
+<ul>
+<li><a href="https://github.com/json-api/json-api" rel="noopener noreferrer">JSON:API (⭐7.7k) (⭐7.7k)</a> - A standardized specification for building APIs that simplifies the representation of resources, relationships, and metadata, making it easier for software engineers to create efficient APIs.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/18/">May 04 - May 10, 2026</a></h2><h3><p>Projects / API Documentation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/stoplightio/elements" rel="noopener noreferrer">Stoplight Elements (⭐2.4k) (⭐2.4k)</a> - Provides modular, attractive UI components for building comprehensive API reference and tutorial documentation.</li>
+</ul>
+<h3><p>Projects / API Gateway</p>
+</h3>
+<ul>
+<li><a href="https://github.com/solo-io/gloo" rel="noopener noreferrer">Gloo Edge (⭐160) (⭐160)</a> - An Envoy Proxy–based gateway offering advanced traffic control, enhanced security, and observability for microservices ecosystems.</li>
 </ul>
 
 <ul>
@@ -63,9 +201,9 @@
 </h3>
 <ul>
 <li>MQ clients<ul>
-<li><a href="https://github.com/jmstoolbox/jmstoolbox" rel="noopener noreferrer">JMSToolBox (⭐228) (⭐227)</a> - A universal JMS client offering broad compatibility and streamlined messaging testing across various brokers.</li>
-<li><a href="https://github.com/edenhill/kcat" rel="noopener noreferrer">kcat (⭐5.7k) (⭐5.7k)</a> - A lightweight command-line tool for Apache Kafka, providing efficient message production and consumption.</li>
-<li><a href="https://github.com/thomasnordquist/MQTT-Explorer" rel="noopener noreferrer">MQTT Explorer (⭐3.8k) (⭐3.9k)</a> - A detailed MQTT client delivering structured topic visualization and intuitive debugging.</li>
+<li><a href="https://github.com/jmstoolbox/jmstoolbox" rel="noopener noreferrer">JMSToolBox (⭐228) (⭐228)</a> - A universal JMS client offering broad compatibility and streamlined messaging testing across various brokers.</li>
+<li><a href="https://github.com/edenhill/kcat" rel="noopener noreferrer">kcat (⭐5.7k) (⭐5.8k)</a> - A lightweight command-line tool for Apache Kafka, providing efficient message production and consumption.</li>
+<li><a href="https://github.com/thomasnordquist/MQTT-Explorer" rel="noopener noreferrer">MQTT Explorer (⭐3.9k) (⭐3.9k)</a> - A detailed MQTT client delivering structured topic visualization and intuitive debugging.</li>
 <li><a href="https://www.kafkatool.com" rel="noopener noreferrer">Offset Explorer</a> - A comprehensive GUI for managing Apache Kafka clusters with user-friendly monitoring and administration tools.</li>
 <li><a href="https://github.com/paolosalvatori/ServiceBusExplorer" rel="noopener noreferrer">Service Bus Explorer (⭐2.1k) (⭐2.2k)</a> - An advanced GUI for Azure Service Bus that enables in-depth testing and seamless management of topics, queues, and subscriptions.</li>
 </ul>
@@ -74,59 +212,36 @@
 <h3><p>Projects / Business Rules Engine</p>
 </h3>
 <ul>
-<li><a href="https://github.com/openl-tablets/openl-tablets" rel="noopener noreferrer">OpenL Tablets (⭐196) (⭐194)</a> - Flexible open-source decision management system that simplifies defining and executing business rules and decision tables.</li>
-</ul>
-
-<ul>
 <li><a href="https://github.com/gorules/zen" rel="noopener noreferrer">ZEN Engine (⭐1.7k) (⭐1.7k)</a> - A cross-platform, open-source Business Rules Engine written in Rust that executes JSON Decision Models through interconnected graphs of decision tables, functions, and expressions.</li>
-</ul>
-<h3><p>Projects / Data Integration</p>
-</h3>
-<ul>
-<li><a href="https://github.com/estuary/flow" rel="noopener noreferrer">Estuary Flow (⭐913) (⭐908)</a> - Versatile, scalable platform that provides both real-time and batch data integration for ETL and ELT pipelines.</li>
 </ul>
 <h3><p>Projects / Data Mapping Solution</p>
 </h3>
 <ul>
-<li><a href="https://github.com/atlasmap/atlasmap" rel="noopener noreferrer">AtlasMap (⭐211) (⭐212)</a> - Interactive web-based tool that simplifies mapping across Java, XML, CSV, and JSON data sources with an intuitive interface.</li>
+<li><a href="https://github.com/atlasmap/atlasmap" rel="noopener noreferrer">AtlasMap (⭐211) (⭐211)</a> - Interactive web-based tool that simplifies mapping across Java, XML, CSV, and JSON data sources with an intuitive interface.</li>
 </ul>
 <h3><p>Projects / Integration Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/frankframework/frankframework" rel="noopener noreferrer">Frank!Framework (⭐161) (⭐162)</a> - Low-code Java messaging framework that simplifies system connectivity and data integration through configurable XML setups.</li>
+<li><a href="https://github.com/frankframework/frankframework" rel="noopener noreferrer">Frank!Framework (⭐161) (⭐161)</a> - Low-code Java messaging framework that simplifies system connectivity and data integration through configurable XML setups.</li>
 </ul>
 <h3><p>Projects / Message Broker</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cloudamqp/lavinmq" rel="noopener noreferrer">LavinMQ (⭐904) (⭐881)</a> - High-performance message queue server implementing AMQP 0-9-1 and MQTT protocols, built with Crystal for exceptional throughput and minimal resource usage.</li>
-</ul>
-
-<ul>
 <li><a href="https://github.com/vectorizedio/redpanda" rel="noopener noreferrer">Redpanda (⭐12k) (⭐12k)</a> - Kafka-compatible streaming platform that eliminates Zookeeper, delivering high performance and low latency.</li>
-</ul>
-<h3><p>Projects / Self-Service Integration</p>
-</h3>
-<ul>
-<li><a href="https://github.com/n8n-io/n8n" rel="noopener noreferrer">n8n (⭐186k) (⭐185k)</a> - Open-source workflow automation tool with 400+ connectors, giving you full control over your data and integrations.</li>
 </ul>
 <h3><p>Resources / Data Formats</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yaml/yaml-spec" rel="noopener noreferrer">YAML (⭐465) (⭐461)</a> - A human-friendly and easy-to-read data serialization format that is widely used for configuration files and data exchange. It supports rich data types and is compatible with most programming languages.</li>
+<li><a href="https://github.com/yaml/yaml-spec" rel="noopener noreferrer">YAML (⭐465) (⭐465)</a> - A human-friendly and easy-to-read data serialization format that is widely used for configuration files and data exchange. It supports rich data types and is compatible with most programming languages.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2026/16/">Apr 20 - Apr 26, 2026</a></h2><h3><p>Projects / API Management</p>
-</h3>
-<ul>
-<li><a href="https://github.com/wso2/product-apim" rel="noopener noreferrer">WSO2 API Manager (⭐978) (⭐978)</a> - A fully open-source API platform offering robust governance, flexible deployment, and community-driven innovation.</li>
-</ul>
-<h3><p>Projects / API Design</p>
+<h2><a href="https://www.trackawesomelist.com/2026/16/">Apr 20 - Apr 26, 2026</a></h2><h3><p>Projects / API Design</p>
 </h3>
 <ul>
 <li><a href="https://github.com/OpenAPITools/openapi-style-validator" rel="noopener noreferrer">OpenAPI Style Validator (⭐235) (⭐235)</a> - Ensure that your OpenAPI specs meet your organization's standards with this flexible and customizable style validator.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/zalando/zally" rel="noopener noreferrer">Zally (⭐948) (⭐948)</a> - Ensure the quality of your OpenAPI specs with this linter tool that provides extensive analysis and feedback.</li>
+<li><a href="https://github.com/zalando/zally" rel="noopener noreferrer">Zally (⭐948) (⭐947)</a> - Ensure the quality of your OpenAPI specs with this linter tool that provides extensive analysis and feedback.</li>
 </ul>
 <h3><p>Projects / API Documentation</p>
 </h3>
@@ -153,24 +268,24 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/flowable/flowable-engine" rel="noopener noreferrer">Flowable (⭐9.2k) (⭐9.2k)</a> - Compact, efficient set of open-source engines for automating and scaling enterprise workflows.</li>
+<li><a href="https://github.com/flowable/flowable-engine" rel="noopener noreferrer">Flowable (⭐9.2k) (⭐9.3k)</a> - Compact, efficient set of open-source engines for automating and scaling enterprise workflows.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/15/">Apr 13 - Apr 19, 2026</a></h2><h3><p>Projects / API Testing</p>
 </h3>
 <ul>
 <li>Testing tools and frameworks<ul>
-<li><a href="https://github.com/apache/jmeter" rel="noopener noreferrer">Apache JMeter (⭐9.3k) (⭐9.3k)</a> - A feature-rich tool for load testing and performance analysis across diverse web applications and services.</li>
+<li><a href="https://github.com/apache/jmeter" rel="noopener noreferrer">Apache JMeter (⭐9.3k) (⭐9.4k)</a> - A feature-rich tool for load testing and performance analysis across diverse web applications and services.</li>
 <li><a href="https://github.com/artilleryio/artillery" rel="noopener noreferrer">Artillery (⭐8.9k) (⭐9k)</a> - A complete load testing platform supporting HTTP, WebSocket, Socket.io, gRPC, and more, with cloud-native serverless scaling on AWS Lambda and Fargate.</li>
-<li><a href="https://github.com/gatling/gatling" rel="noopener noreferrer">Gatling (⭐6.8k) (⭐6.9k)</a> - A powerful load testing framework with a developer-friendly DSL that delivers detailed performance metrics.</li>
+<li><a href="https://github.com/gatling/gatling" rel="noopener noreferrer">Gatling (⭐6.9k) (⭐6.9k)</a> - A powerful load testing framework with a developer-friendly DSL that delivers detailed performance metrics.</li>
 <li><a href="https://github.com/Orange-OpenSource/hurl" rel="noopener noreferrer">Hurl (⭐18k) (⭐19k)</a> - A command-line tool for running HTTP requests with plain text syntax, excellent for both API testing and CI/CD integration with support for chaining, capturing values, and comprehensive assertions.</li>
 <li><a href="https://github.com/keploy/keploy" rel="noopener noreferrer">Keploy (⭐17k) (⭐17k)</a> - A developer-centric API and integration testing tool that auto-generates tests and data-mocks from real traffic using eBPF, supporting any language without code changes.</li>
 <li><a href="https://github.com/bojand/ghz" rel="noopener noreferrer">ghz (⭐3.3k) (⭐3.3k)</a> - A simple gRPC benchmarking and load testing tool with support for various load schedules, concurrency control, and detailed performance metrics.</li>
 <li><a href="https://github.com/grafana/k6" rel="noopener noreferrer">Grafana k6 (⭐30k) (⭐30k)</a> - Open-source, JS-scriptable load-testing tool for CI/CD.</li>
-<li><a href="https://github.com/karatelabs/karate" rel="noopener noreferrer">Karate (⭐8.8k) (⭐8.8k)</a> - A unified testing framework that merges API automation, mocking, and performance testing with simple, expressive syntax.</li>
+<li><a href="https://github.com/karatelabs/karate" rel="noopener noreferrer">Karate (⭐8.8k) (⭐8.9k)</a> - A unified testing framework that merges API automation, mocking, and performance testing with simple, expressive syntax.</li>
 <li><a href="https://github.com/svanoort/pyresttest" rel="noopener noreferrer">Pyresttest (⭐1.1k) (⭐1.2k)</a> - A Python-based testing tool offering easy YAML/JSON-driven REST API testing and microbenchmarking.</li>
 <li><a href="https://github.com/rest-assured/rest-assured" rel="noopener noreferrer">REST Assured (⭐7.1k) (⭐7.1k)</a> - A Java DSL that simplifies REST API testing with intuitive syntax and seamless integration into CI pipelines.</li>
 <li><a href="https://github.com/microsoft/restler-fuzzer" rel="noopener noreferrer">RESTler (⭐2.9k) (⭐2.9k)</a> - A stateful REST API fuzzing tool that automatically discovers security and reliability bugs by intelligently inferring producer-consumer dependencies from OpenAPI specifications.</li>
-<li><a href="https://github.com/schemathesis/schemathesis" rel="noopener noreferrer">Schemathesis (⭐3.2k) (⭐3.2k)</a> - A Python library for property-based testing of API schemas, ensuring reliability through robust edge-case detection.</li>
+<li><a href="https://github.com/schemathesis/schemathesis" rel="noopener noreferrer">Schemathesis (⭐3.2k) (⭐3.3k)</a> - A Python library for property-based testing of API schemas, ensuring reliability through robust edge-case detection.</li>
 <li><a href="https://github.com/Blazemeter/taurus" rel="noopener noreferrer">Taurus (⭐2.1k) (⭐2.1k)</a> - An open-source automation framework that simplifies continuous testing with intuitive configuration and integration support.</li>
 </ul>
 </li>
@@ -180,11 +295,6 @@
 <ul>
 <li><a href="https://github.com/airbytehq/airbyte" rel="noopener noreferrer">Airbyte (⭐21k) (⭐21k)</a> - Flexible, open-source data integration platform that builds ELT pipelines to move data from diverse sources to modern destinations.</li>
 </ul>
-<h3><p>Projects / Data Mapping Solution</p>
-</h3>
-<ul>
-<li><a href="https://github.com/schibsted/jslt" rel="noopener noreferrer">JSLT (⭐691) (⭐691)</a> - Powerful JSON query and transformation language inspired by jq and XPath, designed for rapid and flexible data manipulation.</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/14/">Apr 06 - Apr 12, 2026</a></h2><h3><p>Projects / API Design</p>
 </h3>
 <ul>
@@ -193,24 +303,15 @@
 <h3><p>Projects / API Gateway</p>
 </h3>
 <ul>
-<li><a href="https://github.com/envoyproxy/gateway" rel="noopener noreferrer">Envoy Gateway (⭐2.6k) (⭐2.6k)</a> - CNCF Envoy-based gateway with Gateway API, mTLS, JWT, and other built-ins.</li>
+<li><a href="https://github.com/envoyproxy/gateway" rel="noopener noreferrer">Envoy Gateway (⭐2.6k) (⭐2.7k)</a> - CNCF Envoy-based gateway with Gateway API, mTLS, JWT, and other built-ins.</li>
 </ul>
 <h3><p>Projects / Data Mapping Solution</p>
 </h3>
 <ul>
 <li><a href="https://github.com/jsonata-js/jsonata" rel="noopener noreferrer">JSONata (⭐2.6k) (⭐2.6k)</a> - Lightweight query and transformation language for JSON data.</li>
 </ul>
-<h3><p>Projects / Enterprise Service Bus</p>
-</h3>
-<ul>
-<li><a href="https://github.com/wso2/product-ei" rel="noopener noreferrer">WSO2 Enterprise Integrator (⭐398) (⭐398)</a> - API-centric, cloud-native integration platform offering robust, distributed capabilities for modern software architectures.</li>
-</ul>
 <h3><p>Projects / Workflow Engine</p>
 </h3>
-<ul>
-<li><a href="https://github.com/bonitasoft/bonita-engine" rel="noopener noreferrer">Bonita (⭐174) (⭐174)</a> - Open-source BPMN engine with a designer interface to build and automate complex business processes.</li>
-</ul>
-
 <ul>
 <li><a href="https://github.com/PrefectHQ/prefect" rel="noopener noreferrer">Prefect (⭐22k) (⭐22k)</a> - Modern, developer-friendly orchestration tool optimized for data pipelines and complex workflows.</li>
 </ul>
@@ -234,22 +335,12 @@
 <ul>
 <li><a href="https://github.com/open-rpa/openrpa" rel="noopener noreferrer">OpenRPA (⭐2.9k) (⭐2.9k)</a> - Enterprise-grade, open-source robotic process automation suite.</li>
 </ul>
-<h3><p>Projects / Workflow Engine</p>
-</h3>
-<ul>
-<li><a href="https://github.com/temporalio/temporal" rel="noopener noreferrer">Temporal (⭐19k) (⭐20k)</a> - Open-source workflow-as-code platform designed for building reliable, scalable, and fault-tolerant applications.</li>
-</ul>
 <h3><p>Resources / Structure and Validation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/json-schema-org/json-schema-spec" rel="noopener noreferrer">JSON Schema (⭐4.9k) (⭐4.9k)</a> - A powerful tool for validating the structure of JSON data. JSON Schema enables developers to ensure that JSON data conforms to a specific structure, making it easier to process and manipulate.</li>
+<li><a href="https://github.com/json-schema-org/json-schema-spec" rel="noopener noreferrer">JSON Schema (⭐4.9k) (⭐5k)</a> - A powerful tool for validating the structure of JSON data. JSON Schema enables developers to ensure that JSON data conforms to a specific structure, making it easier to process and manipulate.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2026/11/">Mar 16 - Mar 22, 2026</a></h2><h3><p>Projects / API Gateway</p>
-</h3>
-<ul>
-<li><a href="https://github.com/traefik/traefik" rel="noopener noreferrer">Traefik API Gateway (⭐62k) (⭐63k)</a> - Combines Traefik Proxy, a fully declarative application proxy with enterprise-grade access control, distributed security, and premium integrations.</li>
-</ul>
-<h3><p>Projects / Message Broker</p>
+<h2><a href="https://www.trackawesomelist.com/2026/11/">Mar 16 - Mar 22, 2026</a></h2><h3><p>Projects / Message Broker</p>
 </h3>
 <ul>
 <li><a href="https://github.com/emqx/emqx" rel="noopener noreferrer">EMQX (⭐16k) (⭐16k)</a> - High-performance MQTT broker built for IoT and industrial applications, ensuring scalable message delivery.</li>
@@ -262,7 +353,7 @@
 <h3><p>Resources / API Specification</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cloudevents/spec" rel="noopener noreferrer">CloudEvents (⭐5.7k) (⭐5.7k)</a> -  A specification for describing event data in common formats to provide interoperability across services, platforms and systems.</li>
+<li><a href="https://github.com/cloudevents/spec" rel="noopener noreferrer">CloudEvents (⭐5.7k) (⭐5.8k)</a> -  A specification for describing event data in common formats to provide interoperability across services, platforms and systems.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/10/">Mar 09 - Mar 15, 2026</a></h2><h3><p>Projects / Message Broker</p>
 </h3>
@@ -282,7 +373,7 @@
 <h2><a href="https://www.trackawesomelist.com/2026/8/">Feb 23 - Mar 01, 2026</a></h2><h3><p>Projects / Message Broker</p>
 </h3>
 <ul>
-<li><a href="https://github.com/apache/kafka" rel="noopener noreferrer">Apache Kafka (⭐32k) (⭐32k)</a> - Distributed, high-throughput system designed for real-time data streaming and fault-tolerant processing.</li>
+<li><a href="https://github.com/apache/kafka" rel="noopener noreferrer">Apache Kafka (⭐32k) (⭐33k)</a> - Distributed, high-throughput system designed for real-time data streaming and fault-tolerant processing.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/7/">Feb 16 - Feb 22, 2026</a></h2><h3><p>Projects / API Design</p>
 </h3>
@@ -320,7 +411,7 @@
 <h3><p>Resources / API Specification</p>
 </h3>
 <ul>
-<li><a href="https://github.com/standard-webhooks/standard-webhooks" rel="noopener noreferrer">Standard Webhooks (⭐1.6k) (⭐1.6k)</a> - Open source tools and guidelines for sending webhooks easily, securely, and reliably.</li>
+<li><a href="https://github.com/standard-webhooks/standard-webhooks" rel="noopener noreferrer">Standard Webhooks (⭐1.6k) (⭐1.7k)</a> - Open source tools and guidelines for sending webhooks easily, securely, and reliably.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/4/">Jan 26 - Feb 01, 2026</a></h2><h3><p>Projects / Integration Frameworks</p>
 </h3>
@@ -344,7 +435,7 @@
 <h2><a href="https://www.trackawesomelist.com/2026/1/">Jan 05 - Jan 11, 2026</a></h2><h3><p>Projects / API Gateway</p>
 </h3>
 <ul>
-<li><a href="https://github.com/apache/apisix" rel="noopener noreferrer">Apache APISIX (⭐16k) (⭐16k)</a> - A high-performance, dynamic gateway featuring real-time traffic management and powerful plugin integrations.</li>
+<li><a href="https://github.com/apache/apisix" rel="noopener noreferrer">Apache APISIX (⭐16k) (⭐17k)</a> - A high-performance, dynamic gateway featuring real-time traffic management and powerful plugin integrations.</li>
 </ul>
 
 <ul>
@@ -353,7 +444,7 @@
 <h3><p>Projects / Business Rules Engine</p>
 </h3>
 <ul>
-<li><a href="https://github.com/apache/incubator-kie-drools" rel="noopener noreferrer">Drools (⭐6.2k) (⭐6.2k)</a> - Open-source engine that supports advanced Decision Model and Notation (DMN) with Eclipse IDE integration for efficient rule development.</li>
+<li><a href="https://github.com/apache/incubator-kie-drools" rel="noopener noreferrer">Drools (⭐6.2k) (⭐6.3k)</a> - Open-source engine that supports advanced Decision Model and Notation (DMN) with Eclipse IDE integration for efficient rule development.</li>
 </ul>
 <h3><p>Projects / Message Broker</p>
 </h3>
@@ -383,7 +474,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/47/">Nov 24 - Nov 30, 2025</a></h2><h3><p>Projects / Change Data Capture</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zendesk/maxwell" rel="noopener noreferrer">Maxwell's daemon (⭐4.2k) (⭐4.2k)</a> - An open-source CDC tool for MySQL that reads database binlogs and streams row-level changes as JSON to systems like Kafka, Kinesis, or other destinations.</li>
+<li><a href="https://github.com/zendesk/maxwell" rel="noopener noreferrer">Maxwell's daemon (⭐4.2k) (⭐4.3k)</a> - An open-source CDC tool for MySQL that reads database binlogs and streams row-level changes as JSON to systems like Kafka, Kinesis, or other destinations.</li>
 </ul>
 <h3><p>Projects / Integration Frameworks</p>
 </h3>
@@ -430,12 +521,7 @@
 <ul>
 <li><a href="https://github.com/kiegroup/jbpm" rel="noopener noreferrer">jBPM (⭐1.7k) (⭐1.7k)</a> - Comprehensive toolkit for automating business processes and decisions with robust workflow management capabilities.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2025/37/">Sep 15 - Sep 21, 2025</a></h2><h3><p>Projects / API Gateway</p>
-</h3>
-<ul>
-<li><a href="https://github.com/ThreeMammals/Ocelot" rel="noopener noreferrer">Ocelot (⭐8.6k) (⭐8.7k)</a> - A .NET-based gateway offering intuitive routing and easy integration for lightweight API management.</li>
-</ul>
-<h3><p>Projects / Workflow Engine</p>
+<h2><a href="https://www.trackawesomelist.com/2025/37/">Sep 15 - Sep 21, 2025</a></h2><h3><p>Projects / Workflow Engine</p>
 </h3>
 <ul>
 <li><a href="https://github.com/argoproj/argo-workflows" rel="noopener noreferrer">Argo Workflows (⭐16k) (⭐17k)</a> - Container-native workflow engine designed for orchestrating parallel jobs in Kubernetes-based, cloud-native environments.</li>
@@ -476,10 +562,6 @@
 </ul>
 <h3><p>Resources / API Specification</p>
 </h3>
-<ul>
-<li><a href="https://github.com/json-api/json-api" rel="noopener noreferrer">JSON:API (⭐7.6k) (⭐7.7k)</a> - A standardized specification for building APIs that simplifies the representation of resources, relationships, and metadata, making it easier for software engineers to create efficient APIs.</li>
-</ul>
-
 <ul>
 <li><a href="https://github.com/OAI/OpenAPI-Specification" rel="noopener noreferrer">OpenAPI (ex.Swagger) (⭐30k) (⭐31k)</a> - A language-agnostic specification for creating RESTful APIs that enables both humans and machines to understand the capabilities of a service without the need for source code or documentation.</li>
 </ul>
@@ -611,10 +693,10 @@
 <ul>
 <li>Mocking tools<ul>
 <li><a href="https://github.com/SpectoLabs/hoverfly" rel="noopener noreferrer">Hoverfly (⭐2.4k) (⭐2.5k)</a> - A lightweight API simulation tool that enables rapid HTTP(S) service virtualization for efficient testing.</li>
-<li><a href="https://github.com/outofcoffee/imposter" rel="noopener noreferrer">Imposter (⭐408) (⭐408)</a> - A flexible mock server supporting REST, OpenAPI, SOAP, and more to simulate diverse API behaviors.</li>
-<li><a href="https://github.com/microcks/microcks" rel="noopener noreferrer">Microcks (⭐1.8k) (⭐1.9k)</a> - A Kubernetes-native tool for API mocking and testing that supports AsyncAPI, OpenAPI, and Postman Collections.</li>
+<li><a href="https://github.com/outofcoffee/imposter" rel="noopener noreferrer">Imposter (⭐409) (⭐409)</a> - A flexible mock server supporting REST, OpenAPI, SOAP, and more to simulate diverse API behaviors.</li>
+<li><a href="https://github.com/microcks/microcks" rel="noopener noreferrer">Microcks (⭐1.9k) (⭐1.9k)</a> - A Kubernetes-native tool for API mocking and testing that supports AsyncAPI, OpenAPI, and Postman Collections.</li>
 <li><a href="https://www.mockable.io/" rel="noopener noreferrer">Mockable</a> - An easy-to-configure service for creating custom HTTP responses, ideal for rapid prototyping and testing.</li>
-<li><a href="https://github.com/zuplo/mockbin" rel="noopener noreferrer">Mockbin (⭐138) (⭐138)</a> - A simple endpoint generator for testing HTTP requests with real-time logging and feedback.</li>
+<li><a href="https://github.com/zuplo/mockbin" rel="noopener noreferrer">Mockbin (⭐138) (⭐139)</a> - A simple endpoint generator for testing HTTP requests with real-time logging and feedback.</li>
 <li><a href="https://github.com/mockoon/mockoon" rel="noopener noreferrer">Mockoon (⭐8.2k) (⭐8.2k)</a> - A user-friendly tool for designing and running mock REST APIs with real-time simulation and easy setup.</li>
 <li><a href="https://github.com/mock-server/mockserver" rel="noopener noreferrer">MockServer (⭐4.8k) (⭐4.9k)</a> - A powerful solution for mocking any HTTP/HTTPS-based service, streamlining integration testing.</li>
 <li><a href="https://github.com/MockyAbstract/Mocky" rel="noopener noreferrer">Mocky (⭐2k) (⭐2.1k)</a> - A free online service that generates custom HTTP responses for testing API endpoints.</li>
@@ -732,8 +814,8 @@
 <ul>
 <li>API clients<ul>
 <li><a href="https://github.com/advanced-rest-client/arc-electron" rel="noopener noreferrer">Advanced REST Client (⭐1.4k) (⭐1.5k)</a> - A robust open-source API client for testing and debugging RESTful services with an intuitive interface.</li>
-<li><a href="https://github.com/usebruno/bruno" rel="noopener noreferrer">Bruno (⭐43k) (⭐43k)</a> - A fast, offline API client designed for git-friendly workflows and seamless testing.</li>
-<li><a href="https://github.com/curl/curl" rel="noopener noreferrer">curl (⭐41k) (⭐41k)</a> - A versatile command-line tool for data transfer across multiple protocols, essential for quick API testing.</li>
+<li><a href="https://github.com/usebruno/bruno" rel="noopener noreferrer">Bruno (⭐43k) (⭐44k)</a> - A fast, offline API client designed for git-friendly workflows and seamless testing.</li>
+<li><a href="https://github.com/curl/curl" rel="noopener noreferrer">curl (⭐41k) (⭐42k)</a> - A versatile command-line tool for data transfer across multiple protocols, essential for quick API testing.</li>
 <li><a href="https://github.com/rs/curlie" rel="noopener noreferrer">curlie (⭐3.6k) (⭐3.6k)</a> - A modern, user-friendly frontend to curl that combines simplicity with powerful performance.</li>
 <li><a href="https://github.com/fullstorydev/grpcui" rel="noopener noreferrer">gRPC UI (⭐5.8k) (⭐5.9k)</a> - An interactive web-based tool for gRPC APIs, providing a browser-based interface for testing and exploring gRPC services with dynamic form generation.</li>
 <li><a href="https://github.com/fullstorydev/grpcurl" rel="noopener noreferrer">grpcurl (⭐12k) (⭐13k)</a> - A command-line tool for interacting with gRPC servers, enabling inspection and invocation of RPC methods with support for server reflection and protocol buffer files.</li>
@@ -743,11 +825,11 @@
 <li><a href="https://github.com/Kong/insomnia" rel="noopener noreferrer">Insomnia (⭐38k) (⭐38k)</a> - A cross-platform client that streamlines API debugging and testing for both REST and GraphQL services.</li>
 <li><a href="https://github.com/darrenburns/posting" rel="noopener noreferrer">posting (⭐11k) (⭐12k)</a> - A modern, terminal-based API client designed for efficient and seamless API interactions.</li>
 <li><a href="https://www.postman.com/product/api-client/" rel="noopener noreferrer">Postman</a> - The industry-standard tool for API development and testing, featuring automation, mock servers, and collaborative documentation.</li>
-<li><a href="https://github.com/requestly/requestly" rel="noopener noreferrer">Requestly (⭐6.6k) (⭐6.6k)</a> - Lightweight Git-Friendly API Client Built for Modern Developers.</li>
+<li><a href="https://github.com/requestly/requestly" rel="noopener noreferrer">Requestly (⭐6.6k) (⭐6.7k)</a> - Lightweight Git-Friendly API Client Built for Modern Developers.</li>
 <li><a href="https://github.com/micha/resty" rel="noopener noreferrer">resty (⭐2.6k) (⭐2.7k)</a> - A Lua-based HTTP client framework providing an interactive shell for streamlined REST service testing.</li>
 <li><a href="https://github.com/SmartBear/soapui" rel="noopener noreferrer">SoapUI (⭐1.6k) (⭐1.7k)</a> - A comprehensive open-source solution for testing both SOAP and REST web services with extensive automation features.</li>
 <li><a href="https://github.com/rogchap/wombat" rel="noopener noreferrer">Wombat (⭐1.4k) (⭐1.4k)</a> - A cross-platform desktop gRPC client with automatic proto parsing, TLS support, and intuitive UI for testing unary, streaming, and bidirectional gRPC requests.</li>
-<li><a href="https://github.com/ducaale/xh" rel="noopener noreferrer">xh (⭐7.7k) (⭐7.7k)</a> - A fast, friendly CLI HTTP client that reimplements HTTPie's design with improved performance, HTTP/2 support, and built-in curl translation.</li>
+<li><a href="https://github.com/ducaale/xh" rel="noopener noreferrer">xh (⭐7.7k) (⭐7.8k)</a> - A fast, friendly CLI HTTP client that reimplements HTTPie's design with improved performance, HTTP/2 support, and built-in curl translation.</li>
 <li><a href="https://github.com/EsperoTech/yaade" rel="noopener noreferrer">Yaade (⭐1.9k) (⭐2k)</a> - A self-hosted, collaborative API development environment designed for team sharing with multi-user support, persistent storage, and support for REST, WebSockets, and Markdown documentation.</li>
 <li><a href="https://github.com/mountain-loop/yaak" rel="noopener noreferrer">Yaak (⭐18k) (⭐19k)</a> - A fast, privacy-first desktop API client for REST, GraphQL, WebSocket, Server-Sent Events, and gRPC with offline-first design, built with Tauri and React.</li>
 </ul>
@@ -2028,7 +2110,7 @@ the Design of Network-based Software Architectures</a> - Roy Fielding's disserta
 
 <ul>
 <li><a href="https://datatracker.ietf.org/doc/html/rfc8259" rel="noopener noreferrer">JSON</a> - A lightweight and easy-to-read data format that is widely used for data exchange. It supports a wide range of data types and is compatible with many programming languages.<ul>
-<li><a href="https://github.com/ndjson/ndjson-spec" rel="noopener noreferrer">NDJSON (⭐818) (⭐816)</a> - A standard for delimiting JSON objects in stream protocols. It allows for efficient processing of large JSON datasets and is widely used in big data processing.</li>
+<li><a href="https://github.com/ndjson/ndjson-spec" rel="noopener noreferrer">NDJSON (⭐819) (⭐819)</a> - A standard for delimiting JSON objects in stream protocols. It allows for efficient processing of large JSON datasets and is widely used in big data processing.</li>
 <li><a href="https://jsonlines.org/" rel="noopener noreferrer">JSON Lines</a> - A text format for storing structured data one record per line.</li>
 <li><a href="https://datatracker.ietf.org/doc/html/rfc7464" rel="noopener noreferrer">JSON Text Sequence</a> - Defined in RFC 7464, describe a specific format for transmitting or storing a sequence of individual JSON texts.</li>
 </ul>
@@ -2172,5 +2254,47 @@ the Design of Network-based Software Architectures</a> - Roy Fielding's disserta
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
