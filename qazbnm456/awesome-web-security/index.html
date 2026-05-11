@@ -16,22 +16,107 @@
     <meta property="og:title" content="Track Awesome Web Security Updates Daily" />
     <meta property="og:description" content="🐶 A curated list of Web Security materials and resources." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Web Security Updates Daily</h1>
 <p>🐶 A curated list of Web Security materials and resources.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/qazbnm456/awesome-web-security/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/qazbnm456/awesome-web-security">😺 qazbnm456/awesome-web-security</a><span> · </span><span>⭐ 12K</span><span> · </span><span>🏷️ Security</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/qazbnm456/awesome-web-security/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/qazbnm456/awesome-web-security">😺 qazbnm456/awesome-web-security</a><span> · </span><span>⭐ 13K</span><span> · </span><span>🏷️ Security</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/qazbnm456/awesome-web-security/week/">Weekly</a><span> / </span><a href="/qazbnm456/awesome-web-security/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/05/11/">May 11, 2026</a></h2><h3><p>Scanning / Sub Domain Enumeration</p>
+</h3>
+<ul>
+<li><a href="https://zaproxy.org" rel="noopener noreferrer">ZAP by Checkmarx</a> - Open-source web application security scanner maintained by the ZAP Core Team.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2020/10/05/">Oct 05, 2020</a></h2><h3><p>Crypto</p>
 </h3>
 <ul>
@@ -40,12 +125,12 @@
 <h3><p>Scanning / Sub Domain Enumeration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/projectdiscovery/nuclei" rel="noopener noreferrer">Nuclei (⭐24k)</a> - Nuclei is a fast tool for configurable targeted scanning based on templates offering massive extensibility and ease of use by <a href="https://github.com/projectdiscovery" rel="noopener noreferrer">@projectdiscovery</a>.</li>
+<li><a href="https://github.com/projectdiscovery/nuclei" rel="noopener noreferrer">Nuclei (⭐28k)</a> - Nuclei is a fast tool for configurable targeted scanning based on templates offering massive extensibility and ease of use by <a href="https://github.com/projectdiscovery" rel="noopener noreferrer">@projectdiscovery</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/08/26/">Aug 26, 2020</a></h2><h3><p>Webshell / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nil0x42/phpsploit" rel="noopener noreferrer">PhpSploit (⭐2.4k)</a> - Full-featured C2 framework which silently persists on webserver via evil PHP oneliner by <a href="https://github.com/nil0x42" rel="noopener noreferrer">@nil0x42</a>.</li>
+<li><a href="https://github.com/nil0x42/phpsploit" rel="noopener noreferrer">PhpSploit (⭐2.5k)</a> - Full-featured C2 framework which silently persists on webserver via evil PHP oneliner by <a href="https://github.com/nil0x42" rel="noopener noreferrer">@nil0x42</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/08/09/">Aug 09, 2020</a></h2><h3><p>Prototype Pollution</p>
 </h3>
@@ -80,7 +165,7 @@
 <h3><p>Backend (core of Browser implementation, and often refers to C or C++ part)</p>
 </h3>
 <ul>
-<li><a href="https://blog.ret2.io/2018/06/05/pwn2own-2018-exploit-development/" rel="noopener noreferrer">A Methodical Approach to Browser Exploitation</a> - Written by <a href="https://twitter.com/PatrickBiernat" rel="noopener noreferrer">@PatrickBiernat</a>, <a href="https://twitter.com/gaasedelen" rel="noopener noreferrer">@gaasedelen</a> and <a href="https://twitter.com/itszn13" rel="noopener noreferrer">@itszn13</a>.</li>
+<li><a href="https://blog.ret2.io/2018/06/05/pwn2own-2018-exploit-development/" rel="noopener noreferrer">A Methodical Approach to Browser Exploitation</a> - Written by <a href="https://blog.ret2.io/" rel="noopener noreferrer">RET2 SYSTEMS, INC</a>.</li>
 </ul>
 <h3><p>Miscellaneous / Server-Side Request Forgery</p>
 </h3>
@@ -94,11 +179,11 @@
 <h2><a href="https://www.trackawesomelist.com/2020/05/22/">May 22, 2020</a></h2><h3><p>Deserialization</p>
 </h3>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=eDfGpu3iE4Q" rel="noopener noreferrer">Attacking .NET deserialization</a> - Written by <a href="https://twitter.com/pwntester" rel="noopener noreferrer">@pwntester</a>.</li>
+<li><a href="https://www.youtube.com/watch?v=--6PiuvBGAU" rel="noopener noreferrer">.NET Roulette: Exploiting Insecure Deserialization in Telerik UI</a> - Written by <a href="https://twitter.com/noperator" rel="noopener noreferrer">@noperator</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://www.youtube.com/watch?v=--6PiuvBGAU" rel="noopener noreferrer">.NET Roulette: Exploiting Insecure Deserialization in Telerik UI</a> - Written by <a href="https://twitter.com/noperator" rel="noopener noreferrer">@noperator</a>.</li>
+<li><a href="https://www.youtube.com/watch?v=eDfGpu3iE4Q" rel="noopener noreferrer">Attacking .NET deserialization</a> - Written by <a href="https://twitter.com/pwntester" rel="noopener noreferrer">@pwntester</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/05/12/">May 12, 2020</a></h2><h3><p>OAuth</p>
 </h3>
@@ -151,15 +236,11 @@
 <h2><a href="https://www.trackawesomelist.com/2020/05/09/">May 09, 2020</a></h2><h3><p>Digests</p>
 </h3>
 <ul>
+<li><a href="https://trailofbits.github.io/ctf/" rel="noopener noreferrer">CTF Field Guide</a> - Written by <a href="https://www.trailofbits.com/" rel="noopener noreferrer">Trail of Bits</a>.</li>
+</ul>
+
+<ul>
 <li><a href="https://www.hacker101.com/" rel="noopener noreferrer">Hacker101</a> - Written by <a href="https://www.hackerone.com/start-hacking" rel="noopener noreferrer">hackerone</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://portswigger.net/daily-swig" rel="noopener noreferrer">The Daily Swig - Web security digest</a> - Written by <a href="https://portswigger.net/" rel="noopener noreferrer">PortSwigger</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://www.netsparker.com/blog/web-security/" rel="noopener noreferrer">Web Application Security Zone by Netsparker</a> - Written by <a href="https://www.netsparker.com/" rel="noopener noreferrer">Netsparker</a>.</li>
 </ul>
 
 <ul>
@@ -167,20 +248,24 @@
 </ul>
 
 <ul>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/" rel="noopener noreferrer">PayloadsAllTheThings (⭐78k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://portswigger.net/daily-swig" rel="noopener noreferrer">The Daily Swig - Web security digest</a> - Written by <a href="https://portswigger.net/" rel="noopener noreferrer">PortSwigger</a>.</li>
+</ul>
+
+<ul>
 <li><a href="https://bitvijays.github.io/" rel="noopener noreferrer">The Magic of Learning</a> - Written by <a href="https://bitvijays.github.io/aboutme.html" rel="noopener noreferrer">@bitvijays</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://trailofbits.github.io/ctf/" rel="noopener noreferrer">CTF Field Guide</a> - Written by <a href="https://www.trailofbits.com/" rel="noopener noreferrer">Trail of Bits</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/" rel="noopener noreferrer">PayloadsAllTheThings (⭐68k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+<li><a href="https://www.netsparker.com/blog/web-security/" rel="noopener noreferrer">Web Application Security Zone by Netsparker</a> - Written by <a href="https://www.netsparker.com/" rel="noopener noreferrer">Netsparker</a>.</li>
 </ul>
 <h3><p>AWS</p>
 </h3>
 <ul>
-<li><a href="https://labs.f-secure.com/blog/misadventures-in-aws" rel="noopener noreferrer">Misadventures in AWS</a> - Written by Christian Demko</li>
+<li><a href="https://labs.f-secure.com/blog/misadventures-in-aws" rel="noopener noreferrer">Misadventures in AWS</a> - Written by Christian Demko.</li>
 </ul>
 <h3><p>SQL Injection</p>
 </h3>
@@ -195,11 +280,11 @@
 <h3><p>Cheetsheets</p>
 </h3>
 <ul>
-<li><a href="https://leanpub.com/xss" rel="noopener noreferrer">XSS Cheat Sheet - 2018 Edition</a> - Written by <a href="https://twitter.com/brutelogic" rel="noopener noreferrer">@brutelogic</a>.</li>
+<li><a href="https://github.com/uppusaikiran/awesome-ctf-cheatsheet" rel="noopener noreferrer">Capture the Flag CheatSheet (⭐135)</a> - Written by <a href="https://github.com/uppusaikiran" rel="noopener noreferrer">@uppusaikiran</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/uppusaikiran/awesome-ctf-cheatsheet" rel="noopener noreferrer">Capture the Flag CheatSheet (⭐87)</a> - Written by <a href="https://github.com/uppusaikiran" rel="noopener noreferrer">@uppusaikiran</a>.</li>
+<li><a href="https://leanpub.com/xss" rel="noopener noreferrer">XSS Cheat Sheet - 2018 Edition</a> - Written by <a href="https://twitter.com/brutelogic" rel="noopener noreferrer">@brutelogic</a>.</li>
 </ul>
 <h3><p>Offensive / XSS - Cross-Site Scripting</p>
 </h3>
@@ -219,7 +304,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/05/05/">May 05, 2020</a></h2><h3><p>SSL/TLS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Hakky54/mutual-tls-ssl" rel="noopener noreferrer">Practical introduction to SSL/TLS (⭐590)</a> - Written by <a href="https://github.com/Hakky54" rel="noopener noreferrer">@Hakky54</a>.</li>
+<li><a href="https://github.com/Hakky54/mutual-tls-ssl" rel="noopener noreferrer">Practical introduction to SSL/TLS (⭐634)</a> - Written by <a href="https://github.com/Hakky54" rel="noopener noreferrer">@Hakky54</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/03/22/">Mar 22, 2020</a></h2><h3><p>Miscellaneous / Server-Side Request Forgery</p>
 </h3>
@@ -229,7 +314,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/12/30/">Dec 30, 2019</a></h2><h3><p>Prototype Pollution</p>
 </h3>
 <ul>
-<li><a href="https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf" rel="noopener noreferrer">Prototype pollution attack in NodeJS application (⭐530)</a> - Written by <a href="https://github.com/HoLyVieR" rel="noopener noreferrer">@HoLyVieR</a>.</li>
+<li><a href="https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf" rel="noopener noreferrer">Prototype pollution attack in NodeJS application (⭐537)</a> - Written by <a href="https://github.com/HoLyVieR" rel="noopener noreferrer">@HoLyVieR</a>.</li>
 </ul>
 <h3><p>XSS</p>
 </h3>
@@ -244,36 +329,36 @@
 <h3><p>Frontend (like SOP bypass, URL spoofing, and something like that)</p>
 </h3>
 <ul>
-<li><a href="https://speakerdeck.com/shhnjk/the-world-of-site-isolation-and-compromised-renderer" rel="noopener noreferrer">The world of Site Isolation and compromised renderer</a> - Written by <a href="https://twitter.com/shhnjk" rel="noopener noreferrer">@shhnjk</a>.</li>
+<li><a href="https://speakerdeck.com/filedescriptor/the-cookie-monster-in-your-browsers" rel="noopener noreferrer">The Cookie Monster in Your Browsers</a> - Written by <a href="https://twitter.com/filedescriptor" rel="noopener noreferrer">@filedescriptor</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://speakerdeck.com/filedescriptor/the-cookie-monster-in-your-browsers" rel="noopener noreferrer">The Cookie Monster in Your Browsers</a> - Written by <a href="https://twitter.com/filedescriptor" rel="noopener noreferrer">@filedescriptor</a>.</li>
+<li><a href="https://speakerdeck.com/shhnjk/the-world-of-site-isolation-and-compromised-renderer" rel="noopener noreferrer">The world of Site Isolation and compromised renderer</a> - Written by <a href="https://twitter.com/shhnjk" rel="noopener noreferrer">@shhnjk</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/11/30/">Nov 30, 2019</a></h2><h3><p>XSS - Cross-Site Scripting</p>
 </h3>
 <ul>
-<li><a href="https://github.com/payloadbox/xss-payload-list" rel="noopener noreferrer">payloadbox/xss-payload-list (⭐7.2k)</a> - Written by <a href="https://github.com/payloadbox" rel="noopener noreferrer">@payloadbox</a>.</li>
+<li><a href="https://github.com/payloadbox/xss-payload-list" rel="noopener noreferrer">payloadbox/xss-payload-list</a> - Written by <a href="https://github.com/payloadbox" rel="noopener noreferrer">@payloadbox</a>.</li>
 </ul>
 <h3><p>SQL Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/payloadbox/sql-injection-payload-list" rel="noopener noreferrer">payloadbox/sql-injection-payload-list (⭐5.6k)</a> - Written by <a href="https://github.com/payloadbox" rel="noopener noreferrer">@payloadbox</a>.</li>
+<li><a href="https://github.com/payloadbox/sql-injection-payload-list" rel="noopener noreferrer">payloadbox/sql-injection-payload-list</a> - Written by <a href="https://github.com/payloadbox" rel="noopener noreferrer">@payloadbox</a>.</li>
 </ul>
 <h3><p>Command Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/payloadbox/command-injection-payload-list" rel="noopener noreferrer">payloadbox/command-injection-payload-list (⭐3.4k)</a> - Written by <a href="https://github.com/payloadbox" rel="noopener noreferrer">@payloadbox</a>.</li>
+<li><a href="https://github.com/payloadbox/command-injection-payload-list" rel="noopener noreferrer">payloadbox/command-injection-payload-list</a> - Written by <a href="https://github.com/payloadbox" rel="noopener noreferrer">@payloadbox</a>.</li>
 </ul>
 <h3><p>XXE - XML eXternal Entity</p>
 </h3>
 <ul>
-<li><a href="https://github.com/payloadbox/xxe-injection-payload-list" rel="noopener noreferrer">payloadbox/xxe-injection-payload-list (⭐1.2k)</a> - Written by <a href="https://github.com/payloadbox" rel="noopener noreferrer">@payloadbox</a></li>
+<li><a href="https://github.com/payloadbox/xxe-injection-payload-list" rel="noopener noreferrer">payloadbox/xxe-injection-payload-list</a> - Written by <a href="https://github.com/payloadbox" rel="noopener noreferrer">@payloadbox</a>.</li>
 </ul>
 <h3><p>Open Redirect</p>
 </h3>
 <ul>
-<li><a href="https://github.com/payloadbox/open-redirect-payload-list" rel="noopener noreferrer">payloadbox/open-redirect-payload-list (⭐600)</a> - Written by <a href="https://github.com/payloadbox" rel="noopener noreferrer">@payloadbox</a>.</li>
+<li><a href="https://github.com/payloadbox/open-redirect-payload-list" rel="noopener noreferrer">payloadbox/open-redirect-payload-list</a> - Written by <a href="https://github.com/payloadbox" rel="noopener noreferrer">@payloadbox</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/11/22/">Nov 22, 2019</a></h2><h3><p>Crypto</p>
 </h3>
@@ -288,11 +373,11 @@
 <h3><p>SSRF</p>
 </h3>
 <ul>
-<li><a href="http://10degres.net/aws-takeover-through-ssrf-in-javascript/" rel="noopener noreferrer">AWS takeover through SSRF in JavaScript</a> - Written by <a href="http://10degres.net/" rel="noopener noreferrer">Gwen</a>.</li>
+<li><a href="https://www.auxy.xyz/web%20security/2017/07/06/all-ssrf-knowledge.html" rel="noopener noreferrer">All you need to know about SSRF and how may we write tools to do auto-detect</a> - Written by <a href="https://twitter.com/Auxy233" rel="noopener noreferrer">@Auxy233</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://www.auxy.xyz/web%20security/2017/07/06/all-ssrf-knowledge.html" rel="noopener noreferrer">All you need to know about SSRF and how may we write tools to do auto-detect</a> - Written by <a href="https://twitter.com/Auxy233" rel="noopener noreferrer">@Auxy233</a>.</li>
+<li><a href="http://10degres.net/aws-takeover-through-ssrf-in-javascript/" rel="noopener noreferrer">AWS takeover through SSRF in JavaScript</a> - Written by <a href="http://10degres.net/" rel="noopener noreferrer">Gwen</a>.</li>
 </ul>
 <h3><p>Others</p>
 </h3>
@@ -317,17 +402,17 @@
 <h2><a href="https://www.trackawesomelist.com/2019/11/05/">Nov 05, 2019</a></h2><h3><p>XSS - Cross-Site Scripting</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - XSS Injection (⭐68k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - XSS Injection (⭐78k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
 </ul>
 <h3><p>CSV Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/CSV%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - CSV Injection (⭐68k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/CSV%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - CSV Injection (⭐78k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
 </ul>
 <h3><p>SQL Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - SQL Injection (⭐68k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - SQL Injection (⭐78k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
 </ul>
 
 <ul>
@@ -336,10 +421,14 @@
 <h3><p>Command Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - Command Injection (⭐68k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - Command Injection (⭐78k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
 </ul>
 <h3><p>XXE - XML eXternal Entity</p>
 </h3>
+<ul>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - XXE Injection (⭐78k)</a> - Written by various contributors.</li>
+</ul>
+
 <ul>
 <li><a href="https://portswigger.net/web-security/xxe" rel="noopener noreferrer">XML external entity (XXE) injection</a> - Written by <a href="https://portswigger.net/" rel="noopener noreferrer">portswigger</a>.</li>
 </ul>
@@ -347,39 +436,35 @@
 <ul>
 <li><a href="https://www.vsecurity.com/download/publications/XMLDTDEntityAttacks.pdf" rel="noopener noreferrer">XML Schema, DTD, and Entity Attacks</a> - Written by <a href="https://twitter.com/ecbftw" rel="noopener noreferrer">Timothy D. Morgan</a> and Omar Al Ibrahim.</li>
 </ul>
-
-<ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - XXE Injection (⭐68k)</a> - Written by various contributors.</li>
-</ul>
 <h3><p>CSRF - Cross-Site Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/CSRF%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - CSRF Injection (⭐68k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/CSRF%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - CSRF Injection (⭐78k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
 </ul>
 <h3><p>SSRF - Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Request%20Forgery" rel="noopener noreferrer">PayloadsAllTheThings - Server-Side Request Forgery (⭐68k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Request%20Forgery" rel="noopener noreferrer">PayloadsAllTheThings - Server-Side Request Forgery (⭐78k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
 </ul>
 <h3><p>Web Cache Poisoning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Web%20Cache%20Deception" rel="noopener noreferrer">PayloadsAllTheThings - Web Cache Deception (⭐68k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Web%20Cache%20Deception" rel="noopener noreferrer">PayloadsAllTheThings - Web Cache Deception (⭐78k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
 </ul>
 <h3><p>Open Redirect</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Open%20Redirect" rel="noopener noreferrer">PayloadsAllTheThings - Open Redirect (⭐68k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Open%20Redirect" rel="noopener noreferrer">PayloadsAllTheThings - Open Redirect (⭐78k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
 </ul>
 <h3><p>Security Assertion Markup Language (SAML)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SAML%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - SAML Injection (⭐68k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SAML%20Injection" rel="noopener noreferrer">PayloadsAllTheThings - SAML Injection (⭐78k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
 </ul>
 <h3><p>Upload</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Upload%20Insecure%20Files" rel="noopener noreferrer">PayloadsAllTheThings - Upload Insecure Files (⭐68k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
+<li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Upload%20Insecure%20Files" rel="noopener noreferrer">PayloadsAllTheThings - Upload Insecure Files (⭐78k)</a> - Written by <a href="https://github.com/swisskyrepo" rel="noopener noreferrer">@swisskyrepo</a>.</li>
 </ul>
 <h3><p>XXE</p>
 </h3>
@@ -392,27 +477,7 @@
 </ul>
 
 <ul>
-<li><a href="http://seclists.org/fulldisclosure/2018/Jul/3" rel="noopener noreferrer">XXE in WeChat Pay Sdk ( WeChat leave a backdoor on merchant websites)</a> - Written by <a href="https://twitter.com/codeshtool" rel="noopener noreferrer">Rose Jackcode</a>.</li>
-</ul>
-
-<ul>
-<li><a href="http://lab.onsec.ru/2014/06/xxe-oob-exploitation-at-java-17.html" rel="noopener noreferrer">XXE OOB exploitation at Java 1.7+ (2014)</a>: Exfiltration using FTP protocol - Written by <a href="https://twitter.com/d0znpp/" rel="noopener noreferrer">Ivan Novikov</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://skavans.ru/en/2017/12/02/xxe-oob-extracting-via-httpftp-using-single-opened-port/" rel="noopener noreferrer">XXE OOB extracting via HTTP+FTP using single opened port</a> - Written by <a href="https://skavans.ru/" rel="noopener noreferrer">skavans</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://2013.appsecusa.org/2013/wp-content/uploads/2013/12/WhatYouDidntKnowAboutXXEAttacks.pdf" rel="noopener noreferrer">What You Didn't Know About XML External Entities Attacks</a> - Written by <a href="https://twitter.com/ecbftw" rel="noopener noreferrer">Timothy D. Morgan</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://www.synacktiv.com/ressources/synacktiv_drupal_xxe_services.pdf" rel="noopener noreferrer">Pre-authentication XXE vulnerability in the Services Drupal module</a> -  Written by <a href="https://twitter.com/_m0bius" rel="noopener noreferrer">Renaud Dubourguais</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://blog.netspi.com/forcing-xxe-reflection-server-error-messages/" rel="noopener noreferrer">Forcing XXE Reflection through Server Error Messages</a> - Written by <a href="https://blog.netspi.com/author/antti-rantasaari/" rel="noopener noreferrer">Antti Rantasaari</a>.</li>
+<li><a href="https://www.gosecure.net/blog/2019/07/16/automating-local-dtd-discovery-for-xxe-exploitation" rel="noopener noreferrer">Automating local DTD discovery for XXE exploitation</a> - Written by <a href="https://twitter.com/h3xstream" rel="noopener noreferrer">Philippe Arteau</a>.</li>
 </ul>
 
 <ul>
@@ -420,7 +485,27 @@
 </ul>
 
 <ul>
-<li><a href="https://www.gosecure.net/blog/2019/07/16/automating-local-dtd-discovery-for-xxe-exploitation" rel="noopener noreferrer">Automating local DTD discovery for XXE exploitation</a> - Written by <a href="https://twitter.com/h3xstream" rel="noopener noreferrer">Philippe Arteau</a>.</li>
+<li><a href="https://blog.netspi.com/forcing-xxe-reflection-server-error-messages/" rel="noopener noreferrer">Forcing XXE Reflection through Server Error Messages</a> - Written by <a href="https://blog.netspi.com/author/antti-rantasaari/" rel="noopener noreferrer">Antti Rantasaari</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.synacktiv.com/ressources/synacktiv_drupal_xxe_services.pdf" rel="noopener noreferrer">Pre-authentication XXE vulnerability in the Services Drupal module</a> - Written by <a href="https://twitter.com/_m0bius" rel="noopener noreferrer">Renaud Dubourguais</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://2013.appsecusa.org/2013/wp-content/uploads/2013/12/WhatYouDidntKnowAboutXXEAttacks.pdf" rel="noopener noreferrer">What You Didn't Know About XML External Entities Attacks</a> - Written by <a href="https://twitter.com/ecbftw" rel="noopener noreferrer">Timothy D. Morgan</a>.</li>
+</ul>
+
+<ul>
+<li><a href="http://seclists.org/fulldisclosure/2018/Jul/3" rel="noopener noreferrer">XXE in WeChat Pay Sdk ( WeChat leave a backdoor on merchant websites)</a> - Written by <a href="https://twitter.com/codeshtool" rel="noopener noreferrer">Rose Jackcode</a>.</li>
+</ul>
+
+<ul>
+<li><a href="http://lab.onsec.ru/2014/06/xxe-oob-exploitation-at-java-17.html" rel="noopener noreferrer">XXE OOB exploitation at Java 1.7+ (2014)</a> - Exfiltration using FTP protocol - Written by <a href="https://twitter.com/d0znpp/" rel="noopener noreferrer">Ivan Novikov</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://skavans.ru/en/2017/12/02/xxe-oob-extracting-via-httpftp-using-single-opened-port/" rel="noopener noreferrer">XXE OOB extracting via HTTP+FTP using single opened port</a> - Written by <a href="https://skavans.ru/" rel="noopener noreferrer">skavans</a>.</li>
 </ul>
 <h3><p>Remote Code Execution</p>
 </h3>
@@ -435,25 +520,25 @@
 <h3><p>Offensive / XXE</p>
 </h3>
 <ul>
-<li><a href="https://github.com/GoSecure/dtd-finder" rel="noopener noreferrer">dtd-finder (⭐633)</a> - List DTDs and generate XXE payloads using those local DTDs by <a href="https://github.com/GoSecure" rel="noopener noreferrer">@GoSecure</a>.</li>
+<li><a href="https://github.com/GoSecure/dtd-finder" rel="noopener noreferrer">dtd-finder (⭐659)</a> - List DTDs and generate XXE payloads using those local DTDs by <a href="https://github.com/GoSecure" rel="noopener noreferrer">@GoSecure</a>.</li>
 </ul>
 <h3><p>Others / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/b17zr/ntlm_challenger" rel="noopener noreferrer">ntlm_challenger (⭐149)</a> - Parse NTLM over HTTP challenge messages by <a href="https://github.com/b17zr" rel="noopener noreferrer">@b17zr</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/taviso/cefdebug" rel="noopener noreferrer">cefdebug (⭐207)</a> - Minimal code to connect to a CEF debugger by <a href="https://github.com/taviso" rel="noopener noreferrer">@taviso</a>.</li>
+<li><a href="https://github.com/taviso/cefdebug" rel="noopener noreferrer">cefdebug (⭐210)</a> - Minimal code to connect to a CEF debugger by <a href="https://github.com/taviso" rel="noopener noreferrer">@taviso</a>.</li>
 </ul>
 
 <ul>
 <li><a href="https://github.com/taviso/ctftool" rel="noopener noreferrer">ctftool (⭐1.7k)</a> - Interactive CTF Exploration Tool by <a href="https://github.com/taviso" rel="noopener noreferrer">@taviso</a>.</li>
 </ul>
+
+<ul>
+<li><a href="https://github.com/b17zr/ntlm_challenger" rel="noopener noreferrer">ntlm_challenger (⭐153)</a> - Parse NTLM over HTTP challenge messages by <a href="https://github.com/b17zr" rel="noopener noreferrer">@b17zr</a>.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2019/10/24/">Oct 24, 2019</a></h2><h3><p>Rails</p>
 </h3>
 <ul>
-<li><a href="https://github.com/brunofacca/zen-rails-security-checklist" rel="noopener noreferrer">Zen Rails Security Checklist (⭐1.8k)</a> - Written by <a href="https://github.com/brunofacca" rel="noopener noreferrer">@brunofacca</a>.</li>
+<li><a href="http://guides.rubyonrails.org/security.html" rel="noopener noreferrer">Official Rails Security Guide</a> - Written by <a href="https://rubyonrails.org/" rel="noopener noreferrer">Rails team</a>.</li>
 </ul>
 
 <ul>
@@ -461,20 +546,20 @@
 </ul>
 
 <ul>
-<li><a href="http://guides.rubyonrails.org/security.html" rel="noopener noreferrer">Official Rails Security Guide</a> - Written by <a href="https://rubyonrails.org/" rel="noopener noreferrer">Rails team</a>.</li>
+<li><a href="https://github.com/brunofacca/zen-rails-security-checklist" rel="noopener noreferrer">Zen Rails Security Checklist (⭐1.8k)</a> - Written by <a href="https://github.com/brunofacca" rel="noopener noreferrer">@brunofacca</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/10/04/">Oct 04, 2019</a></h2><h3><p>Application / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bkimminich/juice-shop" rel="noopener noreferrer">OWASP Juice Shop</a> - Probably the most modern and sophisticated insecure web application - Written by <a href="https://github.com/bkimminich" rel="noopener noreferrer">@bkimminich</a> and the <a href="https://twitter.com/owasp_juiceshop" rel="noopener noreferrer">@owasp_juiceshop</a> team.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/SecureSkyTechnology/BadLibrary" rel="noopener noreferrer">BadLibrary (⭐57)</a> - Vulnerable web application for training - Written by <a href="https://github.com/SecureSkyTechnology" rel="noopener noreferrer">@SecureSkyTechnology</a>.</li>
+<li><a href="https://github.com/SecureSkyTechnology/BadLibrary" rel="noopener noreferrer">BadLibrary (⭐59)</a> - Vulnerable web application for training - Written by <a href="https://github.com/SecureSkyTechnology" rel="noopener noreferrer">@SecureSkyTechnology</a>.</li>
 </ul>
 
 <ul>
 <li><a href="http://hackxor.net/" rel="noopener noreferrer">Hackxor</a> - Realistic web application hacking game - Written by <a href="https://twitter.com/albinowax" rel="noopener noreferrer">@albinowax</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/bkimminich/juice-shop" rel="noopener noreferrer">OWASP Juice Shop</a> - Probably the most modern and sophisticated insecure web application - Written by <a href="https://github.com/bkimminich" rel="noopener noreferrer">@bkimminich</a> and the <a href="https://twitter.com/owasp_juiceshop" rel="noopener noreferrer">@owasp_juiceshop</a> team.</li>
 </ul>
 
 <ul>
@@ -483,28 +568,28 @@
 <h2><a href="https://www.trackawesomelist.com/2019/09/15/">Sep 15, 2019</a></h2><h3><p>DNS Rebinding</p>
 </h3>
 <ul>
-<li><a href="https://medium.com/@brannondorsey/attacking-private-networks-from-the-internet-with-dns-rebinding-ea7098a2d325" rel="noopener noreferrer">Attacking Private Networks from the Internet with DNS Rebinding</a> - Written by <a href="https://medium.com/@brannondorsey" rel="noopener noreferrer">@brannondorsey</a></li>
+<li><a href="https://medium.com/@brannondorsey/attacking-private-networks-from-the-internet-with-dns-rebinding-ea7098a2d325" rel="noopener noreferrer">Attacking Private Networks from the Internet with DNS Rebinding</a> - Written by <a href="https://medium.com/@brannondorsey" rel="noopener noreferrer">@brannondorsey</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://medium.com/@radekk/hackers-can-get-access-to-your-home-router-1ddadd12a7a7" rel="noopener noreferrer">Hacking home routers from the Internet</a> - Written by <a href="https://medium.com/@radekk" rel="noopener noreferrer">@radekk</a></li>
+<li><a href="https://medium.com/@radekk/hackers-can-get-access-to-your-home-router-1ddadd12a7a7" rel="noopener noreferrer">Hacking home routers from the Internet</a> - Written by <a href="https://medium.com/@radekk" rel="noopener noreferrer">@radekk</a>.</li>
 </ul>
 <h3><p>DNS Rebinding / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/brannondorsey/dns-rebind-toolkit" rel="noopener noreferrer">DNS Rebind Toolkit (⭐502)</a> - DNS Rebind Toolkit is a frontend JavaScript framework for developing DNS Rebinding exploits against vulnerable hosts and services on a local area network (LAN) by <a href="https://github.com/brannondorsey" rel="noopener noreferrer">@brannondorsey</a></li>
+<li><a href="https://github.com/brannondorsey/dns-rebind-toolkit" rel="noopener noreferrer">DNS Rebind Toolkit (⭐500)</a> - DNS Rebind Toolkit is a frontend JavaScript framework for developing DNS Rebinding exploits against vulnerable hosts and services on a local area network (LAN) by <a href="https://github.com/brannondorsey" rel="noopener noreferrer">@brannondorsey</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/mwrlabs/dref" rel="noopener noreferrer">dref (⭐489)</a> - DNS Rebinding Exploitation Framework. Dref does the heavy-lifting for DNS rebinding by <a href="https://github.com/mwrlabs" rel="noopener noreferrer">@mwrlabs</a></li>
+<li><a href="https://github.com/mwrlabs/dref" rel="noopener noreferrer">dref (⭐492)</a> - DNS Rebinding Exploitation Framework. Dref does the heavy-lifting for DNS rebinding by <a href="https://github.com/mwrlabs" rel="noopener noreferrer">@mwrlabs</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/nccgroup/singularity" rel="noopener noreferrer">Singularity of Origin (⭐1.1k)</a> - It includes the necessary components to rebind the IP address of the attack server DNS name to the target machine's IP address and to serve attack payloads to exploit vulnerable software on the target machine by <a href="https://github.com/nccgroup" rel="noopener noreferrer">@nccgroup</a></li>
+<li><a href="https://github.com/nccgroup/singularity" rel="noopener noreferrer">Singularity of Origin (⭐1.3k)</a> - It includes the necessary components to rebind the IP address of the attack server DNS name to the target machine's IP address and to serve attack payloads to exploit vulnerable software on the target machine by <a href="https://github.com/nccgroup" rel="noopener noreferrer">@nccgroup</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/brannondorsey/whonow" rel="noopener noreferrer">Whonow DNS Server (⭐653)</a> - A malicious DNS server for executing DNS Rebinding attacks on the fly by <a href="https://github.com/brannondorsey" rel="noopener noreferrer">@brannondorsey</a></li>
+<li><a href="https://github.com/brannondorsey/whonow" rel="noopener noreferrer">Whonow DNS Server (⭐660)</a> - A malicious DNS server for executing DNS Rebinding attacks on the fly by <a href="https://github.com/brannondorsey" rel="noopener noreferrer">@brannondorsey</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/08/25/">Aug 25, 2019</a></h2><h3><p>Clickjacking</p>
 </h3>
@@ -513,7 +598,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/cure53/Publications/blob/master/xfo-clickjacking.pdf?raw=true" rel="noopener noreferrer">X-Frame-Options: All about Clickjacking? (⭐79)</a> - Written by <a href="http://www.slideshare.net/x00mario" rel="noopener noreferrer">Mario Heiderich</a>.</li>
+<li><a href="https://github.com/cure53/Publications/blob/master/xfo-clickjacking.pdf?raw=true" rel="noopener noreferrer">X-Frame-Options: All about Clickjacking? (⭐85)</a> - Written by <a href="http://www.slideshare.net/x00mario" rel="noopener noreferrer">Mario Heiderich</a>.</li>
 </ul>
 
 <ul>
@@ -527,11 +612,11 @@
 <h2><a href="https://www.trackawesomelist.com/2019/08/24/">Aug 24, 2019</a></h2><h3><p>Azure</p>
 </h3>
 <ul>
-<li><a href="https://rhinosecuritylabs.com/cloud-security/common-azure-security-vulnerabilities/" rel="noopener noreferrer">Common Azure Security Vulnerabilities and Misconfigurations</a> - Written by <a href="https://twitter.com/rhinobenjamin" rel="noopener noreferrer">@rhinobenjamin</a>.</li>
+<li><a href="https://rhinosecuritylabs.com/azure/cloud-security-risks-part-1-azure-csv-injection-vulnerability/" rel="noopener noreferrer">Cloud Security Risks (Part 1): Azure CSV Injection Vulnerability</a> - Written by <a href="https://twitter.com/spengietz" rel="noopener noreferrer">@spengietz</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://rhinosecuritylabs.com/azure/cloud-security-risks-part-1-azure-csv-injection-vulnerability/" rel="noopener noreferrer">Cloud Security Risks (Part 1): Azure CSV Injection Vulnerability</a> - Written by <a href="https://twitter.com/spengietz" rel="noopener noreferrer">@spengietz</a>.</li>
+<li><a href="https://rhinosecuritylabs.com/cloud-security/common-azure-security-vulnerabilities/" rel="noopener noreferrer">Common Azure Security Vulnerabilities and Misconfigurations</a> - Written by <a href="https://twitter.com/rhinobenjamin" rel="noopener noreferrer">@rhinobenjamin</a>.</li>
 </ul>
 <h3><p>Auditing</p>
 </h3>
@@ -541,12 +626,12 @@
 <h3><p>Fuzzing / Sub Domain Enumeration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Bo0oM/fuzz.txt" rel="noopener noreferrer">fuzz.txt (⭐3.2k)</a> - Potentially dangerous files by <a href="https://github.com/Bo0oM" rel="noopener noreferrer">@Bo0oM</a>.</li>
+<li><a href="https://github.com/Bo0oM/fuzz.txt" rel="noopener noreferrer">fuzz.txt (⭐3.3k)</a> - Potentially dangerous files by <a href="https://github.com/Bo0oM" rel="noopener noreferrer">@Bo0oM</a>.</li>
 </ul>
 <h3><p>Leaking / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/GerbenJavado/LinkFinder" rel="noopener noreferrer">LinkFinder (⭐4k)</a> - Python script that finds endpoints in JavaScript files by <a href="https://github.com/GerbenJavado" rel="noopener noreferrer">@GerbenJavado</a>.</li>
+<li><a href="https://github.com/GerbenJavado/LinkFinder" rel="noopener noreferrer">LinkFinder (⭐4.3k)</a> - Python script that finds endpoints in JavaScript files by <a href="https://github.com/GerbenJavado" rel="noopener noreferrer">@GerbenJavado</a>.</li>
 </ul>
 <h3><p>Twitter Users / Server-Side Request Forgery</p>
 </h3>
@@ -556,7 +641,7 @@
 <h3><p>Miscellaneous / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://techvomit.net/web-application-penetration-testing-notes/" rel="noopener noreferrer">WEB APPLICATION PENETRATION TESTING NOTES</a> - Written by <a href="https://techvomit.net/" rel="noopener noreferrer">Jayson</a>.</li>
+<li><a href="https://slashcrypto.org/data/itsecx2018.pdf" rel="noopener noreferrer">Alexa Top 1 Million Security - Hacking the Big Ones</a> - Written by <a href="https://twitter.com/slashcrypto" rel="noopener noreferrer">@slashcrypto</a>.</li>
 </ul>
 
 <ul>
@@ -564,7 +649,7 @@
 </ul>
 
 <ul>
-<li><a href="https://slashcrypto.org/data/itsecx2018.pdf" rel="noopener noreferrer">Alexa Top 1 Million Security - Hacking the Big Ones</a> - Written by <a href="https://twitter.com/slashcrypto" rel="noopener noreferrer">@slashcrypto</a>.</li>
+<li><a href="https://techvomit.net/web-application-penetration-testing-notes/" rel="noopener noreferrer">WEB APPLICATION PENETRATION TESTING NOTES</a> - Written by <a href="https://techvomit.net/" rel="noopener noreferrer">Jayson</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/06/26/">Jun 26, 2019</a></h2><h3><p>Offensive / Server-Side Request Forgery</p>
 </h3>
@@ -625,7 +710,7 @@
 <h3><p>CSP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/w3c/webappsec-csp/issues/243" rel="noopener noreferrer">Any protection against dynamic module import? (⭐219)</a> - Written by <a href="https://twitter.com/@shhnjk" rel="noopener noreferrer">@shhnjk</a>.</li>
+<li><a href="https://github.com/w3c/webappsec-csp/issues/243" rel="noopener noreferrer">Any protection against dynamic module import? (⭐222)</a> - Written by <a href="https://twitter.com/@shhnjk" rel="noopener noreferrer">@shhnjk</a>.</li>
 </ul>
 <h3><p>XSS</p>
 </h3>
@@ -650,7 +735,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/12/31/">Dec 31, 2018</a></h2><h3><p>Offensive / Cross Site Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/0xInfection/XSRFProbe" rel="noopener noreferrer">XSRFProbe (⭐1.2k)</a> - The Prime CSRF Audit &amp; Exploitation Toolkit by <a href="https://github.com/0xinfection" rel="noopener noreferrer">@0xInfection</a>.</li>
+<li><a href="https://github.com/0xInfection/XSRFProbe" rel="noopener noreferrer">XSRFProbe (⭐1.3k)</a> - The Prime CSRF Audit &amp; Exploitation Toolkit by <a href="https://github.com/0xinfection" rel="noopener noreferrer">@0xInfection</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/12/29/">Dec 29, 2018</a></h2><h3><p>Detecting / Server-Side Request Forgery</p>
 </h3>
@@ -675,15 +760,15 @@
 <h3><p>Reconnaissance / OSINT - Open-Source Intelligence</p>
 </h3>
 <ul>
-<li><a href="https://github.com/evyatarmeged/Raccoon" rel="noopener noreferrer">Raccoon (⭐3.2k)</a> - High performance offensive security tool for reconnaissance and vulnerability scanning by <a href="https://github.com/evyatarmeged" rel="noopener noreferrer">@evyatarmeged</a>.</li>
+<li><a href="https://github.com/espi0n/Dockerfiles" rel="noopener noreferrer">espi0n/Dockerfiles (⭐40)</a> - Dockerfiles for various OSINT tools by <a href="https://github.com/espi0n" rel="noopener noreferrer">@espi0n</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/SpiderLabs/social_mapper" rel="noopener noreferrer">Social Mapper (⭐3.9k)</a> - Social Media Enumeration &amp; Correlation Tool by Jacob Wilkin(Greenwolf) by <a href="https://github.com/SpiderLabs" rel="noopener noreferrer">@SpiderLabs</a>.</li>
+<li><a href="https://github.com/evyatarmeged/Raccoon" rel="noopener noreferrer">Raccoon (⭐3.6k)</a> - High performance offensive security tool for reconnaissance and vulnerability scanning by <a href="https://github.com/evyatarmeged" rel="noopener noreferrer">@evyatarmeged</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/espi0n/Dockerfiles" rel="noopener noreferrer">espi0n/Dockerfiles (⭐39)</a> - Dockerfiles for various OSINT tools by <a href="https://github.com/espi0n" rel="noopener noreferrer">@espi0n</a>.</li>
+<li><a href="https://github.com/SpiderLabs/social_mapper" rel="noopener noreferrer">Social Mapper (⭐4k)</a> - Social Media Enumeration &amp; Correlation Tool by Jacob Wilkin(Greenwolf) by <a href="https://github.com/SpiderLabs" rel="noopener noreferrer">@SpiderLabs</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/10/29/">Oct 29, 2018</a></h2><h3><p>Upload</p>
 </h3>
@@ -708,7 +793,7 @@
 <h3><p>AWS / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/RhinoSecurityLabs/cloudgoat" rel="noopener noreferrer">CloudGoat (⭐3.3k)</a> - Rhino Security Labs' "Vulnerable by Design" AWS infrastructure setup tool  - Written by <a href="https://github.com/RhinoSecurityLabs" rel="noopener noreferrer">@RhinoSecurityLabs</a>.</li>
+<li><a href="https://github.com/RhinoSecurityLabs/cloudgoat" rel="noopener noreferrer">CloudGoat (⭐3.6k)</a> - Rhino Security Labs' "Vulnerable by Design" AWS infrastructure setup tool  - Written by <a href="https://github.com/RhinoSecurityLabs" rel="noopener noreferrer">@RhinoSecurityLabs</a>.</li>
 </ul>
 <h3><p>Miscellaneous / Server-Side Request Forgery</p>
 </h3>
@@ -728,21 +813,21 @@
 <h2><a href="https://www.trackawesomelist.com/2018/10/23/">Oct 23, 2018</a></h2><h3><p>Fuzzing / Sub Domain Enumeration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Nekmo/dirhunt" rel="noopener noreferrer">dirhunt (⭐1.9k)</a> - Web crawler optimized for searching and analyzing the directory structure of a site by <a href="https://github.com/Nekmo" rel="noopener noreferrer">@nekmo</a>.</li>
+<li><a href="https://github.com/Nekmo/dirhunt" rel="noopener noreferrer">dirhunt (⭐2k)</a> - Web crawler optimized for searching and analyzing the directory structure of a site by <a href="https://github.com/Nekmo" rel="noopener noreferrer">@nekmo</a>.</li>
 </ul>
 <h3><p>Scanning / Sub Domain Enumeration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/wpscanteam/wpscan" rel="noopener noreferrer">wpscan (⭐9.1k)</a> - WPScan is a black box WordPress vulnerability scanner by <a href="https://github.com/wpscanteam" rel="noopener noreferrer">@wpscanteam</a>.</li>
+<li><a href="https://github.com/drego85/JoomlaScan" rel="noopener noreferrer">JoomlaScan (⭐256)</a> - Free software to find the components installed in Joomla CMS, built out of the ashes of Joomscan by <a href="https://github.com/drego85" rel="noopener noreferrer">@drego85</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/drego85/JoomlaScan" rel="noopener noreferrer">JoomlaScan (⭐224)</a> - Free software to find the components installed in Joomla CMS, built out of the ashes of Joomscan by <a href="https://github.com/drego85" rel="noopener noreferrer">@drego85</a>.</li>
+<li><a href="https://github.com/wpscanteam/wpscan" rel="noopener noreferrer">wpscan (⭐9.6k)</a> - WPScan is a black box WordPress vulnerability scanner by <a href="https://github.com/wpscanteam" rel="noopener noreferrer">@wpscanteam</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/10/22/">Oct 22, 2018</a></h2><h3><p>XSS - Cross-Site Scripting</p>
 </h3>
 <ul>
-<li><a href="https://github.com/s0md3v/AwesomeXSS" rel="noopener noreferrer">AwesomeXSS (⭐4.9k)</a> - Written by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
+<li><a href="https://github.com/s0md3v/AwesomeXSS" rel="noopener noreferrer">AwesomeXSS (⭐5.1k)</a> - Written by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
 </ul>
 
 <ul>
@@ -769,11 +854,11 @@
 <h3><p>XSS</p>
 </h3>
 <ul>
-<li><a href="https://blog.bentkowski.info/2018/06/xss-in-google-colaboratory-csp-bypass.html" rel="noopener noreferrer">XSS in Google Colaboratory + CSP bypass</a> - Written by <a href="https://blog.bentkowski.info/" rel="noopener noreferrer">Michał Bentkowski</a>.</li>
+<li><a href="https://blog.bentkowski.info/2018/09/another-xss-in-google-colaboratory.html" rel="noopener noreferrer">Another XSS in Google Colaboratory</a> - Written by <a href="https://blog.bentkowski.info/" rel="noopener noreferrer">Michał Bentkowski</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://blog.bentkowski.info/2018/09/another-xss-in-google-colaboratory.html" rel="noopener noreferrer">Another XSS in Google Colaboratory</a> - Written by <a href="https://blog.bentkowski.info/" rel="noopener noreferrer">Michał Bentkowski</a>.</li>
+<li><a href="https://blog.bentkowski.info/2018/06/xss-in-google-colaboratory-csp-bypass.html" rel="noopener noreferrer">XSS in Google Colaboratory + CSP bypass</a> - Written by <a href="https://blog.bentkowski.info/" rel="noopener noreferrer">Michał Bentkowski</a>.</li>
 </ul>
 <h3><p>SQL Injection</p>
 </h3>
@@ -788,25 +873,25 @@
 <h3><p>Reconnaissance / OSINT - Open-Source Intelligence</p>
 </h3>
 <ul>
-<li><a href="https://github.com/s0md3v/Photon" rel="noopener noreferrer">Photon (⭐12k)</a> - Incredibly fast crawler designed for OSINT by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
+<li><a href="https://github.com/s0md3v/Photon" rel="noopener noreferrer">Photon (⭐13k)</a> - Incredibly fast crawler designed for OSINT by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/s0md3v/ReconDog" rel="noopener noreferrer">ReconDog (⭐1.9k)</a> - Reconnaissance Swiss Army Knife by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
+<li><a href="https://github.com/s0md3v/ReconDog" rel="noopener noreferrer">ReconDog (⭐2k)</a> - Reconnaissance Swiss Army Knife by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
 </ul>
 <h3><p>Offensive / XSS - Cross-Site Scripting</p>
 </h3>
 <ul>
-<li><a href="https://github.com/beefproject/beef" rel="noopener noreferrer">beef (⭐10k)</a> - The Browser Exploitation Framework Project by <a href="https://beefproject.com" rel="noopener noreferrer">beefproject</a>.</li>
+<li><a href="https://github.com/beefproject/beef" rel="noopener noreferrer">beef (⭐11k)</a> - The Browser Exploitation Framework Project by <a href="https://beefproject.com" rel="noopener noreferrer">beefproject</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/s0md3v/JShell" rel="noopener noreferrer">JShell (⭐526)</a> - Get a JavaScript shell with XSS by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
+<li><a href="https://github.com/s0md3v/JShell" rel="noopener noreferrer">JShell (⭐533)</a> - Get a JavaScript shell with XSS by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
 </ul>
 <h3><p>Webshell / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/s0md3v/nano" rel="noopener noreferrer">nano (⭐443)</a> - Family of code golfed PHP shells by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
+<li><a href="https://github.com/s0md3v/nano" rel="noopener noreferrer">nano (⭐450)</a> - Family of code golfed PHP shells by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/10/13/">Oct 13, 2018</a></h2><h3><p>Miscellaneous / Server-Side Request Forgery</p>
 </h3>
@@ -832,15 +917,10 @@
 <ul>
 <li><a href="http://stamone-bug-bounty.blogspot.tw/2017/10/dom-xss-auth14.html" rel="noopener noreferrer">DOM XSS – auth.uber.com</a> - Written by <a href="http://stamone-bug-bounty.blogspot.tw/" rel="noopener noreferrer">StamOne_</a>.</li>
 </ul>
-<h3><p>SSRF</p>
-</h3>
-<ul>
-<li><a href="https://hackerone.com/reports/341876" rel="noopener noreferrer">SSRF to ROOT Access</a> - A $25k bounty for SSRF leading to ROOT Access in all instances by <a href="https://hackerone.com/0xacb" rel="noopener noreferrer">0xacb</a>.</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2018/10/01/">Oct 01, 2018</a></h2><h3><p>Fuzzing / Sub Domain Enumeration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/fuzzdb-project/fuzzdb" rel="noopener noreferrer">FuzzDB (⭐8.6k)</a> - Dictionary of attack patterns and primitives for black-box application fault injection and resource discovery.</li>
+<li><a href="https://github.com/fuzzdb-project/fuzzdb" rel="noopener noreferrer">FuzzDB (⭐8.9k)</a> - Dictionary of attack patterns and primitives for black-box application fault injection and resource discovery.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/09/12/">Sep 12, 2018</a></h2><h3><p>Database</p>
 </h3>
@@ -865,7 +945,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/08/25/">Aug 25, 2018</a></h2><h3><p>Command Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/commixproject/commix" rel="noopener noreferrer">commix (⭐5.3k)</a> - Automated All-in-One OS command injection and exploitation tool by <a href="https://github.com/commixproject" rel="noopener noreferrer">@commixproject</a>.</li>
+<li><a href="https://github.com/commixproject/commix" rel="noopener noreferrer">commix (⭐5.7k)</a> - Automated All-in-One OS command injection and exploitation tool by <a href="https://github.com/commixproject" rel="noopener noreferrer">@commixproject</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/08/24/">Aug 24, 2018</a></h2><h3><p>Remote Code Execution</p>
 </h3>
@@ -884,11 +964,11 @@
 <h2><a href="https://www.trackawesomelist.com/2018/07/30/">Jul 30, 2018</a></h2><h3><p>Preventing / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cure53/DOMPurify" rel="noopener noreferrer">DOMPurify (⭐16k)</a> - DOM-only, super-fast, uber-tolerant XSS sanitizer for HTML, MathML and SVG by <a href="https://cure53.de/" rel="noopener noreferrer">Cure53</a>.</li>
+<li><a href="https://github.com/cossacklabs/acra" rel="noopener noreferrer">Acra (⭐1.5k)</a> - Client-side encryption engine for SQL databases, with strong selective encryption, SQL injections prevention and intrusion detection by <a href="https://www.cossacklabs.com/" rel="noopener noreferrer">@cossacklabs</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/cossacklabs/acra" rel="noopener noreferrer">Acra (⭐1.4k)</a> - Client-side encryption engine for SQL databases, with strong selective encryption, SQL injections prevention and intrusion detection by <a href="https://www.cossacklabs.com/" rel="noopener noreferrer">@cossacklabs</a>.</li>
+<li><a href="https://github.com/cure53/DOMPurify" rel="noopener noreferrer">DOMPurify (⭐17k)</a> - DOM-only, super-fast, uber-tolerant XSS sanitizer for HTML, MathML and SVG by <a href="https://cure53.de/" rel="noopener noreferrer">Cure53</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/07/19/">Jul 19, 2018</a></h2><h3><p>CSP</p>
 </h3>
@@ -898,21 +978,21 @@
 <h3><p>Reconnaissance / Sub Domain Enumeration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/aboul3la/Sublist3r" rel="noopener noreferrer">Sublist3r (⭐10k)</a> - Sublist3r is a multi-threaded sub-domain enumeration tool for penetration testers by <a href="https://github.com/aboul3la" rel="noopener noreferrer">@aboul3la</a>.</li>
+<li><a href="https://github.com/aboul3la/Sublist3r" rel="noopener noreferrer">Sublist3r (⭐11k)</a> - Sublist3r is a multi-threaded sub-domain enumeration tool for penetration testers by <a href="https://github.com/aboul3la" rel="noopener noreferrer">@aboul3la</a>.</li>
 </ul>
 <h3><p>Penetration Testing / Sub Domain Enumeration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/theInfectedDrake/TIDoS-Framework" rel="noopener noreferrer">TIDoS-Framework (⭐1.8k)</a> - A comprehensive web application audit framework to cover up everything from Reconnaissance and OSINT to Vulnerability Analysis by <a href="https://github.com/theInfectedDrake" rel="noopener noreferrer">@_tID</a>.</li>
+<li><a href="https://buckets.grayhatwarfare.com/" rel="noopener noreferrer">grayhatwarfare</a> - Public buckets by <a href="http://www.grayhatwarfare.com/" rel="noopener noreferrer">grayhatwarfare</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://buckets.grayhatwarfare.com/" rel="noopener noreferrer">grayhatwarfare</a> - Public buckets by <a href="http://www.grayhatwarfare.com/" rel="noopener noreferrer">grayhatwarfare</a>.</li>
+<li><a href="https://github.com/theInfectedDrake/TIDoS-Framework" rel="noopener noreferrer">TIDoS-Framework (⭐1.9k)</a> - A comprehensive web application audit framework to cover up everything from Reconnaissance and OSINT to Vulnerability Analysis by <a href="https://github.com/theInfectedDrake" rel="noopener noreferrer">@_tID</a>.</li>
 </ul>
 <h3><p>Offensive / Template Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/epinna/tplmap" rel="noopener noreferrer">tplmap (⭐4k)</a> - Code and Server-Side Template Injection Detection and Exploitation Tool by <a href="https://github.com/epinna" rel="noopener noreferrer">@epinna</a>.</li>
+<li><a href="https://github.com/epinna/tplmap" rel="noopener noreferrer">tplmap (⭐4.2k)</a> - Code and Server-Side Template Injection Detection and Exploitation Tool by <a href="https://github.com/epinna" rel="noopener noreferrer">@epinna</a>.</li>
 </ul>
 <h3><p>Blogs / Server-Side Request Forgery</p>
 </h3>
@@ -932,7 +1012,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/07/11/">Jul 11, 2018</a></h2><h3><p>Offensive / XSS - Cross-Site Scripting</p>
 </h3>
 <ul>
-<li><a href="https://github.com/s0md3v/XSStrike" rel="noopener noreferrer">XSStrike (⭐14k)</a> - XSStrike is a program which can fuzz and bruteforce parameters for XSS. It can also detect and bypass WAFs by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
+<li><a href="https://github.com/s0md3v/XSStrike" rel="noopener noreferrer">XSStrike (⭐15k)</a> - XSStrike is a program which can fuzz and bruteforce parameters for XSS. It can also detect and bypass WAFs by <a href="https://github.com/s0md3v" rel="noopener noreferrer">@s0md3v</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/07/05/">Jul 05, 2018</a></h2><h3><p>Frontend (like SOP bypass, URL spoofing, and something like that)</p>
 </h3>
@@ -962,15 +1042,15 @@
 <h2><a href="https://www.trackawesomelist.com/2018/06/08/">Jun 08, 2018</a></h2><h3><p>XSS - Cross-Site Scripting</p>
 </h3>
 <ul>
+<li><a href="https://excess-xss.com/" rel="noopener noreferrer">C.XSS Guide</a> - Written by <a href="https://github.com/JakobKallin" rel="noopener noreferrer">@JakobKallin</a> and <a href="https://www.linkedin.com/in/irenelobovalbuena/" rel="noopener noreferrer">Irene Lobo Valbuena</a>.</li>
+</ul>
+
+<ul>
 <li><a href="https://www.google.com/intl/sw/about/appsecurity/learning/xss/" rel="noopener noreferrer">Cross-Site Scripting – Application Security – Google</a> - Written by <a href="https://www.google.com/" rel="noopener noreferrer">Google</a>.</li>
 </ul>
 
 <ul>
 <li><a href="https://github.com/cure53/H5SC" rel="noopener noreferrer">H5SC (⭐2.9k)</a> - Written by <a href="https://github.com/cure53" rel="noopener noreferrer">@cure53</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://excess-xss.com/" rel="noopener noreferrer">C.XSS Guide</a> - Written by <a href="https://github.com/JakobKallin" rel="noopener noreferrer">@JakobKallin</a> and <a href="https://www.linkedin.com/in/irenelobovalbuena/" rel="noopener noreferrer">Irene Lobo Valbuena</a>.</li>
 </ul>
 
 <ul>
@@ -993,12 +1073,12 @@
 <h2><a href="https://www.trackawesomelist.com/2018/05/25/">May 25, 2018</a></h2><h3><p>Detecting / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/baidu/openrasp" rel="noopener noreferrer">OpenRASP (⭐2.9k)</a> - An open source RASP solution actively maintained by Baidu Inc. With context-aware detection algorithm the project achieved nearly no false positives. And less than 3% performance reduction is observed under heavy server load.</li>
+<li><a href="https://github.com/baidu/openrasp" rel="noopener noreferrer">OpenRASP (⭐3k)</a> - An open source RASP solution actively maintained by Baidu Inc. With context-aware detection algorithm the project achieved nearly no false positives. And less than 3% performance reduction is observed under heavy server load.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/05/02/">May 02, 2018</a></h2><h3><p>Database</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Metnew/uxss-db" rel="noopener noreferrer">uxss-db (⭐690)</a> - Collection of UXSS CVEs with PoCs by <a href="https://github.com/Metnew" rel="noopener noreferrer">@Metnew</a>.</li>
+<li><a href="https://github.com/Metnew/uxss-db" rel="noopener noreferrer">uxss-db (⭐702)</a> - Collection of UXSS CVEs with PoCs by <a href="https://github.com/Metnew" rel="noopener noreferrer">@Metnew</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/04/23/">Apr 23, 2018</a></h2><h3><p>Reconnaissance / OSINT - Open-Source Intelligence</p>
 </h3>
@@ -1008,7 +1088,7 @@
 <h3><p>Fuzzing / Sub Domain Enumeration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/google/domato" rel="noopener noreferrer">domato (⭐1.7k)</a> - DOM fuzzer by <a href="https://github.com/google" rel="noopener noreferrer">@google</a>.</li>
+<li><a href="https://github.com/google/domato" rel="noopener noreferrer">domato (⭐1.8k)</a> - DOM fuzzer by <a href="https://github.com/google" rel="noopener noreferrer">@google</a>.</li>
 </ul>
 <h3><p>Penetration Testing / Sub Domain Enumeration</p>
 </h3>
@@ -1033,11 +1113,11 @@
 <h3><p>Miscellaneous / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://www.optiv.com/blog/escape-and-evasion-egressing-restricted-networks" rel="noopener noreferrer">Escape and Evasion Egressing Restricted Networks</a> - Written by <a href="https://github.com/qazbnm456/awesome-web-security/blob/master/README.md/info@optiv.com" rel="noopener noreferrer">Chris Patten, Tom Steele</a>.</li>
+<li><a href="https://medium.com/@umpox/be-careful-what-you-copy-invisibly-inserting-usernames-into-text-with-zero-width-characters-18b4e6f17b66" rel="noopener noreferrer">Be careful what you copy: Invisibly inserting usernames into text with Zero-Width Characters</a> - Written by <a href="https://medium.com/@umpox" rel="noopener noreferrer">@umpox</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://medium.com/@umpox/be-careful-what-you-copy-invisibly-inserting-usernames-into-text-with-zero-width-characters-18b4e6f17b66" rel="noopener noreferrer">Be careful what you copy: Invisibly inserting usernames into text with Zero-Width Characters</a> - Written by <a href="https://medium.com/@umpox" rel="noopener noreferrer">@umpox</a>.</li>
+<li><a href="https://www.optiv.com/blog/escape-and-evasion-egressing-restricted-networks" rel="noopener noreferrer">Escape and Evasion Egressing Restricted Networks</a> - Written by <a href="https://github.com/qazbnm456/awesome-web-security/blob/master/README.md/info@optiv.com" rel="noopener noreferrer">Chris Patten, Tom Steele</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/03/29/">Mar 29, 2018</a></h2><h3><p>Miscellaneous / Server-Side Request Forgery</p>
 </h3>
@@ -1047,7 +1127,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/03/21/">Mar 21, 2018</a></h2><h3><p>Leaking / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/allyshka/pwngitmanager" rel="noopener noreferrer">pwngitmanager (⭐107)</a> - Git manager for pentesters by <a href="https://github.com/allyshka" rel="noopener noreferrer">@allyshka</a>.</li>
+<li><a href="https://github.com/allyshka/pwngitmanager" rel="noopener noreferrer">pwngitmanager (⭐109)</a> - Git manager for pentesters by <a href="https://github.com/allyshka" rel="noopener noreferrer">@allyshka</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/03/20/">Mar 20, 2018</a></h2><h3><p>Backend (core of Browser implementation, and often refers to C or C++ part)</p>
 </h3>
@@ -1077,11 +1157,11 @@
 <h3><p>Miscellaneous / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://docs.google.com/presentation/d/1VpRT8dFyTaFpQa9jhehtmGaC7TqQniMSYbUdlHN6VrY/edit?usp=sharing" rel="noopener noreferrer">The Bug Hunters Methodology v2.1</a> - Written by <a href="https://twitter.com/jhaddix" rel="noopener noreferrer">@jhaddix</a>.</li>
+<li><a href="https://sites.google.com/site/testsitehacking/-7-5k-Google-services-mix-up" rel="noopener noreferrer">$7.5k Google services mix-up</a> - Written by <a href="https://sites.google.com/site/testsitehacking/" rel="noopener noreferrer">Ezequiel Pereira</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://sites.google.com/site/testsitehacking/-7-5k-Google-services-mix-up" rel="noopener noreferrer">$7.5k Google services mix-up</a> - Written by <a href="https://sites.google.com/site/testsitehacking/" rel="noopener noreferrer">Ezequiel Pereira</a>.</li>
+<li><a href="https://docs.google.com/presentation/d/1VpRT8dFyTaFpQa9jhehtmGaC7TqQniMSYbUdlHN6VrY/edit?usp=sharing" rel="noopener noreferrer">The Bug Hunters Methodology v2.1</a> - Written by <a href="https://twitter.com/jhaddix" rel="noopener noreferrer">@jhaddix</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/03/02/">Mar 02, 2018</a></h2><h3><p>SSRF</p>
 </h3>
@@ -1111,11 +1191,15 @@
 <h2><a href="https://www.trackawesomelist.com/2018/02/23/">Feb 23, 2018</a></h2><h3><p>Forums</p>
 </h3>
 <ul>
-<li><a href="http://www.phrack.org/" rel="noopener noreferrer">Phrack Magazine</a> - Ezine written by and for hackers.</li>
+<li><a href="https://www.darkreading.com/Default.asp" rel="noopener noreferrer">Dark Reading</a> - Connecting The Information Security Community.</li>
 </ul>
 
 <ul>
-<li><a href="https://thehackernews.com/" rel="noopener noreferrer">The Hacker News</a> - Security in a serious way.</li>
+<li><a href="http://en.hackdig.com/" rel="noopener noreferrer">HackDig</a> - Dig high-quality web security articles for hacker.</li>
+</ul>
+
+<ul>
+<li><a href="http://www.phrack.org/" rel="noopener noreferrer">Phrack Magazine</a> - Ezine written by and for hackers.</li>
 </ul>
 
 <ul>
@@ -1123,15 +1207,11 @@
 </ul>
 
 <ul>
+<li><a href="https://thehackernews.com/" rel="noopener noreferrer">The Hacker News</a> - Security in a serious way.</li>
+</ul>
+
+<ul>
 <li><a href="http://www.theregister.co.uk/" rel="noopener noreferrer">The Register</a> - Biting the hand that feeds IT.</li>
-</ul>
-
-<ul>
-<li><a href="https://www.darkreading.com/Default.asp" rel="noopener noreferrer">Dark Reading</a> - Connecting The Information Security Community.</li>
-</ul>
-
-<ul>
-<li><a href="http://en.hackdig.com/" rel="noopener noreferrer">HackDig</a> - Dig high-quality web security articles for hacker.</li>
 </ul>
 <h3><p>CSV Injection</p>
 </h3>
@@ -1149,41 +1229,41 @@
 </ul>
 
 <ul>
-<li><a href="https://sqlwiki.netspi.com/" rel="noopener noreferrer">SQL Injection Wiki</a> - Written by <a href="https://www.netspi.com/" rel="noopener noreferrer">NETSPI</a>.</li>
-</ul>
-
-<ul>
 <li><a href="https://websec.ca/kb/sql_injection" rel="noopener noreferrer">SQL Injection Pocket Reference</a> - Written by <a href="https://twitter.com/LightOS" rel="noopener noreferrer">@LightOS</a>.</li>
 </ul>
 
 <ul>
-<li><a href="http://zombiehelp54.blogspot.jp/2017/02/sql-injection-in-update-query-bug.html" rel="noopener noreferrer">SQL injection in an UPDATE query - a bug bounty story!</a> - Written by <a href="http://zombiehelp54.blogspot.jp/" rel="noopener noreferrer">Zombiehelp54</a>.</li>
+<li><a href="https://sqlwiki.netspi.com/" rel="noopener noreferrer">SQL Injection Wiki</a> - Written by <a href="https://www.netspi.com/" rel="noopener noreferrer">NETSPI</a>.</li>
 </ul>
 
 <ul>
 <li><a href="http://blog.orange.tw/2017/01/bug-bounty-github-enterprise-sql-injection.html" rel="noopener noreferrer">GitHub Enterprise SQL Injection</a> - Written by <a href="http://blog.orange.tw/" rel="noopener noreferrer">Orange</a>.</li>
 </ul>
+
+<ul>
+<li><a href="http://zombiehelp54.blogspot.jp/2017/02/sql-injection-in-update-query-bug.html" rel="noopener noreferrer">SQL injection in an UPDATE query - a bug bounty story!</a> - Written by <a href="http://zombiehelp54.blogspot.jp/" rel="noopener noreferrer">Zombiehelp54</a>.</li>
+</ul>
 <h3><p>Command Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ruby/ruby/pull/1777" rel="noopener noreferrer">Potential command injection in resolv.rb (⭐23k)</a> - Written by <a href="https://github.com/drigg3r" rel="noopener noreferrer">@drigg3r</a>.</li>
+<li><a href="https://github.com/ruby/ruby/pull/1777" rel="noopener noreferrer">Potential command injection in resolv.rb (⭐24k)</a> - Written by <a href="https://github.com/drigg3r" rel="noopener noreferrer">@drigg3r</a>.</li>
 </ul>
 <h3><p>ORM Injection</p>
 </h3>
-<ul>
-<li><a href="http://blog.h3xstream.com/2014/02/hql-for-pentesters.html" rel="noopener noreferrer">HQL for pentesters</a> - Written by <a href="https://twitter.com/h3xstream/" rel="noopener noreferrer">@h3xstream</a>.</li>
-</ul>
-
 <ul>
 <li><a href="https://www.synacktiv.com/ressources/hql2sql_sstic_2015_en.pdf" rel="noopener noreferrer">HQL : Hyperinsane Query Language (or how to access the whole SQL API within a HQL injection ?)</a> - Written by <a href="https://twitter.com/_m0bius" rel="noopener noreferrer">@_m0bius</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://www.slideshare.net/0ang3el/orm2pwn-exploiting-injections-in-hibernate-orm" rel="noopener noreferrer">ORM2Pwn: Exploiting injections in Hibernate ORM</a> - Written by <a href="https://0ang3el.blogspot.tw/" rel="noopener noreferrer">Mikhail Egorov</a>.</li>
+<li><a href="http://blog.h3xstream.com/2014/02/hql-for-pentesters.html" rel="noopener noreferrer">HQL for pentesters</a> - Written by <a href="https://twitter.com/h3xstream/" rel="noopener noreferrer">@h3xstream</a>.</li>
 </ul>
 
 <ul>
 <li><a href="https://www.slideshare.net/simone.onofri/orm-injection" rel="noopener noreferrer">ORM Injection</a> - Written by <a href="https://onofri.org/" rel="noopener noreferrer">Simone Onofri</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.slideshare.net/0ang3el/orm2pwn-exploiting-injections-in-hibernate-orm" rel="noopener noreferrer">ORM2Pwn: Exploiting injections in Hibernate ORM</a> - Written by <a href="https://0ang3el.blogspot.tw/" rel="noopener noreferrer">Mikhail Egorov</a>.</li>
 </ul>
 <h3><p>FTP Injection</p>
 </h3>
@@ -1216,11 +1296,11 @@
 <h3><p>AngularJS</p>
 </h3>
 <ul>
-<li><a href="http://blog.portswigger.net/2016/01/xss-without-html-client-side-template.html" rel="noopener noreferrer">XSS without HTML: Client-Side Template Injection with AngularJS</a> - Written by <a href="https://www.blogger.com/profile/10856178524811553475" rel="noopener noreferrer">Gareth Heyes</a>.</li>
+<li><a href="http://blog.portswigger.net/2017/05/dom-based-angularjs-sandbox-escapes.html" rel="noopener noreferrer">DOM based Angular sandbox escapes</a> - Written by <a href="https://twitter.com/garethheyes" rel="noopener noreferrer">@garethheyes</a>.</li>
 </ul>
 
 <ul>
-<li><a href="http://blog.portswigger.net/2017/05/dom-based-angularjs-sandbox-escapes.html" rel="noopener noreferrer">DOM based Angular sandbox escapes</a> - Written by <a href="https://twitter.com/garethheyes" rel="noopener noreferrer">@garethheyes</a></li>
+<li><a href="http://blog.portswigger.net/2016/01/xss-without-html-client-side-template.html" rel="noopener noreferrer">XSS without HTML: Client-Side Template Injection with AngularJS</a> - Written by <a href="https://www.blogger.com/profile/10856178524811553475" rel="noopener noreferrer">Gareth Heyes</a>.</li>
 </ul>
 <h3><p>SSL/TLS</p>
 </h3>
@@ -1249,11 +1329,11 @@
 <h3><p>Web Shell</p>
 </h3>
 <ul>
-<li><a href="https://www.tenable.com/blog/hunting-for-web-shells" rel="noopener noreferrer">Hunting for Web Shells</a> - Written by <a href="https://www.tenable.com/profile/jacob-baines" rel="noopener noreferrer">Jacob Baines</a>.</li>
+<li><a href="https://blog.netspi.com/hacking-with-jsp-shells/" rel="noopener noreferrer">Hacking with JSP Shells</a> - Written by <a href="https://twitter.com/_nullbind" rel="noopener noreferrer">@_nullbind</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://blog.netspi.com/hacking-with-jsp-shells/" rel="noopener noreferrer">Hacking with JSP Shells</a> - Written by <a href="https://twitter.com/_nullbind" rel="noopener noreferrer">@_nullbind</a>.</li>
+<li><a href="https://www.tenable.com/blog/hunting-for-web-shells" rel="noopener noreferrer">Hunting for Web Shells</a> - Written by <a href="https://www.tenable.com/profile/jacob-baines" rel="noopener noreferrer">Jacob Baines</a>.</li>
 </ul>
 <h3><p>OSINT</p>
 </h3>
@@ -1276,19 +1356,19 @@
 <h3><p>WAF</p>
 </h3>
 <ul>
-<li><a href="https://medium.com/secjuice/waf-evasion-techniques-718026d693d8" rel="noopener noreferrer">Web Application Firewall (WAF) Evasion Techniques</a> - Written by <a href="https://twitter.com/secjuice" rel="noopener noreferrer">@secjuice</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://medium.com/secjuice/web-application-firewall-waf-evasion-techniques-2-125995f3e7b0" rel="noopener noreferrer">Web Application Firewall (WAF) Evasion Techniques #2</a> - Written by <a href="https://twitter.com/secjuice" rel="noopener noreferrer">@secjuice</a>.</li>
-</ul>
-
-<ul>
 <li><a href="https://buer.haus/2017/03/08/airbnb-when-bypassing-json-encoding-xss-filter-waf-csp-and-auditor-turns-into-eight-vulnerabilities/" rel="noopener noreferrer">Airbnb – When Bypassing JSON Encoding, XSS Filter, WAF, CSP, and Auditor turns into Eight Vulnerabilities</a> - Written by <a href="https://twitter.com/bbuerhaus" rel="noopener noreferrer">@Brett Buerhaus</a>.</li>
 </ul>
 
 <ul>
 <li><a href="https://medium.com/@d0znpp/how-to-bypass-libinjection-in-many-waf-ngwaf-1e2513453c0f" rel="noopener noreferrer">How to bypass libinjection in many WAF/NGWAF</a> - Written by <a href="https://medium.com/@d0znpp" rel="noopener noreferrer">@d0znpp</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://medium.com/secjuice/waf-evasion-techniques-718026d693d8" rel="noopener noreferrer">Web Application Firewall (WAF) Evasion Techniques</a> - Written by <a href="https://twitter.com/secjuice" rel="noopener noreferrer">@secjuice</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://medium.com/secjuice/web-application-firewall-waf-evasion-techniques-2-125995f3e7b0" rel="noopener noreferrer">Web Application Firewall (WAF) Evasion Techniques #2</a> - Written by <a href="https://twitter.com/secjuice" rel="noopener noreferrer">@secjuice</a>.</li>
 </ul>
 <h3><p>JSMVC</p>
 </h3>
@@ -1303,28 +1383,24 @@
 <h3><p>CSRF</p>
 </h3>
 <ul>
-<li><a href="https://zhuanlan.zhihu.com/p/32716181" rel="noopener noreferrer">Neat tricks to bypass CSRF-protection</a> - Written by <a href="https://twosecurity.io/" rel="noopener noreferrer">Twosecurity</a>.</li>
-</ul>
-
-<ul>
 <li><a href="https://blog.appsecco.com/exploiting-csrf-on-json-endpoints-with-flash-and-redirects-681d4ad6b31b" rel="noopener noreferrer">Exploiting CSRF on JSON endpoints with Flash and redirects</a> - Written by <a href="https://blog.appsecco.com/@riyazwalikar" rel="noopener noreferrer">@riyazwalikar</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/dxa4481/cssInjection" rel="noopener noreferrer">Stealing CSRF tokens with CSS injection (without iFrames) (⭐322)</a> - Written by <a href="https://github.com/dxa4481" rel="noopener noreferrer">@dxa4481</a>.</li>
+<li><a href="https://zhuanlan.zhihu.com/p/32716181" rel="noopener noreferrer">Neat tricks to bypass CSRF-protection</a> - Written by <a href="https://twosecurity.io/" rel="noopener noreferrer">Twosecurity</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dxa4481/cssInjection" rel="noopener noreferrer">Stealing CSRF tokens with CSS injection (without iFrames) (⭐324)</a> - Written by <a href="https://github.com/dxa4481" rel="noopener noreferrer">@dxa4481</a>.</li>
 </ul>
 <h3><p>Remote Code Execution</p>
 </h3>
-<ul>
-<li><a href="https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/" rel="noopener noreferrer">Exploiting Node.js deserialization bug for Remote Code Execution</a> - Written by <a href="https://opsecx.com/index.php/author/ajinabraham/" rel="noopener noreferrer">OpSecX</a>.</li>
-</ul>
-
 <ul>
 <li><a href="https://www.ambionics.io/blog/drupal-services-module-rce" rel="noopener noreferrer">DRUPAL 7.X SERVICES MODULE UNSERIALIZE() TO RCE</a> - Written by <a href="https://www.ambionics.io/" rel="noopener noreferrer">Ambionics Security</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://capacitorset.github.io/mathjs/" rel="noopener noreferrer">How we exploited a remote code execution vulnerability in math.js</a> - Written by <a href="https://github.com/capacitorset" rel="noopener noreferrer">@capacitorset</a>.</li>
+<li><a href="https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/" rel="noopener noreferrer">Exploiting Node.js deserialization bug for Remote Code Execution</a> - Written by <a href="https://opsecx.com/index.php/author/ajinabraham/" rel="noopener noreferrer">OpSecX</a>.</li>
 </ul>
 
 <ul>
@@ -1334,10 +1410,14 @@
 <ul>
 <li><a href="http://blog.orange.tw/2017/07/how-i-chained-4-vulnerabilities-on.html" rel="noopener noreferrer">How I Chained 4 vulnerabilities on GitHub Enterprise, From SSRF Execution Chain to RCE!</a> - Written by <a href="http://blog.orange.tw/" rel="noopener noreferrer">Orange</a>.</li>
 </ul>
+
+<ul>
+<li><a href="https://capacitorset.github.io/mathjs/" rel="noopener noreferrer">How we exploited a remote code execution vulnerability in math.js</a> - Written by <a href="https://github.com/capacitorset" rel="noopener noreferrer">@capacitorset</a>.</li>
+</ul>
 <h3><p>XSS</p>
 </h3>
 <ul>
-<li><a href="https://hackerone.com/reports/293689" rel="noopener noreferrer">Query parameter reordering causes redirect page to render unsafe URL</a> - Written by <a href="https://hackerone.com/kenziy" rel="noopener noreferrer">kenziy</a>.</li>
+<li><a href="https://www.blackhat.com/docs/us-17/thursday/us-17-Lekies-Dont-Trust-The-DOM-Bypassing-XSS-Mitigations-Via-Script-Gadgets.pdf" rel="noopener noreferrer">DON'T TRUST THE DOM: BYPASSING XSS MITIGATIONS VIA SCRIPT GADGETS</a> - Written by <a href="https://twitter.com/slekies" rel="noopener noreferrer">Sebastian Lekies</a>, <a href="https://twitter.com/kkotowicz" rel="noopener noreferrer">Krzysztof Kotowicz</a>, and <a href="https://twitter.com/sirdarckcat" rel="noopener noreferrer">Eduardo Vela</a>.</li>
 </ul>
 
 <ul>
@@ -1349,7 +1429,7 @@
 </ul>
 
 <ul>
-<li><a href="https://www.blackhat.com/docs/us-17/thursday/us-17-Lekies-Dont-Trust-The-DOM-Bypassing-XSS-Mitigations-Via-Script-Gadgets.pdf" rel="noopener noreferrer">DON'T TRUST THE DOM: BYPASSING XSS MITIGATIONS VIA SCRIPT GADGETS</a> - Written by <a href="https://twitter.com/slekies" rel="noopener noreferrer">Sebastian Lekies</a>, <a href="https://twitter.com/kkotowicz" rel="noopener noreferrer">Krzysztof Kotowicz</a>, and <a href="https://twitter.com/sirdarckcat" rel="noopener noreferrer">Eduardo Vela</a>.</li>
+<li><a href="https://hackerone.com/reports/293689" rel="noopener noreferrer">Query parameter reordering causes redirect page to render unsafe URL</a> - Written by <a href="https://hackerone.com/kenziy" rel="noopener noreferrer">kenziy</a>.</li>
 </ul>
 
 <ul>
@@ -1358,11 +1438,11 @@
 <h3><p>SSRF</p>
 </h3>
 <ul>
-<li><a href="https://hackerone.com/reports/115748" rel="noopener noreferrer">SSRF in https://imgur.com/vidgif/url</a> - Written by <a href="https://hackerone.com/aesteral" rel="noopener noreferrer">aesteral</a>.</li>
+<li><a href="https://www.blackhat.com/docs/us-17/thursday/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf" rel="noopener noreferrer">A New Era of SSRF - Exploiting URL Parser in Trending Programming Languages!</a> - Written by <a href="http://blog.orange.tw/" rel="noopener noreferrer">Orange</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://www.blackhat.com/docs/us-17/thursday/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf" rel="noopener noreferrer">A New Era of SSRF - Exploiting URL Parser in Trending Programming Languages!</a> - Written by <a href="http://blog.orange.tw/" rel="noopener noreferrer">Orange</a>.</li>
+<li><a href="https://hackerone.com/reports/115748" rel="noopener noreferrer">SSRF in https://imgur.com/vidgif/url</a> - Written by <a href="https://hackerone.com/aesteral" rel="noopener noreferrer">aesteral</a>.</li>
 </ul>
 
 <ul>
@@ -1376,7 +1456,7 @@
 <h3><p>URL</p>
 </h3>
 <ul>
-<li><a href="https://noncombatant.org/2017/11/07/problems-of-urls/" rel="noopener noreferrer">Some Problems Of URLs</a> - Written by <a href="https://noncombatant.org/about/" rel="noopener noreferrer">Chris Palmer</a>.</li>
+<li><a href="http://blog.blackfan.ru/2017/09/devtwittercom-xss.html" rel="noopener noreferrer">[dev.twitter.com] XSS</a> - Written by <a href="http://blog.blackfan.ru/" rel="noopener noreferrer">Sergey Bobrov</a>.</li>
 </ul>
 
 <ul>
@@ -1384,25 +1464,25 @@
 </ul>
 
 <ul>
-<li><a href="https://www.vgrsec.com/post20170219.html" rel="noopener noreferrer">Unicode Domains are bad and you should feel bad for supporting them</a> - Written by <a href="https://www.vgrsec.com/" rel="noopener noreferrer">VRGSEC</a>.</li>
+<li><a href="https://noncombatant.org/2017/11/07/problems-of-urls/" rel="noopener noreferrer">Some Problems Of URLs</a> - Written by <a href="https://noncombatant.org/about/" rel="noopener noreferrer">Chris Palmer</a>.</li>
 </ul>
 
 <ul>
-<li><a href="http://blog.blackfan.ru/2017/09/devtwittercom-xss.html" rel="noopener noreferrer">[dev.twitter.com] XSS</a> - Written by <a href="http://blog.blackfan.ru/" rel="noopener noreferrer">Sergey Bobrov</a>.</li>
+<li><a href="https://www.vgrsec.com/post20170219.html" rel="noopener noreferrer">Unicode Domains are bad and you should feel bad for supporting them</a> - Written by <a href="https://www.vgrsec.com/" rel="noopener noreferrer">VRGSEC</a>.</li>
 </ul>
 <h3><p>Others</p>
 </h3>
 <ul>
-<li><a href="https://github.com/epidemics-scepticism/writing/blob/master/onion-dns-leaks.md" rel="noopener noreferrer">Inducing DNS Leaks in Onion Web Services (⭐41)</a> - Written by <a href="https://github.com/epidemics-scepticism" rel="noopener noreferrer">@epidemics-scepticism</a>.</li>
+<li><a href="https://github.com/epidemics-scepticism/writing/blob/master/onion-dns-leaks.md" rel="noopener noreferrer">Inducing DNS Leaks in Onion Web Services (⭐42)</a> - Written by <a href="https://github.com/epidemics-scepticism" rel="noopener noreferrer">@epidemics-scepticism</a>.</li>
 </ul>
 <h3><p>Frontend (like SOP bypass, URL spoofing, and something like that)</p>
 </h3>
 <ul>
-<li><a href="http://blog.portswigger.net/2016/11/json-hijacking-for-modern-web.html" rel="noopener noreferrer">JSON hijacking for the modern web</a> - Written by <a href="https://portswigger.net/" rel="noopener noreferrer">portswigger</a>.</li>
+<li><a href="https://www.facebook.com/ExploitWareLabs/photos/a.361854183878462.84544.338832389513975/1378579648872572/?type=3&amp;theater" rel="noopener noreferrer">IE11 Information disclosure - local file detection</a> - Written by James Lee.</li>
 </ul>
 
 <ul>
-<li><a href="https://www.facebook.com/ExploitWareLabs/photos/a.361854183878462.84544.338832389513975/1378579648872572/?type=3&amp;theater" rel="noopener noreferrer">IE11 Information disclosure - local file detection</a> - Written by James Lee.</li>
+<li><a href="http://blog.portswigger.net/2016/11/json-hijacking-for-modern-web.html" rel="noopener noreferrer">JSON hijacking for the modern web</a> - Written by <a href="https://portswigger.net/" rel="noopener noreferrer">portswigger</a>.</li>
 </ul>
 
 <ul>
@@ -1428,41 +1508,33 @@
 <h3><p>Database</p>
 </h3>
 <ul>
+<li><a href="https://github.com/qazbnm456/awesome-cve-poc" rel="noopener noreferrer">awesome-cve-poc (⭐3.5k)</a> - Curated list of CVE PoCs by <a href="https://github.com/qazbnm456" rel="noopener noreferrer">@qazbnm456</a>.</li>
+</ul>
+
+<ul>
 <li><a href="https://github.com/tunz/js-vuln-db" rel="noopener noreferrer">js-vuln-db (⭐2.3k)</a> - Collection of JavaScript engine CVEs with PoCs by <a href="https://github.com/tunz" rel="noopener noreferrer">@tunz</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/qazbnm456/awesome-cve-poc" rel="noopener noreferrer">awesome-cve-poc (⭐3.4k)</a> - Curated list of CVE PoCs by <a href="https://github.com/qazbnm456" rel="noopener noreferrer">@qazbnm456</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/coffeehb/Some-PoC-oR-ExP" rel="noopener noreferrer">Some-PoC-oR-ExP (⭐2.4k)</a> - 各种漏洞poc、Exp的收集或编写 by <a href="https://github.com/coffeehb" rel="noopener noreferrer">@coffeehb</a>.</li>
+<li><a href="https://github.com/coffeehb/Some-PoC-oR-ExP" rel="noopener noreferrer">Some-PoC-oR-ExP (⭐2.5k)</a> - 各种漏洞poc、Exp的收集或编写 by <a href="https://github.com/coffeehb" rel="noopener noreferrer">@coffeehb</a>.</li>
 </ul>
 <h3><p>Auditing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Alfresco/prowler" rel="noopener noreferrer">prowler (⭐12k)</a> - Tool for AWS security assessment, auditing and hardening by <a href="https://github.com/Alfresco" rel="noopener noreferrer">@Alfresco</a>.</li>
+<li><a href="https://github.com/hahwul/a2sv" rel="noopener noreferrer">A2SV (⭐635)</a> - Auto Scanning to SSL Vulnerability by <a href="https://github.com/hahwul" rel="noopener noreferrer">@hahwul</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/hahwul/a2sv" rel="noopener noreferrer">A2SV (⭐633)</a> - Auto Scanning to SSL Vulnerability by <a href="https://github.com/hahwul" rel="noopener noreferrer">@hahwul</a>.</li>
+<li><a href="https://github.com/Alfresco/prowler" rel="noopener noreferrer">prowler (⭐14k)</a> - Tool for AWS security assessment, auditing and hardening by <a href="https://github.com/Alfresco" rel="noopener noreferrer">@Alfresco</a>.</li>
 </ul>
 <h3><p>Reconnaissance / OSINT - Open-Source Intelligence</p>
 </h3>
-<ul>
-<li><a href="https://www.shodan.io/" rel="noopener noreferrer">Shodan</a> - Shodan is the world's first search engine for Internet-connected devices by <a href="https://twitter.com/shodanhq" rel="noopener noreferrer">@shodanhq</a>.</li>
-</ul>
-
 <ul>
 <li><a href="https://censys.io/" rel="noopener noreferrer">Censys</a> - Censys is a search engine that allows computer scientists to ask questions about the devices and networks that compose the Internet by <a href="https://umich.edu/" rel="noopener noreferrer">University of Michigan</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://urlscan.io/" rel="noopener noreferrer">urlscan.io</a> - Service which analyses websites and the resources they request by <a href="https://twitter.com/heipei" rel="noopener noreferrer">@heipei</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://www.zoomeye.org/" rel="noopener noreferrer">ZoomEye</a> - Cyberspace Search Engine by <a href="https://twitter.com/zoomeye_team" rel="noopener noreferrer">@zoomeye_team</a>.</li>
+<li><a href="https://github.com/ElevenPaths/FOCA" rel="noopener noreferrer">FOCA (⭐3.5k)</a> - FOCA (Fingerprinting Organizations with Collected Archives) is a tool used mainly to find metadata and hidden information in the documents its scans by <a href="https://www.elevenpaths.com/index.html" rel="noopener noreferrer">ElevenPaths</a>.</li>
 </ul>
 
 <ul>
@@ -1470,23 +1542,7 @@
 </ul>
 
 <ul>
-<li><a href="https://nti.nsfocus.com/" rel="noopener noreferrer">NSFOCUS</a> - THREAT INTELLIGENCE PORTAL by NSFOCUS GLOBAL.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/ElevenPaths/FOCA" rel="noopener noreferrer">FOCA (⭐3.2k)</a> - FOCA (Fingerprinting Organizations with Collected Archives) is a tool used mainly to find metadata and hidden information in the documents its scans by <a href="https://www.elevenpaths.com/index.html" rel="noopener noreferrer">ElevenPaths</a>.</li>
-</ul>
-
-<ul>
-<li><a href="http://www.spiderfoot.net/" rel="noopener noreferrer">SpiderFoot</a> - Open source footprinting and intelligence-gathering tool by <a href="https://twitter.com/binarypool" rel="noopener noreferrer">@binarypool</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/evilsocket/xray" rel="noopener noreferrer">xray (⭐2.3k)</a> - XRay is a tool for recon, mapping and OSINT gathering from public networks by <a href="https://github.com/evilsocket" rel="noopener noreferrer">@evilsocket</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/michenriksen/Gitrob" rel="noopener noreferrer">gitrob (⭐6k)</a> - Reconnaissance tool for GitHub organizations by <a href="https://github.com/michenriksen" rel="noopener noreferrer">@michenriksen</a>.</li>
+<li><a href="https://github.com/michenriksen/Gitrob" rel="noopener noreferrer">gitrob (⭐6.2k)</a> - Reconnaissance tool for GitHub organizations by <a href="https://github.com/michenriksen" rel="noopener noreferrer">@michenriksen</a>.</li>
 </ul>
 
 <ul>
@@ -1494,32 +1550,36 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/0x09AL/raven" rel="noopener noreferrer">raven (⭐791)</a> - raven is a Linkedin information gathering tool that can be used by pentesters to gather information about an organization employees using Linkedin by <a href="https://github.com/0x09AL" rel="noopener noreferrer">@0x09AL</a>.</li>
+<li><a href="https://nti.nsfocus.com/" rel="noopener noreferrer">NSFOCUS</a> - THREAT INTELLIGENCE PORTAL by NSFOCUS GLOBAL.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/0x09AL/raven" rel="noopener noreferrer">raven (⭐797)</a> - raven is a Linkedin information gathering tool that can be used by pentesters to gather information about an organization employees using Linkedin by <a href="https://github.com/0x09AL" rel="noopener noreferrer">@0x09AL</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.shodan.io/" rel="noopener noreferrer">Shodan</a> - Shodan is the world's first search engine for Internet-connected devices by <a href="https://twitter.com/shodanhq" rel="noopener noreferrer">@shodanhq</a>.</li>
+</ul>
+
+<ul>
+<li><a href="http://www.spiderfoot.net/" rel="noopener noreferrer">SpiderFoot</a> - Open source footprinting and intelligence-gathering tool by <a href="https://twitter.com/binarypool" rel="noopener noreferrer">@binarypool</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://urlscan.io/" rel="noopener noreferrer">urlscan.io</a> - Service which analyses websites and the resources they request by <a href="https://twitter.com/heipei" rel="noopener noreferrer">@heipei</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/evilsocket/xray" rel="noopener noreferrer">xray (⭐2.3k)</a> - XRay is a tool for recon, mapping and OSINT gathering from public networks by <a href="https://github.com/evilsocket" rel="noopener noreferrer">@evilsocket</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.zoomeye.org/" rel="noopener noreferrer">ZoomEye</a> - Cyberspace Search Engine by <a href="https://twitter.com/zoomeye_team" rel="noopener noreferrer">@zoomeye_team</a>.</li>
 </ul>
 <h3><p>Reconnaissance / Sub Domain Enumeration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ChrisTruncer/EyeWitness" rel="noopener noreferrer">EyeWitness (⭐42)</a> - EyeWitness is designed to take screenshots of websites, provide some server header info, and identify default credentials if possible by <a href="https://github.com/ChrisTruncer" rel="noopener noreferrer">@ChrisTruncer</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/lijiejie/subDomainsBrute" rel="noopener noreferrer">subDomainsBrute (⭐3.6k)</a> - A simple and fast sub domain brute tool for pentesters by <a href="https://github.com/lijiejie" rel="noopener noreferrer">@lijiejie</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/michenriksen/aquatone" rel="noopener noreferrer">AQUATONE (⭐5.8k)</a> - Tool for Domain Flyovers by <a href="https://github.com/michenriksen" rel="noopener noreferrer">@michenriksen</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/eldraco/domain_analyzer" rel="noopener noreferrer">domain_analyzer (⭐1.9k)</a> - Analyze the security of any domain by finding all the information possible by <a href="https://github.com/eldraco" rel="noopener noreferrer">@eldraco</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://www.virustotal.com/en/documentation/searching/#getting-domain-information" rel="noopener noreferrer">VirusTotal domain information</a> - Searching for domain information by <a href="https://www.virustotal.com/" rel="noopener noreferrer">VirusTotal</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/google/certificate-transparency" rel="noopener noreferrer">Certificate Transparency (⭐875)</a> - Google's Certificate Transparency project fixes several structural flaws in the SSL certificate system by <a href="https://github.com/google" rel="noopener noreferrer">@google</a>.</li>
+<li><a href="https://github.com/michenriksen/aquatone" rel="noopener noreferrer">AQUATONE (⭐5.9k)</a> - Tool for Domain Flyovers by <a href="https://github.com/michenriksen" rel="noopener noreferrer">@michenriksen</a>.</li>
 </ul>
 
 <ul>
@@ -1527,25 +1587,45 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/We5ter/GSDF" rel="noopener noreferrer">GSDF (⭐180)</a> - Domain searcher named GoogleSSLdomainFinder by <a href="https://github.com/We5ter" rel="noopener noreferrer">@We5ter</a>.</li>
+<li><a href="https://github.com/google/certificate-transparency" rel="noopener noreferrer">Certificate Transparency (⭐887)</a> - Google's Certificate Transparency project fixes several structural flaws in the SSL certificate system by <a href="https://github.com/google" rel="noopener noreferrer">@google</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/eldraco/domain_analyzer" rel="noopener noreferrer">domain_analyzer (⭐1.9k)</a> - Analyze the security of any domain by finding all the information possible by <a href="https://github.com/eldraco" rel="noopener noreferrer">@eldraco</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ChrisTruncer/EyeWitness" rel="noopener noreferrer">EyeWitness (⭐62)</a> - EyeWitness is designed to take screenshots of websites, provide some server header info, and identify default credentials if possible by <a href="https://github.com/ChrisTruncer" rel="noopener noreferrer">@ChrisTruncer</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/We5ter/GSDF" rel="noopener noreferrer">GSDF (⭐184)</a> - Domain searcher named GoogleSSLdomainFinder by <a href="https://github.com/We5ter" rel="noopener noreferrer">@We5ter</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/lijiejie/subDomainsBrute" rel="noopener noreferrer">subDomainsBrute (⭐3.6k)</a> - A simple and fast sub domain brute tool for pentesters by <a href="https://github.com/lijiejie" rel="noopener noreferrer">@lijiejie</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.virustotal.com/en/documentation/searching/#getting-domain-information" rel="noopener noreferrer">VirusTotal domain information</a> - Searching for domain information by <a href="https://www.virustotal.com/" rel="noopener noreferrer">VirusTotal</a>.</li>
 </ul>
 <h3><p>Code Generating / Sub Domain Enumeration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/qazbnm456/VWGen" rel="noopener noreferrer">VWGen (⭐84)</a> - Vulnerable Web applications Generator by <a href="https://github.com/qazbnm456" rel="noopener noreferrer">@qazbnm456</a>.</li>
+<li><a href="https://github.com/qazbnm456/VWGen" rel="noopener noreferrer">VWGen (⭐85)</a> - Vulnerable Web applications Generator by <a href="https://github.com/qazbnm456" rel="noopener noreferrer">@qazbnm456</a>.</li>
 </ul>
 <h3><p>Fuzzing / Sub Domain Enumeration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/xmendez/wfuzz" rel="noopener noreferrer">wfuzz (⭐6.2k)</a> - Web application bruteforcer by <a href="https://github.com/xmendez" rel="noopener noreferrer">@xmendez</a>.</li>
+<li><a href="https://github.com/hack-all-the-things/charsetinspect" rel="noopener noreferrer">charsetinspect (⭐28)</a> - Script that inspects multi-byte character sets looking for characters with specific user-defined properties by <a href="https://github.com/hack-all-the-things" rel="noopener noreferrer">@hack-all-the-things</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/hack-all-the-things/charsetinspect" rel="noopener noreferrer">charsetinspect (⭐26)</a> - Script that inspects multi-byte character sets looking for characters with specific user-defined properties by <a href="https://github.com/hack-all-the-things" rel="noopener noreferrer">@hack-all-the-things</a>.</li>
+<li><a href="https://github.com/OsandaMalith/IPObfuscator" rel="noopener noreferrer">IPObfuscator (⭐146)</a> - Simple tool to convert the IP to a DWORD IP by <a href="https://github.com/OsandaMalith" rel="noopener noreferrer">@OsandaMalith</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/OsandaMalith/IPObfuscator" rel="noopener noreferrer">IPObfuscator (⭐139)</a> - Simple tool to convert the IP to a DWORD IP by <a href="https://github.com/OsandaMalith" rel="noopener noreferrer">@OsandaMalith</a>.</li>
+<li><a href="https://github.com/xmendez/wfuzz" rel="noopener noreferrer">wfuzz (⭐6.5k)</a> - Web application bruteforcer by <a href="https://github.com/xmendez" rel="noopener noreferrer">@xmendez</a>.</li>
 </ul>
 <h3><p>Penetration Testing / Sub Domain Enumeration</p>
 </h3>
@@ -1560,57 +1640,57 @@
 <h3><p>Offensive / SQL Injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sqlmapproject/sqlmap" rel="noopener noreferrer">sqlmap (⭐35k)</a> - Automatic SQL injection and database takeover tool.</li>
+<li><a href="https://github.com/sqlmapproject/sqlmap" rel="noopener noreferrer">sqlmap (⭐37k)</a> - Automatic SQL injection and database takeover tool.</li>
 </ul>
 <h3><p>Leaking / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cure53/HTTPLeaks" rel="noopener noreferrer">HTTPLeaks (⭐2k)</a> - All possible ways, a website can leak HTTP requests by <a href="https://github.com/cure53" rel="noopener noreferrer">@cure53</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/kost/dvcs-ripper" rel="noopener noreferrer">dvcs-ripper (⭐1.7k)</a> - Rip web accessible (distributed) version control systems: SVN/GIT/HG... by <a href="https://github.com/kost" rel="noopener noreferrer">@kost</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/evilpacket/DVCS-Pillage" rel="noopener noreferrer">DVCS-Pillage (⭐319)</a> - Pillage web accessible GIT, HG and BZR repositories by <a href="https://github.com/evilpacket" rel="noopener noreferrer">@evilpacket</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/UnkL4b/GitMiner" rel="noopener noreferrer">GitMiner (⭐2.1k)</a> - Tool for advanced mining for content on Github by <a href="https://github.com/UnkL4b" rel="noopener noreferrer">@UnkL4b</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/zricethezav/gitleaks" rel="noopener noreferrer">gitleaks (⭐21k)</a> - Searches full repo history for secrets and keys by <a href="https://github.com/zricethezav" rel="noopener noreferrer">@zricethezav</a>.</li>
-</ul>
-
-<ul>
 <li><a href="https://github.com/maxchehab/CSS-Keylogging" rel="noopener noreferrer">CSS-Keylogging (⭐3.2k)</a> - Chrome extension and Express server that exploits keylogging abilities of CSS by <a href="https://github.com/maxchehab" rel="noopener noreferrer">@maxchehab</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/evilpacket/DVCS-Pillage" rel="noopener noreferrer">DVCS-Pillage (⭐327)</a> - Pillage web accessible GIT, HG and BZR repositories by <a href="https://github.com/evilpacket" rel="noopener noreferrer">@evilpacket</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kost/dvcs-ripper" rel="noopener noreferrer">dvcs-ripper (⭐1.8k)</a> - Rip web accessible (distributed) version control systems: SVN/GIT/HG... by <a href="https://github.com/kost" rel="noopener noreferrer">@kost</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/zricethezav/gitleaks" rel="noopener noreferrer">gitleaks (⭐27k)</a> - Searches full repo history for secrets and keys by <a href="https://github.com/zricethezav" rel="noopener noreferrer">@zricethezav</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/UnkL4b/GitMiner" rel="noopener noreferrer">GitMiner (⭐2.2k)</a> - Tool for advanced mining for content on Github by <a href="https://github.com/UnkL4b" rel="noopener noreferrer">@UnkL4b</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/cure53/HTTPLeaks" rel="noopener noreferrer">HTTPLeaks (⭐2.1k)</a> - All possible ways, a website can leak HTTP requests by <a href="https://github.com/cure53" rel="noopener noreferrer">@cure53</a>.</li>
 </ul>
 <h3><p>Detecting / Server-Side Request Forgery</p>
 </h3>
+<ul>
+<li><a href="https://github.com/LewisArdern/bXSS" rel="noopener noreferrer">bXSS (⭐570)</a> - bXSS is a simple Blind XSS application adapted from <a href="https://cure53.de/m" rel="noopener noreferrer">cure53.de/m</a> by <a href="https://github.com/LewisArdern" rel="noopener noreferrer">@LewisArdern</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/HynekPetrak/malware-jail" rel="noopener noreferrer">malware-jail (⭐476)</a> - Sandbox for semi-automatic Javascript malware analysis, deobfuscation and payload extraction by <a href="https://github.com/HynekPetrak" rel="noopener noreferrer">@HynekPetrak</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/auth0/repo-supervisor" rel="noopener noreferrer">repo-supervisor (⭐654)</a> - Scan your code for security misconfiguration, search for passwords and secrets.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/RetireJS/retire.js" rel="noopener noreferrer">retire.js (⭐4.1k)</a> - Scanner detecting the use of JavaScript libraries with known vulnerabilities by <a href="https://github.com/RetireJS" rel="noopener noreferrer">@RetireJS</a>.</li>
+</ul>
+
 <ul>
 <li><a href="https://sqlchop.chaitin.cn/" rel="noopener noreferrer">sqlchop</a> - SQL injection detection engine by <a href="http://chaitin.com" rel="noopener noreferrer">chaitin</a>.</li>
 </ul>
 
 <ul>
 <li><a href="https://xsschop.chaitin.cn/" rel="noopener noreferrer">xsschop</a> - XSS detection engine by <a href="http://chaitin.com" rel="noopener noreferrer">chaitin</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/RetireJS/retire.js" rel="noopener noreferrer">retire.js (⭐3.9k)</a> - Scanner detecting the use of JavaScript libraries with known vulnerabilities by <a href="https://github.com/RetireJS" rel="noopener noreferrer">@RetireJS</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/HynekPetrak/malware-jail" rel="noopener noreferrer">malware-jail (⭐469)</a> - Sandbox for semi-automatic Javascript malware analysis, deobfuscation and payload extraction by <a href="https://github.com/HynekPetrak" rel="noopener noreferrer">@HynekPetrak</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/auth0/repo-supervisor" rel="noopener noreferrer">repo-supervisor (⭐649)</a> - Scan your code for security misconfiguration, search for passwords and secrets.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/LewisArdern/bXSS" rel="noopener noreferrer">bXSS (⭐540)</a> - bXSS is a simple Blind XSS application adapted from <a href="https://cure53.de/m" rel="noopener noreferrer">cure53.de/m</a> by <a href="https://github.com/LewisArdern" rel="noopener noreferrer">@LewisArdern</a>.</li>
 </ul>
 <h3><p>Preventing / Server-Side Request Forgery</p>
 </h3>
@@ -1624,16 +1704,20 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mitmproxy/mitmproxy" rel="noopener noreferrer">mitmproxy (⭐40k)</a> - Interactive TLS-capable intercepting HTTP proxy for penetration testers and software developers by <a href="https://github.com/mitmproxy" rel="noopener noreferrer">@mitmproxy</a>.</li>
+<li><a href="https://github.com/mitmproxy/mitmproxy" rel="noopener noreferrer">mitmproxy (⭐43k)</a> - Interactive TLS-capable intercepting HTTP proxy for penetration testers and software developers by <a href="https://github.com/mitmproxy" rel="noopener noreferrer">@mitmproxy</a>.</li>
 </ul>
 <h3><p>Webshell / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tennc/webshell" rel="noopener noreferrer">webshell (⭐10k)</a> - This is a webshell open source project by <a href="https://github.com/tennc" rel="noopener noreferrer">@tennc</a>.</li>
+<li><a href="https://github.com/lukechilds/reverse-shell" rel="noopener noreferrer">reverse-shell (⭐2k)</a> - Reverse Shell as a Service by <a href="https://github.com/lukechilds" rel="noopener noreferrer">@lukechilds</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/epinna/weevely3" rel="noopener noreferrer">Weevely (⭐3.3k)</a> - Weaponized web shell by <a href="https://github.com/epinna" rel="noopener noreferrer">@epinna</a>.</li>
+<li><a href="https://github.com/WangYihang/Reverse-Shell-Manager" rel="noopener noreferrer">Reverse-Shell-Manager (⭐246)</a> - Reverse Shell Manager via Terminal <a href="https://github.com/WangYihang" rel="noopener noreferrer">@WangYihang</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tennc/webshell" rel="noopener noreferrer">webshell (⭐11k)</a> - This is a webshell open source project by <a href="https://github.com/tennc" rel="noopener noreferrer">@tennc</a>.</li>
 </ul>
 
 <ul>
@@ -1641,33 +1725,29 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/WangYihang/Reverse-Shell-Manager" rel="noopener noreferrer">Reverse-Shell-Manager (⭐242)</a> - Reverse Shell Manager via Terminal <a href="https://github.com/WangYihang" rel="noopener noreferrer">@WangYihang</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/lukechilds/reverse-shell" rel="noopener noreferrer">reverse-shell (⭐1.9k)</a> - Reverse Shell as a Service by <a href="https://github.com/lukechilds" rel="noopener noreferrer">@lukechilds</a>.</li>
+<li><a href="https://github.com/epinna/weevely3" rel="noopener noreferrer">Weevely (⭐3.5k)</a> - Weaponized web shell by <a href="https://github.com/epinna" rel="noopener noreferrer">@epinna</a>.</li>
 </ul>
 <h3><p>Disassembler / Server-Side Request Forgery</p>
 </h3>
+<ul>
+<li><a href="https://github.com/hteso/iaito" rel="noopener noreferrer">Iaitō (⭐1.5k)</a> - Qt and C++ GUI for radare2 reverse engineering framework by <a href="https://github.com/hteso" rel="noopener noreferrer">@hteso</a>.</li>
+</ul>
+
 <ul>
 <li><a href="https://github.com/plasma-disassembler/plasma" rel="noopener noreferrer">plasma (⭐3.1k)</a> - Plasma is an interactive disassembler for x86/ARM/MIPS by <a href="https://github.com/plasma-disassembler" rel="noopener noreferrer">@plasma-disassembler</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/radare/radare2" rel="noopener noreferrer">radare2 (⭐22k)</a> - Unix-like reverse engineering framework and commandline tools by <a href="https://github.com/radare" rel="noopener noreferrer">@radare</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/hteso/iaito" rel="noopener noreferrer">Iaitō (⭐1.5k)</a> - Qt and C++ GUI for radare2 reverse engineering framework by <a href="https://github.com/hteso" rel="noopener noreferrer">@hteso</a>.</li>
+<li><a href="https://github.com/radare/radare2" rel="noopener noreferrer">radare2 (⭐24k)</a> - Unix-like reverse engineering framework and commandline tools by <a href="https://github.com/radare" rel="noopener noreferrer">@radare</a>.</li>
 </ul>
 <h3><p>Others / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://wiki.skullsecurity.org/index.php?title=Dnslogger" rel="noopener noreferrer">Dnslogger</a> - DNS Logger by <a href="https://github.com/iagox86" rel="noopener noreferrer">@iagox86</a>.</li>
+<li><a href="https://github.com/gchq/CyberChef" rel="noopener noreferrer">CyberChef (⭐35k)</a> - The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis - by <a href="https://github.com/gchq" rel="noopener noreferrer">@GCHQ</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/gchq/CyberChef" rel="noopener noreferrer">CyberChef (⭐32k)</a> - The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis - by <a href="https://github.com/gchq" rel="noopener noreferrer">@GCHQ</a>.</li>
+<li><a href="https://wiki.skullsecurity.org/index.php?title=Dnslogger" rel="noopener noreferrer">Dnslogger</a> - DNS Logger by <a href="https://github.com/iagox86" rel="noopener noreferrer">@iagox86</a>.</li>
 </ul>
 <h3><p>Social Engineering Database / Server-Side Request Forgery</p>
 </h3>
@@ -1677,15 +1757,7 @@
 <h3><p>Blogs / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="http://blog.orange.tw/" rel="noopener noreferrer">Orange</a> - Taiwan's talented web penetrator.</li>
-</ul>
-
-<ul>
-<li><a href="https://www.leavesongs.com/" rel="noopener noreferrer">leavesongs</a> - China's talented web penetrator.</li>
-</ul>
-
-<ul>
-<li><a href="http://albinowax.skeletonscribe.net/" rel="noopener noreferrer">James Kettle</a> - Head of Research at <a href="https://portswigger.net/" rel="noopener noreferrer">PortSwigger Web Security</a>.</li>
+<li><a href="https://buer.haus/" rel="noopener noreferrer">BRETT BUERHAUS</a> - Vulnerability disclosures and rambles on application security.</li>
 </ul>
 
 <ul>
@@ -1693,11 +1765,11 @@
 </ul>
 
 <ul>
-<li><a href="https://datarift.blogspot.tw/" rel="noopener noreferrer">Scrutiny</a> - Internet Security through Web Browsers by Dhiraj Mishra.</li>
+<li><a href="http://albinowax.skeletonscribe.net/" rel="noopener noreferrer">James Kettle</a> - Head of Research at <a href="https://portswigger.net/" rel="noopener noreferrer">PortSwigger Web Security</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://buer.haus/" rel="noopener noreferrer">BRETT BUERHAUS</a> - Vulnerability disclosures and rambles on application security.</li>
+<li><a href="https://www.leavesongs.com/" rel="noopener noreferrer">leavesongs</a> - China's talented web penetrator.</li>
 </ul>
 
 <ul>
@@ -1705,32 +1777,24 @@
 </ul>
 
 <ul>
-<li><a href="https://opnsec.com/" rel="noopener noreferrer">OpnSec</a> - Open Mind Security!</li>
+<li><a href="https://opnsec.com/" rel="noopener noreferrer">OpnSec</a> - Open Mind Security!.</li>
+</ul>
+
+<ul>
+<li><a href="http://blog.orange.tw/" rel="noopener noreferrer">Orange</a> - Taiwan's talented web penetrator.</li>
+</ul>
+
+<ul>
+<li><a href="https://datarift.blogspot.tw/" rel="noopener noreferrer">Scrutiny</a> - Internet Security through Web Browsers by Dhiraj Mishra.</li>
 </ul>
 <h3><p>Twitter Users / Server-Side Request Forgery</p>
 </h3>
-<ul>
-<li><a href="https://twitter.com/HackwithGithub" rel="noopener noreferrer">@HackwithGitHub</a> - Initiative to showcase open source hacking tools for hackers and pentesters</li>
-</ul>
-
-<ul>
-<li><a href="https://twitter.com/filedescriptor" rel="noopener noreferrer">@filedescriptor</a> - Active penetrator often tweets and writes useful articles</li>
-</ul>
-
 <ul>
 <li><a href="https://twitter.com/cure53berlin" rel="noopener noreferrer">@cure53berlin</a> - <a href="https://cure53.de/" rel="noopener noreferrer">Cure53</a> is a German cybersecurity firm.</li>
 </ul>
 
 <ul>
-<li><a href="https://twitter.com/XssPayloads" rel="noopener noreferrer">@XssPayloads</a> - The wonderland of JavaScript unexpected usages, and more.</li>
-</ul>
-
-<ul>
-<li><a href="https://twitter.com/kinugawamasato" rel="noopener noreferrer">@kinugawamasato</a> - Japanese web penetrator.</li>
-</ul>
-
-<ul>
-<li><a href="https://twitter.com/h3xstream/" rel="noopener noreferrer">@h3xstream</a> - Security Researcher, interested in web security, crypto, pentest, static analysis but most of all, samy is my hero.</li>
+<li><a href="https://twitter.com/filedescriptor" rel="noopener noreferrer">@filedescriptor</a> - Active penetrator often tweets and writes useful articles.</li>
 </ul>
 
 <ul>
@@ -1738,7 +1802,23 @@
 </ul>
 
 <ul>
+<li><a href="https://twitter.com/h3xstream/" rel="noopener noreferrer">@h3xstream</a> - Security Researcher, interested in web security, crypto, pentest, static analysis but most of all, samy is my hero.</li>
+</ul>
+
+<ul>
+<li><a href="https://twitter.com/HackwithGithub" rel="noopener noreferrer">@HackwithGitHub</a> - Initiative to showcase open source hacking tools for hackers and pentesters.</li>
+</ul>
+
+<ul>
 <li><a href="https://twitter.com/hasegawayosuke" rel="noopener noreferrer">@hasegawayosuke</a> - Japanese javascript security researcher.</li>
+</ul>
+
+<ul>
+<li><a href="https://twitter.com/kinugawamasato" rel="noopener noreferrer">@kinugawamasato</a> - Japanese web penetrator.</li>
+</ul>
+
+<ul>
+<li><a href="https://twitter.com/XssPayloads" rel="noopener noreferrer">@XssPayloads</a> - The wonderland of JavaScript unexpected usages, and more.</li>
 </ul>
 <h3><p>Application / Server-Side Request Forgery</p>
 </h3>
@@ -1753,7 +1833,7 @@
 <h3><p>XSS / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://xss-game.appspot.com/" rel="noopener noreferrer">XSS game</a> - Google XSS Challenge - Written by Google.</li>
+<li><a href="https://alf.nu/alert1" rel="noopener noreferrer">alert(1) to win</a> - Series of XSS challenges - Written by <a href="https://twitter.com/steike" rel="noopener noreferrer">@steike</a>.</li>
 </ul>
 
 <ul>
@@ -1761,11 +1841,11 @@
 </ul>
 
 <ul>
-<li><a href="https://alf.nu/alert1" rel="noopener noreferrer">alert(1) to win</a> - Series of XSS challenges - Written by <a href="https://twitter.com/steike" rel="noopener noreferrer">@steike</a>.</li>
+<li><a href="http://xss-quiz.int21h.jp/" rel="noopener noreferrer">XSS Challenges</a> - Series of XSS challenges - Written by yamagata21.</li>
 </ul>
 
 <ul>
-<li><a href="http://xss-quiz.int21h.jp/" rel="noopener noreferrer">XSS Challenges</a> - Series of XSS challenges - Written by yamagata21.</li>
+<li><a href="https://xss-game.appspot.com/" rel="noopener noreferrer">XSS game</a> - Google XSS Challenge - Written by Google.</li>
 </ul>
 <h3><p>ModSecurity / OWASP ModSecurity Core Rule Set / Server-Side Request Forgery</p>
 </h3>
@@ -1784,11 +1864,27 @@
 <h3><p>Miscellaneous / Server-Side Request Forgery</p>
 </h3>
 <ul>
-<li><a href="https://github.com/djadmin/awesome-bug-bounty" rel="noopener noreferrer">awesome-bug-bounty (⭐5k)</a> - Comprehensive curated list of available Bug Bounty &amp; Disclosure Programs and write-ups by <a href="https://github.com/djadmin" rel="noopener noreferrer">@djadmin</a>.</li>
+<li><a href="https://githubengineering.com/githubs-bug-bounty-workflow/" rel="noopener noreferrer">A glimpse into GitHub's Bug Bounty workflow</a> - Written by <a href="https://github.com/gregose" rel="noopener noreferrer">@gregose</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ngalongc/bug-bounty-reference" rel="noopener noreferrer">bug-bounty-reference (⭐3.9k)</a> - List of bug bounty write-up that is categorized by the bug nature by <a href="https://github.com/ngalongc" rel="noopener noreferrer">@ngalongc</a>.</li>
+<li><a href="https://github.com/djadmin/awesome-bug-bounty" rel="noopener noreferrer">awesome-bug-bounty (⭐5.6k)</a> - Comprehensive curated list of available Bug Bounty &amp; Disclosure Programs and write-ups by <a href="https://github.com/djadmin" rel="noopener noreferrer">@djadmin</a>.</li>
+</ul>
+
+<ul>
+<li><a href="http://pwndizzle.blogspot.jp/2014/02/brute-forcing-your-facebook-email-and.html" rel="noopener noreferrer">Brute Forcing Your Facebook Email and Phone Number</a> - Written by <a href="http://pwndizzle.blogspot.jp/" rel="noopener noreferrer">PwnDizzle</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ngalongc/bug-bounty-reference" rel="noopener noreferrer">bug-bounty-reference (⭐4.2k)</a> - List of bug bounty write-up that is categorized by the bug nature by <a href="https://github.com/ngalongc" rel="noopener noreferrer">@ngalongc</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.belfercenter.org/CyberPlaybook" rel="noopener noreferrer">Cybersecurity Campaign Playbook</a> - Written by <a href="https://www.belfercenter.org/" rel="noopener noreferrer">Belfer Center for Science and International Affairs</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/x0rz/EQGRP" rel="noopener noreferrer">EQGRP (⭐4.2k)</a> - Decrypted content of eqgrp-auction-file.tar.xz by <a href="https://github.com/x0rz" rel="noopener noreferrer">@x0rz</a>.</li>
 </ul>
 
 <ul>
@@ -1796,7 +1892,15 @@
 </ul>
 
 <ul>
-<li><a href="http://pwndizzle.blogspot.jp/2014/02/brute-forcing-your-facebook-email-and.html" rel="noopener noreferrer">Brute Forcing Your Facebook Email and Phone Number</a> - Written by <a href="http://pwndizzle.blogspot.jp/" rel="noopener noreferrer">PwnDizzle</a>.</li>
+<li><a href="https://github.com/rmusser01/Infosec_Reference" rel="noopener noreferrer">Infosec_Reference (⭐5.9k)</a> - Information Security Reference That Doesn't Suck by <a href="https://github.com/rmusser01" rel="noopener noreferrer">@rmusser01</a>.</li>
+</ul>
+
+<ul>
+<li><a href="http://iotscanner.bullguard.com/" rel="noopener noreferrer">Internet of Things Scanner</a> - Check if your internet-connected devices at home are public on Shodan by <a href="https://www.bullguard.com/" rel="noopener noreferrer">BullGuard</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ChALkeR/notes" rel="noopener noreferrer">notes (⭐1.3k)</a> - Some public notes by <a href="https://github.com/ChALkeR" rel="noopener noreferrer">@ChALkeR</a>.</li>
 </ul>
 
 <ul>
@@ -1807,30 +1911,48 @@
 <li><a href="http://www.covert.io/the-definitive-security-datascience-and-machinelearning-guide/" rel="noopener noreferrer">The Definitive Security Data Science and Machine Learning Guide</a> - Written by JASON TROS.</li>
 </ul>
 
-<ul>
-<li><a href="https://github.com/x0rz/EQGRP" rel="noopener noreferrer">EQGRP (⭐4.2k)</a> - Decrypted content of eqgrp-auction-file.tar.xz by <a href="https://github.com/x0rz" rel="noopener noreferrer">@x0rz</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/ChALkeR/notes" rel="noopener noreferrer">notes (⭐1.3k)</a> - Some public notes by <a href="https://github.com/ChALkeR" rel="noopener noreferrer">@ChALkeR</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://githubengineering.com/githubs-bug-bounty-workflow/" rel="noopener noreferrer">A glimpse into GitHub's Bug Bounty workflow</a> - Written by <a href="https://github.com/gregose" rel="noopener noreferrer">@gregose</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://www.belfercenter.org/CyberPlaybook" rel="noopener noreferrer">Cybersecurity Campaign Playbook</a> - Written by <a href="https://www.belfercenter.org/" rel="noopener noreferrer">Belfer Center for Science and International Affairs</a>.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/rmusser01/Infosec_Reference" rel="noopener noreferrer">Infosec_Reference (⭐5.8k)</a> - Information Security Reference That Doesn't Suck by <a href="https://github.com/rmusser01" rel="noopener noreferrer">@rmusser01</a>.</li>
-</ul>
-
-<ul>
-<li><a href="http://iotscanner.bullguard.com/" rel="noopener noreferrer">Internet of Things Scanner</a> - Check if your internet-connected devices at home are public on Shodan by <a href="https://www.bullguard.com/" rel="noopener noreferrer">BullGuard</a>.</li>
-</ul>
-
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
