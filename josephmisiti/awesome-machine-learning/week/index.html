@@ -16,27 +16,112 @@
     <meta property="og:title" content="Track Awesome Machine Learning Updates Weekly" />
     <meta property="og:description" content="A curated list of awesome Machine Learning frameworks, libraries and software." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Machine Learning Updates Weekly</h1>
 <p>A curated list of awesome Machine Learning frameworks, libraries and software.</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/josephmisiti/awesome-machine-learning/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/josephmisiti/awesome-machine-learning">😺 josephmisiti/awesome-machine-learning</a><span> · </span><span>⭐ 72K</span><span> · </span><span>🏷️ Computer Science</span></p>
 <p><span>[ </span><a href="/josephmisiti/awesome-machine-learning/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/josephmisiti/awesome-machine-learning/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/20/">May 18 - May 24, 2026</a></h2><h3><p>Tools / Educational Tools</p>
+</h3>
+<ul>
+<li><a href="https://nn-visual.com" rel="noopener noreferrer">NN Visual</a> - Interactive visualizations explaining neural networks, backpropagation, attention mechanisms, and transformers.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/18/">May 04 - May 10, 2026</a></h2><h3><p>C++ / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pypl0/Ombre" rel="noopener noreferrer">Ombre (⭐3)</a> - Open source AI infrastructure layer. Eight agents run automatically: security, caching, memory, hallucination detection, and tamper-proof audit trail. Runs locally.<ul>
-<li><a href="https://github.com/cdslaborg/paramonte" rel="noopener noreferrer">ParaMonte (⭐304)</a> - A general-purpose library with C/C++ interface for Bayesian data analysis and visualization via serial/parallel Monte Carlo and MCMC simulations. Documentation can be found <a href="https://www.cdslab.org/paramonte/" rel="noopener noreferrer">here</a>.</li>
+<li><a href="https://github.com/pypl0/Ombre" rel="noopener noreferrer">Ombre (⭐5)</a> - Open source AI infrastructure layer. Eight agents run automatically: security, caching, memory, hallucination detection, and tamper-proof audit trail. Runs locally.<ul>
+<li><a href="https://github.com/cdslaborg/paramonte" rel="noopener noreferrer">ParaMonte (⭐305)</a> - A general-purpose library with C/C++ interface for Bayesian data analysis and visualization via serial/parallel Monte Carlo and MCMC simulations. Documentation can be found <a href="https://www.cdslab.org/paramonte/" rel="noopener noreferrer">here</a>.</li>
 </ul>
 </li>
 </ul>
@@ -72,7 +157,7 @@
 <h2><a href="https://www.trackawesomelist.com/2026/15/">Apr 13 - Apr 19, 2026</a></h2><h3><p>Tools / Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Yigtwxx/Awesome-RAG-Production" rel="noopener noreferrer">Awesome RAG Production (⭐18)</a> - A curated collection of battle-tested tools, frameworks, and best practices for building, scaling, and monitoring production-grade Retrieval-Augmented Generation (RAG) systems. Covers frameworks, vector databases, retrieval &amp; reranking, evaluation, observability, deployment, and security.</li>
+<li><a href="https://github.com/Yigtwxx/Awesome-RAG-Production" rel="noopener noreferrer">Awesome RAG Production (⭐29)</a> - A curated collection of battle-tested tools, frameworks, and best practices for building, scaling, and monitoring production-grade Retrieval-Augmented Generation (RAG) systems. Covers frameworks, vector databases, retrieval &amp; reranking, evaluation, observability, deployment, and security.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/12/">Mar 23 - Mar 29, 2026</a></h2><h3><p>C / General-Purpose Machine Learning</p>
 </h3>
@@ -87,12 +172,12 @@
 <h3><p>C++ / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/facebookincubator/MCGrad/" rel="noopener noreferrer">MCGrad (⭐27)</a> - A production-ready library for multicalibration, fairness, and bias correction in machine learning models.</li>
+<li><a href="https://github.com/facebookincubator/MCGrad/" rel="noopener noreferrer">MCGrad (⭐29)</a> - A production-ready library for multicalibration, fairness, and bias correction in machine learning models.</li>
 </ul>
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/clearml/clearml" rel="noopener noreferrer">ClearML (⭐6.6k)</a> -  Auto-Magical CI/CD to streamline your AI workload. Experiment Management, Data Management, Pipeline, Orchestration, Scheduling &amp; Serving in one MLOps/LLMOps solution.</li>
+<li><a href="https://github.com/clearml/clearml" rel="noopener noreferrer">ClearML (⭐6.7k)</a> -  Auto-Magical CI/CD to streamline your AI workload. Experiment Management, Data Management, Pipeline, Orchestration, Scheduling &amp; Serving in one MLOps/LLMOps solution.</li>
 </ul>
 <h3><p>Tools / Misc</p>
 </h3>
@@ -101,7 +186,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/darfaz/clawmoat" rel="noopener noreferrer">ClawMoat (⭐38)</a> - Open-source runtime security scanner for AI agents. Detects prompt injection, jailbreak, PII leakage, memory poisoning, and tool misuse. Zero deps, MIT licensed.</li>
+<li><a href="https://github.com/darfaz/clawmoat" rel="noopener noreferrer">ClawMoat (⭐39)</a> - Open-source runtime security scanner for AI agents. Detects prompt injection, jailbreak, PII leakage, memory poisoning, and tool misuse. Zero deps, MIT licensed.</li>
 </ul>
 
 <ul>
@@ -113,11 +198,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Bread-Technologies/mle_vscode_extension" rel="noopener noreferrer">Bread Dataset Viewer (⭐3)</a> - A VS Code extension for viewing and exploring large machine learning datasets (CSV, JSON, Parquet, etc.) directly within the editor without VS Code crashing in a clean UI.</li>
+<li><a href="https://github.com/Bread-Technologies/mle_vscode_extension" rel="noopener noreferrer">Bread Dataset Viewer (⭐5)</a> - A VS Code extension for viewing and exploring large machine learning datasets (CSV, JSON, Parquet, etc.) directly within the editor without VS Code crashing in a clean UI.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Bread-Technologies/bread_wandb_viewer_extension" rel="noopener noreferrer">Bread WandB Viewer (⭐4)</a> - A VS Code extension to view Weights &amp; Biases experiments, logs, and artifacts within the IDE, eliminating the need to switch to the web UI and keeping data private.</li>
+<li><a href="https://github.com/Bread-Technologies/bread_wandb_viewer_extension" rel="noopener noreferrer">Bread WandB Viewer (⭐5)</a> - A VS Code extension to view Weights &amp; Biases experiments, logs, and artifacts within the IDE, eliminating the need to switch to the web UI and keeping data private.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/5/">Feb 02 - Feb 08, 2026</a></h2><h3><p>JavaScript / General-Purpose Machine Learning</p>
 </h3>
@@ -139,12 +224,12 @@
 <h3><p>CUDA PTX / Neurosymbolic AI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/danielcamposramos/Knowledge3D" rel="noopener noreferrer">Knowledge3D (K3D) (⭐34)</a> - Sovereign GPU-native spatial AI architecture with PTX-first cognitive engine (RPN/TRM reasoning), tri-modal fusion (text/visual/audio), and 3D persistent memory ("Houses"). Features sub-100µs inference, procedural knowledge compression (69:1 ratio), and multi-agent swarm architecture. Zero external dependencies for core inference paths.</li>
+<li><a href="https://github.com/danielcamposramos/Knowledge3D" rel="noopener noreferrer">Knowledge3D (K3D) (⭐35)</a> - Sovereign GPU-native spatial AI architecture with PTX-first cognitive engine (RPN/TRM reasoning), tri-modal fusion (text/visual/audio), and 3D persistent memory ("Houses"). Features sub-100µs inference, procedural knowledge compression (69:1 ratio), and multi-agent swarm architecture. Zero external dependencies for core inference paths.</li>
 </ul>
 <h3><p>Java / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hissain/jscipy" rel="noopener noreferrer">jSciPy (⭐19)</a> - A Java port of SciPy's signal processing module, offering filters, transformations, and other scientific computing utilities.</li>
+<li><a href="https://github.com/hissain/jscipy" rel="noopener noreferrer">jSciPy (⭐20)</a> - A Java port of SciPy's signal processing module, offering filters, transformations, and other scientific computing utilities.</li>
 </ul>
 <h3><p>JavaScript / General-Purpose Machine Learning</p>
 </h3>
@@ -159,11 +244,11 @@
 <h3><p>Python / Natural Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nobodywho-ooo/nobodywho" rel="noopener noreferrer">NobodyWho (⭐799)</a> - The simplest way to run an LLM locally. Supports tool calling and grammar constrained sampling.</li>
+<li><a href="https://github.com/nobodywho-ooo/nobodywho" rel="noopener noreferrer">NobodyWho (⭐873)</a> - The simplest way to run an LLM locally. Supports tool calling and grammar constrained sampling.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/bibinprathap/VeritasGraph" rel="noopener noreferrer">VeritasGraph (⭐269)</a> - Enterprise-Grade Graph RAG for Secure, On-Premise AI with Verifiable Attribution.</li>
+<li><a href="https://github.com/bibinprathap/VeritasGraph" rel="noopener noreferrer">VeritasGraph (⭐275)</a> - Enterprise-Grade Graph RAG for Secure, On-Premise AI with Verifiable Attribution.</li>
 </ul>
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
@@ -172,7 +257,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/juspay/neurolink" rel="noopener noreferrer">Neurolink (⭐84)</a> - Enterprise-grade LLM integration framework for building production-ready AI applications with built-in hallucination prevention, RAG, and MCP support.</li>
+<li><a href="https://github.com/juspay/neurolink" rel="noopener noreferrer">Neurolink (⭐89)</a> - Enterprise-grade LLM integration framework for building production-ready AI applications with built-in hallucination prevention, RAG, and MCP support.</li>
 </ul>
 <h3><p>Python / Neural Networks</p>
 </h3>
@@ -187,12 +272,12 @@
 <h3><p>Rust / Natural Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Michael-A-Kuykendall/shimmy" rel="noopener noreferrer">shimmy (⭐4.5k)</a> - Python-free Rust inference server for NLP models with OpenAI API compatibility and hot model swapping.</li>
+<li><a href="https://github.com/Michael-A-Kuykendall/shimmy" rel="noopener noreferrer">shimmy (⭐4.8k)</a> - Python-free Rust inference server for NLP models with OpenAI API compatibility and hot model swapping.</li>
 </ul>
 <h3><p>Tools / Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/deepnote/deepnote" rel="noopener noreferrer">Deepnote (⭐2.8k)</a> - Deepnote is a drop-in replacement for Jupyter with an AI-first design, sleek UI, new blocks, and native data integrations. Use Python, R, and SQL locally in your favorite IDE, then scale to Deepnote cloud for real-time collaboration, Deepnote agent, and deployable data apps.</li>
+<li><a href="https://github.com/deepnote/deepnote" rel="noopener noreferrer">Deepnote (⭐2.9k)</a> - Deepnote is a drop-in replacement for Jupyter with an AI-first design, sleek UI, new blocks, and native data integrations. Use Python, R, and SQL locally in your favorite IDE, then scale to Deepnote cloud for real-time collaboration, Deepnote agent, and deployable data apps.</li>
 </ul>
 
 <ul>
@@ -200,11 +285,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Agent-Field/agentfield" rel="noopener noreferrer">Agentfield (⭐1.5k)</a> - Open source Kubernetes-style control plane for deploying AI agents as distributed microservices, with built-in service discovery, durable workflows, and observability.</li>
+<li><a href="https://github.com/Agent-Field/agentfield" rel="noopener noreferrer">Agentfield (⭐1.7k)</a> - Open source Kubernetes-style control plane for deploying AI agents as distributed microservices, with built-in service discovery, durable workflows, and observability.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/MervinPraison/PraisonAI" rel="noopener noreferrer">PraisonAI (⭐7k)</a> - Production-ready Multi-AI Agents framework with self-reflection. Fastest agent instantiation (3.77μs), 100+ LLM support via LiteLLM, MCP integration, agentic workflows (route/parallel/loop/repeat), built-in memory, Python &amp; JS SDKs.</li>
+<li><a href="https://github.com/MervinPraison/PraisonAI" rel="noopener noreferrer">PraisonAI (⭐7.3k)</a> - Production-ready Multi-AI Agents framework with self-reflection. Fastest agent instantiation (3.77μs), 100+ LLM support via LiteLLM, MCP integration, agentic workflows (route/parallel/loop/repeat), built-in memory, Python &amp; JS SDKs.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/44/">Nov 03 - Nov 09, 2025</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
@@ -221,7 +306,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/doobidoo/mcp-memory-service" rel="noopener noreferrer">MCP Memory Service (⭐1.7k)</a> - Universal memory service with semantic search, autonomous consolidation, and multi-client support for AI applications.</li>
+<li><a href="https://github.com/doobidoo/mcp-memory-service" rel="noopener noreferrer">MCP Memory Service (⭐1.8k)</a> - Universal memory service with semantic search, autonomous consolidation, and multi-client support for AI applications.</li>
 </ul>
 
 <ul>
@@ -230,15 +315,15 @@
 <h3><p>Tools / Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/code-forge-temple/agentic-signal" rel="noopener noreferrer">Agentic Signal (⭐147)</a> - Visual AI agent workflow automation platform with local LLM integration. Build intelligent workflows using drag-and-drop, no cloud required.</li>
+<li><a href="https://github.com/code-forge-temple/agentic-signal" rel="noopener noreferrer">Agentic Signal (⭐152)</a> - Visual AI agent workflow automation platform with local LLM integration. Build intelligent workflows using drag-and-drop, no cloud required.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/code-forge-temple/scribe-pal" rel="noopener noreferrer">ScribePal (⭐22)</a> - Chrome extension that uses local LLMs to assist with writing and drafting responses based on the context of your open tabs.</li>
+<li><a href="https://github.com/code-forge-temple/scribe-pal" rel="noopener noreferrer">ScribePal (⭐21)</a> - Chrome extension that uses local LLMs to assist with writing and drafting responses based on the context of your open tabs.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/code-forge-temple/local-llm-npc" rel="noopener noreferrer">Local LLM NPC (⭐46)</a> - Godot 4.x asset that enables NPCs to interact with players using local LLMs for structured, offline-first learning conversations in games.</li>
+<li><a href="https://github.com/code-forge-temple/local-llm-npc" rel="noopener noreferrer">Local LLM NPC (⭐47)</a> - Godot 4.x asset that enables NPCs to interact with players using local LLMs for structured, offline-first learning conversations in games.</li>
 </ul>
 
 <ul>
@@ -252,7 +337,7 @@
 <h3><p>C / Computer Vision</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ultralytics/ultralytics" rel="noopener noreferrer">YOLOv8 (⭐56k)</a> - Ultralytics' YOLOv8 implementation with C++ support for real-time object detection and tracking, optimized for edge devices.</li>
+<li><a href="https://github.com/ultralytics/ultralytics" rel="noopener noreferrer">YOLOv8 (⭐57k)</a> - Ultralytics' YOLOv8 implementation with C++ support for real-time object detection and tracking, optimized for edge devices.</li>
 </ul>
 <h3><p>C++ / Natural Language Processing</p>
 </h3>
@@ -292,7 +377,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/23/">Jun 09 - Jun 15, 2025</a></h2><h3><p>Python / Computer Vision</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lightly-ai/lightly-train" rel="noopener noreferrer">LightlyTrain (⭐1.4k)</a> - Pretrain computer vision models on unlabeled data for industrial applications</li>
+<li><a href="https://github.com/lightly-ai/lightly-train" rel="noopener noreferrer">LightlyTrain (⭐1.5k)</a> - Pretrain computer vision models on unlabeled data for industrial applications</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/22/">Jun 02 - Jun 08, 2025</a></h2><h3><p>JavaScript / General-Purpose Machine Learning</p>
 </h3>
@@ -321,12 +406,12 @@
 <h2><a href="https://www.trackawesomelist.com/2025/17/">Apr 28 - May 04, 2025</a></h2><h3><p>Tools / Misc</p>
 </h3>
 <ul>
-<li><a href="https://localforge.dev/" rel="noopener noreferrer">Localforge</a> – Is an <a href="https://github.com/rockbite/localforge" rel="noopener noreferrer">open source (⭐365)</a> on-prem AI coding autonomous assistant that lives inside your repo, edits and tests files at SSD speed. Think Claude Code but with UI. plug in any LLM (OpenAI, Gemini, Ollama, etc.) and let it work for you.</li>
+<li><a href="https://localforge.dev/" rel="noopener noreferrer">Localforge</a> – Is an <a href="https://github.com/rockbite/localforge" rel="noopener noreferrer">open source (⭐373)</a> on-prem AI coding autonomous assistant that lives inside your repo, edits and tests files at SSD speed. Think Claude Code but with UI. plug in any LLM (OpenAI, Gemini, Ollama, etc.) and let it work for you.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/16/">Apr 21 - Apr 27, 2025</a></h2><h3><p>Tools / Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/splx-ai/agentic-radar" rel="noopener noreferrer">Agentic Radar (⭐956)</a> -  Open-source CLI security scanner for agentic workflows. Scans your workflow’s source code, detects vulnerabilities, and generates an interactive visualization along with a detailed security report. Supports LangGraph, CrewAI, n8n, OpenAI Agents, and more.</li>
+<li><a href="https://github.com/splx-ai/agentic-radar" rel="noopener noreferrer">Agentic Radar (⭐966)</a> -  Open-source CLI security scanner for agentic workflows. Scans your workflow’s source code, detects vulnerabilities, and generates an interactive visualization along with a detailed security report. Supports LangGraph, CrewAI, n8n, OpenAI Agents, and more.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/15/">Apr 14 - Apr 20, 2025</a></h2><h3><p>Books / Misc</p>
 </h3>
@@ -336,7 +421,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/14/">Apr 07 - Apr 13, 2025</a></h2><h3><p>Python / Data Analysis / Data Visualization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vortico/flama" rel="noopener noreferrer">Flama (⭐288)</a> - Ignite your models into blazing-fast machine learning APIs with a modern framework.</li>
+<li><a href="https://github.com/vortico/flama" rel="noopener noreferrer">Flama (⭐289)</a> - Ignite your models into blazing-fast machine learning APIs with a modern framework.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/13/">Mar 31 - Apr 06, 2025</a></h2><h3><p>Tools / Misc</p>
 </h3>
@@ -386,7 +471,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/48/">Nov 25 - Dec 01, 2024</a></h2><h3><p>Rust / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/delta-rs/delta" rel="noopener noreferrer">delta (⭐413)</a> - An open source machine learning framework in Rust Δ</li>
+<li><a href="https://github.com/delta-rs/delta" rel="noopener noreferrer">delta (⭐414)</a> - An open source machine learning framework in Rust Δ</li>
 </ul>
 <h3><p>R / Data Manipulation | Data Analysis | Data Visualization</p>
 </h3>
@@ -396,11 +481,11 @@
 <h2><a href="https://www.trackawesomelist.com/2024/47/">Nov 18 - Nov 24, 2024</a></h2><h3><p>Scala / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/eaplatanios/tensorflow_scala" rel="noopener noreferrer">TensorFlow Scala (⭐941)</a> - Strongly-typed Scala API for TensorFlow.</li>
+<li><a href="https://github.com/eaplatanios/tensorflow_scala" rel="noopener noreferrer">TensorFlow Scala (⭐940)</a> - Strongly-typed Scala API for TensorFlow.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/linkedin/isolation-forest" rel="noopener noreferrer">isolation-forest (⭐255)</a> - A distributed Spark/Scala implementation of the isolation forest algorithm for unsupervised outlier detection, featuring support for scalable training and ONNX export for easy cross-platform inference.</li>
+<li><a href="https://github.com/linkedin/isolation-forest" rel="noopener noreferrer">isolation-forest (⭐256)</a> - A distributed Spark/Scala implementation of the isolation forest algorithm for unsupervised outlier detection, featuring support for scalable training and ONNX export for easy cross-platform inference.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/43/">Oct 21 - Oct 27, 2024</a></h2><h3><p>Tools / Misc</p>
 </h3>
@@ -434,7 +519,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/31/">Jul 29 - Aug 04, 2024</a></h2><h3><p>C++ / Reinforcement Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rl-tools/rl-tools" rel="noopener noreferrer">RLtools (⭐968)</a> - The fastest deep reinforcement learning library for continuous control, implemented header-only in pure, dependency-free C++ (Python bindings available as well).</li>
+<li><a href="https://github.com/rl-tools/rl-tools" rel="noopener noreferrer">RLtools (⭐975)</a> - The fastest deep reinforcement learning library for continuous control, implemented header-only in pure, dependency-free C++ (Python bindings available as well).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/21/">May 20 - May 26, 2024</a></h2><h3><p>JavaScript / General-Purpose Machine Learning</p>
 </h3>
@@ -449,7 +534,7 @@
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pyg-team/pytorch-frame" rel="noopener noreferrer">PyTorch Frame (⭐780)</a> -&gt; A Modular Framework for Multi-Modal Tabular Learning.</li>
+<li><a href="https://github.com/pyg-team/pytorch-frame" rel="noopener noreferrer">PyTorch Frame (⭐783)</a> -&gt; A Modular Framework for Multi-Modal Tabular Learning.</li>
 </ul>
 
 <ul>
@@ -458,7 +543,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/13/">Mar 25 - Mar 31, 2024</a></h2><h3><p>Python / Data Analysis / Data Visualization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/capitalone/datacompy" rel="noopener noreferrer">DataComPy (⭐639)</a> - A library to compare Pandas, Polars, and Spark data frames. It provides stats and lets users adjust for match accuracy.</li>
+<li><a href="https://github.com/capitalone/datacompy" rel="noopener noreferrer">DataComPy (⭐640)</a> - A library to compare Pandas, Polars, and Spark data frames. It provides stats and lets users adjust for match accuracy.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/7/">Feb 12 - Feb 18, 2024</a></h2><h3><p>Rust / General-Purpose Machine Learning</p>
 </h3>
@@ -502,7 +587,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/auto-differentiation/XAD" rel="noopener noreferrer">XAD (⭐412)</a> - Comprehensive backpropagation tool for C++.</li>
+<li><a href="https://github.com/auto-differentiation/XAD" rel="noopener noreferrer">XAD (⭐417)</a> - Comprehensive backpropagation tool for C++.</li>
 </ul>
 
 <ul>
@@ -536,7 +621,7 @@
 <h3><p>Matlab / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/trekhleb/machine-learning-octave" rel="noopener noreferrer">Machine Learning in MatLab/Octave (⭐895)</a> - Examples of popular machine learning algorithms (neural networks, linear/logistic regressions, K-Means, etc.) with code examples and mathematics behind them being explained.</li>
+<li><a href="https://github.com/trekhleb/machine-learning-octave" rel="noopener noreferrer">Machine Learning in MatLab/Octave (⭐893)</a> - Examples of popular machine learning algorithms (neural networks, linear/logistic regressions, K-Means, etc.) with code examples and mathematics behind them being explained.</li>
 </ul>
 <h3><p>.NET / General-Purpose Machine Learning</p>
 </h3>
@@ -574,7 +659,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/huggingface/transformers" rel="noopener noreferrer">Transformers (⭐160k)</a> - A deep learning library containing thousands of pre-trained models on different tasks. The goto place for anything related to Large Language Models.</li>
+<li><a href="https://github.com/huggingface/transformers" rel="noopener noreferrer">Transformers (⭐161k)</a> - A deep learning library containing thousands of pre-trained models on different tasks. The goto place for anything related to Large Language Models.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/41/">Oct 09 - Oct 15, 2023</a></h2><h3><p>Python / Computer Vision</p>
 </h3>
@@ -611,7 +696,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/x-tabdeveloping/topic-wizard" rel="noopener noreferrer">topicwizard (⭐146)</a> - Interactive topic model visualization/interpretation framework.</li>
+<li><a href="https://github.com/x-tabdeveloping/topic-wizard" rel="noopener noreferrer">topicwizard (⭐148)</a> - Interactive topic model visualization/interpretation framework.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/27/">Jul 03 - Jul 09, 2023</a></h2><h3><p>Python / Computer Vision</p>
 </h3>
@@ -621,12 +706,12 @@
 <h2><a href="https://www.trackawesomelist.com/2023/26/">Jun 26 - Jul 02, 2023</a></h2><h3><p>Go / Natural Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nlpodyssey/cybertron" rel="noopener noreferrer">Cybertron (⭐327)</a> - Cybertron: the home planet of the Transformers in Go.</li>
+<li><a href="https://github.com/nlpodyssey/cybertron" rel="noopener noreferrer">Cybertron (⭐328)</a> - Cybertron: the home planet of the Transformers in Go.</li>
 </ul>
 <h3><p>Go / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nlpodyssey/spago" rel="noopener noreferrer">Spago (⭐1.8k)</a> - Self-contained Machine Learning and Natural Language Processing library in Go.</li>
+<li><a href="https://github.com/nlpodyssey/spago" rel="noopener noreferrer">Spago (⭐1.9k)</a> - Self-contained Machine Learning and Natural Language Processing library in Go.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/25/">Jun 19 - Jun 25, 2023</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
@@ -661,7 +746,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/11/">Mar 13 - Mar 19, 2023</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/IFCA/frouros" rel="noopener noreferrer">Frouros (⭐252)</a>: Frouros is an open source Python library for drift detection in machine learning systems.</li>
+<li><a href="https://github.com/IFCA/frouros" rel="noopener noreferrer">Frouros (⭐254)</a>: Frouros is an open source Python library for drift detection in machine learning systems.</li>
 </ul>
 <h3><p>Books / Misc</p>
 </h3>
@@ -676,7 +761,7 @@
 <h3><p>Python / Spiking Neural Networks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/synsense/rockpool" rel="noopener noreferrer">Rockpool (⭐81)</a> - A machine learning library for spiking neural networks. Supports training with both torch and jax pipelines, and deployment to neuromorphic hardware.</li>
+<li><a href="https://github.com/synsense/rockpool" rel="noopener noreferrer">Rockpool (⭐83)</a> - A machine learning library for spiking neural networks. Supports training with both torch and jax pipelines, and deployment to neuromorphic hardware.</li>
 </ul>
 <h3><p>Tools / Misc</p>
 </h3>
@@ -685,7 +770,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/matifali/dockerdl" rel="noopener noreferrer">DockerDL (⭐86)</a> - Ready to use deeplearning docker images.</li>
+<li><a href="https://github.com/matifali/dockerdl" rel="noopener noreferrer">DockerDL (⭐85)</a> - Ready to use deeplearning docker images.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/1/">Jan 02 - Jan 08, 2023</a></h2><h3><p>Python / Computer Vision</p>
 </h3>
@@ -718,7 +803,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/neuromorphs/tonic" rel="noopener noreferrer">Tonic (⭐281)</a> - A library that makes downloading publicly available neuromorphic datasets a breeze and provides event-based data transformation/augmentation pipelines.</li>
+<li><a href="https://github.com/neuromorphs/tonic" rel="noopener noreferrer">Tonic (⭐282)</a> - A library that makes downloading publicly available neuromorphic datasets a breeze and provides event-based data transformation/augmentation pipelines.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/44/">Oct 31 - Nov 06, 2022</a></h2><h3><p>R / General-Purpose Machine Learning</p>
 </h3>
@@ -788,7 +873,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/JuliaStats/KernelDensity.jl" rel="noopener noreferrer">Kernel Density (⭐201)</a> - Kernel density estimators for Julia.</li>
+<li><a href="https://github.com/JuliaStats/KernelDensity.jl" rel="noopener noreferrer">Kernel Density (⭐202)</a> - Kernel density estimators for Julia.</li>
 </ul>
 <h3><p>Julia / Natural Language Processing</p>
 </h3>
@@ -813,7 +898,7 @@
 <h3><p>Python / Computer Vision</p>
 </h3>
 <ul>
-<li><a href="https://github.com/guofei9987/scikit-opt" rel="noopener noreferrer">Scikit-Opt (⭐6.4k)</a> - Swarm Intelligence in Python (Genetic Algorithm, Particle Swarm Optimization, Simulated Annealing, Ant Colony Algorithm, Immune Algorithm, Artificial Fish Swarm Algorithm in Python)</li>
+<li><a href="https://github.com/guofei9987/scikit-opt" rel="noopener noreferrer">Scikit-Opt (⭐6.5k)</a> - Swarm Intelligence in Python (Genetic Algorithm, Particle Swarm Optimization, Simulated Annealing, Ant Colony Algorithm, Immune Algorithm, Artificial Fish Swarm Algorithm in Python)</li>
 </ul>
 <h3><p>Python / Natural Language Processing</p>
 </h3>
@@ -823,7 +908,7 @@
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/OML-Team/open-metric-learning" rel="noopener noreferrer">OpenMetricLearning (⭐989)</a> - A PyTorch-based framework to train and validate the models producing high-quality embeddings.</li>
+<li><a href="https://github.com/OML-Team/open-metric-learning" rel="noopener noreferrer">OpenMetricLearning (⭐991)</a> - A PyTorch-based framework to train and validate the models producing high-quality embeddings.</li>
 </ul>
 
 <ul>
@@ -882,12 +967,12 @@
 <h3><p>Scala / Natural Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/factorie/factorie" rel="noopener noreferrer">FACTORIE (⭐554)</a> - FACTORIE is a toolkit for deployable probabilistic modelling, implemented as a software library in Scala. It provides its users with a succinct language for creating relational factor graphs, estimating parameters and performing inference.</li>
+<li><a href="https://github.com/factorie/factorie" rel="noopener noreferrer">FACTORIE (⭐552)</a> - FACTORIE is a toolkit for deployable probabilistic modelling, implemented as a software library in Scala. It provides its users with a succinct language for creating relational factor graphs, estimating parameters and performing inference.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/42/">Oct 17 - Oct 23, 2022</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/robinthibaut/skbel" rel="noopener noreferrer">SKBEL (⭐26)</a>: A Python library for Bayesian Evidential Learning (BEL) in order to estimate the uncertainty of a prediction.</li>
+<li><a href="https://github.com/robinthibaut/skbel" rel="noopener noreferrer">SKBEL (⭐27)</a>: A Python library for Bayesian Evidential Learning (BEL) in order to estimate the uncertainty of a prediction.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/40/">Oct 03 - Oct 09, 2022</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
@@ -902,17 +987,17 @@
 <h2><a href="https://www.trackawesomelist.com/2022/38/">Sep 19 - Sep 25, 2022</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Western-OC2-Lab/AutoML-Implementation-for-Static-and-Dynamic-Data-Analytics" rel="noopener noreferrer">AutoML-Implementation-for-Static-and-Dynamic-Data-Analytics (⭐628)</a>: A tutorial to help machine learning researchers to automatically obtain optimized machine learning models with the optimal learning performance on any specific task.</li>
+<li><a href="https://github.com/Western-OC2-Lab/AutoML-Implementation-for-Static-and-Dynamic-Data-Analytics" rel="noopener noreferrer">AutoML-Implementation-for-Static-and-Dynamic-Data-Analytics (⭐629)</a>: A tutorial to help machine learning researchers to automatically obtain optimized machine learning models with the optimal learning performance on any specific task.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/36/">Sep 05 - Sep 11, 2022</a></h2><h3><p>TensorFlow / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/markusschanta/awesome-keras" rel="noopener noreferrer">Awesome Keras (⭐32)</a> - A curated list of awesome Keras projects, libraries and resources.</li>
+<li><a href="https://github.com/markusschanta/awesome-keras" rel="noopener noreferrer">Awesome Keras (⭐33)</a> - A curated list of awesome Keras projects, libraries and resources.</li>
 </ul>
 <h3><p>Tools / Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/iterative/mlem" rel="noopener noreferrer">MLEM (⭐717)</a> - Version and deploy your ML models following GitOps principles</li>
+<li><a href="https://github.com/iterative/mlem" rel="noopener noreferrer">MLEM (⭐718)</a> - Version and deploy your ML models following GitOps principles</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/35/">Aug 29 - Sep 04, 2022</a></h2><h3><p>Tools / Misc</p>
 </h3>
@@ -926,7 +1011,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/32/">Aug 08 - Aug 14, 2022</a></h2><h3><p>Java / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cicirello/Chips-n-Salsa" rel="noopener noreferrer">Chips-n-Salsa (⭐74)</a> - A Java library for genetic algorithms, evolutionary computation, and stochastic local search, with a focus on self-adaptation / self-tuning, as well as parallel execution.</li>
+<li><a href="https://github.com/cicirello/Chips-n-Salsa" rel="noopener noreferrer">Chips-n-Salsa (⭐75)</a> - A Java library for genetic algorithms, evolutionary computation, and stochastic local search, with a focus on self-adaptation / self-tuning, as well as parallel execution.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/28/">Jul 11 - Jul 17, 2022</a></h2><h3><p>Go / General-Purpose Machine Learning</p>
 </h3>
@@ -936,7 +1021,7 @@
 <h3><p>Java / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/encog/encog-java-core" rel="noopener noreferrer">Encog (⭐752)</a> - An advanced neural network and machine learning framework. Encog contains classes to create a wide variety of networks, as well as support classes to normalize and process data for these neural networks. Encog trainings using multithreaded resilient propagation. Encog can also make use of a GPU to further speed processing time. A GUI based workbench is also provided to help model and train neural networks.</li>
+<li><a href="https://github.com/encog/encog-java-core" rel="noopener noreferrer">Encog (⭐753)</a> - An advanced neural network and machine learning framework. Encog contains classes to create a wide variety of networks, as well as support classes to normalize and process data for these neural networks. Encog trainings using multithreaded resilient propagation. Encog can also make use of a GPU to further speed processing time. A GUI based workbench is also provided to help model and train neural networks.</li>
 </ul>
 
 <ul>
@@ -965,7 +1050,7 @@
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/upgini/upgini" rel="noopener noreferrer">Upgini (⭐347)</a>: Free automated data &amp; feature enrichment library for machine learning - automatically searches through thousands of ready-to-use features from public and community shared data sources and enriches your training dataset with only the accuracy improving features.</li>
+<li><a href="https://github.com/upgini/upgini" rel="noopener noreferrer">Upgini (⭐349)</a>: Free automated data &amp; feature enrichment library for machine learning - automatically searches through thousands of ready-to-use features from public and community shared data sources and enriches your training dataset with only the accuracy improving features.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/24/">Jun 13 - Jun 19, 2022</a></h2><h3><p>Clojure / General-Purpose Machine Learning</p>
 </h3>
@@ -979,7 +1064,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/MAIF/eurybia" rel="noopener noreferrer">Eurybia (⭐218)</a>: Eurybia monitors data and model drift over time and securizes model deployment with data validation.</li>
+<li><a href="https://github.com/MAIF/eurybia" rel="noopener noreferrer">Eurybia (⭐219)</a>: Eurybia monitors data and model drift over time and securizes model deployment with data validation.</li>
 </ul>
 
 <ul>
@@ -993,7 +1078,7 @@
 <h3><p>Tools / Misc</p>
 </h3>
 <ul>
-<li><a href="https://qdrant.tech" rel="noopener noreferrer">Qdrant</a> – Qdrant is <a href="https://github.com/qdrant/qdrant" rel="noopener noreferrer">open source (⭐30k)</a> vector similarity search engine with extended filtering support, written in Rust.</li>
+<li><a href="https://qdrant.tech" rel="noopener noreferrer">Qdrant</a> – Qdrant is <a href="https://github.com/qdrant/qdrant" rel="noopener noreferrer">open source (⭐31k)</a> vector similarity search engine with extended filtering support, written in Rust.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/18/">May 02 - May 08, 2022</a></h2><h3><p>C++ / General-Purpose Machine Learning</p>
 </h3>
@@ -1046,7 +1131,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/10/">Mar 07 - Mar 13, 2022</a></h2><h3><p>Tools / Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/chaos-genius/chaos_genius/" rel="noopener noreferrer">Chaos Genius (⭐777)</a> - ML powered analytics engine for outlier/anomaly detection and root cause analysis.</li>
+<li><a href="https://github.com/chaos-genius/chaos_genius/" rel="noopener noreferrer">Chaos Genius (⭐778)</a> - ML powered analytics engine for outlier/anomaly detection and root cause analysis.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/5/">Jan 31 - Feb 06, 2022</a></h2><h3><p>Python / Computer Vision</p>
 </h3>
@@ -1079,7 +1164,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/AstraZeneca/chemicalx" rel="noopener noreferrer">ChemicalX (⭐776)</a> -&gt; A PyTorch based deep learning library for drug pair scoring</li>
+<li><a href="https://github.com/AstraZeneca/chemicalx" rel="noopener noreferrer">ChemicalX (⭐777)</a> -&gt; A PyTorch based deep learning library for drug pair scoring</li>
 </ul>
 
 <ul>
@@ -1098,7 +1183,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/50/">Dec 13 - Dec 19, 2021</a></h2><h3><p>C++ / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pycaret/pycaret" rel="noopener noreferrer">PyCaret (⭐9.7k)</a> - An open-source, low-code machine learning library in Python that automates machine learning workflows.</li>
+<li><a href="https://github.com/pycaret/pycaret" rel="noopener noreferrer">PyCaret (⭐9.8k)</a> - An open-source, low-code machine learning library in Python that automates machine learning workflows.</li>
 </ul>
 <h3><p>Clojure / General-Purpose Machine Learning</p>
 </h3>
@@ -1117,7 +1202,7 @@
 <h3><p>Clojure / Data Analysis</p>
 </h3>
 <ul>
-<li><a href="https://github.com/techascent/tech.ml.dataset" rel="noopener noreferrer">tech.ml.dataset (⭐743)</a> - Clojure dataframe library and pipeline for data processing and machine learning</li>
+<li><a href="https://github.com/techascent/tech.ml.dataset" rel="noopener noreferrer">tech.ml.dataset (⭐746)</a> - Clojure dataframe library and pipeline for data processing and machine learning</li>
 </ul>
 <h3><p>Clojure / Data Visualization</p>
 </h3>
@@ -1126,7 +1211,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/scicloj/notespace" rel="noopener noreferrer">notespace (⭐149)</a> - Notebook experience in your Clojure namespace</li>
+<li><a href="https://github.com/scicloj/notespace" rel="noopener noreferrer">notespace (⭐148)</a> - Notebook experience in your Clojure namespace</li>
 </ul>
 
 <ul>
@@ -1197,7 +1282,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/42/">Oct 18 - Oct 24, 2021</a></h2><h3><p>Rust / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/smartcorelib/smartcore" rel="noopener noreferrer">smartcore (⭐904)</a> - "The Most Advanced Machine Learning Library In Rust."</li>
+<li><a href="https://github.com/smartcorelib/smartcore" rel="noopener noreferrer">smartcore (⭐910)</a> - "The Most Advanced Machine Learning Library In Rust."</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/40/">Oct 04 - Oct 10, 2021</a></h2><h3><p>Python / Computer Vision</p>
 </h3>
@@ -1212,7 +1297,7 @@
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/streamlit/streamlit" rel="noopener noreferrer">Streamlit (⭐44k)</a>: Streamlit is an framework to create beautiful data apps in hours, not weeks.</li>
+<li><a href="https://github.com/streamlit/streamlit" rel="noopener noreferrer">Streamlit (⭐45k)</a>: Streamlit is an framework to create beautiful data apps in hours, not weeks.</li>
 </ul>
 
 <ul>
@@ -1243,7 +1328,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/38/">Sep 20 - Sep 26, 2021</a></h2><h3><p>Tools / Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/iterative/dvclive" rel="noopener noreferrer">DVClive (⭐189)</a> - Python library for experiment metrics logging into simply formatted local files.</li>
+<li><a href="https://github.com/iterative/dvclive" rel="noopener noreferrer">DVClive (⭐190)</a> - Python library for experiment metrics logging into simply formatted local files.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/36/">Sep 06 - Sep 12, 2021</a></h2><h3><p>Python / Computer Vision</p>
 </h3>
@@ -1297,17 +1382,17 @@
 <h2><a href="https://www.trackawesomelist.com/2021/25/">Jun 21 - Jun 27, 2021</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rodrigo-arenas/Sklearn-genetic-opt" rel="noopener noreferrer">Sklearn-genetic-opt (⭐360)</a>: An AutoML package for hyperparameters tuning using evolutionary algorithms, with built-in callbacks, plotting, remote logging and more.</li>
+<li><a href="https://github.com/rodrigo-arenas/Sklearn-genetic-opt" rel="noopener noreferrer">Sklearn-genetic-opt (⭐361)</a>: An AutoML package for hyperparameters tuning using evolutionary algorithms, with built-in callbacks, plotting, remote logging and more.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/24/">Jun 14 - Jun 20, 2021</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/evidentlyai/evidently" rel="noopener noreferrer">Evidently (⭐7.4k)</a>: Interactive reports to analyze machine learning models during validation or production monitoring.</li>
+<li><a href="https://github.com/evidentlyai/evidently" rel="noopener noreferrer">Evidently (⭐7.5k)</a>: Interactive reports to analyze machine learning models during validation or production monitoring.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/22/">May 31 - Jun 06, 2021</a></h2><h3><p>Python / Reinforcement Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/enlite-ai/maze" rel="noopener noreferrer">Maze (⭐286)</a> - Application-oriented deep reinforcement learning framework addressing real-world decision problems.</li>
+<li><a href="https://github.com/enlite-ai/maze" rel="noopener noreferrer">Maze (⭐288)</a> - Application-oriented deep reinforcement learning framework addressing real-world decision problems.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/21/">May 24 - May 30, 2021</a></h2><h3><p>Python / Computer Vision</p>
 </h3>
@@ -1376,7 +1461,7 @@
 <h3><p>Python / Neural Networks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/shobrook/sequitur" rel="noopener noreferrer">sequitur (⭐453)</a> PyTorch library for creating and training sequence autoencoders in just two lines of code</li>
+<li><a href="https://github.com/shobrook/sequitur" rel="noopener noreferrer">sequitur (⭐454)</a> PyTorch library for creating and training sequence autoencoders in just two lines of code</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/3/">Jan 18 - Jan 24, 2021</a></h2><h3><p>Python / Natural Language Processing</p>
 </h3>
@@ -1386,7 +1471,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/2/">Jan 11 - Jan 17, 2021</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gradio-app/gradio" rel="noopener noreferrer">Gradio (⭐42k)</a> - A Python library for quickly creating and sharing demos of models. Debug models interactively in your browser, get feedback from collaborators, and generate public links without deploying anything.</li>
+<li><a href="https://github.com/gradio-app/gradio" rel="noopener noreferrer">Gradio (⭐43k)</a> - A Python library for quickly creating and sharing demos of models. Debug models interactively in your browser, get feedback from collaborators, and generate public links without deploying anything.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/1/">Jan 04 - Jan 10, 2021</a></h2><h3><p>Python / Misc Scripts / iPython Notebooks / Codebases</p>
 </h3>
@@ -1426,7 +1511,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/45/">Nov 09 - Nov 15, 2020</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alan-turing-institute/sktime" rel="noopener noreferrer">sktime (⭐9.7k)</a> - A unified framework for machine learning with time series</li>
+<li><a href="https://github.com/alan-turing-institute/sktime" rel="noopener noreferrer">sktime (⭐9.8k)</a> - A unified framework for machine learning with time series</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/43/">Oct 26 - Nov 01, 2020</a></h2><h3><p>Python / Computer Vision</p>
 </h3>
@@ -1454,7 +1539,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/uncomplicate/deep-diamond" rel="noopener noreferrer">Deep Diamond (⭐460)</a> - A fast Clojure Tensor &amp; Deep Learning library</li>
+<li><a href="https://github.com/uncomplicate/deep-diamond" rel="noopener noreferrer">Deep Diamond (⭐463)</a> - A fast Clojure Tensor &amp; Deep Learning library</li>
 </ul>
 
 <ul>
@@ -1467,7 +1552,7 @@
 <h3><p>Clojure / Data Analysis</p>
 </h3>
 <ul>
-<li><a href="https://github.com/scicloj/tablecloth" rel="noopener noreferrer">Tablecloth (⭐358)</a> - A dataframe grammar wrapping tech.ml.dataset, inspired by several R libraries</li>
+<li><a href="https://github.com/scicloj/tablecloth" rel="noopener noreferrer">Tablecloth (⭐361)</a> - A dataframe grammar wrapping tech.ml.dataset, inspired by several R libraries</li>
 </ul>
 
 <ul>
@@ -1480,7 +1565,7 @@
 <h3><p>Clojure / Data Visualization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jsa-aerial/hanami" rel="noopener noreferrer">Hanami (⭐408)</a> - Clojure(Script) library and framework for creating interactive visualization applications based in Vega-Lite (VGL) and/or Vega (VG) specifications. Automatic framing and layouts along with a powerful templating system for abstracting visualization specs</li>
+<li><a href="https://github.com/jsa-aerial/hanami" rel="noopener noreferrer">Hanami (⭐409)</a> - Clojure(Script) library and framework for creating interactive visualization applications based in Vega-Lite (VGL) and/or Vega (VG) specifications. Automatic framing and layouts along with a powerful templating system for abstracting visualization specs</li>
 </ul>
 
 <ul>
@@ -1492,7 +1577,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/clojupyter/clojupyter" rel="noopener noreferrer">clojupyter (⭐860)</a> -  A Jupyter kernel for Clojure - run Clojure code in Jupyter Lab, Notebook and Console.</li>
+<li><a href="https://github.com/clojupyter/clojupyter" rel="noopener noreferrer">clojupyter (⭐863)</a> -  A Jupyter kernel for Clojure - run Clojure code in Jupyter Lab, Notebook and Console.</li>
 </ul>
 <h3><p>Clojure / Interop</p>
 </h3>
@@ -1518,7 +1603,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/generateme/fastmath" rel="noopener noreferrer">fastmath (⭐278)</a> - A collection of functions for mathematical and statistical computing, macine learning, etc., wrapping several JVM libraries</li>
+<li><a href="https://github.com/generateme/fastmath" rel="noopener noreferrer">fastmath (⭐279)</a> - A collection of functions for mathematical and statistical computing, macine learning, etc., wrapping several JVM libraries</li>
 </ul>
 <h3><p>Clojure / Extra</p>
 </h3>
@@ -1572,7 +1657,7 @@
 <h3><p>Python / Natural Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/proycon/colibri-core" rel="noopener noreferrer">colibri-core (⭐129)</a> - Python binding to C++ library for extracting and working with basic linguistic constructions such as n-grams and skipgrams in a quick and memory-efficient way.</li>
+<li><a href="https://github.com/proycon/colibri-core" rel="noopener noreferrer">colibri-core (⭐130)</a> - Python binding to C++ library for extracting and working with basic linguistic constructions such as n-grams and skipgrams in a quick and memory-efficient way.</li>
 </ul>
 
 <ul>
@@ -1674,7 +1759,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/OpenMined/PyGrid/" rel="noopener noreferrer">PyGrid (⭐614)</a> - Peer-to-peer network of data owners and data scientists who can collectively train AI models using PySyft</li>
+<li><a href="https://github.com/OpenMined/PyGrid/" rel="noopener noreferrer">PyGrid (⭐613)</a> - Peer-to-peer network of data owners and data scientists who can collectively train AI models using PySyft</li>
 </ul>
 <h3><p>Python / Data Analysis / Data Visualization</p>
 </h3>
@@ -1716,13 +1801,13 @@
 <h2><a href="https://www.trackawesomelist.com/2020/38/">Sep 21 - Sep 27, 2020</a></h2><h3><p>Fortran / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/modern-fortran/neural-fortran" rel="noopener noreferrer">neural-fortran (⭐467)</a> - A parallel neural net microframework.
+<li><a href="https://github.com/modern-fortran/neural-fortran" rel="noopener noreferrer">neural-fortran (⭐468)</a> - A parallel neural net microframework.
 Read the paper <a href="https://arxiv.org/abs/1902.06714" rel="noopener noreferrer">here</a>.</li>
 </ul>
 <h3><p>Python / Data Analysis / Data Visualization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cdslaborg/paramonte" rel="noopener noreferrer">ParaMonte (⭐304)</a> - A general-purpose Python library for Bayesian data analysis and visualization via serial/parallel Monte Carlo and MCMC simulations. Documentation can be found <a href="https://www.cdslab.org/paramonte/" rel="noopener noreferrer">here</a>.</li>
+<li><a href="https://github.com/cdslaborg/paramonte" rel="noopener noreferrer">ParaMonte (⭐305)</a> - A general-purpose Python library for Bayesian data analysis and visualization via serial/parallel Monte Carlo and MCMC simulations. Documentation can be found <a href="https://www.cdslab.org/paramonte/" rel="noopener noreferrer">here</a>.</li>
 </ul>
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
@@ -1759,7 +1844,7 @@ Read the paper <a href="https://arxiv.org/abs/1902.06714" rel="noopener noreferr
 <h2><a href="https://www.trackawesomelist.com/2020/36/">Sep 07 - Sep 13, 2020</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/couler-proj/couler" rel="noopener noreferrer">Couler (⭐942)</a> - Unified interface for constructing and managing machine learning workflows on different workflow engines, such as Argo Workflows, Tekton Pipelines, and Apache Airflow.</li>
+<li><a href="https://github.com/couler-proj/couler" rel="noopener noreferrer">Couler (⭐944)</a> - Unified interface for constructing and managing machine learning workflows on different workflow engines, such as Argo Workflows, Tekton Pipelines, and Apache Airflow.</li>
 </ul>
 
 <ul>
@@ -1781,7 +1866,7 @@ Read the paper <a href="https://arxiv.org/abs/1902.06714" rel="noopener noreferr
 </ul>
 
 <ul>
-<li><a href="https://github.com/greentfrapp/lucent" rel="noopener noreferrer">Lucent (⭐655)</a> - Tensorflow and OpenAI Clarity's Lucid adapted for PyTorch.</li>
+<li><a href="https://github.com/greentfrapp/lucent" rel="noopener noreferrer">Lucent (⭐657)</a> - Tensorflow and OpenAI Clarity's Lucid adapted for PyTorch.</li>
 </ul>
 <h3><p>Python / Reinforcement Learning</p>
 </h3>
@@ -1821,7 +1906,7 @@ Read the paper <a href="https://arxiv.org/abs/1902.06714" rel="noopener noreferr
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/benedekrozemberczki/littleballoffur" rel="noopener noreferrer">Little Ball of Fur (⭐713)</a> -&gt; A graph sampling extension library for NetworkX with a Scikit-Learn like API.</li>
+<li><a href="https://github.com/benedekrozemberczki/littleballoffur" rel="noopener noreferrer">Little Ball of Fur (⭐714)</a> -&gt; A graph sampling extension library for NetworkX with a Scikit-Learn like API.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/20/">May 18 - May 24, 2020</a></h2><h3><p>Python / Computer Vision</p>
 </h3>
@@ -1874,12 +1959,12 @@ Read the paper <a href="https://arxiv.org/abs/1902.06714" rel="noopener noreferr
 <h3><p>Python / Computer Vision</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ProGamerGov/neural-dream" rel="noopener noreferrer">neural-dream (⭐148)</a> - A PyTorch implementation of DeepDream.</li>
+<li><a href="https://github.com/ProGamerGov/neural-dream" rel="noopener noreferrer">neural-dream (⭐147)</a> - A PyTorch implementation of DeepDream.</li>
 </ul>
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mindsdb/lightwood" rel="noopener noreferrer">Lightwood (⭐507)</a> - A Pytorch based framework that breaks down machine learning problems into smaller blocks that can be glued together seamlessly with objective to build predictive models with one line of code.</li>
+<li><a href="https://github.com/mindsdb/lightwood" rel="noopener noreferrer">Lightwood (⭐508)</a> - A Pytorch based framework that breaks down machine learning problems into smaller blocks that can be glued together seamlessly with objective to build predictive models with one line of code.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/8/">Feb 24 - Mar 01, 2020</a></h2><h3><p>Tools / Misc</p>
 </h3>
@@ -1912,12 +1997,12 @@ Read the paper <a href="https://arxiv.org/abs/1902.06714" rel="noopener noreferr
 <h3><p>Python / Natural Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sergioburdisso/pyss3" rel="noopener noreferrer">PySS3 (⭐349)</a> - Python package that implements a novel white-box machine learning model for text classification, called SS3. Since SS3 has the ability to visually explain its rationale, this package also comes with easy-to-use interactive visualizations tools (<a href="http://tworld.io/ss3/" rel="noopener noreferrer">online demos</a>).</li>
+<li><a href="https://github.com/sergioburdisso/pyss3" rel="noopener noreferrer">PySS3 (⭐348)</a> - Python package that implements a novel white-box machine learning model for text classification, called SS3. Since SS3 has the ability to visually explain its rationale, this package also comes with easy-to-use interactive visualizations tools (<a href="http://tworld.io/ss3/" rel="noopener noreferrer">online demos</a>).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/2/">Jan 13 - Jan 19, 2020</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AutoViML/Auto_ViML" rel="noopener noreferrer">Auto_ViML (⭐546)</a> -&gt; Automatically Build Variant Interpretable ML models fast! Auto_ViML is pronounced "auto vimal", is a comprehensive and scalable Python AutoML toolkit with imbalanced handling, ensembling, stacking and built-in feature selection. Featured in <a href="https://towardsdatascience.com/why-automl-is-an-essential-new-tool-for-data-scientists-2d9ab4e25e46?source=friends_link&amp;sk=d03a0cc55c23deb497d546d6b9be0653">Medium article</a>.</li>
+<li><a href="https://github.com/AutoViML/Auto_ViML" rel="noopener noreferrer">Auto_ViML (⭐548)</a> -&gt; Automatically Build Variant Interpretable ML models fast! Auto_ViML is pronounced "auto vimal", is a comprehensive and scalable Python AutoML toolkit with imbalanced handling, ensembling, stacking and built-in feature selection. Featured in <a href="https://towardsdatascience.com/why-automl-is-an-essential-new-tool-for-data-scientists-2d9ab4e25e46?source=friends_link&amp;sk=d03a0cc55c23deb497d546d6b9be0653">Medium article</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/51/">Dec 23 - Dec 29, 2019</a></h2><h3><p>R / Data Manipulation | Data Analysis | Data Visualization</p>
 </h3>
@@ -2016,7 +2101,7 @@ be
 </ul>
 
 <ul>
-<li><a href="https://github.com/google/jax" rel="noopener noreferrer">JAX (⭐35k)</a> - JAX is Autograd and XLA, brought together for high-performance machine learning research.</li>
+<li><a href="https://github.com/google/jax" rel="noopener noreferrer">JAX (⭐36k)</a> - JAX is Autograd and XLA, brought together for high-performance machine learning research.</li>
 </ul>
 <h3><p>Python / Misc Scripts / iPython Notebooks / Codebases</p>
 </h3>
@@ -2077,7 +2162,7 @@ be
 </ul>
 
 <ul>
-<li><a href="https://github.com/dmitryikh/leaves" rel="noopener noreferrer">leaves (⭐474)</a> - A pure Go implementation of the prediction part of GBRTs, including XGBoost and LightGBM.</li>
+<li><a href="https://github.com/dmitryikh/leaves" rel="noopener noreferrer">leaves (⭐476)</a> - A pure Go implementation of the prediction part of GBRTs, including XGBoost and LightGBM.</li>
 </ul>
 
 <ul>
@@ -2114,7 +2199,7 @@ be
 <h3><p>Go / Spatial analysis and geometry</p>
 </h3>
 <ul>
-<li><a href="https://github.com/twpayne/go-geom" rel="noopener noreferrer">go-geom (⭐967)</a> - Go library to handle geometries.</li>
+<li><a href="https://github.com/twpayne/go-geom" rel="noopener noreferrer">go-geom (⭐968)</a> - Go library to handle geometries.</li>
 </ul>
 
 <ul>
@@ -2143,7 +2228,7 @@ be
 </ul>
 
 <ul>
-<li><a href="https://github.com/arafatk/glot" rel="noopener noreferrer">glot (⭐406)</a> - Glot is a plotting library for Golang built on top of gnuplot.</li>
+<li><a href="https://github.com/arafatk/glot" rel="noopener noreferrer">glot (⭐407)</a> - Glot is a plotting library for Golang built on top of gnuplot.</li>
 </ul>
 
 <ul>
@@ -2256,7 +2341,7 @@ be
 <h2><a href="https://www.trackawesomelist.com/2019/5/">Feb 04 - Feb 10, 2019</a></h2><h3><p>C++ / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Xtra-Computing/thundergbm" rel="noopener noreferrer">ThunderGBM (⭐711)</a> - A fast library for GBDTs and Random Forests on GPUs.</li>
+<li><a href="https://github.com/Xtra-Computing/thundergbm" rel="noopener noreferrer">ThunderGBM (⭐713)</a> - A fast library for GBDTs and Random Forests on GPUs.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/4/">Jan 28 - Feb 03, 2019</a></h2><h3><p>APL / General-Purpose Machine Learning</p>
 </h3>
@@ -2317,7 +2402,7 @@ be
 </ul>
 
 <ul>
-<li><a href="https://github.com/jeff1evesque/machine-learning" rel="noopener noreferrer">machine learning (⭐260)</a> - automated build consisting of a <a href="https://github.com/jeff1evesque/machine-learning#web-interface" rel="noopener noreferrer">web-interface (⭐260)</a>, and set of <a href="https://github.com/jeff1evesque/machine-learning#programmatic-interface" rel="noopener noreferrer">programmatic-interface (⭐260)</a> API, for support vector machines. Corresponding dataset(s) are stored into a SQL database, then generated model(s) used for prediction(s), are stored into a NoSQL datastore.</li>
+<li><a href="https://github.com/jeff1evesque/machine-learning" rel="noopener noreferrer">machine learning (⭐259)</a> - automated build consisting of a <a href="https://github.com/jeff1evesque/machine-learning#web-interface" rel="noopener noreferrer">web-interface (⭐259)</a>, and set of <a href="https://github.com/jeff1evesque/machine-learning#programmatic-interface" rel="noopener noreferrer">programmatic-interface (⭐259)</a> API, for support vector machines. Corresponding dataset(s) are stored into a SQL database, then generated model(s) used for prediction(s), are stored into a NoSQL datastore.</li>
 </ul>
 
 <ul>
@@ -2456,7 +2541,7 @@ be
 <h3><p>Common Lisp / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/melisgl/mgl/" rel="noopener noreferrer">mgl (⭐643)</a> - Neural networks (boltzmann machines, feed-forward and recurrent nets), Gaussian Processes.</li>
+<li><a href="https://github.com/melisgl/mgl/" rel="noopener noreferrer">mgl (⭐644)</a> - Neural networks (boltzmann machines, feed-forward and recurrent nets), Gaussian Processes.</li>
 </ul>
 
 <ul>
@@ -2469,7 +2554,7 @@ be
 <h3><p>Clojure / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lspector/Clojush" rel="noopener noreferrer">Clojush (⭐337)</a> - The Push programming language and the PushGP genetic programming system implemented in Clojure.</li>
+<li><a href="https://github.com/lspector/Clojush" rel="noopener noreferrer">Clojush (⭐338)</a> - The Push programming language and the PushGP genetic programming system implemented in Clojure.</li>
 </ul>
 
 <ul>
@@ -2624,7 +2709,7 @@ be
 </ul>
 
 <ul>
-<li><a href="https://github.com/emorynlp/nlp4j" rel="noopener noreferrer">NLP4J (⭐156)</a> - The NLP4J project provides software and resources for natural language processing. The project started at the Center for Computational Language and EducAtion Research, and is currently developed by the Center for Language and Information Research at Emory University. <strong>[Deprecated]</strong></li>
+<li><a href="https://github.com/emorynlp/nlp4j" rel="noopener noreferrer">NLP4J (⭐155)</a> - The NLP4J project provides software and resources for natural language processing. The project started at the Center for Computational Language and EducAtion Research, and is currently developed by the Center for Language and Information Research at Emory University. <strong>[Deprecated]</strong></li>
 </ul>
 
 <ul>
@@ -2645,7 +2730,7 @@ be
 </ul>
 
 <ul>
-<li><a href="https://github.com/CogComp/saul" rel="noopener noreferrer">Saul (⭐63)</a> - Flexible Declarative Learning-Based Programming.</li>
+<li><a href="https://github.com/CogComp/saul" rel="noopener noreferrer">Saul (⭐64)</a> - Flexible Declarative Learning-Based Programming.</li>
 </ul>
 <h3><p>Scala / Data Analysis / Data Visualization</p>
 </h3>
@@ -2731,7 +2816,7 @@ be
 </ul>
 
 <ul>
-<li><a href="https://github.com/jasondavies/science.js/" rel="noopener noreferrer">science.js (⭐894)</a> - Scientific and statistical computing in JavaScript. <strong>[Deprecated]</strong></li>
+<li><a href="https://github.com/jasondavies/science.js/" rel="noopener noreferrer">science.js (⭐895)</a> - Scientific and statistical computing in JavaScript. <strong>[Deprecated]</strong></li>
 </ul>
 
 <ul>
@@ -2826,7 +2911,7 @@ be
 </ul>
 
 <ul>
-<li><a href="https://github.com/JuliaStats/Distances.jl" rel="noopener noreferrer">Distances (⭐471)</a> - Julia module for Distance evaluation.</li>
+<li><a href="https://github.com/JuliaStats/Distances.jl" rel="noopener noreferrer">Distances (⭐472)</a> - Julia module for Distance evaluation.</li>
 </ul>
 
 <ul>
@@ -2885,7 +2970,7 @@ be
 <h3><p>Julia / Misc Stuff / Presentations</p>
 </h3>
 <ul>
-<li><a href="https://github.com/JuliaDSP/DSP.jl" rel="noopener noreferrer">SignalProcessing (⭐416)</a> - Signal Processing tools for Julia.</li>
+<li><a href="https://github.com/JuliaDSP/DSP.jl" rel="noopener noreferrer">SignalProcessing (⭐417)</a> - Signal Processing tools for Julia.</li>
 </ul>
 <h3><p>Lua / General-Purpose Machine Learning</p>
 </h3>
@@ -3176,7 +3261,7 @@ be
 </ul>
 
 <ul>
-<li><a href="https://github.com/ecpolley/SuperLearner" rel="noopener noreferrer">SuperLearner (⭐290)</a> - Multi-algorithm ensemble learning packages.</li>
+<li><a href="https://github.com/ecpolley/SuperLearner" rel="noopener noreferrer">SuperLearner (⭐291)</a> - Multi-algorithm ensemble learning packages.</li>
 </ul>
 
 <ul>
@@ -3232,7 +3317,7 @@ be
 </ul>
 
 <ul>
-<li><a href="https://github.com/rleonid/oml" rel="noopener noreferrer">Oml (⭐119)</a> - A general statistics and machine learning library.</li>
+<li><a href="https://github.com/rleonid/oml" rel="noopener noreferrer">Oml (⭐120)</a> - A general statistics and machine learning library.</li>
 </ul>
 
 <ul>
@@ -3266,7 +3351,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 </ul>
 
 <ul>
-<li><a href="https://github.com/donnyyou/PyTorchCV" rel="noopener noreferrer">PyTorchCV (⭐53)</a> - A PyTorch-Based Framework for Deep Learning in Computer Vision.</li>
+<li><a href="https://github.com/donnyyou/PyTorchCV" rel="noopener noreferrer">PyTorchCV (⭐52)</a> - A PyTorch-Based Framework for Deep Learning in Computer Vision.</li>
 </ul>
 <h3><p>Python / Natural Language Processing</p>
 </h3>
@@ -3295,7 +3380,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 </ul>
 
 <ul>
-<li><a href="https://github.com/explosion/spaCy" rel="noopener noreferrer">spaCy (⭐33k)</a> - Industrial strength NLP with Python and Cython.</li>
+<li><a href="https://github.com/explosion/spaCy" rel="noopener noreferrer">spaCy (⭐34k)</a> - Industrial strength NLP with Python and Cython.</li>
 </ul>
 
 <ul>
@@ -3453,7 +3538,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 </ul>
 
 <ul>
-<li><a href="https://github.com/nkallen/arel" rel="noopener noreferrer">Arel (⭐270)</a> <strong>[Deprecated]</strong></li>
+<li><a href="https://github.com/nkallen/arel" rel="noopener noreferrer">Arel (⭐271)</a> <strong>[Deprecated]</strong></li>
 </ul>
 <h3><p>Rust / General-Purpose Machine Learning</p>
 </h3>
@@ -3516,11 +3601,11 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 </ul>
 
 <ul>
-<li><a href="https://github.com/KevinCoble/AIToolbox" rel="noopener noreferrer">AIToolbox (⭐802)</a> - A toolbox framework of AI modules written in Swift: Graphs/Trees, Linear Regression, Support Vector Machines, Neural Networks, PCA, KMeans, Genetic Algorithms, MDP, Mixture of Gaussians.</li>
+<li><a href="https://github.com/KevinCoble/AIToolbox" rel="noopener noreferrer">AIToolbox (⭐803)</a> - A toolbox framework of AI modules written in Swift: Graphs/Trees, Linear Regression, Support Vector Machines, Neural Networks, PCA, KMeans, Genetic Algorithms, MDP, Mixture of Gaussians.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/SwiftBrain/awesome-CoreML-models" rel="noopener noreferrer">Awesome CoreML (⭐584)</a> - A curated list of pretrained CoreML models.</li>
+<li><a href="https://github.com/SwiftBrain/awesome-CoreML-models" rel="noopener noreferrer">Awesome CoreML (⭐585)</a> - A curated list of pretrained CoreML models.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/2/">Jan 14 - Jan 20, 2019</a></h2><h3><p>C++ / General-Purpose Machine Learning</p>
 </h3>
@@ -3550,7 +3635,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 <h3><p>Python / Misc Scripts / iPython Notebooks / Codebases</p>
 </h3>
 <ul>
-<li><a href="https://github.com/trekhleb/homemade-machine-learning" rel="noopener noreferrer">Homemade Machine Learning (⭐24k)</a> - Python examples of popular machine learning algorithms with interactive Jupyter demos and math being explained</li>
+<li><a href="https://github.com/trekhleb/homemade-machine-learning" rel="noopener noreferrer">Homemade Machine Learning (⭐25k)</a> - Python examples of popular machine learning algorithms with interactive Jupyter demos and math being explained</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/50/">Dec 10 - Dec 16, 2018</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
@@ -3575,7 +3660,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 <h2><a href="https://www.trackawesomelist.com/2018/46/">Nov 12 - Nov 18, 2018</a></h2><h3><p>Elixir / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mrdimosthenis/emel" rel="noopener noreferrer">emel (⭐115)</a> - A simple and functional machine learning library written in Elixir.</li>
+<li><a href="https://github.com/mrdimosthenis/emel" rel="noopener noreferrer">emel (⭐116)</a> - A simple and functional machine learning library written in Elixir.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/45/">Nov 05 - Nov 11, 2018</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
@@ -3624,7 +3709,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 <h2><a href="https://www.trackawesomelist.com/2018/40/">Oct 01 - Oct 07, 2018</a></h2><h3><p>Java / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bwaldvogel/liblinear-java" rel="noopener noreferrer">liblinear-java (⭐310)</a> - Java version of liblinear.</li>
+<li><a href="https://github.com/bwaldvogel/liblinear-java" rel="noopener noreferrer">liblinear-java (⭐309)</a> - Java version of liblinear.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/38/">Sep 17 - Sep 23, 2018</a></h2><h3><p>Python / Data Analysis / Data Visualization</p>
 </h3>
@@ -3649,7 +3734,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 <h3><p>Python / Kaggle Competition Source Code</p>
 </h3>
 <ul>
-<li><a href="https://github.com/neptune-ml/open-solution-home-credit" rel="noopener noreferrer">open-solution-home-credit (⭐462)</a> -&gt; source code and <a href="https://app.neptune.ml/neptune-ml/Home-Credit-Default-Risk" rel="noopener noreferrer">experiments results</a> for <a href="https://www.kaggle.com/c/home-credit-default-risk" rel="noopener noreferrer">Home Credit Default Risk</a>.</li>
+<li><a href="https://github.com/neptune-ml/open-solution-home-credit" rel="noopener noreferrer">open-solution-home-credit (⭐464)</a> -&gt; source code and <a href="https://app.neptune.ml/neptune-ml/Home-Credit-Default-Risk" rel="noopener noreferrer">experiments results</a> for <a href="https://www.kaggle.com/c/home-credit-default-risk" rel="noopener noreferrer">Home Credit Default Risk</a>.</li>
 </ul>
 
 <ul>
@@ -3745,7 +3830,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/flennerhag/mlens" rel="noopener noreferrer">mlens (⭐864)</a> - A high performance, memory efficient, maximally parallelized ensemble learning, integrated with scikit-learn.</li>
+<li><a href="https://github.com/flennerhag/mlens" rel="noopener noreferrer">mlens (⭐866)</a> - A high performance, memory efficient, maximally parallelized ensemble learning, integrated with scikit-learn.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/22/">May 28 - Jun 03, 2018</a></h2><h3><p>Scala / General-Purpose Machine Learning</p>
 </h3>
@@ -3788,7 +3873,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 <h2><a href="https://www.trackawesomelist.com/2018/9/">Feb 26 - Mar 04, 2018</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/siavashserver/neonrvm" rel="noopener noreferrer">neonrvm (⭐40)</a> - neonrvm is an open source machine learning library based on RVM technique. It's written in C programming language and comes with Python programming language bindings.</li>
+<li><a href="https://github.com/siavashserver/neonrvm" rel="noopener noreferrer">neonrvm (⭐41)</a> - neonrvm is an open source machine learning library based on RVM technique. It's written in C programming language and comes with Python programming language bindings.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/7/">Feb 12 - Feb 18, 2018</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
@@ -3846,7 +3931,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 <li><a href="https://github.com/ocallaco/LuaSHkit" rel="noopener noreferrer">LuaSHKit (⭐3)</a> - A Lua wrapper around the Locality sensitive hashing library SHKit <strong>[Deprecated]</strong></li>
 <li><a href="https://github.com/rlowrance/kernel-smoothers" rel="noopener noreferrer">kernel smoothing (⭐5)</a> - KNN, kernel-weighted average, local linear regression smoothers. <strong>[Deprecated]</strong></li>
 <li><a href="https://github.com/torch/cutorch" rel="noopener noreferrer">cutorch (⭐338)</a> - Torch CUDA Implementation.</li>
-<li><a href="https://github.com/torch/cunn" rel="noopener noreferrer">cunn (⭐214)</a> - Torch CUDA Neural Network Implementation.</li>
+<li><a href="https://github.com/torch/cunn" rel="noopener noreferrer">cunn (⭐213)</a> - Torch CUDA Neural Network Implementation.</li>
 <li><a href="https://github.com/clementfarabet/lua---imgraph" rel="noopener noreferrer">imgraph (⭐22)</a> - An image/graph library for Torch. This package provides routines to construct graphs on images, segment them, build trees out of them, and convert them back to images. <strong>[Deprecated]</strong></li>
 <li><a href="https://github.com/clementfarabet/videograph" rel="noopener noreferrer">videograph (⭐9)</a> - A video/graph library for Torch. This package provides routines to construct graphs on videos, segment them, build trees out of them, and convert them back to videos. <strong>[Deprecated]</strong></li>
 <li><a href="https://github.com/marcoscoffier/torch-saliency" rel="noopener noreferrer">saliency (⭐7)</a> - code and tools around integral images. A library for finding interest points based on fast integral histograms. <strong>[Deprecated]</strong></li>
@@ -3953,7 +4038,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 <h3><p>Clojure / Natural Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dakrone/clojure-opennlp" rel="noopener noreferrer">Clojure-openNLP (⭐757)</a> - Natural Language Processing in Clojure (opennlp).</li>
+<li><a href="https://github.com/dakrone/clojure-opennlp" rel="noopener noreferrer">Clojure-openNLP (⭐756)</a> - Natural Language Processing in Clojure (opennlp).</li>
 </ul>
 
 <ul>
@@ -3967,7 +4052,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 <h3><p>Go / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/goml/gobrain" rel="noopener noreferrer">gobrain (⭐564)</a> - Neural Networks written in Go.</li>
+<li><a href="https://github.com/goml/gobrain" rel="noopener noreferrer">gobrain (⭐565)</a> - Neural Networks written in Go.</li>
 </ul>
 <h3><p>Java / General-Purpose Machine Learning</p>
 </h3>
@@ -4049,7 +4134,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 </ul>
 
 <ul>
-<li><a href="https://github.com/dmbates/MixedModels.jl" rel="noopener noreferrer">Mixed Models (⭐443)</a> - A Julia package for fitting (statistical) mixed-effects models.</li>
+<li><a href="https://github.com/dmbates/MixedModels.jl" rel="noopener noreferrer">Mixed Models (⭐444)</a> - A Julia package for fitting (statistical) mixed-effects models.</li>
 </ul>
 
 <ul>
@@ -4065,7 +4150,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 </ul>
 
 <ul>
-<li><a href="https://github.com/JuliaStats/GLM.jl" rel="noopener noreferrer">GLM (⭐636)</a> - Generalized linear models in Julia.</li>
+<li><a href="https://github.com/JuliaStats/GLM.jl" rel="noopener noreferrer">GLM (⭐634)</a> - Generalized linear models in Julia.</li>
 </ul>
 
 <ul>
@@ -4081,7 +4166,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 </ul>
 
 <ul>
-<li><a href="https://github.com/dmlc/XGBoost.jl" rel="noopener noreferrer">XGBoost (⭐305)</a> - eXtreme Gradient Boosting Package in Julia.</li>
+<li><a href="https://github.com/dmlc/XGBoost.jl" rel="noopener noreferrer">XGBoost (⭐304)</a> - eXtreme Gradient Boosting Package in Julia.</li>
 </ul>
 
 <ul>
@@ -4114,7 +4199,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 </ul>
 
 <ul>
-<li><a href="https://github.com/JuliaStats/HypothesisTests.jl" rel="noopener noreferrer">Hypothesis Tests (⭐317)</a> - Hypothesis tests for Julia.</li>
+<li><a href="https://github.com/JuliaStats/HypothesisTests.jl" rel="noopener noreferrer">Hypothesis Tests (⭐318)</a> - Hypothesis tests for Julia.</li>
 </ul>
 
 <ul>
@@ -4122,7 +4207,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 </ul>
 
 <ul>
-<li><a href="https://github.com/JuliaStats/TimeSeries.jl" rel="noopener noreferrer">Time Series (⭐368)</a> - Time series toolkit for Julia.</li>
+<li><a href="https://github.com/JuliaStats/TimeSeries.jl" rel="noopener noreferrer">Time Series (⭐369)</a> - Time series toolkit for Julia.</li>
 </ul>
 
 <ul>
@@ -4135,7 +4220,7 @@ find <a href="https://metacpan.org/pod/AI::NaiveBayes" rel="noopener noreferrer"
 </ul>
 
 <ul>
-<li><a href="https://github.com/JuliaImages/Images.jl" rel="noopener noreferrer">Images (⭐551)</a> - An image library for Julia.</li>
+<li><a href="https://github.com/JuliaImages/Images.jl" rel="noopener noreferrer">Images (⭐552)</a> - An image library for Julia.</li>
 </ul>
 <h3><p>Lua / Demos and Scripts</p>
 </h3>
@@ -4173,7 +4258,7 @@ on MNIST digits[DEEP LEARNING].</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/cltk/cltk" rel="noopener noreferrer">CLTK (⭐903)</a> - The Classical Language Toolkit.</li>
+<li><a href="https://github.com/cltk/cltk" rel="noopener noreferrer">CLTK (⭐906)</a> - The Classical Language Toolkit.</li>
 </ul>
 
 <ul>
@@ -4324,7 +4409,7 @@ on MNIST digits[DEEP LEARNING].</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/tqchen/xgboost/tree/master/R-package" rel="noopener noreferrer">XGBoost.R (⭐580)</a> - R binding for eXtreme Gradient Boosting (Tree) Library.</li>
+<li><a href="https://github.com/tqchen/xgboost/tree/master/R-package" rel="noopener noreferrer">XGBoost.R (⭐579)</a> - R binding for eXtreme Gradient Boosting (Tree) Library.</li>
 </ul>
 <h3><p>Scala / Data Analysis / Data Visualization</p>
 </h3>
@@ -4346,7 +4431,7 @@ on MNIST digits[DEEP LEARNING].</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/stripe/brushfire" rel="noopener noreferrer">brushfire (⭐391)</a> - Distributed decision tree ensemble learning in Scala.</li>
+<li><a href="https://github.com/stripe/brushfire" rel="noopener noreferrer">brushfire (⭐390)</a> - Distributed decision tree ensemble learning in Scala.</li>
 </ul>
 
 <ul>
@@ -4395,7 +4480,7 @@ on MNIST digits[DEEP LEARNING].</li>
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pytorch/pytorch" rel="noopener noreferrer">PyTorch (⭐99k)</a> - Tensors and Dynamic neural networks in Python with strong GPU acceleration</li>
+<li><a href="https://github.com/pytorch/pytorch" rel="noopener noreferrer">PyTorch (⭐100k)</a> - Tensors and Dynamic neural networks in Python with strong GPU acceleration</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/31/">Jul 31 - Aug 06, 2017</a></h2><h3><p>Java / Data Analysis / Data Visualization</p>
 </h3>
@@ -4420,7 +4505,7 @@ on MNIST digits[DEEP LEARNING].</li>
 <h3><p>Matlab / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/josephmisiti/machine-learning-module" rel="noopener noreferrer">Machine Learning Module (⭐476)</a> - Class on machine w/ PDF, lectures, code</li>
+<li><a href="https://github.com/josephmisiti/machine-learning-module" rel="noopener noreferrer">Machine Learning Module (⭐477)</a> - Class on machine w/ PDF, lectures, code</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/26/">Jun 26 - Jul 02, 2017</a></h2><h3><p>Swift / General-Purpose Machine Learning</p>
 </h3>
@@ -4489,17 +4574,17 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 <h2><a href="https://www.trackawesomelist.com/2017/17/">Apr 24 - Apr 30, 2017</a></h2><h3><p>Python / Data Analysis / Data Visualization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jwkvam/bowtie" rel="noopener noreferrer">Bowtie (⭐768)</a> - A dashboard library for interactive visualizations using flask socketio and react.</li>
+<li><a href="https://github.com/jwkvam/bowtie" rel="noopener noreferrer">Bowtie (⭐767)</a> - A dashboard library for interactive visualizations using flask socketio and react.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/15/">Apr 10 - Apr 16, 2017</a></h2><h3><p>General-Purpose Machine Learning / Data Analysis / Data Visualization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/LaurentMazare/tensorflow-ocaml" rel="noopener noreferrer">TensorFlow (⭐287)</a> - OCaml bindings for TensorFlow.</li>
+<li><a href="https://github.com/LaurentMazare/tensorflow-ocaml" rel="noopener noreferrer">TensorFlow (⭐288)</a> - OCaml bindings for TensorFlow.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/13/">Mar 27 - Apr 02, 2017</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/williamFalcon/pix2pix-keras" rel="noopener noreferrer">Image-to-Image Translation with Conditional Adversarial Networks (⭐143)</a> - Implementation of image to image (pix2pix) translation from the paper by <a href="https://arxiv.org/pdf/1611.07004.pdf" rel="noopener noreferrer">isola et al</a>.[DEEP LEARNING]</li>
+<li><a href="https://github.com/williamFalcon/pix2pix-keras" rel="noopener noreferrer">Image-to-Image Translation with Conditional Adversarial Networks (⭐142)</a> - Implementation of image to image (pix2pix) translation from the paper by <a href="https://arxiv.org/pdf/1611.07004.pdf" rel="noopener noreferrer">isola et al</a>.[DEEP LEARNING]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/10/">Mar 06 - Mar 12, 2017</a></h2><h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
@@ -4527,7 +4612,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 <h3><p>C++ / Natural Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/LanguageMachines/frog" rel="noopener noreferrer">frog (⭐80)</a> - Memory-based NLP suite developed for Dutch: PoS tagger, lemmatiser, dependency parser, NER, shallow parser, morphological analyzer.</li>
+<li><a href="https://github.com/LanguageMachines/frog" rel="noopener noreferrer">frog (⭐81)</a> - Memory-based NLP suite developed for Dutch: PoS tagger, lemmatiser, dependency parser, NER, shallow parser, morphological analyzer.</li>
 </ul>
 
 <ul>
@@ -4689,7 +4774,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 <h3><p>Python / Misc Scripts / iPython Notebooks / Codebases</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kendricktan/suiron/" rel="noopener noreferrer">Suiron (⭐708)</a> - Machine Learning for RC Cars.</li>
+<li><a href="https://github.com/kendricktan/suiron/" rel="noopener noreferrer">Suiron (⭐709)</a> - Machine Learning for RC Cars.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/34/">Aug 22 - Aug 28, 2016</a></h2><h3><p>Scala / General-Purpose Machine Learning</p>
 </h3>
@@ -4791,7 +4876,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 </ul>
 
 <ul>
-<li><a href="https://github.com/maciejkula/rustlearn" rel="noopener noreferrer">rustlearn (⭐640)</a> - a machine learning framework featuring logistic regression, support vector machines, decision trees and random forests.</li>
+<li><a href="https://github.com/maciejkula/rustlearn" rel="noopener noreferrer">rustlearn (⭐642)</a> - a machine learning framework featuring logistic regression, support vector machines, decision trees and random forests.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/3/">Jan 18 - Jan 24, 2016</a></h2><h3><p>C++ / General-Purpose Machine Learning</p>
 </h3>
@@ -4831,7 +4916,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 <h3><p>Python / Misc Scripts / iPython Notebooks / Codebases</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ericjang/tdb" rel="noopener noreferrer">TDB (⭐1.4k)</a> - TensorDebugger (TDB) is a visual debugger for deep learning. It features interactive, node-by-node debugging and visualization for TensorFlow.</li>
+<li><a href="https://github.com/ericjang/tdb" rel="noopener noreferrer">TDB (⭐1.3k)</a> - TensorDebugger (TDB) is a visual debugger for deep learning. It features interactive, node-by-node debugging and visualization for TensorFlow.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/50/">Dec 14 - Dec 20, 2015</a></h2><h3><p>Java / General-Purpose Machine Learning</p>
 </h3>
@@ -4912,7 +4997,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 <h2><a href="https://www.trackawesomelist.com/2015/25/">Jun 22 - Jun 28, 2015</a></h2><h3><p>C++ / Natural Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/meta-toolkit/meta" rel="noopener noreferrer">MeTA (⭐714)</a> - <a href="https://meta-toolkit.org/" rel="noopener noreferrer">MeTA : ModErn Text Analysis</a> is a C++ Data Sciences Toolkit that facilitates mining big text data.</li>
+<li><a href="https://github.com/meta-toolkit/meta" rel="noopener noreferrer">MeTA (⭐713)</a> - <a href="https://meta-toolkit.org/" rel="noopener noreferrer">MeTA : ModErn Text Analysis</a> is a C++ Data Sciences Toolkit that facilitates mining big text data.</li>
 </ul>
 <h3><p>JavaScript / Data Analysis / Data Visualization</p>
 </h3>
@@ -4942,7 +5027,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 <h3><p>Python / Misc Scripts / iPython Notebooks / Codebases</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mwgg/GreatCircle" rel="noopener noreferrer">GreatCircle (⭐77)</a> - Library for calculating great circle distance.</li>
+<li><a href="https://github.com/mwgg/GreatCircle" rel="noopener noreferrer">GreatCircle (⭐78)</a> - Library for calculating great circle distance.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/12/">Mar 23 - Mar 29, 2015</a></h2><h3><p>Java / General-Purpose Machine Learning</p>
 </h3>
@@ -4976,7 +5061,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 <h3><p>R / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/johnmyleswhite/ML_for_Hackers" rel="noopener noreferrer">Machine Learning For Hackers (⭐3.8k)</a></li>
+<li><a href="https://github.com/johnmyleswhite/ML_for_Hackers" rel="noopener noreferrer">Machine Learning For Hackers (⭐3.7k)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2014/48/">Dec 01 - Dec 07, 2014</a></h2><h3><p>Python / Natural Language Processing</p>
 </h3>
@@ -5037,7 +5122,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 <h3><p>Python / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mattjj/pyhsmm" rel="noopener noreferrer">pyhsmm (⭐576)</a> - library for approximate unsupervised inference in Bayesian Hidden Markov Models (HMMs) and explicit-duration Hidden semi-Markov Models (HSMMs), focusing on the Bayesian Nonparametric extensions, the HDP-HMM and HDP-HSMM, mostly with weak-limit approximations.</li>
+<li><a href="https://github.com/mattjj/pyhsmm" rel="noopener noreferrer">pyhsmm (⭐577)</a> - library for approximate unsupervised inference in Bayesian Hidden Markov Models (HMMs) and explicit-duration Hidden semi-Markov Models (HSMMs), focusing on the Bayesian Nonparametric extensions, the HDP-HMM and HDP-HSMM, mostly with weak-limit approximations.</li>
 </ul>
 
 <ul>
@@ -5089,7 +5174,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 <h3><p>Julia / Misc Stuff / Presentations</p>
 </h3>
 <ul>
-<li><a href="https://github.com/JuliaDSP/DSP.jl" rel="noopener noreferrer">DSP (⭐416)</a> - Digital Signal Processing (filtering, periodograms, spectrograms, window functions).</li>
+<li><a href="https://github.com/JuliaDSP/DSP.jl" rel="noopener noreferrer">DSP (⭐417)</a> - Digital Signal Processing (filtering, periodograms, spectrograms, window functions).</li>
 </ul>
 <h3><p>Lua / General-Purpose Machine Learning</p>
 </h3>
@@ -5143,7 +5228,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 <h3><p>.NET / Natural Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sergey-tihon/Stanford.NLP.NET/" rel="noopener noreferrer">Stanford.NLP for .NET (⭐611)</a> - A full port of Stanford NLP packages to .NET and also available precompiled as a NuGet package.</li>
+<li><a href="https://github.com/sergey-tihon/Stanford.NLP.NET/" rel="noopener noreferrer">Stanford.NLP for .NET (⭐610)</a> - A full port of Stanford NLP packages to .NET and also available precompiled as a NuGet package.</li>
 </ul>
 <h3><p>Python / Computer Vision</p>
 </h3>
@@ -5207,7 +5292,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 </ul>
 
 <ul>
-<li><a href="https://github.com/kartograph/kartograph.py" rel="noopener noreferrer">Kartograph.py (⭐1k)</a> - Rendering beautiful SVG maps in Python.</li>
+<li><a href="https://github.com/kartograph/kartograph.py" rel="noopener noreferrer">Kartograph.py (⭐998)</a> - Rendering beautiful SVG maps in Python.</li>
 </ul>
 <h3><p>Python / Misc Scripts / iPython Notebooks / Codebases</p>
 </h3>
@@ -5254,7 +5339,7 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 <h3><p>Ruby / General-Purpose Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cardmagic/classifier" rel="noopener noreferrer">CardMagic-Classifier (⭐719)</a> - A general classifier module to allow Bayesian and other types of classifications.</li>
+<li><a href="https://github.com/cardmagic/classifier" rel="noopener noreferrer">CardMagic-Classifier (⭐718)</a> - A general classifier module to allow Bayesian and other types of classifications.</li>
 </ul>
 <h3><p>Ruby / Data Analysis / Data Visualization</p>
 </h3>
@@ -5299,14 +5384,56 @@ also <a href="https://metacpan.org/pod/AI::MXNet" rel="noopener noreferrer">rele
 </ul>
 
 <ul>
-<li><a href="https://github.com/p2t2/figaro" rel="noopener noreferrer">Figaro (⭐758)</a> - a Scala library for constructing probabilistic models.</li>
+<li><a href="https://github.com/p2t2/figaro" rel="noopener noreferrer">Figaro (⭐757)</a> - a Scala library for constructing probabilistic models.</li>
 </ul>
 <h3><p>Credits / Misc</p>
 </h3>
 <ul>
-<li>Some of the python libraries were cut-and-pasted from <a href="https://github.com/vinta/awesome-python" rel="noopener noreferrer">vinta (⭐293k)</a></li>
+<li>Some of the python libraries were cut-and-pasted from <a href="https://github.com/vinta/awesome-python" rel="noopener noreferrer">vinta (⭐296k)</a></li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
