@@ -16,41 +16,126 @@
     <meta property="og:title" content="Track Awesome Acg Updates Weekly" />
     <meta property="og:description" content="A curated list of awesome technologies related to Anime, Comic and Games" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Acg Updates Weekly</h1>
 <p>A curated list of awesome technologies related to Anime, Comic and Games</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/soruly/awesome-acg/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/soruly/awesome-acg">😺 soruly/awesome-acg</a><span> · </span><span>⭐ 1.4K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/soruly/awesome-acg/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/soruly/awesome-acg">😺 soruly/awesome-acg</a><span> · </span><span>⭐ 1.5K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><a href="/soruly/awesome-acg/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/soruly/awesome-acg/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/20/">May 18 - May 24, 2026</a></h2><h3><p>Data Sources</p>
+</h3>
+<ul>
+<li><a href="https://animehub.wiki" rel="noopener noreferrer">AnimeHub</a> - Anime database with legal streaming navigator. [English/中文/日本語]</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/14/">Apr 06 - Apr 12, 2026</a></h2><h3><p>Uncategorized</p>
 </h3>
 <ul>
-<li><a href="https://github.com/shitagaki-lab/see-through" rel="noopener noreferrer">See-through (⭐939)</a> - Single-image Layer Decomposition for Anime Characters. [English]</li>
+<li><a href="https://github.com/shitagaki-lab/see-through" rel="noopener noreferrer">See-through (⭐2.5k)</a> - Single-image Layer Decomposition for Anime Characters. [English]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/9/">Mar 02 - Mar 08, 2026</a></h2><h3><p>Uncategorized</p>
 </h3>
 <ul>
-<li><a href="https://github.com/moeru-ai/airi" rel="noopener noreferrer">AIRI (⭐37k)</a> - A soul container of AI waifu / virtual characters to bring them into our world. [English/中文/日本語]</li>
+<li><a href="https://github.com/moeru-ai/airi" rel="noopener noreferrer">AIRI (⭐39k)</a> - A soul container of AI waifu / virtual characters to bring them into our world. [English/中文/日本語]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/3/">Jan 19 - Jan 25, 2026</a></h2><h3><p>Image Recognition</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ksasao/anime-character-detector" rel="noopener noreferrer">anime-character-detector (⭐7)</a> - YOLOX-based anime character detector running in browser with ONNX Runtime Web (WebGPU/WASM). [English/日本語]</li>
+<li><a href="https://github.com/ksasao/anime-character-detector" rel="noopener noreferrer">anime-character-detector (⭐9)</a> - YOLOX-based anime character detector running in browser with ONNX Runtime Web (WebGPU/WASM). [English/日本語]</li>
 </ul>
 <h3><p>Uncategorized</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rotejin/MotionPNGTuber" rel="noopener noreferrer">MotionPNGTuber (⭐265)</a> - PNGTuber以上Live2D未満 - 動画ループで髪揺れなど表現可能なリアルタイム口パクツール. [日本語]</li>
+<li><a href="https://github.com/rotejin/MotionPNGTuber" rel="noopener noreferrer">MotionPNGTuber (⭐301)</a> - PNGTuber以上Live2D未満 - 動画ループで髪揺れなど表現可能なリアルタイム口パクツール. [日本語]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/34/">Aug 25 - Aug 31, 2025</a></h2><h3><p>Data Sources</p>
 </h3>
@@ -65,12 +150,12 @@
 <h2><a href="https://www.trackawesomelist.com/2025/20/">May 19 - May 25, 2025</a></h2><h3><p>Downloaders</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jasoneri/ComicGUISpider" rel="noopener noreferrer">ComicGUISpider (⭐652)</a> - Comic downloader by simple GUI operation. [English/中文]</li>
+<li><a href="https://github.com/jasoneri/ComicGUISpider" rel="noopener noreferrer">ComicGUISpider (⭐695)</a> - Comic downloader by simple GUI operation. [English/中文]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/51/">Dec 16 - Dec 22, 2024</a></h2><h3><p>Image Generation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yihao-meng/AniDoc" rel="noopener noreferrer">AniDoc (⭐573)</a> - Colorize a sequence of sketches based on a character design reference with high fidelity. [English]</li>
+<li><a href="https://github.com/yihao-meng/AniDoc" rel="noopener noreferrer">AniDoc (⭐576)</a> - Colorize a sequence of sketches based on a character design reference with high fidelity. [English]</li>
 </ul>
 
 <ul>
@@ -79,7 +164,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/50/">Dec 09 - Dec 15, 2024</a></h2><h3><p>Subtitles</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Irrational-Encoding-Wizardry/guide.encode.moe" rel="noopener noreferrer">Fansubbing Guide (⭐164)</a> - A guide for fansubbing. [English]</li>
+<li><a href="https://github.com/Irrational-Encoding-Wizardry/guide.encode.moe" rel="noopener noreferrer">Fansubbing Guide (⭐165)</a> - A guide for fansubbing. [English]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/48/">Nov 25 - Dec 01, 2024</a></h2><h3><p>Database APIs</p>
 </h3>
@@ -102,7 +187,7 @@
 <h3><p>Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tegnike/aituber-kit" rel="noopener noreferrer">AITuberKit (⭐914)</a> - AITuber Kit. [日本語/English/中文]</li>
+<li><a href="https://github.com/tegnike/aituber-kit" rel="noopener noreferrer">AITuberKit (⭐975)</a> - AITuber Kit. [日本語/English/中文]</li>
 </ul>
 <h3><p>Uncategorized</p>
 </h3>
@@ -112,12 +197,12 @@
 <h2><a href="https://www.trackawesomelist.com/2024/34/">Aug 19 - Aug 25, 2024</a></h2><h3><p>Downloaders</p>
 </h3>
 <ul>
-<li><a href="https://github.com/deepghs/waifuc" rel="noopener noreferrer">waifuc (⭐399)</a> - Anime image data collector for training models. [English]</li>
+<li><a href="https://github.com/deepghs/waifuc" rel="noopener noreferrer">waifuc (⭐398)</a> - Anime image data collector for training models. [English]</li>
 </ul>
 <h3><p>Image Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/deepghs/imgutils" rel="noopener noreferrer">imgutils (⭐380)</a> - Image processing library with various anime-style image processing models. [English]</li>
+<li><a href="https://github.com/deepghs/imgutils" rel="noopener noreferrer">imgutils (⭐388)</a> - Image processing library with various anime-style image processing models. [English]</li>
 </ul>
 <h3><p>Developer Groups</p>
 </h3>
@@ -132,22 +217,22 @@
 <h2><a href="https://www.trackawesomelist.com/2024/22/">May 27 - Jun 02, 2024</a></h2><h3><p>Image Generation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ToonCrafter/ToonCrafter" rel="noopener noreferrer">ToonCrafter (⭐5.9k)</a> - Generative Cartoon Interpolation. [English]</li>
+<li><a href="https://github.com/ToonCrafter/ToonCrafter" rel="noopener noreferrer">ToonCrafter (⭐6k)</a> - Generative Cartoon Interpolation. [English]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/12/">Mar 18 - Mar 24, 2024</a></h2><h3><p>Mobile Apps</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mihonapp/mihon" rel="noopener noreferrer">Mihon (⭐20k)</a> - Free and open source manga reader for Android. [English]</li>
+<li><a href="https://github.com/mihonapp/mihon" rel="noopener noreferrer">Mihon (⭐21k)</a> - Free and open source manga reader for Android. [English]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/40/">Oct 02 - Oct 08, 2023</a></h2><h3><p>Image Reverse Search</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lolishinshi/imsearch" rel="noopener noreferrer">imsearch (⭐991)</a> - Image search powering <a href="https://soutubot.moe" rel="noopener noreferrer">soutubot.moe</a>. [中文]</li>
+<li><a href="https://github.com/lolishinshi/imsearch" rel="noopener noreferrer">imsearch (⭐1k)</a> - Image search powering <a href="https://soutubot.moe" rel="noopener noreferrer">soutubot.moe</a>. [中文]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/38/">Sep 18 - Sep 24, 2023</a></h2><h3><p>Uncategorized</p>
 </h3>
 <ul>
-<li><a href="https://github.com/OysterQAQ/ACG2vec" rel="noopener noreferrer">ACG2vec (⭐576)</a> - Various deep learning practices and explorations related to the two-dimensional domain. [中文/English]</li>
+<li><a href="https://github.com/OysterQAQ/ACG2vec" rel="noopener noreferrer">ACG2vec (⭐578)</a> - Various deep learning practices and explorations related to the two-dimensional domain. [中文/English]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/2/">Jan 09 - Jan 15, 2023</a></h2><h3><p>Database APIs</p>
 </h3>
@@ -157,7 +242,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/46/">Nov 14 - Nov 20, 2022</a></h2><h3><p>Image Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/SkyTNT/anime-segmentation" rel="noopener noreferrer">Anime Segmentation (⭐795)</a> - High-accuracy segmentation for anime character. [English]</li>
+<li><a href="https://github.com/SkyTNT/anime-segmentation" rel="noopener noreferrer">Anime Segmentation (⭐809)</a> - High-accuracy segmentation for anime character. [English]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/45/">Nov 07 - Nov 13, 2022</a></h2><h3><p>Audio</p>
 </h3>
@@ -167,7 +252,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/38/">Sep 19 - Sep 25, 2022</a></h2><h3><p>Image Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tsukumijima/Real-ESRGAN-GUI" rel="noopener noreferrer">Real-ESRGAN-GUI (⭐585)</a> - Real-ESRGAN GUI Wrapper. [日本語]</li>
+<li><a href="https://github.com/tsukumijima/Real-ESRGAN-GUI" rel="noopener noreferrer">Real-ESRGAN-GUI (⭐595)</a> - Real-ESRGAN GUI Wrapper. [日本語]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/36/">Sep 05 - Sep 11, 2022</a></h2><h3><p>Image Processing</p>
 </h3>
@@ -177,7 +262,7 @@
 <h3><p>Uncategorized</p>
 </h3>
 <ul>
-<li><a href="https://github.com/TSKI433/hime-display" rel="noopener noreferrer">Hime Display (⭐241)</a> - Universal desktop model displayer for Live2D, Spine, MMD and VRoid. [English/中文/日本語]</li>
+<li><a href="https://github.com/TSKI433/hime-display" rel="noopener noreferrer">Hime Display (⭐245)</a> - Universal desktop model displayer for Live2D, Spine, MMD and VRoid. [English/中文/日本語]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/35/">Aug 29 - Sep 04, 2022</a></h2><h3><p>Web</p>
 </h3>
@@ -192,11 +277,11 @@
 <h3><p>Data Sources</p>
 </h3>
 <ul>
-<li><a href="https://github.com/otakulogy/anime-streaming" rel="noopener noreferrer">anime-streaming (⭐100)</a> - A curated list of worldwide legal anime streaming. [English]</li>
+<li><a href="https://github.com/otakulogy/anime-streaming" rel="noopener noreferrer">anime-streaming (⭐104)</a> - A curated list of worldwide legal anime streaming. [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/otakulogy/manga-platform" rel="noopener noreferrer">manga-platform (⭐33)</a> - A curated list of worldwide legal manga reading site. [English]</li>
+<li><a href="https://github.com/otakulogy/manga-platform" rel="noopener noreferrer">manga-platform (⭐34)</a> - A curated list of worldwide legal manga reading site. [English]</li>
 </ul>
 <h3><p>Web</p>
 </h3>
@@ -246,12 +331,12 @@
 <h2><a href="https://www.trackawesomelist.com/2021/44/">Nov 01 - Nov 07, 2021</a></h2><h3><p>Uncategorized</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vignetteapp/vignette" rel="noopener noreferrer">Vignette (⭐526)</a> - The open source VTuber software. [English]</li>
+<li><a href="https://github.com/vignetteapp/vignette" rel="noopener noreferrer">Vignette (⭐524)</a> - The open source VTuber software. [English]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/32/">Aug 09 - Aug 15, 2021</a></h2><h3><p>Image Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AaronFeng753/Waifu2x-Extension-GUI" rel="noopener noreferrer">Waifu2x-Extension-GUI (⭐16k)</a> - Video, Image and GIF upscale/enlarge(Super-Resolution) and Video frame interpolation. Achieved with Waifu2x, SRMD, RealSR, Anime4K, RIFE, CAIN, DAIN and ACNet. [English/中文]</li>
+<li><a href="https://github.com/AaronFeng753/Waifu2x-Extension-GUI" rel="noopener noreferrer">Waifu2x-Extension-GUI (⭐17k)</a> - Video, Image and GIF upscale/enlarge(Super-Resolution) and Video frame interpolation. Achieved with Waifu2x, SRMD, RealSR, Anime4K, RIFE, CAIN, DAIN and ACNet. [English/中文]</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/28/">Jul 12 - Jul 18, 2021</a></h2><h3><p>Image Generation</p>
 </h3>
@@ -281,7 +366,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/3/">Jan 18 - Jan 24, 2021</a></h2><h3><p>Audio</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mon/0x40-web" rel="noopener noreferrer">0x40-web (⭐438)</a> - HTML5/CSS3 Canvas + Web Audio clone of the 0x40 Hues Flash. [English]</li>
+<li><a href="https://github.com/mon/0x40-web" rel="noopener noreferrer">0x40-web (⭐436)</a> - HTML5/CSS3 Canvas + Web Audio clone of the 0x40 Hues Flash. [English]</li>
 </ul>
 
 <ul>
@@ -293,12 +378,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mike2718/moefm.sh" rel="noopener noreferrer">moefm.sh (⭐15)</a> - Client script for moefm radio. [中文]</li>
+<li><a href="https://github.com/mike2718/moefm.sh" rel="noopener noreferrer">moefm.sh (⭐14)</a> - Client script for moefm radio. [中文]</li>
 </ul>
 <h3><p>Danmaku</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jabbany/ABPlayerHTML5" rel="noopener noreferrer">ABPlayerHTML5 (⭐884)</a> - Video Player for danmaku comments. ABPlayer in HTML5. [English/中文]</li>
+<li><a href="https://github.com/jabbany/ABPlayerHTML5" rel="noopener noreferrer">ABPlayerHTML5 (⭐885)</a> - Video Player for danmaku comments. ABPlayer in HTML5. [English/中文]</li>
 </ul>
 
 <ul>
@@ -306,11 +391,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/weizhenye/Danmaku" rel="noopener noreferrer">Danmaku (⭐741)</a> - High performance JavaScript danmaku engine. [English/中文]</li>
+<li><a href="https://github.com/weizhenye/Danmaku" rel="noopener noreferrer">Danmaku (⭐743)</a> - High performance JavaScript danmaku engine. [English/中文]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/m13253/danmaku2ass" rel="noopener noreferrer">danmaku2ass (⭐611)</a> - Convert comments from Niconico/AcFun/bilibili to ASS format. [English/中文]</li>
+<li><a href="https://github.com/m13253/danmaku2ass" rel="noopener noreferrer">danmaku2ass (⭐613)</a> - Convert comments from Niconico/AcFun/bilibili to ASS format. [English/中文]</li>
 </ul>
 
 <ul>
@@ -323,7 +408,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/soruly/anilist-crawler" rel="noopener noreferrer">anilist-crawler (⭐44)</a> - Crawl data from anilist API and store in elasticsearch. [English]</li>
+<li><a href="https://github.com/soruly/anilist-crawler" rel="noopener noreferrer">anilist-crawler (⭐46)</a> - Crawl data from anilist API and store in elasticsearch. [English]</li>
 </ul>
 
 <ul>
@@ -335,15 +420,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Xonshiz/comic-dl" rel="noopener noreferrer">Comic-DL (⭐646)</a> - Command line tool to download manga and comics from various comic and manga sites. [English]</li>
+<li><a href="https://github.com/Xonshiz/comic-dl" rel="noopener noreferrer">Comic-DL (⭐653)</a> - Command line tool to download manga and comics from various comic and manga sites. [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Nandaka/DanbooruDownloader" rel="noopener noreferrer">Danbooru Downloader (⭐423)</a> - Downloader for <a href="https://danbooru.donmai.us/" rel="noopener noreferrer">Danbooru</a>. [English]</li>
+<li><a href="https://github.com/Nandaka/DanbooruDownloader" rel="noopener noreferrer">Danbooru Downloader (⭐424)</a> - Downloader for <a href="https://danbooru.donmai.us/" rel="noopener noreferrer">Danbooru</a>. [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/yaqinking/DMHY" rel="noopener noreferrer">DMHY (⭐473)</a> - Easily download/auto-download torrent(s) from share.dmhy.org / acg.rip etc. sites for OS X. [中文]</li>
+<li><a href="https://github.com/yaqinking/DMHY" rel="noopener noreferrer">DMHY (⭐475)</a> - Easily download/auto-download torrent(s) from share.dmhy.org / acg.rip etc. sites for OS X. [中文]</li>
 </ul>
 
 <ul>
@@ -351,7 +436,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mikf/gallery-dl" rel="noopener noreferrer">gallery-dl (⭐17k)</a> - Command-line program to download image-galleries and -collections from several image hosting sites. [English]</li>
+<li><a href="https://github.com/mikf/gallery-dl" rel="noopener noreferrer">gallery-dl (⭐18k)</a> - Command-line program to download image-galleries and -collections from several image hosting sites. [English]</li>
 </ul>
 
 <ul>
@@ -371,11 +456,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/MoHD20/OkanimeDownloader" rel="noopener noreferrer">OkanimeDownloader (⭐10)</a> - Scrape Arabic translated anime from <a href="http://okanime.com/" rel="noopener noreferrer">Okanime</a> without any effort. [English]</li>
+<li><a href="https://github.com/MoHD20/OkanimeDownloader" rel="noopener noreferrer">OkanimeDownloader (⭐11)</a> - Scrape Arabic translated anime from <a href="http://okanime.com/" rel="noopener noreferrer">Okanime</a> without any effort. [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Nandaka/PixivUtil2" rel="noopener noreferrer">PixivUtil (Pixiv Downloader) (⭐2.6k)</a> - Downloader and tag manager for <a href="https://www.pixiv.net/" rel="noopener noreferrer">Pixiv</a>. [English]</li>
+<li><a href="https://github.com/Nandaka/PixivUtil2" rel="noopener noreferrer">PixivUtil (Pixiv Downloader) (⭐2.7k)</a> - Downloader and tag manager for <a href="https://www.pixiv.net/" rel="noopener noreferrer">Pixiv</a>. [English]</li>
 </ul>
 
 <ul>
@@ -413,11 +498,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/BeeeQueue/arm-server" rel="noopener noreferrer">arm-server (⭐109)</a> - A service for mapping Anime ID's between AniList, AniDB, MAL, and Kitsu. [English]</li>
+<li><a href="https://github.com/BeeeQueue/arm-server" rel="noopener noreferrer">arm-server (⭐111)</a> - A service for mapping Anime ID's between AniList, AniDB, MAL, and Kitsu. [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/bangumi-data/bangumi-data" rel="noopener noreferrer">Bangumi Data (⭐597)</a> - Raw data for Japanese Anime. [中文]</li>
+<li><a href="https://github.com/bangumi-data/bangumi-data" rel="noopener noreferrer">Bangumi Data (⭐610)</a> - Raw data for Japanese Anime. [中文]</li>
 </ul>
 
 <ul>
@@ -453,7 +538,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/NyaaPantsu/nyaa" rel="noopener noreferrer">NyaaPantsu (⭐999)</a> - Nyaa.se replacement written in golang. [English]</li>
+<li><a href="https://github.com/NyaaPantsu/nyaa" rel="noopener noreferrer">NyaaPantsu (⭐1k)</a> - Nyaa.se replacement written in golang. [English]</li>
 </ul>
 
 <ul>
@@ -465,11 +550,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Ervie/Seiyuu.moe" rel="noopener noreferrer">Seiyuu.moe (⭐19)</a> - A webpage for searching collaborate anime works between seiyuu. [English]</li>
+<li><a href="https://github.com/Ervie/Seiyuu.moe" rel="noopener noreferrer">Seiyuu.moe (⭐20)</a> - A webpage for searching collaborate anime works between seiyuu. [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/VocaDB/vocadb" rel="noopener noreferrer">Vocaloid Database (⭐446)</a> - Server software used by <a href="http://vocadb.net/" rel="noopener noreferrer">vocadb.net</a>. [English]</li>
+<li><a href="https://github.com/VocaDB/vocadb" rel="noopener noreferrer">Vocaloid Database (⭐452)</a> - Server software used by <a href="http://vocadb.net/" rel="noopener noreferrer">vocadb.net</a>. [English]</li>
 </ul>
 <h3><p>Image Board</p>
 </h3>
@@ -498,11 +583,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/hydrusnetwork/hydrus" rel="noopener noreferrer">Hydrus (⭐3k)</a> - A personal booru-style media tagger that can import files and tags from your hard drive and popular websites. [English]</li>
+<li><a href="https://github.com/hydrusnetwork/hydrus" rel="noopener noreferrer">Hydrus (⭐3.1k)</a> - A personal booru-style media tagger that can import files and tags from your hard drive and popular websites. [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/moebooru/moebooru" rel="noopener noreferrer">Moebooru (⭐594)</a> - Fork of danbooru1 that has been heavily modified. Used on <a href="https://yande.re/" rel="noopener noreferrer">yande.re</a> , <a href="https://konachan.com/" rel="noopener noreferrer">Konachan.com</a>. [English]</li>
+<li><a href="https://github.com/moebooru/moebooru" rel="noopener noreferrer">Moebooru (⭐599)</a> - Fork of danbooru1 that has been heavily modified. Used on <a href="https://yande.re/" rel="noopener noreferrer">yande.re</a> , <a href="https://konachan.com/" rel="noopener noreferrer">Konachan.com</a>. [English]</li>
 </ul>
 
 <ul>
@@ -510,7 +595,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/rr-/szurubooru" rel="noopener noreferrer">szurubooru (⭐933)</a> - Python-powered booru for small to medium communities. [English]</li>
+<li><a href="https://github.com/rr-/szurubooru" rel="noopener noreferrer">szurubooru (⭐952)</a> - Python-powered booru for small to medium communities. [English]</li>
 </ul>
 
 <ul>
@@ -527,7 +612,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mattya/chainer-DCGAN" rel="noopener noreferrer">chainer-DCGAN (⭐936)</a> - Generate anime face with neural network. [日本語]</li>
+<li><a href="https://github.com/mattya/chainer-DCGAN" rel="noopener noreferrer">chainer-DCGAN (⭐933)</a> - Generate anime face with neural network. [日本語]</li>
 </ul>
 
 <ul>
@@ -563,7 +648,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/a312863063/seeprettyface-ganerator-dongman" rel="noopener noreferrer">seeprettyface dongman (⭐151)</a> - A stylegan danbooru pretrain model with Chinese document. [中文]</li>
+<li><a href="https://github.com/a312863063/seeprettyface-ganerator-dongman" rel="noopener noreferrer">seeprettyface dongman (⭐150)</a> - A stylegan danbooru pretrain model with Chinese document. [中文]</li>
 </ul>
 
 <ul>
@@ -583,7 +668,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jerryli27/TwinGAN" rel="noopener noreferrer">TwinGAN (⭐717)</a> - Unsupervised Image Translation for Human Portraits to anime. [English]</li>
+<li><a href="https://github.com/jerryli27/TwinGAN" rel="noopener noreferrer">TwinGAN (⭐716)</a> - Unsupervised Image Translation for Human Portraits to anime. [English]</li>
 </ul>
 
 <ul>
@@ -612,7 +697,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/lllyasviel/MangaCraft" rel="noopener noreferrer">MangaCraft (⭐699)</a> - Semi-automatic manga colorization. [English]</li>
+<li><a href="https://github.com/lllyasviel/MangaCraft" rel="noopener noreferrer">MangaCraft (⭐698)</a> - Semi-automatic manga colorization. [English]</li>
 </ul>
 
 <ul>
@@ -620,7 +705,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/spillerrec/Overmix" rel="noopener noreferrer">Overmix (⭐206)</a> - Automatic anime screenshot stitching in high quality. [English]</li>
+<li><a href="https://github.com/spillerrec/Overmix" rel="noopener noreferrer">Overmix (⭐208)</a> - Automatic anime screenshot stitching in high quality. [English]</li>
 </ul>
 
 <ul>
@@ -657,7 +742,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/nagadomi/animeface-2009" rel="noopener noreferrer">animeface-2009 (⭐323)</a> - Face and Landmark Detector for Anime/Manga. Similar to lbpcascade_animeface but more accurate. [English]</li>
+<li><a href="https://github.com/nagadomi/animeface-2009" rel="noopener noreferrer">animeface-2009 (⭐325)</a> - Face and Landmark Detector for Anime/Manga. Similar to lbpcascade_animeface but more accurate. [English]</li>
 </ul>
 
 <ul>
@@ -665,7 +750,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jerryli27/AniSeg" rel="noopener noreferrer">AniSeg (⭐207)</a> - A faster-rcnn model for anime character segmentation. [English]</li>
+<li><a href="https://github.com/jerryli27/AniSeg" rel="noopener noreferrer">AniSeg (⭐209)</a> - A faster-rcnn model for anime character segmentation. [English]</li>
 </ul>
 
 <ul>
@@ -673,7 +758,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/kanosawa/anime_face_landmark_detection" rel="noopener noreferrer">deep cascaded landmark detection (⭐252)</a> - Anime face landmark detection by deep cascaded regression. [English]</li>
+<li><a href="https://github.com/kanosawa/anime_face_landmark_detection" rel="noopener noreferrer">deep cascaded landmark detection (⭐253)</a> - Anime face landmark detection by deep cascaded regression. [English]</li>
 </ul>
 
 <ul>
@@ -726,7 +811,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/soruly/trace.moe" rel="noopener noreferrer">WAIT: What Anime Is This? (⭐5k)</a> - Anime scene search engine. Powered by <a href="https://github.com/dermotte/liresolr" rel="noopener noreferrer">liresolr (⭐185)</a>. [English]</li>
+<li><a href="https://github.com/soruly/trace.moe" rel="noopener noreferrer">WAIT: What Anime Is This? (⭐5k)</a> - Anime scene search engine. Powered by <a href="https://github.com/dermotte/liresolr" rel="noopener noreferrer">liresolr (⭐187)</a>. [English]</li>
 </ul>
 <h3><p>Mobile Apps</p>
 </h3>
@@ -751,7 +836,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/SuperMarcus/NineAnimator" rel="noopener noreferrer">NineAnimator (⭐815)</a> - Elegant, concise, and intuitive anime discovery app for iOS. [English]</li>
+<li><a href="https://github.com/SuperMarcus/NineAnimator" rel="noopener noreferrer">NineAnimator (⭐817)</a> - Elegant, concise, and intuitive anime discovery app for iOS. [English]</li>
 </ul>
 <h3><p>Programming</p>
 </h3>
@@ -780,11 +865,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/masarakki/nyaruko_lang" rel="noopener noreferrer">nyaruko_lang (⭐164)</a> - . [日本語]</li>
+<li><a href="https://github.com/masarakki/nyaruko_lang" rel="noopener noreferrer">nyaruko_lang (⭐165)</a> - . [日本語]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/approvers/RADWIMPS" rel="noopener noreferrer">RADWIMPS (⭐276)</a> - 君の then-then-then 世は Promise で Future. [日本語]</li>
+<li><a href="https://github.com/approvers/RADWIMPS" rel="noopener noreferrer">RADWIMPS (⭐277)</a> - 君の then-then-then 世は Promise で Future. [日本語]</li>
 </ul>
 
 <ul>
@@ -797,7 +882,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/weizhenye/ASS" rel="noopener noreferrer">ASS.js (⭐643)</a> - JavaScript ASS subtitle format renderer. [English]</li>
+<li><a href="https://github.com/weizhenye/ASS" rel="noopener noreferrer">ASS.js (⭐646)</a> - JavaScript ASS subtitle format renderer. [English]</li>
 </ul>
 
 <ul>
@@ -805,7 +890,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Dador/JavascriptSubtitlesOctopus" rel="noopener noreferrer">JavascriptSubtitlesOctopus (⭐486)</a> - Displays subtitles in .ass format and easily integrates with HTML5 videos. Supports all SSA/ASS features. [English]</li>
+<li><a href="https://github.com/Dador/JavascriptSubtitlesOctopus" rel="noopener noreferrer">JavascriptSubtitlesOctopus (⭐488)</a> - Displays subtitles in .ass format and easily integrates with HTML5 videos. Supports all SSA/ASS features. [English]</li>
 </ul>
 
 <ul>
@@ -821,16 +906,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/tp7/Sushi" rel="noopener noreferrer">Sushi (⭐708)</a> - Automatic subtitle shifter based on audio. [English]</li>
+<li><a href="https://github.com/tp7/Sushi" rel="noopener noreferrer">Sushi (⭐713)</a> - Automatic subtitle shifter based on audio. [English]</li>
 </ul>
 <h3><p>Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/erengy/anitomy" rel="noopener noreferrer">anitomy (⭐304)</a> - Anime video filename parser. [English]</li>
+<li><a href="https://github.com/erengy/anitomy" rel="noopener noreferrer">anitomy (⭐306)</a> - Anime video filename parser. [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/vn-tools/arc_unpacker" rel="noopener noreferrer">arc_unpacker (⭐658)</a> - Visual novel extracting tool in CLI. [English]</li>
+<li><a href="https://github.com/vn-tools/arc_unpacker" rel="noopener noreferrer">arc_unpacker (⭐664)</a> - Visual novel extracting tool in CLI. [English]</li>
 </ul>
 
 <ul>
@@ -838,19 +923,19 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/moeoverflow/comicbook" rel="noopener noreferrer">Comicbook (⭐318)</a> - Convert online comics to .epub e-book. [English]</li>
+<li><a href="https://github.com/moeoverflow/comicbook" rel="noopener noreferrer">Comicbook (⭐319)</a> - Convert online comics to .epub e-book. [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Infiziert90/getnative" rel="noopener noreferrer">getnative (⭐240)</a> - Find the native resolution(s) of upscaled material (mostly anime). [English]</li>
+<li><a href="https://github.com/Infiziert90/getnative" rel="noopener noreferrer">getnative (⭐242)</a> - Find the native resolution(s) of upscaled material (mostly anime). [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/hexenq/kuroshiro" rel="noopener noreferrer">kuroshiro (⭐962)</a> - Japanese language utility mainly for converting Kanji-mixed sentence to Hiragana, Katakana or Romaji with furigana and okurigana modes supported. [English]</li>
+<li><a href="https://github.com/hexenq/kuroshiro" rel="noopener noreferrer">kuroshiro (⭐969)</a> - Japanese language utility mainly for converting Kanji-mixed sentence to Hiragana, Katakana or Romaji with furigana and okurigana modes supported. [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/BYVoid/OpenCC" rel="noopener noreferrer">OpenCC (⭐9.6k)</a> - Project for conversion between Traditional and Simplified Chinese. [中文]</li>
+<li><a href="https://github.com/BYVoid/OpenCC" rel="noopener noreferrer">OpenCC (⭐9.7k)</a> - Project for conversion between Traditional and Simplified Chinese. [中文]</li>
 </ul>
 
 <ul>
@@ -879,11 +964,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jokester/awesome-bangumi" rel="noopener noreferrer">awesome-bangumi (⭐280)</a> - Collection of <a href="http://bangumi.tv" rel="noopener noreferrer">bangumi.tv</a> related projects. [中文]</li>
+<li><a href="https://github.com/jokester/awesome-bangumi" rel="noopener noreferrer">awesome-bangumi (⭐281)</a> - Collection of <a href="http://bangumi.tv" rel="noopener noreferrer">bangumi.tv</a> related projects. [中文]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/bangumi/scripts" rel="noopener noreferrer">Bangumi scripts (⭐323)</a> - Collection of user scripts for <a href="http://bangumi.tv" rel="noopener noreferrer">bangumi.tv</a>. [中文]</li>
+<li><a href="https://github.com/bangumi/scripts" rel="noopener noreferrer">Bangumi scripts (⭐322)</a> - Collection of user scripts for <a href="http://bangumi.tv" rel="noopener noreferrer">bangumi.tv</a>. [中文]</li>
 </ul>
 
 <ul>
@@ -928,13 +1013,55 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Irrational-Encoding-Wizardry/guide.encode.moe" rel="noopener noreferrer">guide.encode.moe (⭐164)</a> - A anime RIPPER manual. [English]</li>
+<li><a href="https://github.com/Irrational-Encoding-Wizardry/guide.encode.moe" rel="noopener noreferrer">guide.encode.moe (⭐165)</a> - A anime RIPPER manual. [English]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/animenotifier/notify.moe" rel="noopener noreferrer">notify.moe (⭐351)</a> - Fetches your anime "watching" list and notifies you when a new anime episode is available. [English]</li>
+<li><a href="https://github.com/animenotifier/notify.moe" rel="noopener noreferrer">notify.moe (⭐352)</a> - Fetches your anime "watching" list and notifies you when a new anime episode is available. [English]</li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
