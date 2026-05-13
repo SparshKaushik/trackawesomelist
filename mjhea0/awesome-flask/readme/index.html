@@ -16,17 +16,97 @@
     <meta property="og:title" content="Awesome Flask Overview" />
     <meta property="og:description" content="A curated list of awesome things related to Flask" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Flask Overview</h1>
 <p>A curated list of awesome things related to Flask</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/mjhea0/awesome-flask/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/mjhea0/awesome-flask">😺 mjhea0/awesome-flask</a><span> · </span><span>⭐ 1.7K</span><span> · </span><span>🏷️ Back-End Development</span></p>
@@ -85,16 +165,16 @@
 <h3 id="apis"><a class="anchor" aria-hidden="true" tabindex="-1" href="#apis"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>APIs</h3><h4 id="restful-api-support"><a class="anchor" aria-hidden="true" tabindex="-1" href="#restful-api-support"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>RESTful API Support</h4><ul>
 <li><a href="https://docs.python-eve.org" rel="noopener noreferrer">Eve</a> - RESTful API framework designed for human beings.</li>
 <li><a href="https://flask-classful.readthedocs.io/" rel="noopener noreferrer">Flask-Classful</a> - Adds support for class-based views for setting up RESTful API route endpoints.</li>
-<li><a href="https://github.com/closeio/flask-mongorest" rel="noopener noreferrer">Flask-MongoRest (⭐520)</a> - RESTful API framework wrapped around <a href="https://github.com/MongoEngine/mongoengine" rel="noopener noreferrer">MongoEngine (⭐4.4k)</a>.</li>
+<li><a href="https://github.com/closeio/flask-mongorest" rel="noopener noreferrer">Flask-MongoRest (⭐519)</a> - RESTful API framework wrapped around <a href="https://github.com/MongoEngine/mongoengine" rel="noopener noreferrer">MongoEngine (⭐4.4k)</a>.</li>
 <li><a href="https://flask-restful.readthedocs.io" rel="noopener noreferrer">Flask-RESTful</a> - Quickly build RESTful APIs.</li>
 </ul>
 <h4 id="restful-api--swaggeropenapi-documentation-support"><a class="anchor" aria-hidden="true" tabindex="-1" href="#restful-api--swaggeropenapi-documentation-support"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>RESTful API + Swagger/OpenAPI Documentation Support</h4><ul>
 <li><a href="https://github.com/apiflask/apiflask" rel="noopener noreferrer">APIFlask (⭐1.1k)</a> - Integrates marshmallow for validation and serialization, and for OpenAPI generation with Swagger UI.</li>
 <li><a href="https://connexion.readthedocs.io" rel="noopener noreferrer">Connexion</a> - Open source, OpenAPI-based, REST framework built on top of Flask.</li>
 <li><a href="https://github.com/flasgger/flasgger" rel="noopener noreferrer">Flasgger (⭐3.7k)</a> - OpenAPI and Swagger UI. Builds the API from Flasgger models, marshmallow models, dicts, or YAML files.</li>
-<li><a href="https://github.com/plangrid/flask-rebar" rel="noopener noreferrer">Flask-Rebar (⭐237)</a> - Combines Flask, <a href="https://marshmallow.readthedocs.io/" rel="noopener noreferrer">marshmallow</a>, and <a href="https://www.openapis.org/" rel="noopener noreferrer">OpenAPI</a> for robust REST services.</li>
+<li><a href="https://github.com/plangrid/flask-rebar" rel="noopener noreferrer">Flask-Rebar (⭐235)</a> - Combines Flask, <a href="https://marshmallow.readthedocs.io/" rel="noopener noreferrer">marshmallow</a>, and <a href="https://www.openapis.org/" rel="noopener noreferrer">OpenAPI</a> for robust REST services.</li>
 <li><a href="https://flask-restx.readthedocs.io" rel="noopener noreferrer">Flask-RESTX</a> - Community-driven fork of <a href="https://flask-restplus.readthedocs.io/" rel="noopener noreferrer">Flask-RESTPlus</a> that makes it easy to build and document RESTful APIs with Flask.</li>
-<li><a href="https://github.com/marshmallow-code/flask-smorest/" rel="noopener noreferrer">flask-smorest (⭐717)</a> - Marshmallow's official Flask REST integration. Uses marshmallow models for request/response validation and serialization, and generates OpenAPI with Swagger UI.</li>
+<li><a href="https://github.com/marshmallow-code/flask-smorest/" rel="noopener noreferrer">flask-smorest (⭐720)</a> - Marshmallow's official Flask REST integration. Uses marshmallow models for request/response validation and serialization, and generates OpenAPI with Swagger UI.</li>
 </ul>
 <h4 id="swaggeropenapi-documentation-support"><a class="anchor" aria-hidden="true" tabindex="-1" href="#swaggeropenapi-documentation-support"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Swagger/OpenAPI Documentation Support</h4><ul>
 <li><a href="https://github.com/thomaxxl/safrs" rel="noopener noreferrer">SAFRS: Python OpenAPI &amp; JSON:API Framework (⭐413)</a> - SAFRS, which is an acronym for <em>S</em>ql<em>A</em>lchemy <em>F</em>lask-<em>R</em>estful <em>S</em>wagger, is meant to help developers create self-documenting JSON APIs for SQLAlchemy database objects and relationships.</li>
@@ -105,14 +185,14 @@
 <li><a href="https://pythonhosted.org/Flask-Principal/" rel="noopener noreferrer">Flask Principal</a> - Authorization.</li>
 <li><a href="https://flask-security-too.readthedocs.io/en/stable/" rel="noopener noreferrer">Flask-Security-Too</a> - Account management, authentication, authorization.</li>
 <li><a href="https://flasksession.readthedocs.io/en/latest/" rel="noopener noreferrer">Flask-Session</a> - Session managment.</li>
-<li><a href="https://github.com/flask-extensions/Flask-SimpleLogin" rel="noopener noreferrer">Flask-SimpleLogin (⭐205)</a> - Authentication.</li>
+<li><a href="https://github.com/flask-extensions/Flask-SimpleLogin" rel="noopener noreferrer">Flask-SimpleLogin (⭐204)</a> - Authentication.</li>
 <li><a href="https://flask-user.readthedocs.io" rel="noopener noreferrer">Flask-User</a> - Account management, authentication, authorization.</li>
 </ul>
 <blockquote>
 <p>Curious about the differences differences between Flask-User and Flask-Security? Review the Flask-User <a href="https://flask-user.readthedocs.io/en/latest/faq.html" rel="noopener noreferrer">FAQ</a>.</p>
 </blockquote>
 <h4 id="jwt-based-for-json-endpoints"><a class="anchor" aria-hidden="true" tabindex="-1" href="#jwt-based-for-json-endpoints"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>JWT-based (for JSON Endpoints)</h4><ul>
-<li><a href="https://github.com/axioms-io/axioms-flask-py" rel="noopener noreferrer">Axioms-Flask-Py (⭐3)</a> - OAuth2/OIDC authentication and authorization for Flask APIs. Supports authentication and claim-based fine-grained authorization (scopes, roles, permissions) using JWT tokens.</li>
+<li><a href="https://github.com/axioms-io/axioms-flask-py" rel="noopener noreferrer">Axioms-Flask-Py (⭐4)</a> - OAuth2/OIDC authentication and authorization for Flask APIs. Supports authentication and claim-based fine-grained authorization (scopes, roles, permissions) using JWT tokens.</li>
 <li><a href="https://pythonhosted.org/Flask-JWT/" rel="noopener noreferrer">Flask-JWT</a> - Basic support for working with JWTs.</li>
 <li><a href="https://flask-jwt-extended.readthedocs.io" rel="noopener noreferrer">Flask-JWT-Extended</a> - Advanced support for working with JWTs.</li>
 <li><a href="https://github.com/joegasewicz/flask-jwt-router" rel="noopener noreferrer">Flask-JWT-Router (⭐56)</a> - Adds authorized routes to a Flask app.</li>
@@ -128,7 +208,7 @@
 </ul>
 <h3 id="data-validation-and-serialization"><a class="anchor" aria-hidden="true" tabindex="-1" href="#data-validation-and-serialization"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Data Validation and Serialization</h3><ul>
 <li><a href="https://flask-marshmallow.readthedocs.io" rel="noopener noreferrer">Flask-Marshmallow</a> - Thin integration layer for Flask and marshmallow (an object serialization /deserialization library) that adds additional features to marshmallow.</li>
-<li><a href="https://github.com/pallets-eco/flask-pydantic" rel="noopener noreferrer">Flask-Pydantic (⭐433)</a> - <a href="https://github.com/pydantic/pydantic" rel="noopener noreferrer">Pydantic (⭐27k)</a> support.</li>
+<li><a href="https://github.com/pallets-eco/flask-pydantic" rel="noopener noreferrer">Flask-Pydantic (⭐434)</a> - <a href="https://github.com/pydantic/pydantic" rel="noopener noreferrer">Pydantic (⭐28k)</a> support.</li>
 </ul>
 <h3 id="databases"><a class="anchor" aria-hidden="true" tabindex="-1" href="#databases"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Databases</h3><h4 id="orms"><a class="anchor" aria-hidden="true" tabindex="-1" href="#orms"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>ORMs</h4><ul>
 <li><a href="https://flask-peewee.readthedocs.io" rel="noopener noreferrer">Flask-Peewee</a> - Support for Peewee, an ORM and database migration tool.</li>
@@ -145,20 +225,20 @@
 
 
 <ul>
-<li><a href="https://github.com/nickjj/flask-db" rel="noopener noreferrer">Flask-DB (⭐76)</a> - Flask CLI extension that helps you migrate, drop, create and seed your SQL database.</li>
+<li><a href="https://github.com/nickjj/flask-db" rel="noopener noreferrer">Flask-DB (⭐77)</a> - Flask CLI extension that helps you migrate, drop, create and seed your SQL database.</li>
 <li><a href="https://flask-migrate.readthedocs.io" rel="noopener noreferrer">Flask-Migrate</a> - Handles SQLAlchemy database migrations via Alembic.</li>
 </ul>
 
 
 <blockquote>
-<p>Curious about the differences between Alembic, Flask-Alembic, Flask-Migrate, and Flask-DB? Review <a href="https://github.com/nickjj/flask-db#differences-between-alembic-flask-migrate-flask-alembic-and-flask-db" rel="noopener noreferrer">this item (⭐76)</a> from Flask-DB's FAQ.</p>
+<p>Curious about the differences between Alembic, Flask-Alembic, Flask-Migrate, and Flask-DB? Review <a href="https://github.com/nickjj/flask-db#differences-between-alembic-flask-migrate-flask-alembic-and-flask-db" rel="noopener noreferrer">this item (⭐77)</a> from Flask-DB's FAQ.</p>
 </blockquote>
 <h4 id="other-tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#other-tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Other Tools</h4><ul>
 <li><a href="https://github.com/pyexcel-webwares/Flask-Excel" rel="noopener noreferrer">Flask-Excel (⭐264)</a> - Uses <a href="https://github.com/pyexcel/pyexcel" rel="noopener noreferrer">pyexcel (⭐1.3k)</a> to read, manipulate, and write data in different Excel formats: csv, ods, xls, xlsx and xlsm.</li>
 </ul>
 <h3 id="developer-tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#developer-tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Developer Tools</h3><h4 id="debugging"><a class="anchor" aria-hidden="true" tabindex="-1" href="#debugging"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Debugging</h4><ul>
 <li><a href="https://flask-debugtoolbar.readthedocs.io" rel="noopener noreferrer">Flask-DebugToolbar</a> - Port of Django's debug toolbar for Flask.</li>
-<li><a href="https://github.com/muatik/flask-profiler" rel="noopener noreferrer">Flask-Profiler (⭐757)</a> - Endpoint analyzer/profiler.</li>
+<li><a href="https://github.com/muatik/flask-profiler" rel="noopener noreferrer">Flask-Profiler (⭐755)</a> - Endpoint analyzer/profiler.</li>
 </ul>
 <h4 id="fixtures"><a class="anchor" aria-hidden="true" tabindex="-1" href="#fixtures"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Fixtures</h4><ul>
 <li><a href="https://github.com/croach/Flask-Fixtures" rel="noopener noreferrer">Flask-Fixtures (⭐64)</a> - Create database fixtures from JSON or YAML.</li>
@@ -189,16 +269,16 @@
 <li><a href="https://flask-wtf.readthedocs.io" rel="noopener noreferrer">Flask-WTF</a> - Integrates Flask with WTForms (provides CSRF protection as well).</li>
 </ul>
 <h3 id="full-text-search"><a class="anchor" aria-hidden="true" tabindex="-1" href="#full-text-search"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Full-text Search</h3><ul>
-<li><a href="https://github.com/honmaple/flask-msearch" rel="noopener noreferrer">flask-msearch (⭐227)</a> - Full-text search.</li>
-<li><a href="https://github.com/blakev/Flask-WhooshAlchemy3" rel="noopener noreferrer">Flask-WhooshAlchemy3 (⭐28)</a> - Full-text search + Whoosh indexing capabilities for Flask-SQLAlchemy.</li>
+<li><a href="https://github.com/honmaple/flask-msearch" rel="noopener noreferrer">flask-msearch (⭐225)</a> - Full-text search.</li>
+<li><a href="https://github.com/blakev/Flask-WhooshAlchemy3" rel="noopener noreferrer">Flask-WhooshAlchemy3 (⭐29)</a> - Full-text search + Whoosh indexing capabilities for Flask-SQLAlchemy.</li>
 <li><a href="https://sqlalchemy-searchable.readthedocs.io" rel="noopener noreferrer">SQLAlchemy-Searchable</a> - Provides full-text search capabilities for SQLAlchemy models.</li>
 </ul>
 <h3 id="security"><a class="anchor" aria-hidden="true" tabindex="-1" href="#security"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Security</h3><ul>
 <li><a href="https://github.com/red-coracle/flask-argon2" rel="noopener noreferrer">Flask-Argon2 (⭐19)</a> - Provides argon2 hashing utilities.</li>
 <li><a href="https://flask-bcrypt.readthedocs.io" rel="noopener noreferrer">Flask-Bcrypt</a> - Provides bcrypt hashing utilities.</li>
 <li><a href="https://flask-cors.readthedocs.io/" rel="noopener noreferrer">Flask-CORS</a> - Cross Origin Resource Sharing (CORS) handling.</li>
-<li><a href="https://github.com/maxcountryman/flask-seasurf/" rel="noopener noreferrer">Flask-SeaSurf (⭐196)</a> - Cross-site request forgery (CSRF) prevention.</li>
-<li><a href="https://github.com/wntrblm/flask-talisman" rel="noopener noreferrer">Flask-Talisman (⭐84)</a> - HTTPS and security headers.</li>
+<li><a href="https://github.com/maxcountryman/flask-seasurf/" rel="noopener noreferrer">Flask-SeaSurf (⭐195)</a> - Cross-site request forgery (CSRF) prevention.</li>
+<li><a href="https://github.com/wntrblm/flask-talisman" rel="noopener noreferrer">Flask-Talisman (⭐86)</a> - HTTPS and security headers.</li>
 </ul>
 <h3 id="task-queues"><a class="anchor" aria-hidden="true" tabindex="-1" href="#task-queues"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Task Queues</h3><ul>
 <li><a href="https://docs.celeryproject.org/" rel="noopener noreferrer">Celery</a> - The most commonly used Python library for handling asynchronous tasks and scheduling.</li>
@@ -207,15 +287,15 @@
 <li><a href="https://huey.readthedocs.io" rel="noopener noreferrer">Huey</a> - <a href="https://redis.io/" rel="noopener noreferrer">Redis</a>-based task queue that aims to provide a simple, yet flexible framework for executing tasks.</li>
 </ul>
 <h3 id="utils"><a class="anchor" aria-hidden="true" tabindex="-1" href="#utils"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Utils</h3><ul>
-<li><a href="https://github.com/apitally/apitally-py" rel="noopener noreferrer">Apitally (⭐217)</a> - API monitoring, analytics, and request logging for Flask.</li>
+<li><a href="https://github.com/apitally/apitally-py" rel="noopener noreferrer">Apitally (⭐218)</a> - API monitoring, analytics, and request logging for Flask.</li>
 <li><a href="https://github.com/python-babel/flask-babel" rel="noopener noreferrer">Flask-Babel (⭐453)</a> - Support for internationalization (i18n) and localization (l10n).</li>
 <li><a href="https://github.com/joegasewicz/flask-file-upload" rel="noopener noreferrer">Flask-File-Upload (⭐154)</a> - Easy file uploads.</li>
 <li><a href="https://pythonhosted.org/Flask-FlatPages/" rel="noopener noreferrer">Flask-FlatPages</a> - Provides flat static pages based on text files.</li>
-<li><a href="https://github.com/Frozen-Flask/Frozen-Flask" rel="noopener noreferrer">Frozen-Flask (⭐799)</a> - Freezes a Flask application into a set of static files.</li>
+<li><a href="https://github.com/Frozen-Flask/Frozen-Flask" rel="noopener noreferrer">Frozen-Flask (⭐800)</a> - Freezes a Flask application into a set of static files.</li>
 <li><a href="https://github.com/graphql-python/flask-graphql" rel="noopener noreferrer">Flask-GraphQL (⭐1.3k)</a> - GraphQL support.</li>
-<li><a href="https://github.com/python-injector/flask_injector" rel="noopener noreferrer">Flask-Injector (⭐282)</a> - Adds support for dependency injection.</li>
+<li><a href="https://github.com/python-injector/flask_injector" rel="noopener noreferrer">Flask-Injector (⭐283)</a> - Adds support for dependency injection.</li>
 <li><a href="https://flask-limiter.readthedocs.io" rel="noopener noreferrer">Flask-Limiter</a> - Rate limiting features to Flask routes.</li>
-<li><a href="https://github.com/miguelgrinberg/Flask-Moment" rel="noopener noreferrer">Flask-Moment (⭐382)</a> - Moment.js date and time formatting helpers for Jinja2 templates.</li>
+<li><a href="https://github.com/miguelgrinberg/Flask-Moment" rel="noopener noreferrer">Flask-Moment (⭐381)</a> - Moment.js date and time formatting helpers for Jinja2 templates.</li>
 <li><a href="https://pythonhosted.org/Flask-paginate/" rel="noopener noreferrer">Flask-Paginate</a> - Pagination support.</li>
 <li><a href="https://github.com/Azure-Samples/flask-reactize" rel="noopener noreferrer">Flask-Reactize (⭐7)</a> - Hides the Node.js development backend for React behind a Flask application.</li>
 <li><a href="https://github.com/Eshaan7/Flask-Shell2HTTP" rel="noopener noreferrer">Flask-Shell2HTTP (⭐189)</a> - RESTful/HTTP wrapper for Python's subprocess API, so you can convert any command-line tool into a RESTful API service.</li>
@@ -297,7 +377,7 @@
 <li><a href="https://pyvideo.org/search.html?q=flask" rel="noopener noreferrer">PyVideo</a></li>
 <li><a href="https://www.youtube.com/playlist?list=PLQVvvaa0QuDc_owjTbIY4rbgXOFkUYOUB" rel="noopener noreferrer">Practical Flask Web Development Tutorials</a></li>
 <li><a href="https://www.youtube.com/playlist?list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH" rel="noopener noreferrer">Python Flask Tutorial: Full-Featured Web App</a></li>
-<li><a href="https://github.com/realpython/discover-flask" rel="noopener noreferrer">Discover Flask - Full Stack Web Development with Flask (⭐4.6k)</a></li>
+<li><a href="https://github.com/realpython/discover-flask" rel="noopener noreferrer">Discover Flask - Full Stack Web Development with Flask (⭐4.5k)</a></li>
 </ul>
 <h2 id="hosting"><a class="anchor" aria-hidden="true" tabindex="-1" href="#hosting"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Hosting</h2><h3 id="paas"><a class="anchor" aria-hidden="true" tabindex="-1" href="#paas"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>PaaS</h3><p>(Platforms-as-a-Service)</p>
 <ul>
@@ -334,25 +414,26 @@
 <h2 id="projects"><a class="anchor" aria-hidden="true" tabindex="-1" href="#projects"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Projects</h2><h3 id="boilerplates"><a class="anchor" aria-hidden="true" tabindex="-1" href="#boilerplates"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Boilerplates</h3><ul>
 <li><a href="https://github.com/cookiecutter-flask/cookiecutter-flask" rel="noopener noreferrer">cookiecutter-flask (⭐4.7k)</a> - With Bootstrap 4, asset bundling annd minification with webpack, starter templates, and registration/authentication.</li>
 <li><a href="https://github.com/testdrivenio/cookiecutter-flask-skeleton" rel="noopener noreferrer">Cookiecutter Flask Skeleton (⭐67)</a> - Flask starter project for <a href="https://github.com/cookiecutter/cookiecutter" rel="noopener noreferrer">Cookiecutter (⭐25k)</a>.</li>
-<li><a href="https://github.com/dpgaspar/Flask-AppBuilder" rel="noopener noreferrer">Flask-AppBuilder (⭐4.9k)</a> - Simple and rapid application development framework that includes detailed security, auto CRUD generation for your models, Google charts, and much more.</li>
+<li><a href="https://github.com/dpgaspar/Flask-AppBuilder" rel="noopener noreferrer">Flask-AppBuilder (⭐5k)</a> - Simple and rapid application development framework that includes detailed security, auto CRUD generation for your models, Google charts, and much more.</li>
 <li><a href="http://hack4impact.github.io/flask-base/" rel="noopener noreferrer">flask-base</a> - Includes SQLAlchemy, Redis, User Authentication, and more.</li>
-<li><a href="https://github.com/esbullington/flask-bootstrap" rel="noopener noreferrer">Flask-Bootstrap (⭐212)</a> - Integrated SQLAlchemy, authentication, and Bootstrap frontend.</li>
-<li><a href="https://github.com/marcusschiesser/flask-htmx-boilerplate" rel="noopener noreferrer">flask-htmx-boilerplate (⭐36)</a> - Boilerplate template for a Python Flask application with HTMX and Tailwind CSS.</li>
+<li><a href="https://github.com/esbullington/flask-bootstrap" rel="noopener noreferrer">Flask-Bootstrap (⭐211)</a> - Integrated SQLAlchemy, authentication, and Bootstrap frontend.</li>
+<li><a href="https://github.com/marcusschiesser/flask-htmx-boilerplate" rel="noopener noreferrer">flask-htmx-boilerplate (⭐37)</a> - Boilerplate template for a Python Flask application with HTMX and Tailwind CSS.</li>
 <li><a href="https://github.com/tiangolo/uwsgi-nginx-flask-docker" rel="noopener noreferrer">uwsgi-nginx-flask-docker (⭐3k)</a> - Docker image with uWSGI and Nginx for Flask applications in Python running in a single container.</li>
 <li><a href="https://github.com/dternyak/React-Redux-Flask" rel="noopener noreferrer">React-Redux-Flask (⭐1.5k)</a> - Boilerplate application for a Flask JWT Backend and a React/Redux Front-End with Material UI.</li>
 </ul>
 <h3 id="open-source-projects"><a class="anchor" aria-hidden="true" tabindex="-1" href="#open-source-projects"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Open Source Projects</h3><ul>
 <li><a href="https://github.com/actorcloud/ActorCloud" rel="noopener noreferrer">ActorCloud (⭐197)</a> - Open-source IoT Platform.</li>
-<li><a href="https://github.com/busy-beaver-dev/busy-beaver" rel="noopener noreferrer">Busy Beaver (⭐72)</a> - Chicago Python's Community Engagement Slack bot.</li>
+<li><a href="https://github.com/colbyj/bride-of-frankensystem" rel="noopener noreferrer">BOFS (⭐12)</a> - Create online surveys and behavioral experiments based on declarative configuration files; extend functionality via Flask as-needed.</li>
+<li><a href="https://github.com/busy-beaver-dev/busy-beaver" rel="noopener noreferrer">Busy Beaver (⭐71)</a> - Chicago Python's Community Engagement Slack bot.</li>
 <li><a href="https://github.com/flaskbb/flaskbb" rel="noopener noreferrer">FlaskBB (⭐2.7k)</a> - Classic forum software.</li>
-<li><a href="https://github.com/indico/indico" rel="noopener noreferrer">Indico (⭐2k)</a> - Feature-rich event management system, made at <a href="https://home.cern/" rel="noopener noreferrer">CERN</a>.</li>
+<li><a href="https://github.com/indico/indico" rel="noopener noreferrer">Indico (⭐2.1k)</a> - Feature-rich event management system, made at <a href="https://home.cern/" rel="noopener noreferrer">CERN</a>.</li>
 <li><a href="https://github.com/quokkaproject" rel="noopener noreferrer">Quokka CMS</a> - The happiest CMS in the world.</li>
 <li><a href="https://github.com/ethanchewy/PythonBuddy" rel="noopener noreferrer">PythonBuddy (⭐282)</a> - Online Python Editor with live syntax checking and execution.</li>
-<li><a href="https://github.com/getredash/redash" rel="noopener noreferrer">Redash (⭐28k)</a> - Designed to enable anyone, regardless of the level of technical sophistication, to harness the power of data big and small.</li>
-<li><a href="https://github.com/skylines-project/skylines" rel="noopener noreferrer">SkyLines (⭐402)</a> - Live tracking, flight database, and competition framework.</li>
+<li><a href="https://github.com/getredash/redash" rel="noopener noreferrer">Redash (⭐29k)</a> - Designed to enable anyone, regardless of the level of technical sophistication, to harness the power of data big and small.</li>
+<li><a href="https://github.com/skylines-project/skylines" rel="noopener noreferrer">SkyLines (⭐404)</a> - Live tracking, flight database, and competition framework.</li>
 <li><a href="https://github.com/Netflix/security_monkey" rel="noopener noreferrer">Security Monkey (⭐4.4k)</a> - Monitors AWS, GCP, OpenStack, and GitHub orgs for assets and their changes over time.</li>
 <li><a href="https://github.com/freedomofpress/securedrop" rel="noopener noreferrer">SecureDrop (⭐3.8k)</a> - Open-source whistleblower submission system that media organizations can use to securely accept documents from, and communicate with anonymous sources.</li>
-<li><a href="https://github.com/simple-login/app" rel="noopener noreferrer">SimpleLogin (⭐6.5k)</a> - Protect your online identity with email alias.</li>
+<li><a href="https://github.com/simple-login/app" rel="noopener noreferrer">SimpleLogin (⭐6.6k)</a> - Protect your online identity with email alias.</li>
 <li><a href="https://git.sr.ht/~sircmpwn/core.sr.ht/tree" rel="noopener noreferrer">sr.ht</a> - Git hosting service (check out <a href="https://drewdevault.com/2019/01/30/Why-I-built-sr.ht-with-Flask.html" rel="noopener noreferrer">Why I chose Flask to build sr.ht's mini-services</a> as well).</li>
 <li><a href="https://github.com/google/timesketch" rel="noopener noreferrer">Timesketch (⭐3.3k)</a> - Collaborative forensic timeline analysis.</li>
 </ul>
@@ -365,5 +446,47 @@
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
