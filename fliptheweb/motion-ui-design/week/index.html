@@ -16,26 +16,154 @@
     <meta property="og:title" content="Track Motion Ui Design Updates Weekly" />
     <meta property="og:description" content="Resources for inspiration, lists of software, libraries and other stuff related to Motion UI design, animations and transitions." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Motion Ui Design Updates Weekly</h1>
 <p>Resources for inspiration, lists of software, libraries and other stuff related to Motion UI design, animations and transitions.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/fliptheweb/motion-ui-design/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/fliptheweb/motion-ui-design">😺 fliptheweb/motion-ui-design</a><span> · </span><span>⭐ 839</span><span> · </span><span>🏷️ Front-End Development</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/fliptheweb/motion-ui-design/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/fliptheweb/motion-ui-design">😺 fliptheweb/motion-ui-design</a><span> · </span><span>⭐ 888</span><span> · </span><span>🏷️ Front-End Development</span></p>
 <p><span>[ </span><a href="/fliptheweb/motion-ui-design/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/fliptheweb/motion-ui-design/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/20/">May 18 - May 24, 2026</a></h2><h3><p>Articles / Processing and other weird but funny stuff</p>
+</h3>
+<ul>
+<li><a href="https://blog.prototypr.io/ui-motion-design-the-compendium-d8b478357fa3" rel="noopener noreferrer">UI Motion Design — The Compendium</a> by @Thalion.</li>
+</ul>
+<h3><p>Software / Visual programming</p>
+</h3>
+<ul>
+<li>Quartz Composer – MacOS app with a node-based visual programming language for prototyping MacOS/iOS apps (discontinued by Apple):<ul>
+<li><a href="https://vimeo.com/88468610" rel="noopener noreferrer">The 4 Minute Guide to Quartz Composer</a> (🎥 video).</li>
+<li><a href="https://medium.com/the-year-of-the-looking-glass/introducing-origami-for-quartz-composer-f1173d0bd181" rel="noopener noreferrer">Introducing Origami for QC</a>.</li>
+<li><a href="https://origami.design/" rel="noopener noreferrer">Origami Studio</a> – A tool for creating modern UI by Facebook.</li>
+</ul>
+</li>
+</ul>
+<h3><p>Libraries / CSS</p>
+</h3>
+<ul>
+<li><a href="http://www.minimamente.com/project/magic/" rel="noopener noreferrer">Magic animations</a> – Collection.</li>
+</ul>
+<h3><p>Libraries / JavaScript</p>
+</h3>
+<ul>
+<li><a href="http://velocityjs.org/" rel="noopener noreferrer">Velocity.js</a> – Accelerated JavaScript animation.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mojs/mojs" rel="noopener noreferrer">Mo.js (⭐19k)</a> – Motion graphics toolbelt for the web.</li>
+</ul>
+
+<ul>
+<li><a href="https://popmotion.io/" rel="noopener noreferrer">Popmotion</a> – JavaScript motion engine that makes creating engaging user interactions quick and simple.</li>
+</ul>
+<h3><p>Guidelines / SVG</p>
+</h3>
+<ul>
+<li>MacOS<ul>
+<li><a href="https://developer.apple.com/design/human-interface-guidelines/motion" rel="noopener noreferrer">Human Interface Guidelines: Motion</a></li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>Windows<ul>
+<li><a href="https://learn.microsoft.com/en-us/windows/apps/design/signature-experiences/motion" rel="noopener noreferrer">Motion in Windows apps</a></li>
+</ul>
+</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2020/42/">Oct 19 - Oct 25, 2020</a></h2><h3><p>Libraries / JavaScript</p>
 </h3>
 <ul>
-<li><a href="https://useanimations.com/" rel="noopener noreferrer">useAnimations</a> - micro-animations icon library;</li>
+<li><a href="https://useanimations.com/" rel="noopener noreferrer">useAnimations</a> - Micro-animation icon library.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/39/">Sep 24 - Sep 30, 2018</a></h2><h3><p>Resources for inspiration / Sites</p>
 </h3>
@@ -60,23 +188,11 @@
 </ul>
 
 <ul>
-<li><a href="http://capptivate.co/" rel="noopener noreferrer">capptivate.co</a> – A collection of awesome mobile interfaces.</li>
+<li><a href="http://awwwards.com/websites/animation/" rel="noopener noreferrer">Awwwards</a> – Examples of websites with animation.</li>
 </ul>
 
 <ul>
-<li><a href="http://awwwards.com/websites/animation/" rel="noopener noreferrer">Awwwards</a> – Websites examples of designs with animation.</li>
-</ul>
-
-<ul>
-<li><a href="http://cssanimation.rocks/" rel="noopener noreferrer">cssanimation.rocks</a> – CSS animated demos.</li>
-</ul>
-
-<ul>
-<li><a href="http://michaelvillar.com/motion/" rel="noopener noreferrer">michaelvillar.com</a> – experiments by @michaelvillar (Stripe).</li>
-</ul>
-
-<ul>
-<li><a href="http://hakim.se/" rel="noopener noreferrer">hakim.se</a> – Experiments by @hakimel.</li>
+<li><a href="http://cssanimation.rocks/" rel="noopener noreferrer">cssanimation.rocks</a> – CSS animated demos.</li>
 </ul>
 
 <ul>
@@ -89,27 +205,6 @@
 
 <ul>
 <li><a href="http://app-ealing.com/" rel="noopener noreferrer">appealing.</a> – A collection of mobile transitions and animations.</li>
-</ul>
-<h3><p>Newsletters, podcasts, screencasts / SVG</p>
-</h3>
-<ul>
-<li><a href="https://uimovement.com/" rel="noopener noreferrer">UI Movement</a> - best of the week UI animations newsletter.</li>
-</ul>
-
-<ul>
-<li><a href="http://valhead.com/newsletter/" rel="noopener noreferrer">The UI Animation Newsletter</a> – newsletter with resources plus helpful advice on how to make web animation work for you coming straight to your inbox each month by @valhead.</li>
-</ul>
-
-<ul>
-<li><a href="http://webanimationweekly.com/" rel="noopener noreferrer">Web Animation Weekly</a> – newsletter with articles, videos, book reviews, and other goodies pertaining to the wonderful worlds of web animation and motion design by Rachel Nabors.</li>
-</ul>
-
-<ul>
-<li><a href="http://motionandmeaning.io/" rel="noopener noreferrer">Motion and meaning</a> – Podcast about motion for digital designers by @valhead and Cennydd Bowles.</li>
-</ul>
-
-<ul>
-<li><a href="https://vimeo.com/channels/alltherightmoves/" rel="noopener noreferrer">All The Right Moves</a> – Animation reviews by @valhead.</li>
 </ul>
 <h3><p>Resources for inspiration / Pinterest boards</p>
 </h3>
@@ -128,7 +223,7 @@
 <ul>
 <li><a href="http://pinterest.com/julient/animated-uxui/" rel="noopener noreferrer">Animated UX/UI</a> by Julien Tilly.</li>
 </ul>
-<h3><p>Resources for inspiration / Processing and other weird, but funny stuff</p>
+<h3><p>Resources for inspiration / Processing and other weird but funny stuff</p>
 </h3>
 <ul>
 <li><a href="http://beesandbombs.tumblr.com/" rel="noopener noreferrer">Bees &amp; bombs</a> – Processing experiments by Dave Whyte.</li>
@@ -145,7 +240,7 @@
 <ul>
 <li><a href="http://bigblueboo.tumblr.com/" rel="noopener noreferrer">bigblueboo</a> – 3d and processing experiments by Charlie Deck.</li>
 </ul>
-<h3><p>Articles / Processing and other weird, but funny stuff</p>
+<h3><p>Articles / Processing and other weird but funny stuff</p>
 </h3>
 <ul>
 <li><a href="http://valhead.com/2016/05/05/how-fast-should-your-ui-animations-be/" rel="noopener noreferrer">How fast should your UI animations be?</a> by @valhead.</li>
@@ -164,7 +259,7 @@
 </ul>
 
 <ul>
-<li><a href="https://blog.prototypr.io/how-to-use-animations-and-motion-in-web-design-2fd1f68e6e02" rel="noopener noreferrer">How To Use Animations and Motion in Web Design</a> by @PageCloud</li>
+<li><a href="https://blog.prototypr.io/how-to-use-animations-and-motion-in-web-design-2fd1f68e6e02" rel="noopener noreferrer">How To Use Animations and Motion in Web Design</a> by @PageCloud.</li>
 </ul>
 
 <ul>
@@ -172,27 +267,23 @@
 </ul>
 
 <ul>
-<li><a href="https://blog.prototypr.io/ui-motion-design-the-compendium-d8b478357fa3" rel="noopener noreferrer">UI Motion Design — The Compendium</a> by @Thalion.</li>
-</ul>
-
-<ul>
 <li><a href="https://medium.com/ux-in-motion/creating-usability-with-motion-the-ux-in-motion-manifesto-a87a4584ddc" rel="noopener noreferrer">Creating Usability with Motion: The UX in Motion Manifesto</a> by @Issara Willenskomer.</li>
 </ul>
 
 <ul>
-<li><a href="https://medium.com/@adaptivepath/jedi-principles-of-ui-animation-2b88423b1dac" rel="noopener noreferrer">Jedi Principles of UI Animation</a> @Adaptive Path.</li>
+<li><a href="https://medium.com/@adaptivepath/jedi-principles-of-ui-animation-2b88423b1dac" rel="noopener noreferrer">Jedi Principles of UI Animation</a> by @Adaptive Path.</li>
 </ul>
 
 <ul>
-<li><a href="https://uxplanet.org/micro-interaction-great-experience-for-user-engagement-b37446bf6306" rel="noopener noreferrer">Micro Interaction; great experience for user engagement</a> @Sneha Munot.</li>
+<li><a href="https://uxplanet.org/micro-interaction-great-experience-for-user-engagement-b37446bf6306" rel="noopener noreferrer">Micro Interaction; great experience for user engagement</a> by @Sneha Munot.</li>
 </ul>
 
 <ul>
-<li><a href="https://uxplanet.org/ui-animation-microinteraction-for-macroresult-668cd9e71101" rel="noopener noreferrer">UI Animation. Microinteraction for Macroresult</a> @Tubik Studio.</li>
+<li><a href="https://uxplanet.org/ui-animation-microinteraction-for-macroresult-668cd9e71101" rel="noopener noreferrer">UI Animation. Microinteraction for Macroresult</a> by @Tubik Studio.</li>
 </ul>
 
 <ul>
-<li><a href="https://medium.freecodecamp.org/the-principles-of-ux-choreography-69c91c2cbc2a" rel="noopener noreferrer">The Principles of UX Choreography</a> @Rebecca Ussai Henderson.</li>
+<li><a href="https://medium.freecodecamp.org/the-principles-of-ux-choreography-69c91c2cbc2a" rel="noopener noreferrer">The Principles of UX Choreography</a> by @Rebecca Ussai Henderson.</li>
 </ul>
 <h3><p>Software / Video, gif, presentation</p>
 </h3>
@@ -202,46 +293,28 @@
 <li><a href="https://uxinmotion.net/" rel="noopener noreferrer">UI Animation tutorials</a>.</li>
 <li><a href="http://webdesign.tutsplus.com/tutorials/how-to-use-after-effects-for-web-animation-prototypes--cms-21451" rel="noopener noreferrer">How to Use After Effects for Web Animation Prototypes</a> (🎥 video).</li>
 <li><a href="http://mtmograph.com/summits/" rel="noopener noreferrer">MtMograph summits</a> (🎥 video).</li>
-<li><a href="http://schoolofmotion.com/project/30dae_01_writeon/" rel="noopener noreferrer">30 days of AE</a> (🎥 video).</li>
 <li><a href="http://www.lynda.com/After-Effects-tutorials/After-Effects-CC-Essential-Training/122431-2.html" rel="noopener noreferrer">After Effects CC Essential Training on Lynda</a> (🎥 video).</li>
-<li><a href="https://github.com/bodymovin/bodymovin" rel="noopener noreferrer">BodyMovin (⭐31k)</a> – Converter from AE to SVG/canvas.</li>
+<li><a href="https://github.com/bodymovin/bodymovin" rel="noopener noreferrer">BodyMovin (⭐32k)</a> – Converter from AE to SVG/canvas.</li>
 <li><a href="http://www.marcuseckert.com/squall/" rel="noopener noreferrer">Squall</a> – Converter from AE to iOS.</li>
 </ul>
 </li>
 </ul>
 
 <ul>
-<li><a href="https://www.apple.com/sg/final-cut-pro/motion/" rel="noopener noreferrer">Apple Motion</a> – MacOS app for create and edit motion graphics, titling for video production and film production, and 2D and 3D compositing for visual effects.</li>
+<li><a href="https://www.apple.com/sg/final-cut-pro/motion/" rel="noopener noreferrer">Apple Motion</a> – MacOS app for creating and editing motion graphics, titling for video and film production, and 2D/3D compositing for visual effects.</li>
 </ul>
 
 <ul>
-<li><a href="http://www.adobe.com/sea/products/photoshop.html" rel="noopener noreferrer">Adobe Photoshop</a> – Raster graphics editor that can also produce gif UI animations:<ul>
-<li><a href="http://bashooka.com/photoshop/photoshop-ui-animation-tutorials/" rel="noopener noreferrer">9 Photoshop UI Animation Tutorials</a>.</li>
-</ul>
-</li>
+<li><a href="http://www.adobe.com/sea/products/photoshop.html" rel="noopener noreferrer">Adobe Photoshop</a> – Raster graphics editor that can also produce gif UI animations.</li>
 </ul>
 
 <ul>
-<li><a href="http://www.adobe.com/products/flash.html" rel="noopener noreferrer">Adobe Flash</a> – Software for creating vector graphics, animations, games etc..</li>
+<li><a href="http://www.adobe.com/products/flash.html" rel="noopener noreferrer">Adobe Flash</a> – Software for creating vector graphics, animations, games, etc.</li>
 </ul>
 <h3><p>Software / Visual programming</p>
 </h3>
 <ul>
-<li><a href="https://developer.apple.com/downloads/" rel="noopener noreferrer">Quartz Composer</a> – MacOS app with node-based visual programming language for prototyping MacOS/iOS apps:<ul>
-<li><a href="https://vimeo.com/88468610" rel="noopener noreferrer">The 4 Minute Guide to Quartz Composer</a> (🎥 video).</li>
-<li><a href="https://medium.com/the-year-of-the-looking-glass/introducing-origami-for-quartz-composer-f1173d0bd181" rel="noopener noreferrer">Introducing Origami for QC</a>.</li>
-<li><a href="https://facebook.github.io/origami/" rel="noopener noreferrer">Origami</a> – A tool for creating modern UI by Facebook.</li>
-<li><a href="https://labs.ideo.com/2014/05/27/avocado/" rel="noopener noreferrer">Avocado</a> – A toolbox for interaction designers.</li>
-</ul>
-</li>
-</ul>
-
-<ul>
-<li><a href="http://www.relativewave.com/form/" rel="noopener noreferrer">Form</a> – App with a node-based visual programming language for prototyping apps by Google.</li>
-</ul>
-
-<ul>
-<li><a href="http://principleformac.com/" rel="noopener noreferrer">Principle For Mac</a> – MacOS app for create animated and interactive user interface designs.</li>
+<li><a href="http://principleformac.com/" rel="noopener noreferrer">Principle For Mac</a> – MacOS app for creating animated, interactive user interfaces.</li>
 </ul>
 <h3><p>Helpers / HTML, CSS and JavaScript</p>
 </h3>
@@ -254,7 +327,7 @@
 </ul>
 
 <ul>
-<li><a href="http://csstriggers.com/" rel="noopener noreferrer">csstriggers.com</a> – List of CSS properties thats trigger repaint, reflow or compositing.</li>
+<li><a href="http://csstriggers.com/" rel="noopener noreferrer">csstriggers.com</a> – List of CSS properties that trigger repaint, reflow, or compositing.</li>
 </ul>
 <h3><p>Libraries / HTML, CSS and JavaScript</p>
 </h3>
@@ -272,19 +345,15 @@
 </ul>
 
 <ul>
-<li><a href="http://h5bp.github.io/Effeckt.css/" rel="noopener noreferrer">Effeckt.css</a> – Collections of UI animations.</li>
+<li><a href="http://h5bp.github.io/Effeckt.css/" rel="noopener noreferrer">Effeckt.css</a> – Collections of UI animations.</li>
 </ul>
 
 <ul>
-<li><a href="http://bouncejs.com/" rel="noopener noreferrer">Bounce.js</a> – Tool for generate nice CSS keyframes animation from js easing function.</li>
+<li><a href="http://bouncejs.com/" rel="noopener noreferrer">Bounce.js</a> – Tool for generating CSS keyframe animations from JS easing functions.</li>
 </ul>
 
 <ul>
 <li><a href="http://justinaguilar.com/animations/" rel="noopener noreferrer">Animations.css</a> - Collection.</li>
-</ul>
-
-<ul>
-<li><a href="http://www.minimamente.com/example/magic_animations/" rel="noopener noreferrer">Magic animations</a> – Collection.</li>
 </ul>
 
 <ul>
@@ -300,15 +369,11 @@
 </ul>
 
 <ul>
-<li><a href="http://pavlyukpetr.com/awesome/" rel="noopener noreferrer">Awesome CSS3 animations</a> – Library of animations.</li>
+<li><a href="http://pavlyukpetr.com/awesome/" rel="noopener noreferrer">Awesome CSS3 animations</a> – Library of animations.</li>
 </ul>
 
 <ul>
 <li><a href="http://all-animation.github.io/" rel="noopener noreferrer">All Animation</a> – Set of fun animations to make your project sexier.</li>
-</ul>
-
-<ul>
-<li><a href="http://cssanimate.com/" rel="noopener noreferrer">CSS Animate</a> – Tool for easy and fast creating CSS3 keyframes animation.</li>
 </ul>
 
 <ul>
@@ -317,11 +382,7 @@
 <h3><p>Libraries / JavaScript</p>
 </h3>
 <ul>
-<li><a href="http://greensock.com/" rel="noopener noreferrer">GreenSock</a> – Ultra high-performance, professional-grade animation for the modern web.</li>
-</ul>
-
-<ul>
-<li><a href="http://julian.com/research/velocity/" rel="noopener noreferrer">Velocity.js</a> – Accelerated JavaScript animation.</li>
+<li><a href="http://greensock.com/" rel="noopener noreferrer">GreenSock</a> – Ultra high-performance, professional-grade animation for the modern web.</li>
 </ul>
 
 <ul>
@@ -337,15 +398,7 @@
 </ul>
 
 <ul>
-<li><a href="http://famous.org/" rel="noopener noreferrer">Famo.us</a> – High-performance JavaScript library for animations &amp; interfaces.</li>
-</ul>
-
-<ul>
-<li><a href="http://processingjs.org/" rel="noopener noreferrer">Processing.js</a> – JavaScript library for Processing visual programming language.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/koenbok/Framer" rel="noopener noreferrer">Framer.js (⭐5.9k)</a> – Prototyping tool for designing UI, interaction and animation.</li>
+<li><a href="http://processingjs.org/" rel="noopener noreferrer">Processing.js</a> – JavaScript library for Processing visual programming language.</li>
 </ul>
 
 <ul>
@@ -353,23 +406,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/legomushroom/mojs" rel="noopener noreferrer">Mo.js (⭐19k)</a> – Motion graphics toolbelt for the web.</li>
+<li><a href="http://rapid-application-development-js.github.io/AnimateTransition/" rel="noopener noreferrer">AnimateTransition</a> – Library for transition of blocks and popups.</li>
 </ul>
 
 <ul>
-<li><a href="http://rapid-application-development-js.github.io/AnimateTransition/" rel="noopener noreferrer">AnimateTransition</a> – Library for transition of blocks and popups.</li>
+<li><a href="https://github.com/bendc/animateplus" rel="noopener noreferrer">Animate Plus (⭐5.9k)</a> – CSS and SVG animation library for modern browsers, performant and lightweight (3KB gzipped), making it particularly well-suited for mobile.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/bendc/animateplus" rel="noopener noreferrer">Animate Plus (⭐6k)</a> – CSS and SVG animation library for modern browsers, performant and lightweight (3KB gzipped), making it particularly well-suited for mobile.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/iamralpht/gravitas.js" rel="noopener noreferrer">Gravitas.js (⭐162)</a> – Super fast physics simulations for JavaScript.</li>
-</ul>
-
-<ul>
-<li><a href="https://popmotion.io/guides/basics/get-started/" rel="noopener noreferrer">Popmotion</a> – JavaScript motion engine that makes creating engaging user interactions quick and simple.</li>
+<li><a href="https://github.com/iamralpht/gravitas.js" rel="noopener noreferrer">Gravitas.js (⭐162)</a> – Super fast physics simulations for JavaScript.</li>
 </ul>
 
 <ul>
@@ -382,11 +427,11 @@
 </ul>
 
 <ul>
-<li><a href="http://maxwellito.github.io/vivus/" rel="noopener noreferrer">Vivus.js</a> – Allows you to animate SVGs, giving them the appearence of being drawn.</li>
+<li><a href="http://maxwellito.github.io/vivus/" rel="noopener noreferrer">Vivus.js</a> – Allows you to animate SVGs, giving them the appearance of being drawn.</li>
 </ul>
 
 <ul>
-<li><a href="http://connoratherton.com/walkway" rel="noopener noreferrer">Walkway.js</a> – Easy way to animate SVG images consisting of line, path, and polyline elements.</li>
+<li><a href="http://connoratherton.com/walkway" rel="noopener noreferrer">Walkway.js</a> – Easy way to animate SVG images consisting of line, path, and polyline elements.</li>
 </ul>
 
 <ul>
@@ -408,7 +453,7 @@
 <h3><p>Speeches, presentations, videos / SVG</p>
 </h3>
 <ul>
-<li><a href="http://markgeyer.com/pres/interface-animations/" rel="noopener noreferrer">Interface Animations (Mark Geyer)</a> – Workshop on BlendConf 2014.</li>
+<li><a href="http://markgeyer.com/pres/interface-animations/" rel="noopener noreferrer">Interface Animations (Mark Geyer)</a> – Workshop on BlendConf 2014.</li>
 </ul>
 
 <ul>
@@ -440,10 +485,6 @@
 </ul>
 
 <ul>
-<li><a href="https://futureinsights-1.wistia.com/medias/k62k980uo7" rel="noopener noreferrer">Animating Your UX (Rachel Nabors)</a> (🎥 video).</li>
-</ul>
-
-<ul>
 <li><a href="https://www.youtube.com/watch?v=lf7L8X6ZBu8&amp;list=PLUS3uVC08ZaqVEGFkl_dS_3FUzILkOIzA" rel="noopener noreferrer">Styling and Animating Scalable Vector Graphics with CSS (Sara Soueidan)</a> (🎥 video).</li>
 </ul>
 
@@ -458,6 +499,19 @@
 <ul>
 <li><a href="https://www.youtube.com/watch?v=HaD5z2KqcGk&amp;feature=youtu.be" rel="noopener noreferrer">Functional Animation (Sarah Drasner)</a> (🎥 video).</li>
 </ul>
+<h3><p>Newsletters, podcasts, screencasts / SVG</p>
+</h3>
+<ul>
+<li><a href="http://valhead.com/newsletter/" rel="noopener noreferrer">The UI Animation Newsletter</a> – Newsletter with resources plus helpful advice on how to make web animation work for you, by @valhead.</li>
+</ul>
+
+<ul>
+<li><a href="http://motionandmeaning.io/" rel="noopener noreferrer">Motion and meaning</a> – Podcast about motion for digital designers by @valhead and Cennydd Bowles.</li>
+</ul>
+
+<ul>
+<li><a href="https://vimeo.com/channels/alltherightmoves/" rel="noopener noreferrer">All The Right Moves</a> – Animation reviews by @valhead.</li>
+</ul>
 <h3><p>Guidelines / SVG</p>
 </h3>
 <ul>
@@ -469,42 +523,21 @@
 <h3><p>Books / SVG</p>
 </h3>
 <ul>
-<li><a href="https://shop.smashingmagazine.com/products/the-web-in-motion-practical-considerations-for-designing-with-animation" rel="noopener noreferrer">The Web In Motion: Practical Considerations For Designing With Animation</a> by Smashing Magazine.</li>
-</ul>
-
-<ul>
-<li><a href="https://designthencode.com/" rel="noopener noreferrer">Motion Design for iOS</a> by Mike Rundle.</li>
-</ul>
-
-<ul>
 <li><a href="http://www.kirupa.com/book/animation_in_html_css_and_javascript.htm" rel="noopener noreferrer">Animation in HTML, CSS, and JavaScript</a>.</li>
 </ul>
 
 <ul>
 <li><a href="http://www.uxpin.com/curated-interaction-design-animations.html" rel="noopener noreferrer">Futureproof Web Design Techniques. Interaction Design &amp; Complex Animations</a> by @UXPin.</li>
 </ul>
-
-<ul>
-<li><a href="http://cssanimationspocketguide.com/" rel="noopener noreferrer">CSS animations</a> by @valhead.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2016/4/">Jan 25 - Jan 31, 2016</a></h2><h3><p>Guidelines / SVG</p>
-</h3>
-<ul>
-<li>Windows<ul>
-<li><a href="https://msdn.microsoft.com/en-us/library/windows/apps/dn611854.aspx" rel="noopener noreferrer">Guidelines for animations</a></li>
-<li><a href="http://getmwf.com/styles/motion.html" rel="noopener noreferrer">Microsoft web framework: Motion</a></li>
-</ul>
-</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2016/3/">Jan 18 - Jan 24, 2016</a></h2><h3><p>Resources for inspiration / Pinterest boards</p>
 </h3>
 <ul>
 <li><a href="http://pinterest.com/CodeDesignIO/motion-ui/" rel="noopener noreferrer">Motion UI</a> by CodeDesign.</li>
 </ul>
-<h3><p>Resources for inspiration / Processing and other weird, but funny stuff</p>
+<h3><p>Resources for inspiration / Processing and other weird but funny stuff</p>
 </h3>
 <ul>
-<li><a href="http://misha-kvakin.tumblr.com/" rel="noopener noreferrer">Misha Kvakin</a> – Cinema4D and UI experiments.</li>
+<li><a href="http://misha-kvakin.tumblr.com/" rel="noopener noreferrer">Misha Kvakin</a> – Cinema4D and UI experiments.</li>
 </ul>
 <h3><p>Software / Video, gif, presentation</p>
 </h3>
@@ -517,31 +550,17 @@
 <h3><p>Software / Visual programming</p>
 </h3>
 <ul>
-<li><a href="https://floid.io/" rel="noopener noreferrer">Floid</a> – MacOS interaction design tool for any platform &amp; device (Web, iOS, Android).</li>
-</ul>
-<h3><p>Web animation performance / SVG</p>
-</h3>
-<ul>
-<li><a href="http://blogs.adobe.com/webplatform/2014/03/18/css-animations-and-transitions-performance/" rel="noopener noreferrer">CSS animations and transitions performance: looking inside the browser</a>.</li>
+<li><a href="https://floid.io/" rel="noopener noreferrer">Floid</a> – MacOS interaction design tool for any platform &amp; device (Web, iOS, Android).</li>
 </ul>
 <h3><p>Speeches, presentations, videos / SVG</p>
 </h3>
 <ul>
 <li><a href="http://ai.github.io/anim2012/" rel="noopener noreferrer">Animations anew - laziness, arrogance and intolerance (Andrey Sitnik)</a> (🇷🇺 Russian language).</li>
 </ul>
-<h3><p>Guidelines / SVG</p>
-</h3>
-<ul>
-<li>iOS<ul>
-<li><a href="https://developer.apple.com/tech-talks/videos/?id=2" rel="noopener noreferrer">User Interface Design for iOS 7 Apps</a> (🎥 video)</li>
-<li><a href="https://developer.apple.com/videos/wwdc/2012/?id=243" rel="noopener noreferrer">iPhoto for iOS: UI Progression and Animation Design</a> (🎥 video)</li>
-</ul>
-</li>
-</ul>
 <h3><p>Books / SVG</p>
 </h3>
 <ul>
-<li><a href="http://rosenfeldmedia.com/books/designing-interface-animations/" rel="noopener noreferrer">Designing Interface Animations</a> by @valhead (unpublished yet).</li>
+<li><a href="http://rosenfeldmedia.com/books/designing-interface-animations/" rel="noopener noreferrer">Designing Interface Animations</a> by @valhead.</li>
 </ul>
 <h3><p>How to Share ⭐⭐⭐⭐⭐ / SVG</p>
 </h3>
@@ -552,19 +571,6 @@
 <ul>
 <li><a href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https://github.com/fliptheweb/motion-ui-design&amp;p[images][0]=&amp;p[title]=Motion%20UI%20Design%20Collection&amp;p[summary]=">Share on Facebook</a></li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2015/50/">Dec 14 - Dec 20, 2015</a></h2><h3><p>Guidelines / SVG</p>
-</h3>
-<ul>
-<li><a href="https://www.lightningdesignsystem.com/design/motion/" rel="noopener noreferrer">SalesForce Lightning</a></li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2015/48/">Nov 30 - Dec 06, 2015</a></h2><h3><p>Guidelines / SVG</p>
-</h3>
-<ul>
-<li>IBM<ul>
-<li><a href="http://www.ibm.com/design/language/framework/animation/introduction" rel="noopener noreferrer">IBM Design Language – Animation design guidelines</a></li>
-</ul>
-</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2015/19/">May 11 - May 17, 2015</a></h2><h3><p>Libraries / SVG</p>
 </h3>
 <ul>
@@ -573,22 +579,49 @@
 </ul>
 </li>
 </ul>
-<h3><p>Guidelines / SVG</p>
-</h3>
-<ul>
-<li>MacOS<ul>
-<li><a href="https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/Animation.html#//apple_ref/doc/uid/20000957-CH11-SW1" rel="noopener noreferrer">OS X Human Interface Guidelines: Animation</a></li>
-</ul>
-</li>
-</ul>
-
-<ul>
-<li>Apple Watch<ul>
-<li><a href="https://developer.apple.com/watch/human-interface-guidelines/specifications/#animations" rel="noopener noreferrer">Specifications: Animations</a></li>
-</ul>
-</li>
-</ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
