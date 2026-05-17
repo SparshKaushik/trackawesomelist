@@ -16,22 +16,122 @@
     <meta property="og:title" content="Track Awesome Irc Updates Daily" />
     <meta property="og:description" content="A curated list of awesome IRC resources." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Irc Updates Daily</h1>
 <p>A curated list of awesome IRC resources.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/davisonio/awesome-irc/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/davisonio/awesome-irc">😺 davisonio/awesome-irc</a><span> · </span><span>⭐ 1.2K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/davisonio/awesome-irc/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/davisonio/awesome-irc">😺 davisonio/awesome-irc</a><span> · </span><span>⭐ 1.3K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/davisonio/awesome-irc/week/">Weekly</a><span> / </span><a href="/davisonio/awesome-irc/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/05/17/">May 17, 2026</a></h2><h3><p>Clients</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nutjob-laboratories/merk" rel="noopener noreferrer">MERK (⭐55)</a> - Open source, multiple-document interface GUI client with a rich plugin framework supporting 40+ events; plugins created directly inside the app. (<a href="https://github.com/nutjob-laboratories/merk" rel="noopener noreferrer">source (⭐55)</a>) <code>Windows</code> <code>macOS</code> <code>Linux</code> <code>Python</code></li>
+</ul>
+<h3><p>Bouncers / Self-hosted</p>
+</h3>
+<ul>
+<li><a href="https://codeberg.org/emersion/soju" rel="noopener noreferrer">soju</a> - A user-friendly IRC bouncer. <code>Go</code></li>
+</ul>
+<h3><p>Bots / Self-hosted</p>
+</h3>
+<ul>
+<li><a href="https://github.com/MansionNET" rel="noopener noreferrer">MansionNET Bot Suite</a> - Collection of self-hostable IRC bots: AI chat assistant, real-time weather, privacy-focused search, YouTube metadata, and AI-powered trivia. (<a href="https://github.com/MansionNET" rel="noopener noreferrer">source</a>) <code>Python</code></li>
+</ul>
+<h3><p>Networks / Platforms</p>
+</h3>
+<ul>
+<li><a href="https://inthemansion.com" rel="noopener noreferrer">MansionNET</a> - Privacy-focused community network running UnrealIRCd with Anope services; open to all, no tracking, no ads. (<code>irc.inthemansion.com:6697</code>, webchat at <code>webirc.inthemansion.com</code>)</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/03/13/">Mar 13, 2026</a></h2><h3><p>Clients</p>
 </h3>
 <ul>
@@ -43,19 +143,19 @@
 </ul>
 
 <ul>
-<li><a href="https://hexchat.github.io" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56874706-b28a8200-69f0-11e9-9ca7-27c8779134e0.png" alt="HexChat-icon" /> HexChat</a> - Based on XChat, easy to use, spell check &amp; multiple languages. (<a href="https://github.com/hexchat/hexchat" rel="noopener noreferrer">source (⭐3.3k)</a>) <code>Windows</code> <code>macOS</code> <code>Linux</code></li>
+<li><a href="https://hexchat.github.io" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56874706-b28a8200-69f0-11e9-9ca7-27c8779134e0.png" alt="HexChat-icon" /> HexChat</a> - Based on XChat, easy to use, spell check &amp; multiple languages. (<a href="https://github.com/hexchat/hexchat" rel="noopener noreferrer">source (⭐3.2k)</a>) <code>Windows</code> <code>macOS</code> <code>Linux</code></li>
 </ul>
 
 <ul>
-<li><a href="https://kiwiirc.com" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56875143-a7852100-69f3-11e9-8b33-2035c156c016.png" alt="KiwiIRC-icon" /> Kiwi IRC</a> - Powerful modern IRC messenger for the web. (<a href="https://github.com/kiwiirc/kiwiirc" rel="noopener noreferrer">source (⭐955)</a>, <a href="https://kiwiirc.com/nextclient/" rel="noopener noreferrer">demo</a>) <code>Web</code></li>
+<li><a href="https://kiwiirc.com" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56875143-a7852100-69f3-11e9-8b33-2035c156c016.png" alt="KiwiIRC-icon" /> Kiwi IRC</a> - Powerful modern IRC messenger for the web. (<a href="https://github.com/kiwiirc/kiwiirc" rel="noopener noreferrer">source (⭐978)</a>, <a href="https://kiwiirc.com/nextclient/" rel="noopener noreferrer">demo</a>) <code>Web</code></li>
 </ul>
 
 <ul>
-<li><a href="https://flackr.github.io/circ/" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56875201-1498b680-69f4-11e9-91ff-ae3b674c82be.png" alt="CIRC-icon" /> CIRC</a> - Uses the chrome.sockets APIs to connect directly to IRC servers without needing a proxy. (<a href="https://github.com/flackr/circ" rel="noopener noreferrer">source (⭐387)</a>) <code>Chrome</code></li>
+<li><a href="https://flackr.github.io/circ/" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56875201-1498b680-69f4-11e9-91ff-ae3b674c82be.png" alt="CIRC-icon" /> CIRC</a> - Uses the chrome.sockets APIs to connect directly to IRC servers without needing a proxy. (<a href="https://github.com/flackr/circ" rel="noopener noreferrer">source (⭐386)</a>) <code>Chrome</code></li>
 </ul>
 
 <ul>
-<li><a href="https://quassel-irc.org" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56875264-84a73c80-69f4-11e9-807c-75db09db0ec5.png" alt="Quassel-icon" /> Quassel</a> - Distributed (clients can attach to and detach from a central core that stays permanently online. (<a href="https://github.com/quassel/quassel" rel="noopener noreferrer">source (⭐763)</a>) <code>Linux</code> <code>macOS</code> <code>Windows</code></li>
+<li><a href="https://quassel-irc.org" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56875264-84a73c80-69f4-11e9-807c-75db09db0ec5.png" alt="Quassel-icon" /> Quassel</a> - Distributed (clients can attach to and detach from a central core that stays permanently online. (<a href="https://github.com/quassel/quassel" rel="noopener noreferrer">source (⭐776)</a>) <code>Linux</code> <code>macOS</code> <code>Windows</code></li>
 </ul>
 
 <ul>
@@ -63,15 +163,15 @@
 </ul>
 
 <ul>
-<li><a href="https://smuxi.im" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56875672-2f205f00-69f7-11e9-8cac-5721602234bb.png" alt="Smuxi-icon" /> Smuxi</a> - User-friendly, based on GNOME / GTK+. (<a href="https://github.com/meebey/smuxi" rel="noopener noreferrer">source (⭐183)</a>) <code>Linux</code> <code>Windows</code> <code>macOS</code></li>
+<li><a href="https://smuxi.im" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56875672-2f205f00-69f7-11e9-8cac-5721602234bb.png" alt="Smuxi-icon" /> Smuxi</a> - User-friendly, based on GNOME / GTK+. (<a href="https://github.com/meebey/smuxi" rel="noopener noreferrer">source (⭐185)</a>) <code>Linux</code> <code>Windows</code> <code>macOS</code></li>
 </ul>
 
 <ul>
-<li><a href="https://www.kvirc.net" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56874636-1d878900-69f0-11e9-856e-719c4c822e25.png" alt="KvIRC-icon" /> KvIRC</a> - Free, portable, based on Qt GUI toolkit. (<a href="https://github.com/kvirc/KVIrc" rel="noopener noreferrer">source (⭐286)</a>) <code>Linux</code> <code>macOS</code> <code>Windows</code></li>
+<li><a href="https://www.kvirc.net" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56874636-1d878900-69f0-11e9-856e-719c4c822e25.png" alt="KvIRC-icon" /> KvIRC</a> - Free, portable, based on Qt GUI toolkit. (<a href="https://github.com/kvirc/KVIrc" rel="noopener noreferrer">source (⭐291)</a>) <code>Linux</code> <code>macOS</code> <code>Windows</code></li>
 </ul>
 
 <ul>
-<li><a href="https://konversation.kde.org" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56876024-609a2a00-69f9-11e9-91dd-196f310776d7.png" alt="Konversation-icon" /> Konversation</a> - User-friendly client built on the KDE Platform. (<a href="https://github.com/KDE/konversation" rel="noopener noreferrer">source (⭐54)</a>) <code>Linux</code></li>
+<li><a href="https://konversation.kde.org" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56876024-609a2a00-69f9-11e9-91dd-196f310776d7.png" alt="Konversation-icon" /> Konversation</a> - User-friendly client built on the KDE Platform. (<a href="https://github.com/KDE/konversation" rel="noopener noreferrer">source (⭐56)</a>) <code>Linux</code></li>
 </ul>
 
 <ul>
@@ -99,7 +199,7 @@
 </ul>
 
 <ul>
-<li><a href="https://hello.obby.world/" rel="noopener noreferrer">ObsidianIRC</a> - Modern WebSocket IRC client with Discord-like UI. (<a href="https://github.com/ObsidianIRC/ObsidianIRC" rel="noopener noreferrer">source (⭐185)</a>) <code>Linux</code> <code>Windows</code> <code>macOS</code> <code>Android</code> <code>iOS</code> <code>Web</code></li>
+<li><a href="https://hello.obby.world/" rel="noopener noreferrer">ObsidianIRC</a> - Modern WebSocket IRC client with Discord-like UI. (<a href="https://github.com/ObsidianIRC/ObsidianIRC" rel="noopener noreferrer">source (⭐211)</a>) <code>Linux</code> <code>Windows</code> <code>macOS</code> <code>Android</code> <code>iOS</code> <code>Web</code></li>
 </ul>
 
 <ul>
@@ -117,8 +217,8 @@
 </h3>
 <ul>
 <li><a href="https://www.irccloud.com" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/15098724/56879253-ba581f80-6a0c-11e9-8f6b-8461c10ed149.png" alt="IRCCloud-icon" /> IRCCloud</a> - Group chat for teams, friends, and communities. stay connected, chat from anywhere, and never miss a message (+client) (£0-£3.50/month).<ul>
-<li><a href="https://github.com/irccloud/ios" rel="noopener noreferrer">iOS App (⭐290)</a> - Official. <code>Objective-C</code></li>
-<li><a href="https://github.com/irccloud/android" rel="noopener noreferrer">Android App (⭐306)</a> - Official. <code>Java</code></li>
+<li><a href="https://github.com/irccloud/ios" rel="noopener noreferrer">iOS App (⭐293)</a> - Official. <code>Objective-C</code></li>
+<li><a href="https://github.com/irccloud/android" rel="noopener noreferrer">Android App (⭐305)</a> - Official. <code>Java</code></li>
 <li><a href="https://github.com/jnordberg/irccloudapp" rel="noopener noreferrer">Nimbus (⭐152)</a> - Standalone client. <code>macOS</code> <code>Objective-C</code></li>
 </ul>
 </li>
@@ -151,11 +251,11 @@
 <h3><p>Daemons / Self-hosted</p>
 </h3>
 <ul>
-<li><a href="https://ergo.chat/" rel="noopener noreferrer">Ergo</a> - Modern server that's portable and designed around specifications (bleeding-edge IRCv3 support). (<a href="https://github.com/ergochat/ergo" rel="noopener noreferrer">source (⭐3.1k)</a>)</li>
+<li><a href="https://ergo.chat/" rel="noopener noreferrer">Ergo</a> - Modern server that's portable and designed around specifications (bleeding-edge IRCv3 support). (<a href="https://github.com/ergochat/ergo" rel="noopener noreferrer">source (⭐3.2k)</a>)</li>
 </ul>
 
 <ul>
-<li><a href="https://www.unrealircd.org" rel="noopener noreferrer">UnrealIRCd</a> - Modular, advanced IRCd serving thousands of networks since 1999. (<a href="https://github.com/unrealircd/unrealircd" rel="noopener noreferrer">source (⭐504)</a>)</li>
+<li><a href="https://www.unrealircd.org" rel="noopener noreferrer">UnrealIRCd</a> - Modular, advanced IRCd serving thousands of networks since 1999. (<a href="https://github.com/unrealircd/unrealircd" rel="noopener noreferrer">source (⭐514)</a>)</li>
 </ul>
 <h3><p>Encryption / Self-hosted</p>
 </h3>
@@ -173,7 +273,7 @@
 <h3><p>Frameworks / Bridges</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zachbr/Dis4IRC" rel="noopener noreferrer">Dis4IRC (⭐103)</a> - Discord ↔ IRC. <code>Kotlin</code></li>
+<li><a href="https://github.com/zachbr/Dis4IRC" rel="noopener noreferrer">Dis4IRC (⭐110)</a> - Discord ↔ IRC. <code>Kotlin</code></li>
 </ul>
 
 <ul>
@@ -197,12 +297,12 @@
 <h3><p>Services / Self-hosted</p>
 </h3>
 <ul>
-<li><a href="https://www.anope.org" rel="noopener noreferrer">anope</a> - Designed for flexibility and ease of use. (<a href="https://github.com/anope/anope" rel="noopener noreferrer">source (⭐349)</a>)</li>
+<li><a href="https://www.anope.org" rel="noopener noreferrer">anope</a> - Designed for flexibility and ease of use. (<a href="https://github.com/anope/anope" rel="noopener noreferrer">source (⭐355)</a>)</li>
 </ul>
 <h3><p>Bots / Self-hosted</p>
 </h3>
 <ul>
-<li><a href="https://www.eggheads.org" rel="noopener noreferrer">Eggdrop</a> - Oldest IRC bot still in active development. Feature rich, uses Tcl scripting. (<a href="https://github.com/eggheads/eggdrop" rel="noopener noreferrer">source (⭐565)</a>) <code>C</code></li>
+<li><a href="https://www.eggheads.org" rel="noopener noreferrer">Eggdrop</a> - Oldest IRC bot still in active development. Feature rich, uses Tcl scripting. (<a href="https://github.com/eggheads/eggdrop" rel="noopener noreferrer">source (⭐572)</a>) <code>C</code></li>
 </ul>
 
 <ul>
@@ -216,43 +316,43 @@
 <h3><p>Frameworks / Bridges</p>
 </h3>
 <ul>
-<li><a href="https://github.com/42wim/matterircd" rel="noopener noreferrer">matterircd (⭐302)</a> - Matterbridge ↔ IRC, Slack ↔ IRC, Mastodon ↔ IRC. <code>Go</code></li>
+<li><a href="https://github.com/42wim/matterircd" rel="noopener noreferrer">matterircd (⭐304)</a> - Matterbridge ↔ IRC, Slack ↔ IRC, Mastodon ↔ IRC. <code>Go</code></li>
 </ul>
 <h3><p>Miscellaneous / Platforms</p>
 </h3>
 <ul>
-<li><a href="https://github.com/waveplate/img2irc" rel="noopener noreferrer">img2src (⭐45)</a> - Convert images to halfblock ANSI or IRC, with a bunch of post-processing filters. <code>Rust</code></li>
+<li><a href="https://github.com/waveplate/img2irc" rel="noopener noreferrer">img2src (⭐46)</a> - Convert images to halfblock ANSI or IRC, with a bunch of post-processing filters. <code>Rust</code></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/05/22/">May 22, 2023</a></h2><h3><p>Bots / Self-hosted</p>
 </h3>
 <ul>
-<li><a href="https://github.com/wabarc/wayback" rel="noopener noreferrer">wayback (⭐2.1k)</a> - An archiving tool with an IRC interface integrated with various archiving services.</li>
+<li><a href="https://github.com/wabarc/wayback" rel="noopener noreferrer">wayback (⭐2.2k)</a> - An archiving tool with an IRC interface integrated with various archiving services.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/04/16/">Apr 16, 2023</a></h2><h3><p>Frameworks / Bridges</p>
 </h3>
 <ul>
-<li><a href="https://github.com/OpenTTD/dibridge" rel="noopener noreferrer">dibridge (⭐20)</a> - Discord ↔ IRC (with puppets) <code>Python</code></li>
+<li><a href="https://github.com/OpenTTD/dibridge" rel="noopener noreferrer">dibridge (⭐21)</a> - Discord ↔ IRC (with puppets) <code>Python</code></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/hifi/heisenbridge" rel="noopener noreferrer">Heisenbridge (⭐299)</a> - Bouncer-style Matrix IRC bridge <code>Python</code></li>
+<li><a href="https://github.com/hifi/heisenbridge" rel="noopener noreferrer">Heisenbridge (⭐305)</a> - Bouncer-style Matrix IRC bridge <code>Python</code></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/matrix-org/matrix-appservice-irc" rel="noopener noreferrer">Appservice-IRC (⭐494)</a> - Gateway and bridge Matrix ↔ IRC <code>Javascript</code></li>
+<li><a href="https://github.com/matrix-org/matrix-appservice-irc" rel="noopener noreferrer">Appservice-IRC (⭐500)</a> - Gateway and bridge Matrix ↔ IRC <code>Javascript</code></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/03/14/">Mar 14, 2023</a></h2><h3><p>Bots / Self-hosted</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bitbot-irc/bitbot" rel="noopener noreferrer">BitBot (⭐144)</a> - Modular, event-driven bot featuring a REST API, individual user settings and much more. (<a href="https://bitbot.dev" rel="noopener noreferrer">bitbot.dev</a>) <code>Python</code></li>
+<li><a href="https://github.com/bitbot-irc/bitbot" rel="noopener noreferrer">BitBot (⭐149)</a> - Modular, event-driven bot featuring a REST API, individual user settings and much more. (<a href="https://bitbot.dev" rel="noopener noreferrer">bitbot.dev</a>) <code>Python</code></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/JohnMaguire/Cardinal" rel="noopener noreferrer">Cardinal (⭐103)</a> - Python Twisted IRC bot with a focus on ease of plugin development. <code>Python</code></li>
+<li><a href="https://github.com/JohnMaguire/Cardinal" rel="noopener noreferrer">Cardinal (⭐104)</a> - Python Twisted IRC bot with a focus on ease of plugin development. <code>Python</code></li>
 </ul>
 
 <ul>
-<li><a href="https://pyhoneybot.github.io/honeybot-store/" rel="noopener noreferrer">pyHoneybot</a> - Python Twisted IRC bot with a focus on ease of plugin development. (<a href="https://github.com/pyhoneybot/honeybot" rel="noopener noreferrer">source (⭐79)</a>) <code>Python</code></li>
+<li><a href="https://pyhoneybot.github.io/honeybot-store/" rel="noopener noreferrer">pyHoneybot</a> - Python Twisted IRC bot with a focus on ease of plugin development. (<a href="https://github.com/pyhoneybot/honeybot" rel="noopener noreferrer">source (⭐81)</a>) <code>Python</code></li>
 </ul>
 <h3><p>Frameworks / Self-hosted</p>
 </h3>
@@ -262,12 +362,12 @@
 <h3><p>Frameworks / Bridges</p>
 </h3>
 <ul>
-<li><a href="https://github.com/42wim/matterbridge" rel="noopener noreferrer">matterbridge (⭐7.4k)</a> - IRC ↔ Mattermost ↔ Discord ↔ XMPP ↔ Gitter ↔ Slack ↔ Discord ↔ Telegram ↔ etc. <code>Go</code></li>
+<li><a href="https://github.com/42wim/matterbridge" rel="noopener noreferrer">matterbridge (⭐7.5k)</a> - IRC ↔ Mattermost ↔ Discord ↔ XMPP ↔ Gitter ↔ Slack ↔ Discord ↔ Telegram ↔ etc. <code>Go</code></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/11/03/">Nov 03, 2021</a></h2><h3><p>Daemons / Self-hosted</p>
 </h3>
 <ul>
-<li><a href="https://robustirc.net" rel="noopener noreferrer">RobustIRC</a> - IRC server without netsplits. (<a href="https://github.com/robustirc/robustirc/" rel="noopener noreferrer">source (⭐193)</a>)</li>
+<li><a href="https://robustirc.net" rel="noopener noreferrer">RobustIRC</a> - IRC server without netsplits. (<a href="https://github.com/robustirc/robustirc/" rel="noopener noreferrer">source (⭐195)</a>)</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/07/16/">Jul 16, 2021</a></h2><h3><p>Clients</p>
 </h3>
@@ -306,27 +406,22 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/TotallyNotRobots/CloudBot" rel="noopener noreferrer">CloudBot (⭐174)</a> - Simple, fast, expandable. <code>Python</code></li>
+<li><a href="https://github.com/TotallyNotRobots/CloudBot" rel="noopener noreferrer">CloudBot (⭐182)</a> - Simple, fast, expandable. <code>Python</code></li>
 </ul>
 <h3><p>Frameworks / Bridges</p>
 </h3>
 <ul>
-<li><a href="https://github.com/RITlug/teleirc" rel="noopener noreferrer">teleirc (⭐155)</a> - Telegram ↔ IRC. <code>JavaScript</code></li>
+<li><a href="https://github.com/RITlug/teleirc" rel="noopener noreferrer">teleirc (⭐157)</a> - Telegram ↔ IRC. <code>JavaScript</code></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/05/25/">May 25, 2020</a></h2><h3><p>Bots / Self-hosted</p>
 </h3>
 <ul>
 <li><a href="https://github.com/Inspyre-Technologies/EveIRC" rel="noopener noreferrer">EveIRC (⭐9)</a> - Extendable chat/channel/server-managenent service-providing bot. Using the <a href="https://github.com/cinchrb/cinch" rel="noopener noreferrer">Cinch Framework (⭐1k)</a>. <code>Ruby</code></li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2020/05/05/">May 05, 2020</a></h2><h3><p>Bouncers / Self-hosted</p>
-</h3>
-<ul>
-<li><a href="https://git.sr.ht/~emersion/soju" rel="noopener noreferrer">soju</a> - A user-friendly IRC bouncer. <code>Go</code></li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2019/07/29/">Jul 29, 2019</a></h2><h3><p>Daemons / Self-hosted</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alexyoung/ircd.js" rel="noopener noreferrer">ircd.js (⭐530)</a> - Server will allow clients to connect, join channels, change topics; basic stuff.</li>
+<li><a href="https://github.com/alexyoung/ircd.js" rel="noopener noreferrer">ircd.js (⭐531)</a> - Server will allow clients to connect, join channels, change topics; basic stuff.</li>
 </ul>
 
 <ul>
@@ -334,25 +429,25 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jrosdahl/miniircd" rel="noopener noreferrer">miniircd (⭐444)</a> - Very simple and limited.</li>
+<li><a href="https://github.com/jrosdahl/miniircd" rel="noopener noreferrer">miniircd (⭐451)</a> - Very simple and limited.</li>
 </ul>
 
 <ul>
-<li><a href="https://ngircd.barton.de" rel="noopener noreferrer">ngIRCd</a> - Portable and lightweight for small or private networks. (<a href="https://github.com/ngircd/ngircd" rel="noopener noreferrer">source (⭐542)</a>)</li>
+<li><a href="https://ngircd.barton.de" rel="noopener noreferrer">ngIRCd</a> - Portable and lightweight for small or private networks. (<a href="https://github.com/ngircd/ngircd" rel="noopener noreferrer">source (⭐560)</a>)</li>
 </ul>
 <h3><p>Services / Self-hosted</p>
 </h3>
 <ul>
-<li><a href="https://atheme.github.io" rel="noopener noreferrer">Atheme</a> - Designed for large networks with high scalability requirements. (<a href="https://github.com/atheme/atheme" rel="noopener noreferrer">source (⭐424)</a>)</li>
+<li><a href="https://atheme.github.io" rel="noopener noreferrer">Atheme</a> - Designed for large networks with high scalability requirements. (<a href="https://github.com/atheme/atheme" rel="noopener noreferrer">source (⭐427)</a>)</li>
 </ul>
 <h3><p>Bots / Self-hosted</p>
 </h3>
 <ul>
-<li><a href="https://sopel.chat" rel="noopener noreferrer">Sopel</a> - Tonnes of ready made features, tutorial, fully documented. (<a href="https://github.com/sopel-irc/sopel" rel="noopener noreferrer">source (⭐971)</a>) <code>Python</code></li>
+<li><a href="https://sopel.chat" rel="noopener noreferrer">Sopel</a> - Tonnes of ready made features, tutorial, fully documented. (<a href="https://github.com/sopel-irc/sopel" rel="noopener noreferrer">source (⭐976)</a>) <code>Python</code></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ProgVal/Limnoria" rel="noopener noreferrer">Limnoria (⭐656)</a> - Robust, user friendly, developer friendly. <code>Python</code></li>
+<li><a href="https://github.com/ProgVal/Limnoria" rel="noopener noreferrer">Limnoria (⭐661)</a> - Robust, user friendly, developer friendly. <code>Python</code></li>
 </ul>
 
 <ul>
@@ -368,7 +463,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Eelis/geordi" rel="noopener noreferrer">geordi (⭐184)</a> - Compiles and runs C++ code snippets. <code>C++</code></li>
+<li><a href="https://github.com/Eelis/geordi" rel="noopener noreferrer">geordi (⭐183)</a> - Compiles and runs C++ code snippets. <code>C++</code></li>
 </ul>
 
 <ul>
@@ -381,7 +476,7 @@
 <h3><p>Frameworks / Self-hosted</p>
 </h3>
 <ul>
-<li><a href="https://github.com/fluffle/goirc" rel="noopener noreferrer">goirc (⭐514)</a> - Event-based, stateful, lacking documentation. <code>Go</code></li>
+<li><a href="https://github.com/fluffle/goirc" rel="noopener noreferrer">goirc (⭐515)</a> - Event-based, stateful, lacking documentation. <code>Go</code></li>
 </ul>
 
 <ul>
@@ -389,11 +484,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/thoj/go-ircevent" rel="noopener noreferrer">go-ircevent (⭐501)</a> - Event-based. <code>Go</code></li>
+<li><a href="https://github.com/thoj/go-ircevent" rel="noopener noreferrer">go-ircevent (⭐499)</a> - Event-based. <code>Go</code></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/slate/slate-irc" rel="noopener noreferrer">slate-irc (⭐209)</a> - Plugin system, simple api, arbitrary input stream, debug support. <code>JavaScript</code></li>
+<li><a href="https://github.com/slate/slate-irc" rel="noopener noreferrer">slate-irc (⭐210)</a> - Plugin system, simple api, arbitrary input stream, debug support. <code>JavaScript</code></li>
 </ul>
 
 <ul>
@@ -410,7 +505,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/insomniacslk/irc-slack" rel="noopener noreferrer">irc-slack (⭐206)</a> - Slack ↔ IRC. <code>Go</code></li>
+<li><a href="https://github.com/insomniacslk/irc-slack" rel="noopener noreferrer">irc-slack (⭐207)</a> - Slack ↔ IRC. <code>Go</code></li>
 </ul>
 
 <ul>
@@ -455,11 +550,11 @@
 <h3><p>Protocol / Platforms</p>
 </h3>
 <ul>
-<li><a href="https://ircv3.net" rel="noopener noreferrer">IRCv3 Working Group</a> - A group of IRC software authors working to enhance, improve, maintain and standardize the IRC protocol. (<a href="https://github.com/ircv3/ircv3.github.io" rel="noopener noreferrer">source (⭐98)</a>)</li>
+<li><a href="https://ircv3.net" rel="noopener noreferrer">IRCv3 Working Group</a> - A group of IRC software authors working to enhance, improve, maintain and standardize the IRC protocol. (<a href="https://github.com/ircv3/ircv3.github.io" rel="noopener noreferrer">source (⭐101)</a>)</li>
 </ul>
 
 <ul>
-<li><a href="https://modern.ircdocs.horse" rel="noopener noreferrer">Modern IRC Documents</a> - An attempt to write an update to the original IRC protocol. documentation (<a href="https://github.com/ircdocs/modern-irc" rel="noopener noreferrer">source (⭐227)</a>)</li>
+<li><a href="https://modern.ircdocs.horse" rel="noopener noreferrer">Modern IRC Documents</a> - An attempt to write an update to the original IRC protocol. documentation (<a href="https://github.com/ircdocs/modern-irc" rel="noopener noreferrer">source (⭐228)</a>)</li>
 </ul>
 
 <ul>
@@ -494,5 +589,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
