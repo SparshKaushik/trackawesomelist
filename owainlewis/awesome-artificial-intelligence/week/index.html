@@ -16,30 +16,253 @@
     <meta property="og:title" content="Track Awesome Artificial Intelligence Updates Weekly" />
     <meta property="og:description" content="A curated list of Artificial Intelligence (AI) courses, books, video lectures and papers." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Artificial Intelligence Updates Weekly</h1>
 <p>A curated list of Artificial Intelligence (AI) courses, books, video lectures and papers.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/owainlewis/awesome-artificial-intelligence/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/owainlewis/awesome-artificial-intelligence">😺 owainlewis/awesome-artificial-intelligence</a><span> · </span><span>⭐ 12K</span><span> · </span><span>🏷️ Theory</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/owainlewis/awesome-artificial-intelligence/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/owainlewis/awesome-artificial-intelligence">😺 owainlewis/awesome-artificial-intelligence</a><span> · </span><span>⭐ 14K</span><span> · </span><span>🏷️ Theory</span></p>
 <p><span>[ </span><a href="/owainlewis/awesome-artificial-intelligence/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/owainlewis/awesome-artificial-intelligence/readme/">Overview</a><span> ]</span></p>
 
-<h2><a href="https://www.trackawesomelist.com/2025/33/">Aug 18 - Aug 24, 2025</a></h2><h3><p>📚 Books</p>
+<h2><a href="https://www.trackawesomelist.com/2026/21/">May 25 - May 31, 2026</a></h2><h3><p>📚 Learn / Books</p>
 </h3>
 <ul>
-<li><a href="https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/" rel="noopener noreferrer">Designing Machine Learning Systems</a> — Scalable, maintainable ML pipelines (Chip Huyen).</li>
+<li><a href="https://www.manning.com/books/build-a-large-language-model-from-scratch" rel="noopener noreferrer">Build a Large Language Model from Scratch</a> — Transformers in raw PyTorch, layer by layer (Sebastian Raschka).</li>
 </ul>
 
 <ul>
-<li><a href="https://www.oreilly.com/library/view/generative-deep-learning/9781098134174/" rel="noopener noreferrer">Generative Deep Learning (2nd Edition)</a> — GANs, VAEs, diffusion models (David Foster).</li>
+<li><a href="https://www.llm-book.com/" rel="noopener noreferrer">Hands-On Large Language Models</a> — Visual + practical guide to LLM applications (Jay Alammar, Maarten Grootendorst).</li>
+</ul>
+
+<ul>
+<li><a href="https://www.packtpub.com/en-us/product/llm-engineers-handbook-9781836200079" rel="noopener noreferrer">LLM Engineer's Handbook</a> — Production LLMOps: fine-tuning, quantization, serving (Labonne, Iusztin).</li>
+</ul>
+
+<ul>
+<li><a href="https://www.thelmbook.com/" rel="noopener noreferrer">The 100-Page Language Models Book</a> — Concise, math-grounded path from n-grams to transformers (Andriy Burkov).</li>
+</ul>
+
+<ul>
+<li><a href="https://www.bishopbook.com/" rel="noopener noreferrer">Deep Learning: Foundations and Concepts</a> — Bishop's 2024 update; probability-grounded modern DL (Bishop &amp; Bishop).</li>
+</ul>
+
+<ul>
+<li><a href="https://udlbook.github.io/udlbook/" rel="noopener noreferrer">Understanding Deep Learning</a> — Math + intuition + Python notebooks (Simon Prince).</li>
+</ul>
+
+<ul>
+<li><a href="https://web.stanford.edu/~jurafsky/slp3/" rel="noopener noreferrer">Speech and Language Processing (3rd Edition)</a> — The NLP reference, kept current through the deep learning era (Jurafsky, Martin).</li>
+</ul>
+<h3><p>📚 Learn / Courses</p>
+</h3>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ" rel="noopener noreferrer">Google DeepMind — Introduction to Reinforcement Learning</a></li>
+</ul>
+
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" rel="noopener noreferrer">Karpathy — Neural Networks: Zero to Hero</a></li>
+</ul>
+<h3><p>🤖 Agents / Coding</p>
+</h3>
+<ul>
+<li><a href="https://code.claude.com/" rel="noopener noreferrer">Claude Code</a> — Anthropic's CLI agent; multi-file codebase refactoring with long context.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/openai/codex" rel="noopener noreferrer">Codex CLI (⭐80k)</a> — OpenAI's Rust-based local terminal agent; lightweight and fast.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/google-gemini/gemini-cli" rel="noopener noreferrer">Gemini CLI (⭐103k)</a> — Google's official open-source terminal agent; long-context repo exploration.</li>
+</ul>
+
+<ul>
+<li><a href="https://cursor.com/cli" rel="noopener noreferrer">Cursor CLI</a> — Cursor's terminal-native agent with sandboxed permissions.</li>
+</ul>
+
+<ul>
+<li><a href="https://aider.chat/" rel="noopener noreferrer">Aider</a> — Git-integrated pair programming with surgical edits and undo.</li>
+</ul>
+
+<ul>
+<li><a href="https://opencode.ai/" rel="noopener noreferrer">OpenCode</a> — Provider-agnostic terminal harness with a strong TUI.</li>
+</ul>
+
+<ul>
+<li><a href="https://docs.all-hands.dev/" rel="noopener noreferrer">OpenHands</a> — Open-source autonomous SWE platform; browser + shell + editor loop.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/cline/cline" rel="noopener noreferrer">Cline (⭐62k)</a> — Open-source agentic IDE extension with strong multi-provider support.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.continue.dev/" rel="noopener noreferrer">Continue</a> — Open-source IDE + CLI assistant with source-controlled rules.</li>
+</ul>
+
+<ul>
+<li><a href="https://block.github.io/goose/" rel="noopener noreferrer">Goose</a> — Block's extensible, MCP-driven local agent.</li>
+</ul>
+
+<ul>
+<li><a href="https://factory.ai/product/cli" rel="noopener noreferrer">Factory Droid</a> — Benchmark-leading multi-model harness with BYOK local execution.</li>
+</ul>
+
+<ul>
+<li><a href="https://ampcode.com/" rel="noopener noreferrer">Amp</a> — Sourcegraph's commercial agentic coding tool with strong product UX.</li>
+</ul>
+
+<ul>
+<li><a href="https://mistral.ai/products/vibe" rel="noopener noreferrer">Mistral Vibe</a> — Mistral's agentic coding CLI, powered by Devstral.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/QwenLM/qwen-code" rel="noopener noreferrer">Qwen Code (⭐24k)</a> — Alibaba's terminal coding agent, optimized for Qwen models.</li>
+</ul>
+
+<ul>
+<li><a href="https://pi.dev/" rel="noopener noreferrer">Pi</a> — Highly customizable terminal harness; minimal base prompt, extension-driven.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Nano-Collective/nanocoder" rel="noopener noreferrer">Nanocoder (⭐1.9k)</a> — Private, local-first agent for Ollama and LM Studio.</li>
+</ul>
+
+<ul>
+<li><a href="https://kilo.ai/cli" rel="noopener noreferrer">Kilo CLI</a> — Multi-mode agent with a unified gateway to 500+ models.</li>
+</ul>
+<h3><p>🧠 Models / 💬 Language</p>
+</h3>
+<ul>
+<li><a href="https://x.ai/" rel="noopener noreferrer">Grok</a> — Best for real-time information via X and very long context.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.llama.com/" rel="noopener noreferrer">Llama</a> — Best open-weight family for self-hosting and fine-tuning.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.kimi.com/" rel="noopener noreferrer">Kimi</a> — Best for long-context instruction following.</li>
+</ul>
+
+<ul>
+<li><a href="https://chatglm.cn/" rel="noopener noreferrer">GLM</a> — Frontier-tier Chinese model with open weights.</li>
+</ul>
+<h3><p>🧠 Models / 🖼 Image</p>
+</h3>
+<ul>
+<li><a href="https://openai.com/index/introducing-chatgpt-images-2-0/" rel="noopener noreferrer">GPT Image</a> — OpenAI's integrated image generation with near-perfect text rendering.</li>
+</ul>
+<h3><p>🧠 Models / 🎥 Video</p>
+</h3>
+<ul>
+<li><a href="https://deepmind.google/technologies/veo/" rel="noopener noreferrer">Google Veo</a> — High-quality video with synchronized audio.</li>
+</ul>
+<h3><p>🧠 Models / 📊 Compare</p>
+</h3>
+<ul>
+<li><a href="https://openrouter.ai/models" rel="noopener noreferrer">OpenRouter</a> — Unified API + live pricing across ~300 models.</li>
+</ul>
+
+<ul>
+<li><a href="https://lmarena.ai/leaderboard" rel="noopener noreferrer">LMArena</a> — Human-preference Elo rankings for text, image, and video.</li>
+</ul>
+
+<ul>
+<li><a href="https://artificialanalysis.ai/" rel="noopener noreferrer">Artificial Analysis</a> — Speed, price, and quality benchmarks across providers.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/33/">Aug 18 - Aug 24, 2025</a></h2><h3><p>📚 Learn / Books</p>
+</h3>
+<ul>
+<li><a href="https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/" rel="noopener noreferrer">Designing Machine Learning Systems</a> — Scalable, maintainable ML pipelines (Chip Huyen).</li>
 </ul>
 
 <ul>
@@ -47,106 +270,21 @@
 </ul>
 
 <ul>
-<li><a href="https://www.thelmbook.com/" rel="noopener noreferrer">100 Page Language Models Book</a> — This book guides you through the evolution of language models, starting from machine learning fundamentals.</li>
+<li><a href="https://www.oreilly.com/library/view/generative-deep-learning/9781098134174/" rel="noopener noreferrer">Generative Deep Learning (2nd Edition)</a> — GANs, VAEs, diffusion models (David Foster).</li>
 </ul>
 
 <ul>
-<li><a href="https://aima.cs.berkeley.edu/" rel="noopener noreferrer">Artificial Intelligence: A Modern Approach</a> — Comprehensive AI theory (Russell &amp; Norvig).</li>
+<li><a href="https://aima.cs.berkeley.edu/" rel="noopener noreferrer">Artificial Intelligence: A Modern Approach</a> — The canonical AI theory text (Russell, Norvig).</li>
 </ul>
 
 <ul>
-<li><a href="https://www.deeplearningbook.org/" rel="noopener noreferrer">Deep Learning</a> — Neural networks &amp; architectures (Goodfellow, Bengio, Courville).</li>
+<li><a href="https://www.deeplearningbook.org/" rel="noopener noreferrer">Deep Learning</a> — Mathematical foundations of neural networks (Goodfellow, Bengio, Courville).</li>
 </ul>
 
 <ul>
-<li><a href="https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf" rel="noopener noreferrer">Reinforcement Learning: An Introduction (2nd Edition)</a> — RL fundamentals (Sutton &amp; Barto).</li>
+<li><a href="https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf" rel="noopener noreferrer">Reinforcement Learning: An Introduction (2nd Edition)</a> — RL foundations (Sutton, Barto).</li>
 </ul>
-<h3><p>🏗 AI Engineering / 📖 Guides &amp; Playbooks</p>
-</h3>
-<ul>
-<li><strong><a href="https://www.anthropic.com/engineering/building-effective-agents" rel="noopener noreferrer">Building Effective Agents (Anthropic)</a></strong> — ⭐ Patterns, pitfalls, and tradeoffs for designing AI agents.</li>
-</ul>
-
-<ul>
-<li><a href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" rel="noopener noreferrer">OpenAI Agents Guide</a> — Practical guide on building agents</li>
-</ul>
-
-<ul>
-<li><a href="https://www.kaggle.com/whitepaper-agents" rel="noopener noreferrer">Google AI Agents Paper</a> - Practical guide to building AI agents from Google</li>
-</ul>
-
-<ul>
-<li><a href="https://www.kaggle.com/whitepaper-agent-companion" rel="noopener noreferrer">Google Agents Companion Paper</a> - Guide from Google</li>
-</ul>
-
-<ul>
-<li><a href="https://cookbook.openai.com/" rel="noopener noreferrer">OpenAI Cookbook</a> — Example code, recipes, and best practices for working with OpenAI APIs.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/SylphAI-Inc/LLM-engineer-handbook" rel="noopener noreferrer">LLM Engineer Handbook (⭐3.9k)</a> — A goldmine of useful links for AI engineers</li>
-</ul>
-<h3><p>🏗 AI Engineering / 🤖 Frameworks</p>
-</h3>
-<ul>
-<li><a href="https://the-pocket.github.io/PocketFlow/" rel="noopener noreferrer">PocketFlow</a> — Extremely minimalist AI agent framework in just 100 lines of code. Fantastic way to learn.</li>
-</ul>
-
-<ul>
-<li><a href="https://google.github.io/adk-docs/" rel="noopener noreferrer">Google ADK</a> — Google's Agent Development Kit (Python, Java). Great local development experience + A2A + MCP.</li>
-</ul>
-
-<ul>
-<li><a href="https://ai.pydantic.dev/" rel="noopener noreferrer">Pydantic-AI</a> — Typed, structured LLM orchestration framework built on Pydantic models for safe, predictable outputs.</li>
-</ul>
-
-<ul>
-<li><a href="https://www.langchain.com/langgraph" rel="noopener noreferrer">LangGraph</a> — Build multi-agent workflows with stateful graphs on top of LangChain.</li>
-</ul>
-
-<ul>
-<li><a href="https://www.crewai.com/" rel="noopener noreferrer">CrewAI</a> — Agent orchestration with structured tasks and human-in-the-loop controls.</li>
-</ul>
-
-<ul>
-<li><a href="https://microsoft.github.io/autogen/" rel="noopener noreferrer">AutoGen</a> — Microsoft’s framework for multi-agent conversation and collaboration.</li>
-</ul>
-<h3><p>🏗 AI Engineering / 📦 Retrieval-Augmented Generation (RAG)</p>
-</h3>
-<ul>
-<li><a href="https://www.llamaindex.ai/" rel="noopener noreferrer">LlamaIndex</a> — Data framework for ingesting, indexing, and querying private data with LLMs.</li>
-</ul>
-
-<ul>
-<li><a href="https://haystack.deepset.ai/" rel="noopener noreferrer">Haystack</a> — Open-source search/RAG framework with modular pipelines.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/docling-project/docling" rel="noopener noreferrer">Docling (⭐36k)</a> — Great library for ingesting any kind of document for RAG ⭐</li>
-</ul>
-<h3><p>🏗 AI Engineering / Evals</p>
-</h3>
-<ul>
-<li><a href="https://github.com/openai/evals" rel="noopener noreferrer">OpenAI Evals (⭐17k)</a> — OpenAI's framework for writing evals</li>
-</ul>
-<h3><p>📄 Landmark Papers / Evals</p>
-</h3>
-<ul>
-<li><a href="https://arxiv.org/abs/1706.03762" rel="noopener noreferrer">Attention Is All You Need</a> — Transformer architecture.</li>
-</ul>
-
-<ul>
-<li><a href="https://arxiv.org/abs/2001.08361" rel="noopener noreferrer">Scaling Laws for Neural Language Models</a> — Model/data/compute scaling.</li>
-</ul>
-
-<ul>
-<li><a href="https://arxiv.org/abs/2005.14165" rel="noopener noreferrer">Language Models are Few-Shot Learners</a> — GPT-3 capabilities.</li>
-</ul>
-
-<ul>
-<li><a href="https://arxiv.org/abs/2212.08073" rel="noopener noreferrer">Constitutional AI</a> — Safer model alignment.</li>
-</ul>
-<h3><p>🎓 Courses / Evals</p>
+<h3><p>📚 Learn / Courses</p>
 </h3>
 <ul>
 <li><a href="https://www.cloudskillsboost.google/paths/118" rel="noopener noreferrer">Google Generative AI Learning Path</a></li>
@@ -175,19 +313,148 @@
 <ul>
 <li><a href="https://learn.deeplearning.ai/" rel="noopener noreferrer">DeepLearning.AI Short Courses</a></li>
 </ul>
-
+<h3><p>📚 Learn / Landmark Papers</p>
+</h3>
 <ul>
-<li><a href="https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ" rel="noopener noreferrer">Google Deepmind| Introduction to Reinforcement Learning</a></li>
+<li><a href="https://arxiv.org/abs/1706.03762" rel="noopener noreferrer">Attention Is All You Need</a> — Transformer architecture.</li>
 </ul>
 
 <ul>
-<li><a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" rel="noopener noreferrer">Karpathy’s LLM Zero-to-Hero</a></li>
+<li><a href="https://arxiv.org/abs/2001.08361" rel="noopener noreferrer">Scaling Laws for Neural Language Models</a> — Model/data/compute scaling.</li>
 </ul>
 
 <ul>
-<li><a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" rel="noopener noreferrer">Neural Nets - Zero-to-Hero</a></li>
+<li><a href="https://arxiv.org/abs/2005.14165" rel="noopener noreferrer">Language Models are Few-Shot Learners</a> — GPT-3 capabilities.</li>
 </ul>
-<h3><p>📰 Newsletters / Evals</p>
+
+<ul>
+<li><a href="https://arxiv.org/abs/2212.08073" rel="noopener noreferrer">Constitutional AI</a> — Safer model alignment.</li>
+</ul>
+<h3><p>🛠 Build / Guides &amp; Playbooks</p>
+</h3>
+<ul>
+<li><strong><a href="https://www.anthropic.com/engineering/building-effective-agents" rel="noopener noreferrer">Building Effective Agents (Anthropic)</a></strong> — ⭐ Patterns, pitfalls, and tradeoffs for designing AI agents.</li>
+</ul>
+
+<ul>
+<li><a href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" rel="noopener noreferrer">OpenAI Agents Guide</a> — Practical guide on building agents.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.kaggle.com/whitepaper-agents" rel="noopener noreferrer">Google AI Agents Paper</a> — Practical guide to building AI agents from Google.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.kaggle.com/whitepaper-agent-companion" rel="noopener noreferrer">Google Agents Companion Paper</a> — Companion guide from Google.</li>
+</ul>
+
+<ul>
+<li><a href="https://cookbook.openai.com/" rel="noopener noreferrer">OpenAI Cookbook</a> — Example code, recipes, and best practices for working with OpenAI APIs.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/SylphAI-Inc/LLM-engineer-handbook" rel="noopener noreferrer">LLM Engineer Handbook (⭐4.9k)</a> — A goldmine of useful links for AI engineers.</li>
+</ul>
+<h3><p>🛠 Build / Frameworks</p>
+</h3>
+<ul>
+<li><a href="https://the-pocket.github.io/PocketFlow/" rel="noopener noreferrer">PocketFlow</a> — Extremely minimalist AI agent framework in just 100 lines of code. Fantastic way to learn.</li>
+</ul>
+
+<ul>
+<li><a href="https://google.github.io/adk-docs/" rel="noopener noreferrer">Google ADK</a> — Google's Agent Development Kit (Python, Java). Great local development experience + A2A + MCP.</li>
+</ul>
+
+<ul>
+<li><a href="https://ai.pydantic.dev/" rel="noopener noreferrer">Pydantic-AI</a> — Typed, structured LLM orchestration framework built on Pydantic models for safe, predictable outputs.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.langchain.com/langgraph" rel="noopener noreferrer">LangGraph</a> — Build multi-agent workflows with stateful graphs on top of LangChain.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.crewai.com/" rel="noopener noreferrer">CrewAI</a> — Agent orchestration with structured tasks and human-in-the-loop controls.</li>
+</ul>
+
+<ul>
+<li><a href="https://microsoft.github.io/autogen/" rel="noopener noreferrer">AutoGen</a> — Microsoft's framework for multi-agent conversation and collaboration.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.llamaindex.ai/" rel="noopener noreferrer">LlamaIndex</a> — Data framework for ingesting, indexing, and querying private data with LLMs.</li>
+</ul>
+
+<ul>
+<li><a href="https://haystack.deepset.ai/" rel="noopener noreferrer">Haystack</a> — Open-source search/RAG framework with modular pipelines.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/docling-project/docling" rel="noopener noreferrer">Docling (⭐60k)</a> — Great library for ingesting any kind of document for RAG ⭐</li>
+</ul>
+<h3><p>🛠 Build / Evals</p>
+</h3>
+<ul>
+<li><a href="https://github.com/openai/evals" rel="noopener noreferrer">OpenAI Evals (⭐18k)</a> — OpenAI's framework for writing evals.</li>
+</ul>
+<h3><p>🛠 Build / IDEs</p>
+</h3>
+<ul>
+<li><a href="https://cursor.sh/" rel="noopener noreferrer">Cursor</a> — LLM-powered IDE for multi-file edits and codebase-aware chat.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/features/copilot" rel="noopener noreferrer">GitHub Copilot</a> — In-IDE code completion, chat, and refactors.</li>
+</ul>
+<h3><p>🧠 Models / 💬 Language</p>
+</h3>
+<ul>
+<li><a href="https://openai.com/chatgpt/overview/" rel="noopener noreferrer">ChatGPT</a> — Best for general reasoning, tool use, and the broadest ecosystem.</li>
+</ul>
+
+<ul>
+<li><a href="https://mistral.ai/" rel="noopener noreferrer">Mistral</a> — Best for lightweight, high-performance open-weight models.</li>
+</ul>
+
+<ul>
+<li><a href="https://deepseek.com/" rel="noopener noreferrer">DeepSeek</a> — Best for cost-efficient reasoning with open weights.</li>
+</ul>
+
+<ul>
+<li><a href="https://qwenlm.github.io/" rel="noopener noreferrer">Qwen</a> — Best for multilingual and Chinese-first applications.</li>
+</ul>
+
+<ul>
+<li><a href="https://cohere.com/" rel="noopener noreferrer">Cohere</a> — Best for enterprise LLMs with strong retrieval-augmented generation APIs.</li>
+</ul>
+<h3><p>🧠 Models / 🖼 Image</p>
+</h3>
+<ul>
+<li><a href="https://www.adobe.com/sensei/generative-ai/firefly.html" rel="noopener noreferrer">Adobe Firefly</a> — Integrated into Creative Cloud; commercial-safe.</li>
+</ul>
+
+<ul>
+<li><a href="https://ideogram.ai/" rel="noopener noreferrer">Ideogram</a> — Precise, legible text in generated images.</li>
+</ul>
+
+<ul>
+<li><a href="https://blackforestlabs.ai/" rel="noopener noreferrer">Flux</a> — High-res, prompt-editable, open-weight images.</li>
+</ul>
+<h3><p>🧠 Models / 🎥 Video</p>
+</h3>
+<ul>
+<li><a href="https://klingai.com/" rel="noopener noreferrer">Kling</a> — Cinematic, realistic video generation.</li>
+</ul>
+<h3><p>🧠 Models / 🎙 Audio</p>
+</h3>
+<ul>
+<li><a href="https://elevenlabs.io/" rel="noopener noreferrer">ElevenLabs</a> — High-quality text-to-speech and voice cloning.</li>
+</ul>
+
+<ul>
+<li><a href="https://suno.ai/" rel="noopener noreferrer">Suno</a> — AI music from text prompts.</li>
+</ul>
+<h3><p>📡 Follow / Newsletters</p>
 </h3>
 <ul>
 <li><a href="https://www.therundown.ai/" rel="noopener noreferrer">The Rundown AI</a></li>
@@ -204,104 +471,69 @@
 <ul>
 <li><a href="https://newsletter.owainlewis.com" rel="noopener noreferrer">AI Engineer</a></li>
 </ul>
-<h3><p>💬 Models / Evals</p>
+<h2><a href="https://www.trackawesomelist.com/2024/43/">Oct 21 - Oct 27, 2024</a></h2><h3><p>🧠 Models / 💬 Language</p>
 </h3>
 <ul>
-<li><a href="https://openai.com/chatgpt/overview/" rel="noopener noreferrer">ChatGPT</a> — Best for general coding + reasoning.</li>
+<li><a href="https://www.anthropic.com/claude" rel="noopener noreferrer">Claude</a> — Best for long-context analysis, coding, and structured thinking.</li>
 </ul>
-
-<ul>
-<li><a href="https://www.perplexity.ai/" rel="noopener noreferrer">Perplexity</a> — Best for quick research with live citations.</li>
-</ul>
-
-<ul>
-<li><a href="https://cohere.com/" rel="noopener noreferrer">Cohere</a> — Best for enterprise LLMs with strong retrieval-augmented generation APIs.</li>
-</ul>
-
-<ul>
-<li><a href="https://mistral.ai/" rel="noopener noreferrer">Mistral</a> — Best for lightweight, high-performance open-weight models.</li>
-</ul>
-
-<ul>
-<li><a href="https://qwenlm.github.io/" rel="noopener noreferrer">Qwen</a> — Best for multilingual and Chinese-first applications.</li>
-</ul>
-
-<ul>
-<li><a href="https://deepseek.com/" rel="noopener noreferrer">DeepSeek</a> — Best for efficient, cost-optimized large models with competitive reasoning.</li>
-</ul>
-<h3><p>👨‍💻 Code &amp; Developer Tools / Evals</p>
+<h3><p>🧠 Models / 🖼 Image</p>
 </h3>
 <ul>
-<li><a href="https://www.anthropic.com/claude" rel="noopener noreferrer">Claude Code</a> — IDE extensions with long-context code edits.</li>
+<li><a href="https://www.midjourney.com/" rel="noopener noreferrer">Midjourney</a> — Artistic and photorealistic images.</li>
 </ul>
-
-<ul>
-<li><a href="https://github.com/features/copilot" rel="noopener noreferrer">GitHub Copilot</a> — In-IDE code completion, chat, and refactors.</li>
-</ul>
-
-<ul>
-<li><a href="https://cursor.sh/" rel="noopener noreferrer">Cursor</a> — LLM-powered IDE for multi-file edits and codebase-aware chat.</li>
-</ul>
-<h3><p>🎨 Multimedia AI Tools / 🖼 Image</p>
+<h3><p>🧠 Models / 🎥 Video</p>
 </h3>
 <ul>
-<li><a href="https://openai.com/chatgpt" rel="noopener noreferrer">ChatGPT-4o Image Generation</a> — Integrated image creation with style control.</li>
+<li><a href="https://runwayml.com/" rel="noopener noreferrer">Runway</a> — Video editing + generation with granular creative control.</li>
 </ul>
-
-<ul>
-<li><a href="https://www.adobe.com/sensei/generative-ai/firefly.html" rel="noopener noreferrer">Adobe Firefly</a> — Integrated into Creative Cloud.</li>
-</ul>
-
-<ul>
-<li><a href="https://ideogram.ai/" rel="noopener noreferrer">Ideogram</a> — Precise, legible text in generated images.</li>
-</ul>
-
-<ul>
-<li><a href="https://blackforestlabs.ai/" rel="noopener noreferrer">Flux</a> — High-res, prompt-editable images.</li>
-</ul>
-<h3><p>🎨 Multimedia AI Tools / 🎥 Video</p>
+<h2><a href="https://www.trackawesomelist.com/2024/11/">Mar 11 - Mar 17, 2024</a></h2><h3><p>🧠 Models / 💬 Language</p>
 </h3>
 <ul>
-<li><a href="https://klingai.com/" rel="noopener noreferrer">Kling</a> — Cinematic, realistic video generation.</li>
-</ul>
-
-<ul>
-<li><a href="https://deepmind.google/technologies/veo/" rel="noopener noreferrer">Google Veo 3</a> — High-quality video with synchronized audio.</li>
-</ul>
-<h3><p>🎨 Multimedia AI Tools / 🎙 Audio</p>
-</h3>
-<ul>
-<li><a href="https://elevenlabs.io/" rel="noopener noreferrer">ElevenLabs</a> — High-quality text-to-speech.</li>
-</ul>
-
-<ul>
-<li><a href="https://suno.ai/" rel="noopener noreferrer">Suno</a> — AI music from text prompts.</li>
-</ul>
-
-<ul>
-<li><a href="https://www.aiva.ai/" rel="noopener noreferrer">Aiva</a> — Music composition for media.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2024/43/">Oct 21 - Oct 27, 2024</a></h2><h3><p>💬 Models / Evals</p>
-</h3>
-<ul>
-<li><a href="https://www.anthropic.com/claude" rel="noopener noreferrer">Claude</a> — Best for long-context analysis and structured thinking.</li>
-</ul>
-<h3><p>🎨 Multimedia AI Tools / 🖼 Image</p>
-</h3>
-<ul>
-<li><a href="https://www.midjourney.com/" rel="noopener noreferrer">Midjourney</a> — Artistic and photorealistic images and video.</li>
-</ul>
-<h3><p>🎨 Multimedia AI Tools / 🎥 Video</p>
-</h3>
-<ul>
-<li><a href="https://runwayml.com/" rel="noopener noreferrer">Runway</a> — Video editing + generation.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2024/11/">Mar 11 - Mar 17, 2024</a></h2><h3><p>💬 Models / Evals</p>
-</h3>
-<ul>
-<li><a href="https://gemini.google.com/" rel="noopener noreferrer">Gemini</a> — Best for Google ecosystem integration.</li>
+<li><a href="https://gemini.google.com/" rel="noopener noreferrer">Gemini</a> — Best for multimodal tasks and Google ecosystem integration.</li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
