@@ -16,45 +16,121 @@
     <meta property="og:title" content="Track Awesome Webaudio Updates Weekly" />
     <meta property="og:description" content="A curated list of awesome WebAudio packages and resources." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Webaudio Updates Weekly</h1>
 <p>A curated list of awesome WebAudio packages and resources.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/notthetup/awesome-webaudio/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/notthetup/awesome-webaudio">😺 notthetup/awesome-webaudio</a><span> · </span><span>⭐ 1.3K</span><span> · </span><span>🏷️ Front-End Development</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/notthetup/awesome-webaudio/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/notthetup/awesome-webaudio">😺 notthetup/awesome-webaudio</a><span> · </span><span>⭐ 1.4K</span><span> · </span><span>🏷️ Front-End Development</span></p>
 <p><span>[ </span><a href="/notthetup/awesome-webaudio/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/notthetup/awesome-webaudio/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/21/">May 25 - May 31, 2026</a></h2><h3><p>Packages / Apps</p>
+</h3>
+<ul>
+<li><a href="https://tonalux.org" rel="noopener noreferrer">Tonalux</a> - Free browser-based audio analysis suite with real-time spectrum analyzer, LUFS loudness metering (EBU R128), A/B reference comparison and stereo correlation. Built with Web Audio API and WebAssembly, runs entirely client-side.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/12/">Mar 23 - Mar 29, 2026</a></h2><h3><p>Packages / Utilities</p>
 </h3>
 <ul>
 <li><a href="https://app.webaudio.studio" rel="noopener noreferrer">Web Audio Studio</a> - A real-time visualizer for Web Audio API graphs generated from code.</li>
 </ul>
-<h3><p>Packages / Apps</p>
-</h3>
-<ul>
-<li><a href="https://realtimesoundmeter.org/" rel="noopener noreferrer">online decibel meter</a> – Free online sound meter to measure environmental noise levels in decibels (dB). Real-time sound level meter for detecting quiet, noisy, or harmful sound levels.</li>
-</ul>
-
-<ul>
-<li><a href="https://teal-semifreddo-cad4ad.netlify.app/" rel="noopener noreferrer">PracticeLoop</a> - Free YouTube looper with progressive speed training, metronome, and chromatic tuner for music practice.</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/4/">Jan 26 - Feb 01, 2026</a></h2><h3><p>Packages / Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/v-rusu/tuning-fork" rel="noopener noreferrer">tuning-fork (⭐1)</a> - A configurable client-side JavaScript library for guitar tuning with real-time pitch detection.</li>
+<li><a href="https://github.com/v-rusu/tuning-fork" rel="noopener noreferrer">tuning-fork (⭐3)</a> - A configurable client-side JavaScript library for guitar tuning with real-time pitch detection.</li>
 </ul>
 <h3><p>Packages / Apps</p>
 </h3>
 <ul>
-<li>.<a href="https://synflow.org" rel="noopener noreferrer">synflow</a> <a href="https://github.com/k1ln/synflow" rel="noopener noreferrer">Github (⭐3)</a> - a browser based modular synth flow engine. With all Web Audio API nodes and more with Worklets (like Vocoder, Reverb, etc. ). With sophisticated Flow automation.</li>
+<li><a href="https://synflow.org" rel="noopener noreferrer">synflow</a> <a href="https://github.com/k1ln/synflow" rel="noopener noreferrer">Github (⭐7)</a> - a browser based modular synth flow engine. With all Web Audio API nodes and more with Worklets (like Vocoder, Reverb, etc. ). With sophisticated Flow automation.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/52/">Dec 29 - Jan 04, 2025</a></h2><h3><p>Packages / Apps</p>
 </h3>
@@ -74,12 +150,12 @@
 <h2><a href="https://www.trackawesomelist.com/2025/36/">Sep 08 - Sep 14, 2025</a></h2><h3><p>Packages / Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/software-mansion-labs/react-native-audio-api" rel="noopener noreferrer">React Native Audio API (⭐719)</a> - Web Audio API implementation for native apps based on react-native.</li>
+<li><a href="https://github.com/software-mansion-labs/react-native-audio-api" rel="noopener noreferrer">React Native Audio API (⭐768)</a> - Web Audio API implementation for native apps based on react-native.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/25/">Jun 23 - Jun 29, 2025</a></h2><h3><p>Packages / Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NumberOneBot/dsssp" rel="noopener noreferrer">dsssp (⭐44)</a> - React component library for visualizing and managing audio filters with drag-n-drop and transitions support.</li>
+<li><a href="https://github.com/NumberOneBot/dsssp" rel="noopener noreferrer">dsssp (⭐49)</a> - React component library for visualizing and managing audio filters with drag-n-drop and transitions support.</li>
 </ul>
 <h3><p>Packages / Apps</p>
 </h3>
@@ -89,17 +165,17 @@
 <h2><a href="https://www.trackawesomelist.com/2024/34/">Aug 19 - Aug 25, 2024</a></h2><h3><p>Resources / Tutorials</p>
 </h3>
 <ul>
-<li><a href="https://github.com/survivejs/audio-katas" rel="noopener noreferrer">audio-katas (⭐62)</a> - A collection of self-guided katas during which you will build a DAW of your own while getting exposed to the key Web Audio APIs.</li>
+<li><a href="https://github.com/survivejs/audio-katas" rel="noopener noreferrer">audio-katas (⭐63)</a> - A collection of self-guided katas during which you will build a DAW of your own while getting exposed to the key Web Audio APIs.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/26/">Jun 24 - Jun 30, 2024</a></h2><h3><p>Packages / Apps</p>
 </h3>
 <ul>
-<li><a href="https://github.com/MaxAlyokhin/binary-synth" rel="noopener noreferrer">Binary Synth (⭐123)</a> - A web-synthesizer that generates sound from the binary code of any files.</li>
+<li><a href="https://github.com/MaxAlyokhin/binary-synth" rel="noopener noreferrer">Binary Synth (⭐127)</a> - A web-synthesizer that generates sound from the binary code of any files.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/6/">Feb 05 - Feb 11, 2024</a></h2><h3><p>Packages / Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jerosoler/waveform-path" rel="noopener noreferrer">waveform-path (⭐129)</a> - Library to generate waveforms paths in svg.</li>
+<li><a href="https://github.com/jerosoler/waveform-path" rel="noopener noreferrer">waveform-path (⭐131)</a> - Library to generate waveforms paths in svg.</li>
 </ul>
 
 <ul>
@@ -108,7 +184,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/5/">Jan 29 - Feb 04, 2024</a></h2><h3><p>Packages / Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/infojunkie/musicxml-player" rel="noopener noreferrer">MusicXML Player (⭐72)</a> - A TypeScript component that loads and plays MusicXML files in the browser using Web Audio and Web MIDI.</li>
+<li><a href="https://github.com/infojunkie/musicxml-player" rel="noopener noreferrer">MusicXML Player (⭐82)</a> - A TypeScript component that loads and plays MusicXML files in the browser using Web Audio and Web MIDI.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/48/">Nov 27 - Dec 03, 2023</a></h2><h3><p>Packages / Apps</p>
 </h3>
@@ -118,7 +194,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/41/">Oct 09 - Oct 15, 2023</a></h2><h3><p>Packages / Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cifkao/html-midi-player" rel="noopener noreferrer">html-midi-player (⭐860)</a> - HTML elements for easy MIDI playback and visualization, without the need to write any custom JS code, but scriptable and stylable as needed.</li>
+<li><a href="https://github.com/cifkao/html-midi-player" rel="noopener noreferrer">html-midi-player (⭐876)</a> - HTML elements for easy MIDI playback and visualization, without the need to write any custom JS code, but scriptable and stylable as needed.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/36/">Sep 04 - Sep 10, 2023</a></h2><h3><p>Packages / Apps</p>
 </h3>
@@ -143,7 +219,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/5/">Jan 31 - Feb 06, 2022</a></h2><h3><p>Packages / Apps</p>
 </h3>
 <ul>
-<li><a href="https://github.com/g200kg/webaudio-tinysynth" rel="noopener noreferrer">webaudio-tinysynth (⭐261)</a> - a small synthesizer written in JavaScript with GM like timbre map.</li>
+<li><a href="https://github.com/g200kg/webaudio-tinysynth" rel="noopener noreferrer">webaudio-tinysynth (⭐265)</a> - a small synthesizer written in JavaScript with GM like timbre map.</li>
 </ul>
 
 <ul>
@@ -181,12 +257,12 @@
 <h3><p>Packages / Apps</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cwilso/metronome" rel="noopener noreferrer">Web Audio Metronome (⭐616)</a> - metronome app that uses the Web Audio scheduler and setTimeout scheduler</li>
+<li><a href="https://github.com/cwilso/metronome" rel="noopener noreferrer">Web Audio Metronome (⭐617)</a> - metronome app that uses the Web Audio scheduler and setTimeout scheduler</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/25/">Jun 22 - Jun 28, 2020</a></h2><h3><p>Packages / Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/GoogleChrome/omnitone" rel="noopener noreferrer">Omnitone (⭐902)</a> - Ambisonic spatial audio on the web.</li>
+<li><a href="https://github.com/GoogleChrome/omnitone" rel="noopener noreferrer">Omnitone (⭐909)</a> - Ambisonic spatial audio on the web.</li>
 </ul>
 
 <ul>
@@ -232,16 +308,16 @@
 <h2><a href="https://www.trackawesomelist.com/2019/49/">Dec 09 - Dec 15, 2019</a></h2><h3><p>Packages / Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/adamrenklint/bap" rel="noopener noreferrer">Bap (⭐117)</a> - A toolkit for making beats and composing sequences, inspired by the classic MPC60/2000.</li>
+<li><a href="https://github.com/adamrenklint/bap" rel="noopener noreferrer">Bap (⭐119)</a> - A toolkit for making beats and composing sequences, inspired by the classic MPC60/2000.</li>
 </ul>
 <h3><p>Packages / Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kittykatattack/sound.js" rel="noopener noreferrer">Sound.js (⭐318)</a> - A micro-library to load, play and generate sound effects and music for games and interactive applications.</li>
+<li><a href="https://github.com/kittykatattack/sound.js" rel="noopener noreferrer">Sound.js (⭐317)</a> - A micro-library to load, play and generate sound effects and music for games and interactive applications.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/kelvinau/circular-audio-wave" rel="noopener noreferrer">Circular Audio Wave (⭐279)</a> - A JS library for audio visualization in circular wave using Web Audio API and ECharts.</li>
+<li><a href="https://github.com/kelvinau/circular-audio-wave" rel="noopener noreferrer">Circular Audio Wave (⭐280)</a> - A JS library for audio visualization in circular wave using Web Audio API and ECharts.</li>
 </ul>
 
 <ul>
@@ -250,7 +326,7 @@
 <h3><p>Resources / Tutorials</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mmckegg/web-audio-school" rel="noopener noreferrer">WebAudio School (⭐417)</a> - A series of self-guided workshops to learn WebAudio.</li>
+<li><a href="https://github.com/mmckegg/web-audio-school" rel="noopener noreferrer">WebAudio School (⭐415)</a> - A series of self-guided workshops to learn WebAudio.</li>
 </ul>
 <h3><p>Obsolete / Community</p>
 </h3>
@@ -259,7 +335,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/kylestetz/lissajous" rel="noopener noreferrer">lissajous (⭐406)</a> - A tool for programmatic audio performance.</li>
+<li><a href="https://github.com/kylestetz/lissajous" rel="noopener noreferrer">lissajous (⭐407)</a> - A tool for programmatic audio performance.</li>
 </ul>
 
 <ul>
@@ -267,7 +343,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/hoch/WAAX/" rel="noopener noreferrer">WAAX (⭐300)</a> - Build Music Apps for browsers.</li>
+<li><a href="https://github.com/hoch/WAAX/" rel="noopener noreferrer">WAAX (⭐299)</a> - Build Music Apps for browsers.</li>
 </ul>
 
 <ul>
@@ -275,7 +351,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/adelespinasse/reverbGen" rel="noopener noreferrer">reverbGen (⭐57)</a> - A JavaScript library for generating artificial reverb impulse responses.</li>
+<li><a href="https://github.com/adelespinasse/reverbGen" rel="noopener noreferrer">reverbGen (⭐58)</a> - A JavaScript library for generating artificial reverb impulse responses.</li>
 </ul>
 
 <ul>
@@ -283,7 +359,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/zya/beet.js" rel="noopener noreferrer">Beet.js (⭐115)</a> - A sequencer library for creating euclidean rhythms and polyrhythms.</li>
+<li><a href="https://github.com/zya/beet.js" rel="noopener noreferrer">Beet.js (⭐116)</a> - A sequencer library for creating euclidean rhythms and polyrhythms.</li>
 </ul>
 
 <ul>
@@ -295,7 +371,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mrahtz/javascript-karplus-strong" rel="noopener noreferrer">javascript-karplus-strong (⭐300)</a> - JavaScript/Web Audio implementation of Karplus-Strong guitar synthesis.</li>
+<li><a href="https://github.com/mrahtz/javascript-karplus-strong" rel="noopener noreferrer">javascript-karplus-strong (⭐303)</a> - JavaScript/Web Audio implementation of Karplus-Strong guitar synthesis.</li>
 </ul>
 
 <ul>
@@ -323,7 +399,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/oampo/Audiolet" rel="noopener noreferrer">audiolet (⭐896)</a> - A JavaScript library for real-time audio synthesis and composition from within the browser.</li>
+<li><a href="https://github.com/oampo/Audiolet" rel="noopener noreferrer">audiolet (⭐893)</a> - A JavaScript library for real-time audio synthesis and composition from within the browser.</li>
 </ul>
 
 <ul>
@@ -414,11 +490,11 @@
 <h2><a href="https://www.trackawesomelist.com/2018/5/">Jan 29 - Feb 04, 2018</a></h2><h3><p>Packages / MIDI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jazz-soft/JZZ" rel="noopener noreferrer">JZZ (⭐582)</a> - MIDI library for Node.js and all major browsers.</li>
+<li><a href="https://github.com/jazz-soft/JZZ" rel="noopener noreferrer">JZZ (⭐588)</a> - MIDI library for Node.js and all major browsers.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jazz-soft/JZZ-midi-Gear" rel="noopener noreferrer">JZZ-midi-Gear (⭐21)</a> - Retrieve your MIDI device model and manufacturer.</li>
+<li><a href="https://github.com/jazz-soft/JZZ-midi-Gear" rel="noopener noreferrer">JZZ-midi-Gear (⭐20)</a> - Retrieve your MIDI device model and manufacturer.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/49/">Dec 04 - Dec 10, 2017</a></h2><h3><p>Packages / Libraries</p>
 </h3>
@@ -432,7 +508,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/lukehorvat/super-oscillator" rel="noopener noreferrer">Super Oscillator (⭐44)</a> - An interactive, 3D music synthesizer for the Web.</li>
+<li><a href="https://github.com/lukehorvat/super-oscillator" rel="noopener noreferrer">Super Oscillator (⭐46)</a> - An interactive, 3D music synthesizer for the Web.</li>
 </ul>
 <h3><p>Resources / Tutorials</p>
 </h3>
@@ -452,7 +528,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/14/">Apr 03 - Apr 09, 2017</a></h2><h3><p>Packages / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/google/audion" rel="noopener noreferrer">Audion (⭐388)</a> - Chrome extension that adds a Web Audio panel to Developer Tools.</li>
+<li><a href="https://github.com/google/audion" rel="noopener noreferrer">Audion (⭐390)</a> - Chrome extension that adds a Web Audio panel to Developer Tools.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/47/">Nov 21 - Nov 27, 2016</a></h2><h3><p>Packages / Apps</p>
 </h3>
@@ -472,7 +548,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/27/">Jul 04 - Jul 10, 2016</a></h2><h3><p>Packages / Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/audiojs/audio" rel="noopener noreferrer">Audiojs (⭐237)</a> - An object that enables you to store, read, and write PCM audio data more easily.</li>
+<li><a href="https://github.com/audiojs/audio" rel="noopener noreferrer">Audiojs (⭐287)</a> - An object that enables you to store, read, and write PCM audio data more easily.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/14/">Apr 04 - Apr 10, 2016</a></h2><h3><p>Resources / Tutorials</p>
 </h3>
@@ -501,12 +577,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/benji6/virtual-audio-graph" rel="noopener noreferrer">virtual-audio-graph (⭐364)</a> - Library for declaratively manipulating the Web Audio API.</li>
+<li><a href="https://github.com/benji6/virtual-audio-graph" rel="noopener noreferrer">virtual-audio-graph (⭐365)</a> - Library for declaratively manipulating the Web Audio API.</li>
 </ul>
 <h3><p>Resources / Tutorials</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kylestetz/Web-Audio-Basics" rel="noopener noreferrer">Web Audio Basics (⭐120)</a> - A growing set of light code samples with CodePen links for each.</li>
+<li><a href="https://github.com/kylestetz/Web-Audio-Basics" rel="noopener noreferrer">Web Audio Basics (⭐119)</a> - A growing set of light code samples with CodePen links for each.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/39/">Sep 28 - Oct 04, 2015</a></h2><h3><p>Packages / Frameworks</p>
 </h3>
@@ -516,7 +592,7 @@
 <h3><p>Packages / MIDI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/notthetup/midimessage" rel="noopener noreferrer">midimessage (⭐36)</a> - A simple MIDI Message parser.</li>
+<li><a href="https://github.com/notthetup/midimessage" rel="noopener noreferrer">midimessage (⭐35)</a> - A simple MIDI Message parser.</li>
 </ul>
 <h3><p>Packages / Apps</p>
 </h3>
@@ -525,5 +601,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
