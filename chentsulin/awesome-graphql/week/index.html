@@ -16,22 +16,107 @@
     <meta property="og:title" content="Track Awesome Graphql Updates Weekly" />
     <meta property="og:description" content="Awesome list of GraphQL" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Graphql Updates Weekly</h1>
 <p>Awesome list of GraphQL</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/chentsulin/awesome-graphql/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/chentsulin/awesome-graphql">😺 chentsulin/awesome-graphql</a><span> · </span><span>⭐ 15K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><a href="/chentsulin/awesome-graphql/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/chentsulin/awesome-graphql/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/21/">May 25 - May 31, 2026</a></h2><h3><p>Miscellaneous / React</p>
+</h3>
+<ul>
+<li><a href="https://www.schemato.top/graphql-to-typescript" rel="noopener noreferrer">Schemato</a> - Browser-only GraphQL SDL converter for generating TypeScript, Zod, Pydantic, Go, Rust, and other typed models.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/15/">Apr 13 - Apr 19, 2026</a></h2><h3><p>Tools - Miscellaneous / React</p>
 </h3>
 <ul>
@@ -40,12 +125,12 @@
 <h2><a href="https://www.trackawesomelist.com/2026/11/">Mar 16 - Mar 22, 2026</a></h2><h3><p>Tools - Testing, Prototyping &amp; Mocking / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/getmockd/mockd" rel="noopener noreferrer">mockd (⭐90)</a> - Multi-protocol mock server with GraphQL schema mocking, resolver configuration, and query validation. Also supports HTTP, gRPC, WebSocket, MQTT, and SOAP.</li>
+<li><a href="https://github.com/getmockd/mockd" rel="noopener noreferrer">mockd (⭐121)</a> - Multi-protocol mock server with GraphQL schema mocking, resolver configuration, and query validation. Also supports HTTP, gRPC, WebSocket, MQTT, and SOAP.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/2/">Jan 12 - Jan 18, 2026</a></h2><h3><p>PubSub / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ably-labs/graphql-ably-pubsub" rel="noopener noreferrer">graphql-ably-pubsub (⭐7)</a> - Ably PubSub implementation for GraphQL to publish mutation updates and subscribe to the result through a subscription query.</li>
+<li><a href="https://github.com/ably-labs/graphql-ably-pubsub" rel="noopener noreferrer">graphql-ably-pubsub (⭐8)</a> - Ably PubSub implementation for GraphQL to publish mutation updates and subscribe to the result through a subscription query.</li>
 </ul>
 <h3><p>Tools - Security / React</p>
 </h3>
@@ -94,7 +179,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/27/">Jul 07 - Jul 13, 2025</a></h2><h3><p>Go / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Raezil/Thunder" rel="noopener noreferrer">Thunder (⭐118)</a> - A scalable microservices framework powered by Go, gRPC-Gateway, Prisma, and Kubernetes. It exposes REST, gRPC and Graphql</li>
+<li><a href="https://github.com/Raezil/Thunder" rel="noopener noreferrer">Thunder (⭐119)</a> - A scalable microservices framework powered by Go, gRPC-Gateway, Prisma, and Kubernetes. It exposes REST, gRPC and Graphql</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/17/">Apr 28 - May 04, 2025</a></h2><h3><p>Tools - Editors &amp; IDEs &amp; Explorers / React</p>
 </h3>
@@ -128,12 +213,12 @@
 <h2><a href="https://www.trackawesomelist.com/2024/44/">Oct 28 - Nov 03, 2024</a></h2><h3><p>Servers / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hypermodeinc/modus" rel="noopener noreferrer">modus (⭐415)</a> - Serverless runtime based on WebAssembly that delivers auto-generated GraphQL APIs.</li>
+<li><a href="https://github.com/hypermodeinc/modus" rel="noopener noreferrer">modus (⭐416)</a> - Serverless runtime based on WebAssembly that delivers auto-generated GraphQL APIs.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/39/">Sep 23 - Sep 29, 2024</a></h2><h3><p>Type / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/modevol-com/gqloom" rel="noopener noreferrer">gqloom (⭐95)</a> - GQLoom is a GraphQL weaver for TypeScript/JavaScript that weaves GraphQL schema and resolvers using <a href="https://github.com/fabian-hiller/valibot" rel="noopener noreferrer">Valibot (⭐8.5k)</a>, <a href="https://github.com/colinhacks/zod" rel="noopener noreferrer">Zod (⭐42k)</a>, or <a href="https://github.com/jquense/yup" rel="noopener noreferrer">Yup (⭐24k)</a>.</li>
+<li><a href="https://github.com/modevol-com/gqloom" rel="noopener noreferrer">gqloom (⭐98)</a> - GQLoom is a GraphQL weaver for TypeScript/JavaScript that weaves GraphQL schema and resolvers using <a href="https://github.com/fabian-hiller/valibot" rel="noopener noreferrer">Valibot (⭐8.7k)</a>, <a href="https://github.com/colinhacks/zod" rel="noopener noreferrer">Zod (⭐43k)</a>, or <a href="https://github.com/jquense/yup" rel="noopener noreferrer">Yup (⭐24k)</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/32/">Aug 05 - Aug 11, 2024</a></h2><h3><p>Miscellaneous / React</p>
 </h3>
@@ -143,7 +228,7 @@
 <h3><p>Tools - Editors &amp; IDEs &amp; Explorers / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/usebruno/bruno" rel="noopener noreferrer">Bruno (⭐42k)</a> - Fast, open source API client, which stores collections offline-only in a Git-friendly plain text markup language.</li>
+<li><a href="https://github.com/usebruno/bruno" rel="noopener noreferrer">Bruno (⭐44k)</a> - Fast, open source API client, which stores collections offline-only in a Git-friendly plain text markup language.</li>
 </ul>
 <h3><p>Blogs - Security / React</p>
 </h3>
@@ -221,7 +306,7 @@
 <h3><p>Tools - Security / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/omar2535/GraphQLer" rel="noopener noreferrer">GraphQLer (⭐162)</a> - Dependency-aware dynamic GraphQL testing tool</li>
+<li><a href="https://github.com/omar2535/GraphQLer" rel="noopener noreferrer">GraphQLer (⭐163)</a> - Dependency-aware dynamic GraphQL testing tool</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/42/">Oct 16 - Oct 22, 2023</a></h2><h3><p>Posts / React</p>
 </h3>
@@ -289,7 +374,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/30/">Jul 24 - Jul 30, 2023</a></h2><h3><p>Tools - Security / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dolevf/graphql-cop" rel="noopener noreferrer">GraphQL Cop (⭐634)</a> - Security Audit Utility for GraphQL</li>
+<li><a href="https://github.com/dolevf/graphql-cop" rel="noopener noreferrer">GraphQL Cop (⭐648)</a> - Security Audit Utility for GraphQL</li>
 </ul>
 <h3><p>Tools - Miscellaneous / React</p>
 </h3>
@@ -353,7 +438,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/11/">Mar 13 - Mar 19, 2023</a></h2><h3><p>Miscellaneous / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/confuser/graphql-constraint-directive" rel="noopener noreferrer">GraphQL Constraint Directive (⭐577)</a> - Allows using @constraint as a directive to validate input data. Inspired by Constraints Directives RFC and OpenAPI</li>
+<li><a href="https://github.com/confuser/graphql-constraint-directive" rel="noopener noreferrer">GraphQL Constraint Directive (⭐576)</a> - Allows using @constraint as a directive to validate input data. Inspired by Constraints Directives RFC and OpenAPI</li>
 </ul>
 
 <ul>
@@ -362,7 +447,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/9/">Feb 27 - Mar 05, 2023</a></h2><h3><p>Miscellaneous / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Escape-Technologies/graphql-armor" rel="noopener noreferrer">graphql-armor (⭐581)</a> - An instant security layer for production GraphQL Endpoints.</li>
+<li><a href="https://github.com/Escape-Technologies/graphql-armor" rel="noopener noreferrer">graphql-armor (⭐582)</a> - An instant security layer for production GraphQL Endpoints.</li>
 </ul>
 <h3><p>Databases / React</p>
 </h3>
@@ -372,12 +457,12 @@
 <h2><a href="https://www.trackawesomelist.com/2023/6/">Feb 06 - Feb 12, 2023</a></h2><h3><p>Python / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/profusion/sgqlc" rel="noopener noreferrer">sgqlc (⭐551)</a> - Simple GraphQL Client makes working with GraphQL API responses easier in Python.</li>
+<li><a href="https://github.com/profusion/sgqlc" rel="noopener noreferrer">sgqlc (⭐552)</a> - Simple GraphQL Client makes working with GraphQL API responses easier in Python.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/4/">Jan 23 - Jan 29, 2023</a></h2><h3><p>Java / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/graph-quilt/graphql-orchestrator-java" rel="noopener noreferrer">graphql-orchestrator-java (⭐72)</a> GraphQL Orchestrator/Gateway library that supports Schema Stitching and Apollo Federation directives to combine schema from multiple GraphQL microservices into a single unified schema.</li>
+<li><a href="https://github.com/graph-quilt/graphql-orchestrator-java" rel="noopener noreferrer">graphql-orchestrator-java (⭐73)</a> GraphQL Orchestrator/Gateway library that supports Schema Stitching and Apollo Federation directives to combine schema from multiple GraphQL microservices into a single unified schema.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/3/">Jan 16 - Jan 22, 2023</a></h2><h3><p>Specifications</p>
 </h3>
@@ -496,21 +581,21 @@
 <h2><a href="https://www.trackawesomelist.com/2022/32/">Aug 08 - Aug 14, 2022</a></h2><h3><p>Python / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/graphql-python/graphql-core" rel="noopener noreferrer">graphql-core (⭐531)</a> - GraphQL implementation for Python based on GraphQL.js v16.3.0 reference implementation</li>
+<li><a href="https://github.com/graphql-python/graphql-core" rel="noopener noreferrer">graphql-core (⭐528)</a> - GraphQL implementation for Python based on GraphQL.js v16.3.0 reference implementation</li>
 </ul>
 <h3><p>.NET / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/EntityGraphQL/EntityGraphQL" rel="noopener noreferrer">EntityGraphQL (⭐452)</a> - library to build a GraphQL API on top of data model with the extensibility to bring multiple data sources together in the single GraphQL schema.</li>
+<li><a href="https://github.com/EntityGraphQL/EntityGraphQL" rel="noopener noreferrer">EntityGraphQL (⭐455)</a> - library to build a GraphQL API on top of data model with the extensibility to bring multiple data sources together in the single GraphQL schema.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/byme8/ZeroQL" rel="noopener noreferrer">ZeroQL (⭐318)</a> - type-safe GraphQL client with Linq-like interface for C#</li>
+<li><a href="https://github.com/byme8/ZeroQL" rel="noopener noreferrer">ZeroQL (⭐320)</a> - type-safe GraphQL client with Linq-like interface for C#</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/31/">Aug 01 - Aug 07, 2022</a></h2><h3><p>Miscellaneous / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/oslabs-beta/GraphQL-Gate" rel="noopener noreferrer">graphqlgate (⭐57)</a> - A GraphQL rate-limiting library with query complexity analysis for Node.js</li>
+<li><a href="https://github.com/oslabs-beta/GraphQL-Gate" rel="noopener noreferrer">graphqlgate (⭐56)</a> - A GraphQL rate-limiting library with query complexity analysis for Node.js</li>
 </ul>
 <h3><p>CMS / React</p>
 </h3>
@@ -539,7 +624,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Netflix/dgs-federation-example" rel="noopener noreferrer">dgs-federation-example (⭐113)</a> - A Netflix DGS federation example.</li>
+<li><a href="https://github.com/Netflix/dgs-federation-example" rel="noopener noreferrer">dgs-federation-example (⭐114)</a> - A Netflix DGS federation example.</li>
 </ul>
 <h3><p>Tools - Security / React</p>
 </h3>
@@ -548,7 +633,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Escape-Technologies/graphinder" rel="noopener noreferrer">Escape Graphinder - GraphQL Subdomain Enumeration (⭐229)</a> – Blazing fast GraphQL endpoints finder using subdomain enumeration, scripts analysis and bruteforce.</li>
+<li><a href="https://github.com/Escape-Technologies/graphinder" rel="noopener noreferrer">Escape Graphinder - GraphQL Subdomain Enumeration (⭐227)</a> – Blazing fast GraphQL endpoints finder using subdomain enumeration, scripts analysis and bruteforce.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/21/">May 23 - May 29, 2022</a></h2><h3><p>Elixir Examples / React</p>
 </h3>
@@ -568,7 +653,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/18/">May 02 - May 08, 2022</a></h2><h3><p>Miscellaneous / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/schemathesis/schemathesis" rel="noopener noreferrer">schemathesis (⭐3.2k)</a> - Runs arbitrary queries matching a GraphQL schema to find server errors.</li>
+<li><a href="https://github.com/schemathesis/schemathesis" rel="noopener noreferrer">schemathesis (⭐3.3k)</a> - Runs arbitrary queries matching a GraphQL schema to find server errors.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/17/">Apr 25 - May 01, 2022</a></h2><h3><p>Tools - Miscellaneous / React</p>
 </h3>
@@ -598,7 +683,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/7/">Feb 14 - Feb 20, 2022</a></h2><h3><p>Frontend Framework Integrations</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jycouet/kitql" rel="noopener noreferrer">sveltekit-kitql (⭐453)</a> - A set of tools, helping you building efficient apps in a fast way with SvelteKit and GraphQL.</li>
+<li><a href="https://github.com/jycouet/kitql" rel="noopener noreferrer">sveltekit-kitql (⭐455)</a> - A set of tools, helping you building efficient apps in a fast way with SvelteKit and GraphQL.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/6/">Feb 07 - Feb 13, 2022</a></h2><h3><p>Python / React</p>
 </h3>
@@ -635,7 +720,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/graphql/graphql-over-http" rel="noopener noreferrer">GraphQL over HTTP (⭐420)</a> - Working draft of "GraphQL over HTTP" specification.</li>
+<li><a href="https://github.com/graphql/graphql-over-http" rel="noopener noreferrer">GraphQL over HTTP (⭐422)</a> - Working draft of "GraphQL over HTTP" specification.</li>
 </ul>
 
 <ul>
@@ -665,7 +750,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/APIs-guru/graphql-apis" rel="noopener noreferrer">GraphQL APIs (⭐4.6k)</a> - A collective list of public GraphQL APIs.</li>
+<li><a href="https://github.com/APIs-guru/graphql-apis" rel="noopener noreferrer">GraphQL APIs (⭐4.7k)</a> - A collective list of public GraphQL APIs.</li>
 </ul>
 <h3><p>Meetups</p>
 </h3>
@@ -789,7 +874,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/timhall/svelte-apollo" rel="noopener noreferrer">svelte-apollo (⭐949)</a> - Svelte integration for Apollo GraphQL.</li>
+<li><a href="https://github.com/timhall/svelte-apollo" rel="noopener noreferrer">svelte-apollo (⭐948)</a> - Svelte integration for Apollo GraphQL.</li>
 </ul>
 
 <ul>
@@ -822,7 +907,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/arackaf/micro-graphql-react" rel="noopener noreferrer">micro-graphql-react (⭐529)</a> - A lightweight utility for adding GraphQL to React. components. Includes simple caching and uses GET requests that could additionally be cached through a service-worker.</li>
+<li><a href="https://github.com/arackaf/micro-graphql-react" rel="noopener noreferrer">micro-graphql-react (⭐527)</a> - A lightweight utility for adding GraphQL to React. components. Includes simple caching and uses GET requests that could additionally be cached through a service-worker.</li>
 </ul>
 <h3><p>Servers / React</p>
 </h3>
@@ -889,11 +974,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/donbeave/graphql-java-datetime" rel="noopener noreferrer">graphql-java-datetime (⭐153)</a> - GraphQL ISO Date is a set of RFC 3339 compliant date/time scalar types to be used with graphql-java.</li>
+<li><a href="https://github.com/donbeave/graphql-java-datetime" rel="noopener noreferrer">graphql-java-datetime (⭐152)</a> - GraphQL ISO Date is a set of RFC 3339 compliant date/time scalar types to be used with graphql-java.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/graphql-java/graphql-java-extended-scalars" rel="noopener noreferrer">graphql-java-extended-scalars (⭐283)</a> - Extended scalars for graphql-java.</li>
+<li><a href="https://github.com/graphql-java/graphql-java-extended-scalars" rel="noopener noreferrer">graphql-java-extended-scalars (⭐286)</a> - Extended scalars for graphql-java.</li>
 </ul>
 <h3><p>Type / React</p>
 </h3>
@@ -915,7 +1000,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Quramy/ts-graphql-plugin" rel="noopener noreferrer">ts-graphql-plugin (⭐756)</a> - A language service plugin complete and validate GraphQL query in TypeScript template strings.</li>
+<li><a href="https://github.com/Quramy/ts-graphql-plugin" rel="noopener noreferrer">ts-graphql-plugin (⭐755)</a> - A language service plugin complete and validate GraphQL query in TypeScript template strings.</li>
 </ul>
 
 <ul>
@@ -976,7 +1061,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/piglovesyou/graphql-let" rel="noopener noreferrer">graphql-let (⭐452)</a> - A webpack loader to import type-protected codegen results directly from GraphQL documents</li>
+<li><a href="https://github.com/piglovesyou/graphql-let" rel="noopener noreferrer">graphql-let (⭐451)</a> - A webpack loader to import type-protected codegen results directly from GraphQL documents</li>
 </ul>
 
 <ul>
@@ -1028,7 +1113,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/n1ru4l/graphql-live-query" rel="noopener noreferrer">graphql-live-query (⭐440)</a> - Realtime GraphQL Live Queries with JavaScript.</li>
+<li><a href="https://github.com/n1ru4l/graphql-live-query" rel="noopener noreferrer">graphql-live-query (⭐439)</a> - Realtime GraphQL Live Queries with JavaScript.</li>
 </ul>
 
 <ul>
@@ -1061,7 +1146,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/zeit/next.js/tree/canary/examples/with-typescript-graphql" rel="noopener noreferrer">Next.js TypeScript and GraphQL Example (⭐139k)</a> - A type-protected GraphQL example on Next.js running <a href="https://graphql-code-generator.com/" rel="noopener noreferrer">graphql-codegen</a> under the hood</li>
+<li><a href="https://github.com/zeit/next.js/tree/canary/examples/with-typescript-graphql" rel="noopener noreferrer">Next.js TypeScript and GraphQL Example (⭐140k)</a> - A type-protected GraphQL example on Next.js running <a href="https://graphql-code-generator.com/" rel="noopener noreferrer">graphql-codegen</a> under the hood</li>
 </ul>
 
 <ul>
@@ -1120,7 +1205,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/github/github-graphql-rails-example" rel="noopener noreferrer">github-graphql-rails-example (⭐278)</a> - Example Rails app using GitHub's GraphQL API.</li>
+<li><a href="https://github.com/github/github-graphql-rails-example" rel="noopener noreferrer">github-graphql-rails-example (⭐277)</a> - Example Rails app using GitHub's GraphQL API.</li>
 </ul>
 
 <ul>
@@ -1161,7 +1246,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/overblog/GraphQLBundle" rel="noopener noreferrer">overblog/graphql-bundle (⭐797)</a> - This bundle provides tools to build a complete GraphQL server in your Symfony App. Supports react-relay.</li>
+<li><a href="https://github.com/overblog/GraphQLBundle" rel="noopener noreferrer">overblog/graphql-bundle (⭐796)</a> - This bundle provides tools to build a complete GraphQL server in your Symfony App. Supports react-relay.</li>
 </ul>
 
 <ul>
@@ -1187,7 +1272,7 @@
 <h3><p>Python / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tryolabs/graphql-parser" rel="noopener noreferrer">graphql-parser (⭐47)</a> - GraphQL parser for Python.</li>
+<li><a href="https://github.com/tryolabs/graphql-parser" rel="noopener noreferrer">graphql-parser (⭐46)</a> - GraphQL parser for Python.</li>
 </ul>
 
 <ul>
@@ -1231,7 +1316,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dailymotion/tartiflette" rel="noopener noreferrer">tartiflette (⭐855)</a> - GraphQL Implementation, SDL First, for python 3.6+ / asyncio.</li>
+<li><a href="https://github.com/dailymotion/tartiflette" rel="noopener noreferrer">tartiflette (⭐854)</a> - GraphQL Implementation, SDL First, for python 3.6+ / asyncio.</li>
 </ul>
 
 <ul>
@@ -1243,11 +1328,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/PedroBern/django-graphql-auth" rel="noopener noreferrer">django-graphql-auth (⭐330)</a> - Django registration and authentication with GraphQL.</li>
+<li><a href="https://github.com/PedroBern/django-graphql-auth" rel="noopener noreferrer">django-graphql-auth (⭐329)</a> - Django registration and authentication with GraphQL.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/strawberry-graphql/strawberry" rel="noopener noreferrer">strawberry (⭐4.6k)</a> - A new GraphQL library for Python.</li>
+<li><a href="https://github.com/strawberry-graphql/strawberry" rel="noopener noreferrer">strawberry (⭐4.7k)</a> - A new GraphQL library for Python.</li>
 </ul>
 <h3><p>Python Examples / React</p>
 </h3>
@@ -1261,11 +1346,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Netflix/dgs-framework" rel="noopener noreferrer">DGS Framework (⭐3.3k)</a> - A GraphQL server framework for Spring Boot, developed by Netflix.</li>
+<li><a href="https://github.com/Netflix/dgs-framework" rel="noopener noreferrer">DGS Framework (⭐3.4k)</a> - A GraphQL server framework for Spring Boot, developed by Netflix.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/graphql-java-generator" rel="noopener noreferrer">graphql-java-generator</a> - A <a href="https://github.com/graphql-java-generator/graphql-maven-plugin-project" rel="noopener noreferrer">Maven plugin (⭐128)</a> and a <a href="https://github.com/graphql-java-generator/graphql-gradle-plugin-project" rel="noopener noreferrer">Gradle plugin (⭐58)</a> that can generate both the <strong>Client</strong> and the <strong>Server</strong> (POJOs and utility classes). The server part is based on graphql-java, and hides all its boilerplate codes.</li>
+<li><a href="https://github.com/graphql-java-generator" rel="noopener noreferrer">graphql-java-generator</a> - A <a href="https://github.com/graphql-java-generator/graphql-maven-plugin-project" rel="noopener noreferrer">Maven plugin (⭐129)</a> and a <a href="https://github.com/graphql-java-generator/graphql-gradle-plugin-project" rel="noopener noreferrer">Gradle plugin (⭐59)</a> that can generate both the <strong>Client</strong> and the <strong>Server</strong> (POJOs and utility classes). The server part is based on graphql-java, and hides all its boilerplate codes.</li>
 </ul>
 
 <ul>
@@ -1277,7 +1362,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Enigmatis/graphql-java-annotations" rel="noopener noreferrer">graphql-java-annotations (⭐392)</a> - Provides annotations-based syntax for schema definition with GraphQL Java.</li>
+<li><a href="https://github.com/Enigmatis/graphql-java-annotations" rel="noopener noreferrer">graphql-java-annotations (⭐393)</a> - Provides annotations-based syntax for schema definition with GraphQL Java.</li>
 </ul>
 
 <ul>
@@ -1293,7 +1378,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/graphql-java-kickstart/graphql-java-servlet" rel="noopener noreferrer">graphql-java-servlet (⭐226)</a> - A framework-agnostic java servlet for exposing graphql-java query endpoints with GET, POST, and multipart uploads.</li>
+<li><a href="https://github.com/graphql-java-kickstart/graphql-java-servlet" rel="noopener noreferrer">graphql-java-servlet (⭐227)</a> - A framework-agnostic java servlet for exposing graphql-java query endpoints with GET, POST, and multipart uploads.</li>
 </ul>
 
 <ul>
@@ -1309,7 +1394,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/engagingspaces/vertx-graphql-service-discovery" rel="noopener noreferrer">vertx-graphql-service-discovery (⭐51)</a> - Asynchronous GraphQL service discovery and querying for your microservices.</li>
+<li><a href="https://github.com/engagingspaces/vertx-graphql-service-discovery" rel="noopener noreferrer">vertx-graphql-service-discovery (⭐52)</a> - Asynchronous GraphQL service discovery and querying for your microservices.</li>
 </ul>
 
 <ul>
@@ -1329,7 +1414,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/apollographql/federation-jvm" rel="noopener noreferrer">federation-jvm (⭐272)</a> - Apollo Federation on the JVM.</li>
+<li><a href="https://github.com/apollographql/federation-jvm" rel="noopener noreferrer">federation-jvm (⭐273)</a> - Apollo Federation on the JVM.</li>
 </ul>
 
 <ul>
@@ -1338,7 +1423,7 @@
 <h3><p>Java Examples / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/networknt/light-example-4j/tree/master/graphql" rel="noopener noreferrer">light-java-graphql examples (⭐150)</a> - Examples of Light Java GraphQL and tutorials.</li>
+<li><a href="https://github.com/networknt/light-example-4j/tree/master/graphql" rel="noopener noreferrer">light-java-graphql examples (⭐149)</a> - Examples of Light Java GraphQL and tutorials.</li>
 </ul>
 
 <ul>
@@ -1350,7 +1435,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/graphql-java-kickstart/samples" rel="noopener noreferrer">graphql-java-kickstart_samples (⭐120)</a> - Samples for using the GraphQL Java Kickstart projects.</li>
+<li><a href="https://github.com/graphql-java-kickstart/samples" rel="noopener noreferrer">graphql-java-kickstart_samples (⭐121)</a> - Samples for using the GraphQL Java Kickstart projects.</li>
 </ul>
 <h3><p>Kotlin Examples / React</p>
 </h3>
@@ -1368,7 +1453,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Microsoft/cppgraphqlgen" rel="noopener noreferrer">cppgraphqlgen (⭐347)</a> - C++ GraphQL schema service generator.</li>
+<li><a href="https://github.com/Microsoft/cppgraphqlgen" rel="noopener noreferrer">cppgraphqlgen (⭐349)</a> - C++ GraphQL schema service generator.</li>
 </ul>
 
 <ul>
@@ -1381,7 +1466,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/graph-gophers/graphql-go" rel="noopener noreferrer">graphql-go (⭐4.7k)</a> - GraphQL server with a focus on ease of use.</li>
+<li><a href="https://github.com/graph-gophers/graphql-go" rel="noopener noreferrer">graphql-go (⭐4.8k)</a> - GraphQL server with a focus on ease of use.</li>
 </ul>
 
 <ul>
@@ -1393,7 +1478,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dosco/graphjin" rel="noopener noreferrer">graphjin (⭐3k)</a>: Build APIs in 5 minutes with GraphQL. An instant GraphQL to SQL compiler.</li>
+<li><a href="https://github.com/dosco/graphjin" rel="noopener noreferrer">graphjin (⭐3.1k)</a>: Build APIs in 5 minutes with GraphQL. An instant GraphQL to SQL compiler.</li>
 </ul>
 <h3><p>Go Examples / React</p>
 </h3>
@@ -1419,7 +1504,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ghostdogpr/caliban" rel="noopener noreferrer">caliban (⭐991)</a> - Caliban is a purely functional library for creating GraphQL backends in Scala.</li>
+<li><a href="https://github.com/ghostdogpr/caliban" rel="noopener noreferrer">caliban (⭐993)</a> - Caliban is a purely functional library for creating GraphQL backends in Scala.</li>
 </ul>
 <h3><p>Scala Examples / React</p>
 </h3>
@@ -1437,7 +1522,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ckimes89/graphql-net" rel="noopener noreferrer">graphql-net (⭐887)</a> - GraphQL to IQueryable for .NET.</li>
+<li><a href="https://github.com/ckimes89/graphql-net" rel="noopener noreferrer">graphql-net (⭐886)</a> - GraphQL to IQueryable for .NET.</li>
 </ul>
 
 <ul>
@@ -1445,7 +1530,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Zaid-Ajaj/Snowflaqe" rel="noopener noreferrer">Snowflaqe (⭐160)</a> - Type-safe GraphQL code generator for F# and <a href="https://github.com/fable-compiler/Fable" rel="noopener noreferrer">Fable (⭐3.1k)</a></li>
+<li><a href="https://github.com/Zaid-Ajaj/Snowflaqe" rel="noopener noreferrer">Snowflaqe (⭐161)</a> - Type-safe GraphQL code generator for F# and <a href="https://github.com/fable-compiler/Fable" rel="noopener noreferrer">Fable (⭐3.1k)</a></li>
 </ul>
 <h3><p>Elixir / React</p>
 </h3>
@@ -1466,7 +1551,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/graphql-elixir/graphql_parser" rel="noopener noreferrer">graphql_parser (⭐23)</a> - Elixir bindings for <a href="https://github.com/graphql/libgraphqlparser" rel="noopener noreferrer">libgraphqlparser (⭐1.1k)</a></li>
+<li><a href="https://github.com/graphql-elixir/graphql_parser" rel="noopener noreferrer">graphql_parser (⭐24)</a> - Elixir bindings for <a href="https://github.com/graphql/libgraphqlparser" rel="noopener noreferrer">libgraphqlparser (⭐1.1k)</a></li>
 </ul>
 
 <ul>
@@ -1488,7 +1573,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/rexxars/sql-to-graphql" rel="noopener noreferrer">sql-to-graphql (⭐591)</a> - Generate a GraphQL API based on your SQL database structure.</li>
+<li><a href="https://github.com/rexxars/sql-to-graphql" rel="noopener noreferrer">sql-to-graphql (⭐590)</a> - Generate a GraphQL API based on your SQL database structure.</li>
 </ul>
 
 <ul>
@@ -1510,7 +1595,7 @@
 <h3><p>Elm / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dillonkearns/elm-graphql" rel="noopener noreferrer">elm-graphql (⭐787)</a> - GraphQL for Elm.</li>
+<li><a href="https://github.com/dillonkearns/elm-graphql" rel="noopener noreferrer">elm-graphql (⭐789)</a> - GraphQL for Elm.</li>
 </ul>
 <h3><p>Clojure / React</p>
 </h3>
@@ -1538,12 +1623,12 @@
 <h3><p>Swift / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/GraphQLSwift/GraphQL" rel="noopener noreferrer">GraphQL (⭐961)</a> - The Swift implementation for GraphQL.</li>
+<li><a href="https://github.com/GraphQLSwift/GraphQL" rel="noopener noreferrer">GraphQL (⭐962)</a> - The Swift implementation for GraphQL.</li>
 </ul>
 <h3><p>OCaml / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/andreas/ocaml-graphql-server" rel="noopener noreferrer">ocaml-graphql-server (⭐621)</a> - GraphQL servers in OCaml.</li>
+<li><a href="https://github.com/andreas/ocaml-graphql-server" rel="noopener noreferrer">ocaml-graphql-server (⭐622)</a> - GraphQL servers in OCaml.</li>
 </ul>
 <h3><p>Android Examples / React</p>
 </h3>
@@ -1588,16 +1673,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/comigor/artemis" rel="noopener noreferrer">Artemis (⭐492)</a> - A GraphQL type and query generator for Dart/Flutter.</li>
+<li><a href="https://github.com/comigor/artemis" rel="noopener noreferrer">Artemis (⭐491)</a> - A GraphQL type and query generator for Dart/Flutter.</li>
 </ul>
 <h3><p>Rust / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/async-graphql/async-graphql" rel="noopener noreferrer">async-graphql (⭐3.6k)</a> - High-performance server-side library that supports all GraphQL specifications.</li>
+<li><a href="https://github.com/async-graphql/async-graphql" rel="noopener noreferrer">async-graphql (⭐3.7k)</a> - High-performance server-side library that supports all GraphQL specifications.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/graphql-rust/juniper" rel="noopener noreferrer">juniper (⭐5.9k)</a> - GraphQL server library for Rust.</li>
+<li><a href="https://github.com/graphql-rust/juniper" rel="noopener noreferrer">juniper (⭐6k)</a> - GraphQL server library for Rust.</li>
 </ul>
 
 <ul>
@@ -1628,7 +1713,7 @@
 <h3><p>Julia / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/codeneomatrix/Diana.jl" rel="noopener noreferrer">Diana.jl (⭐116)</a> - A Julia GraphQL client/server implementation.</li>
+<li><a href="https://github.com/codeneomatrix/Diana.jl" rel="noopener noreferrer">Diana.jl (⭐115)</a> - A Julia GraphQL client/server implementation.</li>
 </ul>
 
 <ul>
@@ -1637,11 +1722,11 @@
 <h3><p>Crystal / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/graphql-crystal/graphql" rel="noopener noreferrer">graphql (⭐138)</a> - GraphQL server library.</li>
+<li><a href="https://github.com/graphql-crystal/graphql" rel="noopener noreferrer">graphql (⭐139)</a> - GraphQL server library.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ziprandom/graphql-crystal" rel="noopener noreferrer">graphql-crystal (⭐213)</a> - library inspired by <a href="https://github.com/rmosolgo/graphql-ruby" rel="noopener noreferrer">graphql-ruby (⭐5.4k)</a> &amp; <a href="https://github.com/playlyfe/go-graphql" rel="noopener noreferrer">go-graphql (⭐246)</a> &amp; <a href="https://github.com/graphql-dotnet/parser" rel="noopener noreferrer">graphql-parser (⭐220)</a>.</li>
+<li><a href="https://github.com/ziprandom/graphql-crystal" rel="noopener noreferrer">graphql-crystal (⭐213)</a> - library inspired by <a href="https://github.com/rmosolgo/graphql-ruby" rel="noopener noreferrer">graphql-ruby (⭐5.4k)</a> &amp; <a href="https://github.com/playlyfe/go-graphql" rel="noopener noreferrer">go-graphql (⭐246)</a> &amp; <a href="https://github.com/graphql-dotnet/parser" rel="noopener noreferrer">graphql-parser (⭐218)</a>.</li>
 </ul>
 
 <ul>
@@ -1739,11 +1824,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jimkyndemeyer/js-graphql-intellij-plugin/" rel="noopener noreferrer">js-graphql-intellij-plugin (⭐899)</a> - GraphQL language support for IntelliJ IDEA and WebStorm, including Relay.QL tagged templates in JavaScript and TypeScript.</li>
+<li><a href="https://github.com/jimkyndemeyer/js-graphql-intellij-plugin/" rel="noopener noreferrer">js-graphql-intellij-plugin (⭐898)</a> - GraphQL language support for IntelliJ IDEA and WebStorm, including Relay.QL tagged templates in JavaScript and TypeScript.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jparise/vim-graphql" rel="noopener noreferrer">vim-graphql (⭐509)</a> - A Vim plugin that provides GraphQL file detection and syntax highlighting.</li>
+<li><a href="https://github.com/jparise/vim-graphql" rel="noopener noreferrer">vim-graphql (⭐510)</a> - A Vim plugin that provides GraphQL file detection and syntax highlighting.</li>
 </ul>
 
 <ul>
@@ -2084,9 +2169,51 @@
 <h2><a href="https://www.trackawesomelist.com/2021/38/">Sep 20 - Sep 26, 2021</a></h2><h3><p>Go / React</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ysugimoto/grpc-graphql-gateway" rel="noopener noreferrer">grpc-graphql-gateway (⭐423)</a> - A protoc plugin that generates graphql execution code from Protocol Buffers. <a></a></li>
+<li><a href="https://github.com/ysugimoto/grpc-graphql-gateway" rel="noopener noreferrer">grpc-graphql-gateway (⭐422)</a> - A protoc plugin that generates graphql execution code from Protocol Buffers. <a></a></li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>

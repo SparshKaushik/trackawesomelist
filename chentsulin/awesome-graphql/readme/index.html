@@ -16,17 +16,97 @@
     <meta property="og:title" content="Awesome Graphql Overview" />
     <meta property="og:description" content="Awesome list of GraphQL" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Graphql Overview</h1>
 <p>Awesome list of GraphQL</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/chentsulin/awesome-graphql/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/chentsulin/awesome-graphql">😺 chentsulin/awesome-graphql</a><span> · </span><span>⭐ 15K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
@@ -174,7 +254,7 @@
 
 <h2 id="specifications"><a class="anchor" aria-hidden="true" tabindex="-1" href="#specifications"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Specifications</h2><ul>
 <li><a href="https://github.com/graphql/graphql-spec" rel="noopener noreferrer">GraphQL (⭐15k)</a> - Working draft of the specification for GraphQL.</li>
-<li><a href="https://github.com/graphql/graphql-over-http" rel="noopener noreferrer">GraphQL over HTTP (⭐420)</a> - Working draft of "GraphQL over HTTP" specification.</li>
+<li><a href="https://github.com/graphql/graphql-over-http" rel="noopener noreferrer">GraphQL over HTTP (⭐422)</a> - Working draft of "GraphQL over HTTP" specification.</li>
 <li><a href="https://relay.dev/docs/guides/graphql-server-specification/" rel="noopener noreferrer">GraphQL Relay</a> - Relay-compliant GraphQL server specification.</li>
 <li><a href="https://github.com/opencrud/opencrud" rel="noopener noreferrer">OpenCRUD (⭐389)</a> - OpenCRUD is a GraphQL CRUD API specification for databases.</li>
 <li><a href="https://www.apollographql.com/docs/federation/federation-spec/" rel="noopener noreferrer">Apollo Federation</a> - Apollo Federation specification</li>
@@ -196,7 +276,7 @@
 <li><a href="https://www.facebook.com/groups/795330550572866/" rel="noopener noreferrer">Facebook</a> - Group for discussions, articles and knowledge sharing.</li>
 <li><a href="https://x.com/search?q=%23GraphQL" rel="noopener noreferrer">X</a> - Use the hashtag <code>#graphql</code>.</li>
 <li><a href="https://stackoverflow.com/questions/tagged/graphql" rel="noopener noreferrer">StackOverflow</a> - Questions and answers. Use the tag <code>graphql</code>.</li>
-<li><a href="https://github.com/APIs-guru/graphql-apis" rel="noopener noreferrer">GraphQL APIs (⭐4.6k)</a> - A collective list of public GraphQL APIs.</li>
+<li><a href="https://github.com/APIs-guru/graphql-apis" rel="noopener noreferrer">GraphQL APIs (⭐4.7k)</a> - A collective list of public GraphQL APIs.</li>
 <li><a href="https://www.reddit.com/r/graphql/" rel="noopener noreferrer">/r/GraphQL</a> - A Subreddit for interesting and informative GraphQL content and discussions.</li>
 </ul>
 <a>
@@ -244,10 +324,10 @@
 <h5 id="frontend-framework-integrations"><a class="anchor" aria-hidden="true" tabindex="-1" href="#frontend-framework-integrations"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Frontend Framework Integrations</h5><ul>
 <li><a href="https://github.com/vuejs/vue-apollo" rel="noopener noreferrer">vue-apollo (⭐6k)</a> - Apollo/GraphQL integration for VueJS.</li>
 <li><a href="https://github.com/kamilkisiela/apollo-angular" rel="noopener noreferrer">apollo-angular (⭐1.5k)</a> - A fully-featured, production ready caching GraphQL client for Angular and every GraphQL server.</li>
-<li><a href="https://github.com/timhall/svelte-apollo" rel="noopener noreferrer">svelte-apollo (⭐949)</a> - Svelte integration for Apollo GraphQL.</li>
+<li><a href="https://github.com/timhall/svelte-apollo" rel="noopener noreferrer">svelte-apollo (⭐948)</a> - Svelte integration for Apollo GraphQL.</li>
 <li><a href="https://github.com/ember-graphql/ember-apollo-client" rel="noopener noreferrer">ember-apollo-client (⭐280)</a> - An ember-cli addon for Apollo Client and GraphQL.</li>
 <li><a href="https://github.com/apollo-elements/apollo-elements" rel="noopener noreferrer">apollo-elements (⭐422)</a> - GraphQL web components that work in any frontend framework.</li>
-<li><a href="https://github.com/jycouet/kitql" rel="noopener noreferrer">sveltekit-kitql (⭐453)</a> - A set of tools, helping you building efficient apps in a fast way with SvelteKit and GraphQL.</li>
+<li><a href="https://github.com/jycouet/kitql" rel="noopener noreferrer">sveltekit-kitql (⭐455)</a> - A set of tools, helping you building efficient apps in a fast way with SvelteKit and GraphQL.</li>
 </ul>
 <h6 id="react"><a class="anchor" aria-hidden="true" tabindex="-1" href="#react"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>React</h6><ul>
 <li><a href="https://www.apollographql.com/docs/react/" rel="noopener noreferrer">react-apollo</a> - The core @apollo/client library provides built-in integration with React.</li>
@@ -255,7 +335,7 @@
 <li><a href="https://github.com/FormidableLabs/urql" rel="noopener noreferrer">urql (⭐8.9k)</a> - A simple caching GraphQL client for React.</li>
 <li><a href="https://github.com/nearform/graphql-hooks" rel="noopener noreferrer">graphql-hooks (⭐1.9k)</a> - Minimal hooks-first GraphQL client with caching and server-side rendering support.</li>
 <li><a href="https://github.com/mobxjs/mst-gql" rel="noopener noreferrer">mst-gql (⭐688)</a> - Bindings for mobx-state-tree and GraphQL.</li>
-<li><a href="https://github.com/arackaf/micro-graphql-react" rel="noopener noreferrer">micro-graphql-react (⭐529)</a> - A lightweight utility for adding GraphQL to React. components. Includes simple caching and uses GET requests that could additionally be cached through a service-worker.</li>
+<li><a href="https://github.com/arackaf/micro-graphql-react" rel="noopener noreferrer">micro-graphql-react (⭐527)</a> - A lightweight utility for adding GraphQL to React. components. Includes simple caching and uses GET requests that could additionally be cached through a service-worker.</li>
 <li><a href="https://github.com/gqty-dev/gqty" rel="noopener noreferrer">@gqty/react (⭐1k)</a> - A No GraphQL client for TypeScript</li>
 </ul>
 <h4 id="servers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#servers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Servers</h4><ul>
@@ -271,7 +351,7 @@
 <li><a href="https://github.com/graphitejs/server" rel="noopener noreferrer">graphitejs (⭐122)</a> - Framework NodeJS for GraphQL.</li>
 <li><a href="https://github.com/contrawork/graphql-helix" rel="noopener noreferrer">graphql-helix (⭐829)</a> - A highly evolved GraphQL HTTP Server.</li>
 <li><a href="https://github.com/getcronit/pylon" rel="noopener noreferrer">pylon (⭐369)</a> - Write full-feature APIs with just functions. No more boilerplate code, no more setup. Just write functions and deploy.</li>
-<li><a href="https://github.com/hypermodeinc/modus" rel="noopener noreferrer">modus (⭐415)</a> - Serverless runtime based on WebAssembly that delivers auto-generated GraphQL APIs.</li>
+<li><a href="https://github.com/hypermodeinc/modus" rel="noopener noreferrer">modus (⭐416)</a> - Serverless runtime based on WebAssembly that delivers auto-generated GraphQL APIs.</li>
 </ul>
 <h5 id="databases--orms"><a class="anchor" aria-hidden="true" tabindex="-1" href="#databases--orms"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Databases &amp; ORMs</h5><ul>
 <li><a href="https://github.com/mickhansen/graphql-sequelize" rel="noopener noreferrer">graphql-sequelize (⭐1.9k)</a> - Sequelize helpers for GraphQL.</li>
@@ -279,7 +359,7 @@
 <li><a href="https://github.com/acarl005/join-monster" rel="noopener noreferrer">join-monster (⭐2.7k)</a> - A GraphQL-to-SQL query execution layer for batch data fetching.</li>
 </ul>
 <h5 id="pubsub"><a class="anchor" aria-hidden="true" tabindex="-1" href="#pubsub"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>PubSub</h5><ul>
-<li><a href="https://github.com/ably-labs/graphql-ably-pubsub" rel="noopener noreferrer">graphql-ably-pubsub (⭐7)</a> - Ably PubSub implementation for GraphQL to publish mutation updates and subscribe to the result through a subscription query.</li>
+<li><a href="https://github.com/ably-labs/graphql-ably-pubsub" rel="noopener noreferrer">graphql-ably-pubsub (⭐8)</a> - Ably PubSub implementation for GraphQL to publish mutation updates and subscribe to the result through a subscription query.</li>
 </ul>
 <h4 id="custom-scalars"><a class="anchor" aria-hidden="true" tabindex="-1" href="#custom-scalars"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Custom Scalars</h4><ul>
 <li><a href="https://github.com/Urigo/graphql-scalars" rel="noopener noreferrer">graphql-scalars (⭐1.9k)</a> - A library of custom GraphQL Scalars for creating precise type-safe GraphQL schemas.</li>
@@ -290,7 +370,7 @@
 <li><a href="https://github.com/dotansimha/graphql-code-generator" rel="noopener noreferrer">graphql-code-generator (⭐11k)</a>: GraphQL code generator with flexible support for custom plugins and templates like TypeScript (frontend and backend), React Hooks, resolvers signatures and more.</li>
 <li><a href="https://github.com/hayes/pothos" rel="noopener noreferrer">pothos (⭐2.6k)</a> - Pothos is a plugin based GraphQL schema builder for typescript. It makes building graphql schemas in typescript easy, fast and enjoyable.</li>
 <li><a href="https://github.com/stepci/garph" rel="noopener noreferrer">garph (⭐1.3k)</a> - Garph is full-stack framework for building type-safe GraphQL APIs in TypeScript.</li>
-<li><a href="https://github.com/modevol-com/gqloom" rel="noopener noreferrer">gqloom (⭐95)</a> - GQLoom is a GraphQL weaver for TypeScript/JavaScript that weaves GraphQL schema and resolvers using <a href="https://github.com/fabian-hiller/valibot" rel="noopener noreferrer">Valibot (⭐8.5k)</a>, <a href="https://github.com/colinhacks/zod" rel="noopener noreferrer">Zod (⭐42k)</a>, or <a href="https://github.com/jquense/yup" rel="noopener noreferrer">Yup (⭐24k)</a>.</li>
+<li><a href="https://github.com/modevol-com/gqloom" rel="noopener noreferrer">gqloom (⭐98)</a> - GQLoom is a GraphQL weaver for TypeScript/JavaScript that weaves GraphQL schema and resolvers using <a href="https://github.com/fabian-hiller/valibot" rel="noopener noreferrer">Valibot (⭐8.7k)</a>, <a href="https://github.com/colinhacks/zod" rel="noopener noreferrer">Zod (⭐43k)</a>, or <a href="https://github.com/jquense/yup" rel="noopener noreferrer">Yup (⭐24k)</a>.</li>
 <li><a href="https://github.com/idurar/fast-graphql" rel="noopener noreferrer">fast-graphql (⭐5)</a> - Graphql Tools to Structure, Combine Resolvers and Merge Schema Definitions for Node.js, Next.Js and Graphql Apollo server</li>
 <li><a href="https://github.com/lkster/graphql-to-type" rel="noopener noreferrer">graphql-to-type (⭐6)</a> - GraphQL query parser written entirely in TypeScript's type system for creating interfaces based on provided query</li>
 <li><a href="https://github.com/0no-co/gql.tada" rel="noopener noreferrer">gql.tada (⭐2.9k)</a> - GraphQL document authoring library, inferring the result and variables types of GraphQL queries and fragments in the TypeScript type system.</li>
@@ -303,8 +383,8 @@
 <li><a href="https://github.com/Urigo/graphql-modules" rel="noopener noreferrer">graphql-modules (⭐1.3k)</a> - Separate GraphQL server into smaller, reusable parts by modules or features.</li>
 <li><a href="https://github.com/maticzav/graphql-shield" rel="noopener noreferrer">graphql-shield (⭐3.6k)</a> - A library that helps creating a permission layer for a graphql api.</li>
 <li><a href="https://github.com/omar-dulaimi/graphql-shield-generator" rel="noopener noreferrer">graphql-shield-generator (⭐10)</a> - Emits a GraphQL Shield from your GraphQL schema.</li>
-<li><a href="https://github.com/oslabs-beta/GraphQL-Gate" rel="noopener noreferrer">graphqlgate (⭐57)</a> - A GraphQL rate-limiting library with query complexity analysis for Node.js</li>
-<li><a href="https://github.com/piglovesyou/graphql-let" rel="noopener noreferrer">graphql-let (⭐452)</a> - A webpack loader to import type-protected codegen results directly from GraphQL documents</li>
+<li><a href="https://github.com/oslabs-beta/GraphQL-Gate" rel="noopener noreferrer">graphqlgate (⭐56)</a> - A GraphQL rate-limiting library with query complexity analysis for Node.js</li>
+<li><a href="https://github.com/piglovesyou/graphql-let" rel="noopener noreferrer">graphql-let (⭐451)</a> - A webpack loader to import type-protected codegen results directly from GraphQL documents</li>
 <li><a href="https://github.com/kamilkisiela/graphql-config" rel="noopener noreferrer">graphql-config (⭐1.2k)</a> - One configuration for all your GraphQL tools (supported by most tools, editors &amp; IDEs).</li>
 <li><a href="https://github.com/urigo/graphql-cli" rel="noopener noreferrer">graphql-cli (⭐2k)</a> - A command line tool for common GraphQL development workflows.</li>
 <li><a href="https://github.com/ardatan/graphql-toolkit" rel="noopener noreferrer">graphql-toolkit (⭐166)</a> - A set of utils for faster development of GraphQL tools (Schema and documents loading, Schema merging and more).</li>
@@ -317,18 +397,19 @@
 <li><a href="https://github.com/ooflorent/babel-plugin-graphql" rel="noopener noreferrer">babel-plugin-graphql (⭐64)</a> - Babel plugin that compile GraphQL tagged template strings.</li>
 <li><a href="https://github.com/apollographql/eslint-plugin-graphql" rel="noopener noreferrer">eslint-plugin-graphql (⭐1.2k)</a> - An ESLint plugin that checks your GraphQL strings against a schema.</li>
 <li><a href="https://github.com/enisdenjo/graphql-ws" rel="noopener noreferrer">graphql-ws (⭐1.9k)</a> - Coherent, zero-dependency, lazy, simple, GraphQL over WebSocket Protocol compliant server and client.</li>
-<li><a href="https://github.com/n1ru4l/graphql-live-query" rel="noopener noreferrer">graphql-live-query (⭐440)</a> - Realtime GraphQL Live Queries with JavaScript.</li>
+<li><a href="https://github.com/n1ru4l/graphql-live-query" rel="noopener noreferrer">graphql-live-query (⭐439)</a> - Realtime GraphQL Live Queries with JavaScript.</li>
 <li><a href="https://github.com/Comcast/graphvinci" rel="noopener noreferrer">GraphVinci (⭐77)</a> - An interactive schema visualizer for GraphQL APIs.</li>
 <li><a href="https://github.com/alexstrat/supertest-graphql" rel="noopener noreferrer">supertest-graphql (⭐34)</a> - Extends <a href="https://github.com/visionmedia/supertest" rel="noopener noreferrer">supertest (⭐14k)</a> to easily test a GraphQL endpoint</li>
-<li><a href="https://github.com/schemathesis/schemathesis" rel="noopener noreferrer">schemathesis (⭐3.2k)</a> - Runs arbitrary queries matching a GraphQL schema to find server errors.</li>
+<li><a href="https://github.com/schemathesis/schemathesis" rel="noopener noreferrer">schemathesis (⭐3.3k)</a> - Runs arbitrary queries matching a GraphQL schema to find server errors.</li>
 <li><a href="https://github.com/anvilco/graphql-introspection-tools" rel="noopener noreferrer">microfiber (⭐37)</a> - Query and manipulate GraphQL introspection query results in useful ways.</li>
-<li><a href="https://github.com/Escape-Technologies/graphql-armor" rel="noopener noreferrer">graphql-armor (⭐581)</a> - An instant security layer for production GraphQL Endpoints.</li>
+<li><a href="https://github.com/Escape-Technologies/graphql-armor" rel="noopener noreferrer">graphql-armor (⭐582)</a> - An instant security layer for production GraphQL Endpoints.</li>
 <li><a href="https://github.com/Escape-Technologies/goctopus" rel="noopener noreferrer">goctopus (⭐129)</a> - an incredibly fast GraphQL discovery &amp; fingerprinting toolbox.</li>
-<li><a href="https://github.com/confuser/graphql-constraint-directive" rel="noopener noreferrer">GraphQL Constraint Directive (⭐577)</a> - Allows using @constraint as a directive to validate input data. Inspired by Constraints Directives RFC and OpenAPI</li>
+<li><a href="https://github.com/confuser/graphql-constraint-directive" rel="noopener noreferrer">GraphQL Constraint Directive (⭐576)</a> - Allows using @constraint as a directive to validate input data. Inspired by Constraints Directives RFC and OpenAPI</li>
 <li><a href="https://github.com/ktutnik/graphql-directive/tree/master/packages/validator" rel="noopener noreferrer">Validator.js Wrapper Directive (⭐4)</a> - A comprehensive list of validator directive wraps Validator.js functionalities</li>
 <li><a href="https://github.com/wundergraph/cosmo" rel="noopener noreferrer">WunderGraph Cosmo (⭐1.2k)</a> - The Open-Source GraphQL Federation Solution with Full Lifecycle API Management for (Federated) GraphQL. Schema Registry, composition checks, analytics, metrics, tracing and routing.</li>
 <li><a href="https://github.com/wundergraph/graphql-go-tools" rel="noopener noreferrer">graphql-go-tools (⭐819)</a> - A graphQL Router / API Gateway framework written in Golang, focussing on correctness, extensibility, and high-performance. Supports Federation v1 &amp; v2, Subscriptions &amp; more.</li>
 <li><a href="https://github.com/sophiabits/graphql-sunset" rel="noopener noreferrer">graphql-sunset (⭐7)</a> - Quickly and easily add support for the <code>Sunset</code> header to your GraphQL server, to better communicate upcoming breaking changes.</li>
+<li><a href="https://www.schemato.top/graphql-to-typescript" rel="noopener noreferrer">Schemato</a> - Browser-only GraphQL SDL converter for generating TypeScript, Zod, Pydantic, Go, Rust, and other typed models.</li>
 </ul>
 <a>
 
@@ -340,7 +421,7 @@
 <li><a href="https://www.apollographql.com/docs/apollo-server/" rel="noopener noreferrer">Apollo Server tools documentation</a> - Documentation, tutorial and examples for building GraphQL server and connecting to SQL, MongoDB and REST endpoints.</li>
 <li><a href="https://github.com/fbsamples/f8app" rel="noopener noreferrer">F8 App 2017 (⭐14k)</a> - Source code of the official F8 app of 2016, powered by React Native and other Facebook open source projects.</li>
 <li><a href="https://github.com/katopz/react-apollo-graphql-github-example" rel="noopener noreferrer">Apollo React example for Github GraphQL API (⭐113)</a> - Usage Examples Apollo React for Github GraphQL API with create-react-app.</li>
-<li><a href="https://github.com/zeit/next.js/tree/canary/examples/with-typescript-graphql" rel="noopener noreferrer">Next.js TypeScript and GraphQL Example (⭐139k)</a> - A type-protected GraphQL example on Next.js running <a href="https://graphql-code-generator.com/" rel="noopener noreferrer">graphql-codegen</a> under the hood</li>
+<li><a href="https://github.com/zeit/next.js/tree/canary/examples/with-typescript-graphql" rel="noopener noreferrer">Next.js TypeScript and GraphQL Example (⭐140k)</a> - A type-protected GraphQL example on Next.js running <a href="https://graphql-code-generator.com/" rel="noopener noreferrer">graphql-codegen</a> under the hood</li>
 <li><a href="https://stackblitz.com/fork/graphql" rel="noopener noreferrer">GraphQL StackBlitz Starter</a> – A live, editable demo spinning up in about 2 seconds and running in a browser.</li>
 <li><a href="https://github.com/alan345/naperg" rel="noopener noreferrer">NAPERG (⭐1.4k)</a> - Fullstack Boilerplate GraphQL. Made with React &amp; Prisma + authentication &amp; roles.</li>
 <li><a href="http://vulcanjs.org" rel="noopener noreferrer">VulcanJS</a> - The full-stack React+GraphQL framework</li>
@@ -369,7 +450,7 @@
 
 <h4 id="ruby-examples"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ruby-examples"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Ruby Examples</h4><ul>
 <li><a href="https://github.com/rmosolgo/graphql-ruby-demo" rel="noopener noreferrer">graphql-ruby-demo (⭐216)</a> - Use graphql-ruby to expose a Rails app.</li>
-<li><a href="https://github.com/github/github-graphql-rails-example" rel="noopener noreferrer">github-graphql-rails-example (⭐278)</a> - Example Rails app using GitHub's GraphQL API.</li>
+<li><a href="https://github.com/github/github-graphql-rails-example" rel="noopener noreferrer">github-graphql-rails-example (⭐277)</a> - Example Rails app using GitHub's GraphQL API.</li>
 <li><a href="https://github.com/nethsix/relay-on-rails" rel="noopener noreferrer">relay-on-rails (⭐43)</a> - Barebones starter kit for Relay application with Rails GraphQL server.</li>
 <li><a href="https://github.com/gauravtiwari/relay-rails-blog" rel="noopener noreferrer">relay-rails-blog (⭐139)</a> - A graphql, relay and standard rails application powered demo weblog.</li>
 <li><a href="https://github.com/jcdavison/to_eat_app" rel="noopener noreferrer">to_eat_app (⭐13)</a> - A sample graphql/rails/relay application with a related 3-part article series.</li>
@@ -383,7 +464,7 @@
 <li><a href="https://github.com/ivome/graphql-relay-php" rel="noopener noreferrer">graphql-relay-php (⭐271)</a> - Relay helpers for webonyx/graphql-php implementation of GraphQL.</li>
 <li><a href="https://github.com/nuwave/lighthouse" rel="noopener noreferrer">lighthouse (⭐3.5k)</a> - A PHP package that allows to serve a GraphQL endpoint from your Laravel application.</li>
 <li><a href="https://github.com/rebing/graphql-laravel" rel="noopener noreferrer">graphql-laravel (⭐2.2k)</a> - Laravel wrapper for Facebook's GraphQL.</li>
-<li><a href="https://github.com/overblog/GraphQLBundle" rel="noopener noreferrer">overblog/graphql-bundle (⭐797)</a> - This bundle provides tools to build a complete GraphQL server in your Symfony App. Supports react-relay.</li>
+<li><a href="https://github.com/overblog/GraphQLBundle" rel="noopener noreferrer">overblog/graphql-bundle (⭐796)</a> - This bundle provides tools to build a complete GraphQL server in your Symfony App. Supports react-relay.</li>
 <li><a href="https://github.com/wp-graphql/wp-graphql" rel="noopener noreferrer">wp-graphql (⭐3.8k)</a> - GraphQL API for WordPress.</li>
 <li><a href="https://github.com/thecodingmachine/graphqlite" rel="noopener noreferrer">graphqlite (⭐572)</a> - Framework agnostic library that allows you to write GraphQL server by annotating your PHP classes.</li>
 <li><a href="https://github.com/leocavalcante/siler" rel="noopener noreferrer">siler (⭐1.1k)</a> - Plain-old functions providing a declarative API for GraphQL servers with Subscriptions support.</li>
@@ -399,8 +480,8 @@
 <a>
 
 <h3 id="python"><a class="anchor" aria-hidden="true" tabindex="-1" href="#python"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Python</h3><ul>
-<li><a href="https://github.com/tryolabs/graphql-parser" rel="noopener noreferrer">graphql-parser (⭐47)</a> - GraphQL parser for Python.</li>
-<li><a href="https://github.com/graphql-python/graphql-core" rel="noopener noreferrer">graphql-core (⭐531)</a> - GraphQL implementation for Python based on GraphQL.js v16.3.0 reference implementation</li>
+<li><a href="https://github.com/tryolabs/graphql-parser" rel="noopener noreferrer">graphql-parser (⭐46)</a> - GraphQL parser for Python.</li>
+<li><a href="https://github.com/graphql-python/graphql-core" rel="noopener noreferrer">graphql-core (⭐528)</a> - GraphQL implementation for Python based on GraphQL.js v16.3.0 reference implementation</li>
 <li><a href="https://github.com/graphql-python/graphql-relay-py" rel="noopener noreferrer">graphql-relay-py (⭐144)</a> - A library to help construct a graphql-py server supporting react-relay.</li>
 <li><a href="https://github.com/tallstreet/graphql-parser-python" rel="noopener noreferrer">graphql-parser-python (⭐4)</a> - A python wrapper around libgraphqlparser.</li>
 <li><a href="https://github.com/graphql-python/graphene" rel="noopener noreferrer">graphene (⭐8.2k)</a> - A package for creating GraphQL schemas/types in a Pythonic easy way.</li>
@@ -411,14 +492,14 @@
 <li><a href="https://github.com/healx/python-graphjoiner" rel="noopener noreferrer">python-graphjoiner (⭐2)</a> - Create GraphQL APIs using joins, SQL or otherwise.</li>
 <li><a href="https://github.com/graphql-python/graphene-django" rel="noopener noreferrer">graphene-django (⭐4.4k)</a> - A Django integration for Graphene.</li>
 <li><a href="https://github.com/callsign-viper/Flask-GraphQL-Auth" rel="noopener noreferrer">Flask-GraphQL-Auth (⭐63)</a> - An authentication library for Flask inspired from flask-jwt-extended.</li>
-<li><a href="https://github.com/dailymotion/tartiflette" rel="noopener noreferrer">tartiflette (⭐855)</a> - GraphQL Implementation, SDL First, for python 3.6+ / asyncio.</li>
+<li><a href="https://github.com/dailymotion/tartiflette" rel="noopener noreferrer">tartiflette (⭐854)</a> - GraphQL Implementation, SDL First, for python 3.6+ / asyncio.</li>
 <li><a href="https://github.com/dailymotion/tartiflette-aiohttp" rel="noopener noreferrer">tartiflette-aiohttp (⭐62)</a> - Wrapper of Tartiflette to expose GraphQL API over HTTP based on aiohttp / 3.6+ / asyncio, <a href="https://tartiflette.io/docs/tutorial/getting-started" rel="noopener noreferrer">official tutorial available on tartiflette.io</a>.</li>
 <li><a href="https://github.com/mirumee/ariadne" rel="noopener noreferrer">Ariadne (⭐2.3k)</a> - library for implementing GraphQL servers using schema-first approach. Asynchronous query execution, batteries included for ASGI, WSGI and popular webframeworks, <a href="https://ariadnegraphql.org" rel="noopener noreferrer">fully documented</a>.</li>
-<li><a href="https://github.com/PedroBern/django-graphql-auth" rel="noopener noreferrer">django-graphql-auth (⭐330)</a> - Django registration and authentication with GraphQL.</li>
-<li><a href="https://github.com/strawberry-graphql/strawberry" rel="noopener noreferrer">strawberry (⭐4.6k)</a> - A new GraphQL library for Python.</li>
+<li><a href="https://github.com/PedroBern/django-graphql-auth" rel="noopener noreferrer">django-graphql-auth (⭐329)</a> - Django registration and authentication with GraphQL.</li>
+<li><a href="https://github.com/strawberry-graphql/strawberry" rel="noopener noreferrer">strawberry (⭐4.7k)</a> - A new GraphQL library for Python.</li>
 <li><a href="https://github.com/jhnnsrs/turms" rel="noopener noreferrer">turms (⭐74)</a> - A pythonic graphql codegenerator built around graphql-core and pydantic</li>
 <li><a href="https://github.com/jhnnsrs/rath" rel="noopener noreferrer">rath (⭐10)</a> - An apollo like graphql client with async and sync interface</li>
-<li><a href="https://github.com/profusion/sgqlc" rel="noopener noreferrer">sgqlc (⭐551)</a> - Simple GraphQL Client makes working with GraphQL API responses easier in Python.</li>
+<li><a href="https://github.com/profusion/sgqlc" rel="noopener noreferrer">sgqlc (⭐552)</a> - Simple GraphQL Client makes working with GraphQL API responses easier in Python.</li>
 </ul>
 <a>
 
@@ -430,41 +511,41 @@
 
 <h3 id="java"><a class="anchor" aria-hidden="true" tabindex="-1" href="#java"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Java</h3><ul>
 <li><a href="https://github.com/graphql-java/graphql-java" rel="noopener noreferrer">graphql-java (⭐6.2k)</a> - GraphQL Java implementation.</li>
-<li><a href="https://github.com/Netflix/dgs-framework" rel="noopener noreferrer">DGS Framework (⭐3.3k)</a> - A GraphQL server framework for Spring Boot, developed by Netflix.</li>
-<li><a href="https://github.com/graphql-java-generator" rel="noopener noreferrer">graphql-java-generator</a> - A <a href="https://github.com/graphql-java-generator/graphql-maven-plugin-project" rel="noopener noreferrer">Maven plugin (⭐128)</a> and a <a href="https://github.com/graphql-java-generator/graphql-gradle-plugin-project" rel="noopener noreferrer">Gradle plugin (⭐58)</a> that can generate both the <strong>Client</strong> and the <strong>Server</strong> (POJOs and utility classes). The server part is based on graphql-java, and hides all its boilerplate codes.</li>
+<li><a href="https://github.com/Netflix/dgs-framework" rel="noopener noreferrer">DGS Framework (⭐3.4k)</a> - A GraphQL server framework for Spring Boot, developed by Netflix.</li>
+<li><a href="https://github.com/graphql-java-generator" rel="noopener noreferrer">graphql-java-generator</a> - A <a href="https://github.com/graphql-java-generator/graphql-maven-plugin-project" rel="noopener noreferrer">Maven plugin (⭐129)</a> and a <a href="https://github.com/graphql-java-generator/graphql-gradle-plugin-project" rel="noopener noreferrer">Gradle plugin (⭐59)</a> that can generate both the <strong>Client</strong> and the <strong>Server</strong> (POJOs and utility classes). The server part is based on graphql-java, and hides all its boilerplate codes.</li>
 <li><a href="https://github.com/graphql-java/graphql-java-type-generator" rel="noopener noreferrer">gaphql-java-type-generator (⭐34)</a> - Auto-generates types for use with GraphQL Java</li>
 <li><a href="https://github.com/bpatters/schemagen-graphql" rel="noopener noreferrer">schemagen-graphql (⭐48)</a> - Schema generation and execution package that turns POJO's into a GraphQL Java queryable set of objects. Enables exposing any service as a GraphQL service using Annotations.</li>
-<li><a href="https://github.com/Enigmatis/graphql-java-annotations" rel="noopener noreferrer">graphql-java-annotations (⭐392)</a> - Provides annotations-based syntax for schema definition with GraphQL Java.</li>
+<li><a href="https://github.com/Enigmatis/graphql-java-annotations" rel="noopener noreferrer">graphql-java-annotations (⭐393)</a> - Provides annotations-based syntax for schema definition with GraphQL Java.</li>
 <li><a href="https://github.com/graphql-java-kickstart/graphql-java-tools" rel="noopener noreferrer">graphql-java-tools (⭐823)</a> - Schema-first graphql-java convenience library that makes it easy to bring your own implementations as data resolvers. Inspired by <a href="https://github.com/apollographql/graphql-tools" rel="noopener noreferrer">graphql-tools (⭐5.4k)</a> for JS.</li>
 <li><a href="https://github.com/kobylynskyi/graphql-java-codegen-maven-plugin" rel="noopener noreferrer">graphql-java-codegen-maven-plugin (⭐17)</a> - Schema-first maven plugin for generating Java types and Resolver interfaces. Works perfectly in conjunction with graphql-java-tools. Inspired by <a href="https://github.com/swagger-api/swagger-codegen/tree/master/modules/swagger-codegen-maven-plugin" rel="noopener noreferrer">swagger-codegen-maven-plugin (⭐18k)</a>.</li>
 <li><a href="https://github.com/kobylynskyi/graphql-java-codegen-gradle-plugin" rel="noopener noreferrer">graphql-java-codegen-gradle-plugin (⭐19)</a> - Schema-first gradle plugin for generating Java types and Resolver interfaces. Works perfectly in conjunction with graphql-java-tools. Inspired by <a href="https://github.com/int128/gradle-swagger-generator-plugin" rel="noopener noreferrer">gradle-swagger-generator-plugin (⭐309)</a>.</li>
-<li><a href="https://github.com/graphql-java-kickstart/graphql-java-servlet" rel="noopener noreferrer">graphql-java-servlet (⭐226)</a> - A framework-agnostic java servlet for exposing graphql-java query endpoints with GET, POST, and multipart uploads.</li>
+<li><a href="https://github.com/graphql-java-kickstart/graphql-java-servlet" rel="noopener noreferrer">graphql-java-servlet (⭐227)</a> - A framework-agnostic java servlet for exposing graphql-java query endpoints with GET, POST, and multipart uploads.</li>
 <li><a href="https://github.com/manifold-systems/manifold/tree/master/manifold-deps-parent/manifold-graphql" rel="noopener noreferrer">manifold-graphql (⭐2.7k)</a> - Comprehensive GraphQL client use. Schema-first. Type-safe GraphQL types, queries, and results, no code generators, no POJOs, no annotations. Excellent <a href="http://manifold.systems/images/graphql.mp4" rel="noopener noreferrer">IDE support</a> with IntelliJ IDEA and Android Studio. See the <a href="#example-java">Java example</a> below.</li>
 <li><a href="https://github.com/oembedler/spring-graphql-common" rel="noopener noreferrer">spring-graphql-common (⭐134)</a> - Spring Framework GraphQL Library.</li>
 <li><a href="https://github.com/graphql-java-kickstart/graphql-spring-boot" rel="noopener noreferrer">graphql-spring-boot (⭐1.5k)</a> - GraphQL and GraphiQL Spring Framework Boot Starters.</li>
-<li><a href="https://github.com/engagingspaces/vertx-graphql-service-discovery" rel="noopener noreferrer">vertx-graphql-service-discovery (⭐51)</a> - Asynchronous GraphQL service discovery and querying for your microservices.</li>
+<li><a href="https://github.com/engagingspaces/vertx-graphql-service-discovery" rel="noopener noreferrer">vertx-graphql-service-discovery (⭐52)</a> - Asynchronous GraphQL service discovery and querying for your microservices.</li>
 <li><a href="https://github.com/engagingspaces/vertx-dataloader" rel="noopener noreferrer">vertx-dataloader (⭐73)</a> - Port of Facebook DataLoader for efficient, asynchronous batching and caching in clustered GraphQL environments.</li>
 <li><a href="https://github.com/leangen/GraphQL-SPQR" rel="noopener noreferrer">graphql-spqr (⭐1.1k)</a> - Java 8+ API for rapid development of GraphQL services.</li>
 <li><a href="https://github.com/networknt/light-graphql-4j" rel="noopener noreferrer">Light Java GraphQL (⭐34)</a>: A lightweight, fast microservices framework with all cross-cutting concerns addressed and ready to plug in GraphQL schema.</li>
 <li><a href="https://elide.io" rel="noopener noreferrer">Elide</a>: A Java library that can expose a JPA annotated data model as a GraphQL service over any relational database.</li>
-<li><a href="https://github.com/apollographql/federation-jvm" rel="noopener noreferrer">federation-jvm (⭐272)</a> - Apollo Federation on the JVM.</li>
-<li><a href="https://github.com/graph-quilt/graphql-orchestrator-java" rel="noopener noreferrer">graphql-orchestrator-java (⭐72)</a> GraphQL Orchestrator/Gateway library that supports Schema Stitching and Apollo Federation directives to combine schema from multiple GraphQL microservices into a single unified schema.</li>
+<li><a href="https://github.com/apollographql/federation-jvm" rel="noopener noreferrer">federation-jvm (⭐273)</a> - Apollo Federation on the JVM.</li>
+<li><a href="https://github.com/graph-quilt/graphql-orchestrator-java" rel="noopener noreferrer">graphql-orchestrator-java (⭐73)</a> GraphQL Orchestrator/Gateway library that supports Schema Stitching and Apollo Federation directives to combine schema from multiple GraphQL microservices into a single unified schema.</li>
 <li><a href="https://github.com/graphql-java/graphql-java-extended-validation" rel="noopener noreferrer">graphql-java-extended-validation (⭐137)</a> - Provides extended validation of fields and field arguments for graphql-java.</li>
 <li><a href="https://github.com/setchy/dgs-extended-formatters" rel="noopener noreferrer">dgs-extended-formatters (⭐6)</a> - An experimental set of DGS Directives for common formatting use-cases.</li>
 </ul>
 <h4 id="custom-scalars-1"><a class="anchor" aria-hidden="true" tabindex="-1" href="#custom-scalars-1"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Custom Scalars</h4><ul>
-<li><a href="https://github.com/donbeave/graphql-java-datetime" rel="noopener noreferrer">graphql-java-datetime (⭐153)</a> - GraphQL ISO Date is a set of RFC 3339 compliant date/time scalar types to be used with graphql-java.</li>
-<li><a href="https://github.com/graphql-java/graphql-java-extended-scalars" rel="noopener noreferrer">graphql-java-extended-scalars (⭐283)</a> - Extended scalars for graphql-java.</li>
+<li><a href="https://github.com/donbeave/graphql-java-datetime" rel="noopener noreferrer">graphql-java-datetime (⭐152)</a> - GraphQL ISO Date is a set of RFC 3339 compliant date/time scalar types to be used with graphql-java.</li>
+<li><a href="https://github.com/graphql-java/graphql-java-extended-scalars" rel="noopener noreferrer">graphql-java-extended-scalars (⭐286)</a> - Extended scalars for graphql-java.</li>
 </ul>
 <a>
 
 <h4 id="java-examples"><a class="anchor" aria-hidden="true" tabindex="-1" href="#java-examples"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Java Examples</h4><ul>
-<li><a href="https://github.com/networknt/light-example-4j/tree/master/graphql" rel="noopener noreferrer">light-java-graphql examples (⭐150)</a> - Examples of Light Java GraphQL and tutorials.</li>
+<li><a href="https://github.com/networknt/light-example-4j/tree/master/graphql" rel="noopener noreferrer">light-java-graphql examples (⭐149)</a> - Examples of Light Java GraphQL and tutorials.</li>
 <li><a href="https://github.com/leangen/graphql-spqr-samples" rel="noopener noreferrer">graphql-spqr-samples (⭐105)</a> - An example GraphQL server written with Spring MVC and GraphQL-SPQR.</li>
 <li><a href="https://github.com/manifold-systems/manifold-sample-graphql-app" rel="noopener noreferrer">manifold-graphql sample (⭐20)</a> - A simple application, both client and server, demonstrating the Manifold GraphQL library.</li>
-<li><a href="https://github.com/graphql-java-kickstart/samples" rel="noopener noreferrer">graphql-java-kickstart_samples (⭐120)</a> - Samples for using the GraphQL Java Kickstart projects.</li>
+<li><a href="https://github.com/graphql-java-kickstart/samples" rel="noopener noreferrer">graphql-java-kickstart_samples (⭐121)</a> - Samples for using the GraphQL Java Kickstart projects.</li>
 <li><a href="https://github.com/setchy/graphql-java-kickstart-federation-example" rel="noopener noreferrer">graphql-java-kickstart-federation-example (⭐25)</a> - A GraphQL Java Kickstart federation example.</li>
-<li><a href="https://github.com/Netflix/dgs-federation-example" rel="noopener noreferrer">dgs-federation-example (⭐113)</a> - A Netflix DGS federation example.</li>
+<li><a href="https://github.com/Netflix/dgs-federation-example" rel="noopener noreferrer">dgs-federation-example (⭐114)</a> - A Netflix DGS federation example.</li>
 <li><a href="https://hasura.io/learn/graphql/backend-stack/languages/java/" rel="noopener noreferrer">Spring Boot backend tutorial</a> - A tutorial creating a GraphQL server and client using Spring Boot and Netflix DGS.</li>
 </ul>
 <a>
@@ -472,7 +553,7 @@
 <h3 id="kotlin"><a class="anchor" aria-hidden="true" tabindex="-1" href="#kotlin"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Kotlin</h3><ul>
 <li><a href="https://github.com/ExpediaGroup/graphql-kotlin" rel="noopener noreferrer">graphql-kotlin (⭐1.8k)</a> - GraphQL Kotlin implementation.</li>
 <li><a href="https://github.com/manifold-systems/manifold/tree/master/manifold-deps-parent/manifold-graphql" rel="noopener noreferrer">manifold-graphql (⭐2.7k)</a> - Comprehensive GraphQL client use. Schema-first. Type-safe GraphQL types, queries, and results, no code generators, no POJOs, no annotations. Excellent <a href="http://manifold.systems/images/graphql.mp4" rel="noopener noreferrer">IDE support</a> with IntelliJ IDEA and Android Studio. See the <a href="#example-kotlin">Kotlin example</a> below.</li>
-<li><a href="https://github.com/aPureBase/KGraphQL" rel="noopener noreferrer">KGraphQL (⭐307)</a>: Pure Kotlin implementation to setup a GraphQL server.</li>
+<li><a href="https://github.com/aPureBase/KGraphQL" rel="noopener noreferrer">KGraphQL (⭐308)</a>: Pure Kotlin implementation to setup a GraphQL server.</li>
 <li><a href="https://github.com/ermadmi78/kobby" rel="noopener noreferrer">Kobby (⭐87)</a> - Codegen plugin of <a href="https://blog.kotlin-academy.com/how-to-generate-kotlin-dsl-client-by-graphql-schema-707fd0c55284" rel="noopener noreferrer">Kotlin DSL Client</a> by GraphQL schema. The generated DSL supports execution of complex GraphQL queries, mutation and subscriptions in Kotlin with syntax similar to native GraphQL syntax.</li>
 <li><a href="https://github.com/cufyorg/graphkt" rel="noopener noreferrer">Graphkt (⭐9)</a> - A DSL based graphql server library for kotlin, backed by graphql-java.</li>
 </ul>
@@ -486,21 +567,21 @@
 <h3 id="cc"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cc"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>C/C++</h3><ul>
 <li><a href="https://github.com/graphql/libgraphqlparser" rel="noopener noreferrer">libgraphqlparser (⭐1.1k)</a> - A GraphQL query parser in C++ with C and C++ APIs.</li>
 <li><a href="https://github.com/ohler55/agoo-c" rel="noopener noreferrer">agoo-c (⭐152)</a> - A high performance GraphQL server written in C. <a href="https://github.com/the-benchmarker/graphql-benchmarks" rel="noopener noreferrer">benchmarks (⭐56)</a></li>
-<li><a href="https://github.com/Microsoft/cppgraphqlgen" rel="noopener noreferrer">cppgraphqlgen (⭐347)</a> - C++ GraphQL schema service generator.</li>
+<li><a href="https://github.com/Microsoft/cppgraphqlgen" rel="noopener noreferrer">cppgraphqlgen (⭐349)</a> - C++ GraphQL schema service generator.</li>
 <li><a href="https://github.com/caffeinetv/CaffQL" rel="noopener noreferrer">CaffQL (⭐29)</a> - Generates C++ client types and request/response serialization from a GraphQL introspection query.</li>
 </ul>
 <a>
 
 <h3 id="go"><a class="anchor" aria-hidden="true" tabindex="-1" href="#go"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Go</h3><ul>
 <li><a href="https://github.com/graphql-go/graphql" rel="noopener noreferrer">graphql (⭐10k)</a> - An implementation of GraphQL for Go follows graphql-js</li>
-<li><a href="https://github.com/graph-gophers/graphql-go" rel="noopener noreferrer">graphql-go (⭐4.7k)</a> - GraphQL server with a focus on ease of use.</li>
+<li><a href="https://github.com/graph-gophers/graphql-go" rel="noopener noreferrer">graphql-go (⭐4.8k)</a> - GraphQL server with a focus on ease of use.</li>
 <li><a href="https://github.com/kadirpekel/gql" rel="noopener noreferrer">gql (⭐7)</a> - Code first graphql (graphql-go/graphql) schema builder.</li>
 <li><a href="https://github.com/99designs/gqlgen" rel="noopener noreferrer">gqlgen (⭐11k)</a> - Go generate based graphql server library.</li>
 <li><a href="https://github.com/graphql-go/relay" rel="noopener noreferrer">graphql-relay-go (⭐425)</a> - A Go/Golang library to help construct a server supporting react-relay.</li>
-<li><a href="https://github.com/dosco/graphjin" rel="noopener noreferrer">graphjin (⭐3k)</a>: Build APIs in 5 minutes with GraphQL. An instant GraphQL to SQL compiler.</li>
+<li><a href="https://github.com/dosco/graphjin" rel="noopener noreferrer">graphjin (⭐3.1k)</a>: Build APIs in 5 minutes with GraphQL. An instant GraphQL to SQL compiler.</li>
 <li><a href="https://github.com/wundergraph/graphql-go-tools" rel="noopener noreferrer">graphql-go-tools (⭐819)</a> - A graphQL Router / API Gateway framework written in Golang, focussing on correctness, extensibility, and high-performance. Supports Federation v1 &amp; v2, Subscriptions &amp; more.</li>
-<li><a href="https://github.com/Raezil/Thunder" rel="noopener noreferrer">Thunder (⭐118)</a> - A scalable microservices framework powered by Go, gRPC-Gateway, Prisma, and Kubernetes. It exposes REST, gRPC and Graphql</li>
-<li><a href="https://github.com/ysugimoto/grpc-graphql-gateway" rel="noopener noreferrer">grpc-graphql-gateway (⭐423)</a> - A protoc plugin that generates graphql execution code from Protocol Buffers.<a></a></li>
+<li><a href="https://github.com/Raezil/Thunder" rel="noopener noreferrer">Thunder (⭐119)</a> - A scalable microservices framework powered by Go, gRPC-Gateway, Prisma, and Kubernetes. It exposes REST, gRPC and Graphql</li>
+<li><a href="https://github.com/ysugimoto/grpc-graphql-gateway" rel="noopener noreferrer">grpc-graphql-gateway (⭐422)</a> - A protoc plugin that generates graphql execution code from Protocol Buffers.<a></a></li>
 </ul>
 <h4 id="go-examples"><a class="anchor" aria-hidden="true" tabindex="-1" href="#go-examples"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Go Examples</h4><ul>
 <li><a href="https://github.com/sogko/golang-relay-starter-kit" rel="noopener noreferrer">golang-relay-starter-kit (⭐138)</a> - Barebones starting point for a Relay application with Golang GraphQL server.</li>
@@ -513,7 +594,7 @@
 <h3 id="scala"><a class="anchor" aria-hidden="true" tabindex="-1" href="#scala"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Scala</h3><ul>
 <li><a href="https://github.com/sangria-graphql/sangria" rel="noopener noreferrer">sangria (⭐2k)</a> - Scala GraphQL server implementation.</li>
 <li><a href="https://github.com/sangria-graphql/sangria-relay" rel="noopener noreferrer">sangria-relay (⭐90)</a> - Sangria Relay Support.</li>
-<li><a href="https://github.com/ghostdogpr/caliban" rel="noopener noreferrer">caliban (⭐991)</a> - Caliban is a purely functional library for creating GraphQL backends in Scala.</li>
+<li><a href="https://github.com/ghostdogpr/caliban" rel="noopener noreferrer">caliban (⭐993)</a> - Caliban is a purely functional library for creating GraphQL backends in Scala.</li>
 </ul>
 <a>
 
@@ -525,11 +606,11 @@
 
 <h3 id="net"><a class="anchor" aria-hidden="true" tabindex="-1" href="#net"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>.NET</h3><ul>
 <li><a href="https://github.com/graphql-dotnet/graphql-dotnet" rel="noopener noreferrer">graphql-dotnet (⭐6k)</a> - GraphQL for .NET.</li>
-<li><a href="https://github.com/ckimes89/graphql-net" rel="noopener noreferrer">graphql-net (⭐887)</a> - GraphQL to IQueryable for .NET.</li>
+<li><a href="https://github.com/ckimes89/graphql-net" rel="noopener noreferrer">graphql-net (⭐886)</a> - GraphQL to IQueryable for .NET.</li>
 <li><a href="https://github.com/ChilliCream/hotchocolate" rel="noopener noreferrer">Hot Chocolate (⭐5.7k)</a> - GraphQL server for .Net Core and .NET Framework.</li>
-<li><a href="https://github.com/Zaid-Ajaj/Snowflaqe" rel="noopener noreferrer">Snowflaqe (⭐160)</a> - Type-safe GraphQL code generator for F# and <a href="https://github.com/fable-compiler/Fable" rel="noopener noreferrer">Fable (⭐3.1k)</a></li>
-<li><a href="https://github.com/EntityGraphQL/EntityGraphQL" rel="noopener noreferrer">EntityGraphQL (⭐452)</a> - library to build a GraphQL API on top of data model with the extensibility to bring multiple data sources together in the single GraphQL schema.</li>
-<li><a href="https://github.com/byme8/ZeroQL" rel="noopener noreferrer">ZeroQL (⭐318)</a> - type-safe GraphQL client with Linq-like interface for C#</li>
+<li><a href="https://github.com/Zaid-Ajaj/Snowflaqe" rel="noopener noreferrer">Snowflaqe (⭐161)</a> - Type-safe GraphQL code generator for F# and <a href="https://github.com/fable-compiler/Fable" rel="noopener noreferrer">Fable (⭐3.1k)</a></li>
+<li><a href="https://github.com/EntityGraphQL/EntityGraphQL" rel="noopener noreferrer">EntityGraphQL (⭐455)</a> - library to build a GraphQL API on top of data model with the extensibility to bring multiple data sources together in the single GraphQL schema.</li>
+<li><a href="https://github.com/byme8/ZeroQL" rel="noopener noreferrer">ZeroQL (⭐320)</a> - type-safe GraphQL client with Linq-like interface for C#</li>
 </ul>
 <a>
 
@@ -543,7 +624,7 @@
 <li><a href="https://github.com/graphql-elixir/graphql" rel="noopener noreferrer">graphql-elixir (⭐857)</a> - GraphQL Elixir. (No longer maintained)</li>
 <li><a href="https://github.com/graphql-elixir/plug_graphql" rel="noopener noreferrer">plug_graphql (⭐126)</a> - Plug integration for GraphQL Elixir.</li>
 <li><a href="https://github.com/graphql-elixir/graphql_relay" rel="noopener noreferrer">graphql_relay (⭐37)</a> - Relay helpers for GraphQL Elixir.</li>
-<li><a href="https://github.com/graphql-elixir/graphql_parser" rel="noopener noreferrer">graphql_parser (⭐23)</a> - Elixir bindings for <a href="https://github.com/graphql/libgraphqlparser" rel="noopener noreferrer">libgraphqlparser (⭐1.1k)</a></li>
+<li><a href="https://github.com/graphql-elixir/graphql_parser" rel="noopener noreferrer">graphql_parser (⭐24)</a> - Elixir bindings for <a href="https://github.com/graphql/libgraphqlparser" rel="noopener noreferrer">libgraphqlparser (⭐1.1k)</a></li>
 <li><a href="https://github.com/asonge/graphql" rel="noopener noreferrer">graphql (⭐87)</a> - Elixir GraphQL parser.</li>
 <li><a href="https://github.com/peburrows/plot" rel="noopener noreferrer">plot (⭐32)</a> - GraphQL parser and resolver for Elixir.</li>
 </ul>
@@ -562,7 +643,7 @@
 
 <h3 id="sql"><a class="anchor" aria-hidden="true" tabindex="-1" href="#sql"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>SQL</h3><ul>
 <li><a href="https://github.com/solidsnack/GraphpostgresQL" rel="noopener noreferrer">GraphpostgresQL (⭐1.1k)</a> - GraphQL for Postgres.</li>
-<li><a href="https://github.com/rexxars/sql-to-graphql" rel="noopener noreferrer">sql-to-graphql (⭐591)</a> - Generate a GraphQL API based on your SQL database structure.</li>
+<li><a href="https://github.com/rexxars/sql-to-graphql" rel="noopener noreferrer">sql-to-graphql (⭐590)</a> - Generate a GraphQL API based on your SQL database structure.</li>
 <li><a href="https://github.com/graphile/postgraphile" rel="noopener noreferrer">PostGraphile (⭐13k)</a> - Lightning-fast GraphQL APIs for PostgreSQL: highly customisable; extensible via plugins; realtime.</li>
 <li><a href="https://github.com/hasura/graphql-engine" rel="noopener noreferrer">Hasura (⭐32k)</a> - Hasura gives Instant Realtime GraphQL APIs over PostgreSQL. Works with an existing database too.</li>
 <li><a href="https://subzero.cloud/" rel="noopener noreferrer">subZero</a> - GraphQL &amp; REST API for your database</li>
@@ -575,7 +656,7 @@
 <a>
 
 <h3 id="elm"><a class="anchor" aria-hidden="true" tabindex="-1" href="#elm"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Elm</h3><ul>
-<li><a href="https://github.com/dillonkearns/elm-graphql" rel="noopener noreferrer">elm-graphql (⭐787)</a> - GraphQL for Elm.</li>
+<li><a href="https://github.com/dillonkearns/elm-graphql" rel="noopener noreferrer">elm-graphql (⭐789)</a> - GraphQL for Elm.</li>
 </ul>
 <a>
 
@@ -592,12 +673,12 @@
 <a>
 
 <h3 id="swift"><a class="anchor" aria-hidden="true" tabindex="-1" href="#swift"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Swift</h3><ul>
-<li><a href="https://github.com/GraphQLSwift/GraphQL" rel="noopener noreferrer">GraphQL (⭐961)</a> - The Swift implementation for GraphQL.</li>
+<li><a href="https://github.com/GraphQLSwift/GraphQL" rel="noopener noreferrer">GraphQL (⭐962)</a> - The Swift implementation for GraphQL.</li>
 </ul>
 <a>
 
 <h3 id="ocaml"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ocaml"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>OCaml</h3><ul>
-<li><a href="https://github.com/andreas/ocaml-graphql-server" rel="noopener noreferrer">ocaml-graphql-server (⭐621)</a> - GraphQL servers in OCaml.</li>
+<li><a href="https://github.com/andreas/ocaml-graphql-server" rel="noopener noreferrer">ocaml-graphql-server (⭐622)</a> - GraphQL servers in OCaml.</li>
 </ul>
 <a>
 
@@ -639,13 +720,13 @@
 
 <h3 id="dart"><a class="anchor" aria-hidden="true" tabindex="-1" href="#dart"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Dart</h3><ul>
 <li><a href="https://github.com/zino-app/graphql-flutter" rel="noopener noreferrer">graphql-flutter (⭐3.3k)</a> - A GraphQL client for Flutter.</li>
-<li><a href="https://github.com/comigor/artemis" rel="noopener noreferrer">Artemis (⭐492)</a> - A GraphQL type and query generator for Dart/Flutter.</li>
+<li><a href="https://github.com/comigor/artemis" rel="noopener noreferrer">Artemis (⭐491)</a> - A GraphQL type and query generator for Dart/Flutter.</li>
 </ul>
 <a>
 
 <h3 id="rust"><a class="anchor" aria-hidden="true" tabindex="-1" href="#rust"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Rust</h3><ul>
-<li><a href="https://github.com/async-graphql/async-graphql" rel="noopener noreferrer">async-graphql (⭐3.6k)</a> - High-performance server-side library that supports all GraphQL specifications.</li>
-<li><a href="https://github.com/graphql-rust/juniper" rel="noopener noreferrer">juniper (⭐5.9k)</a> - GraphQL server library for Rust.</li>
+<li><a href="https://github.com/async-graphql/async-graphql" rel="noopener noreferrer">async-graphql (⭐3.7k)</a> - High-performance server-side library that supports all GraphQL specifications.</li>
+<li><a href="https://github.com/graphql-rust/juniper" rel="noopener noreferrer">juniper (⭐6k)</a> - GraphQL server library for Rust.</li>
 <li><a href="https://github.com/tomhoule/graphql-client" rel="noopener noreferrer">graphql-client (⭐1.3k)</a> - GraphQL client library for Rust with WebAssembly (wasm) support.</li>
 <li><a href="https://github.com/graphql-rust/graphql-parser" rel="noopener noreferrer">graphql-parser (⭐371)</a> - A parser, formatter and AST for the GraphQL query and schema definition language for Rust.</li>
 <li><a href="https://github.com/tailcallhq/tailcall" rel="noopener noreferrer">tailcall (⭐1.4k)</a> - A platform for building high-performance GraphQL backends.</li>
@@ -671,14 +752,14 @@
 <a>
 
 <h3 id="julia"><a class="anchor" aria-hidden="true" tabindex="-1" href="#julia"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Julia</h3><ul>
-<li><a href="https://github.com/codeneomatrix/Diana.jl" rel="noopener noreferrer">Diana.jl (⭐116)</a> - A Julia GraphQL client/server implementation.</li>
+<li><a href="https://github.com/codeneomatrix/Diana.jl" rel="noopener noreferrer">Diana.jl (⭐115)</a> - A Julia GraphQL client/server implementation.</li>
 <li><a href="https://github.com/DeloitteDigitalAPAC/GraphQLClient.jl" rel="noopener noreferrer">GraphQLClient.jl (⭐47)</a> - A Julia GraphQL client for seamless integration with a server.</li>
 </ul>
 <a>
 
 <h3 id="crystal"><a class="anchor" aria-hidden="true" tabindex="-1" href="#crystal"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Crystal</h3><ul>
-<li><a href="https://github.com/graphql-crystal/graphql" rel="noopener noreferrer">graphql (⭐138)</a> - GraphQL server library.</li>
-<li><a href="https://github.com/ziprandom/graphql-crystal" rel="noopener noreferrer">graphql-crystal (⭐213)</a> - library inspired by <a href="https://github.com/rmosolgo/graphql-ruby" rel="noopener noreferrer">graphql-ruby (⭐5.4k)</a> &amp; <a href="https://github.com/playlyfe/go-graphql" rel="noopener noreferrer">go-graphql (⭐246)</a> &amp; <a href="https://github.com/graphql-dotnet/parser" rel="noopener noreferrer">graphql-parser (⭐220)</a>.</li>
+<li><a href="https://github.com/graphql-crystal/graphql" rel="noopener noreferrer">graphql (⭐139)</a> - GraphQL server library.</li>
+<li><a href="https://github.com/ziprandom/graphql-crystal" rel="noopener noreferrer">graphql-crystal (⭐213)</a> - library inspired by <a href="https://github.com/rmosolgo/graphql-ruby" rel="noopener noreferrer">graphql-ruby (⭐5.4k)</a> &amp; <a href="https://github.com/playlyfe/go-graphql" rel="noopener noreferrer">go-graphql (⭐246)</a> &amp; <a href="https://github.com/graphql-dotnet/parser" rel="noopener noreferrer">graphql-parser (⭐218)</a>.</li>
 <li><a href="https://github.com/itsezc/crystal-gql" rel="noopener noreferrer">crystal-gql (⭐6)</a> - GraphQL client shard inspired by Apollo client.</li>
 <li><a href="https://github.com/garymardell/graphql.cr" rel="noopener noreferrer">graphql.cr (⭐1)</a> - GraphQL shard.</li>
 </ul>
@@ -700,7 +781,7 @@
 <li><a href="https://github.com/networkimprov/brangr" rel="noopener noreferrer">Brangr (⭐6)</a> - A unique, user-friendly data browser/viewer for any GraphQL service, with attractive result layouts.</li>
 <li><a href="https://insomnia.rest/" rel="noopener noreferrer">Insomnia</a> - A full-featured API client with first-party GraphQL query editor.</li>
 <li><a href="https://learning.postman.com/docs/sending-requests/supported-api-frameworks/graphql/" rel="noopener noreferrer">Postman</a> - An HTTP Client that supports editing GraphQL queries.</li>
-<li><a href="https://github.com/usebruno/bruno" rel="noopener noreferrer">Bruno (⭐42k)</a> - Fast, open source API client, which stores collections offline-only in a Git-friendly plain text markup language.</li>
+<li><a href="https://github.com/usebruno/bruno" rel="noopener noreferrer">Bruno (⭐44k)</a> - Fast, open source API client, which stores collections offline-only in a Git-friendly plain text markup language.</li>
 <li><a href="https://github.com/Escape-Technologies/graphman" rel="noopener noreferrer">Escape GraphMan (⭐250)</a> - Generate a complete Postman collection from a GraphQL endpoint.</li>
 <li><a href="https://sandbox.apollo.dev/" rel="noopener noreferrer">Apollo Sandbox</a> - The quickest way to navigate and test your GraphQL endpoints.</li>
 <li><a href="https://github.com/Novvum/graphql-birdseye" rel="noopener noreferrer">GraphQL Birdseye (⭐700)</a> – View any GraphQL schema as a dynamic and interactive graph.</li>
@@ -718,7 +799,7 @@
 <li><a href="https://github.com/APIs-guru/graphql-faker" rel="noopener noreferrer">GraphQL Faker (⭐2.7k)</a> - 🎲 Mock or extend your GraphQL API with faked data. No coding required.</li>
 <li><a href="https://the-guild.dev/graphql/inspector" rel="noopener noreferrer">GraphQL Inspector</a> - A tool to <strong>validate schemas</strong>, compare schema changes, find breaking changes, and check document coverage against a schema.</li>
 <li><a href="https://microcks.io/" rel="noopener noreferrer">Microcks</a> - The open source (<a href="https://www.cncf.io/projects/microcks/" rel="noopener noreferrer">CNCF</a> project), cloud native tool for <strong>API Mocking</strong> and Testing with <a href="https://microcks.io/blog/graphql-features-what-to-expect/" rel="noopener noreferrer">GraphQL support</a> 🎥 <a href="https://youtu.be/UjDnrrTp7uI?si=M6S4l_Bukp9CEYl4" rel="noopener noreferrer">GraphQL conf 2023</a></li>
-<li><a href="https://github.com/getmockd/mockd" rel="noopener noreferrer">mockd (⭐90)</a> - Multi-protocol mock server with GraphQL schema mocking, resolver configuration, and query validation. Also supports HTTP, gRPC, WebSocket, MQTT, and SOAP.</li>
+<li><a href="https://github.com/getmockd/mockd" rel="noopener noreferrer">mockd (⭐121)</a> - Multi-protocol mock server with GraphQL schema mocking, resolver configuration, and query validation. Also supports HTTP, gRPC, WebSocket, MQTT, and SOAP.</li>
 <li><a href="https://keploy.io/" rel="noopener noreferrer">Keploy</a> - Open-source AI Powered API testing tool that generates test cases and <strong>data mocks automatically by recording real API traffic</strong>. Supports GraphQL, REST, and gRPC.</li>
 <li><a href="https://stepci.com" rel="noopener noreferrer">Step CI</a> - Open-Source API <strong>Testing and Monitoring</strong> with GraphQL support</li>
 </ul>
@@ -727,14 +808,14 @@
 <h3 id="tools---security"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tools---security"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tools - Security</h3><ul>
 <li><a href="https://github.com/gsmith257-cyber/GraphCrawler" rel="noopener noreferrer">GraphCrawler - The all-in-one GraphQL Security toolkit (⭐334)</a> - The all-in-one automated penetration tester toolkit for GraphQL, written in Python</li>
 <li><a href="https://graphql.security/" rel="noopener noreferrer">Escape - The GraphQL Security Scanner</a> - One-click security scan of your GraphQL endpoints. Free, no login required.</li>
-<li><a href="https://github.com/Escape-Technologies/graphinder" rel="noopener noreferrer">Escape Graphinder - GraphQL Subdomain Enumeration (⭐229)</a> – Blazing fast GraphQL endpoints finder using subdomain enumeration, scripts analysis and bruteforce.</li>
+<li><a href="https://github.com/Escape-Technologies/graphinder" rel="noopener noreferrer">Escape Graphinder - GraphQL Subdomain Enumeration (⭐227)</a> – Blazing fast GraphQL endpoints finder using subdomain enumeration, scripts analysis and bruteforce.</li>
 <li><a href="https://www.stackhawk.com/blog/automated-graphql-security-testing" rel="noopener noreferrer">StackHawk - GraphQL Vulnerability Scanner</a> - <a href="https://www.stackhawk.com" rel="noopener noreferrer">StackHawk</a></li>
 <li><a href="https://github.com/doyensec/inql" rel="noopener noreferrer">InQL Scanner (⭐1.8k)</a> - A Burp Extension for GraphQL Security Testing</li>
 <li><a href="https://portswigger.net/bappstore/4841f0d78a554ca381c65b26d48207e6" rel="noopener noreferrer">GraphQL Raider</a> <a href="https://portswigger.net/burp" rel="noopener noreferrer">BurpSuite</a></li>
 <li><a href="https://lab.wallarm.com/api-security-solution/" rel="noopener noreferrer">WAF for graphQL</a> - Web Application Firewall for graphQL APIs</li>
 <li><a href="https://github.com/davinerd/gql_intruder" rel="noopener noreferrer">GraphQL Intruder (⭐13)</a> - Plugin based python script to perform GraphQL vulnerability assessment.</li>
-<li><a href="https://github.com/dolevf/graphql-cop" rel="noopener noreferrer">GraphQL Cop (⭐634)</a> - Security Audit Utility for GraphQL</li>
-<li><a href="https://github.com/omar2535/GraphQLer" rel="noopener noreferrer">GraphQLer (⭐162)</a> - Dependency-aware dynamic GraphQL testing tool</li>
+<li><a href="https://github.com/dolevf/graphql-cop" rel="noopener noreferrer">GraphQL Cop (⭐648)</a> - Security Audit Utility for GraphQL</li>
+<li><a href="https://github.com/omar2535/GraphQLer" rel="noopener noreferrer">GraphQLer (⭐163)</a> - Dependency-aware dynamic GraphQL testing tool</li>
 <li><a href="https://vulert.com" rel="noopener noreferrer">Vulert</a> - Vulert secures software by detecting vulnerabilities in open-source dependencies—without accessing your code. It supports Js, PHP, Java, Python, and more</li>
 </ul>
 <h3 id="tools---browser-extensions"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tools---browser-extensions"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tools - Browser Extensions</h3><ul>
@@ -750,8 +831,8 @@
 </ul>
 <h3 id="tools---editor-plugins"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tools---editor-plugins"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tools - Editor Plugins</h3><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo" rel="noopener noreferrer">Apollo GraphQL VSCode Extension</a> - Rich editor support for GraphQL client and server development that seamlessly integrates with the Apollo platform</li>
-<li><a href="https://github.com/jimkyndemeyer/js-graphql-intellij-plugin/" rel="noopener noreferrer">js-graphql-intellij-plugin (⭐899)</a> - GraphQL language support for IntelliJ IDEA and WebStorm, including Relay.QL tagged templates in JavaScript and TypeScript.</li>
-<li><a href="https://github.com/jparise/vim-graphql" rel="noopener noreferrer">vim-graphql (⭐509)</a> - A Vim plugin that provides GraphQL file detection and syntax highlighting.</li>
+<li><a href="https://github.com/jimkyndemeyer/js-graphql-intellij-plugin/" rel="noopener noreferrer">js-graphql-intellij-plugin (⭐898)</a> - GraphQL language support for IntelliJ IDEA and WebStorm, including Relay.QL tagged templates in JavaScript and TypeScript.</li>
+<li><a href="https://github.com/jparise/vim-graphql" rel="noopener noreferrer">vim-graphql (⭐510)</a> - A Vim plugin that provides GraphQL file detection and syntax highlighting.</li>
 <li><a href="https://github.com/orionsoft/atom-graphql-autocomplete" rel="noopener noreferrer">graphql-autocomplete (⭐47)</a> - Autocomplete and lint from a GraphQL endpoint in Atom.</li>
 </ul>
 <h3 id="tools---miscellaneous"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tools---miscellaneous"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tools - Miscellaneous</h3><ul>
@@ -759,7 +840,7 @@
 </li>
 <li><p><a href="https://github.com/yarax/swagger-to-graphql" rel="noopener noreferrer">swagger-to-graphql (⭐923)</a> - GraphQL types builder based on REST API described in Swagger. Allows to migrate to GraphQL from REST for 5 minutes</p>
 </li>
-<li><p><a href="https://github.com/Quramy/ts-graphql-plugin" rel="noopener noreferrer">ts-graphql-plugin (⭐756)</a> - A language service plugin complete and validate GraphQL query in TypeScript template strings.</p>
+<li><p><a href="https://github.com/Quramy/ts-graphql-plugin" rel="noopener noreferrer">ts-graphql-plugin (⭐755)</a> - A language service plugin complete and validate GraphQL query in TypeScript template strings.</p>
 </li>
 <li><p><a href="https://github.com/apollographql/apollo-tracing" rel="noopener noreferrer">apollo-tracing (⭐478)</a> - GraphQL extension that enables you to easily get resolver-level performance information as part of a GraphQL response.</p>
 </li>
@@ -951,5 +1032,47 @@
 </a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
