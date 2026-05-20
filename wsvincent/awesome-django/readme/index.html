@@ -16,17 +16,97 @@
     <meta property="og:title" content="Awesome Django Overview" />
     <meta property="og:description" content="A curated list of awesome things related to Django" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Django Overview</h1>
 <p>A curated list of awesome things related to Django</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/wsvincent/awesome-django/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/wsvincent/awesome-django">😺 wsvincent/awesome-django</a><span> · </span><span>⭐ 11K</span><span> · </span><span>🏷️ Programming Languages</span></p>
@@ -133,27 +213,27 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <h3 id="admin"><a class="anchor" aria-hidden="true" tabindex="-1" href="#admin"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Admin</h3><ul>
 <li><a href="https://github.com/django-hijack/django-hijack" rel="noopener noreferrer">django-hijack (⭐1.7k)</a> - Admins can log in and work on behalf of other users without having to know their credentials.</li>
 <li><a href="https://github.com/django-import-export/django-import-export" rel="noopener noreferrer">django-import-export (⭐3.3k)</a> - Django application and library for importing and exporting data with admin integration.</li>
-<li><a href="https://github.com/DmytroLitvinov/django-admin-inline-paginator-plus" rel="noopener noreferrer">django-admin-inline-paginator-plus (⭐65)</a> - A simple way to paginate your inline in Django admin</li>
-<li><a href="https://github.com/skorokithakis/django-loginas" rel="noopener noreferrer">django-loginas (⭐374)</a> - "Log in as user" for the Django admin.</li>
+<li><a href="https://github.com/DmytroLitvinov/django-admin-inline-paginator-plus" rel="noopener noreferrer">django-admin-inline-paginator-plus (⭐67)</a> - A simple way to paginate your inline in Django admin</li>
+<li><a href="https://github.com/skorokithakis/django-loginas" rel="noopener noreferrer">django-loginas (⭐375)</a> - "Log in as user" for the Django admin.</li>
 <li><a href="https://github.com/avallbona/Impostor" rel="noopener noreferrer">impostor (⭐162)</a> - Impostor is a Django application which allows staff members to log in as a different user by using their own username and password.</li>
 <li><a href="https://pypi.org/project/django-impersonate/" rel="noopener noreferrer">django-impersonate</a> - Allow superusers to “impersonate” other non-superuser accounts.</li>
-<li><a href="https://github.com/dizballanze/django-admin-env-notice" rel="noopener noreferrer">django-admin-env-notice (⭐339)</a> - Visually distinguish environments in Django Admin, for example: <code>development</code>, <code>staging</code>, <code>production</code>.</li>
+<li><a href="https://github.com/dizballanze/django-admin-env-notice" rel="noopener noreferrer">django-admin-env-notice (⭐342)</a> - Visually distinguish environments in Django Admin, for example: <code>development</code>, <code>staging</code>, <code>production</code>.</li>
 <li><a href="https://github.com/PetrDlouhy/django-related-admin" rel="noopener noreferrer">django-related-admin (⭐72)</a> - A helper library that allows you to write list_displays across foreign key relationships.</li>
-<li><a href="https://github.com/jrief/django-admin-sortable2" rel="noopener noreferrer">django-admin-sortable2 (⭐876)</a> - Generic drag-and-drop ordering for objects in the Django admin interface.</li>
-<li><a href="https://github.com/brktrlw/django-admin-collaborator" rel="noopener noreferrer">django-admin-collaborator (⭐105)</a> - Add real-time user presence, edit locks, and chat to Django admin with Channels and Redis.</li>
-<li><a href="https://github.com/yassi/dj-control-room" rel="noopener noreferrer">dj-control-room (⭐462)</a> - Build a control plane with a suite of operational tools inside the Django admin (Redis, cache, Celery, URLs, and more).</li>
+<li><a href="https://github.com/jrief/django-admin-sortable2" rel="noopener noreferrer">django-admin-sortable2 (⭐880)</a> - Generic drag-and-drop ordering for objects in the Django admin interface.</li>
+<li><a href="https://github.com/brktrlw/django-admin-collaborator" rel="noopener noreferrer">django-admin-collaborator (⭐104)</a> - Add real-time user presence, edit locks, and chat to Django admin with Channels and Redis.</li>
+<li><a href="https://github.com/yassi/dj-control-room" rel="noopener noreferrer">dj-control-room (⭐474)</a> - Build a control plane with a suite of operational tools inside the Django admin (Redis, cache, Celery, URLs, and more).</li>
 </ul>
 <h3 id="admin-themes"><a class="anchor" aria-hidden="true" tabindex="-1" href="#admin-themes"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Admin Themes</h3><ul>
 <li><a href="https://github.com/sehmaschine/django-grappelli" rel="noopener noreferrer">django-grappelli (⭐3.9k)</a> - A jazzy skin for the admin.</li>
 <li><a href="https://github.com/farridav/django-jazzmin" rel="noopener noreferrer">django-jazzmin (⭐1.9k)</a> - Drop-in theme for django admin, that utilises AdminLTE 3 &amp; Bootstrap 4 to make yo' admin look jazzy.</li>
 <li><a href="https://github.com/fabiocaccamo/django-admin-interface" rel="noopener noreferrer">django-admin-interface (⭐2k)</a> - Customize Admin by the admin itself(color, header. title,logo) and  popup windows replaced by modals.</li>
-<li><a href="https://github.com/globophobe/django-semantic-admin" rel="noopener noreferrer">django-semantic-admin (⭐180)</a> - Django Semantic UI admin theme.</li>
-<li><a href="https://github.com/assem-ch/django-jet-reboot" rel="noopener noreferrer">django-jet-reboot (⭐487)</a> - Django Jet is modern template for Django admin interface with improved functionality.</li>
-<li><a href="https://github.com/otto-torino/django-baton" rel="noopener noreferrer">django-baton (⭐986)</a> - A cool, modern and responsive django admin application based on bootstrap 5.</li>
-<li><a href="https://github.com/unfoldadmin/django-unfold" rel="noopener noreferrer">django-unfold (⭐3.4k)</a> - Modern Django admin theme for seamless interface development.</li>
-<li><a href="https://github.com/hypy13/django-daisy" rel="noopener noreferrer">django-daisy (⭐347)</a> - A modern django dashboard fully responsive built with daisyui.</li>
+<li><a href="https://github.com/globophobe/django-semantic-admin" rel="noopener noreferrer">django-semantic-admin (⭐179)</a> - Django Semantic UI admin theme.</li>
+<li><a href="https://github.com/assem-ch/django-jet-reboot" rel="noopener noreferrer">django-jet-reboot (⭐488)</a> - Django Jet is modern template for Django admin interface with improved functionality.</li>
+<li><a href="https://github.com/otto-torino/django-baton" rel="noopener noreferrer">django-baton (⭐985)</a> - A cool, modern and responsive django admin application based on bootstrap 5.</li>
+<li><a href="https://github.com/unfoldadmin/django-unfold" rel="noopener noreferrer">django-unfold (⭐3.5k)</a> - Modern Django admin theme for seamless interface development.</li>
+<li><a href="https://github.com/hypy13/django-daisy" rel="noopener noreferrer">django-daisy (⭐352)</a> - A modern django dashboard fully responsive built with daisyui.</li>
 <li><a href="https://github.com/sjbitcode/django-admin-dracula" rel="noopener noreferrer">django-admin-dracula (⭐50)</a> - 🦇 Dracula themes for the Django admin.</li>
-<li><a href="https://github.com/SmartBase-SK/django-smartbase-admin" rel="noopener noreferrer">django-smartbase-admin (⭐109)</a> - Django SmartBase Admin 🚀 performance-tuned 👥 end-user ready beautiful admin panel</li>
+<li><a href="https://github.com/SmartBase-SK/django-smartbase-admin" rel="noopener noreferrer">django-smartbase-admin (⭐116)</a> - Django SmartBase Admin 🚀 performance-tuned 👥 end-user ready beautiful admin panel</li>
 </ul>
 <h3 id="apis"><a class="anchor" aria-hidden="true" tabindex="-1" href="#apis"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>APIs</h3>
 
@@ -163,23 +243,23 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://github.com/iMerica/dj-rest-auth" rel="noopener noreferrer">dj-rest-auth (⭐1.9k)</a> - Authentication for Django Rest Framework.</li>
 <li><a href="https://github.com/jazzband/django-rest-knox" rel="noopener noreferrer">django-rest-knox (⭐1.3k)</a> - Authentication Module for django-rest-auth.</li>
 <li><a href="https://github.com/sunscrapers/djoser" rel="noopener noreferrer">djoser (⭐2.7k)</a> - REST implementation of Django auth.</li>
-<li><a href="https://github.com/paul-wolf/djaq" rel="noopener noreferrer">djaq (⭐83)</a> - An instant remote API to Django models with a powerful query language.</li>
+<li><a href="https://github.com/paul-wolf/djaq" rel="noopener noreferrer">djaq (⭐82)</a> - An instant remote API to Django models with a powerful query language.</li>
 <li><a href="https://github.com/jazzband/djangorestframework-simplejwt" rel="noopener noreferrer">django-rest-framework-simplejwt (⭐4.3k)</a> - JSON web tokens for DRF.</li>
 <li><a href="https://github.com/django-webpack/django-webpack-loader" rel="noopener noreferrer">django-webpack-loader (⭐2.5k)</a> - Transparently use webpack with Django.</li>
 <li><a href="https://github.com/axnsan12/drf-yasg" rel="noopener noreferrer">drf-yasg (⭐3.5k)</a> - Automated generation of real Swagger/OpenAPI 2.0 schemas from Django REST Framework code.</li>
 <li><a href="https://github.com/graphql-python/graphene-django" rel="noopener noreferrer">graphene-django (⭐4.4k)</a> - GraphQL for Django.</li>
 <li><a href="https://github.com/devind-team/graphene-django-filter" rel="noopener noreferrer">graphene-django-filter (⭐21)</a> - Advanced filters implementing and/or/not operators in GraphQL for Django.</li>
-<li><a href="https://github.com/wemake-services/django-modern-rest" rel="noopener noreferrer">django-modern-rest (⭐1.1k)</a> - Modern REST with speed, types, async, <code>msgspec</code>, <code>pydantic</code> and other goodies!</li>
+<li><a href="https://github.com/wemake-services/django-modern-rest" rel="noopener noreferrer">django-modern-rest (⭐1.2k)</a> - Modern REST with speed, types, async, <code>msgspec</code>, <code>pydantic</code> and other goodies!</li>
 <li><a href="https://django-ninja.rest-framework.com/" rel="noopener noreferrer">django-ninja</a> - Django Ninja - Fast Django REST framework based on type annotations.</li>
 <li><a href="https://github.com/django-tastypie/django-tastypie" rel="noopener noreferrer">django-tastypie (⭐4k)</a> - Creating delicious APIs for Django apps since 2010.</li>
 <li><a href="https://github.com/tfranzel/drf-spectacular" rel="noopener noreferrer">drf-spectacular (⭐2.8k)</a> - Sane and flexible OpenAPI 3 schema generation for Django REST framework.</li>
-<li><a href="https://github.com/danihodovic/django-webhook" rel="noopener noreferrer">django-webhook (⭐224)</a> - A plug-and-play Django app for sending outgoing webhooks on model changes.</li>
-<li><a href="https://github.com/strawberry-graphql/strawberry-django" rel="noopener noreferrer">strawberry-django (⭐491)</a> - Django integration with Strawberry, a GraphQL library designed for modern development</li>
+<li><a href="https://github.com/danihodovic/django-webhook" rel="noopener noreferrer">django-webhook (⭐222)</a> - A plug-and-play Django app for sending outgoing webhooks on model changes.</li>
+<li><a href="https://github.com/strawberry-graphql/strawberry-django" rel="noopener noreferrer">strawberry-django (⭐493)</a> - Django integration with Strawberry, a GraphQL library designed for modern development</li>
 </ul>
 
 
 <h3 id="async"><a class="anchor" aria-hidden="true" tabindex="-1" href="#async"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Async</h3><ul>
-<li><a href="https://github.com/django/channels/" rel="noopener noreferrer">channels (⭐6.3k)</a> - Async support for Django.</li>
+<li><a href="https://github.com/django/channels/" rel="noopener noreferrer">channels (⭐6.4k)</a> - Async support for Django.</li>
 </ul>
 <h3 id="caching"><a class="anchor" aria-hidden="true" tabindex="-1" href="#caching"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Caching</h3><ul>
 <li><a href="https://github.com/noripyt/django-cachalot" rel="noopener noreferrer">django-cachalot (⭐1.4k)</a> - Caches your Django ORM queries and automatically invalidates them.</li>
@@ -191,18 +271,18 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://github.com/Archmonger/django-dbbackup" rel="noopener noreferrer">django-dbbackup (⭐1.1k)</a> - Management commands to help backup and restore your project database and media files.</li>
 <li><a href="https://github.com/Gusakovskiy/django-liquidb" rel="noopener noreferrer">django-liquidb (⭐27)</a> - Django application to simplify migration management and changes in states of db scheme.</li>
 <li><a href="https://github.com/ambient-innovation/django-migration-zero/" rel="noopener noreferrer">django-migration-zero (⭐83)</a> - Holistic implementation of "migration zero" pattern for Django covering local changes and in-production database adjustments.</li>
-<li><a href="https://github.com/django-commons/django-typer" rel="noopener noreferrer">django-typer (⭐265)</a> - Write Django management commands using the <a href="https://typer.tiangolo.com" rel="noopener noreferrer">Typer CLI library</a>.</li>
+<li><a href="https://github.com/django-commons/django-typer" rel="noopener noreferrer">django-typer (⭐266)</a> - Write Django management commands using the <a href="https://typer.tiangolo.com" rel="noopener noreferrer">Typer CLI library</a>.</li>
 </ul>
 <h3 id="configuration"><a class="anchor" aria-hidden="true" tabindex="-1" href="#configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Configuration</h3>
 
 <ul>
-<li><a href="https://github.com/candidco/confidential" rel="noopener noreferrer">confidential (⭐78)</a> - Manage configs and secrets (with CLI support).</li>
+<li><a href="https://github.com/candidco/confidential" rel="noopener noreferrer">confidential (⭐79)</a> - Manage configs and secrets (with CLI support).</li>
 <li><a href="https://github.com/joke2k/django-environ" rel="noopener noreferrer">django-environ (⭐3.2k)</a> - Environment variables.</li>
 <li><a href="https://github.com/wemake-services/django-split-settings" rel="noopener noreferrer">django-split-settings (⭐1.2k)</a> - Organize multiple settings files.</li>
 <li><a href="https://github.com/jazzband/django-constance" rel="noopener noreferrer">django-constance (⭐1.8k)</a> - A Django app for storing dynamic settings in pluggable backends (Redis and Django model backend built in) with an integration with the Django admin app.</li>
 <li><a href="https://github.com/jazzband/django-configurations" rel="noopener noreferrer">django-configurations (⭐1.1k)</a> - eases Django project configuration by relying on the composability of Python classes and following principles of <a href="https://12factor.net/config" rel="noopener noreferrer">the twelve-factor app</a>.</li>
 <li><a href="https://www.dynaconf.com/django/" rel="noopener noreferrer">dynaconf</a> - Dynaconf loads django settings from multiple sources (multiple file formats, env vars, redis, vault, etcd), manages secrets, and allows for different merging strategies all following <a href="https://12factor.net/config" rel="noopener noreferrer">the twelve-factor app</a>.</li>
-<li><a href="https://github.com/fabiocaccamo/django-extra-settings" rel="noopener noreferrer">django-extra-settings (⭐615)</a> - Config and manage typed extra settings using just the django admin.</li>
+<li><a href="https://github.com/fabiocaccamo/django-extra-settings" rel="noopener noreferrer">django-extra-settings (⭐617)</a> - Config and manage typed extra settings using just the django admin.</li>
 <li><a href="https://github.com/ambient-innovation/django-removals/" rel="noopener noreferrer">django-removals (⭐65)</a> - Detect deprecated settings variables via convenient system checks</li>
 <li><a href="https://github.com/sloria/environs" rel="noopener noreferrer">environs (⭐1.4k)</a> - Simplified environment variable parsing that comes with a <a href="https://github.com/sloria/environs#usage-with-django" rel="noopener noreferrer">Django helper (⭐1.4k)</a> that installs additional packages.</li>
 </ul>
@@ -210,7 +290,7 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 
 <ul>
 <li><a href="https://github.com/funkybob/django-classy-settings" rel="noopener noreferrer">django-classy-settings (⭐38)</a> - Class-based settings to keep your environments in order, with easy access to typed environment variables.</li>
-<li><a href="https://django-content-settings.readthedocs.io/en/latest/" rel="noopener noreferrer">django-content-settings</a> - Easily create and manage editable typed variables directly from the Django admin panel.</li>
+<li><a href="https://github.com/occipital/django-content-settings" rel="noopener noreferrer">django-content-settings (⭐57)</a> - Easily create and manage editable typed variables directly from the Django admin panel.</li>
 </ul>
 <h3 id="content-management-systems"><a class="anchor" aria-hidden="true" tabindex="-1" href="#content-management-systems"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Content Management Systems</h3>
 
@@ -227,7 +307,7 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://github.com/doableware/djongo" rel="noopener noreferrer">djongo (⭐1.9k)</a> - Django and MongoDB database connector.</li>
 </ul>
 <h3 id="dependency-injection"><a class="anchor" aria-hidden="true" tabindex="-1" href="#dependency-injection"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Dependency Injection</h3><ul>
-<li><a href="https://github.com/maldoinc/wireup" rel="noopener noreferrer">Wireup (⭐387)</a> - Dependency Injection for Django</li>
+<li><a href="https://github.com/maldoinc/wireup" rel="noopener noreferrer">Wireup (⭐395)</a> - Dependency Injection for Django</li>
 </ul>
 <h3 id="ecommerce"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ecommerce"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>ECommerce</h3><ul>
 <li><a href="https://github.com/saleor/saleor" rel="noopener noreferrer">saleor (⭐23k)</a> - GraphQL-based Django E-Commerce Platform.</li>
@@ -236,9 +316,9 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <h3 id="editors"><a class="anchor" aria-hidden="true" tabindex="-1" href="#editors"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Editors</h3>
 
 <ul>
-<li><a href="https://github.com/neutronX/django-markdownx" rel="noopener noreferrer">django-markdownx (⭐938)</a> - Comprehensive Markdown plugin built for Django.</li>
-<li><a href="https://github.com/agusmakmun/django-markdown-editor" rel="noopener noreferrer">django-markdown-editor (⭐895)</a> - Awesome Django Markdown Editor, supported for Bootstrap &amp; Semantic-UI.</li>
-<li><a href="https://github.com/dgk/django-business-logic" rel="noopener noreferrer">django-business-logic (⭐234)</a> - Visual DSL framework for Django.</li>
+<li><a href="https://github.com/neutronX/django-markdownx" rel="noopener noreferrer">django-markdownx (⭐939)</a> - Comprehensive Markdown plugin built for Django.</li>
+<li><a href="https://github.com/agusmakmun/django-markdown-editor" rel="noopener noreferrer">django-markdown-editor (⭐896)</a> - Awesome Django Markdown Editor, supported for Bootstrap &amp; Semantic-UI.</li>
+<li><a href="https://github.com/dgk/django-business-logic" rel="noopener noreferrer">django-business-logic (⭐235)</a> - Visual DSL framework for Django.</li>
 <li><a href="https://github.com/lqez/django-summernote" rel="noopener noreferrer">django-summernote (⭐1.1k)</a> - Summernote is a simple WYSIWYG editor.</li>
 <li><a href="https://github.com/jazzband/django-tinymce" rel="noopener noreferrer">django-tinymce (⭐1.4k)</a> - TinyMCE integration for Django.</li>
 <li><a href="https://github.com/withlogicco/django-prose" rel="noopener noreferrer">django-prose (⭐222)</a> - A lightweight editor for content creation.</li>
@@ -246,34 +326,34 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 </ul>
 <h3 id="filesimages"><a class="anchor" aria-hidden="true" tabindex="-1" href="#filesimages"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Files/Images</h3><ul>
 <li><a href="https://github.com/un1t/django-cleanup" rel="noopener noreferrer">django-cleanup (⭐1.2k)</a> - Zero configuration file/image removal for local and remote files.</li>
-<li><a href="https://github.com/matthewwithanm/django-imagekit" rel="noopener noreferrer">django-imagekit (⭐2.4k)</a> - Django app for processing images for thumbnail, black-and-white and sizes.</li>
+<li><a href="https://github.com/matthewwithanm/django-imagekit" rel="noopener noreferrer">django-imagekit (⭐2.3k)</a> - Django app for processing images for thumbnail, black-and-white and sizes.</li>
 <li><a href="https://github.com/codingjoe/django-pictures" rel="noopener noreferrer">django-pictures (⭐280)</a> - Responsive cross-browser image library using modern codes like AVIF &amp; WebP.</li>
 <li><a href="https://github.com/jazzband/sorl-thumbnail" rel="noopener noreferrer">sorl-thumbnail (⭐1.8k)</a> - Thumbnails for Django.</li>
 </ul>
 <h3 id="forms"><a class="anchor" aria-hidden="true" tabindex="-1" href="#forms"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Forms</h3><ul>
 <li><a href="https://github.com/django-crispy-forms/django-crispy-forms/" rel="noopener noreferrer">django-crispy-forms (⭐5.2k)</a> - DRY Django forms.</li>
 <li><a href="https://github.com/jazzband/django-floppyforms" rel="noopener noreferrer">django-floppyforms (⭐841)</a> - Full control of form rendering.</li>
-<li><a href="https://github.com/jazzband/django-formtools" rel="noopener noreferrer">django-formtools (⭐880)</a> - For form previous and multistep forms, previously part of Django until 1.8.</li>
+<li><a href="https://github.com/jazzband/django-formtools" rel="noopener noreferrer">django-formtools (⭐882)</a> - For form previous and multistep forms, previously part of Django until 1.8.</li>
 <li><a href="https://github.com/jazzband/django-widget-tweaks" rel="noopener noreferrer">django-widget-tweaks (⭐2.2k)</a> - Tweak form field rendering in templates.</li>
 <li><a href="https://github.com/yourlabs/django-autocomplete-light" rel="noopener noreferrer">django-autocomplete-light (⭐1.9k)</a> - Add autocompletion to forms.</li>
 </ul>
 <h3 id="full-stack-frameworks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#full-stack-frameworks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Full-stack frameworks</h3><ul>
-<li><a href="https://github.com/Django-LiveView/liveview" rel="noopener noreferrer">Django LiveView (⭐234)</a> - Framework for creating dynamic, reactive interfaces server-side with Django templates. Real-time updates via WebSocket with decorator-based handlers.</li>
-<li><a href="https://github.com/kaedroho/django-bridge" rel="noopener noreferrer">Django-Bridge (⭐273)</a> - The simple way to build React frontends for Django applications.</li>
-<li><a href="https://github.com/reactive-python/reactpy" rel="noopener noreferrer">ReactPy (⭐8.1k)</a> - It's React, but in Python. Insert dynamically rendered Python into Django templates using the <a href="https://github.com/reactive-python/reactpy-django" rel="noopener noreferrer">ReactPy-Django module (⭐355)</a>.</li>
+<li><a href="https://github.com/Django-LiveView/liveview" rel="noopener noreferrer">Django LiveView (⭐240)</a> - Framework for creating dynamic, reactive interfaces server-side with Django templates. Real-time updates via WebSocket with decorator-based handlers.</li>
+<li><a href="https://github.com/kaedroho/django-bridge" rel="noopener noreferrer">Django-Bridge (⭐274)</a> - The simple way to build React frontends for Django applications.</li>
+<li><a href="https://github.com/reactive-python/reactpy" rel="noopener noreferrer">ReactPy (⭐8.1k)</a> - It's React, but in Python. Insert dynamically rendered Python into Django templates using the <a href="https://github.com/reactive-python/reactpy-django" rel="noopener noreferrer">ReactPy-Django module (⭐356)</a>.</li>
 <li><a href="https://github.com/edelvalle/reactor/" rel="noopener noreferrer">Reactor (⭐639)</a> - Phoenix LiveView, but for Django.</li>
 <li><a href="https://sockpuppet.argpar.se/" rel="noopener noreferrer">Sockpuppet</a> - Build reactive applications with the Django tooling you already know and love.</li>
 <li><a href="https://www.django-unicorn.com/" rel="noopener noreferrer">Unicorn</a> - A reactive component framework that progressively enhances a normal Django view, makes AJAX calls in the background, and dynamically updates the DOM.</li>
 </ul>
 <h3 id="general"><a class="anchor" aria-hidden="true" tabindex="-1" href="#general"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>General</h3><ul>
-<li><a href="https://github.com/tolomea/django-data-browser" rel="noopener noreferrer">django-data-browser (⭐377)</a> - Interactive, user-friendly database explorer.</li>
+<li><a href="https://github.com/tolomea/django-data-browser" rel="noopener noreferrer">django-data-browser (⭐376)</a> - Interactive, user-friendly database explorer.</li>
 <li><a href="https://github.com/carltongibson/django-filter" rel="noopener noreferrer">django-filter (⭐4.7k)</a> - Powerful filters based on Django QuerySets.</li>
 <li><a href="https://github.com/explorerhq/sql-explorer" rel="noopener noreferrer">django-sql-explorer (⭐2.9k)</a> - Share data via SQL queries.</li>
 <li><a href="https://github.com/jieter/django-tables2" rel="noopener noreferrer">django-tables2 (⭐2k)</a> - HTML tables with pagination/sorting.</li>
-<li><a href="https://github.com/fabiocaccamo/django-maintenance-mode" rel="noopener noreferrer">django-maintenance-mode (⭐524)</a> - Shows a 503 error page when maintenance-mode is on.</li>
-<li><a href="https://github.com/fabiocaccamo/django-freeze" rel="noopener noreferrer">django-freeze (⭐105)</a> - Convert your dynamic django site to a static one with one line of code.</li>
-<li><a href="https://github.com/marksweb/django-nh3" rel="noopener noreferrer">django-nh3 (⭐43)</a> - Django integration with for nh3 and is an alternative for django-bleach.</li>
-<li><a href="https://github.com/WeblateOrg/weblate" rel="noopener noreferrer">Weblate (⭐5.8k)</a> - Weblate is a copylefted libre software web-based continuous localization system, used by over 2500 libre projects and companies in more than 165 countries.</li>
+<li><a href="https://github.com/fabiocaccamo/django-maintenance-mode" rel="noopener noreferrer">django-maintenance-mode (⭐525)</a> - Shows a 503 error page when maintenance-mode is on.</li>
+<li><a href="https://github.com/fabiocaccamo/django-freeze" rel="noopener noreferrer">django-freeze (⭐125)</a> - Convert your dynamic django site to a static one with one line of code.</li>
+<li><a href="https://github.com/marksweb/django-nh3" rel="noopener noreferrer">django-nh3 (⭐42)</a> - Django integration with for nh3 and is an alternative for django-bleach.</li>
+<li><a href="https://github.com/WeblateOrg/weblate" rel="noopener noreferrer">Weblate (⭐5.9k)</a> - Weblate is a copylefted libre software web-based continuous localization system, used by over 2500 libre projects and companies in more than 165 countries.</li>
 <li><a href="https://github.com/nanuxbe/django-classy-doc" rel="noopener noreferrer">Django-Classy-Doc (⭐53)</a> - Document your own code in the style of CCBV and CDRF.</li>
 <li><a href="https://github.com/iommirocks/iommi" rel="noopener noreferrer">iommi (⭐1.1k)</a> - Toolkit for development of CRUD applications without writing HTML or JavaScript.</li>
 </ul>
@@ -284,23 +364,23 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://github.com/mbi/django-rosetta" rel="noopener noreferrer">django-rosetta (⭐1.2k)</a> - Rosetta provides a UI to read and write your project's gettext catalogs within the Django Admin.</li>
 </ul>
 <h3 id="logging"><a class="anchor" aria-hidden="true" tabindex="-1" href="#logging"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Logging</h3><ul>
-<li><a href="https://github.com/snok/django-guid" rel="noopener noreferrer">django-guid (⭐482)</a> - Inject a GUID (Correlation-ID) into every log message in a Django request.</li>
-<li><a href="https://github.com/vishalanandl177/DRF-API-Logger" rel="noopener noreferrer">DRF-API-Logger (⭐336)</a> - An API Logger for your Django Rest Framework project.</li>
-<li><a href="https://github.com/jrobichaud/django-structlog" rel="noopener noreferrer">django-structlog (⭐517)</a> - django-structlog is a structured logging integration for Django project using <a href="https://www.structlog.org" rel="noopener noreferrer">structlog</a></li>
+<li><a href="https://github.com/snok/django-guid" rel="noopener noreferrer">django-guid (⭐481)</a> - Inject a GUID (Correlation-ID) into every log message in a Django request.</li>
+<li><a href="https://github.com/vishalanandl177/DRF-API-Logger" rel="noopener noreferrer">DRF-API-Logger (⭐334)</a> - An API Logger for your Django Rest Framework project.</li>
+<li><a href="https://github.com/jrobichaud/django-structlog" rel="noopener noreferrer">django-structlog (⭐520)</a> - django-structlog is a structured logging integration for Django project using <a href="https://www.structlog.org" rel="noopener noreferrer">structlog</a></li>
 </ul>
 <h3 id="monitoring"><a class="anchor" aria-hidden="true" tabindex="-1" href="#monitoring"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Monitoring</h3><ul>
 <li><a href="https://github.com/django-commons/django-prometheus" rel="noopener noreferrer">django-prometheus (⭐1.6k)</a> - Export Django monitoring metrics to Prometheus.</li>
 <li><a href="https://github.com/adinhodovic/django-mixin" rel="noopener noreferrer">django-mixin (⭐78)</a> - Monitoring mixin for Django-prometheus. A set of Grafana dashboards and Prometheus rules for Django.</li>
 </ul>
 <h3 id="mailing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#mailing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Mailing</h3><ul>
-<li><a href="https://github.com/ambient-innovation/django-pony-express" rel="noopener noreferrer">django-pony-express (⭐80)</a> - Class-based emails including a test suite for Django.</li>
+<li><a href="https://github.com/ambient-innovation/django-pony-express" rel="noopener noreferrer">django-pony-express (⭐81)</a> - Class-based emails including a test suite for Django.</li>
 <li><a href="https://github.com/anymail/django-anymail" rel="noopener noreferrer">django-anymail (⭐1.9k)</a> - Django email backends and webhooks for Amazon SES, Brevo (Sendinblue), MailerSend, Mailgun, Mailjet, Postmark, Postal, Resend, SendGrid, SparkPost, Unisender Go and more.</li>
 </ul>
 <h3 id="model-fields"><a class="anchor" aria-hidden="true" tabindex="-1" href="#model-fields"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Model Fields</h3><ul>
-<li><a href="https://github.com/fabiocaccamo/django-colorfield" rel="noopener noreferrer">django-colorfield (⭐663)</a> - Color field for django models with a nice color-picker widget.</li>
+<li><a href="https://github.com/fabiocaccamo/django-colorfield" rel="noopener noreferrer">django-colorfield (⭐662)</a> - Color field for django models with a nice color-picker widget.</li>
 <li><a href="https://github.com/jazzband/django-model-utils" rel="noopener noreferrer">django-model-utils (⭐2.8k)</a> - Django model mixins and utilities.</li>
 <li><a href="https://github.com/django-money/django-money" rel="noopener noreferrer">django-money (⭐1.8k)</a> - Money fields for forms/models.</li>
-<li><a href="https://github.com/stefanfoulis/django-phonenumber-field" rel="noopener noreferrer">django-phonenumber-field (⭐1.6k)</a> - Model/form field for normalized phone numbers.</li>
+<li><a href="https://github.com/stefanfoulis/django-phonenumber-field" rel="noopener noreferrer">django-phonenumber-field (⭐1.5k)</a> - Model/form field for normalized phone numbers.</li>
 <li><a href="https://github.com/raagin/django-streamfield" rel="noopener noreferrer">django-streamfield (⭐132)</a> - Simple StreamField for plain Django admin (based on Wagtail CMS StreamField idea).</li>
 </ul>
 <h3 id="models"><a class="anchor" aria-hidden="true" tabindex="-1" href="#models"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Models</h3><ul>
@@ -308,10 +388,10 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://github.com/django-mptt/django-mptt" rel="noopener noreferrer">django-mptt (⭐3k)</a> - Modified Preorder Tree Traversal; working with trees of Model instances.</li>
 <li><a href="https://github.com/jazzband/django-taggit/" rel="noopener noreferrer">django-taggit (⭐3.4k)</a> - Simple model tags.</li>
 <li><a href="https://github.com/etianen/django-reversion" rel="noopener noreferrer">django-reversion (⭐3.2k)</a> - Version control for model instances.</li>
-<li><a href="https://github.com/django-commons/django-simple-history" rel="noopener noreferrer">django-simple-history (⭐2.4k)</a> - Store model history and view/revert changes from the admin.</li>
+<li><a href="https://github.com/django-commons/django-simple-history" rel="noopener noreferrer">django-simple-history (⭐2.5k)</a> - Store model history and view/revert changes from the admin.</li>
 <li><a href="https://github.com/jazzband/django-polymorphic" rel="noopener noreferrer">django-polymorphic (⭐1.8k)</a> - Django-polymorphic simplifies using inherited models in Django projects.</li>
-<li><a href="https://github.com/jazzband/django-recurrence" rel="noopener noreferrer">django-recurrence (⭐538)</a> - Utility for working with recurring dates in Django.</li>
-<li><a href="https://github.com/fabiocaccamo/django-treenode" rel="noopener noreferrer">django-treenode (⭐797)</a> - Abstract model/admin for tree-based stuff.</li>
+<li><a href="https://github.com/jazzband/django-recurrence" rel="noopener noreferrer">django-recurrence (⭐541)</a> - Utility for working with recurring dates in Django.</li>
+<li><a href="https://github.com/fabiocaccamo/django-treenode" rel="noopener noreferrer">django-treenode (⭐799)</a> - Abstract model/admin for tree-based stuff.</li>
 <li><a href="https://github.com/adamchainz/django-auto-prefetch" rel="noopener noreferrer">django-auto-prefetch (⭐411)</a> - Automatically prefetch foreign key values as needed.</li>
 </ul>
 <h3 id="performance"><a class="anchor" aria-hidden="true" tabindex="-1" href="#performance"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Performance</h3><ul>
@@ -321,7 +401,7 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://github.com/jazzband/django-silk" rel="noopener noreferrer">django-silk (⭐5k)</a> - Live profiling and inspection of HTTP requests and database queries.</li>
 <li><a href="https://github.com/benfred/py-spy" rel="noopener noreferrer">py-spy (⭐15k)</a> - Sampling profiler for Python programs.</li>
 <li><a href="https://github.com/joerick/pyinstrument" rel="noopener noreferrer">pyinstrument (⭐7.7k)</a> - Call stack profiler for Python, Django, Flask, FastAPI.</li>
-<li><a href="https://github.com/taobojlen/django-zeal" rel="noopener noreferrer">django-zeal (⭐189)</a> - Detect N+1 queries with user-friendly error messages</li>
+<li><a href="https://github.com/taobojlen/django-zeal" rel="noopener noreferrer">django-zeal (⭐192)</a> - Detect N+1 queries with user-friendly error messages</li>
 </ul>
 <h3 id="permissions"><a class="anchor" aria-hidden="true" tabindex="-1" href="#permissions"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Permissions</h3><ul>
 <li><a href="https://github.com/vintasoftware/django-role-permissions" rel="noopener noreferrer">django-role-permissions (⭐754)</a> - Django app for role-based permissions management.</li>
@@ -329,13 +409,13 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://github.com/dfunckt/django-rules" rel="noopener noreferrer">django-rules (⭐2k)</a> - A tiny but powerful app providing object-level permissions, built from the ground up for Django.</li>
 </ul>
 <h3 id="search"><a class="anchor" aria-hidden="true" tabindex="-1" href="#search"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Search</h3><ul>
-<li><a href="https://github.com/django-haystack/django-haystack" rel="noopener noreferrer">django-haystack (⭐3.8k)</a> - Modular search for Django.</li>
+<li><a href="https://github.com/django-haystack/django-haystack" rel="noopener noreferrer">django-haystack (⭐3.7k)</a> - Modular search for Django.</li>
 <li><a href="https://github.com/etianen/django-watson" rel="noopener noreferrer">django-watson (⭐1.2k)</a> - Full-text search plugin.</li>
 <li><a href="https://github.com/shinneider/django-admin-search" rel="noopener noreferrer">django-admin-search (⭐84)</a> - Modal filter for django admin.</li>
 <li><a href="https://github.com/django-es/django-elasticsearch-dsl" rel="noopener noreferrer">django-elasticsearch-dsl (⭐1.1k)</a> - Elasticsearch DSL integration for Django.</li>
 </ul>
 <h3 id="search-engine-optimisation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#search-engine-optimisation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Search Engine Optimisation</h3><ul>
-<li><a href="https://github.com/kapt-labs/django-check-seo" rel="noopener noreferrer">django-check-seo (⭐165)</a> - Check SEO of pages.</li>
+<li><a href="https://github.com/kapt-labs/django-check-seo" rel="noopener noreferrer">django-check-seo (⭐167)</a> - Check SEO of pages.</li>
 </ul>
 <h3 id="security"><a class="anchor" aria-hidden="true" tabindex="-1" href="#security"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Security</h3><ul>
 <li><a href="https://github.com/mozilla/django-csp" rel="noopener noreferrer">django-csp (⭐624)</a> - Adds <a href="http://www.w3.org/TR/CSP/" rel="noopener noreferrer">Content-Security-Policy</a> headers to Django.</li>
@@ -350,20 +430,20 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://github.com/evansd/whitenoise" rel="noopener noreferrer">whitenoise (⭐2.7k)</a> - Simplified static file serving for Python websites.</li>
 </ul>
 <h3 id="task-queues"><a class="anchor" aria-hidden="true" tabindex="-1" href="#task-queues"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Task Queues</h3><ul>
-<li><a href="https://github.com/django-q2/django-q2" rel="noopener noreferrer">django-q2 (⭐594)</a> - A multiprocessing distributed task queue for Django.</li>
+<li><a href="https://github.com/django-q2/django-q2" rel="noopener noreferrer">django-q2 (⭐601)</a> - A multiprocessing distributed task queue for Django.</li>
 <li><a href="https://github.com/rq/django-rq" rel="noopener noreferrer">django-rq (⭐1.9k)</a> - Integration for Redis Queue.</li>
 <li><a href="https://github.com/jazzband/django-redis" rel="noopener noreferrer">django-redis (⭐3.1k)</a> - Full-featured Redis cache backend for Django.</li>
-<li><a href="https://github.com/celery/celery" rel="noopener noreferrer">celery (⭐28k)</a> - Robust and broker-agnostic task queues for bigger, performance-focused projects.</li>
+<li><a href="https://github.com/celery/celery" rel="noopener noreferrer">celery (⭐29k)</a> - Robust and broker-agnostic task queues for bigger, performance-focused projects.</li>
 <li><a href="https://github.com/mher/flower" rel="noopener noreferrer">flower (⭐7.2k)</a> - Flower is a web-based tool for monitoring and administrating Celery clusters.</li>
 <li><a href="https://github.com/celery/django-celery-beat" rel="noopener noreferrer">django-celery-beat (⭐1.9k)</a> - A periodic task scheduler with database configured by Django's Admin Panel.</li>
-<li><a href="https://github.com/danihodovic/celery-exporter" rel="noopener noreferrer">celery-exporter (⭐541)</a> - Prometheus &amp; Grafana monitoring of Celery tasks.</li>
-<li><a href="https://github.com/Bogdanp/django_dramatiq" rel="noopener noreferrer">django-dramatiq (⭐382)</a> - Task processing library with a focus on simplicity, reliability, and performance.</li>
-<li><a href="https://github.com/celery/django-celery-results" rel="noopener noreferrer">django-celery-results (⭐781)</a> - Celery result backend with Django.</li>
-<li><a href="https://github.com/realOrangeOne/django-tasks" rel="noopener noreferrer">django-tasks (⭐798)</a> - A reference implementation and backport of background workers and tasks in Django, based on <a href="https://www.djangoproject.com/weblog/2024/may/29/django-enhancement-proposal-14-background-workers/" rel="noopener noreferrer">DEP 14</a>.</li>
+<li><a href="https://github.com/danihodovic/celery-exporter" rel="noopener noreferrer">celery-exporter (⭐543)</a> - Prometheus &amp; Grafana monitoring of Celery tasks.</li>
+<li><a href="https://github.com/Bogdanp/django_dramatiq" rel="noopener noreferrer">django-dramatiq (⭐383)</a> - Task processing library with a focus on simplicity, reliability, and performance.</li>
+<li><a href="https://github.com/celery/django-celery-results" rel="noopener noreferrer">django-celery-results (⭐784)</a> - Celery result backend with Django.</li>
+<li><a href="https://github.com/realOrangeOne/django-tasks" rel="noopener noreferrer">django-tasks (⭐801)</a> - A reference implementation and backport of background workers and tasks in Django, based on <a href="https://www.djangoproject.com/weblog/2024/may/29/django-enhancement-proposal-14-background-workers/" rel="noopener noreferrer">DEP 14</a>.</li>
 </ul>
 <h3 id="templates"><a class="anchor" aria-hidden="true" tabindex="-1" href="#templates"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Templates</h3><ul>
 <li><a href="https://github.com/django-components/django-components/" rel="noopener noreferrer">django-components (⭐1.5k)</a> - A way to create simple reusable template components in Django.</li>
-<li><a href="https://github.com/carltongibson/django-template-partials/" rel="noopener noreferrer">django-template-partials (⭐656)</a> - Reusable named inline partials for the Django Template Language.</li>
+<li><a href="https://github.com/carltongibson/django-template-partials/" rel="noopener noreferrer">django-template-partials (⭐657)</a> - Reusable named inline partials for the Django Template Language.</li>
 <li><a href="https://mitchel.me/slippers/" rel="noopener noreferrer">slippers</a> - Build reusable components in Django without writing a single line of Python.</li>
 <li><a href="https://jinjax.scaletti.dev/" rel="noopener noreferrer">JinjaX</a> - Super components powers for your Jinja templates.</li>
 <li><a href="https://django-cotton.com/" rel="noopener noreferrer">django-cotton</a> - Goodbye <code>{% raw %}{%{% endraw %} extends, block, include {% raw %}%}{% endraw %}</code>, Hello <code>&lt;c-component /&gt;</code>. Bringing modern UI composition to Django.</li>
@@ -374,10 +454,10 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://github.com/django-commons/django-debug-toolbar/" rel="noopener noreferrer">django-debug-toolbar (⭐8.4k)</a> - Configurable panels to debug requests/responses.</li>
 <li><a href="https://github.com/pytest-dev/pytest-django" rel="noopener noreferrer">pytest-django (⭐1.5k)</a> - Use pytest features in Django.</li>
 <li><a href="https://github.com/wemake-services/django-test-migrations" rel="noopener noreferrer">django-test-migrations (⭐572)</a> - Test django schema and data migrations, including migrations' order.</li>
-<li><a href="https://github.com/revsys/django-test-plus/" rel="noopener noreferrer">django-test-plus (⭐636)</a> - Useful additions to Django's default TestCase.</li>
+<li><a href="https://github.com/revsys/django-test-plus/" rel="noopener noreferrer">django-test-plus (⭐635)</a> - Useful additions to Django's default TestCase.</li>
 <li><a href="https://github.com/FactoryBoy/factory_boy" rel="noopener noreferrer">factory-boy (⭐3.8k)</a> - Test fixtures replacement.</li>
 <li><a href="https://github.com/django-waffle/django-waffle" rel="noopener noreferrer">django-waffle (⭐1.2k)</a> - A feature flipper for Django.</li>
-<li><a href="https://github.com/model-bakers/model_bakery" rel="noopener noreferrer">model-bakery (⭐982)</a> - Object factory for Django (rename of legacy Model Mommy project).</li>
+<li><a href="https://github.com/model-bakers/model_bakery" rel="noopener noreferrer">model-bakery (⭐986)</a> - Object factory for Django (rename of legacy Model Mommy project).</li>
 <li><a href="https://github.com/fcurella/django-fakery" rel="noopener noreferrer">django-fakery (⭐116)</a> - An easy-to-use implementation of Creation Methods for Django, backed by Faker.</li>
 <li><a href="https://github.com/snok/drf-openapi-tester" rel="noopener noreferrer">drf-openapi-tester (⭐115)</a> - Django test utility for validating Swagger 2.0 and OpenAPI 3.0 documentation.</li>
 <li><a href="https://github.com/torchbox/django-pattern-library" rel="noopener noreferrer">django-pattern-library (⭐418)</a> - Pattern library generator for Django templates, to help testing of UI components.</li>
@@ -386,44 +466,44 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <h3 id="urls"><a class="anchor" aria-hidden="true" tabindex="-1" href="#urls"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>URLs</h3><ul>
 <li><a href="https://github.com/jazzband/dj-database-url" rel="noopener noreferrer">dj-database-url (⭐1.6k)</a> - Database URLs.</li>
 <li><a href="https://github.com/andrewgodwin/urlman" rel="noopener noreferrer">urlman (⭐124)</a> - A nicer way to do URLs for Django models.</li>
-<li><a href="https://github.com/jazzband/django-robots" rel="noopener noreferrer">django-robots (⭐477)</a> - This is a basic Django application to manage robots.txt files following the robots exclusion protocol, complementing the Django Sitemap contrib app.</li>
+<li><a href="https://github.com/jazzband/django-robots" rel="noopener noreferrer">django-robots (⭐476)</a> - This is a basic Django application to manage robots.txt files following the robots exclusion protocol, complementing the Django Sitemap contrib app.</li>
 <li><a href="https://github.com/fabiocaccamo/django-redirects" rel="noopener noreferrer">django-redirects (⭐79)</a> - Redirects as they should be, with full control.</li>
 </ul>
 <h3 id="users"><a class="anchor" aria-hidden="true" tabindex="-1" href="#users"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Users</h3><ul>
 <li><a href="https://github.com/pennersr/django-allauth/" rel="noopener noreferrer">django-allauth (⭐10k)</a> - Improved user registration including social auth.</li>
-<li><a href="https://github.com/danihodovic/django-allauth-ui/" rel="noopener noreferrer">django-allauth-ui (⭐396)</a> - Better-looking templates for django-allauth.</li>
+<li><a href="https://github.com/danihodovic/django-allauth-ui/" rel="noopener noreferrer">django-allauth-ui (⭐400)</a> - Better-looking templates for django-allauth.</li>
 <li><a href="https://github.com/jambonrose/django-improved-user" rel="noopener noreferrer">django-improved-user (⭐158)</a> - A custom Django user that authenticates via email. Follows identity and authentication best practices.</li>
 <li><a href="https://github.com/bennylope/django-organizations/" rel="noopener noreferrer">django-organizations (⭐1.4k)</a> - Multi-user accounts for Django projects.</li>
 <li><a href="https://github.com/django-cas-ng/django-cas-ng" rel="noopener noreferrer">django-cas-ng (⭐394)</a> - Django-cas-ng is Django CAS (Central Authentication Service) 1.0/2.0/3.0 client library to support SSO (Single Sign On) and Single Logout (SLO).</li>
-<li><a href="https://github.com/julianwachholz/django-guest-user" rel="noopener noreferrer">django-guest-user (⭐80)</a> - Allow visitors to use your site like a regular user and register later.</li>
+<li><a href="https://github.com/julianwachholz/django-guest-user" rel="noopener noreferrer">django-guest-user (⭐79)</a> - Allow visitors to use your site like a regular user and register later.</li>
 </ul>
 <h3 id="views"><a class="anchor" aria-hidden="true" tabindex="-1" href="#views"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Views</h3><ul>
 <li><a href="https://github.com/brack3t/django-braces" rel="noopener noreferrer">django-braces (⭐2k)</a> - Reusable, generic mixins.</li>
-<li><a href="https://github.com/soynatan/django-easy-audit" rel="noopener noreferrer">django-easy-audit (⭐840)</a> - Keep track of user actions.</li>
+<li><a href="https://github.com/soynatan/django-easy-audit" rel="noopener noreferrer">django-easy-audit (⭐842)</a> - Keep track of user actions.</li>
 <li><a href="https://github.com/AndrewIngram/django-extra-views" rel="noopener noreferrer">django-extra-views (⭐1.4k)</a> - Extra class-based generic views.</li>
-<li><a href="https://github.com/mgrouchy/django-stronghold" rel="noopener noreferrer">django-stronghold (⭐400)</a> - Makes all your Django views default login_required.</li>
-<li><a href="https://github.com/carltongibson/neapolitan" rel="noopener noreferrer">neapolitan (⭐700)</a> - Quick CRUD views for Django.</li>
+<li><a href="https://github.com/mgrouchy/django-stronghold" rel="noopener noreferrer">django-stronghold (⭐398)</a> - Makes all your Django views default login_required.</li>
+<li><a href="https://github.com/carltongibson/neapolitan" rel="noopener noreferrer">neapolitan (⭐702)</a> - Quick CRUD views for Django.</li>
 </ul>
 <h2 id="developer-tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#developer-tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Developer Tools</h2><p>Standalone tools that help in developing Django projects.</p>
 <h3 id="templates-1"><a class="anchor" aria-hidden="true" tabindex="-1" href="#templates-1"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Templates</h3><ul>
 <li><a href="https://www.curlylint.org/" rel="noopener noreferrer">curlylint</a> - Experimental HTML templates linting for Jinja, Nunjucks, Django templates, Twig, Liquid.</li>
-<li><a href="https://github.com/rtts/djhtml" rel="noopener noreferrer">djhtml (⭐639)</a> - Django/Jinja template indenter.</li>
+<li><a href="https://github.com/rtts/djhtml" rel="noopener noreferrer">djhtml (⭐640)</a> - Django/Jinja template indenter.</li>
 <li><a href="https://www.djlint.com/" rel="noopener noreferrer">djlint</a> - Lint &amp; Format HTML Templates.</li>
 </ul>
 <h2 id="python-packages"><a class="anchor" aria-hidden="true" tabindex="-1" href="#python-packages"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Python Packages</h2><p><em>A short list of Python packages that work well with Django.</em></p>
 <ul>
 <li><a href="https://github.com/mozilla/bleach" rel="noopener noreferrer">bleach (⭐2.8k)</a> - Sanitize your inputs/forms.</li>
-<li><a href="https://github.com/psf/black" rel="noopener noreferrer">black (⭐41k)</a> - Uncompromising Python code formatter.</li>
+<li><a href="https://github.com/psf/black" rel="noopener noreferrer">black (⭐42k)</a> - Uncompromising Python code formatter.</li>
 <li><a href="https://github.com/coveragepy/coveragepy" rel="noopener noreferrer">coveragepy (⭐3.4k)</a> - Code coverage measurement.</li>
 <li><a href="https://github.com/joke2k/faker" rel="noopener noreferrer">faker (⭐19k)</a> - Faker is a Python package that generates fake data for you.</li>
-<li><a href="https://github.com/coleifer/huey" rel="noopener noreferrer">huey (⭐5.9k)</a> - A little task queue for Python.</li>
+<li><a href="https://github.com/coleifer/huey" rel="noopener noreferrer">huey (⭐6k)</a> - A little task queue for Python.</li>
 <li><a href="https://github.com/python-pillow/Pillow" rel="noopener noreferrer">pillow (⭐14k)</a> - Python Imaging Library.</li>
 <li><a href="https://github.com/pytest-dev/pytest/" rel="noopener noreferrer">pytest (⭐14k)</a> - Testing framework.</li>
 <li><a href="https://github.com/HBNetwork/python-decouple" rel="noopener noreferrer">python-decouple (⭐3k)</a> - Strict separation of settings from code.</li>
 <li><a href="https://github.com/un33k/python-slugify" rel="noopener noreferrer">python-slugify (⭐1.6k)</a> - Returns unicode slugs.</li>
 <li><a href="https://github.com/getsentry/sentry-python" rel="noopener noreferrer">sentry-python (⭐2.2k)</a> - Error reporting SDK.</li>
 <li><a href="https://github.com/miguelgrinberg/python-socketio" rel="noopener noreferrer">python-socketio (⭐4.3k)</a> - Python implementation of the Socket.IO_ realtime client and server. <a href="https://python-socketio.readthedocs.io/en/latest/server.html?highlight=django#creating-a-server-instance" rel="noopener noreferrer">(create Socket.io Django server instance)</a></li>
-<li><a href="https://github.com/astral-sh/ruff" rel="noopener noreferrer">Ruff (⭐47k)</a> - An extremely fast Python linter and code formatter, written in Rust.</li>
+<li><a href="https://github.com/astral-sh/ruff" rel="noopener noreferrer">Ruff (⭐48k)</a> - An extremely fast Python linter and code formatter, written in Rust.</li>
 </ul>
 <h2 id="resources"><a class="anchor" aria-hidden="true" tabindex="-1" href="#resources"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Resources</h2><h3 id="official-resources"><a class="anchor" aria-hidden="true" tabindex="-1" href="#official-resources"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Official Resources</h3>
 
@@ -431,7 +511,7 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://www.djangoproject.com/" rel="noopener noreferrer">Project Website</a> - Official Django website.</li>
 <li><a href="https://docs.djangoproject.com/en/dev/" rel="noopener noreferrer">Documentation</a> - Comprehensive documentation for all Django versions.</li>
 <li><a href="https://docs.djangoproject.com/en/dev/intro/tutorial01/" rel="noopener noreferrer">Polls Tutorial</a> - Build a polls tutorial while learning Django internals.</li>
-<li><a href="https://github.com/django/django/" rel="noopener noreferrer">Source Code (⭐87k)</a> - Hosted on GitHub.</li>
+<li><a href="https://github.com/django/django/" rel="noopener noreferrer">Source Code (⭐88k)</a> - Hosted on GitHub.</li>
 </ul>
 <h3 id="educational"><a class="anchor" aria-hidden="true" tabindex="-1" href="#educational"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Educational</h3><ul>
 <li><a href="https://tutorial.djangogirls.org/en/" rel="noopener noreferrer">Django Girls Tutorial</a> - Use function-based views to build a blog app.</li>
@@ -446,7 +526,7 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://realpython.com/tutorials/django/" rel="noopener noreferrer">RealPython</a> - Many high-quality tutorials on Django.</li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django" rel="noopener noreferrer">Mozilla Tutorial</a> - Create a lending library app.</li>
 <li><a href="https://www.mattlayman.com" rel="noopener noreferrer">Matt Layman</a> - Regular tutorials and deep-dives on Django topics.</li>
-<li><a href="https://github.com/HackSoftware/Django-Styleguide" rel="noopener noreferrer">Django Styleguide (⭐6.1k)</a> - Styleguide for Django with best practices and examples.</li>
+<li><a href="https://github.com/HackSoftware/Django-Styleguide" rel="noopener noreferrer">Django Styleguide (⭐6.2k)</a> - Styleguide for Django with best practices and examples.</li>
 <li><a href="https://www.djangotemplatetagsandfilters.com/" rel="noopener noreferrer">Django Template Tags and Filters</a> - Additional docs on Django's 57 built-in template filters and 27 template tags.</li>
 <li><a href="https://www.dj4e.com/" rel="noopener noreferrer">Django for Everybody</a> - A complete course for webdev beginners focused on Django.</li>
 <li><a href="https://cs50.harvard.edu/web/2020/" rel="noopener noreferrer">CS50W</a> - Harvard's University introductory course to web development, it explains Django as backend framework.</li>
@@ -530,15 +610,15 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://www.hetzner.com" rel="noopener noreferrer">Hetzner</a></li>
 </ul>
 <h2 id="projects"><a class="anchor" aria-hidden="true" tabindex="-1" href="#projects"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Projects</h2><h3 id="boilerplate"><a class="anchor" aria-hidden="true" tabindex="-1" href="#boilerplate"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Boilerplate</h3><ul>
-<li><a href="https://github.com/cookiecutter/cookiecutter-django/" rel="noopener noreferrer">cookiecutter-django (⭐13k)</a> - A full-bodied starter project, highly customizable.</li>
-<li><a href="https://github.com/epicserve/django-base-site/" rel="noopener noreferrer">django-base-site (⭐449)</a> - A Django site with many common third-party packages pre-installed.</li>
+<li><a href="https://github.com/cookiecutter/cookiecutter-django/" rel="noopener noreferrer">cookiecutter-django (⭐14k)</a> - A full-bodied starter project, highly customizable.</li>
+<li><a href="https://github.com/epicserve/django-base-site/" rel="noopener noreferrer">django-base-site (⭐451)</a> - A Django site with many common third-party packages pre-installed.</li>
 <li><a href="https://github.com/wsvincent/lithium/" rel="noopener noreferrer">djangox (⭐2.5k)</a> - Batteries included starter project for Pip, Pipenv, or Docker.</li>
-<li><a href="https://github.com/amerkurev/django-docker-template" rel="noopener noreferrer">django-docker-template (⭐225)</a> - Dockerized Django with Postgres, Gunicorn, and Traefik (with auto-renew Let's Encrypt).</li>
+<li><a href="https://github.com/amerkurev/django-docker-template" rel="noopener noreferrer">django-docker-template (⭐227)</a> - Dockerized Django with Postgres, Gunicorn, and Traefik (with auto-renew Let's Encrypt).</li>
 <li><a href="https://github.com/jefftriplett/django-startproject" rel="noopener noreferrer">django-startproject (⭐275)</a> - Django start project template with batteries.</li>
 <li><a href="https://github.com/wemake-services/wemake-django-template/" rel="noopener noreferrer">wemake-django-template (⭐2.2k)</a> - Bleeding-edge Django template focused on code quality and security.</li>
 <li><a href="https://github.com/ilikerobots/cookiecutter-vue-django" rel="noopener noreferrer">cookiecutter-vue-django (⭐231)</a> - Django + Vue starter project fusing Vue SFCs &amp; Django Templates.</li>
-<li><a href="https://github.com/stribny/sidewinder/" rel="noopener noreferrer">sidewinder (⭐235)</a> - A Django starter kit that focuses on good defaults, developer experience, and deployment.</li>
-<li><a href="https://github.com/falcopackages/falco-cli" rel="noopener noreferrer">Falco (⭐391)</a> - Enhance your Django developer experience: CLI and Guides for the Modern Django Developer.</li>
+<li><a href="https://github.com/stribny/sidewinder/" rel="noopener noreferrer">sidewinder (⭐236)</a> - A Django starter kit that focuses on good defaults, developer experience, and deployment.</li>
+<li><a href="https://github.com/falcopackages/falco-cli" rel="noopener noreferrer">Falco (⭐390)</a> - Enhance your Django developer experience: CLI and Guides for the Modern Django Developer.</li>
 <li><a href="https://codeberg.org/trey/bh2" rel="noopener noreferrer">BH2</a> - Get a new Django site started in a Djiffy</li>
 <li><a href="https://github.com/vintasoftware/django-react-boilerplate" rel="noopener noreferrer">django-react-boilerplate (⭐2.3k)</a> - A Django, React, Tailwind, Webpack project boilerplate</li>
 </ul>
@@ -546,20 +626,20 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 <li><a href="https://github.com/wsvincent/djangoforbeginners/tree/master/ch7-blog-app-with-users/" rel="noopener noreferrer">Blog app with users and forms (⭐1.4k)</a></li>
 <li><a href="https://github.com/wsvincent/djangoforbeginners/tree/master/ch15-comments" rel="noopener noreferrer">Newspaper app with custom user model, full user auth (⭐1.4k)</a></li>
 <li><a href="https://github.com/testdrivenio/django-aloe-bdd/" rel="noopener noreferrer">Behavior-Driven Development with Aloe (⭐44)</a></li>
-<li><a href="https://github.com/MeNsaaH/soMedia" rel="noopener noreferrer">Image Sharing Blog (⭐104)</a></li>
+<li><a href="https://github.com/MeNsaaH/soMedia" rel="noopener noreferrer">Image Sharing Blog (⭐105)</a></li>
 <li><a href="https://github.com/vitorfs/bootcamp" rel="noopener noreferrer">Bootcamp: An enterprise social network (⭐2.3k)</a></li>
 <li><a href="https://github.com/zulip/zulip/" rel="noopener noreferrer">Zulip (⭐25k)</a> - Open-source team chat.</li>
-<li><a href="https://github.com/manjurulhoque/django-job-portal" rel="noopener noreferrer">django-job-portal (⭐620)</a> - Job portal application using Django.</li>
+<li><a href="https://github.com/manjurulhoque/django-job-portal" rel="noopener noreferrer">django-job-portal (⭐622)</a> - Job portal application using Django.</li>
 <li><a href="https://builtwithdjango.com" rel="noopener noreferrer">Built with Django</a> - Curated list of awesome Django projects.</li>
-<li><a href="https://github.com/PostHog/posthog" rel="noopener noreferrer">PostHog (⭐33k)</a> - Open-source product analytics.</li>
+<li><a href="https://github.com/PostHog/posthog" rel="noopener noreferrer">PostHog (⭐34k)</a> - Open-source product analytics.</li>
 <li><a href="https://gitlab.com/mailman/hyperkitty" rel="noopener noreferrer">HyperKitty</a> - A web interface to access GNU Mailman v3 archives.</li>
 <li><a href="https://github.com/healthchecks/healthchecks" rel="noopener noreferrer">Healthchecks (⭐10k)</a> - A Cron Monitoring Tool written in Python &amp; Django.</li>
-<li><a href="https://github.com/Flagsmith/flagsmith" rel="noopener noreferrer">Flagsmith (⭐6.3k)</a> - Open-source Feature Flagging, Remote Config, and AB testing.</li>
+<li><a href="https://github.com/Flagsmith/flagsmith" rel="noopener noreferrer">Flagsmith (⭐6.4k)</a> - Open-source Feature Flagging, Remote Config, and AB testing.</li>
 <li><a href="https://github.com/Open-Source-Legal/OpenContracts" rel="noopener noreferrer">OpenContracts (⭐1.3k)</a> - Enterprise-grade document analytics platform that combines automated PDF parsing, vector embeddings, and LLM integration.</li>
 <li><a href="https://gitlab.com/baserow/baserow" rel="noopener noreferrer">Baserow</a> - Open source no-code database and Airtable alternative built with Django and Vue.js.</li>
-<li><a href="https://github.com/DjangoCRM/django-crm" rel="noopener noreferrer">Django CRM Admin (⭐549)</a> - Open source Python CRM built entirely on Django Admin Site.</li>
-<li><a href="https://github.com/sissbruecker/linkding" rel="noopener noreferrer">linkding (⭐10k)</a> - Self-hosted bookmark manager that is designed to be minimal, fast, and easy to set up using Docker.</li>
-<li><a href="https://github.com/sebst/pythonic-news" rel="noopener noreferrer">pythonic-news (⭐545)</a> - Hacker News clone.</li>
+<li><a href="https://github.com/DjangoCRM/django-crm" rel="noopener noreferrer">Django CRM Admin (⭐561)</a> - Open source Python CRM built entirely on Django Admin Site.</li>
+<li><a href="https://github.com/sissbruecker/linkding" rel="noopener noreferrer">linkding (⭐11k)</a> - Self-hosted bookmark manager that is designed to be minimal, fast, and easy to set up using Docker.</li>
+<li><a href="https://github.com/sebst/pythonic-news" rel="noopener noreferrer">pythonic-news (⭐543)</a> - Hacker News clone.</li>
 </ul>
 <h2 id="django-rest-framework"><a class="anchor" aria-hidden="true" tabindex="-1" href="#django-rest-framework"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Django REST Framework</h2><p><em>The most popular way to build web APIs with Django.</em></p>
 <h3 id="drf-resources"><a class="anchor" aria-hidden="true" tabindex="-1" href="#drf-resources"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>DRF Resources</h3>
@@ -596,5 +676,47 @@ or buying <a rel="sponsored" href="https://django.threadless.com/">official merc
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
