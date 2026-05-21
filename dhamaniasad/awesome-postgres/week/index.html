@@ -16,22 +16,126 @@
     <meta property="og:title" content="Track Awesome Postgres Updates Weekly" />
     <meta property="og:description" content="A curated list of awesome PostgreSQL software, libraries, tools and resources, inspired by awesome-mysql" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Postgres Updates Weekly</h1>
 <p>A curated list of awesome PostgreSQL software, libraries, tools and resources, inspired by awesome-mysql</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/dhamaniasad/awesome-postgres/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/dhamaniasad/awesome-postgres">😺 dhamaniasad/awesome-postgres</a><span> · </span><span>⭐ 12K</span><span> · </span><span>🏷️ Databases</span></p>
 <p><span>[ </span><a href="/dhamaniasad/awesome-postgres/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/dhamaniasad/awesome-postgres/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/21/">May 25 - May 31, 2026</a></h2><h3><p>Contents / GUI</p>
+</h3>
+<ul>
+<li><a href="https://queryglow.com/" rel="noopener noreferrer">QueryGlow</a> - Self-hosted, web-based database GUI with AI SQL generation, EXPLAIN visualizer, and schema-aware autocomplete (Commercial Software).</li>
+</ul>
+<h3><p>Contents / CLI</p>
+</h3>
+<ul>
+<li><a href="https://github.com/eduardofuncao/squix" rel="noopener noreferrer">squix (⭐234)</a> - SQL command-line client with query management and interactive results.</li>
+</ul>
+<h3><p>Contents / Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/GreenmaskIO/greenmask" rel="noopener noreferrer">Greenmask (⭐1.7k)</a> - Database anonymization and synthetic data generation tool for MySQL and PostgreSQL.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/qail-io/qail" rel="noopener noreferrer">Qail (⭐22)</a> - rust-first typed AST pipeline for PostgreSQL with compile-time query checks and built-in tenant scoping.</li>
+</ul>
+<h3><p>Resources / Newsletters</p>
+</h3>
+<ul>
+<li><a href="https://ryogrid.net/pgsql-hackers-digest/" rel="noopener noreferrer">pgsql-hackers Weekly Digest</a> - Weekly digest of the pgsql-hackers mailing list that provides a list of active threads, thread summaries, and more.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/13/">Mar 30 - Apr 05, 2026</a></h2><h3><p>Contents / CLI</p>
 </h3>
 <ul>
@@ -39,7 +143,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/riii111/sabiql" rel="noopener noreferrer">sabiql (⭐145)</a> - A fast, driver-less TUI to browse, query, and edit PostgreSQL databases.</li>
+<li><a href="https://github.com/riii111/sabiql" rel="noopener noreferrer">sabiql (⭐188)</a> - A fast, driver-less TUI to browse, query, and edit PostgreSQL databases.</li>
 </ul>
 <h3><p>Contents / Monitoring</p>
 </h3>
@@ -53,7 +157,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ayarotsky/diesel-guard" rel="noopener noreferrer">diesel-guard (⭐107)</a> - Linter for dangerous Postgres migration patterns in Diesel and SQLx.</li>
+<li><a href="https://github.com/ayarotsky/diesel-guard" rel="noopener noreferrer">diesel-guard (⭐113)</a> - Linter for dangerous Postgres migration patterns in Diesel and SQLx.</li>
 </ul>
 <h3><p>Contents / PaaS <em>(PostgreSQL as a Service)</em></p>
 </h3>
@@ -63,7 +167,7 @@
 <h3><p>Resources / Tutorials</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mergisi/sql-syntax-cheat-sheet" rel="noopener noreferrer">SQL Syntax Cheat Sheet (⭐35)</a> - Comprehensive SQL syntax reference covering window functions, CTEs, and PostgreSQL-specific syntax (UPSERT, JSON queries, array operations).</li>
+<li><a href="https://github.com/mergisi/sql-syntax-cheat-sheet" rel="noopener noreferrer">SQL Syntax Cheat Sheet (⭐41)</a> - Comprehensive SQL syntax reference covering window functions, CTEs, and PostgreSQL-specific syntax (UPSERT, JSON queries, array operations).</li>
 </ul>
 <h3><p>Resources / Blogs</p>
 </h3>
@@ -83,12 +187,12 @@
 <h3><p>Contents / Monitoring</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NikolayS/pg_ash" rel="noopener noreferrer">pg_ash (⭐204)</a> - Active Session History for PostgreSQL. Samples pg_stat_activity once per second via pg_cron, stores encoded snapshots, and provides 32 SQL functions for wait event analysis. Pure SQL, no extensions, works on managed providers (RDS, Cloud SQL, Supabase, etc.).</li>
+<li><a href="https://github.com/NikolayS/pg_ash" rel="noopener noreferrer">pg_ash (⭐222)</a> - Active Session History for PostgreSQL. Samples pg_stat_activity once per second via pg_cron, stores encoded snapshots, and provides 32 SQL functions for wait event analysis. Pure SQL, no extensions, works on managed providers (RDS, Cloud SQL, Supabase, etc.).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/7/">Feb 16 - Feb 22, 2026</a></h2><h3><p>Contents / High-Availability</p>
 </h3>
 <ul>
-<li><a href="https://github.com/krylosov-aa/pg-status" rel="noopener noreferrer">pg-status (⭐67)</a> - A microservice that provides HTTP endpoints for instantly retrieving the current master host or a replica that meets various criteria.</li>
+<li><a href="https://github.com/krylosov-aa/pg-status" rel="noopener noreferrer">pg-status (⭐72)</a> - A microservice that provides HTTP endpoints for instantly retrieving the current master host or a replica that meets various criteria.</li>
 </ul>
 <h3><p>Contents / PaaS <em>(PostgreSQL as a Service)</em></p>
 </h3>
@@ -98,11 +202,11 @@
 <h3><p>Contents / Kubernetes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/percona/percona-postgresql-operator" rel="noopener noreferrer">Percona PostgreSQL Operator (⭐358)</a> - Percona Operator for PostgreSQL based on Crunchy Data operator.</li>
+<li><a href="https://github.com/percona/percona-postgresql-operator" rel="noopener noreferrer">Percona PostgreSQL Operator (⭐368)</a> - Percona Operator for PostgreSQL based on Crunchy Data operator.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/percona/everest-operator" rel="noopener noreferrer">Percona Everest Operator (⭐40)</a> - Everest Operator is a Kubernetes Operator responsible for managing the lifecycle of MySQL, MongoDB, and PostgreSQL databases. It leverages Percona's Kubernetes Operators for MySQL, MongoDB, and PostgreSQL under the hood but provides a unified API and a single pane of glass for managing all three database types.</li>
+<li><a href="https://github.com/percona/everest-operator" rel="noopener noreferrer">Percona Everest Operator (⭐41)</a> - Everest Operator is a Kubernetes Operator responsible for managing the lifecycle of MySQL, MongoDB, and PostgreSQL databases. It leverages Percona's Kubernetes Operators for MySQL, MongoDB, and PostgreSQL under the hood but provides a unified API and a single pane of glass for managing all three database types.</li>
 </ul>
 <h3><p>Resources / Blogs</p>
 </h3>
@@ -127,12 +231,12 @@
 <h3><p>Contents / Platforms</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crisbez/atlas4d-base" rel="noopener noreferrer">Atlas4D (⭐12)</a> - Open-source 4D spatiotemporal platform combining PostGIS, TimescaleDB, pgvector, and H3 for unified geospatial and time-series intelligence.</li>
+<li><a href="https://github.com/crisbez/atlas4d-base" rel="noopener noreferrer">Atlas4D (⭐14)</a> - Open-source 4D spatiotemporal platform combining PostGIS, TimescaleDB, pgvector, and H3 for unified geospatial and time-series intelligence.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/48/">Dec 01 - Dec 07, 2025</a></h2><h3><p>Contents / Extensions</p>
 </h3>
 <ul>
-<li><a href="https://github.com/paradedb/paradedb" rel="noopener noreferrer">pg_search (⭐8.6k)</a> - pg_search is a PostgreSQL extension that enables full-text search over SQL tables using the BM25 algorithm, the state-of-the-art ranking function for full-text search.</li>
+<li><a href="https://github.com/paradedb/paradedb" rel="noopener noreferrer">pg_search (⭐8.7k)</a> - pg_search is a PostgreSQL extension that enables full-text search over SQL tables using the BM25 algorithm, the state-of-the-art ranking function for full-text search.</li>
 </ul>
 <h3><p>Contents / PaaS <em>(PostgreSQL as a Service)</em></p>
 </h3>
@@ -147,7 +251,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/41/">Oct 13 - Oct 19, 2025</a></h2><h3><p>Contents / High-Availability</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pgEdge/spock" rel="noopener noreferrer">Spock (⭐688)</a> - 100% open-source logical multi-master PostgreSQL replication.</li>
+<li><a href="https://github.com/pgEdge/spock" rel="noopener noreferrer">Spock (⭐723)</a> - 100% open-source logical multi-master PostgreSQL replication.</li>
 </ul>
 <h3><p>Contents / GUI</p>
 </h3>
@@ -156,7 +260,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/commandprompt/pgmanage" rel="noopener noreferrer">PgManage (⭐993)</a> - A modern multi-platform Postgres-centric database client/administration tool.</li>
+<li><a href="https://github.com/commandprompt/pgmanage" rel="noopener noreferrer">PgManage (⭐1k)</a> - A modern multi-platform Postgres-centric database client/administration tool.</li>
 </ul>
 <h3><p>Contents / CLI</p>
 </h3>
@@ -185,7 +289,7 @@
 <h3><p>Contents / Work Queues</p>
 </h3>
 <ul>
-<li><a href="https://github.com/timgit/pg-boss" rel="noopener noreferrer">pgBoss (⭐3.3k)</a> - Queueing jobs in Postgres from Node.js like a boss.</li>
+<li><a href="https://github.com/timgit/pg-boss" rel="noopener noreferrer">pgBoss (⭐3.5k)</a> - Queueing jobs in Postgres from Node.js like a boss.</li>
 </ul>
 
 <ul>
@@ -202,12 +306,12 @@
 <h3><p>Contents / Optimization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/beh74/pgassistant-community" rel="noopener noreferrer">pgassistant (⭐27)</a> - A PostgreSQL tool for developers to help understand, optimize database with LLM and pgTune integration.</li>
+<li><a href="https://github.com/beh74/pgassistant-community" rel="noopener noreferrer">pgassistant (⭐31)</a> - A PostgreSQL tool for developers to help understand, optimize database with LLM and pgTune integration.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/23/">Jun 09 - Jun 15, 2025</a></h2><h3><p>Contents / High-Availability</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hashmap-kz/pgrwl" rel="noopener noreferrer">pgrwl (⭐86)</a> - Stream write-ahead logs (WAL) from a PostgreSQL server in real time. A drop-in, container-friendly alternative to pg_receivewal.</li>
+<li><a href="https://github.com/hashmap-kz/pgrwl" rel="noopener noreferrer">pgrwl (⭐171)</a> - Stream write-ahead logs (WAL) from a PostgreSQL server in real time. A drop-in, container-friendly alternative to pg_receivewal.</li>
 </ul>
 <h3><p>Contents / Backups</p>
 </h3>
@@ -226,7 +330,7 @@
 <h3><p>Resources / Blogs</p>
 </h3>
 <ul>
-<li><a href="https://github.com/digoal/blog/blob/master/README.md" rel="noopener noreferrer">Digoal's PostgreSQL and Technical blog(Chinese Language) (⭐8.4k)</a></li>
+<li><a href="https://github.com/digoal/blog/blob/master/README.md" rel="noopener noreferrer">Digoal's PostgreSQL and Technical blog(Chinese Language) (⭐8.5k)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/21/">May 26 - Jun 01, 2025</a></h2><h3><p>Contents / CLI</p>
 </h3>
@@ -241,7 +345,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/19/">May 12 - May 18, 2025</a></h2><h3><p>Contents / Backups</p>
 </h3>
 <ul>
-<li><a href="https://github.com/eduardolat/pgbackweb" rel="noopener noreferrer">pgbackweb (⭐2.5k)</a> - A Complete Docker-based Postgres backup and maintenance tool with Web UI.</li>
+<li><a href="https://github.com/eduardolat/pgbackweb" rel="noopener noreferrer">pgbackweb (⭐2.6k)</a> - A Complete Docker-based Postgres backup and maintenance tool with Web UI.</li>
 </ul>
 <h3><p>Contents / Server</p>
 </h3>
@@ -260,25 +364,25 @@
 <h3><p>Contents / Work Queues</p>
 </h3>
 <ul>
-<li><a href="https://github.com/LaunchPlatform/bq" rel="noopener noreferrer">BeanQueue (⭐26)</a> - A Python work queue framework based on SKIP LOCKED, LISTEN and NOTIFY</li>
+<li><a href="https://github.com/LaunchPlatform/bq" rel="noopener noreferrer">BeanQueue (⭐27)</a> - A Python work queue framework based on SKIP LOCKED, LISTEN and NOTIFY</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/pgmq/pgmq" rel="noopener noreferrer">pgmq (⭐4.7k)</a> - A lightweight message queue. Like AWS SQS and RSMQ but on Postgres.</li>
+<li><a href="https://github.com/pgmq/pgmq" rel="noopener noreferrer">pgmq (⭐4.9k)</a> - A lightweight message queue. Like AWS SQS and RSMQ but on Postgres.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/riverqueue/river" rel="noopener noreferrer">river (⭐4.9k)</a> - A high-performance job processing system for Go and Postgres.</li>
+<li><a href="https://github.com/riverqueue/river" rel="noopener noreferrer">river (⭐5.1k)</a> - A high-performance job processing system for Go and Postgres.</li>
 </ul>
 <h3><p>Contents / Optimization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/postgrespro/aqo" rel="noopener noreferrer">aqo (⭐491)</a> - Adaptive query optimization for PostgreSQL.</li>
+<li><a href="https://github.com/postgrespro/aqo" rel="noopener noreferrer">aqo (⭐494)</a> - Adaptive query optimization for PostgreSQL.</li>
 </ul>
 <h3><p>Contents / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Particular/NServiceBus.SqlServer" rel="noopener noreferrer">NServiceBus.Transport.PostgreSql (⭐46)</a> - The NServiceBus.Transport.PostgreSql library allows .NET developers to <a href="https://docs.particular.net/transports/postgresql" rel="noopener noreferrer">use a PostgreSQL database as a message broker</a>. (Commerical Software)</li>
+<li><a href="https://github.com/Particular/NServiceBus.SqlServer" rel="noopener noreferrer">NServiceBus.Transport.PostgreSql (⭐47)</a> - The NServiceBus.Transport.PostgreSql library allows .NET developers to <a href="https://docs.particular.net/transports/postgresql" rel="noopener noreferrer">use a PostgreSQL database as a message broker</a>. (Commerical Software)</li>
 </ul>
 
 <ul>
@@ -287,7 +391,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/18/">May 05 - May 11, 2025</a></h2><h3><p>Contents / High-Availability</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vitabaks/autobase" rel="noopener noreferrer">autobase (⭐4k)</a> - Autobase for PostgreSQL® is an open-source DBaaS that automates the deployment and management of highly available PostgreSQL clusters.</li>
+<li><a href="https://github.com/vitabaks/autobase" rel="noopener noreferrer">autobase (⭐4.2k)</a> - Autobase for PostgreSQL® is an open-source DBaaS that automates the deployment and management of highly available PostgreSQL clusters.</li>
 </ul>
 <h3><p>Contents / Backups</p>
 </h3>
@@ -305,7 +409,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/getredash/redash" rel="noopener noreferrer">Redash (⭐28k)</a> - Connect to any data source, easily visualize and share your data.</li>
+<li><a href="https://github.com/getredash/redash" rel="noopener noreferrer">Redash (⭐29k)</a> - Connect to any data source, easily visualize and share your data.</li>
 </ul>
 <h3><p>Contents / Security</p>
 </h3>
@@ -315,7 +419,7 @@
 <h3><p>Contents / Monitoring</p>
 </h3>
 <ul>
-<li><a href="https://github.com/coroot/coroot" rel="noopener noreferrer">coroot (⭐7.5k)</a> - Coroot is an open-source APM &amp; Observability tool, a DataDog and NewRelic alternative. Powered by eBPF for rapid insights into system performance.</li>
+<li><a href="https://github.com/coroot/coroot" rel="noopener noreferrer">coroot (⭐7.7k)</a> - Coroot is an open-source APM &amp; Observability tool, a DataDog and NewRelic alternative. Powered by eBPF for rapid insights into system performance.</li>
 </ul>
 
 <ul>
@@ -323,7 +427,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/wrouesnel/postgres_exporter" rel="noopener noreferrer">postgres_exporter (⭐3.4k)</a> - Prometheus exporter for PostgreSQL server metrics.</li>
+<li><a href="https://github.com/wrouesnel/postgres_exporter" rel="noopener noreferrer">postgres_exporter (⭐3.5k)</a> - Prometheus exporter for PostgreSQL server metrics.</li>
 </ul>
 <h3><p>Contents / Extensions</p>
 </h3>
@@ -336,15 +440,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/percona/pg_stat_monitor" rel="noopener noreferrer">pg_stat_monitor (⭐562)</a> - Query Performance Monitoring tool for PostgreSQL.</li>
+<li><a href="https://github.com/percona/pg_stat_monitor" rel="noopener noreferrer">pg_stat_monitor (⭐577)</a> - Query Performance Monitoring tool for PostgreSQL.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/cybertec-postgresql/pg_squeeze" rel="noopener noreferrer">pg_squeeze (⭐661)</a> - An extension for automatic bloat cleanup with minimal locking.</li>
+<li><a href="https://github.com/cybertec-postgresql/pg_squeeze" rel="noopener noreferrer">pg_squeeze (⭐668)</a> - An extension for automatic bloat cleanup with minimal locking.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/paradedb/paradedb" rel="noopener noreferrer">ParadeDB (⭐8.6k)</a> -  Postgres for Search and Analytics</li>
+<li><a href="https://github.com/paradedb/paradedb" rel="noopener noreferrer">ParadeDB (⭐8.7k)</a> -  Postgres for Search and Analytics</li>
 </ul>
 <h3><p>Contents / Optimization</p>
 </h3>
@@ -353,16 +457,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dalibo/pev2" rel="noopener noreferrer">PEV2 (⭐3.4k)</a> - Online Postgres Explain Visualizer.</li>
+<li><a href="https://github.com/dalibo/pev2" rel="noopener noreferrer">PEV2 (⭐3.5k)</a> - Online Postgres Explain Visualizer.</li>
 </ul>
 <h3><p>Contents / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gatewayd-io/gatewayd" rel="noopener noreferrer">GatewayD (⭐279)</a> - Cloud-native database gateway and framework for building data-driven applications. Like API gateways, for databases.</li>
+<li><a href="https://github.com/gatewayd-io/gatewayd" rel="noopener noreferrer">GatewayD (⭐284)</a> - Cloud-native database gateway and framework for building data-driven applications. Like API gateways, for databases.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/djrobstep/migra" rel="noopener noreferrer">migra (⭐3.1k)</a> - Like diff but for Postgres schemas.</li>
+<li><a href="https://github.com/djrobstep/migra" rel="noopener noreferrer">migra (⭐3k)</a> - Like diff but for Postgres schemas.</li>
 </ul>
 
 <ul>
@@ -370,7 +474,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/cybertec-postgresql/pg_timetable" rel="noopener noreferrer">pg_timetable (⭐1.3k)</a> - Advanced job scheduler for PostgreSQL.</li>
+<li><a href="https://github.com/cybertec-postgresql/pg_timetable" rel="noopener noreferrer">pg_timetable (⭐1.4k)</a> - Advanced job scheduler for PostgreSQL.</li>
 </ul>
 
 <ul>
@@ -378,16 +482,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/xataio/pgroll" rel="noopener noreferrer">pgroll (⭐6.4k)</a> - Zero-downtime, reversible, schema migrations for Postgres</li>
+<li><a href="https://github.com/xataio/pgroll" rel="noopener noreferrer">pgroll (⭐6.5k)</a> - Zero-downtime, reversible, schema migrations for Postgres</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/dimitri/regresql" rel="noopener noreferrer">RegreSQL (⭐352)</a> - Tool to build, maintain and execute a regression testing suite for SQL queries.</li>
+<li><a href="https://github.com/dimitri/regresql" rel="noopener noreferrer">RegreSQL (⭐354)</a> - Tool to build, maintain and execute a regression testing suite for SQL queries.</li>
 </ul>
 <h3><p>Contents / Language bindings</p>
 </h3>
 <ul>
-<li>Go: <a href="https://github.com/lib/pq" rel="noopener noreferrer">pq (⭐9.8k)</a>, <a href="https://github.com/jackc/pgx" rel="noopener noreferrer">pgx (⭐14k)</a>, <a href="https://github.com/go-pg/pg" rel="noopener noreferrer">go-pg (⭐5.8k)</a></li>
+<li>Go: <a href="https://github.com/lib/pq" rel="noopener noreferrer">pq (⭐9.9k)</a>, <a href="https://github.com/jackc/pgx" rel="noopener noreferrer">pgx (⭐14k)</a>, <a href="https://github.com/go-pg/pg" rel="noopener noreferrer">go-pg (⭐5.8k)</a></li>
 </ul>
 
 <ul>
@@ -395,7 +499,7 @@
 </ul>
 
 <ul>
-<li>Lua: <a href="https://github.com/arcapos/luapgsql" rel="noopener noreferrer">luapgsql (⭐118)</a></li>
+<li>Lua: <a href="https://github.com/arcapos/luapgsql" rel="noopener noreferrer">luapgsql (⭐120)</a></li>
 </ul>
 
 <ul>
@@ -433,11 +537,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/zalando/postgres-operator" rel="noopener noreferrer">Zalando Operator (⭐5.1k)</a> - Creates and manages PostgreSQL clusters running in Kubernetes.</li>
+<li><a href="https://github.com/zalando/postgres-operator" rel="noopener noreferrer">Zalando Operator (⭐5.2k)</a> - Creates and manages PostgreSQL clusters running in Kubernetes.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/cloudnative-pg/cloudnative-pg" rel="noopener noreferrer">CloudNativePG operator (⭐8.3k)</a> - A comprehensive platform designed to seamlessly manage PostgreSQL databases within Kubernetes environments.</li>
+<li><a href="https://github.com/cloudnative-pg/cloudnative-pg" rel="noopener noreferrer">CloudNativePG operator (⭐8.7k)</a> - A comprehensive platform designed to seamlessly manage PostgreSQL databases within Kubernetes environments.</li>
 </ul>
 
 <ul>
@@ -450,7 +554,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/xzilla/pagila" rel="noopener noreferrer">pagila (⭐72)</a> - Pagila, Postgres Sample Database</li>
+<li><a href="https://github.com/xzilla/pagila" rel="noopener noreferrer">pagila (⭐74)</a> - Pagila, Postgres Sample Database</li>
 </ul>
 <h3><p>Resources / Blogs</p>
 </h3>
@@ -520,7 +624,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/10/">Mar 10 - Mar 16, 2025</a></h2><h3><p>Contents / Language bindings</p>
 </h3>
 <ul>
-<li>Rust: <a href="https://github.com/sfackler/rust-postgres" rel="noopener noreferrer">rust-postgresql (⭐3.9k)</a>, <a href="https://github.com/tcdi/pgx" rel="noopener noreferrer">pgx (⭐4.4k)</a>, <a href="https://github.com/c410-f3r/wtx" rel="noopener noreferrer">wtx (⭐344)</a></li>
+<li>Rust: <a href="https://github.com/sfackler/rust-postgres" rel="noopener noreferrer">rust-postgresql (⭐3.9k)</a>, <a href="https://github.com/tcdi/pgx" rel="noopener noreferrer">pgx (⭐4.7k)</a>, <a href="https://github.com/c410-f3r/wtx" rel="noopener noreferrer">wtx (⭐354)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/24/">Jun 10 - Jun 16, 2024</a></h2><h3><p>Resources / Documentation</p>
 </h3>
@@ -535,7 +639,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/10/">Mar 04 - Mar 10, 2024</a></h2><h3><p>Contents / CLI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/stripe/pg-schema-diff" rel="noopener noreferrer">pg-schema-diff (⭐819)</a> - CLI (and Golang library) for diffing Postgres schemas and generating SQL migrations with minimal locking.</li>
+<li><a href="https://github.com/stripe/pg-schema-diff" rel="noopener noreferrer">pg-schema-diff (⭐850)</a> - CLI (and Golang library) for diffing Postgres schemas and generating SQL migrations with minimal locking.</li>
 </ul>
 <h3><p>Contents / PaaS <em>(PostgreSQL as a Service)</em></p>
 </h3>
@@ -545,7 +649,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/9/">Feb 26 - Mar 03, 2024</a></h2><h3><p>Contents / Extensions</p>
 </h3>
 <ul>
-<li><a href="https://github.com/apache/age" rel="noopener noreferrer">AGE (⭐4.4k)</a> - Adds fully-functional graph database support including Cypher queries.</li>
+<li><a href="https://github.com/apache/age" rel="noopener noreferrer">AGE (⭐4.5k)</a> - Adds fully-functional graph database support including Cypher queries.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/8/">Feb 19 - Feb 25, 2024</a></h2><h3><p>Contents / High-Availability</p>
 </h3>
@@ -570,12 +674,12 @@
 <h3><p>Contents / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/BemiHQ/bemi" rel="noopener noreferrer">bemi (⭐389)</a> - Automatic data change tracking for PostgreSQL</li>
+<li><a href="https://github.com/BemiHQ/bemi" rel="noopener noreferrer">bemi (⭐394)</a> - Automatic data change tracking for PostgreSQL</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/49/">Dec 04 - Dec 10, 2023</a></h2><h3><p>Contents / Language bindings</p>
 </h3>
 <ul>
-<li>Zig: <a href="https://github.com/karlseguin/pg.zig" rel="noopener noreferrer">pg.zig (⭐517)</a></li>
+<li>Zig: <a href="https://github.com/karlseguin/pg.zig" rel="noopener noreferrer">pg.zig (⭐549)</a>, <a href="https://github.com/qail-io/qail-zig" rel="noopener noreferrer">qail-zig (⭐3)</a></li>
 </ul>
 <h3><p>Resources / Community</p>
 </h3>
@@ -590,7 +694,7 @@
 <h3><p>Contents / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/timescale/pgspot" rel="noopener noreferrer">pgspot (⭐130)</a> - Spot vulnerabilities in PostgreSQL extension scripts.</li>
+<li><a href="https://github.com/timescale/pgspot" rel="noopener noreferrer">pgspot (⭐133)</a> - Spot vulnerabilities in PostgreSQL extension scripts.</li>
 </ul>
 <h3><p>Resources / Blogs</p>
 </h3>
@@ -615,7 +719,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/16/">Apr 17 - Apr 23, 2023</a></h2><h3><p>Contents / CLI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ariga/atlas" rel="noopener noreferrer">atlas (⭐8.2k)</a> - Atlas is a tool for managing and migrating database schemas using modern DevOps principles.</li>
+<li><a href="https://github.com/ariga/atlas" rel="noopener noreferrer">atlas (⭐8.4k)</a> - Atlas is a tool for managing and migrating database schemas using modern DevOps principles.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/6/">Feb 06 - Feb 12, 2023</a></h2><h3><p>Contents / Server</p>
 </h3>
@@ -640,12 +744,12 @@
 <h2><a href="https://www.trackawesomelist.com/2022/22/">May 30 - Jun 05, 2022</a></h2><h3><p>Contents / Distributions</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Vonng/pigsty" rel="noopener noreferrer">Pigsty (⭐4.9k)</a> - Battery-Included Open-Source Distribution for PostgreSQL with ultimate observability &amp; Database-as-Code toolbox for developers.</li>
+<li><a href="https://github.com/Vonng/pigsty" rel="noopener noreferrer">Pigsty (⭐5.1k)</a> - Battery-Included Open-Source Distribution for PostgreSQL with ultimate observability &amp; Database-as-Code toolbox for developers.</li>
 </ul>
 <h3><p>Contents / Monitoring</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Vonng/pg_exporter" rel="noopener noreferrer">pg_exporter (⭐331)</a> - Fully customizable Prometheus exporter for PostgreSQL &amp; Pgbouncer with fine-grained execution control.</li>
+<li><a href="https://github.com/Vonng/pg_exporter" rel="noopener noreferrer">pg_exporter (⭐347)</a> - Fully customizable Prometheus exporter for PostgreSQL &amp; Pgbouncer with fine-grained execution control.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/19/">May 09 - May 15, 2022</a></h2><h3><p>Contents / PaaS <em>(PostgreSQL as a Service)</em></p>
 </h3>
@@ -660,7 +764,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/41/">Oct 11 - Oct 17, 2021</a></h2><h3><p>Contents / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/CrunchyData/pgmonitor" rel="noopener noreferrer">pgMonitor (⭐699)</a> - Postgres metrics collection and visualization that can be deployed to bare metal, virtual machines, or Kubernetes.</li>
+<li><a href="https://github.com/CrunchyData/pgmonitor" rel="noopener noreferrer">pgMonitor (⭐705)</a> - Postgres metrics collection and visualization that can be deployed to bare metal, virtual machines, or Kubernetes.</li>
 </ul>
 <h3><p>Contents / PaaS <em>(PostgreSQL as a Service)</em></p>
 </h3>
@@ -705,7 +809,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/48/">Nov 30 - Dec 06, 2020</a></h2><h3><p>Contents / Extensions</p>
 </h3>
 <ul>
-<li><a href="https://github.com/citusdata/pg_cron" rel="noopener noreferrer">pg_cron (⭐3.7k)</a> - Run periodic jobs in PostgreSQL.</li>
+<li><a href="https://github.com/citusdata/pg_cron" rel="noopener noreferrer">pg_cron (⭐3.8k)</a> - Run periodic jobs in PostgreSQL.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/41/">Oct 12 - Oct 18, 2020</a></h2><h3><p>Contents / PaaS <em>(PostgreSQL as a Service)</em></p>
 </h3>
@@ -748,12 +852,12 @@
 <h2><a href="https://www.trackawesomelist.com/2020/17/">Apr 27 - May 03, 2020</a></h2><h3><p>Contents / Backups</p>
 </h3>
 <ul>
-<li><a href="https://github.com/wal-g/wal-g" rel="noopener noreferrer">wal-g (⭐4k)</a> - The successor of WAL-E rewritten in Go. Currently supports cloud object storage services by AWS (S3), Google Cloud (GCS), Azure, as well as OpenStack Swift, MinIO, and file system storages. Supports block-level incremental backups, offloading backup tasks to a standby server, provides parallelization and throttling options. In addition to Postgres, WAL-G can be used for MySQL and MongoDB databases.</li>
+<li><a href="https://github.com/wal-g/wal-g" rel="noopener noreferrer">wal-g (⭐4.1k)</a> - The successor of WAL-E rewritten in Go. Currently supports cloud object storage services by AWS (S3), Google Cloud (GCS), Azure, as well as OpenStack Swift, MinIO, and file system storages. Supports block-level incremental backups, offloading backup tasks to a standby server, provides parallelization and throttling options. In addition to Postgres, WAL-G can be used for MySQL and MongoDB databases.</li>
 </ul>
 <h3><p>Contents / CLI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sastraxi/pgsh" rel="noopener noreferrer">pgsh (⭐600)</a> - Branch your PostgreSQL Database like Git</li>
+<li><a href="https://github.com/sastraxi/pgsh" rel="noopener noreferrer">pgsh (⭐601)</a> - Branch your PostgreSQL Database like Git</li>
 </ul>
 
 <ul>
@@ -762,7 +866,7 @@
 <h3><p>Contents / Monitoring</p>
 </h3>
 <ul>
-<li><a href="https://github.com/percona/pmm" rel="noopener noreferrer">PMM (⭐985)</a> - Percona Monitoring and Management (PMM) is a Free and Open Source platform for monitoring and managing PostgreSQL, MySQL, and MongoDB.</li>
+<li><a href="https://github.com/percona/pmm" rel="noopener noreferrer">PMM (⭐1k)</a> - Percona Monitoring and Management (PMM) is a Free and Open Source platform for monitoring and managing PostgreSQL, MySQL, and MongoDB.</li>
 </ul>
 
 <ul>
@@ -784,7 +888,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/timescale/timescaledb-tune" rel="noopener noreferrer">TimescaleDB Tune (⭐494)</a> - a program for tuning a TimescaleDB database to perform its best based on the host's resources such as memory and number of CPUs.</li>
+<li><a href="https://github.com/timescale/timescaledb-tune" rel="noopener noreferrer">TimescaleDB Tune (⭐500)</a> - a program for tuning a TimescaleDB database to perform its best based on the host's resources such as memory and number of CPUs.</li>
 </ul>
 <h3><p>Contents / Utilities</p>
 </h3>
@@ -806,7 +910,7 @@
 <h3><p>Contents / Language bindings</p>
 </h3>
 <ul>
-<li>Node: <a href="https://github.com/brianc/node-postgres" rel="noopener noreferrer">node-postgres (⭐13k)</a>, <a href="https://github.com/vitaly-t/pg-promise" rel="noopener noreferrer">pg-promise (⭐3.5k)</a>, <a href="https://github.com/holdfenytolvaj/pogi" rel="noopener noreferrer">pogi (⭐139)</a>, <a href="https://github.com/gajus/slonik" rel="noopener noreferrer">slonik (⭐4.9k)</a>, <a href="https://github.com/porsager/postgres" rel="noopener noreferrer">postgres (⭐8.6k)</a></li>
+<li>Node: <a href="https://github.com/brianc/node-postgres" rel="noopener noreferrer">node-postgres (⭐13k)</a>, <a href="https://github.com/vitaly-t/pg-promise" rel="noopener noreferrer">pg-promise (⭐3.6k)</a>, <a href="https://github.com/holdfenytolvaj/pogi" rel="noopener noreferrer">pogi (⭐139)</a>, <a href="https://github.com/gajus/slonik" rel="noopener noreferrer">slonik (⭐4.9k)</a>, <a href="https://github.com/porsager/postgres" rel="noopener noreferrer">postgres (⭐8.6k)</a></li>
 </ul>
 
 <ul>
@@ -859,7 +963,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h2><a href="https://www.trackawesomelist.com/2019/26/">Jul 01 - Jul 07, 2019</a></h2><h3><p>Contents / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lob/pg_insights" rel="noopener noreferrer">pg_insights (⭐309)</a> - Convenient SQL for monitoring Postgres database health.</li>
+<li><a href="https://github.com/lob/pg_insights" rel="noopener noreferrer">pg_insights (⭐310)</a> - Convenient SQL for monitoring Postgres database health.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/19/">May 13 - May 19, 2019</a></h2><h3><p>Contents / Extensions</p>
 </h3>
@@ -942,7 +1046,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h3><p>Contents / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pgxn/pgxnclient" rel="noopener noreferrer">PGXN client (⭐158)</a> - Command line tool to interact with the PostgreSQL Extension Network</li>
+<li><a href="https://github.com/pgxn/pgxnclient" rel="noopener noreferrer">PGXN client (⭐159)</a> - Command line tool to interact with the PostgreSQL Extension Network</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/49/">Dec 03 - Dec 09, 2018</a></h2><h3><p>Contents / High-Availability</p>
 </h3>
@@ -975,7 +1079,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h3><p>Contents / Extensions</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pgpartman/pg_partman" rel="noopener noreferrer">pg_partman (⭐2.6k)</a> - Partition management extension for PostgreSQL.</li>
+<li><a href="https://github.com/pgpartman/pg_partman" rel="noopener noreferrer">pg_partman (⭐2.7k)</a> - Partition management extension for PostgreSQL.</li>
 </ul>
 
 <ul>
@@ -1044,12 +1148,12 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h2><a href="https://www.trackawesomelist.com/2018/30/">Jul 23 - Jul 29, 2018</a></h2><h3><p>Contents / Backups</p>
 </h3>
 <ul>
-<li><a href="https://github.com/orgrim/pg_back/" rel="noopener noreferrer">pg_back (⭐564)</a> - pg_back is a simple backup script</li>
+<li><a href="https://github.com/orgrim/pg_back/" rel="noopener noreferrer">pg_back (⭐563)</a> - pg_back is a simple backup script</li>
 </ul>
 <h3><p>Contents / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/the4thdoctor/pg_chameleon" rel="noopener noreferrer">pg_chameleon (⭐432)</a> - Real time replica from MySQL to PostgreSQL with optional type override migration and migration capabilities.</li>
+<li><a href="https://github.com/the4thdoctor/pg_chameleon" rel="noopener noreferrer">pg_chameleon (⭐436)</a> - Real time replica from MySQL to PostgreSQL with optional type override migration and migration capabilities.</li>
 </ul>
 
 <ul>
@@ -1073,7 +1177,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h2><a href="https://www.trackawesomelist.com/2018/12/">Mar 19 - Mar 25, 2018</a></h2><h3><p>Contents / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dalibo/ldap2pg" rel="noopener noreferrer">ldap2pg (⭐231)</a> - Synchronize roles and privileges from YML and LDAP.</li>
+<li><a href="https://github.com/dalibo/ldap2pg" rel="noopener noreferrer">ldap2pg (⭐232)</a> - Synchronize roles and privileges from YML and LDAP.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/10/">Mar 05 - Mar 11, 2018</a></h2><h3><p>Contents / Optimization</p>
 </h3>
@@ -1107,12 +1211,12 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h3><p>Resources / Tutorials</p>
 </h3>
 <ul>
-<li><a href="https://github.com/morenoh149/postgresDBSamples" rel="noopener noreferrer">postgresDBSamples (⭐546)</a> - A collection of sample postgres schemas</li>
+<li><a href="https://github.com/morenoh149/postgresDBSamples" rel="noopener noreferrer">postgresDBSamples (⭐553)</a> - A collection of sample postgres schemas</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/38/">Sep 18 - Sep 24, 2017</a></h2><h3><p>Contents / Extensions</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pgMemento/pgMemento" rel="noopener noreferrer">pgMemento (⭐403)</a> - Provides an audit trail for your data inside a PostgreSQL database using triggers and server-side functions written in PL/pgSQL.</li>
+<li><a href="https://github.com/pgMemento/pgMemento" rel="noopener noreferrer">pgMemento (⭐407)</a> - Provides an audit trail for your data inside a PostgreSQL database using triggers and server-side functions written in PL/pgSQL.</li>
 </ul>
 <h3><p>Contents / Optimization</p>
 </h3>
@@ -1136,7 +1240,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h2><a href="https://www.trackawesomelist.com/2017/17/">Apr 24 - Apr 30, 2017</a></h2><h3><p>Contents / GUI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dalibo/temboard" rel="noopener noreferrer">temBoard (⭐756)</a> - Web-based PostgreSQL GUI and monitoring.</li>
+<li><a href="https://github.com/dalibo/temboard" rel="noopener noreferrer">temBoard (⭐760)</a> - Web-based PostgreSQL GUI and monitoring.</li>
 </ul>
 <h3><p>Resources / Newsletters</p>
 </h3>
@@ -1161,7 +1265,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h2><a href="https://www.trackawesomelist.com/2017/9/">Feb 27 - Mar 05, 2017</a></h2><h3><p>Contents / Backups</p>
 </h3>
 <ul>
-<li><a href="https://github.com/postgrespro/pg_probackup" rel="noopener noreferrer">pg_probackup (⭐781)</a> – A fork of pg_arman, improved by @PostgresPro, supports incremental backups, backups from replica, multithreaded backup and restore, and anonymous backup without archive command.</li>
+<li><a href="https://github.com/postgrespro/pg_probackup" rel="noopener noreferrer">pg_probackup (⭐789)</a> – A fork of pg_arman, improved by @PostgresPro, supports incremental backups, backups from replica, multithreaded backup and restore, and anonymous backup without archive command.</li>
 </ul>
 <h3><p>Contents / Extensions</p>
 </h3>
@@ -1183,7 +1287,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 </ul>
 
 <ul>
-<li><a href="https://github.com/postgrespro/zson" rel="noopener noreferrer">ZSON (⭐565)</a> - PostgreSQL extension for transparent JSONB compression</li>
+<li><a href="https://github.com/postgrespro/zson" rel="noopener noreferrer">ZSON (⭐569)</a> - PostgreSQL extension for transparent JSONB compression</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/4/">Jan 23 - Jan 29, 2017</a></h2><h3><p>Contents / High-Availability</p>
 </h3>
@@ -1208,7 +1312,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h2><a href="https://www.trackawesomelist.com/2016/45/">Nov 07 - Nov 13, 2016</a></h2><h3><p>Contents / High-Availability</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zalando/patroni" rel="noopener noreferrer">Patroni (⭐8.2k)</a> - Template for PostgreSQL HA with ZooKeeper or etcd.</li>
+<li><a href="https://github.com/zalando/patroni" rel="noopener noreferrer">Patroni (⭐8.4k)</a> - Template for PostgreSQL HA with ZooKeeper or etcd.</li>
 </ul>
 
 <ul>
@@ -1246,11 +1350,11 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 </ul>
 
 <ul>
-<li><a href="https://github.com/sosedoff/pgweb" rel="noopener noreferrer">pgweb (⭐9.3k)</a> - Web-based PostgreSQL database browser written in Go.</li>
+<li><a href="https://github.com/sosedoff/pgweb" rel="noopener noreferrer">pgweb (⭐9.4k)</a> - Web-based PostgreSQL database browser written in Go.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/phppgadmin/phppgadmin" rel="noopener noreferrer">phpPgAdmin (⭐844)</a> - The Premier Web Based Administration Tool for PostgreSQL.</li>
+<li><a href="https://github.com/phppgadmin/phppgadmin" rel="noopener noreferrer">phpPgAdmin (⭐846)</a> - The Premier Web Based Administration Tool for PostgreSQL.</li>
 </ul>
 
 <ul>
@@ -1279,7 +1383,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 </ul>
 
 <ul>
-<li><a href="https://github.com/bucardo/check_postgres" rel="noopener noreferrer">Check_postgres (⭐593)</a> - Nagios check_postgres plugin for checking status of PostgreSQL databases.</li>
+<li><a href="https://github.com/bucardo/check_postgres" rel="noopener noreferrer">Check_postgres (⭐598)</a> - Nagios check_postgres plugin for checking status of PostgreSQL databases.</li>
 </ul>
 
 <ul>
@@ -1291,7 +1395,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 </ul>
 
 <ul>
-<li><a href="https://github.com/zalando/pg_view" rel="noopener noreferrer">pg_view (⭐503)</a> - Open-source command-line tool that shows global system stats, per-partition information, memory stats and other information.</li>
+<li><a href="https://github.com/zalando/pg_view" rel="noopener noreferrer">pg_view (⭐505)</a> - Open-source command-line tool that shows global system stats, per-partition information, memory stats and other information.</li>
 </ul>
 <h3><p>Contents / Extensions</p>
 </h3>
@@ -1316,7 +1420,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 </ul>
 
 <ul>
-<li><a href="https://github.com/okbob/plpgsql_check" rel="noopener noreferrer">plpgsql_check (⭐746)</a> - Extension that allows to check plpgsql source code.</li>
+<li><a href="https://github.com/okbob/plpgsql_check" rel="noopener noreferrer">plpgsql_check (⭐754)</a> - Extension that allows to check plpgsql source code.</li>
 </ul>
 
 <ul>
@@ -1329,7 +1433,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h3><p>Contents / Optimization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ankane/pghero" rel="noopener noreferrer">PgHero (⭐8.8k)</a> - PostgreSQL insights made easy.</li>
+<li><a href="https://github.com/ankane/pghero" rel="noopener noreferrer">PgHero (⭐8.9k)</a> - PostgreSQL insights made easy.</li>
 </ul>
 
 <ul>
@@ -1358,7 +1462,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 </ul>
 
 <ul>
-<li><a href="https://github.com/lukasmartinelli/pgclimb" rel="noopener noreferrer">pgclimb (⭐392)</a> - Export data from PostgreSQL into different data formats.</li>
+<li><a href="https://github.com/lukasmartinelli/pgclimb" rel="noopener noreferrer">pgclimb (⭐393)</a> - Export data from PostgreSQL into different data formats.</li>
 </ul>
 
 <ul>
@@ -1421,7 +1525,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h2><a href="https://www.trackawesomelist.com/2016/44/">Oct 31 - Nov 06, 2016</a></h2><h3><p>Contents / High-Availability</p>
 </h3>
 <ul>
-<li><a href="https://github.com/2ndQuadrant/bdr" rel="noopener noreferrer">BDR (⭐359)</a> - BiDirectional Replication - a multimaster replication system for PostgreSQL</li>
+<li><a href="https://github.com/2ndQuadrant/bdr" rel="noopener noreferrer">BDR (⭐360)</a> - BiDirectional Replication - a multimaster replication system for PostgreSQL</li>
 </ul>
 <h3><p>Contents / CLI</p>
 </h3>
@@ -1436,7 +1540,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h2><a href="https://www.trackawesomelist.com/2016/41/">Oct 10 - Oct 16, 2016</a></h2><h3><p>Contents / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yandex/pgmigrate" rel="noopener noreferrer">pgmigrate (⭐665)</a> - CLI tool to evolve schema migrations, developed by Yandex.</li>
+<li><a href="https://github.com/yandex/pgmigrate" rel="noopener noreferrer">pgmigrate (⭐667)</a> - CLI tool to evolve schema migrations, developed by Yandex.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/37/">Sep 12 - Sep 18, 2016</a></h2><h3><p>Contents / Backups</p>
 </h3>
@@ -1446,7 +1550,7 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 <h2><a href="https://www.trackawesomelist.com/2016/36/">Sep 05 - Sep 11, 2016</a></h2><h3><p>Contents / Language bindings</p>
 </h3>
 <ul>
-<li>Common Lisp: <a href="https://github.com/marijnh/Postmodern" rel="noopener noreferrer">Postmodern (⭐429)</a></li>
+<li>Common Lisp: <a href="https://github.com/marijnh/Postmodern" rel="noopener noreferrer">Postmodern (⭐430)</a></li>
 </ul>
 
 <ul>
@@ -1469,5 +1573,47 @@ for <code>EXPLAIN</code>, that also provides performance tips (Commercial Softwa
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
