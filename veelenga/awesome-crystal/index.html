@@ -16,31 +16,116 @@
     <meta property="og:title" content="Track Awesome Crystal Updates Daily" />
     <meta property="og:description" content=":gem: A collection of awesome Crystal libraries, tools, frameworks and software" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Crystal Updates Daily</h1>
 <p>:gem: A collection of awesome Crystal libraries, tools, frameworks and software</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/veelenga/awesome-crystal/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/veelenga/awesome-crystal">😺 veelenga/awesome-crystal</a><span> · </span><span>⭐ 3.5K</span><span> · </span><span>🏷️ Programming Languages</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/veelenga/awesome-crystal/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/veelenga/awesome-crystal">😺 veelenga/awesome-crystal</a><span> · </span><span>⭐ 3.6K</span><span> · </span><span>🏷️ Programming Languages</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/veelenga/awesome-crystal/week/">Weekly</a><span> / </span><a href="/veelenga/awesome-crystal/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/05/26/">May 26, 2026</a></h2><h3><p>Implementations/Compilers</p>
+</h3>
+<ul>
+<li><a href="https://github.com/memburg/GiavaScript" rel="noopener noreferrer">GiavaScript (⭐0)</a> - Open-source, cross-platform JavaScript runtime</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/04/18/">Apr 18, 2026</a></h2><h3><p>HTTP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sdogruyol/cryload" rel="noopener noreferrer">cryload (⭐183)</a> - cryload is a powerful, fast, and practical HTTP benchmarking tool for stress testing APIs and web services</li>
+<li><a href="https://github.com/sdogruyol/cryload" rel="noopener noreferrer">cryload (⭐199)</a> - cryload is a powerful, fast, and practical HTTP benchmarking tool for stress testing APIs and web services</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/03/28/">Mar 28, 2026</a></h2><h3><p>Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/veelenga/lua.cr" rel="noopener noreferrer">lua.cr (⭐65)</a> - Bindings to liblua and a wrapper around it</li>
+<li><a href="https://github.com/veelenga/lua.cr" rel="noopener noreferrer">lua.cr (⭐68)</a> - Bindings to liblua and a wrapper around it</li>
 </ul>
 
 <ul>
@@ -59,7 +144,7 @@
 <h3><p>ORM/ODM Extensions</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crystal-garage/lustra" rel="noopener noreferrer">lustra (⭐22)</a> - Advanced PostgreSQL ORM with ActiveRecord pattern, full-text search, geometry types, and more</li>
+<li><a href="https://github.com/crystal-garage/lustra" rel="noopener noreferrer">lustra (⭐24)</a> - Advanced PostgreSQL ORM with ActiveRecord pattern, full-text search, geometry types, and more</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/01/25/">Jan 25, 2026</a></h2><h3><p>Data Formats</p>
 </h3>
@@ -79,11 +164,11 @@
 <h2><a href="https://www.trackawesomelist.com/2025/09/17/">Sep 17, 2025</a></h2><h3><p>Security</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hahwul/cyclonedx-cr" rel="noopener noreferrer">cyclonedx-cr (⭐4)</a> - CycloneDX SBOM(Software Bill of Materials) generator for Crystal projects</li>
+<li><a href="https://github.com/hahwul/cyclonedx-cr" rel="noopener noreferrer">cyclonedx-cr (⭐5)</a> - CycloneDX SBOM(Software Bill of Materials) generator for Crystal projects</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/owasp-noir/noir" rel="noopener noreferrer">OWASP Noir (⭐1.2k)</a> - Attack surface detector that identifies endpoints by static analysis</li>
+<li><a href="https://github.com/owasp-noir/noir" rel="noopener noreferrer">OWASP Noir (⭐1.3k)</a> - Attack surface detector that identifies endpoints by static analysis</li>
 </ul>
 
 <ul>
@@ -112,7 +197,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/02/07/">Feb 07, 2025</a></h2><h3><p>HTML/XML Parsing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kostya/lexbor" rel="noopener noreferrer">lexbor (⭐112)</a> - Fast HTML5 Parser that includes CSS selectors</li>
+<li><a href="https://github.com/kostya/lexbor" rel="noopener noreferrer">lexbor (⭐113)</a> - Fast HTML5 Parser that includes CSS selectors</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/01/03/">Jan 03, 2025</a></h2><h3><p>Misc</p>
 </h3>
@@ -137,7 +222,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/06/19/">Jun 19, 2024</a></h2><h3><p>Testing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crystal-loot/selenium.cr" rel="noopener noreferrer">selenium.cr (⭐26)</a> - Selenium client for interacting with web pages for browser automation</li>
+<li><a href="https://github.com/crystal-loot/selenium.cr" rel="noopener noreferrer">selenium.cr (⭐27)</a> - Selenium client for interacting with web pages for browser automation</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/06/12/">Jun 12, 2024</a></h2><h3><p>Environment Management</p>
 </h3>
@@ -156,7 +241,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/04/08/">Apr 08, 2024</a></h2><h3><p>Markdown/Text Processors</p>
 </h3>
 <ul>
-<li><a href="https://github.com/amauryt/cr-cmark-gfm" rel="noopener noreferrer">cr-cmark-gfm (⭐21)</a> -  Crystal C bindings for cmark-gfm to work with Commonmark and Github Flavored Markdown</li>
+<li><a href="https://github.com/amauryt/cr-cmark-gfm" rel="noopener noreferrer">cr-cmark-gfm (⭐22)</a> -  Crystal C bindings for cmark-gfm to work with Commonmark and Github Flavored Markdown</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/03/14/">Mar 14, 2024</a></h2><h3><p>Queues and Messaging</p>
 </h3>
@@ -202,7 +287,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/09/12/">Sep 12, 2023</a></h2><h3><p>Game Development</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sol-vin/raylib-cr" rel="noopener noreferrer">Raylib-cr (⭐108)</a> - Direct bindings to <a href="https://raylib.com" rel="noopener noreferrer">Raylib</a>, which supports Linux, Windows, and Mac</li>
+<li><a href="https://github.com/sol-vin/raylib-cr" rel="noopener noreferrer">Raylib-cr (⭐109)</a> - Direct bindings to <a href="https://raylib.com" rel="noopener noreferrer">Raylib</a>, which supports Linux, Windows, and Mac</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/08/27/">Aug 27, 2023</a></h2><h3><p>C bindings</p>
 </h3>
@@ -222,12 +307,12 @@
 <h2><a href="https://www.trackawesomelist.com/2023/04/18/">Apr 18, 2023</a></h2><h3><p>HTML Builders</p>
 </h3>
 <ul>
-<li><a href="https://github.com/shootingfly/water" rel="noopener noreferrer">Water (⭐30)</a> - A library for writing HTML in plain Crystal</li>
+<li><a href="https://github.com/shootingfly/water" rel="noopener noreferrer">Water (⭐31)</a> - A library for writing HTML in plain Crystal</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/04/17/">Apr 17, 2023</a></h2><h3><p>HTML Builders</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gunbolt/blueprint" rel="noopener noreferrer">blueprint (⭐80)</a> - Write reusable and testable HTML templates in plain Crystal</li>
+<li><a href="https://github.com/gunbolt/blueprint" rel="noopener noreferrer">blueprint (⭐83)</a> - Write reusable and testable HTML templates in plain Crystal</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/04/12/">Apr 12, 2023</a></h2><h3><p>C bindings</p>
 </h3>
@@ -303,7 +388,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/01/04/">Jan 04, 2023</a></h2><h3><p>CLI Utils</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vitobotta/hetzner-k3s" rel="noopener noreferrer">hetzner-k3s (⭐3.5k)</a> - A CLI tool to quickly create and manage Kubernetes clusters in Hetzner Cloud</li>
+<li><a href="https://github.com/vitobotta/hetzner-k3s" rel="noopener noreferrer">hetzner-k3s (⭐3.6k)</a> - A CLI tool to quickly create and manage Kubernetes clusters in Hetzner Cloud</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/12/30/">Dec 30, 2022</a></h2><h3><p>Image processing</p>
 </h3>
@@ -318,12 +403,12 @@
 <h2><a href="https://www.trackawesomelist.com/2022/12/18/">Dec 18, 2022</a></h2><h3><p>Algorithms and Data structures</p>
 </h3>
 <ul>
-<li><a href="https://github.com/soya-daizu/goban" rel="noopener noreferrer">Goban (⭐30)</a> - A fast and efficient QR Code implementation</li>
+<li><a href="https://github.com/soya-daizu/goban" rel="noopener noreferrer">Goban (⭐31)</a> - A fast and efficient QR Code implementation</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/11/24/">Nov 24, 2022</a></h2><h3><p>Web Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/martenframework/marten" rel="noopener noreferrer">marten (⭐470)</a> - A web framework that makes building web applications easy, productive, and fun</li>
+<li><a href="https://github.com/martenframework/marten" rel="noopener noreferrer">marten (⭐473)</a> - A web framework that makes building web applications easy, productive, and fun</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/11/16/">Nov 16, 2022</a></h2><h3><p>Game Development</p>
 </h3>
@@ -344,12 +429,12 @@ described in [RFC 8032]</li>
 <h3><p>GUI Development</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hugopl/gtk4.cr" rel="noopener noreferrer">GTK4.cr (⭐122)</a> - Bindings for <a href="https://docs.gtk.org/gtk4/overview.html" rel="noopener noreferrer">GTK4</a> with Crystalized API</li>
+<li><a href="https://github.com/hugopl/gtk4.cr" rel="noopener noreferrer">GTK4.cr (⭐123)</a> - Bindings for <a href="https://docs.gtk.org/gtk4/overview.html" rel="noopener noreferrer">GTK4</a> with Crystalized API</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/08/27/">Aug 27, 2022</a></h2><h3><p>Network Protocols</p>
 </h3>
 <ul>
-<li><a href="https://github.com/84codes/mqtt-client.cr" rel="noopener noreferrer">mqtt-client.cr (⭐5)</a> - A fast and lightweight MQTT client</li>
+<li><a href="https://github.com/84codes/mqtt-client.cr" rel="noopener noreferrer">mqtt-client.cr (⭐6)</a> - A fast and lightweight MQTT client</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/07/14/">Jul 14, 2022</a></h2><h3><p>Algorithms and Data structures</p>
 </h3>
@@ -368,7 +453,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2022/05/03/">May 03, 2022</a></h2><h3><p>Processes and Threads</p>
 </h3>
 <ul>
-<li><a href="https://github.com/didactic-drunk/concurrent.cr" rel="noopener noreferrer">concurrent.cr (⭐49)</a> - Simplified concurrency using streams/pipelines, waitgroups, semaphores, smores and more</li>
+<li><a href="https://github.com/didactic-drunk/concurrent.cr" rel="noopener noreferrer">concurrent.cr (⭐50)</a> - Simplified concurrency using streams/pipelines, waitgroups, semaphores, smores and more</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/04/10/">Apr 10, 2022</a></h2><h3><p>Misc</p>
 </h3>
@@ -378,11 +463,11 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2021/12/28/">Dec 28, 2021</a></h2><h3><p>C bindings</p>
 </h3>
 <ul>
-<li><a href="https://github.com/firejox/fftw.cr" rel="noopener noreferrer">fftw.cr (⭐12)</a> - Bindings for <a href="https://fftw.org/" rel="noopener noreferrer">FFTW</a> library</li>
+<li><a href="https://github.com/firejox/fftw.cr" rel="noopener noreferrer">fftw.cr (⭐13)</a> - Bindings for <a href="https://fftw.org/" rel="noopener noreferrer">FFTW</a> library</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/naqvis/wasmer-crystal" rel="noopener noreferrer">wasmer-crystal (⭐98)</a> - Bindings for the <code>wasmer</code> WebAssembly runtime</li>
+<li><a href="https://github.com/naqvis/wasmer-crystal" rel="noopener noreferrer">wasmer-crystal (⭐101)</a> - Bindings for the <code>wasmer</code> WebAssembly runtime</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/12/09/">Dec 09, 2021</a></h2><h3><p>C bindings</p>
 </h3>
@@ -432,12 +517,12 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2021/08/31/">Aug 31, 2021</a></h2><h3><p>Internationalization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/syeopite/lens" rel="noopener noreferrer">Lens (⭐18)</a> - A multiformat internationalization (i18n) shard for Crystal. Supports Gettext, Ruby YAML, etc.</li>
+<li><a href="https://github.com/syeopite/lens" rel="noopener noreferrer">Lens (⭐19)</a> - A multiformat internationalization (i18n) shard for Crystal. Supports Gettext, Ruby YAML, etc.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/08/26/">Aug 26, 2021</a></h2><h3><p>Internationalization</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crystal-i18n/i18n" rel="noopener noreferrer">crystal-i18n (⭐32)</a> - An internationalization library inspired by Ruby-I18n</li>
+<li><a href="https://github.com/crystal-i18n/i18n" rel="noopener noreferrer">crystal-i18n (⭐33)</a> - An internationalization library inspired by Ruby-I18n</li>
 </ul>
 
 <ul>
@@ -476,7 +561,7 @@ described in [RFC 8032]</li>
 <h3><p>CLI Utils</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Blacksmoke16/oq" rel="noopener noreferrer">oq (⭐206)</a> - A performant, and portable jq wrapper to facilitate the consumption and output of formats other than JSON; using <a href="https://github.com/stedolan/jq" rel="noopener noreferrer">jq (⭐34k)</a> filters to transform the data</li>
+<li><a href="https://github.com/Blacksmoke16/oq" rel="noopener noreferrer">oq (⭐206)</a> - A performant, and portable jq wrapper to facilitate the consumption and output of formats other than JSON; using <a href="https://github.com/stedolan/jq" rel="noopener noreferrer">jq (⭐35k)</a> filters to transform the data</li>
 </ul>
 <h3><p>Dependency Injection</p>
 </h3>
@@ -504,12 +589,12 @@ described in [RFC 8032]</li>
 <h3><p>ORM/ODM Extensions</p>
 </h3>
 <ul>
-<li><a href="https://github.com/luckyframework/avram" rel="noopener noreferrer">avram (⭐177)</a> - A database wrapper for reading, writing, and migrating Postgres databases</li>
+<li><a href="https://github.com/luckyframework/avram" rel="noopener noreferrer">avram (⭐176)</a> - A database wrapper for reading, writing, and migrating Postgres databases</li>
 </ul>
 <h3><p>Queues and Messaging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mosquito-cr/mosquito/" rel="noopener noreferrer">mosquito (⭐243)</a> - Redis backed periodic and ad hoc job processing</li>
+<li><a href="https://github.com/mosquito-cr/mosquito/" rel="noopener noreferrer">mosquito (⭐245)</a> - Redis backed periodic and ad hoc job processing</li>
 </ul>
 <h3><p>Serverless Computing</p>
 </h3>
@@ -527,7 +612,7 @@ described in [RFC 8032]</li>
 <h3><p>LSP Language Server Protocol Implementations</p>
 </h3>
 <ul>
-<li><a href="https://github.com/elbywan/crystalline" rel="noopener noreferrer">crystalline (⭐510)</a> - Crystalline is an implementation of the Language Server Protocol written in and for the Crystal Language</li>
+<li><a href="https://github.com/elbywan/crystalline" rel="noopener noreferrer">crystalline (⭐509)</a> - Crystalline is an implementation of the Language Server Protocol written in and for the Crystal Language</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/05/27/">May 27, 2021</a></h2><h3><p>Compression</p>
 </h3>
@@ -592,14 +677,14 @@ described in [RFC 8032]</li>
 
 <ul>
 <li>Emacs<ul>
-<li><a href="https://melpa.org/#/crystal-mode" rel="noopener noreferrer">crystal-mode</a> - Crystal language support for Emacs (<a href="https://github.com/crystal-lang-tools/emacs-crystal-mode" rel="noopener noreferrer">crystal-lang-tools/emacs-crystal-mode (⭐53)</a>)</li>
+<li><a href="https://melpa.org/#/crystal-mode" rel="noopener noreferrer">crystal-mode</a> - Crystal language support for Emacs (<a href="https://github.com/crystal-lang-tools/emacs-crystal-mode" rel="noopener noreferrer">crystal-lang-tools/emacs-crystal-mode (⭐54)</a>)</li>
 </ul>
 </li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/02/27/">Feb 27, 2021</a></h2><h3><p>Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Anyolite/anyolite" rel="noopener noreferrer">anyolite (⭐180)</a> - Full mruby interpreter with simple bindings, allowing for easy scripting support in projects</li>
+<li><a href="https://github.com/Anyolite/anyolite" rel="noopener noreferrer">anyolite (⭐179)</a> - Full mruby interpreter with simple bindings, allowing for easy scripting support in projects</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/02/01/">Feb 01, 2021</a></h2><h3><p>Framework Components</p>
 </h3>
@@ -614,7 +699,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2020/12/19/">Dec 19, 2020</a></h2><h3><p>LSP Language Server Protocol Implementations</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crystal-lang-tools/scry" rel="noopener noreferrer">scry (⭐330)</a> - Code analysis server for Crystal implementing the <a href="https://microsoft.github.io/language-server-protocol/" rel="noopener noreferrer">Language Server Protocol</a></li>
+<li><a href="https://github.com/crystal-lang-tools/scry" rel="noopener noreferrer">scry (⭐331)</a> - Code analysis server for Crystal implementing the <a href="https://microsoft.github.io/language-server-protocol/" rel="noopener noreferrer">Language Server Protocol</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/12/08/">Dec 08, 2020</a></h2><h3><p>Algorithms and Data structures</p>
 </h3>
@@ -644,7 +729,7 @@ described in [RFC 8032]</li>
 <h3><p>Official Documentation Translations</p>
 </h3>
 <ul>
-<li><a href="https://github.com/iv-org/invidious" rel="noopener noreferrer">Invidious (⭐19k)</a> - Invidious is an alternative front-end to YouTube</li>
+<li><a href="https://github.com/iv-org/invidious" rel="noopener noreferrer">Invidious (⭐20k)</a> - Invidious is an alternative front-end to YouTube</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/11/01/">Nov 01, 2020</a></h2><h3><p>Misc</p>
 </h3>
@@ -654,7 +739,7 @@ described in [RFC 8032]</li>
 <h3><p>Processes and Threads</p>
 </h3>
 <ul>
-<li><a href="https://github.com/marghidanu/werk" rel="noopener noreferrer">werk (⭐30)</a> - Dead simple task runner with concurrent support, ideal for local CI</li>
+<li><a href="https://github.com/marghidanu/werk" rel="noopener noreferrer">werk (⭐31)</a> - Dead simple task runner with concurrent support, ideal for local CI</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/10/31/">Oct 31, 2020</a></h2><h3><p>Network Protocols</p>
 </h3>
@@ -664,12 +749,12 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2020/10/18/">Oct 18, 2020</a></h2><h3><p>Configuration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/grottopress/envy" rel="noopener noreferrer">Envy (⭐10)</a> - Load environment variables from YAML</li>
+<li><a href="https://github.com/grottopress/envy" rel="noopener noreferrer">Envy (⭐11)</a> - Load environment variables from YAML</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/10/16/">Oct 16, 2020</a></h2><h3><p>Web Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/grip-framework/grip" rel="noopener noreferrer">grip (⭐292)</a> - The microframework for writing powerful web applications</li>
+<li><a href="https://github.com/grip-framework/grip" rel="noopener noreferrer">grip (⭐291)</a> - The microframework for writing powerful web applications</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/09/26/">Sep 26, 2020</a></h2><h3><p>Compression</p>
 </h3>
@@ -698,7 +783,7 @@ described in [RFC 8032]</li>
 <h3><p>GUI Development</p>
 </h3>
 <ul>
-<li><a href="https://github.com/oprypin/crystal-imgui" rel="noopener noreferrer">crystal-imgui (⭐76)</a> - Bindings to <a href="https://github.com/ocornut/imgui" rel="noopener noreferrer">Dear ImGui (⭐73k)</a>, an immediate-mode graphical UI library</li>
+<li><a href="https://github.com/oprypin/crystal-imgui" rel="noopener noreferrer">crystal-imgui (⭐77)</a> - Bindings to <a href="https://github.com/ocornut/imgui" rel="noopener noreferrer">Dear ImGui (⭐73k)</a>, an immediate-mode graphical UI library</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/09/04/">Sep 04, 2020</a></h2><h3><p>HTTP</p>
 </h3>
@@ -777,7 +862,7 @@ described in [RFC 8032]</li>
 <h3><p>Web Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/athena-framework/athena" rel="noopener noreferrer">Athena (⭐231)</a> - A web framework comprised of reusable, independent components</li>
+<li><a href="https://github.com/athena-framework/athena" rel="noopener noreferrer">Athena (⭐232)</a> - A web framework comprised of reusable, independent components</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/06/08/">Jun 08, 2020</a></h2><h3><p>Official Documentation Translations</p>
 </h3>
@@ -797,7 +882,7 @@ described in [RFC 8032]</li>
 <h3><p>Third-party APIs</p>
 </h3>
 <ul>
-<li><a href="https://github.com/confact/stripe.cr" rel="noopener noreferrer">stripe.cr (⭐52)</a> - Stripe api wrapper</li>
+<li><a href="https://github.com/confact/stripe.cr" rel="noopener noreferrer">stripe.cr (⭐51)</a> - Stripe api wrapper</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/05/25/">May 25, 2020</a></h2><h3><p>Web Frameworks</p>
 </h3>
@@ -817,7 +902,7 @@ described in [RFC 8032]</li>
 <h3><p>Environment Management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crenv/crenv" rel="noopener noreferrer">crenv (⭐237)</a> - Crystal version manager</li>
+<li><a href="https://github.com/crenv/crenv" rel="noopener noreferrer">crenv (⭐238)</a> - Crystal version manager</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/05/04/">May 04, 2020</a></h2><h3><p>Game Development</p>
 </h3>
@@ -842,7 +927,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2020/04/05/">Apr 05, 2020</a></h2><h3><p>CLI Builders</p>
 </h3>
 <ul>
-<li><a href="https://github.com/robacarp/keimeno" rel="noopener noreferrer">Keimeno (⭐16)</a> -  A lightweight text user interface library in Crystal</li>
+<li><a href="https://github.com/robacarp/keimeno" rel="noopener noreferrer">Keimeno (⭐17)</a> -  A lightweight text user interface library in Crystal</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/04/04/">Apr 04, 2020</a></h2><h3><p>Third-party APIs</p>
 </h3>
@@ -890,7 +975,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2020/03/27/">Mar 27, 2020</a></h2><h3><p>Network Protocols</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cloudamqp/amqp-client.cr" rel="noopener noreferrer">amqp-client.cr (⭐73)</a> - AMQP 0-9.1, a messaging protocol, implemented by eg. RabbitMQ</li>
+<li><a href="https://github.com/cloudamqp/amqp-client.cr" rel="noopener noreferrer">amqp-client.cr (⭐74)</a> - AMQP 0-9.1, a messaging protocol, implemented by eg. RabbitMQ</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/03/23/">Mar 23, 2020</a></h2><h3><p>Web Frameworks</p>
 </h3>
@@ -900,7 +985,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2020/03/14/">Mar 14, 2020</a></h2><h3><p>Validation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Nicolab/crystal-validator" rel="noopener noreferrer">validator (⭐30)</a> - Data check and validation</li>
+<li><a href="https://github.com/Nicolab/crystal-validator" rel="noopener noreferrer">validator (⭐31)</a> - Data check and validation</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/03/12/">Mar 12, 2020</a></h2><h3><p>Unofficial</p>
 </h3>
@@ -910,7 +995,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2020/02/26/">Feb 26, 2020</a></h2><h3><p>Algorithms and Data structures</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hugopl/fzy" rel="noopener noreferrer">fzy (⭐47)</a> - A Crystal port of awesome Fzy project fuzzy finder algorithm</li>
+<li><a href="https://github.com/hugopl/fzy" rel="noopener noreferrer">fzy (⭐49)</a> - A Crystal port of awesome Fzy project fuzzy finder algorithm</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/02/01/">Feb 01, 2020</a></h2><h3><p>Cryptography</p>
 </h3>
@@ -1035,7 +1120,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2019/10/08/">Oct 08, 2019</a></h2><h3><p>CLI Utils</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hutou/tablo" rel="noopener noreferrer">tablo (⭐38)</a> - A flexible terminal table generator</li>
+<li><a href="https://github.com/hutou/tablo" rel="noopener noreferrer">tablo (⭐39)</a> - A flexible terminal table generator</li>
 </ul>
 <h3><p>Misc</p>
 </h3>
@@ -1060,7 +1145,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2019/09/13/">Sep 13, 2019</a></h2><h3><p>Queues and Messaging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nats-io/nats.cr" rel="noopener noreferrer">NATS.io (⭐45)</a> - NATS client</li>
+<li><a href="https://github.com/nats-io/nats.cr" rel="noopener noreferrer">NATS.io (⭐46)</a> - NATS client</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/09/03/">Sep 03, 2019</a></h2><h3><p>Third-party APIs</p>
 </h3>
@@ -1070,12 +1155,12 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2019/08/01/">Aug 01, 2019</a></h2><h3><p>Code Analysis and Metrics</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crystal-ameba/ameba" rel="noopener noreferrer">ameba (⭐556)</a> - A static code analysis tool</li>
+<li><a href="https://github.com/crystal-ameba/ameba" rel="noopener noreferrer">ameba (⭐559)</a> - A static code analysis tool</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/07/30/">Jul 30, 2019</a></h2><h3><p>HTTP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cable-cr/cable" rel="noopener noreferrer">Cable (⭐132)</a> - An ActionCable "port" to Crystal, framework agnostic, 100% compatible with the ActionCable JS Client</li>
+<li><a href="https://github.com/cable-cr/cable" rel="noopener noreferrer">Cable (⭐134)</a> - An ActionCable "port" to Crystal, framework agnostic, 100% compatible with the ActionCable JS Client</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/07/15/">Jul 15, 2019</a></h2><h3><p>Logging and monitoring</p>
 </h3>
@@ -1085,7 +1170,7 @@ described in [RFC 8032]</li>
 <h3><p>Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alex-lairan/monads" rel="noopener noreferrer">monads (⭐47)</a> - Monad implementation</li>
+<li><a href="https://github.com/alex-lairan/monads" rel="noopener noreferrer">monads (⭐48)</a> - Monad implementation</li>
 </ul>
 <h3><p>Testing</p>
 </h3>
@@ -1135,7 +1220,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2019/04/26/">Apr 26, 2019</a></h2><h3><p>Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/isaced/crystal-web-framework-stars" rel="noopener noreferrer">crystal-web-framework-stars (⭐75)</a> - Web frameworks for Crystal, most starred on Github</li>
+<li><a href="https://github.com/isaced/crystal-web-framework-stars" rel="noopener noreferrer">crystal-web-framework-stars (⭐74)</a> - Web frameworks for Crystal, most starred on Github</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/04/08/">Apr 08, 2019</a></h2><h3><p>ORM/ODM Extensions</p>
 </h3>
@@ -1155,7 +1240,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2019/03/15/">Mar 15, 2019</a></h2><h3><p>Data Formats</p>
 </h3>
 <ul>
-<li><a href="https://github.com/spider-gazelle/bindata" rel="noopener noreferrer">BinData (⭐48)</a> - Binary data parser helper with an <a href="https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One" rel="noopener noreferrer">ASN.1</a> parser</li>
+<li><a href="https://github.com/spider-gazelle/bindata" rel="noopener noreferrer">BinData (⭐49)</a> - Binary data parser helper with an <a href="https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One" rel="noopener noreferrer">ASN.1</a> parser</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/03/05/">Mar 05, 2019</a></h2><h3><p>Email</p>
 </h3>
@@ -1239,12 +1324,12 @@ described in [RFC 8032]</li>
 <h3><p>Official Documentation Translations</p>
 </h3>
 <ul>
-<li><a href="http://shards.info/" rel="noopener noreferrer">shards.info</a> - Web service that lists all repositories on GitHub that have Crystal code in them. The sources are available on <a href="https://github.com/mamantoha/shards-info" rel="noopener noreferrer">GitHub (⭐44)</a></li>
+<li><a href="http://shards.info/" rel="noopener noreferrer">shards.info</a> - Web service that lists all repositories on GitHub that have Crystal code in them. The sources are available on <a href="https://github.com/mamantoha/shards-info" rel="noopener noreferrer">GitHub (⭐45)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/10/02/">Oct 02, 2018</a></h2><h3><p>Data Formats</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crystal-community/toml.cr" rel="noopener noreferrer">toml.cr (⭐65)</a> - TOML parser</li>
+<li><a href="https://github.com/crystal-community/toml.cr" rel="noopener noreferrer">toml.cr (⭐66)</a> - TOML parser</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/09/26/">Sep 26, 2018</a></h2><h3><p>Unofficial</p>
 </h3>
@@ -1327,7 +1412,7 @@ described in [RFC 8032]</li>
 <h3><p>Shell plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Val/crun" rel="noopener noreferrer">crun (⭐47)</a> - Crystal Run : shebang wrapper for Crystal</li>
+<li><a href="https://github.com/Val/crun" rel="noopener noreferrer">crun (⭐48)</a> - Crystal Run : shebang wrapper for Crystal</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/08/08/">Aug 08, 2018</a></h2><h3><p>Configuration</p>
 </h3>
@@ -1526,7 +1611,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2018/02/19/">Feb 19, 2018</a></h2><h3><p>Web Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/spider-gazelle/spider-gazelle" rel="noopener noreferrer">spider-gazelle (⭐189)</a> - A Rails esque web framework with a focus on speed and extensibility</li>
+<li><a href="https://github.com/spider-gazelle/spider-gazelle" rel="noopener noreferrer">spider-gazelle (⭐191)</a> - A Rails esque web framework with a focus on speed and extensibility</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/02/18/">Feb 18, 2018</a></h2><h3><p>C bindings</p>
 </h3>
@@ -1556,7 +1641,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2017/12/24/">Dec 24, 2017</a></h2><h3><p>Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NeuraLegion/shainet" rel="noopener noreferrer">shainet (⭐194)</a> - SHAInet (Neural Network in pure crystal)</li>
+<li><a href="https://github.com/NeuraLegion/shainet" rel="noopener noreferrer">shainet (⭐195)</a> - SHAInet (Neural Network in pure crystal)</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/12/04/">Dec 04, 2017</a></h2><h3><p>ORM/ODM Extensions</p>
 </h3>
@@ -1581,7 +1666,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2017/10/23/">Oct 23, 2017</a></h2><h3><p>HTTP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mamantoha/crest" rel="noopener noreferrer">crest (⭐247)</a> - Simple HTTP and REST client, inspired by the Ruby's RestClient gem</li>
+<li><a href="https://github.com/mamantoha/crest" rel="noopener noreferrer">crest (⭐248)</a> - Simple HTTP and REST client, inspired by the Ruby's RestClient gem</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/10/22/">Oct 22, 2017</a></h2><h3><p>DevOps</p>
 </h3>
@@ -1611,7 +1696,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2017/10/02/">Oct 02, 2017</a></h2><h3><p>Examples and funny stuff</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crystal-community/crystal-patterns" rel="noopener noreferrer">crystal-patterns (⭐304)</a> - Examples of GOF patters</li>
+<li><a href="https://github.com/crystal-community/crystal-patterns" rel="noopener noreferrer">crystal-patterns (⭐308)</a> - Examples of GOF patters</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/09/22/">Sep 22, 2017</a></h2><h3><p>Markdown/Text Processors</p>
 </h3>
@@ -1646,7 +1731,7 @@ described in [RFC 8032]</li>
 <h3><p>Examples and funny stuff</p>
 </h3>
 <ul>
-<li><a href="https://github.com/exercism/crystal" rel="noopener noreferrer">exercism-crystal (⭐79)</a> - Exercism exercises</li>
+<li><a href="https://github.com/exercism/crystal" rel="noopener noreferrer">exercism-crystal (⭐78)</a> - Exercism exercises</li>
 </ul>
 <h3><p>Game Development</p>
 </h3>
@@ -1670,17 +1755,17 @@ described in [RFC 8032]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/crystal-community/msgpack-crystal" rel="noopener noreferrer">msgpack-crystal (⭐145)</a> - MessagePack library</li>
+<li><a href="https://github.com/crystal-community/msgpack-crystal" rel="noopener noreferrer">msgpack-crystal (⭐147)</a> - MessagePack library</li>
 </ul>
 <h3><p>Package Management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crystal-lang/shards" rel="noopener noreferrer">shards (⭐790)</a> - Dependency manager for the Crystal</li>
+<li><a href="https://github.com/crystal-lang/shards" rel="noopener noreferrer">shards (⭐788)</a> - Dependency manager for the Crystal</li>
 </ul>
 <h3><p>Web Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kemalcr/kemal" rel="noopener noreferrer">kemal (⭐3.8k)</a> - Lightning Fast, Super Simple web framework. Inspired by Sinatra</li>
+<li><a href="https://github.com/kemalcr/kemal" rel="noopener noreferrer">kemal (⭐3.9k)</a> - Lightning Fast, Super Simple web framework. Inspired by Sinatra</li>
 </ul>
 
 <ul>
@@ -1711,14 +1796,14 @@ described in [RFC 8032]</li>
 
 <ul>
 <li>TextMate<ul>
-<li><a href="https://github.com/crystal-lang-tools/Crystal.tmbundle" rel="noopener noreferrer">Crystal.tmbundle (⭐19)</a> - Crystal syntax highlighting, compile, format command, snippets</li>
+<li><a href="https://github.com/crystal-lang-tools/Crystal.tmbundle" rel="noopener noreferrer">Crystal.tmbundle (⭐20)</a> - Crystal syntax highlighting, compile, format command, snippets</li>
 </ul>
 </li>
 </ul>
 
 <ul>
 <li>Vim<ul>
-<li><a href="https://github.com/vim-crystal/vim-crystal" rel="noopener noreferrer">vim-crystal (⭐425)</a> - Vim filetype support for Crystal</li>
+<li><a href="https://github.com/vim-crystal/vim-crystal" rel="noopener noreferrer">vim-crystal (⭐428)</a> - Vim filetype support for Crystal</li>
 <li><a href="https://github.com/elorest/vim-slang" rel="noopener noreferrer">vim-slang (⭐13)</a> - Vim filetype support for Slang Templating Engine</li>
 </ul>
 </li>
@@ -1738,7 +1823,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2017/08/03/">Aug 03, 2017</a></h2><h3><p>ORM/ODM Extensions</p>
 </h3>
 <ul>
-<li><a href="https://github.com/imdrasil/jennifer.cr" rel="noopener noreferrer">jennifer.cr (⭐424)</a> - Active Record pattern implementation with flexible query chainable builder and migration system</li>
+<li><a href="https://github.com/imdrasil/jennifer.cr" rel="noopener noreferrer">jennifer.cr (⭐425)</a> - Active Record pattern implementation with flexible query chainable builder and migration system</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/08/01/">Aug 01, 2017</a></h2><h3><p>Implementations/Compilers</p>
 </h3>
@@ -1753,7 +1838,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2017/07/14/">Jul 14, 2017</a></h2><h3><p>Third-party APIs</p>
 </h3>
 <ul>
-<li><a href="https://github.com/taylorfinnell/awscr-s3" rel="noopener noreferrer">awscr-s3 (⭐89)</a> - AWS S3 interface</li>
+<li><a href="https://github.com/taylorfinnell/awscr-s3" rel="noopener noreferrer">awscr-s3 (⭐90)</a> - AWS S3 interface</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/07/13/">Jul 13, 2017</a></h2><h3><p>Converters</p>
 </h3>
@@ -1818,7 +1903,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2017/05/09/">May 09, 2017</a></h2><h3><p>Routing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tbrand/router.cr" rel="noopener noreferrer">router.cr (⭐271)</a> - Minimum but powerful http router for HTTP::Server</li>
+<li><a href="https://github.com/tbrand/router.cr" rel="noopener noreferrer">router.cr (⭐272)</a> - Minimum but powerful http router for HTTP::Server</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/05/08/">May 08, 2017</a></h2><h3><p>C bindings</p>
 </h3>
@@ -1864,7 +1949,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2017/04/01/">Apr 01, 2017</a></h2><h3><p>Framework Components</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kemalcr/kemal-session" rel="noopener noreferrer">kemal-session (⭐62)</a> - Session handler for Kemal</li>
+<li><a href="https://github.com/kemalcr/kemal-session" rel="noopener noreferrer">kemal-session (⭐63)</a> - Session handler for Kemal</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/03/30/">Mar 30, 2017</a></h2><h3><p>Third-party APIs</p>
 </h3>
@@ -1914,7 +1999,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2017/02/01/">Feb 01, 2017</a></h2><h3><p>CLI Builders</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jwaldrip/admiral.cr" rel="noopener noreferrer">admiral (⭐142)</a> - A robust DSL for writing command line interfaces</li>
+<li><a href="https://github.com/jwaldrip/admiral.cr" rel="noopener noreferrer">admiral (⭐144)</a> - A robust DSL for writing command line interfaces</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/01/21/">Jan 21, 2017</a></h2><h3><p>Environment Management</p>
 </h3>
@@ -1953,7 +2038,7 @@ described in [RFC 8032]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/crystal-lang/crystal-sqlite3" rel="noopener noreferrer">crystal-sqlite3 (⭐159)</a> - SQLite3 bindings</li>
+<li><a href="https://github.com/crystal-lang/crystal-sqlite3" rel="noopener noreferrer">crystal-sqlite3 (⭐160)</a> - SQLite3 bindings</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/09/07/">Sep 07, 2016</a></h2><h3><p>Editor Plugins</p>
 </h3>
@@ -1985,12 +2070,12 @@ described in [RFC 8032]</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jeromegn/slang" rel="noopener noreferrer">Slang (⭐237)</a> - Lightweight, terse, templating language inspired by Ruby's Slim</li>
+<li><a href="https://github.com/jeromegn/slang" rel="noopener noreferrer">Slang (⭐235)</a> - Lightweight, terse, templating language inspired by Ruby's Slim</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/08/08/">Aug 08, 2016</a></h2><h3><p>Configuration</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gdotdesign/cr-dotenv" rel="noopener noreferrer">cr-dotenv (⭐99)</a> - Loads .env file</li>
+<li><a href="https://github.com/gdotdesign/cr-dotenv" rel="noopener noreferrer">cr-dotenv (⭐100)</a> - Loads .env file</li>
 </ul>
 <h3><p>Web Frameworks</p>
 </h3>
@@ -2062,7 +2147,7 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2016/05/28/">May 28, 2016</a></h2><h3><p>CLI Builders</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mrrooijen/commander" rel="noopener noreferrer">commander (⭐128)</a> - Command-line interface builder</li>
+<li><a href="https://github.com/mrrooijen/commander" rel="noopener noreferrer">commander (⭐130)</a> - Command-line interface builder</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/05/26/">May 26, 2016</a></h2><h3><p>Misc</p>
 </h3>
@@ -2072,7 +2157,7 @@ described in [RFC 8032]</li>
 <h3><p>Queues and Messaging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mperham/sidekiq.cr" rel="noopener noreferrer">sidekiq.cr (⭐776)</a> - Simple, efficient job processing</li>
+<li><a href="https://github.com/mperham/sidekiq.cr" rel="noopener noreferrer">sidekiq.cr (⭐778)</a> - Simple, efficient job processing</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/05/04/">May 04, 2016</a></h2><h3><p>Algorithms and Data structures</p>
 </h3>
@@ -2090,17 +2175,17 @@ described in [RFC 8032]</li>
 <h3><p>HTTP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ysbaddaden/http2" rel="noopener noreferrer">http2 (⭐105)</a> - HTTP/2 Protocol Implementation</li>
+<li><a href="https://github.com/ysbaddaden/http2" rel="noopener noreferrer">http2 (⭐106)</a> - HTTP/2 Protocol Implementation</li>
 </ul>
 <h3><p>Template Engine</p>
 </h3>
 <ul>
-<li><a href="https://github.com/MakeNowJust/crustache" rel="noopener noreferrer">crustache (⭐87)</a> - <a href="https://mustache.github.io" rel="noopener noreferrer">{{Mustache}}</a> for Crystal</li>
+<li><a href="https://github.com/MakeNowJust/crustache" rel="noopener noreferrer">crustache (⭐88)</a> - <a href="https://mustache.github.io" rel="noopener noreferrer">{{Mustache}}</a> for Crystal</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/03/27/">Mar 27, 2016</a></h2><h3><p>Misc</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lucaong/immutable" rel="noopener noreferrer">immutable (⭐204)</a> - Implementation of thread-safe, persistent, immutable collections</li>
+<li><a href="https://github.com/lucaong/immutable" rel="noopener noreferrer">immutable (⭐203)</a> - Implementation of thread-safe, persistent, immutable collections</li>
 </ul>
 <h3><p>Testing</p>
 </h3>
@@ -2125,12 +2210,12 @@ described in [RFC 8032]</li>
 <h2><a href="https://www.trackawesomelist.com/2016/01/18/">Jan 18, 2016</a></h2><h3><p>Data Generators</p>
 </h3>
 <ul>
-<li><a href="https://github.com/askn/faker" rel="noopener noreferrer">faker (⭐157)</a> - A library for generating fake data</li>
+<li><a href="https://github.com/askn/faker" rel="noopener noreferrer">faker (⭐158)</a> - A library for generating fake data</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/12/27/">Dec 27, 2015</a></h2><h3><p>Database Drivers/Clients</p>
 </h3>
 <ul>
-<li><a href="https://github.com/stefanwille/crystal-redis" rel="noopener noreferrer">crystal-redis (⭐377)</a> - Full featured Redis client</li>
+<li><a href="https://github.com/stefanwille/crystal-redis" rel="noopener noreferrer">crystal-redis (⭐379)</a> - Full featured Redis client</li>
 </ul>
 <h3><p>Misc</p>
 </h3>
@@ -2140,7 +2225,7 @@ described in [RFC 8032]</li>
 <h3><p>Testing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ysbaddaden/minitest.cr" rel="noopener noreferrer">minitest.cr (⭐151)</a> - Library for unit tests and assertions</li>
+<li><a href="https://github.com/ysbaddaden/minitest.cr" rel="noopener noreferrer">minitest.cr (⭐153)</a> - Library for unit tests and assertions</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/07/20/">Jul 20, 2015</a></h2><h3><p>Testing</p>
 </h3>
@@ -2188,5 +2273,47 @@ described in [RFC 8032]</li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
