@@ -16,22 +16,133 @@
     <meta property="og:title" content="Track Awesome Music Updates Daily" />
     <meta property="og:description" content="Awesome Music Projects" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Music Updates Daily</h1>
 <p>Awesome Music Projects</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/ciconia/awesome-music/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/noteflakes/awesome-music">😺 ciconia/awesome-music</a><span> · </span><span>⭐ 2.2K</span><span> · </span><span>🏷️ Media</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/ciconia/awesome-music/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/noteflakes/awesome-music">😺 ciconia/awesome-music</a><span> · </span><span>⭐ 2.4K</span><span> · </span><span>🏷️ Media</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/ciconia/awesome-music/week/">Weekly</a><span> / </span><a href="/ciconia/awesome-music/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/05/28/">May 28, 2026</a></h2><h3><p>Audio Tools</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Chevron7Locked/kima-hub" rel="noopener noreferrer">Kima (⭐1.1k)</a> - a self-hosted music streaming server with ML-powered audio analysis, vibe-based discovery, and Subsonic API support.</li>
+</ul>
+<h3><p>MIDI Tools &amp; Libraries</p>
+</h3>
+<ul>
+<li><a href="https://github.com/sauloverissimo/gingoduino" rel="noopener noreferrer">Gingoduino (⭐45)</a> - music theory engine for embedded systems with MIDI 1.0/2.0 UMP support.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jjazzboss/JJazzLab" rel="noopener noreferrer">JJazzLab (⭐548)</a> - a complete Midi-based framework for automatic backing tracks generation.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/cbdevnet/midimonster" rel="noopener noreferrer">Midimonster (⭐594)</a> - universal control and translation tool for most show control protocols.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mididings/mididings" rel="noopener noreferrer">mididings (⭐39)</a> - A Python-based MIDI router and processor for Linux and macOS</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mididings/stagedings" rel="noopener noreferrer">stagedings (⭐7)</a> - An UI and API for mididings</li>
+</ul>
+<h3><p>Related lists</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Curated-Awesome-Lists/awesome-ai-music-generation" rel="noopener noreferrer">Awesome AI Music Generation (⭐463)</a> - A curated list of AI music generation tools and resources.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/01/25/">Jan 25, 2026</a></h2><h3><p>Music Notation</p>
 </h3>
 <ul>
@@ -40,22 +151,22 @@
 <h2><a href="https://www.trackawesomelist.com/2026/01/24/">Jan 24, 2026</a></h2><h3><p>Music Notation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rism-digital/verovio/tree/develop/libmei" rel="noopener noreferrer">LibMEI (⭐814)</a> - a C++ library for reading and writing MEI files.</li>
+<li><a href="https://github.com/rism-digital/verovio/tree/develop/libmei" rel="noopener noreferrer">LibMEI (⭐868)</a> - a C++ library for reading and writing MEI files.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/08/28/">Aug 28, 2025</a></h2><h3><p>Audio Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/WengYiNing/Auralytics" rel="noopener noreferrer">Auralytics (⭐13)</a> - an open-source personal Spotify analytics tool.</li>
+<li><a href="https://github.com/WengYiNing/Auralytics" rel="noopener noreferrer">Auralytics (⭐14)</a> - an open-source personal Spotify analytics tool.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/04/02/">Apr 02, 2025</a></h2><h3><p>Music Programming</p>
 </h3>
 <ul>
-<li><a href="https://github.com/babali42/drumbeatrepo" rel="noopener noreferrer">DrumBeatRepo (⭐19)</a> - A rhythm library for playing drum beats of differents music genres in the browser.</li>
+<li><a href="https://github.com/babali42/drumbeatrepo" rel="noopener noreferrer">DrumBeatRepo (⭐23)</a> - A rhythm library for playing drum beats of differents music genres in the browser.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/02/17/">Feb 17, 2025</a></h2><h3><p>Related lists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zoejane/awesome-music-programming" rel="noopener noreferrer">Awesome Music Programming (⭐89)</a> - A curated collection of music programming languages, libraries, frameworks and tools.</li>
+<li><a href="https://github.com/zoejane/awesome-music-programming" rel="noopener noreferrer">Awesome Music Programming (⭐108)</a> - A curated collection of music programming languages, libraries, frameworks and tools.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/01/02/">Jan 02, 2025</a></h2><h3><p>Music Programming</p>
 </h3>
@@ -75,7 +186,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/05/18/">May 18, 2024</a></h2><h3><p>Audio Editing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/stakira/openutau/" rel="noopener noreferrer">OpenUtau (⭐3.5k)</a> - A free, cross-platform singing voice synthesis framework.</li>
+<li><a href="https://github.com/stakira/openutau/" rel="noopener noreferrer">OpenUtau (⭐3.9k)</a> - A free, cross-platform singing voice synthesis framework.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/03/19/">Mar 19, 2024</a></h2><h3><p>Music Notation</p>
 </h3>
@@ -90,7 +201,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/02/13/">Feb 13, 2024</a></h2><h3><p>Free Music Scores</p>
 </h3>
 <ul>
-<li><a href="https://github.com/madrisan/open-scores" rel="noopener noreferrer">Lavender Blue Open-Scores (⭐22)</a> - open scores for piano encoded using lilypond.</li>
+<li><a href="https://github.com/madrisan/open-scores" rel="noopener noreferrer">Lavender Blue Open-Scores (⭐28)</a> - open scores for piano encoded using lilypond.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/11/12/">Nov 12, 2023</a></h2><h3><p>Music Programming</p>
 </h3>
@@ -115,7 +226,7 @@
 <h3><p>Audio Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/belangeo/cecilia5" rel="noopener noreferrer">Cecilia (⭐270)</a> - a Pyo-based graphical environment for music and signal processing.</li>
+<li><a href="https://github.com/belangeo/cecilia5" rel="noopener noreferrer">Cecilia (⭐280)</a> - a Pyo-based graphical environment for music and signal processing.</li>
 </ul>
 <h3><p>Music Programming</p>
 </h3>
@@ -128,17 +239,17 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mdedwards/slippery-chicken" rel="noopener noreferrer">slippery chicken (⭐77)</a> - a Common Lisp environment for composition building on CLM, CMN, CM, MusicXML and Lilypond for score, sound file, and/or MIDI file outputs.</li>
+<li><a href="https://github.com/mdedwards/slippery-chicken" rel="noopener noreferrer">slippery chicken (⭐80)</a> - a Common Lisp environment for composition building on CLM, CMN, CM, MusicXML and Lilypond for score, sound file, and/or MIDI file outputs.</li>
 </ul>
 <h3><p>Related lists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/BillyDM/awesome-audio-dsp" rel="noopener noreferrer">Awesome Audio DSP (⭐1.2k)</a> - A curated list of audio DSP and plugin development resources.</li>
+<li><a href="https://github.com/BillyDM/awesome-audio-dsp" rel="noopener noreferrer">Awesome Audio DSP (⭐1.3k)</a> - A curated list of audio DSP and plugin development resources.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/07/28/">Jul 28, 2023</a></h2><h3><p>MIDI Tools &amp; Libraries</p>
 </h3>
 <ul>
-<li><a href="http://github.com/dredozubov/polyrhythmix" rel="noopener noreferrer">Polyrhythmix (⭐303)</a> - MIDI drums
+<li><a href="http://github.com/dredozubov/polyrhythmix" rel="noopener noreferrer">Polyrhythmix (⭐307)</a> - MIDI drums
 generator, designed for polyrhythmic parts</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/04/28/">Apr 28, 2023</a></h2><h3><p>Audio Editing</p>
@@ -149,27 +260,27 @@ generator, designed for polyrhythmic parts</li>
 <h3><p>Music Programming</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tuneflow/tuneflow-py/" rel="noopener noreferrer">tuneflow-py (⭐863)</a> - python plugin SDK for the next-gen DAW, that allows you to program your music algorithms &amp; AI models into all stages of music production</li>
+<li><a href="https://github.com/tuneflow/tuneflow-py/" rel="noopener noreferrer">tuneflow-py (⭐881)</a> - python plugin SDK for the next-gen DAW, that allows you to program your music algorithms &amp; AI models into all stages of music production</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/03/27/">Mar 27, 2023</a></h2><h3><p>Audio Editing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/stargatedaw/stargate/" rel="noopener noreferrer">Stargate DAW (⭐801)</a> - A cross-platform, all-in-one digital audio workstation and plugin suite, optimized for EDM production.</li>
+<li><a href="https://github.com/stargatedaw/stargate/" rel="noopener noreferrer">Stargate DAW (⭐842)</a> - A cross-platform, all-in-one digital audio workstation and plugin suite, optimized for EDM production.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/03/14/">Mar 14, 2023</a></h2><h3><p>Music Programming</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Bubobubobubobubo/sardine" rel="noopener noreferrer">Sardine (⭐295)</a> - a music live coding library for Python 3.10+ (MIDI/OSC/SuperCollider).</li>
+<li><a href="https://github.com/Bubobubobubobubo/sardine" rel="noopener noreferrer">Sardine (⭐313)</a> - a music live coding library for Python 3.10+ (MIDI/OSC/SuperCollider).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/02/13/">Feb 13, 2023</a></h2><h3><p>Audio Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/libAudioFlux/audioFlux" rel="noopener noreferrer">audioFlux (⭐3.2k)</a> - A library for audio and music analysis, feature extraction.</li>
+<li><a href="https://github.com/libAudioFlux/audioFlux" rel="noopener noreferrer">audioFlux (⭐3.3k)</a> - A library for audio and music analysis, feature extraction.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/01/23/">Jan 23, 2023</a></h2><h3><p>Audio Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/no-chris/chord-mark" rel="noopener noreferrer">chord-mark (⭐87)</a> - reference implementation of ChordMark, a text notation format for lyrics, chords and rhythm.</li>
+<li><a href="https://github.com/no-chris/chord-mark" rel="noopener noreferrer">chord-mark (⭐88)</a> - reference implementation of ChordMark, a text notation format for lyrics, chords and rhythm.</li>
 </ul>
 <h3><p>Music Notation</p>
 </h3>
@@ -189,7 +300,7 @@ generator, designed for polyrhythmic parts</li>
 <h2><a href="https://www.trackawesomelist.com/2022/08/13/">Aug 13, 2022</a></h2><h3><p>Music Programming</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Jackojc/cane" rel="noopener noreferrer">Cane (⭐108)</a> - A small MIDI sequencer DSL designed around vectors and euclidean rhythms.</li>
+<li><a href="https://github.com/Jackojc/cane" rel="noopener noreferrer">Cane (⭐109)</a> - A small MIDI sequencer DSL designed around vectors and euclidean rhythms.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/05/14/">May 14, 2022</a></h2><h3><p>Music Programming</p>
 </h3>
@@ -199,17 +310,12 @@ generator, designed for polyrhythmic parts</li>
 <h2><a href="https://www.trackawesomelist.com/2022/04/14/">Apr 14, 2022</a></h2><h3><p>Music Programming</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Gwion/Gwion" rel="noopener noreferrer">Gwion (⭐573)</a> - A strongly-timed programming language aimed at music creation. Heavily inspired by ChucK.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2022/03/25/">Mar 25, 2022</a></h2><h3><p>MIDI Tools &amp; Libraries</p>
-</h3>
-<ul>
-<li><a href="https://github.com/jjazzboss/JJazzLab-X" rel="noopener noreferrer">JJazzLab-X (⭐1)</a> - a complete Midi-based framework for automatic backing tracks generation.</li>
+<li><a href="https://github.com/Gwion/Gwion" rel="noopener noreferrer">Gwion (⭐580)</a> - A strongly-timed programming language aimed at music creation. Heavily inspired by ChucK.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/06/03/">Jun 03, 2021</a></h2><h3><p>Music Notation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/opensheetmusicdisplay/opensheetmusicdisplay" rel="noopener noreferrer">OpenSheetMusicDisplay (⭐1.8k)</a> - Typescript library for rendering MusicXML in the browser.</li>
+<li><a href="https://github.com/opensheetmusicdisplay/opensheetmusicdisplay" rel="noopener noreferrer">OpenSheetMusicDisplay (⭐1.9k)</a> - Typescript library for rendering MusicXML in the browser.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/05/19/">May 19, 2021</a></h2><h3><p>Music Programming</p>
 </h3>
@@ -239,17 +345,17 @@ generator, designed for polyrhythmic parts</li>
 <h2><a href="https://www.trackawesomelist.com/2020/02/15/">Feb 15, 2020</a></h2><h3><p>Audio Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sergree/matchering" rel="noopener noreferrer">matchering (⭐2.4k)</a> - сontainerized web application and library for automated reference audio mastering.</li>
+<li><a href="https://github.com/sergree/matchering" rel="noopener noreferrer">matchering (⭐2.5k)</a> - сontainerized web application and library for automated reference audio mastering.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/01/18/">Jan 18, 2020</a></h2><h3><p>Music Programming</p>
 </h3>
 <ul>
-<li><a href="https://github.com/truj/midica" rel="noopener noreferrer">Midica (⭐127)</a> - MIDI programming language with decompiler and player, supports karaoke.</li>
+<li><a href="https://github.com/truj/midica" rel="noopener noreferrer">Midica (⭐130)</a> - MIDI programming language with decompiler and player, supports karaoke.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/12/14/">Dec 14, 2019</a></h2><h3><p>Music Notation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/PatWie/digitalmusicstand" rel="noopener noreferrer">Digital Music Stand (⭐37)</a> - a free web app for displaying sheet music.</li>
+<li><a href="https://github.com/PatWie/digitalmusicstand" rel="noopener noreferrer">Digital Music Stand (⭐38)</a> - a free web app for displaying sheet music.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/10/23/">Oct 23, 2019</a></h2><h3><p>Music Notation</p>
 </h3>
@@ -268,7 +374,7 @@ generator, designed for polyrhythmic parts</li>
 <h2><a href="https://www.trackawesomelist.com/2019/02/10/">Feb 10, 2019</a></h2><h3><p>Music Programming</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hundredrabbits/Orca" rel="noopener noreferrer">Orca (⭐4.9k)</a> - live programming environment for music.</li>
+<li><a href="https://github.com/hundredrabbits/Orca" rel="noopener noreferrer">Orca (⭐5k)</a> - live programming environment for music.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/11/17/">Nov 17, 2018</a></h2><h3><p>Music Notation</p>
 </h3>
@@ -296,7 +402,7 @@ generator, designed for polyrhythmic parts</li>
 <h2><a href="https://www.trackawesomelist.com/2018/09/21/">Sep 21, 2018</a></h2><h3><p>Audio Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/enzo1982/freac" rel="noopener noreferrer">fre:ac (⭐1.7k)</a> - free audio converter. It supports audio CD ripping and tag editing.</li>
+<li><a href="https://github.com/enzo1982/freac" rel="noopener noreferrer">fre:ac (⭐1.9k)</a> - free audio converter. It supports audio CD ripping and tag editing.</li>
 </ul>
 
 <ul>
@@ -304,23 +410,23 @@ generator, designed for polyrhythmic parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/KDE/k3b" rel="noopener noreferrer">K3b (⭐197)</a> - is a full-featured CD/DVD/Blu-ray burning and ripping application.</li>
+<li><a href="https://github.com/KDE/k3b" rel="noopener noreferrer">K3b (⭐214)</a> - is a full-featured CD/DVD/Blu-ray burning and ripping application.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/bgoglin/lltag" rel="noopener noreferrer">lltag (⭐36)</a> - automatic command-line mp3/ogg/flac file tagger and renamer.</li>
+<li><a href="https://github.com/bgoglin/lltag" rel="noopener noreferrer">lltag (⭐37)</a> - automatic command-line mp3/ogg/flac file tagger and renamer.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/bleskodev/rubyripper" rel="noopener noreferrer">Rubyripper (⭐133)</a> - is a secure digital audio extraction application ("cd ripper") for Unix-like operating systems.</li>
+<li><a href="https://github.com/bleskodev/rubyripper" rel="noopener noreferrer">Rubyripper (⭐138)</a> - is a secure digital audio extraction application ("cd ripper") for Unix-like operating systems.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ftrvxmtrx/split2flac" rel="noopener noreferrer">split2flac (⭐257)</a> - split flac/ape/wv/wav + cue sheet into separate tracks</li>
+<li><a href="https://github.com/ftrvxmtrx/split2flac" rel="noopener noreferrer">split2flac (⭐259)</a> - split flac/ape/wv/wav + cue sheet into separate tracks</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/JoeLametta/whipper" rel="noopener noreferrer">Whipper (⭐1.3k)</a> - Python CD-DA ripper preferring accuracy over speed.</li>
+<li><a href="https://github.com/JoeLametta/whipper" rel="noopener noreferrer">Whipper (⭐1.4k)</a> - Python CD-DA ripper preferring accuracy over speed.</li>
 </ul>
 
 <ul>
@@ -344,7 +450,7 @@ generator, designed for polyrhythmic parts</li>
 <h3><p>Related lists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/willianjusten/awesome-audio-visualization" rel="noopener noreferrer">Awesome Audio Visualization (⭐4.9k)</a> - A curated list about Audio Visualization.</li>
+<li><a href="https://github.com/willianjusten/awesome-audio-visualization" rel="noopener noreferrer">Awesome Audio Visualization (⭐5k)</a> - A curated list about Audio Visualization.</li>
 </ul>
 
 <ul>
@@ -352,16 +458,16 @@ generator, designed for polyrhythmic parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/notthetup/awesome-webaudio" rel="noopener noreferrer">Awesome WebAudio (⭐1.3k)</a> - A curated list of awesome WebAudio packages and resources.</li>
+<li><a href="https://github.com/notthetup/awesome-webaudio" rel="noopener noreferrer">Awesome WebAudio (⭐1.4k)</a> - A curated list of awesome WebAudio packages and resources.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/01/18/">Jan 18, 2018</a></h2><h3><p>Related lists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ybayle/awesome-music-listening" rel="noopener noreferrer">Awesome Music Listening (⭐150)</a> - Awesome list of websites dedicated to listening to music.</li>
+<li><a href="https://github.com/ybayle/awesome-music-listening" rel="noopener noreferrer">Awesome Music Listening (⭐156)</a> - Awesome list of websites dedicated to listening to music.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/adius/awesome-sheet-music" rel="noopener noreferrer">Awesome sheet music (⭐955)</a> - A curated list of awesome sheet music software, libraries and resources.</li>
+<li><a href="https://github.com/adius/awesome-sheet-music" rel="noopener noreferrer">Awesome sheet music (⭐993)</a> - A curated list of awesome sheet music software, libraries and resources.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/01/04/">Jan 04, 2018</a></h2><h3><p>Music Notation</p>
 </h3>
@@ -371,7 +477,7 @@ generator, designed for polyrhythmic parts</li>
 <h2><a href="https://www.trackawesomelist.com/2017/05/12/">May 12, 2017</a></h2><h3><p>Audio Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/librosa/librosa" rel="noopener noreferrer">Librosa (⭐8.2k)</a> - a python package for music and audio analysis, providing the building blocks necessary to create music information retrieval systems.</li>
+<li><a href="https://github.com/librosa/librosa" rel="noopener noreferrer">Librosa (⭐8.4k)</a> - a python package for music and audio analysis, providing the building blocks necessary to create music information retrieval systems.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/12/27/">Dec 27, 2016</a></h2><h3><p>Music Notation</p>
 </h3>
@@ -414,7 +520,7 @@ generator, designed for polyrhythmic parts</li>
 <h3><p>Music Notation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/venturemedia/musickit" rel="noopener noreferrer">MusicKit (⭐112)</a> - Music sheet rendering for iOS and OSX.</li>
+<li><a href="https://github.com/venturemedia/musickit" rel="noopener noreferrer">MusicKit (⭐111)</a> - Music sheet rendering for iOS and OSX.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/03/26/">Mar 26, 2016</a></h2><h3><p>Music Programming</p>
 </h3>
@@ -424,7 +530,7 @@ generator, designed for polyrhythmic parts</li>
 <h3><p>Related lists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/adius/awesome-music-production" rel="noopener noreferrer">Awesome Music Production (⭐1.3k)</a> - A curated list of software and resources to create music.</li>
+<li><a href="https://github.com/adius/awesome-music-production" rel="noopener noreferrer">Awesome Music Production (⭐1.4k)</a> - A curated list of software and resources to create music.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/03/10/">Mar 10, 2016</a></h2><h3><p>Music Notation</p>
 </h3>
@@ -454,7 +560,7 @@ generator, designed for polyrhythmic parts</li>
 <h2><a href="https://www.trackawesomelist.com/2016/02/04/">Feb 04, 2016</a></h2><h3><p>Audio Editing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/audacity/audacity" rel="noopener noreferrer">Audacity (⭐16k)</a> - a free, cross-platform digital audio editor.</li>
+<li><a href="https://github.com/audacity/audacity" rel="noopener noreferrer">Audacity (⭐17k)</a> - a free, cross-platform digital audio editor.</li>
 </ul>
 <h3><p>Audio Libraries</p>
 </h3>
@@ -488,20 +594,16 @@ generator, designed for polyrhythmic parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/j3ffhubb/musikernel" rel="noopener noreferrer">Musikernel</a> - a futuristic audio production platform (hardware support, APIs, hosts, plugins and more)</li>
-</ul>
-
-<ul>
 <li><a href="http://sox.sourceforge.net/" rel="noopener noreferrer">SoX</a> - a free open-source command line utility for playing, converting and manipulating audio files.</li>
 </ul>
 <h3><p>Free Music Scores</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cellist/Lilypond-Sheet-Music" rel="noopener noreferrer">cellist/Lilypond-Sheet-Music (⭐146)</a> - a collection of music typeset with lilypond (mostly chamber music and music for cello).</li>
+<li><a href="https://github.com/cellist/Lilypond-Sheet-Music" rel="noopener noreferrer">cellist/Lilypond-Sheet-Music (⭐156)</a> - a collection of music typeset with lilypond (mostly chamber music and music for cello).</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ciconia/music" rel="noopener noreferrer">ciconia/music (⭐25)</a> - a collection of mostly baroque music, lots of sacred works by J. S. Bach, coded in lilypond/ripple.</li>
+<li><a href="https://github.com/ciconia/music" rel="noopener noreferrer">ciconia/music (⭐28)</a> - a collection of mostly baroque music, lots of sacred works by J. S. Bach, coded in lilypond/ripple.</li>
 </ul>
 
 <ul>
@@ -509,7 +611,7 @@ generator, designed for polyrhythmic parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/nsceaux/nenuvar" rel="noopener noreferrer">Éditions Nicolas Sceaux (⭐48)</a> - baroque music scores (mainly French music), typeset using lilypond.</li>
+<li><a href="https://github.com/nsceaux/nenuvar" rel="noopener noreferrer">Éditions Nicolas Sceaux (⭐51)</a> - baroque music scores (mainly French music), typeset using lilypond.</li>
 </ul>
 
 <ul>
@@ -517,11 +619,11 @@ generator, designed for polyrhythmic parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/MutopiaProject/MutopiaProject" rel="noopener noreferrer">Mutopia (⭐282)</a> - sheet music based on editions in the public domain.</li>
+<li><a href="https://github.com/MutopiaProject/MutopiaProject" rel="noopener noreferrer">Mutopia (⭐293)</a> - sheet music based on editions in the public domain.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/wbsoft/lilymusic" rel="noopener noreferrer">wbsoft/lilymusic (⭐70)</a> - beautiful LilyPond scores under free licenses.</li>
+<li><a href="https://github.com/wbsoft/lilymusic" rel="noopener noreferrer">wbsoft/lilymusic (⭐74)</a> - beautiful LilyPond scores under free licenses.</li>
 </ul>
 <h3><p>MIDI Tools &amp; Libraries</p>
 </h3>
@@ -535,7 +637,7 @@ generator, designed for polyrhythmic parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/wbsoft/frescobaldi" rel="noopener noreferrer">Frescobaldi (⭐890)</a> - a free Lilypond sheet music editor.</li>
+<li><a href="https://github.com/wbsoft/frescobaldi" rel="noopener noreferrer">Frescobaldi (⭐928)</a> - a free Lilypond sheet music editor.</li>
 </ul>
 
 <ul>
@@ -555,7 +657,7 @@ generator, designed for polyrhythmic parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/musescore/MuseScore" rel="noopener noreferrer">MuseScore (⭐14k)</a> - free open-source music notation and composition software.</li>
+<li><a href="https://github.com/musescore/MuseScore" rel="noopener noreferrer">MuseScore (⭐15k)</a> - free open-source music notation and composition software.</li>
 </ul>
 
 <ul>
@@ -563,11 +665,11 @@ generator, designed for polyrhythmic parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/rism-ch/verovio" rel="noopener noreferrer">Verovio (⭐812)</a> - a library and a toolkit for engraving MEI music notation into SVG.</li>
+<li><a href="https://github.com/rism-ch/verovio" rel="noopener noreferrer">Verovio (⭐868)</a> - a library and a toolkit for engraving MEI music notation into SVG.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/0xfe/vexflow" rel="noopener noreferrer">Vexflow (⭐4.2k)</a> - a JavaScript library for rendering music notation and guitar tablature.</li>
+<li><a href="https://github.com/0xfe/vexflow" rel="noopener noreferrer">Vexflow (⭐4.3k)</a> - a JavaScript library for rendering music notation and guitar tablature.</li>
 </ul>
 <h3><p>Music Programming</p>
 </h3>
@@ -576,7 +678,7 @@ generator, designed for polyrhythmic parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ccrma/chuck" rel="noopener noreferrer">Chuck (⭐983)</a> - strongly-timed, concurrent, and on-the-fly music programming language.</li>
+<li><a href="https://github.com/ccrma/chuck" rel="noopener noreferrer">Chuck (⭐1k)</a> - strongly-timed, concurrent, and on-the-fly music programming language.</li>
 </ul>
 
 <ul>
@@ -592,7 +694,7 @@ generator, designed for polyrhythmic parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/iannix/IanniX" rel="noopener noreferrer">IanniX (⭐384)</a> - a graphical open-source sequencer, based on Iannis Xenakis works, for digital art.</li>
+<li><a href="https://github.com/iannix/IanniX" rel="noopener noreferrer">IanniX (⭐391)</a> - a graphical open-source sequencer, based on Iannis Xenakis works, for digital art.</li>
 </ul>
 
 <ul>
@@ -608,7 +710,7 @@ generator, designed for polyrhythmic parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/overtone/overtone/" rel="noopener noreferrer">Overtone (⭐6.1k)</a> - an Open Source toolkit for designing synthesizers and collaborating with music.</li>
+<li><a href="https://github.com/overtone/overtone/" rel="noopener noreferrer">Overtone (⭐6.2k)</a> - an Open Source toolkit for designing synthesizers and collaborating with music.</li>
 </ul>
 
 <ul>
@@ -639,7 +741,7 @@ generator, designed for polyrhythmic parts</li>
 <h2><a href="https://www.trackawesomelist.com/2016/01/02/">Jan 02, 2016</a></h2><h3><p>Music Notation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/openlilylib/snippets/" rel="noopener noreferrer">OpenLilyLib (⭐126)</a> - LilyPond tools - snippets, templates, and extensions.</li>
+<li><a href="https://github.com/openlilylib/snippets/" rel="noopener noreferrer">OpenLilyLib (⭐128)</a> - LilyPond tools - snippets, templates, and extensions.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/12/03/">Dec 03, 2015</a></h2><h3><p>Audio Libraries</p>
 </h3>
@@ -649,9 +751,51 @@ generator, designed for polyrhythmic parts</li>
 <h2><a href="https://www.trackawesomelist.com/2015/12/02/">Dec 02, 2015</a></h2><h3><p>Music Notation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ciconia/ripple/" rel="noopener noreferrer">Ripple (⭐29)</a> - DRY for Lilypond - generate scores and parts with minimal fuss.</li>
+<li><a href="https://github.com/ciconia/ripple/" rel="noopener noreferrer">Ripple (⭐30)</a> - DRY for Lilypond - generate scores and parts with minimal fuss.</li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
