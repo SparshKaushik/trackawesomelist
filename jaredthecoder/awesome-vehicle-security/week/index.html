@@ -16,22 +16,125 @@
     <meta property="og:title" content="Track Awesome Vehicle Security Updates Weekly" />
     <meta property="og:description" content="🚗  A curated list of resources for learning about vehicle security and car hacking." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Vehicle Security Updates Weekly</h1>
 <p>🚗  A curated list of resources for learning about vehicle security and car hacking.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/jaredthecoder/awesome-vehicle-security/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/jaredthecoder/awesome-vehicle-security">😺 jaredthecoder/awesome-vehicle-security</a><span> · </span><span>⭐ 4.2K</span><span> · </span><span>🏷️ Security</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/jaredthecoder/awesome-vehicle-security/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/jaredthecoder/awesome-vehicle-security">😺 jaredthecoder/awesome-vehicle-security</a><span> · </span><span>⭐ 4.3K</span><span> · </span><span>🏷️ Security</span></p>
 <p><span>[ </span><a href="/jaredthecoder/awesome-vehicle-security/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/jaredthecoder/awesome-vehicle-security/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/22/">Jun 01 - Jun 07, 2026</a></h2><h3><p>Miscellaneous / Episodes</p>
+</h3>
+<ul>
+<li><a href="https://github.com/autopi-io/autopi-core" rel="noopener noreferrer">AutoPi (⭐184)</a> - Open-source core software for the AutoPi dongle, a Raspberry Pi-based OBD-II device for vehicle telematics, CAN bus data collection, and automotive IoT applications.</li>
+</ul>
+<h3><p>Applications / Episodes</p>
+</h3>
+<ul>
+<li><a href="https://github.com/bad-antics/blackflag-ecu" rel="noopener noreferrer">BlackFlag ECU (⭐17)</a> - Professional ECU diagnostics and tuning suite with OBD-II scanning, DTC reading, live sensor monitoring, and reflash capabilities.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/hypery11/flipper-tesla-fsd" rel="noopener noreferrer">Tesla Mod (⭐793)</a> - Tesla CAN bus toolkit for Flipper Zero and ESP32. Nag killer, FSD region unlock, track mode, BMS dashboard, blind spot alert, high beam strobe, and 30+ more CAN handlers. Open source (GPL-3.0).</li>
+</ul>
+<h3><p>Libraries and Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jumpstarter-dev/jumpstarter" rel="noopener noreferrer">Jumpstarter (⭐28)</a> - A hardware-in-the-loop testing framework with automotive diagnostic drivers for UDS, DoIP, and CAN bus protocols.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/hexsecs/canarchy" rel="noopener noreferrer">canarchy (⭐1)</a> - CANarchy is a stream-first CAN analysis and manipulation runtime designed for automation, security research, and agent-driven workflows.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/12/">Mar 23 - Mar 29, 2026</a></h2><h3><p>Miscellaneous / Episodes</p>
 </h3>
 <ul>
@@ -39,12 +142,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Alia5/PiCCANTE" rel="noopener noreferrer">PiCCANTE (⭐67)</a> - Open-source CAN hacking tool based on Raspberry Pi Pico [2] (W) - Up to 3x CAN interfaces, includes ELM327 emulator.</li>
+<li><a href="https://github.com/Alia5/PiCCANTE" rel="noopener noreferrer">PiCCANTE (⭐80)</a> - Open-source CAN hacking tool based on Raspberry Pi Pico [2] (W) - Up to 3x CAN interfaces, includes ELM327 emulator.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/44/">Oct 28 - Nov 03, 2024</a></h2><h3><p>Libraries and Tools / C++</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jglim/UnlockECU" rel="noopener noreferrer">UnlockECU (⭐389)</a> - Free, open-source ECU seed-key unlocking tool.</li>
+<li><a href="https://github.com/jglim/UnlockECU" rel="noopener noreferrer">UnlockECU (⭐409)</a> - Free, open-source ECU seed-key unlocking tool.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/43/">Oct 21 - Oct 27, 2024</a></h2><h3><p>Presentations</p>
 </h3>
@@ -129,7 +232,7 @@
 <h3><p>Libraries and Tools / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cr0wTom/caringcaribounext" rel="noopener noreferrer">Caring Caribou Next (⭐9)</a> - Upgraded and optimized version of the original Caring Caribou project.</li>
+<li><a href="https://github.com/Cr0wTom/caringcaribounext" rel="noopener noreferrer">Caring Caribou Next (⭐10)</a> - Upgraded and optimized version of the original Caring Caribou project.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/2/">Jan 08 - Jan 14, 2024</a></h2><h3><p>Libraries and Tools / JavaScript</p>
 </h3>
@@ -196,7 +299,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/7/">Feb 13 - Feb 19, 2023</a></h2><h3><p>Libraries and Tools / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hardbyte/python-can" rel="noopener noreferrer">Python-CAN (⭐1.5k)</a> - Python interface to various CAN implementations, including SocketCAN. Allows you to use Python 2.7.x or 3.3.x+ to communicate over CAN networks.</li>
+<li><a href="https://github.com/hardbyte/python-can" rel="noopener noreferrer">Python-CAN (⭐1.6k)</a> - Python interface to various CAN implementations, including SocketCAN. Allows you to use Python 2.7.x or 3.3.x+ to communicate over CAN networks.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/41/">Oct 10 - Oct 16, 2022</a></h2><h3><p>Presentations</p>
 </h3>
@@ -206,7 +309,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/30/">Jul 25 - Jul 31, 2022</a></h2><h3><p>Libraries and Tools / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/shipcod3/canTot" rel="noopener noreferrer">canTot (⭐149)</a> - A python-based cli framework based on sploitkit and is easy to use because it similar to working with Metasploit. This similar to an exploit framework but focused on known CAN Bus vulnerabilities or fun CAN Bus hacks.</li>
+<li><a href="https://github.com/shipcod3/canTot" rel="noopener noreferrer">canTot (⭐150)</a> - A python-based cli framework based on sploitkit and is easy to use because it similar to working with Metasploit. This similar to an exploit framework but focused on known CAN Bus vulnerabilities or fun CAN Bus hacks.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/24/">Jun 13 - Jun 19, 2022</a></h2><h3><p>Research Papers</p>
 </h3>
@@ -257,7 +360,7 @@
 <h3><p>Libraries and Tools / Java</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alexvoronov/geonetworking" rel="noopener noreferrer">ITS Geonetworking (⭐104)</a> - ETSI ITS G5 GeoNetworking stack, in Java: CAM-DENM / ASN.1 PER / BTP / GeoNetworking</li>
+<li><a href="https://github.com/alexvoronov/geonetworking" rel="noopener noreferrer">ITS Geonetworking (⭐108)</a> - ETSI ITS G5 GeoNetworking stack, in Java: CAM-DENM / ASN.1 PER / BTP / GeoNetworking</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/40/">Oct 04 - Oct 10, 2021</a></h2><h3><p>Miscellaneous / Episodes</p>
 </h3>
@@ -272,7 +375,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/27/">Jul 05 - Jul 11, 2021</a></h2><h3><p>Libraries and Tools / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tbruno25/canopy" rel="noopener noreferrer">CanoPy (⭐290)</a> - A python gui used to visualize and plot message payloads in real time.</li>
+<li><a href="https://github.com/tbruno25/canopy" rel="noopener noreferrer">CanoPy (⭐302)</a> - A python gui used to visualize and plot message payloads in real time.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/47/">Nov 23 - Nov 29, 2020</a></h2><h3><p>Presentations</p>
 </h3>
@@ -347,22 +450,22 @@
 <h2><a href="https://www.trackawesomelist.com/2018/40/">Oct 01 - Oct 07, 2018</a></h2><h3><p>Miscellaneous / Episodes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ps1337/automotive-security-research" rel="noopener noreferrer">Reverse Engineering Resources (⭐97)</a></li>
+<li><a href="https://github.com/ps1337/automotive-security-research" rel="noopener noreferrer">Reverse Engineering Resources (⭐99)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/38/">Sep 17 - Sep 23, 2018</a></h2><h3><p>Applications / Episodes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/schutzwerk/CANalyzat0r" rel="noopener noreferrer">CANalyzat0r (⭐785)</a> - A security analysis toolkit for proprietary car protocols.</li>
+<li><a href="https://github.com/schutzwerk/CANalyzat0r" rel="noopener noreferrer">CANalyzat0r (⭐792)</a> - A security analysis toolkit for proprietary car protocols.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/36/">Sep 03 - Sep 09, 2018</a></h2><h3><p>Libraries and Tools / C</p>
 </h3>
 <ul>
-<li><a href="https://github.com/howerj/dbcc" rel="noopener noreferrer">dbcc (⭐440)</a> - "dbcc is a program for converting a DBC file primarily into into C code that can serialize and deserialize CAN messages." With existing DBC files from a vehicle, this file allows you to convert them to C code that extracts the CAN messages and properties of the CAN environment.</li>
+<li><a href="https://github.com/howerj/dbcc" rel="noopener noreferrer">dbcc (⭐446)</a> - "dbcc is a program for converting a DBC file primarily into into C code that can serialize and deserialize CAN messages." With existing DBC files from a vehicle, this file allows you to convert them to C code that extracts the CAN messages and properties of the CAN environment.</li>
 </ul>
 <h3><p>Libraries and Tools / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/atlas0fd00m/CanCat" rel="noopener noreferrer">CanCat (⭐208)</a> - A "swiss-army knife" for interacting with live CAN data. Primary API interface in Python, but written in C++.</li>
+<li><a href="https://github.com/atlas0fd00m/CanCat" rel="noopener noreferrer">CanCat (⭐214)</a> - A "swiss-army knife" for interacting with live CAN data. Primary API interface in Python, but written in C++.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/34/">Aug 20 - Aug 26, 2018</a></h2><h3><p>Articles</p>
 </h3>
@@ -390,7 +493,7 @@
 <h3><p>Applications / Episodes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/P1kachu/talking-with-cars" rel="noopener noreferrer">talking-with-cars (⭐129)</a> - CAN related scripts, and scripts to use a car as a gamepad</li>
+<li><a href="https://github.com/P1kachu/talking-with-cars" rel="noopener noreferrer">talking-with-cars (⭐133)</a> - CAN related scripts, and scripts to use a car as a gamepad</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/7/">Feb 12 - Feb 18, 2018</a></h2><h3><p>Miscellaneous / Episodes</p>
 </h3>
@@ -404,7 +507,7 @@
 <li><a href="https://github.com/watterott/CANdiy-Shield" rel="noopener noreferrer">CANdiy-Shield (⭐27)</a></li>
 <li><a href="http://www.dfrobot.com/index.php?route=product/product&amp;product_id=1444" rel="noopener noreferrer">DFRobot CAN-BUS Shield For Arduino</a></li>
 <li><a href="https://www.sparkfun.com/products/13262" rel="noopener noreferrer">SparkFun CAN-BUS Shield</a></li>
-<li><a href="https://github.com/latonita/arduino-canbus-monitor" rel="noopener noreferrer">arduino-canbus-monitor (⭐331)</a> - No matter which shield is selected you will need your own sniffer. This is implementation of standard Lawicel/SLCAN protocol for Arduino + any MCP CAN Shield to use with many standard CAN bus analysis software packages or SocketCAN</li>
+<li><a href="https://github.com/latonita/arduino-canbus-monitor" rel="noopener noreferrer">arduino-canbus-monitor (⭐333)</a> - No matter which shield is selected you will need your own sniffer. This is implementation of standard Lawicel/SLCAN protocol for Arduino + any MCP CAN Shield to use with many standard CAN bus analysis software packages or SocketCAN</li>
 </ul>
 </li>
 </ul>
@@ -436,7 +539,7 @@
 <h3><p>Libraries and Tools / C++</p>
 </h3>
 <ul>
-<li><a href="https://github.com/iotbzh/high-level-viwi-service" rel="noopener noreferrer">High Level ViWi Service (⭐13)</a> - High level Volkswagen CAN signaling protocol implementation.</li>
+<li><a href="https://github.com/iotbzh/high-level-viwi-service" rel="noopener noreferrer">High Level ViWi Service</a> - High level Volkswagen CAN signaling protocol implementation.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/41/">Oct 09 - Oct 15, 2017</a></h2><h3><p>Presentations</p>
 </h3>
@@ -521,12 +624,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/commaai/openpilot" rel="noopener noreferrer">openpilot (⭐60k)</a> - openpilot is an open source driving agent that performs the functions of Adaptive Cruise Control (ACC) and Lane Keeping Assist System (LKAS) for Hondas and Acuras.</li>
+<li><a href="https://github.com/commaai/openpilot" rel="noopener noreferrer">openpilot (⭐61k)</a> - openpilot is an open source driving agent that performs the functions of Adaptive Cruise Control (ACC) and Lane Keeping Assist System (LKAS) for Hondas and Acuras.</li>
 </ul>
 <h3><p>Libraries and Tools / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ericevenchick/canard" rel="noopener noreferrer">CANard (⭐515)</a> - A Python framework for Controller Area Network applications.</li>
+<li><a href="https://github.com/ericevenchick/canard" rel="noopener noreferrer">CANard (⭐514)</a> - A Python framework for Controller Area Network applications.</li>
 </ul>
 
 <ul>
@@ -617,7 +720,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/shipcod3/mazda_getInfo" rel="noopener noreferrer">mazda_getInfo (⭐166)</a> - A PoC that the USB port is an attack surface for a Mazda car's infotainment system and how Mazda hacks are made (known bug in the CMU).</li>
+<li><a href="https://github.com/shipcod3/mazda_getInfo" rel="noopener noreferrer">mazda_getInfo (⭐165)</a> - A PoC that the USB port is an attack surface for a Mazda car's infotainment system and how Mazda hacks are made (known bug in the CMU).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/7/">Feb 13 - Feb 19, 2017</a></h2><h3><p>Research Papers</p>
 </h3>
@@ -652,7 +755,7 @@
 <h3><p>Miscellaneous / Episodes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/openvehicles/Open-Vehicle-Monitoring-System" rel="noopener noreferrer">Open Vehicle Monitoring System (⭐341)</a> - A community project building a hardware module for your car, a server to talk to it, and a mobile app to talk to the server, in order to allow developers and enthusiasts to add more functionality to their car and control it remotely.</li>
+<li><a href="https://github.com/openvehicles/Open-Vehicle-Monitoring-System" rel="noopener noreferrer">Open Vehicle Monitoring System (⭐346)</a> - A community project building a hardware module for your car, a server to talk to it, and a mobile app to talk to the server, in order to allow developers and enthusiasts to add more functionality to their car and control it remotely.</li>
 </ul>
 
 <ul>
@@ -728,7 +831,7 @@
 <h3><p>Applications / Episodes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/eik00d/CANToolz" rel="noopener noreferrer">CANToolz (⭐313)</a> - CANToolz is a framework for analysing CAN networks and devices. It is based on several modules which can be assembled in a pipeline.</li>
+<li><a href="https://github.com/eik00d/CANToolz" rel="noopener noreferrer">CANToolz (⭐315)</a> - CANToolz is a framework for analysing CAN networks and devices. It is based on several modules which can be assembled in a pipeline.</li>
 </ul>
 
 <ul>
@@ -742,12 +845,12 @@
 <h3><p>Libraries and Tools / C</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dn5/vircar" rel="noopener noreferrer">vircar (⭐154)</a> - a Virtual car userspace that sends CAN messages based on SocketCAN</li>
+<li><a href="https://github.com/dn5/vircar" rel="noopener noreferrer">vircar (⭐157)</a> - a Virtual car userspace that sends CAN messages based on SocketCAN</li>
 </ul>
 <h3><p>Libraries and Tools / Go</p>
 </h3>
 <ul>
-<li><a href="https://github.com/carloop/simulator-program" rel="noopener noreferrer">CAN Simulator (⭐70)</a> - A Go based CAN simulator for the Raspberry Pi to be used with PiCAN2 or the open source <a href="https://github.com/carloop/simulator" rel="noopener noreferrer">CAN Simulator board (⭐188)</a></li>
+<li><a href="https://github.com/carloop/simulator-program" rel="noopener noreferrer">CAN Simulator (⭐69)</a> - A Go based CAN simulator for the Raspberry Pi to be used with PiCAN2 or the open source <a href="https://github.com/carloop/simulator" rel="noopener noreferrer">CAN Simulator board (⭐188)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/30/">Jul 25 - Jul 31, 2016</a></h2><h3><p>Articles</p>
 </h3>
@@ -884,7 +987,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/zombieCraig/UDSim/" rel="noopener noreferrer">UDSim (⭐321)</a> - GUI tool that can monitor a CAN bus and automatically learn the devices attached to it by watching communications.</li>
+<li><a href="https://github.com/zombieCraig/UDSim/" rel="noopener noreferrer">UDSim (⭐326)</a> - GUI tool that can monitor a CAN bus and automatically learn the devices attached to it by watching communications.</li>
 </ul>
 
 <ul>
@@ -893,26 +996,26 @@
 <h3><p>Libraries and Tools / C</p>
 </h3>
 <ul>
-<li><a href="https://github.com/linux-can/can-utils" rel="noopener noreferrer">SocketCAN Utils (⭐2.8k)</a> - Userspace utilites for SocketCAN on Linux.</li>
+<li><a href="https://github.com/linux-can/can-utils" rel="noopener noreferrer">SocketCAN Utils (⭐2.9k)</a> - Userspace utilites for SocketCAN on Linux.</li>
 </ul>
 <h3><p>Libraries and Tools / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/CaringCaribou/caringcaribou/" rel="noopener noreferrer">Caring Caribou (⭐889)</a> - Intended to be the <em>nmap of vehicle security</em>.</li>
+<li><a href="https://github.com/CaringCaribou/caringcaribou/" rel="noopener noreferrer">Caring Caribou (⭐916)</a> - Intended to be the <em>nmap of vehicle security</em>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/zombieCraig/c0f/" rel="noopener noreferrer">c0f (⭐92)</a> - A fingerprinting tool for CAN communications that can be used to find a specific signal on a CAN network when testing interactions with a vehicle.</li>
+<li><a href="https://github.com/zombieCraig/c0f/" rel="noopener noreferrer">c0f (⭐95)</a> - A fingerprinting tool for CAN communications that can be used to find a specific signal on a CAN network when testing interactions with a vehicle.</li>
 </ul>
 <h3><p>Libraries and Tools / Go</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Hive13/CANiBUS/" rel="noopener noreferrer">CANNiBUS (⭐111)</a> - A Go server that allows a room full of researchers to simultaneously work on the same vehicle, whether for instructional purposes or team reversing sessions.</li>
+<li><a href="https://github.com/Hive13/CANiBUS/" rel="noopener noreferrer">CANNiBUS (⭐112)</a> - A Go server that allows a room full of researchers to simultaneously work on the same vehicle, whether for instructional purposes or team reversing sessions.</li>
 </ul>
 <h3><p>Libraries and Tools / JavaScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sebi2k1/node-can" rel="noopener noreferrer">NodeJS extension to SocketCAN (⭐241)</a> - Allows you to communicate over CAN networks with simple JavaScript functions.</li>
+<li><a href="https://github.com/sebi2k1/node-can" rel="noopener noreferrer">NodeJS extension to SocketCAN (⭐243)</a> - Allows you to communicate over CAN networks with simple JavaScript functions.</li>
 </ul>
 
 <ul>
@@ -936,24 +1039,66 @@
 <li>Security<ul>
 <li><a href="https://github.com/paragonie/awesome-appsec" rel="noopener noreferrer">Application Security (⭐6.9k)</a></li>
 <li><a href="https://github.com/sbilly/awesome-security" rel="noopener noreferrer">Security (⭐14k)</a></li>
-<li><a href="https://github.com/apsdehal/awesome-ctf" rel="noopener noreferrer">Capture the Flag (⭐11k)</a></li>
+<li><a href="https://github.com/apsdehal/awesome-ctf" rel="noopener noreferrer">Capture the Flag (⭐12k)</a></li>
 <li><a href="https://github.com/rshipp/awesome-malware-analysis" rel="noopener noreferrer">Malware Analysis (⭐14k)</a></li>
-<li><a href="https://github.com/ashishb/android-security-awesome" rel="noopener noreferrer">Android Security (⭐9.3k)</a></li>
+<li><a href="https://github.com/ashishb/android-security-awesome" rel="noopener noreferrer">Android Security (⭐9.4k)</a></li>
 <li><a href="https://github.com/carpedm20/awesome-hacking" rel="noopener noreferrer">Hacking (⭐16k)</a></li>
 <li><a href="https://github.com/paralax/awesome-honeypots" rel="noopener noreferrer">Honeypots (⭐10k)</a></li>
-<li><a href="https://github.com/meirwah/awesome-incident-response" rel="noopener noreferrer">Incident Response (⭐8.9k)</a></li>
+<li><a href="https://github.com/meirwah/awesome-incident-response" rel="noopener noreferrer">Incident Response (⭐9.1k)</a></li>
 </ul>
 </li>
 </ul>
 
 <ul>
 <li>Meta<ul>
-<li><a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">awesome (⭐444k)</a></li>
+<li><a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">awesome (⭐470k)</a></li>
 <li><a href="https://github.com/jnv/lists" rel="noopener noreferrer">lists (⭐11k)</a></li>
 </ul>
 </li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
