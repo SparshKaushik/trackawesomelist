@@ -16,35 +16,133 @@
     <meta property="og:title" content="Track Awesome Open Source Games Updates Weekly" />
     <meta property="og:description" content="Collection of Games that have the source code available on GitHub" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Open Source Games Updates Weekly</h1>
 <p>Collection of Games that have the source code available on GitHub</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/michelpereira/awesome-open-source-games/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/michelpereira/awesome-open-source-games">😺 michelpereira/awesome-open-source-games</a><span> · </span><span>⭐ 2.7K</span><span> · </span><span>🏷️ Gaming</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/michelpereira/awesome-open-source-games/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/michelpereira/awesome-open-source-games">😺 michelpereira/awesome-open-source-games</a><span> · </span><span>⭐ 2.8K</span><span> · </span><span>🏷️ Gaming</span></p>
 <p><span>[ </span><a href="/michelpereira/awesome-open-source-games/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/michelpereira/awesome-open-source-games/readme/">Overview</a><span> ]</span></p>
 
-<h2><a href="https://www.trackawesomelist.com/2026/18/">May 04 - May 10, 2026</a></h2><h3><p>Browser-Based / Boardgame</p>
+<h2><a href="https://www.trackawesomelist.com/2026/22/">Jun 01 - Jun 07, 2026</a></h2><h3><p>Browser-Based / Rhythm</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jonradoff/chessmata" rel="noopener noreferrer">Chessmata</a> - Open-source multiplayer chess platform for humans and AI agents, with real-time WebSocket gameplay, Elo-based matchmaking, 3D browser board (Three.js), MCP server, and UCI-compatible CLI. Built with Go and React.</li>
+<li><a href="https://github.com/bemusic/bemuse" rel="noopener noreferrer">Bemuse (⭐1.2k)</a> - Online rhythm game playing songs in <a href="https://github.com/wcko87/beatoraja-english-guide/wiki/BMS-Overview" rel="noopener noreferrer">BMS (⭐134)</a> format.</li>
+</ul>
+<h3><p>Native / Rhythm</p>
+</h3>
+<ul>
+<li><a href="https://github.com/stepmania/stepmania" rel="noopener noreferrer">Stepmania (⭐2.1k)</a> - Cross-platform dance rhythm game.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/oil-oil/wolfcha" rel="noopener noreferrer">Wolfcha</a> - AI-powered Werewolf (Mafia) social deduction game where every player is controlled by top LLMs. Built with Next.js and TypeScript.</li>
+<li><a href="https://github.com/wcko87/lr2oraja" rel="noopener noreferrer">lr2oraja (⭐60)</a> - <a href="https://github.com/wcko87/beatoraja-english-guide/wiki/BMS-Overview" rel="noopener noreferrer">BMS player (⭐134)</a>, fork of <a href="https://mocha-repository.info/download.php" rel="noopener noreferrer">beatoraja</a> (popular BMS player) using Lunatic Rave 2 (LR2) gauges and judge (Requires a JVM. Recommended: <a href="https://bell-sw.com/pages/downloads/" rel="noopener noreferrer">Liberica OpenJDK</a> Full version).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/seraxis/lr2oraja-endlessdream" rel="noopener noreferrer">lr2oraja ~Endless Dream~ (⭐128)</a> - BMS player, fork of lr2oraja with additional features (Requires a JVM. Recommended: <a href="https://bell-sw.com/pages/downloads/" rel="noopener noreferrer">Liberica OpenJDK</a> Full version).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/18/">May 04 - May 10, 2026</a></h2><h3><p>Browser-Based / Boardgame</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jonradoff/chessmata" rel="noopener noreferrer">Chessmata (⭐13)</a> - Open-source multiplayer chess platform for humans and AI agents, with real-time WebSocket gameplay, Elo-based matchmaking, 3D browser board (Three.js), MCP server, and UCI-compatible CLI. Built with Go and React.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/oil-oil/wolfcha" rel="noopener noreferrer">Wolfcha (⭐608)</a> - AI-powered Werewolf (Mafia) social deduction game where every player is controlled by top LLMs. Built with Next.js and TypeScript.</li>
 </ul>
 <h3><p>Browser-Based / Arcade</p>
 </h3>
 <ul>
-<li><a href="https://github.com/MattSurabian/DuckHunt-JS" rel="noopener noreferrer">DuckHunt JavaScript (⭐620)</a> - DuckHunt ported to JavaScript and HTML5 with a level creator.</li>
+<li><a href="https://github.com/MattSurabian/DuckHunt-JS" rel="noopener noreferrer">DuckHunt JavaScript (⭐623)</a> - DuckHunt ported to JavaScript and HTML5 with a level creator.</li>
 </ul>
 
 <ul>
@@ -53,7 +151,7 @@
 <h3><p>Browser-Based / Sandbox</p>
 </h3>
 <ul>
-<li><a href="https://github.com/R74nCom/sandboxels" rel="noopener noreferrer">Sandboxels (⭐389)</a> - Falling-sand experimentation game with over 500 materials to play with.</li>
+<li><a href="https://github.com/R74nCom/sandboxels" rel="noopener noreferrer">Sandboxels (⭐405)</a> - Falling-sand experimentation game with over 500 materials to play with.</li>
 </ul>
 <h3><p>Browser-Based / Puzzle</p>
 </h3>
@@ -63,38 +161,38 @@
 <h3><p>Native / FPS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/redeclipse/base" rel="noopener noreferrer">Red Eclipse (⭐509)</a> - Fun-filled new take on the first person arena shooter, featuring parkour, impulse boosts, and more.</li>
+<li><a href="https://github.com/redeclipse/base" rel="noopener noreferrer">Red Eclipse (⭐515)</a> - Fun-filled new take on the first person arena shooter, featuring parkour, impulse boosts, and more.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Warsow/qfusion" rel="noopener noreferrer">Warsow (⭐77)</a> - Fast-paced FPS in a futuristic cartoonish world.</li>
+<li><a href="https://github.com/Warsow/qfusion" rel="noopener noreferrer">Warsow (⭐78)</a> - Fast-paced FPS in a futuristic cartoonish world.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/xonotic/xonotic" rel="noopener noreferrer">Xonotic (⭐487)</a> - An addictive arena-style first person shooter with crisp movement and a wide array of weapons.</li>
+<li><a href="https://github.com/xonotic/xonotic" rel="noopener noreferrer">Xonotic (⭐499)</a> - An addictive arena-style first person shooter with crisp movement and a wide array of weapons.</li>
 </ul>
 <h3><p>Native / MMORPG</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Open-KO/KnightOnline" rel="noopener noreferrer">Open-Ko (⭐335)</a> - Reimplementation of old-school Knight Online that replicates the 1299 client functionality while preserving accuracy and compatibility with the version 1299 client and server.</li>
+<li><a href="https://github.com/Open-KO/KnightOnline" rel="noopener noreferrer">Open-Ko (⭐340)</a> - Reimplementation of old-school Knight Online that replicates the 1299 client functionality while preserving accuracy and compatibility with the version 1299 client and server.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/veloren/veloren" rel="noopener noreferrer">Veloren (⭐7.2k)</a> - An action-adventure role-playing game set in a vast fantasy world.</li>
+<li><a href="https://github.com/veloren/veloren" rel="noopener noreferrer">Veloren (⭐7.3k)</a> - An action-adventure role-playing game set in a vast fantasy world.</li>
 </ul>
 <h3><p>Native / RPG</p>
 </h3>
 <ul>
-<li><a href="https://github.com/00-Evan/shattered-pixel-dungeon" rel="noopener noreferrer">Shattered Pixel Dungeon (⭐6k)</a> - An open source game based on the source code of Pixel Dungeon by Watabou.</li>
+<li><a href="https://github.com/00-Evan/shattered-pixel-dungeon" rel="noopener noreferrer">Shattered Pixel Dungeon (⭐6.2k)</a> - An open source game based on the source code of Pixel Dungeon by Watabou.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Scottcjn/legend-of-elya-n64" rel="noopener noreferrer">Legend of Elya (⭐62)</a> - World's first LLM on Nintendo 64. 819K-parameter nano-GPT transformer running live inference on MIPS R4300i at 60 tok/s. Zelda-style dungeon crawler with AI NPCs. Built with libdragon SDK.</li>
+<li><a href="https://github.com/Scottcjn/legend-of-elya-n64" rel="noopener noreferrer">Legend of Elya (⭐76)</a> - World's first LLM on Nintendo 64. 819K-parameter nano-GPT transformer running live inference on MIPS R4300i at 60 tok/s. Zelda-style dungeon crawler with AI NPCs. Built with libdragon SDK.</li>
 </ul>
 <h3><p>Native / Strategy</p>
 </h3>
 <ul>
-<li><a href="https://github.com/beyond-all-reason/Beyond-All-Reason" rel="noopener noreferrer">Beyond all Reason (BAR) (⭐3.8k)</a> - RTS born from mods of the Total Annihilation on the SpringRTS game engine.</li>
+<li><a href="https://github.com/beyond-all-reason/Beyond-All-Reason" rel="noopener noreferrer">Beyond all Reason (BAR) (⭐4k)</a> - RTS born from mods of the Total Annihilation on the SpringRTS game engine.</li>
 </ul>
 
 <ul>
@@ -108,7 +206,7 @@
 <h3><p>Frameworks/Engines/Libraries / iOS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/BabylonJS/Babylon.js" rel="noopener noreferrer">Babylon.js (⭐25k)</a> - Complete JavaScript framework for building 3D games with HTML 5 and WebGL.</li>
+<li><a href="https://github.com/BabylonJS/Babylon.js" rel="noopener noreferrer">Babylon.js (⭐26k)</a> - Complete JavaScript framework for building 3D games with HTML 5 and WebGL.</li>
 </ul>
 
 <ul>
@@ -139,7 +237,7 @@
 <h3><p>Native / Sandbox</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rwf93/Starbound" rel="noopener noreferrer">Starbound (⭐145)</a> - A 2D sandbox adventure game where players explore a vast procedurally generated universe.</li>
+<li><a href="https://github.com/rwf93/Starbound" rel="noopener noreferrer">Starbound (⭐144)</a> - A 2D sandbox adventure game where players explore a vast procedurally generated universe.</li>
 </ul>
 <h3><p>Native / Simulation</p>
 </h3>
@@ -149,23 +247,23 @@
 <h3><p>Native / Strategy</p>
 </h3>
 <ul>
-<li><a href="https://github.com/OpenE2140/OpenE2140" rel="noopener noreferrer">OpenE2140 (⭐65)</a> - Remake of Earth 2140 based on <a href="https://github.com/OpenRA/OpenRA" rel="noopener noreferrer">the OpenRA engine (⭐17k)</a></li>
+<li><a href="https://github.com/OpenE2140/OpenE2140" rel="noopener noreferrer">OpenE2140 (⭐67)</a> - Remake of Earth 2140 based on <a href="https://github.com/OpenRA/OpenRA" rel="noopener noreferrer">the OpenRA engine (⭐17k)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/IceReaper/OpenKrush" rel="noopener noreferrer">OpenKrush (⭐120)</a> - Remake of KKnD (Krush, Kill 'n' Destroy) and KKnD2 based on <a href="https://github.com/OpenRA/OpenRA" rel="noopener noreferrer">the OpenRA engine (⭐17k)</a></li>
+<li><a href="https://github.com/IceReaper/OpenKrush" rel="noopener noreferrer">OpenKrush (⭐121)</a> - Remake of KKnD (Krush, Kill 'n' Destroy) and KKnD2 based on <a href="https://github.com/OpenRA/OpenRA" rel="noopener noreferrer">the OpenRA engine (⭐17k)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Dzierzan/OpenSA" rel="noopener noreferrer">OpenSA (⭐117)</a> - Remake of Swarm Assault based on <a href="https://github.com/OpenRA/OpenRA" rel="noopener noreferrer">the OpenRA engine (⭐17k)</a></li>
+<li><a href="https://github.com/Dzierzan/OpenSA" rel="noopener noreferrer">OpenSA (⭐119)</a> - Remake of Swarm Assault based on <a href="https://github.com/OpenRA/OpenRA" rel="noopener noreferrer">the OpenRA engine (⭐17k)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Espyo/Pikifen" rel="noopener noreferrer">Pikifen (⭐75)</a> - Fan-made Pikmin-based engine, built with flexibility in mind.</li>
+<li><a href="https://github.com/Espyo/Pikifen" rel="noopener noreferrer">Pikifen (⭐77)</a> - Fan-made Pikmin-based engine, built with flexibility in mind.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/MustaphaTR/Romanovs-Vengeance" rel="noopener noreferrer">Romanov's Vengeance (⭐329)</a> - Remake of C&amp;C Red Alert 2 based on <a href="https://github.com/OpenRA/OpenRA" rel="noopener noreferrer">the OpenRA engine (⭐17k)</a></li>
+<li><a href="https://github.com/MustaphaTR/Romanovs-Vengeance" rel="noopener noreferrer">Romanov's Vengeance (⭐330)</a> - Remake of C&amp;C Red Alert 2 based on <a href="https://github.com/OpenRA/OpenRA" rel="noopener noreferrer">the OpenRA engine (⭐17k)</a></li>
 </ul>
 
 <ul>
@@ -179,12 +277,12 @@
 <h2><a href="https://www.trackawesomelist.com/2025/22/">Jun 02 - Jun 08, 2025</a></h2><h3><p>Browser-Based / FPS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Kuberwastaken/backdooms" rel="noopener noreferrer">Backdooms (⭐627)</a> - Game inspired by DOOM 1993 and The Backrooms, small enough to be self contained inside a QR code.</li>
+<li><a href="https://github.com/Kuberwastaken/backdooms" rel="noopener noreferrer">Backdooms (⭐632)</a> - Game inspired by DOOM 1993 and The Backrooms, small enough to be self contained inside a QR code.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/10/">Mar 10 - Mar 16, 2025</a></h2><h3><p>Frameworks/Engines/Libraries / iOS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ikemen-engine/Ikemen-GO/" rel="noopener noreferrer">Ikemen GO (⭐1.3k)</a> - An open-source fighting game engine that supports MUGEN resources. Written in Go.</li>
+<li><a href="https://github.com/ikemen-engine/Ikemen-GO/" rel="noopener noreferrer">Ikemen GO (⭐1.4k)</a> - An open-source fighting game engine that supports MUGEN resources. Written in Go.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/3/">Jan 20 - Jan 26, 2025</a></h2><h3><p>Browser-Based / MMORPG</p>
 </h3>
@@ -194,7 +292,7 @@
 <h3><p>Native / MMORPG</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Quaint-Studios/Reia" rel="noopener noreferrer">Reia (⭐788)</a> - RPG game action-adventure MMO focusing heavily on story, combat, and an open-world sandox adventure. Built with Godot, Rust, and Zig.</li>
+<li><a href="https://github.com/Quaint-Studios/Reia" rel="noopener noreferrer">Reia (⭐821)</a> - RPG game action-adventure MMO focusing heavily on story, combat, and an open-world sandox adventure. Built with Godot, Rust, and Zig.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/2/">Jan 13 - Jan 19, 2025</a></h2><h3><p>Just The Source / iOS</p>
 </h3>
@@ -209,7 +307,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/34/">Aug 19 - Aug 25, 2024</a></h2><h3><p>Native / Action</p>
 </h3>
 <ul>
-<li><a href="https://github.com/FOSS-Supremacy/OpenLiberty" rel="noopener noreferrer">OpenLiberty (⭐397)</a> - An open-source reimplementation of Grand Theft Auto III on the Godot Engine.</li>
+<li><a href="https://github.com/FOSS-Supremacy/OpenLiberty" rel="noopener noreferrer">OpenLiberty (⭐408)</a> - An open-source reimplementation of Grand Theft Auto III on the Godot Engine.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/26/">Jun 24 - Jun 30, 2024</a></h2><h3><p>Browser-Based / FPS</p>
 </h3>
@@ -219,7 +317,7 @@
 <h3><p>Native / FPS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nzp-team/nzportable" rel="noopener noreferrer">Nazi Zombies Portable (⭐696)</a> - Call of Duty: Zombies "de-make" powered by various enhanced forks of the Quake engine.</li>
+<li><a href="https://github.com/nzp-team/nzportable" rel="noopener noreferrer">Nazi Zombies Portable (⭐734)</a> - Call of Duty: Zombies "de-make" powered by various enhanced forks of the Quake engine.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/25/">Jun 17 - Jun 23, 2024</a></h2><h3><p>Native / Strategy</p>
 </h3>
@@ -229,17 +327,17 @@
 <h2><a href="https://www.trackawesomelist.com/2024/8/">Feb 19 - Feb 25, 2024</a></h2><h3><p>Native / Platform</p>
 </h3>
 <ul>
-<li><a href="https://github.com/divVerent/aaaaxy" rel="noopener noreferrer">AAAAXY (⭐279)</a> - Nonlinear 2D puzzle platformer taking place in impossible spaces.</li>
+<li><a href="https://github.com/divVerent/aaaaxy" rel="noopener noreferrer">AAAAXY (⭐282)</a> - Nonlinear 2D puzzle platformer taking place in impossible spaces.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/50/">Dec 11 - Dec 17, 2023</a></h2><h3><p>Native / Action</p>
 </h3>
 <ul>
-<li><a href="https://github.com/TeamHypersomnia/Hypersomnia" rel="noopener noreferrer">Hypersomnia (⭐1.5k)</a> - Competitive top-down shooter with extreme dynamics and pixely nostalgia. Has a built-in map Editor.</li>
+<li><a href="https://github.com/TeamHypersomnia/Hypersomnia" rel="noopener noreferrer">Hypersomnia (⭐1.6k)</a> - Competitive top-down shooter with extreme dynamics and pixely nostalgia. Has a built-in map Editor.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/32/">Aug 07 - Aug 13, 2023</a></h2><h3><p>Native / MMORPG</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Meridian59/Meridian59" rel="noopener noreferrer">Meridian 59 (⭐491)</a> - The first 3D MMORPG, released in 1996 and open sourced in 2012 - the game is being actively developed by the community.</li>
+<li><a href="https://github.com/Meridian59/Meridian59" rel="noopener noreferrer">Meridian 59 (⭐493)</a> - The first 3D MMORPG, released in 1996 and open sourced in 2012 - the game is being actively developed by the community.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/27/">Jul 03 - Jul 09, 2023</a></h2><h3><p>Browser-Based / Strategy</p>
 </h3>
@@ -249,7 +347,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/19/">May 08 - May 14, 2023</a></h2><h3><p>Browser-Based / Arcade</p>
 </h3>
 <ul>
-<li><a href="https://github.com/abagames/111-one-button-games-in-2021" rel="noopener noreferrer">111 one-button games (⭐85)</a> - One button games are famous for realizing various actions with one button.</li>
+<li><a href="https://github.com/abagames/111-one-button-games-in-2021" rel="noopener noreferrer">111 one-button games (⭐86)</a> - One button games are famous for realizing various actions with one button.</li>
 </ul>
 <h3><p>Browser-Based / Others</p>
 </h3>
@@ -259,7 +357,7 @@
 <h3><p>Native / Strategy</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ZeroK-RTS/Zero-K" rel="noopener noreferrer">Zero-K (⭐800)</a> - Open source RTS game with physical projectiles and smart units.</li>
+<li><a href="https://github.com/ZeroK-RTS/Zero-K" rel="noopener noreferrer">Zero-K (⭐804)</a> - Open source RTS game with physical projectiles and smart units.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/10/">Mar 06 - Mar 12, 2023</a></h2><h3><p>Native / Rhythm</p>
 </h3>
@@ -269,7 +367,7 @@
 <h3><p>Frameworks/Engines/Libraries / iOS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ppy/osu-framework" rel="noopener noreferrer">osu-framework (⭐1.9k)</a> - A game framework written with osu! in mind.</li>
+<li><a href="https://github.com/ppy/osu-framework" rel="noopener noreferrer">osu-framework (⭐2k)</a> - A game framework written with osu! in mind.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/23/">Jun 06 - Jun 12, 2022</a></h2><h3><p>Browser-Based / Arcade</p>
 </h3>
@@ -283,7 +381,7 @@
 <h3><p>Browser-Based / Strategy</p>
 </h3>
 <ul>
-<li><a href="https://github.com/adityaravishankar/command-and-conquer" rel="noopener noreferrer">Command &amp; Conquer (⭐800)</a> - Recreation of the original Command and Conquer, Real Time Strategy game entirely in HTML5 and JavaScript.</li>
+<li><a href="https://github.com/adityaravishankar/command-and-conquer" rel="noopener noreferrer">Command &amp; Conquer (⭐801)</a> - Recreation of the original Command and Conquer, Real Time Strategy game entirely in HTML5 and JavaScript.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/20/">May 16 - May 22, 2022</a></h2><h3><p>Native / Strategy</p>
 </h3>
@@ -309,7 +407,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/robertkleffner/marioHTML5" rel="noopener noreferrer">Mario 5 HTML (⭐523)</a> - Infinite Mario in HTML5 JavaScript using Canvas and Audio elements.</li>
+<li><a href="https://github.com/robertkleffner/marioHTML5" rel="noopener noreferrer">Mario 5 HTML (⭐522)</a> - Infinite Mario in HTML5 JavaScript using Canvas and Audio elements.</li>
 </ul>
 
 <ul>
@@ -337,7 +435,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/basicallydan/skifree.js" rel="noopener noreferrer">Ski Free (⭐547)</a> - Controls a skier on a mountain slope, avoiding obstacles while racing against time or performing stunts for points, depending on the game mode.</li>
+<li><a href="https://github.com/basicallydan/skifree.js" rel="noopener noreferrer">Ski Free (⭐549)</a> - Controls a skier on a mountain slope, avoiding obstacles while racing against time or performing stunts for points, depending on the game mode.</li>
 </ul>
 
 <ul>
@@ -350,7 +448,7 @@
 <h3><p>Browser-Based / RPG</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mitallast/diablo-js" rel="noopener noreferrer">Diablo JavaScript (⭐994)</a> - Isometric minimal-code style game at HTML5 canvas and JavaScript.</li>
+<li><a href="https://github.com/mitallast/diablo-js" rel="noopener noreferrer">Diablo JavaScript (⭐1k)</a> - Isometric minimal-code style game at HTML5 canvas and JavaScript.</li>
 </ul>
 
 <ul>
@@ -359,7 +457,7 @@
 <h3><p>Browser-Based / Strategy</p>
 </h3>
 <ul>
-<li><a href="https://github.com/FreezingMoon/AncientBeast" rel="noopener noreferrer">Ancient Beast (⭐1.8k)</a> - Materialize and control beasts in order to defeat your opponents.</li>
+<li><a href="https://github.com/FreezingMoon/AncientBeast" rel="noopener noreferrer">Ancient Beast (⭐1.9k)</a> - Materialize and control beasts in order to defeat your opponents.</li>
 </ul>
 
 <ul>
@@ -376,7 +474,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/CodeArtemis/TriggerRally" rel="noopener noreferrer">Trigger Rally Online Edition (⭐364)</a> - Fast arcade rally racing action, play in your browser with WebGL 3D graphics.</li>
+<li><a href="https://github.com/CodeArtemis/TriggerRally" rel="noopener noreferrer">Trigger Rally Online Edition (⭐365)</a> - Fast arcade rally racing action, play in your browser with WebGL 3D graphics.</li>
 </ul>
 <h3><p>Browser-Based / Sandbox</p>
 </h3>
@@ -398,7 +496,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/hughsk/ludum-dare-27" rel="noopener noreferrer">A Dark Room (⭐50)</a> - Dodge and shoot the red targets, grabbing the bombs as you go. Survive as long as possible and try to get a high score.</li>
+<li><a href="https://github.com/hughsk/ludum-dare-27" rel="noopener noreferrer">A Dark Room (⭐51)</a> - Dodge and shoot the red targets, grabbing the bombs as you go. Survive as long as possible and try to get a high score.</li>
 </ul>
 
 <ul>
@@ -412,11 +510,11 @@
 <h2><a href="https://www.trackawesomelist.com/2022/8/">Feb 21 - Feb 27, 2022</a></h2><h3><p>Browser-Based / Boardgame</p>
 </h3>
 <ul>
-<li><a href="https://github.com/juliangarnier/3D-Hartwig-chess-set" rel="noopener noreferrer">3D Hartwing Chess Set (⭐535)</a> - 3D chess game done in HTML/CSS/JavaScript.</li>
+<li><a href="https://github.com/juliangarnier/3D-Hartwig-chess-set" rel="noopener noreferrer">3D Hartwing Chess Set (⭐537)</a> - 3D chess game done in HTML/CSS/JavaScript.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/kenrick95/c4" rel="noopener noreferrer">c4 (⭐276)</a> - Connect Four game where player is playing against an AI.</li>
+<li><a href="https://github.com/kenrick95/c4" rel="noopener noreferrer">c4 (⭐277)</a> - Connect Four game where player is playing against an AI.</li>
 </ul>
 
 <ul>
@@ -429,7 +527,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/cykod/AlienInvasion" rel="noopener noreferrer">Alien Invasion (⭐182)</a> - Don't let the aliens reach the bottom, eliminate them using your spaceship.</li>
+<li><a href="https://github.com/cykod/AlienInvasion" rel="noopener noreferrer">Alien Invasion (⭐179)</a> - Don't let the aliens reach the bottom, eliminate them using your spaceship.</li>
 </ul>
 
 <ul>
@@ -437,7 +535,7 @@
 </ul>
 
 <ul>
-<li><a href="http://github.com/dmcinnes/HTML5-Asteroids" rel="noopener noreferrer">Asteroids (⭐350)</a> - Pure JavaScript asteroids. Destroy asteroids ans saucers controlling a triangular ship rotating left and right.</li>
+<li><a href="http://github.com/dmcinnes/HTML5-Asteroids" rel="noopener noreferrer">Asteroids (⭐352)</a> - Pure JavaScript asteroids. Destroy asteroids ans saucers controlling a triangular ship rotating left and right.</li>
 </ul>
 
 <ul>
@@ -445,7 +543,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/budnix/ball-and-wall" rel="noopener noreferrer">Ball And Wall</a> - Destroy the blocks using the Vaus, that is ejected from the ship.</li>
+<li><a href="https://github.com/budnix/ball-and-wall" rel="noopener noreferrer">Ball And Wall (⭐49)</a> - Destroy the blocks using the Vaus, that is ejected from the ship.</li>
 </ul>
 
 <ul>
@@ -461,11 +559,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/lutzroeder/digger" rel="noopener noreferrer">Digger (⭐95)</a> - The player is placed in an underground maze and can dig horizontal and vertical tunnels through it.</li>
+<li><a href="https://github.com/lutzroeder/digger" rel="noopener noreferrer">Digger (⭐94)</a> - The player is placed in an underground maze and can dig horizontal and vertical tunnels through it.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/DreamShowAdventures/LudumDare29" rel="noopener noreferrer">Drill Bunny (⭐47)</a> - Drill game with a bunny finding good stuff under the earth.</li>
+<li><a href="https://github.com/DreamShowAdventures/LudumDare29" rel="noopener noreferrer">Drill Bunny (⭐48)</a> - Drill game with a bunny finding good stuff under the earth.</li>
 </ul>
 
 <ul>
@@ -474,7 +572,7 @@
 <h3><p>Native / FPS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/DarklightGames/DarkestHour" rel="noopener noreferrer">Darkest Hour (⭐10)</a> - World War 2 online multiplayer tactical shooter based on Red Orchestra: Ostfront.</li>
+<li><a href="https://github.com/DarklightGames/DarkestHour" rel="noopener noreferrer">Darkest Hour (⭐12)</a> - World War 2 online multiplayer tactical shooter based on Red Orchestra: Ostfront.</li>
 </ul>
 
 <ul>
@@ -483,7 +581,7 @@
 <h3><p>Native / Platform</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ddnet/ddnet" rel="noopener noreferrer">DDraceNetwork (⭐771)</a> - Cooperative online precision platformer with thousands of maps and global ranks.</li>
+<li><a href="https://github.com/ddnet/ddnet" rel="noopener noreferrer">DDraceNetwork (⭐780)</a> - Cooperative online precision platformer with thousands of maps and global ranks.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/6/">Feb 07 - Feb 13, 2022</a></h2><h3><p>Browser-Based / Puzzle</p>
 </h3>
@@ -498,16 +596,16 @@
 <h2><a href="https://www.trackawesomelist.com/2022/5/">Jan 31 - Feb 06, 2022</a></h2><h3><p>Browser-Based / Boardgame</p>
 </h3>
 <ul>
-<li><a href="https://github.com/David20321/FTJ" rel="noopener noreferrer">Desperate Gods (⭐324)</a> - Free online board game that was designed to be played just like a board game in real-life: no rules are enforced by the computer.</li>
+<li><a href="https://github.com/David20321/FTJ" rel="noopener noreferrer">Desperate Gods (⭐325)</a> - Free online board game that was designed to be played just like a board game in real-life: no rules are enforced by the computer.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/danbeck/green-mahjong" rel="noopener noreferrer">Green Mahjong (⭐100)</a> - Solitaire mahjong game done in HTML/CSS/JavaScript.</li>
+<li><a href="https://github.com/danbeck/green-mahjong" rel="noopener noreferrer">Green Mahjong (⭐101)</a> - Solitaire mahjong game done in HTML/CSS/JavaScript.</li>
 </ul>
 <h3><p>Browser-Based / Arcade</p>
 </h3>
 <ul>
-<li><a href="https://github.com/EnclaveGames/Captain-Rogers" rel="noopener noreferrer">Captain Rogers</a> - HTML5 mobile game created using ImpactJavaScript.</li>
+<li><a href="https://github.com/EnclaveGames/Captain-Rogers" rel="noopener noreferrer">Captain Rogers (⭐51)</a> - HTML5 mobile game created using ImpactJavaScript.</li>
 </ul>
 
 <ul>
@@ -519,7 +617,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dommmel/coffee-snake" rel="noopener noreferrer">Coffee Snake</a> - HTML5 snake game written in CoffeeScript.</li>
+<li><a href="https://github.com/dommmel/coffee-snake" rel="noopener noreferrer">Coffee Snake (⭐33)</a> - HTML5 snake game written in CoffeeScript.</li>
 </ul>
 
 <ul>
@@ -531,7 +629,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ondras/custom-tetris" rel="noopener noreferrer">Custom Tetris (⭐100)</a> - Play the classic Tetris game the way you like it.</li>
+<li><a href="https://github.com/ondras/custom-tetris" rel="noopener noreferrer">Custom Tetris (⭐101)</a> - Play the classic Tetris game the way you like it.</li>
 </ul>
 
 <ul>
@@ -539,7 +637,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/anirudhjoshi/fluid_table_tennis" rel="noopener noreferrer">Fluid Table Tennis (⭐82)</a> - Renders a table tennis game interacting with a full-color real-time fluid simulation at 60 FPS.</li>
+<li><a href="https://github.com/anirudhjoshi/fluid_table_tennis" rel="noopener noreferrer">Fluid Table Tennis (⭐83)</a> - Renders a table tennis game interacting with a full-color real-time fluid simulation at 60 FPS.</li>
 </ul>
 
 <ul>
@@ -551,7 +649,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/RabiRoshan/snake_game" rel="noopener noreferrer">Snake_new (⭐59)</a> - Classic nokia snake game using web.</li>
+<li><a href="https://github.com/RabiRoshan/snake_game" rel="noopener noreferrer">Snake_new (⭐60)</a> - Classic nokia snake game using web.</li>
 </ul>
 
 <ul>
@@ -563,7 +661,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Loopeex/space-crusade" rel="noopener noreferrer">Space Crusade (⭐12)</a> - HTML5 game developped with PhaserJavaScript Framework.</li>
+<li><a href="https://github.com/Loopeex/space-crusade" rel="noopener noreferrer">Space Crusade (⭐13)</a> - HTML5 game developped with PhaserJavaScript Framework.</li>
 </ul>
 
 <ul>
@@ -590,7 +688,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/wwwtyro/Astray" rel="noopener noreferrer">Astry (⭐587)</a> - WebGL maze game built with Three.js and Box2dWeb.</li>
+<li><a href="https://github.com/wwwtyro/Astray" rel="noopener noreferrer">Astry (⭐592)</a> - WebGL maze game built with Three.js and Box2dWeb.</li>
 </ul>
 
 <ul>
@@ -606,7 +704,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Aerolab/blockrain.js" rel="noopener noreferrer">Blockrain.js (⭐984)</a> - Embed &amp; play the classic game on your site. Simple as that.</li>
+<li><a href="https://github.com/Aerolab/blockrain.js" rel="noopener noreferrer">Blockrain.js (⭐986)</a> - Embed &amp; play the classic game on your site. Simple as that.</li>
 </ul>
 
 <ul>
@@ -618,7 +716,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mvasilkov/glitch2016" rel="noopener noreferrer">Couch 2048 (⭐33)</a> - A physics-based puzzle, loosely related to the original 2048 game.</li>
+<li><a href="https://github.com/mvasilkov/glitch2016" rel="noopener noreferrer">Couch 2048 (⭐35)</a> - A physics-based puzzle, loosely related to the original 2048 game.</li>
 </ul>
 
 <ul>
@@ -626,7 +724,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/cxong/DrunkenViking" rel="noopener noreferrer">Drunken Viking (⭐61)</a> - Retrace your drunken rampage in reverse time.</li>
+<li><a href="https://github.com/cxong/DrunkenViking" rel="noopener noreferrer">Drunken Viking (⭐62)</a> - Retrace your drunken rampage in reverse time.</li>
 </ul>
 
 <ul>
@@ -642,7 +740,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mminer/hexahedral" rel="noopener noreferrer">Hexahedral (⭐30)</a> - Push down all the blocks in the minimum number of moves.</li>
+<li><a href="https://github.com/mminer/hexahedral" rel="noopener noreferrer">Hexahedral (⭐31)</a> - Push down all the blocks in the minimum number of moves.</li>
 </ul>
 
 <ul>
@@ -650,7 +748,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/satanas/infectors" rel="noopener noreferrer">Infectors (⭐16)</a> - Sokoban-like puzzle game developed with Phaser.</li>
+<li><a href="https://github.com/satanas/infectors" rel="noopener noreferrer">Infectors (⭐17)</a> - Sokoban-like puzzle game developed with Phaser.</li>
 </ul>
 
 <ul>
@@ -658,11 +756,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/abejfehr/parity" rel="noopener noreferrer">Parity (⭐46)</a> - A numbers puzzle game.</li>
+<li><a href="https://github.com/abejfehr/parity" rel="noopener noreferrer">Parity (⭐47)</a> - A numbers puzzle game.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/dart-lang/pop-pop-win" rel="noopener noreferrer">Pop Pop Win (⭐155)</a> - Implementation of Minesweeper in Dart.</li>
+<li><a href="https://github.com/dart-lang/pop-pop-win" rel="noopener noreferrer">Pop Pop Win (⭐154)</a> - Implementation of Minesweeper in Dart.</li>
 </ul>
 
 <ul>
@@ -682,7 +780,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jeroenverfallie/ggo13-transcube" rel="noopener noreferrer">TransCube (⭐229)</a> - 2d puzzle platformer based on the concept of transforming into different "blocks", with their unique properties, and making you way to the end of the level with the provided transformations.</li>
+<li><a href="https://github.com/jeroenverfallie/ggo13-transcube" rel="noopener noreferrer">TransCube (⭐230)</a> - 2d puzzle platformer based on the concept of transforming into different "blocks", with their unique properties, and making you way to the end of the level with the provided transformations.</li>
 </ul>
 
 <ul>
@@ -690,7 +788,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/lulea/game-off-2012" rel="noopener noreferrer">Zoko (⭐94)</a> - 3D version of Sokoban.</li>
+<li><a href="https://github.com/lulea/game-off-2012" rel="noopener noreferrer">Zoko (⭐95)</a> - 3D version of Sokoban.</li>
 </ul>
 
 <ul>
@@ -699,7 +797,7 @@
 <h3><p>Browser-Based / Clicker</p>
 </h3>
 <ul>
-<li><a href="https://github.com/particle-clicker/particle-clicker" rel="noopener noreferrer">Particle Clicker (⭐677)</a> - Addictive incremental game that teaches players the history of high energy particle physics.</li>
+<li><a href="https://github.com/particle-clicker/particle-clicker" rel="noopener noreferrer">Particle Clicker (⭐678)</a> - Addictive incremental game that teaches players the history of high energy particle physics.</li>
 </ul>
 <h3><p>Browser-Based / Others</p>
 </h3>
@@ -735,7 +833,7 @@
 <h3><p>Native / MMORPG</p>
 </h3>
 <ul>
-<li><a href="https://github.com/arianne/stendhal" rel="noopener noreferrer">Stendhal (⭐683)</a> - Fun friendly and free 2D multiplayer online adventure game with an old school feel.</li>
+<li><a href="https://github.com/arianne/stendhal" rel="noopener noreferrer">Stendhal (⭐687)</a> - Fun friendly and free 2D multiplayer online adventure game with an old school feel.</li>
 </ul>
 <h3><p>Native / Platform</p>
 </h3>
@@ -745,7 +843,7 @@
 <h3><p>Native / Puzzle/card/board</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pokerth/pokerth" rel="noopener noreferrer">PokerTH (⭐608)</a> - Implementation of Texas Hold'em supporting (online) multiplayer and botplay.</li>
+<li><a href="https://github.com/pokerth/pokerth" rel="noopener noreferrer">PokerTH (⭐618)</a> - Implementation of Texas Hold'em supporting (online) multiplayer and botplay.</li>
 </ul>
 <h3><p>Native / Strategy</p>
 </h3>
@@ -764,7 +862,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/bendangelo/entityjs" rel="noopener noreferrer">EntityJavaScript (⭐187)</a> - HTML5 JavaScript game engine utlizing the entity-component design.</li>
+<li><a href="https://github.com/bendangelo/entityjs" rel="noopener noreferrer">EntityJavaScript (⭐186)</a> - HTML5 JavaScript game engine utlizing the entity-component design.</li>
 </ul>
 
 <ul>
@@ -790,7 +888,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/51/">Dec 20 - Dec 26, 2021</a></h2><h3><p>Browser-Based / Boardgame</p>
 </h3>
 <ul>
-<li><a href="https://github.com/binarymax/kriegspiel" rel="noopener noreferrer">Kriegspiel</a> - The game of imperfect information, the Kriegspiel chess variant.</li>
+<li><a href="https://github.com/binarymax/kriegspiel" rel="noopener noreferrer">Kriegspiel (⭐27)</a> - The game of imperfect information, the Kriegspiel chess variant.</li>
 </ul>
 <h3><p>Browser-Based / Arcade</p>
 </h3>
@@ -807,7 +905,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Casmo/Drakonas" rel="noopener noreferrer">Drakonas (⭐16)</a> - Classic shoot 'em up game build with the Three.js library.</li>
+<li><a href="https://github.com/Casmo/Drakonas" rel="noopener noreferrer">Drakonas (⭐17)</a> - Classic shoot 'em up game build with the Three.js library.</li>
 </ul>
 
 <ul>
@@ -854,7 +952,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/gamedolphin/Lost-Beneath-The-Surface" rel="noopener noreferrer">Lost! Beneath the Surface (⭐9)</a> - You're a firefly lost in the dark, beneath the surface and must find a way out of the mazes created by the horrors in the dark.</li>
+<li><a href="https://github.com/gamedolphin/Lost-Beneath-The-Surface" rel="noopener noreferrer">Lost! Beneath the Surface (⭐10)</a> - You're a firefly lost in the dark, beneath the surface and must find a way out of the mazes created by the horrors in the dark.</li>
 </ul>
 
 <ul>
@@ -862,7 +960,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/gamedolphin/sliding_puzzle" rel="noopener noreferrer">Sliding Puzzle (⭐48)</a> - Sliding blocks puzzle game.</li>
+<li><a href="https://github.com/gamedolphin/sliding_puzzle" rel="noopener noreferrer">Sliding Puzzle (⭐49)</a> - Sliding blocks puzzle game.</li>
 </ul>
 
 <ul>
@@ -871,7 +969,7 @@
 <h3><p>Browser-Based / Point and Click</p>
 </h3>
 <ul>
-<li><a href="https://github.com/arturkot/the-house-game" rel="noopener noreferrer">The House (⭐210)</a> - You're in a strange house. Can you find the way out? Is there any?</li>
+<li><a href="https://github.com/arturkot/the-house-game" rel="noopener noreferrer">The House (⭐213)</a> - You're in a strange house. Can you find the way out? Is there any?</li>
 </ul>
 <h3><p>Browser-Based / Others</p>
 </h3>
@@ -896,12 +994,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/KrofDrakula/squirts" rel="noopener noreferrer">Squirts (⭐37)</a> - Well-known indie game implemented in JavaScript.</li>
+<li><a href="https://github.com/KrofDrakula/squirts" rel="noopener noreferrer">Squirts (⭐39)</a> - Well-known indie game implemented in JavaScript.</li>
 </ul>
 <h3><p>Native / Arcade</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cxong/cdogs-sdl" rel="noopener noreferrer">C-Dogs SDL (⭐1k)</a> - Overhead shoot-em-up port of the classic DOS game.</li>
+<li><a href="https://github.com/cxong/cdogs-sdl" rel="noopener noreferrer">C-Dogs SDL (⭐1.1k)</a> - Overhead shoot-em-up port of the classic DOS game.</li>
 </ul>
 
 <ul>
@@ -917,7 +1015,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/SimonLarsen/duckmarines" rel="noopener noreferrer">Duckmarines (⭐119)</a> - A ChuChu Rocket remake for PC.</li>
+<li><a href="https://github.com/SimonLarsen/duckmarines" rel="noopener noreferrer">Duckmarines (⭐120)</a> - A ChuChu Rocket remake for PC.</li>
 </ul>
 
 <ul>
@@ -937,7 +1035,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/albertz/openlierox" rel="noopener noreferrer">OpenLieroX (⭐288)</a> - Liero clone, like realtime Worms, or a 2D Quake.</li>
+<li><a href="https://github.com/albertz/openlierox" rel="noopener noreferrer">OpenLieroX (⭐290)</a> - Liero clone, like realtime Worms, or a 2D Quake.</li>
 </ul>
 
 <ul>
@@ -949,11 +1047,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/prodicus/spaceShooter" rel="noopener noreferrer">Space Shooter (⭐523)</a> - Cross platform, 2D space shooting game made using pygame.</li>
+<li><a href="https://github.com/prodicus/spaceShooter" rel="noopener noreferrer">Space Shooter</a> - Cross platform, 2D space shooting game made using pygame.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/DusteDdk/SDL-Ball" rel="noopener noreferrer">SDL-Ball (⭐17)</a> - Pretty looking breakout clone available in most distributions.</li>
+<li><a href="https://github.com/DusteDdk/SDL-Ball" rel="noopener noreferrer">SDL-Ball (⭐18)</a> - Pretty looking breakout clone available in most distributions.</li>
 </ul>
 
 <ul>
@@ -974,7 +1072,7 @@
 <h3><p>Native / FPS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/assaultcube/AC" rel="noopener noreferrer">AssaultCube (⭐992)</a> - Total conversion of Wouter van Oortmerssen's FPS called Cube.</li>
+<li><a href="https://github.com/assaultcube/AC" rel="noopener noreferrer">AssaultCube (⭐1k)</a> - Total conversion of Wouter van Oortmerssen's FPS called Cube.</li>
 </ul>
 
 <ul>
@@ -1015,7 +1113,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/crawl/crawl" rel="noopener noreferrer">Dungeon Crawl Stone Soup (⭐2.8k)</a> - Single-player roguelike dungeon exploration game with a larger focus on combat compared to other popular roguelikes.</li>
+<li><a href="https://github.com/crawl/crawl" rel="noopener noreferrer">Dungeon Crawl Stone Soup (⭐2.9k)</a> - Single-player roguelike dungeon exploration game with a larger focus on combat compared to other popular roguelikes.</li>
 </ul>
 
 <ul>
@@ -1035,7 +1133,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/NetHack/NetHack" rel="noopener noreferrer">NetHack (⭐3.5k)</a> - Single-player roguelike dungeon exploration game and one of the most popular games in its genre.</li>
+<li><a href="https://github.com/NetHack/NetHack" rel="noopener noreferrer">NetHack (⭐3.8k)</a> - Single-player roguelike dungeon exploration game and one of the most popular games in its genre.</li>
 </ul>
 
 <ul>
@@ -1043,16 +1141,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/christopho/zsdx" rel="noopener noreferrer">The Legend of Zelda: Mystery of Solarus DX (⭐192)</a> - Sequel to The Legend of Zelda: A Link to the Past released on the SNES.</li>
+<li><a href="https://github.com/christopho/zsdx" rel="noopener noreferrer">The Legend of Zelda: Mystery of Solarus DX (⭐193)</a> - Sequel to The Legend of Zelda: A Link to the Past released on the SNES.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Bertram25/ValyriaTear" rel="noopener noreferrer">Valyria Tear (⭐250)</a> - Single-player medieval-fantasy 2D J-RPG.</li>
+<li><a href="https://github.com/Bertram25/ValyriaTear" rel="noopener noreferrer">Valyria Tear (⭐253)</a> - Single-player medieval-fantasy 2D J-RPG.</li>
 </ul>
 <h3><p>Native / Platform</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gerstrong/Commander-Genius" rel="noopener noreferrer">Commander Genius (⭐220)</a> - Commander Keen compatible clone.</li>
+<li><a href="https://github.com/gerstrong/Commander-Genius" rel="noopener noreferrer">Commander Genius (⭐221)</a> - Commander Keen compatible clone.</li>
 </ul>
 
 <ul>
@@ -1060,11 +1158,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/frogatto/frogatto" rel="noopener noreferrer">Frogatto (⭐666)</a> - Action-adventure game, starring a certain quixotic frog.</li>
+<li><a href="https://github.com/frogatto/frogatto" rel="noopener noreferrer">Frogatto (⭐669)</a> - Action-adventure game, starring a certain quixotic frog.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/blinry/gish" rel="noopener noreferrer">Gish (⭐347)</a> - Award-winning physics platformer.</li>
+<li><a href="https://github.com/blinry/gish" rel="noopener noreferrer">Gish (⭐349)</a> - Award-winning physics platformer.</li>
 </ul>
 
 <ul>
@@ -1084,11 +1182,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/riksweeney/edgar" rel="noopener noreferrer">The Legend of Edgar (⭐134)</a> - 2D platform game with a persistent world.</li>
+<li><a href="https://github.com/riksweeney/edgar" rel="noopener noreferrer">The Legend of Edgar (⭐135)</a> - 2D platform game with a persistent world.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Secretchronicles/TSC" rel="noopener noreferrer">The Secret Chronicles of Dr. M. (⭐222)</a> - A 2D platform game in classic style.</li>
+<li><a href="https://github.com/Secretchronicles/TSC" rel="noopener noreferrer">The Secret Chronicles of Dr. M. (⭐223)</a> - A 2D platform game in classic style.</li>
 </ul>
 
 <ul>
@@ -1101,7 +1199,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/alewmoose/2048-in-terminal" rel="noopener noreferrer">2048-in-terminal (⭐160)</a> - CLI version of the game 2048 made right.</li>
+<li><a href="https://github.com/alewmoose/2048-in-terminal" rel="noopener noreferrer">2048-in-terminal (⭐161)</a> - CLI version of the game 2048 made right.</li>
 </ul>
 
 <ul>
@@ -1125,7 +1223,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jubalh/nudoku" rel="noopener noreferrer">Nudoku (⭐372)</a> - Ncurses based CLI sudoku game.</li>
+<li><a href="https://github.com/jubalh/nudoku" rel="noopener noreferrer">Nudoku (⭐374)</a> - Ncurses based CLI sudoku game.</li>
 </ul>
 
 <ul>
@@ -1137,12 +1235,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/DusteDdk/Wizznic" rel="noopener noreferrer">Wizznic (⭐42)</a> - Most awesome puzzle game.</li>
+<li><a href="https://github.com/DusteDdk/Wizznic" rel="noopener noreferrer">Wizznic (⭐43)</a> - Most awesome puzzle game.</li>
 </ul>
 <h3><p>Native / Racing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/stuntrally/stuntrally" rel="noopener noreferrer">Stunt Rally (⭐643)</a> - Rally game with Track Editor, based on VDrift and OGRE.</li>
+<li><a href="https://github.com/stuntrally/stuntrally" rel="noopener noreferrer">Stunt Rally (⭐644)</a> - Rally game with Track Editor, based on VDrift and OGRE.</li>
 </ul>
 
 <ul>
@@ -1151,7 +1249,7 @@
 <h3><p>Native / Programming</p>
 </h3>
 <ul>
-<li><a href="https://github.com/eckucukoglu/cengball" rel="noopener noreferrer">CengBall (⭐37)</a> - Soccer programming game with 2D simulation.</li>
+<li><a href="https://github.com/eckucukoglu/cengball" rel="noopener noreferrer">CengBall (⭐38)</a> - Soccer programming game with 2D simulation.</li>
 </ul>
 <h3><p>Native / Sandbox</p>
 </h3>
@@ -1164,7 +1262,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/endless-sky/endless-sky" rel="noopener noreferrer">Endless Sky (⭐7.3k)</a> - Space trading and combat game similar to the classic Escape Velocity series.</li>
+<li><a href="https://github.com/endless-sky/endless-sky" rel="noopener noreferrer">Endless Sky (⭐7.4k)</a> - Space trading and combat game similar to the classic Escape Velocity series.</li>
 </ul>
 
 <ul>
@@ -1176,7 +1274,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/manicdigger/manicdigger" rel="noopener noreferrer">Manic Digger (⭐397)</a> - A multiplayer block-building voxel game, Minecraft clone.</li>
+<li><a href="https://github.com/manicdigger/manicdigger" rel="noopener noreferrer">Manic Digger (⭐396)</a> - A multiplayer block-building voxel game, Minecraft clone.</li>
 </ul>
 
 <ul>
@@ -1221,27 +1319,27 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/a-nikolaev/curseofwar" rel="noopener noreferrer">Curse of War (⭐357)</a> - Fast-paced action strategy game with ncurses and SDL frontends.</li>
+<li><a href="https://github.com/a-nikolaev/curseofwar" rel="noopener noreferrer">Curse of War (⭐359)</a> - Fast-paced action strategy game with ncurses and SDL frontends.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ec429/harris" rel="noopener noreferrer">Harris (⭐28)</a> - Strategy game based around the actions of RAF Bomber Command in the Second World War.</li>
+<li><a href="https://github.com/ec429/harris" rel="noopener noreferrer">Harris (⭐29)</a> - Strategy game based around the actions of RAF Bomber Command in the Second World War.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/hedgewars/hw" rel="noopener noreferrer">Hedgewars (⭐540)</a> - A turn based strategy, artillery, action and comedy game.</li>
+<li><a href="https://github.com/hedgewars/hw" rel="noopener noreferrer">Hedgewars (⭐545)</a> - A turn based strategy, artillery, action and comedy game.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Kromster80/kam_remake" rel="noopener noreferrer">KaM Remake (⭐373)</a> - RTS game remake of “Knights and Merchants”  written in Delphi from scratch.</li>
+<li><a href="https://github.com/Kromster80/kam_remake" rel="noopener noreferrer">KaM Remake (⭐374)</a> - RTS game remake of “Knights and Merchants”  written in Delphi from scratch.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/miki151/keeperrl" rel="noopener noreferrer">KeeperRL (⭐969)</a> - Roguelike dungeon builder inspired by Dwarf Fortress.</li>
+<li><a href="https://github.com/miki151/keeperrl" rel="noopener noreferrer">KeeperRL (⭐983)</a> - Roguelike dungeon builder inspired by Dwarf Fortress.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/MegaGlest/megaglest-source" rel="noopener noreferrer">MegaGlest (⭐399)</a> - Real-time strategy game engine (cross-platform, 3-d).</li>
+<li><a href="https://github.com/MegaGlest/megaglest-source" rel="noopener noreferrer">MegaGlest (⭐402)</a> - Real-time strategy game engine (cross-platform, 3-d).</li>
 </ul>
 
 <ul>
@@ -1257,7 +1355,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/OpenFodder/openfodder" rel="noopener noreferrer">OpenFodder (⭐588)</a> - Open-source implementation of Cannon Fodder.</li>
+<li><a href="https://github.com/OpenFodder/openfodder" rel="noopener noreferrer">OpenFodder (⭐591)</a> - Open-source implementation of Cannon Fodder.</li>
 </ul>
 
 <ul>
@@ -1265,7 +1363,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/OpenTTD/OpenTTD" rel="noopener noreferrer">OpenTTD (⭐7.8k)</a> - Transport simulation game based upon the popular game Transport Tycoon Deluxe, written by Chris Sawyer.</li>
+<li><a href="https://github.com/OpenTTD/OpenTTD" rel="noopener noreferrer">OpenTTD (⭐7.9k)</a> - Transport simulation game based upon the popular game Transport Tycoon Deluxe, written by Chris Sawyer.</li>
 </ul>
 
 <ul>
@@ -1289,11 +1387,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/OpenRCT2/OpenRCT2" rel="noopener noreferrer">OpenRCT2 (⭐15k)</a> - Open source recreation of Rollercoaster Tycoon 2.</li>
+<li><a href="https://github.com/OpenRCT2/OpenRCT2" rel="noopener noreferrer">OpenRCT2 (⭐16k)</a> - Open source recreation of Rollercoaster Tycoon 2.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/raceintospace/raceintospace" rel="noopener noreferrer">Race into Space (⭐205)</a> - Turn-based space race strategy game originally by Interplay.</li>
+<li><a href="https://github.com/raceintospace/raceintospace" rel="noopener noreferrer">Race into Space (⭐209)</a> - Turn-based space race strategy game originally by Interplay.</li>
 </ul>
 
 <ul>
@@ -1309,7 +1407,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/wesnoth/wesnoth" rel="noopener noreferrer">The Battle for Wesnoth (⭐6.6k)</a> - Turn-based strategy game with a high fantasy theme.</li>
+<li><a href="https://github.com/wesnoth/wesnoth" rel="noopener noreferrer">The Battle for Wesnoth (⭐6.7k)</a> - Turn-based strategy game with a high fantasy theme.</li>
 </ul>
 
 <ul>
@@ -1317,7 +1415,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Wargus/wargus" rel="noopener noreferrer">Wargus (⭐416)</a> - Warcraft2 Mod that allows you to play Warcraft2 with the Stratagus engine.</li>
+<li><a href="https://github.com/Wargus/wargus" rel="noopener noreferrer">Wargus (⭐420)</a> - Warcraft2 Mod that allows you to play Warcraft2 with the Stratagus engine.</li>
 </ul>
 
 <ul>
@@ -1330,7 +1428,7 @@
 <h3><p>Mobile Games / Android</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tvbarthel/ChaseWhisplyProject" rel="noopener noreferrer">ChaseWhisplyProject (⭐552)</a> - Chase Whisply is a FPS. You have to seek, find and kill the ghosts living around you.</li>
+<li><a href="https://github.com/tvbarthel/ChaseWhisplyProject" rel="noopener noreferrer">ChaseWhisplyProject (⭐551)</a> - Chase Whisply is a FPS. You have to seek, find and kill the ghosts living around you.</li>
 </ul>
 
 <ul>
@@ -1338,11 +1436,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/zsoltk/GameOfLife" rel="noopener noreferrer">Game of Life (⭐103)</a> - Conway's Game of Life with editable rules.</li>
+<li><a href="https://github.com/zsoltk/GameOfLife" rel="noopener noreferrer">Game of Life (⭐104)</a> - Conway's Game of Life with editable rules.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/chuvidi2003/GidiGames" rel="noopener noreferrer">Gidi Games (⭐69)</a> - Lexis, TicTacToe, Puzzlemania - a collection of 3 board games done with Cocos2d for Android.</li>
+<li><a href="https://github.com/chuvidi2003/GidiGames" rel="noopener noreferrer">Gidi Games (⭐70)</a> - Lexis, TicTacToe, Puzzlemania - a collection of 3 board games done with Cocos2d for Android.</li>
 </ul>
 
 <ul>
@@ -1358,7 +1456,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/chuvidi2003/PuzzleGame" rel="noopener noreferrer">PuzzleGame (⭐68)</a> - Slider puzzle game implementation created with Cocos2d for Android.</li>
+<li><a href="https://github.com/chuvidi2003/PuzzleGame" rel="noopener noreferrer">PuzzleGame (⭐67)</a> - Slider puzzle game implementation created with Cocos2d for Android.</li>
 </ul>
 
 <ul>
@@ -1383,11 +1481,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/id-Software/DOOM-iOS" rel="noopener noreferrer">Doom (⭐829)</a> - Classic Doom Game for iOS.</li>
+<li><a href="https://github.com/id-Software/DOOM-iOS" rel="noopener noreferrer">Doom (⭐828)</a> - Classic Doom Game for iOS.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/biou/DrugsNRock" rel="noopener noreferrer">DrugsNRock (⭐15)</a> - Simple multiplayer rhythm game designed during the 2013 Global Game Jam.</li>
+<li><a href="https://github.com/biou/DrugsNRock" rel="noopener noreferrer">DrugsNRock (⭐14)</a> - Simple multiplayer rhythm game designed during the 2013 Global Game Jam.</li>
 </ul>
 
 <ul>
@@ -1411,12 +1509,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/id-Software/Wolf3D-iOS" rel="noopener noreferrer">Wolfenstein 3D (⭐537)</a> - iOS Source Release.</li>
+<li><a href="https://github.com/id-Software/Wolf3D-iOS" rel="noopener noreferrer">Wolfenstein 3D (⭐535)</a> - iOS Source Release.</li>
 </ul>
 <h3><p>Just The Source / iOS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AquariaOSE/Aquaria" rel="noopener noreferrer">Aquaria (⭐320)</a> - Breath-taking underwater fantasy game. Winner of the Grand Prize at the 2007 Independent Games Festival.</li>
+<li><a href="https://github.com/AquariaOSE/Aquaria" rel="noopener noreferrer">Aquaria (⭐321)</a> - Breath-taking underwater fantasy game. Winner of the Grand Prize at the 2007 Independent Games Festival.</li>
 </ul>
 
 <ul>
@@ -1428,11 +1526,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/grayj/Jedi-Academy" rel="noopener noreferrer">Jedi Academy (⭐515)</a> - Source only, mirror of SourceForge from Raven Software.</li>
+<li><a href="https://github.com/grayj/Jedi-Academy" rel="noopener noreferrer">Jedi Academy (⭐707)</a> - Source only, mirror of SourceForge from Raven Software.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/grayj/Jedi-Outcast" rel="noopener noreferrer">Jedi Outcast (⭐288)</a> - Source only, mirror of SourceForge from Raven Software.</li>
+<li><a href="https://github.com/grayj/Jedi-Outcast" rel="noopener noreferrer">Jedi Outcast (⭐310)</a> - Source only, mirror of SourceForge from Raven Software.</li>
 </ul>
 
 <ul>
@@ -1481,7 +1579,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ChilliWorks/ChilliSource" rel="noopener noreferrer">Chilli Works (⭐161)</a> - An open source, cross-platform game engine designed for indie developers.</li>
+<li><a href="https://github.com/ChilliWorks/ChilliSource" rel="noopener noreferrer">Chilli Works (⭐160)</a> - An open source, cross-platform game engine designed for indie developers.</li>
 </ul>
 
 <ul>
@@ -1489,7 +1587,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dfabulich/choicescript" rel="noopener noreferrer">ChoiceScript (⭐449)</a> - A language/engine for developing text-based multiple-choice interactive novels.</li>
+<li><a href="https://github.com/dfabulich/choicescript" rel="noopener noreferrer">ChoiceScript (⭐453)</a> - A language/engine for developing text-based multiple-choice interactive novels.</li>
 </ul>
 
 <ul>
@@ -1509,7 +1607,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Circular-Studios/Dash" rel="noopener noreferrer">Dash (⭐426)</a> - Free and open 3D game engine written in D.</li>
+<li><a href="https://github.com/Circular-Studios/Dash" rel="noopener noreferrer">Dash (⭐424)</a> - Free and open 3D game engine written in D.</li>
 </ul>
 
 <ul>
@@ -1517,7 +1615,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/evennia/evennia" rel="noopener noreferrer">Evennia MUD/MU* Creation System (⭐2k)</a> - Library for creating online multiplayer text games (MUD, MUSH, MUX, MUCK, MOO etc) in pure Python.</li>
+<li><a href="https://github.com/evennia/evennia" rel="noopener noreferrer">Evennia MUD/MU* Creation System (⭐2.1k)</a> - Library for creating online multiplayer text games (MUD, MUSH, MUX, MUCK, MOO etc) in pure Python.</li>
 </ul>
 
 <ul>
@@ -1525,7 +1623,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Draknek/FlashPunk" rel="noopener noreferrer">Flashpunk (⭐395)</a> - Free ActionScript 3 library designed for developing 2D Flash games.</li>
+<li><a href="https://github.com/Draknek/FlashPunk" rel="noopener noreferrer">Flashpunk (⭐394)</a> - Free ActionScript 3 library designed for developing 2D Flash games.</li>
 </ul>
 
 <ul>
@@ -1533,7 +1631,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/gameplay3d/GamePlay" rel="noopener noreferrer">GamePlay (⭐4.8k)</a> - Cross-platform, C++ game framework/engine for creating 2D/3D mobile and desktop games.</li>
+<li><a href="https://github.com/gameplay3d/GamePlay" rel="noopener noreferrer">GamePlay (⭐4.9k)</a> - Cross-platform, C++ game framework/engine for creating 2D/3D mobile and desktop games.</li>
 </ul>
 
 <ul>
@@ -1549,7 +1647,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/okamstudio/godot" rel="noopener noreferrer">Godot (⭐110k)</a> - Fully featured, MIT licensed, game engine. It focuses on having great tools, and a visual oriented workflow that can export to PC, Mobile and Web platforms with no hassle. The editor, language and APIs are feature rich, yet simple to learn, allowing you to become productive in a matter of hours.</li>
+<li><a href="https://github.com/okamstudio/godot" rel="noopener noreferrer">Godot (⭐111k)</a> - Fully featured, MIT licensed, game engine. It focuses on having great tools, and a visual oriented workflow that can export to PC, Mobile and Web platforms with no hassle. The editor, language and APIs are feature rich, yet simple to learn, allowing you to become productive in a matter of hours.</li>
 </ul>
 
 <ul>
@@ -1557,7 +1655,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Techbot/JiGS-PHP-RPG-engine" rel="noopener noreferrer">JiGS (⭐85)</a> - Online RPG and Trading Game Engine built in PHP.</li>
+<li><a href="https://github.com/Techbot/JiGS-PHP-RPG-engine" rel="noopener noreferrer">JiGS (⭐86)</a> - Online RPG and Trading Game Engine built in PHP.</li>
 </ul>
 
 <ul>
@@ -1573,7 +1671,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/libSDL2pp/libSDL2pp" rel="noopener noreferrer">LibSDL2pp (⭐594)</a> - C++11 bindings for <a href="http://libsdl.org/" rel="noopener noreferrer">SDL 2.0</a>.</li>
+<li><a href="https://github.com/libSDL2pp/libSDL2pp" rel="noopener noreferrer">LibSDL2pp (⭐595)</a> - C++11 bindings for <a href="http://libsdl.org/" rel="noopener noreferrer">SDL 2.0</a>.</li>
 </ul>
 
 <ul>
@@ -1597,11 +1695,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ekelokorpi/panda.js" rel="noopener noreferrer">panda.js (⭐762)</a> - Free HTML5 game engine for mobile and desktop with Canvas and WebGL rendering.</li>
+<li><a href="https://github.com/ekelokorpi/panda.js" rel="noopener noreferrer">panda.js (⭐764)</a> - Free HTML5 game engine for mobile and desktop with Canvas and WebGL rendering.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/photonstorm/phaser" rel="noopener noreferrer">Phaser (⭐39k)</a> - Fun, free and fast 2D game framework for making HTML5 games for desktop and mobile web browsers, supporting Canvas and WebGL rendering.</li>
+<li><a href="https://github.com/photonstorm/phaser" rel="noopener noreferrer">Phaser (⭐40k)</a> - Fun, free and fast 2D game framework for making HTML5 games for desktop and mobile web browsers, supporting Canvas and WebGL rendering.</li>
 </ul>
 
 <ul>
@@ -1609,15 +1707,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/H-uru/Plasma" rel="noopener noreferrer">Plasma (⭐230)</a> - Cyan Worlds's Plasma game engine.</li>
+<li><a href="https://github.com/H-uru/Plasma" rel="noopener noreferrer">Plasma (⭐233)</a> - Cyan Worlds's Plasma game engine.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/playcanvas/engine" rel="noopener noreferrer">PlayCanvas (⭐15k)</a> - 3D WebGL game engine with online toolset.</li>
+<li><a href="https://github.com/playcanvas/engine" rel="noopener noreferrer">PlayCanvas (⭐16k)</a> - 3D WebGL game engine with online toolset.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/qiciengine/qiciengine" rel="noopener noreferrer">QICI Engine (⭐900)</a> - Free JavaScript game engine library with a web-based comprehensive suite of toolset for making HTML5 games.</li>
+<li><a href="https://github.com/qiciengine/qiciengine" rel="noopener noreferrer">QICI Engine (⭐902)</a> - Free JavaScript game engine library with a web-based comprehensive suite of toolset for making HTML5 games.</li>
 </ul>
 
 <ul>
@@ -1625,7 +1723,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/renpy/renpy" rel="noopener noreferrer">Ren'py (⭐6.4k)</a> - A Visual Novel Engine, written in python, for both mobile (iOS beta) and desktop platforms.</li>
+<li><a href="https://github.com/renpy/renpy" rel="noopener noreferrer">Ren'py (⭐6.5k)</a> - A Visual Novel Engine, written in python, for both mobile (iOS beta) and desktop platforms.</li>
 </ul>
 
 <ul>
@@ -1633,7 +1731,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/christopho/solarus" rel="noopener noreferrer">Solarus (⭐722)</a> - An Action-RPG game engine written in C++.</li>
+<li><a href="https://github.com/christopho/solarus" rel="noopener noreferrer">Solarus (⭐726)</a> - An Action-RPG game engine written in C++.</li>
 </ul>
 
 <ul>
@@ -1641,7 +1739,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Gamua/Starling-Framework" rel="noopener noreferrer">Starling (⭐3k)</a> - ActionScript 3 library that mimics the conventional Flash display tree architecture, can be deployed to mobile devices (iOS, Android), the desktop (Windows, macOS), and to the browser (via the Flash plugin).</li>
+<li><a href="https://github.com/Gamua/Starling-Framework" rel="noopener noreferrer">Starling (⭐3.1k)</a> - ActionScript 3 library that mimics the conventional Flash display tree architecture, can be deployed to mobile devices (iOS, Android), the desktop (Windows, macOS), and to the browser (via the Flash plugin).</li>
 </ul>
 
 <ul>
@@ -1649,11 +1747,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mrdoob/three.js" rel="noopener noreferrer">Three.js (⭐112k)</a> - JavaScript 3D library used in many browser games.</li>
+<li><a href="https://github.com/mrdoob/three.js" rel="noopener noreferrer">Three.js (⭐113k)</a> - JavaScript 3D library used in many browser games.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/bjorn/tiled" rel="noopener noreferrer">Tiled (⭐12k)</a> - General purpose tile map editor. It is meant to be used for editing maps of any tile-based game, be it an RPG, a platformer or a Breakout clone.</li>
+<li><a href="https://github.com/bjorn/tiled" rel="noopener noreferrer">Tiled (⭐13k)</a> - General purpose tile map editor. It is meant to be used for editing maps of any tile-based game, be it an RPG, a platformer or a Breakout clone.</li>
 </ul>
 
 <ul>
@@ -1665,7 +1763,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/turbulenz/turbulenz_engine" rel="noopener noreferrer">Turbulenz Engine (⭐4.9k)</a> - HTML5 game engine and server-side APIs available in JavaScript and TypeScript for building and distributing 2D and 3D games.</li>
+<li><a href="https://github.com/turbulenz/turbulenz_engine" rel="noopener noreferrer">Turbulenz Engine (⭐5k)</a> - HTML5 game engine and server-side APIs available in JavaScript and TypeScript for building and distributing 2D and 3D games.</li>
 </ul>
 
 <ul>
@@ -1702,7 +1800,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/taisel/IodineGBA" rel="noopener noreferrer">IodineGBA (⭐285)</a> - GameBoy Advance emulator written entirely in JavaScript and powered by HTML5.</li>
+<li><a href="https://github.com/taisel/IodineGBA" rel="noopener noreferrer">IodineGBA (⭐289)</a> - GameBoy Advance emulator written entirely in JavaScript and powered by HTML5.</li>
 </ul>
 
 <ul>
@@ -1734,11 +1832,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/OpenEmu/OpenEmu" rel="noopener noreferrer">OpenEmu (⭐17k)</a> - Project to bring game emulation to macOS as a first class citizen.</li>
+<li><a href="https://github.com/OpenEmu/OpenEmu" rel="noopener noreferrer">OpenEmu (⭐18k)</a> - Project to bring game emulation to macOS as a first class citizen.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Mudlet/Mudlet" rel="noopener noreferrer">Mudlet (⭐874)</a> - A cross-platform, open source, and super fast MUD (text-only MMORPGs) client with scripting in Lua.</li>
+<li><a href="https://github.com/Mudlet/Mudlet" rel="noopener noreferrer">Mudlet (⭐882)</a> - A cross-platform, open source, and super fast MUD (text-only MMORPGs) client with scripting in Lua.</li>
 </ul>
 
 <ul>
@@ -1754,9 +1852,51 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Blizzard/api-wow-docs" rel="noopener noreferrer">World of Warcraft API Docs (⭐533)</a> - Public documentation for the RESTful web service provided as part of the World of Warcraft community site.</li>
+<li><a href="https://github.com/Blizzard/api-wow-docs" rel="noopener noreferrer">World of Warcraft API Docs (⭐534)</a> - Public documentation for the RESTful web service provided as part of the World of Warcraft community site.</li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
