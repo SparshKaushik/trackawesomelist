@@ -16,22 +16,111 @@
     <meta property="og:title" content="Track Awesome Ada Updates Weekly" />
     <meta property="og:description" content="A curated list of awesome resources related to the Ada and SPARK programming language" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Ada Updates Weekly</h1>
 <p>A curated list of awesome resources related to the Ada and SPARK programming language</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/ohenley/awesome-ada/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/ohenley/awesome-ada">😺 ohenley/awesome-ada</a><span> · </span><span>⭐ 821</span><span> · </span><span>🏷️ Programming Languages</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/ohenley/awesome-ada/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/ohenley/awesome-ada">😺 ohenley/awesome-ada</a><span> · </span><span>⭐ 836</span><span> · </span><span>🏷️ Programming Languages</span></p>
 <p><span>[ </span><a href="/ohenley/awesome-ada/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/ohenley/awesome-ada/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/23/">Jun 08 - Jun 14, 2026</a></h2><h3><p>Science / GPL (no linking exception)</p>
+</h3>
+<ul>
+<li><a href="https://github.com/CKWG/SI_Units-Checked-and-Unchecked" rel="noopener noreferrer">si (⭐4)</a> - Checked and unchecked SI units.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/HeisenbugLtd/si_units" rel="noopener noreferrer">si-units (⭐9)</a> - Utility library to pretty print physical values in proper metric units.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/16/">Apr 20 - Apr 26, 2026</a></h2><h3><p>Sound / GPL (no linking exception)</p>
 </h3>
 <ul>
@@ -39,7 +128,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/UlrikHjort/Ada-Tracker" rel="noopener noreferrer">AdaTracker (⭐1)</a> - A MOD, XM, S3M, and IT music tracker player written in Ada, using SDL2 for audio output and UI rendering.</li>
+<li><a href="https://github.com/UlrikHjort/Ada-Tracker" rel="noopener noreferrer">AdaTracker (⭐2)</a> - A MOD, XM, S3M, and IT music tracker player written in Ada, using SDL2 for audio output and UI rendering.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/15/">Apr 13 - Apr 19, 2026</a></h2><h3><p>Specialties</p>
 </h3>
@@ -49,7 +138,7 @@
 <h3><p>Open source / GPL (with linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alire-project/GNAT-FSF-builds/releases" rel="noopener noreferrer">fsf-gnat (⭐56)</a> - Free Software Foundation compiler for the Ada programming language which forms part of the GNU Compiler Collection. It supports all versions of the language, i.e. Ada 2022, Ada 2012, Ada 2005, Ada 95 and Ada 83.</li>
+<li><a href="https://github.com/alire-project/GNAT-FSF-builds/releases" rel="noopener noreferrer">fsf-gnat (⭐57)</a> - Free Software Foundation compiler for the Ada programming language which forms part of the GNU Compiler Collection. It supports all versions of the language, i.e. Ada 2022, Ada 2012, Ada 2005, Ada 95 and Ada 83.</li>
 </ul>
 <h3><p>Online / GPL (no linking exception)</p>
 </h3>
@@ -59,16 +148,16 @@
 <h2><a href="https://www.trackawesomelist.com/2026/11/">Mar 16 - Mar 22, 2026</a></h2><h3><p>Games / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ellamosi/gade" rel="noopener noreferrer">gade (⭐30)</a> - A Game Boy emulation library in Ada.</li>
+<li><a href="https://github.com/ellamosi/gade" rel="noopener noreferrer">gade (⭐32)</a> - A Game Boy emulation library in Ada.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ellamosi/gade-sdl" rel="noopener noreferrer">gade-sdl (⭐2)</a> - An SDL2 Game Boy emulation front end for <a href="https://github.com/ellamosi/gade" rel="noopener noreferrer">Gade (⭐30)</a> using <a href="https://github.com/Lucretia/sdlada" rel="noopener noreferrer">SDLAda (⭐129)</a>.</li>
+<li><a href="https://github.com/ellamosi/gade-sdl" rel="noopener noreferrer">gade-sdl (⭐5)</a> - An SDL2 Game Boy emulation front end for <a href="https://github.com/ellamosi/gade" rel="noopener noreferrer">Gade (⭐32)</a> using <a href="https://github.com/Lucretia/sdlada" rel="noopener noreferrer">SDLAda (⭐133)</a>.</li>
 </ul>
 <h3><p>Unit Test, Testing / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tomekw/testy" rel="noopener noreferrer">testy (⭐2)</a> - Ada testing framework, part of <a href="https://github.com/tomekw/tada" rel="noopener noreferrer">Tada (⭐20)</a>.</li>
+<li><a href="https://github.com/tomekw/testy" rel="noopener noreferrer">testy (⭐3)</a> - Ada testing framework, part of <a href="https://github.com/tomekw/tada" rel="noopener noreferrer">Tada (⭐21)</a>.</li>
 </ul>
 <h3><p>Multimedia / GPL (no linking exception)</p>
 </h3>
@@ -78,7 +167,7 @@
 <h2><a href="https://www.trackawesomelist.com/2026/10/">Mar 09 - Mar 15, 2026</a></h2><h3><p>Build and Package / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tomekw/tada" rel="noopener noreferrer">tada (⭐20)</a> - An opinionated package management tool for Ada.</li>
+<li><a href="https://github.com/tomekw/tada" rel="noopener noreferrer">tada (⭐21)</a> - An opinionated package management tool for Ada.</li>
 </ul>
 <h3><p>Linux and POSIX / GPL (no linking exception)</p>
 </h3>
@@ -92,7 +181,7 @@
 <h2><a href="https://www.trackawesomelist.com/2026/6/">Feb 09 - Feb 15, 2026</a></h2><h3><p>OS and Kernels / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ajxs/straylight" rel="noopener noreferrer">Straylight (⭐2)</a> - A simple monolithic RISC-V operating system developed in Ada.</li>
+<li><a href="https://github.com/ajxs/straylight" rel="noopener noreferrer">Straylight (⭐3)</a> - A simple monolithic RISC-V operating system developed in Ada.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/49/">Dec 08 - Dec 14, 2025</a></h2><h3><p>Networking and Communication Middleware / GPL (no linking exception)</p>
 </h3>
@@ -107,7 +196,7 @@
 <h3><p>Competition</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AdaCore/Ada-SPARK-Crate-Of-The-Year" rel="noopener noreferrer">crate-of-the-year (⭐22)</a> - Yearly prize for the best Alire crate in three categories: general, SPARK and embedded.</li>
+<li><a href="https://github.com/AdaCore/Ada-SPARK-Crate-Of-The-Year" rel="noopener noreferrer">crate-of-the-year (⭐25)</a> - Yearly prize for the best Alire crate in three categories: general, SPARK and embedded.</li>
 </ul>
 <h3><p>Parsers, Scanners, Linters, Analysers, Interpreters and Prettyprinters / GPL (no linking exception)</p>
 </h3>
@@ -140,7 +229,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/27/">Jul 07 - Jul 13, 2025</a></h2><h3><p>OS and Kernels / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Lucretia/bare_bones" rel="noopener noreferrer">bare-bones (⭐90)</a> - An Ada port of the <a href="https://wiki.osdev.org/Ada_Bare_Bones" rel="noopener noreferrer">osdev.org</a> minimal 32-bit x86 kernel.</li>
+<li><a href="https://github.com/Lucretia/bare_bones" rel="noopener noreferrer">bare-bones (⭐91)</a> - An Ada port of the <a href="https://wiki.osdev.org/Ada_Bare_Bones" rel="noopener noreferrer">osdev.org</a> minimal 32-bit x86 kernel.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/24/">Jun 16 - Jun 22, 2025</a></h2><h3><p>Frameworks / GPL (no linking exception)</p>
 </h3>
@@ -155,7 +244,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/6/">Feb 10 - Feb 16, 2025</a></h2><h3><p>Unit Test, Testing / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/LionelDraghi/bbt" rel="noopener noreferrer">bbt (⭐18)</a> - Simple tool to black box check the behavior of an executable through the command line.</li>
+<li><a href="https://github.com/LionelDraghi/bbt" rel="noopener noreferrer">bbt (⭐27)</a> - Simple tool to black box check the behavior of an executable through the command line.</li>
 </ul>
 <h3><p>Logging / GPL (no linking exception)</p>
 </h3>
@@ -170,7 +259,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/2/">Jan 13 - Jan 19, 2025</a></h2><h3><p>Games / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/fastrgv/RetroArcade" rel="noopener noreferrer">retro-arcade (⭐3)</a> - Space Invaders, Pacman, &amp; Frogger games that run in a terminal on Windows, OS-X &amp; Linux.</li>
+<li><a href="https://github.com/fastrgv/RetroArcade" rel="noopener noreferrer">retro-arcade (⭐4)</a> - Space Invaders, Pacman, &amp; Frogger games that run in a terminal on Windows, OS-X &amp; Linux.</li>
 </ul>
 <h3><p>Database / GPL (no linking exception)</p>
 </h3>
@@ -195,12 +284,12 @@
 <h2><a href="https://www.trackawesomelist.com/2024/21/">May 20 - May 26, 2024</a></h2><h3><p>Reference</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bracke/AdaReferenceCard/releases" rel="noopener noreferrer">Ada 2022 Reference Card (⭐13)</a> - Reference Card / Cheatsheet of Ada Attributes, Aspects, Pragmas and Standard Library.</li>
+<li><a href="https://github.com/bracke/AdaReferenceCard/releases" rel="noopener noreferrer">Ada 2022 Reference Card (⭐14)</a> - Reference Card / Cheatsheet of Ada Attributes, Aspects, Pragmas and Standard Library.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/13/">Mar 25 - Mar 31, 2024</a></h2><h3><p>Games / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tsoding/eepers" rel="noopener noreferrer">eepers (⭐448)</a> - A simple Turn-based Game in Ada (made with <a href="https://github.com/raysan5/raylib" rel="noopener noreferrer">raylib (⭐32k)</a>).</li>
+<li><a href="https://github.com/tsoding/eepers" rel="noopener noreferrer">eepers (⭐460)</a> - A simple Turn-based Game in Ada (made with <a href="https://github.com/raysan5/raylib" rel="noopener noreferrer">raylib (⭐33k)</a>).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/11/">Mar 11 - Mar 17, 2024</a></h2><h3><p>Build and Package / GPL (no linking exception)</p>
 </h3>
@@ -215,7 +304,7 @@
 <h3><p>Games / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/thindil/steamsky" rel="noopener noreferrer">steamsky (⭐101)</a> - Roguelike in sky with a steampunk setting.</li>
+<li><a href="https://github.com/thindil/steamsky" rel="noopener noreferrer">steamsky (⭐103)</a> - Roguelike in sky with a steampunk setting.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/1/">Jan 01 - Jan 07, 2024</a></h2><h3><p>Reference</p>
 </h3>
@@ -285,7 +374,7 @@
 </h3>
 <ul>
 <li><a href="https://github.com/zertovitch/pascal-to-ada" rel="noopener noreferrer">pascal-to-ada (⭐18)</a> - A Pascal to Ada translator.<ul>
-<li><a href="https://github.com/Blady-Com/tp7ada-gtkada" rel="noopener noreferrer">tp7-ada-gtkada (⭐3)</a> - Implementation of Turbo Pascal 7.0 units with <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐103)</a>.</li>
+<li><a href="https://github.com/Blady-Com/tp7ada-gtkada" rel="noopener noreferrer">tp7-ada-gtkada (⭐3)</a> - Implementation of Turbo Pascal 7.0 units with <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐104)</a>.</li>
 <li><a href="https://github.com/Blady-Com/tp7ada-gnoga" rel="noopener noreferrer">tp7-ada-gnoga (⭐5)</a> - Implementation of Turbo Pascal 7.0 units with <a href="https://sourceforge.net/projects/gnoga/" rel="noopener noreferrer">gnoga</a>.</li>
 </ul>
 </li>
@@ -343,7 +432,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/47/">Nov 20 - Nov 26, 2023</a></h2><h3><p>Frameworks / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lasp/adamant" rel="noopener noreferrer">adamant (⭐45)</a> - A component-based, model-driven framework for constructing reliable and reusable real-time software.</li>
+<li><a href="https://github.com/lasp/adamant" rel="noopener noreferrer">adamant (⭐48)</a> - A component-based, model-driven framework for constructing reliable and reusable real-time software.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/45/">Nov 06 - Nov 12, 2023</a></h2><h3><p>News and Resources</p>
 </h3>
@@ -368,21 +457,17 @@
 <h2><a href="https://www.trackawesomelist.com/2023/29/">Jul 17 - Jul 23, 2023</a></h2><h3><p>OS and Kernels / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jgrivera67/HiRTOS" rel="noopener noreferrer">hirtos (⭐46)</a> - A high-integrity RTOS written in SPARK Ada.</li>
+<li><a href="https://github.com/jgrivera67/HiRTOS" rel="noopener noreferrer">hirtos (⭐51)</a> - A high-integrity RTOS written in SPARK Ada.</li>
 </ul>
 <h3><p>Science / GPL (no linking exception)</p>
 </h3>
 <ul>
 <li><a href="http://www.dmitry-kazakov.de/ada/units.htm" rel="noopener noreferrer">units-of-measurement</a> - Library to manage units of measurement with dimension checking.</li>
 </ul>
-
-<ul>
-<li><a href="https://github.com/HeisenbugLtd/si_units" rel="noopener noreferrer">si_units (⭐9)</a> - Utility library to pretty print physical values in proper metric units.</li>
-</ul>
 <h3><p>Frameworks / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gabriele-galeotti/SweetAda" rel="noopener noreferrer">SweetAda (⭐50)</a> - A lightweight development framework whose purpose is the implementation of Ada-based software systems. It supports a plethora or CPU architectures and development boards.</li>
+<li><a href="https://github.com/gabriele-galeotti/SweetAda" rel="noopener noreferrer">SweetAda (⭐52)</a> - A lightweight development framework whose purpose is the implementation of Ada-based software systems. It supports a plethora or CPU architectures and development boards.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/28/">Jul 10 - Jul 16, 2023</a></h2><h3><p>Graphics and Multimedia / GPL (no linking exception)</p>
 </h3>
@@ -402,7 +487,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/25/">Jun 19 - Jun 25, 2023</a></h2><h3><p>Misc / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/atalii/adage" rel="noopener noreferrer">adage (⭐9)</a> - An Ada/SPARK alternative to sudo and doas.</li>
+<li><a href="https://github.com/atalii/adage" rel="noopener noreferrer">adage (⭐10)</a> - An Ada/SPARK alternative to sudo and doas.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/24/">Jun 12 - Jun 18, 2023</a></h2><h3><p>Parsers, Scanners, Linters, Analysers, Interpreters and Prettyprinters / GPL (no linking exception)</p>
 </h3>
@@ -417,7 +502,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/14/">Apr 03 - Apr 09, 2023</a></h2><h3><p>Web / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/godunko/matreshka" rel="noopener noreferrer">matreshka (⭐10)</a> - Framework to develop information systems consisting of five major components: League, XML processor, Web framework, SQL access, and the Modeling framework.</li>
+<li><a href="https://github.com/godunko/matreshka" rel="noopener noreferrer">matreshka (⭐12)</a> - Framework to develop information systems consisting of five major components: League, XML processor, Web framework, SQL access, and the Modeling framework.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/10/">Mar 06 - Mar 12, 2023</a></h2><h3><p>Text Modes / GPL (no linking exception)</p>
 </h3>
@@ -427,7 +512,7 @@
 <h3><p>Graphical User Interface / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/godunko/adawebui" rel="noopener noreferrer">adawebui (⭐1)</a> - GUI based on <a href="https://github.com/godunko/adawebpack" rel="noopener noreferrer">adawebpack (⭐76)</a>.</li>
+<li><a href="https://github.com/godunko/adawebui" rel="noopener noreferrer">adawebui (⭐2)</a> - GUI based on <a href="https://github.com/godunko/adawebpack" rel="noopener noreferrer">adawebpack (⭐79)</a>.</li>
 </ul>
 <h3><p>Terminal User Interface / GPL (no linking exception)</p>
 </h3>
@@ -457,7 +542,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/9/">Feb 27 - Mar 05, 2023</a></h2><h3><p>VSCode Extensions / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=AdaCore.ada" rel="noopener noreferrer">adacore-ada</a> - Language Support for Ada. It includes <a href="https://github.com/AdaCore/ada_language_server" rel="noopener noreferrer">Language Server for Ada (⭐292)</a>.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=AdaCore.ada" rel="noopener noreferrer">adacore-ada</a> - Language Support for Ada. It includes <a href="https://github.com/AdaCore/ada_language_server" rel="noopener noreferrer">Language Server for Ada (⭐297)</a>.</li>
 </ul>
 <h3><p>UML / GPL (no linking exception)</p>
 </h3>
@@ -506,11 +591,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jfuica/bingada" rel="noopener noreferrer">bingada (⭐8)</a> - Bingo application in <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐103)</a>.</li>
+<li><a href="https://github.com/jfuica/bingada" rel="noopener noreferrer">bingada (⭐8)</a> - Bingo application in <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐104)</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/HonkiTonk/Civ-Klon" rel="noopener noreferrer">civ-klon (⭐21)</a> - Civilization-style turn-based strategy game. Requires <a href="https://github.com/mgrojo/ASFML" rel="noopener noreferrer">asfml (⭐40)</a>.</li>
+<li><a href="https://github.com/HonkiTonk/Civ-Klon" rel="noopener noreferrer">civ-klon (⭐22)</a> - Civilization-style turn-based strategy game. Requires <a href="https://github.com/mgrojo/ASFML" rel="noopener noreferrer">asfml (⭐42)</a>.</li>
 </ul>
 <h3><p>Components / GPL (no linking exception)</p>
 </h3>
@@ -524,7 +609,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐103)</a> - Ada graphical toolkit based on Gtk3 components.</li>
+<li><a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐104)</a> - Ada graphical toolkit based on Gtk3 components.</li>
 </ul>
 
 <ul>
@@ -538,7 +623,7 @@
 <h3><p>3D / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AdaDoom3/AdaDoom3" rel="noopener noreferrer">ada-doom-3 (⭐278)</a> - Id Software's Id-tech-4-BFG in the Ada programming language.</li>
+<li><a href="https://github.com/AdaDoom3/AdaDoom3" rel="noopener noreferrer">ada-doom-3 (⭐282)</a> - Id Software's Id-tech-4-BFG in the Ada programming language.</li>
 </ul>
 <h3><p>Automation / GPL (no linking exception)</p>
 </h3>
@@ -547,7 +632,7 @@
 </ul>
 
 <ul>
-<li><a href="https://sourceforge.net/projects/max-home-automation/" rel="noopener noreferrer">max-home-automation</a> - <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐103)</a> application to manage ELV/eQ-3 MAX! cubes for home automation.</li>
+<li><a href="https://sourceforge.net/projects/max-home-automation/" rel="noopener noreferrer">max-home-automation</a> - <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐104)</a> application to manage ELV/eQ-3 MAX! cubes for home automation.</li>
 </ul>
 <h3><p>Math / GPL (no linking exception)</p>
 </h3>
@@ -562,16 +647,16 @@
 <h3><p>Compression / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zertovitch/zip-ada" rel="noopener noreferrer">zip-ada (⭐33)</a> - Programming library for dealing with the Zip compressed archive file format.</li>
+<li><a href="https://github.com/zertovitch/zip-ada" rel="noopener noreferrer">zip-ada (⭐35)</a> - Programming library for dealing with the Zip compressed archive file format.</li>
 </ul>
 <h3><p>Format Readers, Writers and Checkers / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/reznikmm/protobuf" rel="noopener noreferrer">protobuf (⭐44)</a> - A Google Protocol Buffers implementation in Ada, using <a href="https://github.com/godunko/matreshka" rel="noopener noreferrer">matreshka (⭐10)</a>.</li>
+<li><a href="https://github.com/reznikmm/protobuf" rel="noopener noreferrer">protobuf (⭐45)</a> - A Google Protocol Buffers implementation in Ada, using <a href="https://github.com/godunko/matreshka" rel="noopener noreferrer">matreshka (⭐12)</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/pmderodat/ada-toml" rel="noopener noreferrer">ada-toml (⭐36)</a> - TOML parser for Ada.</li>
+<li><a href="https://github.com/pmderodat/ada-toml" rel="noopener noreferrer">ada-toml (⭐37)</a> - TOML parser for Ada.</li>
 </ul>
 <h3><p>Web / GPL (no linking exception)</p>
 </h3>
@@ -581,7 +666,7 @@
 <h3><p>Graphics and Multimedia / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mgrojo/ASFML" rel="noopener noreferrer">asfml (⭐40)</a> - Ada binding to the Simple and Fast Multimedia Library.</li>
+<li><a href="https://github.com/mgrojo/ASFML" rel="noopener noreferrer">asfml (⭐42)</a> - Ada binding to the Simple and Fast Multimedia Library.</li>
 </ul>
 
 <ul>
@@ -609,12 +694,12 @@
 <h3><p>Libraries / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/raph-amiard/ada-synth-lib" rel="noopener noreferrer">ada-synth-lib (⭐35)</a> - Simple audio synthesis library that can run on bareboard devices.</li>
+<li><a href="https://github.com/raph-amiard/ada-synth-lib" rel="noopener noreferrer">ada-synth-lib (⭐36)</a> - Simple audio synthesis library that can run on bareboard devices.</li>
 </ul>
 <h3><p>Simulation / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Jellix/mars_mpl" rel="noopener noreferrer">mars-mpl (⭐5)</a> - Mars Polar Lander (Crash) Simulator (<a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐103)</a>, <a href="http://www.dmitry-kazakov.de/ada/aicwl.htm" rel="noopener noreferrer">aicwl</a>).</li>
+<li><a href="https://github.com/Jellix/mars_mpl" rel="noopener noreferrer">mars-mpl (⭐5)</a> - Mars Polar Lander (Crash) Simulator (<a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐104)</a>, <a href="http://www.dmitry-kazakov.de/ada/aicwl.htm" rel="noopener noreferrer">aicwl</a>).</li>
 </ul>
 <h3><p>Generators and Translators / GPL (no linking exception)</p>
 </h3>
@@ -628,11 +713,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/SMerrony/dashera" rel="noopener noreferrer">dashera (⭐37)</a> - Data General DASHER terminal emulator using <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐103)</a>.</li>
+<li><a href="https://github.com/SMerrony/dashera" rel="noopener noreferrer">dashera (⭐38)</a> - Data General DASHER terminal emulator using <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐104)</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/docandrew/YOTROC" rel="noopener noreferrer">yotroc (⭐5)</a> - Assembler/Emulator for a fictional CPU architecture. IDE implemented in <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐103)</a>.</li>
+<li><a href="https://github.com/docandrew/YOTROC" rel="noopener noreferrer">yotroc (⭐5)</a> - Assembler/Emulator for a fictional CPU architecture. IDE implemented in <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐104)</a>.</li>
 </ul>
 <h3><p>Misc / GPL (no linking exception)</p>
 </h3>
@@ -641,7 +726,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mk270/whitakers-words" rel="noopener noreferrer">whitakers-words (⭐312)</a> - William Whitaker's WORDS, a Latin dictionary.</li>
+<li><a href="https://github.com/mk270/whitakers-words" rel="noopener noreferrer">whitakers-words (⭐322)</a> - William Whitaker's WORDS, a Latin dictionary.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/7/">Feb 13 - Feb 19, 2023</a></h2><h3><p>Entry Point</p>
 </h3>
@@ -671,7 +756,7 @@
 <h3><p>DevOps / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/joular/powerjoular" rel="noopener noreferrer">powerjoular (⭐103)</a> - This tool allows monitoring power consumption of multiple platforms and processes.</li>
+<li><a href="https://github.com/joular/powerjoular" rel="noopener noreferrer">powerjoular (⭐109)</a> - This tool allows monitoring power consumption of multiple platforms and processes.</li>
 </ul>
 <h3><p>Algorithms, Containers and Protocols / GPL (no linking exception)</p>
 </h3>
@@ -681,7 +766,7 @@
 <h3><p>Utilities / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alire-project/simple_logging" rel="noopener noreferrer">simple-logging (⭐4)</a> - Easy to use logging facilities for output to console in Ada programs.</li>
+<li><a href="https://github.com/alire-project/simple_logging" rel="noopener noreferrer">simple-logging (⭐5)</a> - Easy to use logging facilities for output to console in Ada programs.</li>
 </ul>
 <h3><p>Automation / GPL (no linking exception)</p>
 </h3>
@@ -691,16 +776,16 @@
 <h2><a href="https://www.trackawesomelist.com/2022/52/">Dec 26 - Jan 01, 2022</a></h2><h3><p>Simulation / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Fabien-Chouteau/eagle-lander" rel="noopener noreferrer">eagle-lander (⭐33)</a> - Apollo 11 lunar lander simulator (<a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐103)</a>/Cairo).</li>
+<li><a href="https://github.com/Fabien-Chouteau/eagle-lander" rel="noopener noreferrer">eagle-lander (⭐34)</a> - Apollo 11 lunar lander simulator (<a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐104)</a>/Cairo).</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/moriyasum/GtkAda_OpenAL_Doppler_Effect_Sample2" rel="noopener noreferrer">doppler-effect-sample2 (⭐2)</a> - Moving airplane causes Stereo Sound Doppler effect (<a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐103)</a>).</li>
+<li><a href="https://github.com/moriyasum/GtkAda_OpenAL_Doppler_Effect_Sample2" rel="noopener noreferrer">doppler-effect-sample2 (⭐2)</a> - Moving airplane causes Stereo Sound Doppler effect (<a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐104)</a>).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/51/">Dec 19 - Dec 25, 2022</a></h2><h3><p>DevOps / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pyjarrett/septum" rel="noopener noreferrer">septum (⭐397)</a> - An interactive context-based text search tool for searching large codebases.</li>
+<li><a href="https://github.com/pyjarrett/septum" rel="noopener noreferrer">septum (⭐453)</a> - An interactive context-based text search tool for searching large codebases.</li>
 </ul>
 <h3><p>Networking and Communication Middleware / GPL (no linking exception)</p>
 </h3>
@@ -788,16 +873,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/andreacervetti/buttons" rel="noopener noreferrer">buttons (⭐4)</a> - A simple <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐103)</a> Button Mania game.</li>
+<li><a href="https://github.com/andreacervetti/buttons" rel="noopener noreferrer">buttons (⭐5)</a> - A simple <a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐104)</a> Button Mania game.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/mgrojo/play_2048" rel="noopener noreferrer">play-2048 (⭐7)</a> - A clone of the popular 2048 game, implemented in Ada using <a href="https://github.com/mgrojo/ASFML" rel="noopener noreferrer">asfml (⭐40)</a> for graphics and <a href="https://github.com/pmderodat/ada-toml" rel="noopener noreferrer">ada-toml (⭐36)</a> for saving state.</li>
+<li><a href="https://github.com/mgrojo/play_2048" rel="noopener noreferrer">play-2048 (⭐7)</a> - A clone of the popular 2048 game, implemented in Ada using <a href="https://github.com/mgrojo/ASFML" rel="noopener noreferrer">asfml (⭐42)</a> for graphics and <a href="https://github.com/pmderodat/ada-toml" rel="noopener noreferrer">ada-toml (⭐37)</a> for saving state.</li>
 </ul>
 <h3><p>Compression / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/onox/dcf-ada" rel="noopener noreferrer">dcf-ada (⭐6)</a> - An Ada 2012 library for document container files (Based on <a href="https://github.com/zertovitch/zip-ada" rel="noopener noreferrer">zip-ada (⭐33)</a>).</li>
+<li><a href="https://github.com/onox/dcf-ada" rel="noopener noreferrer">dcf-ada (⭐6)</a> - An Ada 2012 library for document container files (Based on <a href="https://github.com/zertovitch/zip-ada" rel="noopener noreferrer">zip-ada (⭐35)</a>).</li>
 </ul>
 <h3><p>Format Readers, Writers and Checkers / GPL (no linking exception)</p>
 </h3>
@@ -812,12 +897,12 @@
 <h3><p>Office / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/thindil/hunter" rel="noopener noreferrer">hunter (⭐20)</a> - Graphical (<a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐103)</a>) file manager for Linux.</li>
+<li><a href="https://github.com/thindil/hunter" rel="noopener noreferrer">hunter (⭐20)</a> - Graphical (<a href="https://github.com/AdaCore/gtkada" rel="noopener noreferrer">gtkada (⭐104)</a>) file manager for Linux.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/3/">Jan 17 - Jan 23, 2022</a></h2><h3><p>General Purpose Computing / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AdaCore/cuda" rel="noopener noreferrer">cuda (⭐22)</a> - Support for CUDA (Compute Unified Device Architecture) from AdaCore.</li>
+<li><a href="https://github.com/AdaCore/cuda" rel="noopener noreferrer">cuda (⭐25)</a> - Support for CUDA (Compute Unified Device Architecture) from AdaCore.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/49/">Dec 06 - Dec 12, 2021</a></h2><h3><p>Networking and Communication Middleware / GPL (no linking exception)</p>
 </h3>
@@ -831,12 +916,12 @@
 <h2><a href="https://www.trackawesomelist.com/2021/39/">Sep 27 - Oct 03, 2021</a></h2><h3><p>Open source / MIT</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zertovitch/hac" rel="noopener noreferrer">hac (⭐160)</a> - The HAC Ada Compiler - a small, quick Ada compiler fully in Ada.</li>
+<li><a href="https://github.com/zertovitch/hac" rel="noopener noreferrer">hac (⭐166)</a> - The HAC Ada Compiler - a small, quick Ada compiler fully in Ada.</li>
 </ul>
 <h3><p>Editors / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zertovitch/lea" rel="noopener noreferrer">lea (⭐30)</a> - A Lightweight Editor for Ada, aims to provide an easy, script-world-like, "look &amp; feel" for developing Ada projects of any size and level, while enabling access to full-scale development tools like GNAT. LEA includes HAC, the HAC Ada Compiler.</li>
+<li><a href="https://github.com/zertovitch/lea" rel="noopener noreferrer">lea (⭐32)</a> - A Lightweight Editor for Ada, aims to provide an easy, script-world-like, "look &amp; feel" for developing Ada projects of any size and level, while enabling access to full-scale development tools like GNAT. LEA includes HAC, the HAC Ada Compiler.</li>
 </ul>
 <h3><p>Cryptography / GPL (no linking exception)</p>
 </h3>
@@ -862,11 +947,6 @@
 </h3>
 <ul>
 <li><a href="https://gitlab.com/ada-for-automation/ada-for-automation" rel="noopener noreferrer">ada-for-automation</a> - A4A is a framework for designing industrial automation applications using the Ada language.</li>
-</ul>
-<h3><p>Science / GPL (no linking exception)</p>
-</h3>
-<ul>
-<li><a href="http://archive.adaic.com/tools/CKWG/Dimension/SI.html" rel="noopener noreferrer">si</a> - Checked and unchecked SI units.</li>
 </ul>
 <h3><p>Shells, Interpreters and Emulators / GPL (no linking exception)</p>
 </h3>
@@ -912,7 +992,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>Runtimes / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/godunko/adawebpack" rel="noopener noreferrer">adawebpack (⭐76)</a> - GNAT RTL for WebAssembly and bindings for Web API.</li>
+<li><a href="https://github.com/godunko/adawebpack" rel="noopener noreferrer">adawebpack (⭐79)</a> - GNAT RTL for WebAssembly and bindings for Web API.</li>
 </ul>
 <h3><p>Terminal User Interface / GPL (no linking exception)</p>
 </h3>
@@ -922,17 +1002,17 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>3D / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zertovitch/engine-3d" rel="noopener noreferrer">engine-3d (⭐2)</a> - A 3D engine for DOS-talgics.</li>
+<li><a href="https://github.com/zertovitch/engine-3d" rel="noopener noreferrer">engine-3d (⭐4)</a> - A 3D engine for DOS-talgics.</li>
 </ul>
 <h3><p>Generation / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Componolit/RecordFlux" rel="noopener noreferrer">record-flux (⭐124)</a> - RecordFlux: Toolset for the formal specification of messages and the generation of verifiable binary parsers and message generators in SPARK.</li>
+<li><a href="https://github.com/Componolit/RecordFlux" rel="noopener noreferrer">record-flux (⭐126)</a> - RecordFlux: Toolset for the formal specification of messages and the generation of verifiable binary parsers and message generators in SPARK.</li>
 </ul>
 <h3><p>Math / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jhumphry/LALG" rel="noopener noreferrer">lalg (⭐4)</a> - Interface to dense linear algebra packages.</li>
+<li><a href="https://github.com/jhumphry/LALG" rel="noopener noreferrer">lalg (⭐5)</a> - Interface to dense linear algebra packages.</li>
 </ul>
 <h3><p>Cryptography / GPL (no linking exception)</p>
 </h3>
@@ -945,11 +1025,11 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/rod-chapman/SPARKNaCl" rel="noopener noreferrer">spark-nacl (⭐134)</a> - SPARK 2014 re-implementation of the TweetNaCl crypto library.</li>
+<li><a href="https://github.com/rod-chapman/SPARKNaCl" rel="noopener noreferrer">spark-nacl (⭐135)</a> - SPARK 2014 re-implementation of the TweetNaCl crypto library.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jrmarino/libsodium-ada" rel="noopener noreferrer">libsodium-ada (⭐11)</a> - A secure cryptographic library (libsodium for Ada).</li>
+<li><a href="https://github.com/jrmarino/libsodium-ada" rel="noopener noreferrer">libsodium-ada (⭐12)</a> - A secure cryptographic library (libsodium for Ada).</li>
 </ul>
 
 <ul>
@@ -963,7 +1043,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>Parsers, Scanners, Linters, Analysers, Interpreters and Prettyprinters / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AdaCore/libadalang/" rel="noopener noreferrer">libadalang (⭐167)</a> - Library for parsing and semantic analysis of Ada code. It is meant as a building block for integration into other tools (IDE, static analyzers, etc).</li>
+<li><a href="https://github.com/AdaCore/libadalang/" rel="noopener noreferrer">libadalang (⭐170)</a> - Library for parsing and semantic analysis of Ada code. It is meant as a building block for integration into other tools (IDE, static analyzers, etc).</li>
 </ul>
 <h3><p>Networking and Communication Middleware / GPL (no linking exception)</p>
 </h3>
@@ -1002,7 +1082,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Lucretia/sdlada" rel="noopener noreferrer">sdlada (⭐129)</a> - Ada 2012 bindings to SDL 2.</li>
+<li><a href="https://github.com/Lucretia/sdlada" rel="noopener noreferrer">sdlada (⭐133)</a> - Ada 2012 bindings to SDL 2.</li>
 </ul>
 
 <ul>
@@ -1015,7 +1095,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>General Purpose Computing / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/flyx/OpenCLAda" rel="noopener noreferrer">opencl-ada (⭐16)</a> - An Ada binding for the OpenCL host API.</li>
+<li><a href="https://github.com/flyx/OpenCLAda" rel="noopener noreferrer">opencl-ada (⭐17)</a> - An Ada binding for the OpenCL host API.</li>
 </ul>
 <h3><p>Sound / GPL (no linking exception)</p>
 </h3>
@@ -1145,7 +1225,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>Algorithms, Containers and Protocols / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AdaCore/ada_language_server" rel="noopener noreferrer">ada-language-server (⭐292)</a> - Adacore server implemention of the the Microsoft Language Protocol for Ada and SPARK.</li>
+<li><a href="https://github.com/AdaCore/ada_language_server" rel="noopener noreferrer">ada-language-server (⭐297)</a> - Adacore server implemention of the the Microsoft Language Protocol for Ada and SPARK.</li>
 </ul>
 
 <ul>
@@ -1174,7 +1254,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/damaki/libkeccak" rel="noopener noreferrer">libkeccak (⭐37)</a> - A SPARK implementation of the Keccak family of sponge functions and related constructions.</li>
+<li><a href="https://github.com/damaki/libkeccak" rel="noopener noreferrer">libkeccak (⭐39)</a> - A SPARK implementation of the Keccak family of sponge functions and related constructions.</li>
 </ul>
 
 <ul>
@@ -1237,12 +1317,12 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>OS and Kernels / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/RavSS/HAVK" rel="noopener noreferrer">havk (⭐27)</a> - x86-64 security-focused OS being created with SPARK.</li>
+<li><a href="https://github.com/RavSS/HAVK" rel="noopener noreferrer">havk (⭐28)</a> - x86-64 security-focused OS being created with SPARK.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/51/">Dec 23 - Dec 29, 2019</a></h2><h3><p>Runtimes / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/simonjwright/cortex-gnat-rts" rel="noopener noreferrer">cortex-gnat-rts (⭐78)</a> - This package includes GNAT Ada Run Time Systems (RTSs) based on FreeRTOS and targeted at boards with Cortex-M0, M3, -M4, -M4F MCUs.</li>
+<li><a href="https://github.com/simonjwright/cortex-gnat-rts" rel="noopener noreferrer">cortex-gnat-rts (⭐79)</a> - This package includes GNAT Ada Run Time Systems (RTSs) based on FreeRTOS and targeted at boards with Cortex-M0, M3, -M4, -M4F MCUs.</li>
 </ul>
 <h3><p>Graphical User Interface / GPL (no linking exception)</p>
 </h3>
@@ -1276,7 +1356,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>Math / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zertovitch/mathpaqs" rel="noopener noreferrer">mathpaqs (⭐13)</a> - Collection of mathematical, 100% portable, packages in the Ada programming language.</li>
+<li><a href="https://github.com/zertovitch/mathpaqs" rel="noopener noreferrer">mathpaqs (⭐14)</a> - Collection of mathematical, 100% portable, packages in the Ada programming language.</li>
 </ul>
 <h3><p>Parsers, Scanners, Linters, Analysers, Interpreters and Prettyprinters / GPL (no linking exception)</p>
 </h3>
@@ -1294,11 +1374,11 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/zertovitch/gid" rel="noopener noreferrer">generic-image-decoder (⭐27)</a> - Multi-format image decoder library for Ada.</li>
+<li><a href="https://github.com/zertovitch/gid" rel="noopener noreferrer">generic-image-decoder (⭐28)</a> - Multi-format image decoder library for Ada.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/zertovitch/ada-pdf-writer" rel="noopener noreferrer">ada-pdf-writer (⭐24)</a> - Ada package for producing easily and automatically PDF files, from an Ada program, with text, vector graphics, images (JPEG).</li>
+<li><a href="https://github.com/zertovitch/ada-pdf-writer" rel="noopener noreferrer">ada-pdf-writer (⭐26)</a> - Ada package for producing easily and automatically PDF files, from an Ada program, with text, vector graphics, images (JPEG).</li>
 </ul>
 
 <ul>
@@ -1312,7 +1392,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>Office / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zertovitch/azip" rel="noopener noreferrer">azip (⭐14)</a> - A free, portable Zip Archive Manager.</li>
+<li><a href="https://github.com/zertovitch/azip" rel="noopener noreferrer">azip (⭐16)</a> - A free, portable Zip Archive Manager.</li>
 </ul>
 
 <ul>
@@ -1320,12 +1400,12 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/zertovitch/cbsg" rel="noopener noreferrer">cbsg (⭐14)</a> - The Corporate Bullshit Generator.</li>
+<li><a href="https://github.com/zertovitch/cbsg" rel="noopener noreferrer">cbsg (⭐16)</a> - The Corporate Bullshit Generator.</li>
 </ul>
 <h3><p>Web / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zertovitch/wasabee" rel="noopener noreferrer">wasabee (⭐13)</a> - A Web browser with safety focus.</li>
+<li><a href="https://github.com/zertovitch/wasabee" rel="noopener noreferrer">wasabee (⭐14)</a> - A Web browser with safety focus.</li>
 </ul>
 <h3><p>Generators and Translators / GPL (no linking exception)</p>
 </h3>
@@ -1363,7 +1443,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h2><a href="https://www.trackawesomelist.com/2019/37/">Sep 16 - Sep 22, 2019</a></h2><h3><p>Web / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yet-another-static-site-generator/yass" rel="noopener noreferrer">yass (⭐26)</a> - Yet Another Static Site Generator (like Jekyll or Hugo).</li>
+<li><a href="https://github.com/yet-another-static-site-generator/yass" rel="noopener noreferrer">yass (⭐27)</a> - Yet Another Static Site Generator (like Jekyll or Hugo).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/33/">Aug 19 - Aug 25, 2019</a></h2><h3><p>Games / GPL (no linking exception)</p>
 </h3>
@@ -1434,12 +1514,12 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h2><a href="https://www.trackawesomelist.com/2019/13/">Apr 01 - Apr 07, 2019</a></h2><h3><p>Build and Package / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alire-project/alire" rel="noopener noreferrer">alire (⭐373)</a> - A catalog of ready-to-use Ada libraries plus a command-line tool (alr) to obtain, compile, and incorporate them into your own projects. It aims to fulfill a similar role to Rust's cargo or OCaml's opam.</li>
+<li><a href="https://github.com/alire-project/alire" rel="noopener noreferrer">alire (⭐392)</a> - A catalog of ready-to-use Ada libraries plus a command-line tool (alr) to obtain, compile, and incorporate them into your own projects. It aims to fulfill a similar role to Rust's cargo or OCaml's opam.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/9/">Mar 04 - Mar 10, 2019</a></h2><h3><p>Algorithms, Containers and Protocols / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tomekw/simple_blockchain" rel="noopener noreferrer">simple-blockchain (⭐22)</a> - Simple blockchain in Ada.</li>
+<li><a href="https://github.com/tomekw/simple_blockchain" rel="noopener noreferrer">simple-blockchain (⭐23)</a> - Simple blockchain in Ada.</li>
 </ul>
 <h3><p>Shells, Interpreters and Emulators / GPL (no linking exception)</p>
 </h3>
@@ -1485,7 +1565,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h2><a href="https://www.trackawesomelist.com/2019/6/">Feb 11 - Feb 17, 2019</a></h2><h3><p>Components / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/stcarrez/ada-util/" rel="noopener noreferrer">ada-util (⭐79)</a> - A logging framework close to Java log4j framework, support for properties, serialization/deserialization framework for XML/JSON/CSV, Ada beans framework, encoding/decoding framework (Base16, Base64, SHA, HMAC-SHA), a composing stream framework (raw, files, buffers, pipes, sockets), several concurrency tools (reference counters, counters, pools, fifos, arrays), process creation and pipes, support for loading shared libraries (on Windows or Unix), HTTP client library on top of CURL or AWS.</li>
+<li><a href="https://github.com/stcarrez/ada-util/" rel="noopener noreferrer">ada-util (⭐82)</a> - A logging framework close to Java log4j framework, support for properties, serialization/deserialization framework for XML/JSON/CSV, Ada beans framework, encoding/decoding framework (Base16, Base64, SHA, HMAC-SHA), a composing stream framework (raw, files, buffers, pipes, sockets), several concurrency tools (reference counters, counters, pools, fifos, arrays), process creation and pipes, support for loading shared libraries (on Windows or Unix), HTTP client library on top of CURL or AWS.</li>
 </ul>
 <h3><p>Database / GPL (no linking exception)</p>
 </h3>
@@ -1495,13 +1575,13 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>Web / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/stcarrez/ada-awa" rel="noopener noreferrer">awa (⭐108)</a> - Ada Web Application is a framework to build a Web Application in Ada 2012. The framework provides several ready to use and extendable modules that are common to many web application. This includes the login, authentication, users, permissions, managing comments, tags, votes, documents, images.<ul>
-<li><a href="https://github.com/stcarrez/dynamo" rel="noopener noreferrer">dynamo (⭐17)</a> - Code generator used to generate an Ada Web Application or database mappings from hibernate-like XML description, YAML doctrine model or UML models.</li>
+<li><a href="https://github.com/stcarrez/ada-awa" rel="noopener noreferrer">awa (⭐109)</a> - Ada Web Application is a framework to build a Web Application in Ada 2012. The framework provides several ready to use and extendable modules that are common to many web application. This includes the login, authentication, users, permissions, managing comments, tags, votes, documents, images.<ul>
+<li><a href="https://github.com/stcarrez/dynamo" rel="noopener noreferrer">dynamo (⭐18)</a> - Code generator used to generate an Ada Web Application or database mappings from hibernate-like XML description, YAML doctrine model or UML models.</li>
 <li><a href="https://github.com/stcarrez/ada-wiki" rel="noopener noreferrer">ada-wiki (⭐20)</a> - Ada Wiki is a small library that provides a Wiki engine.</li>
 <li><a href="https://github.com/stcarrez/ada-security" rel="noopener noreferrer">ada-security (⭐23)</a> - OAuth 2.0 client and server framework to secure web applications.</li>
 <li><a href="https://github.com/stcarrez/ada-el" rel="noopener noreferrer">ada-el (⭐7)</a> - This library provides the support for a simple Expression Language close to the Java Unified Expression Language (EL).</li>
-<li><a href="https://github.com/stcarrez/ada-asf" rel="noopener noreferrer">ada-asf (⭐14)</a> - Ada Server Faces allows to create web applications using the same pattern as the Java Server Faces (See JSR 252, JSR 314 and JSR 344).</li>
-<li><a href="https://github.com/stcarrez/ada-servlet" rel="noopener noreferrer">ada-servlet (⭐7)</a> - Ada Servlet allows to create web applications using the same pattern as the Java Servlet (See JSR 154, JSR 315).</li>
+<li><a href="https://github.com/stcarrez/ada-asf" rel="noopener noreferrer">ada-asf (⭐15)</a> - Ada Server Faces allows to create web applications using the same pattern as the Java Server Faces (See JSR 252, JSR 314 and JSR 344).</li>
+<li><a href="https://github.com/stcarrez/ada-servlet" rel="noopener noreferrer">ada-servlet (⭐9)</a> - Ada Servlet allows to create web applications using the same pattern as the Java Servlet (See JSR 154, JSR 315).</li>
 </ul>
 </li>
 </ul>
@@ -1590,7 +1670,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/tofgarion/spark-by-example" rel="noopener noreferrer">spark-by-example (⭐163)</a> - Collection of verified functions and data types in SPARK.</li>
+<li><a href="https://github.com/tofgarion/spark-by-example" rel="noopener noreferrer">spark-by-example (⭐164)</a> - Collection of verified functions and data types in SPARK.</li>
 </ul>
 <h3><p>Questions and Answers</p>
 </h3>
@@ -1623,17 +1703,17 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jrmarino/synth" rel="noopener noreferrer">synth (⭐267)</a> - Next D/Ports build tool for live systems (Alternative for Portmaster and Portupgrade tools).</li>
+<li><a href="https://github.com/jrmarino/synth" rel="noopener noreferrer">synth (⭐268)</a> - Next D/Ports build tool for live systems (Alternative for Portmaster and Portupgrade tools).</li>
 </ul>
 <h3><p>Continuous Integration / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jklmnn/continuous-verification" rel="noopener noreferrer">continuous-verification (⭐9)</a> - SPARK formal verification automated with Travis CI.</li>
+<li><a href="https://github.com/jklmnn/continuous-verification" rel="noopener noreferrer">continuous-verification (⭐8)</a> - SPARK formal verification automated with Travis CI.</li>
 </ul>
 <h3><p>Runtimes / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AdaCore/bb-runtimes" rel="noopener noreferrer">bb-runtimes (⭐69)</a> - GNAT bare metal board support package (BSP).</li>
+<li><a href="https://github.com/AdaCore/bb-runtimes" rel="noopener noreferrer">bb-runtimes (⭐70)</a> - GNAT bare metal board support package (BSP).</li>
 </ul>
 
 <ul>
@@ -1646,7 +1726,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/wookey-project/ewok-kernel" rel="noopener noreferrer">ewok (⭐77)</a> - A microkernel targeting micro-controllers and embedded systems.</li>
+<li><a href="https://github.com/wookey-project/ewok-kernel" rel="noopener noreferrer">ewok (⭐79)</a> - A microkernel targeting micro-controllers and embedded systems.</li>
 </ul>
 <h3><p>Games / GPL (no linking exception)</p>
 </h3>
@@ -1663,7 +1743,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/fastrgv/AdaVenture" rel="noopener noreferrer">ada-venture (⭐17)</a> - AdaVenture is a kid-friendly retro point&amp;click game with mazes, dragons, bats &amp; snakes.</li>
+<li><a href="https://github.com/fastrgv/AdaVenture" rel="noopener noreferrer">ada-venture (⭐18)</a> - AdaVenture is a kid-friendly retro point&amp;click game with mazes, dragons, bats &amp; snakes.</li>
 </ul>
 
 <ul>
@@ -1672,11 +1752,11 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>Components / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AdaCore/gnatcoll-core" rel="noopener noreferrer">gnatcoll-core (⭐52)</a> - This is the core module of the GNAT Components Collection.</li>
+<li><a href="https://github.com/AdaCore/gnatcoll-core" rel="noopener noreferrer">gnatcoll-core (⭐54)</a> - This is the core module of the GNAT Components Collection.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/AdaCore/gnatcoll-bindings" rel="noopener noreferrer">gnatcoll-bindings (⭐16)</a> - This is the bindings module of the GNAT Components Collection.</li>
+<li><a href="https://github.com/AdaCore/gnatcoll-bindings" rel="noopener noreferrer">gnatcoll-bindings (⭐15)</a> - This is the bindings module of the GNAT Components Collection.</li>
 </ul>
 
 <ul>
@@ -1704,7 +1784,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/AdaCore/spark2014/" rel="noopener noreferrer">spark-2014 (⭐301)</a> - SPARK formal verification toolset.</li>
+<li><a href="https://github.com/AdaCore/spark2014/" rel="noopener noreferrer">spark-2014 (⭐311)</a> - SPARK formal verification toolset.</li>
 </ul>
 <h3><p>Generation / GPL (no linking exception)</p>
 </h3>
@@ -1713,7 +1793,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/OpenAADL/ocarina" rel="noopener noreferrer">ocarina (⭐74)</a> - AADL model processor: mappings to Ada code; Petri Nets; scheduling tools (MAST, Cheddar); WCET; REAL.</li>
+<li><a href="https://github.com/OpenAADL/ocarina" rel="noopener noreferrer">ocarina (⭐76)</a> - AADL model processor: mappings to Ada code; Petri Nets; scheduling tools (MAST, Cheddar); WCET; REAL.</li>
 </ul>
 
 <ul>
@@ -1739,7 +1819,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/frett27/Ada-GA" rel="noopener noreferrer">ada-ga (⭐2)</a> - Genetic Algorithm Implementation for Ada.</li>
+<li><a href="https://github.com/frett27/Ada-GA" rel="noopener noreferrer">ada-ga (⭐3)</a> - Genetic Algorithm Implementation for Ada.</li>
 </ul>
 
 <ul>
@@ -1786,11 +1866,11 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>Format Readers, Writers and Checkers / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yaml/AdaYaml" rel="noopener noreferrer">ada-yaml (⭐45)</a> - Experimental YAML 1.3 implementation in Ada.</li>
+<li><a href="https://github.com/yaml/AdaYaml" rel="noopener noreferrer">ada-yaml (⭐46)</a> - Experimental YAML 1.3 implementation in Ada.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/onox/json-ada" rel="noopener noreferrer">json-ada (⭐45)</a> - An Ada 2012 library for parsing JSON.</li>
+<li><a href="https://github.com/onox/json-ada" rel="noopener noreferrer">json-ada (⭐46)</a> - An Ada 2012 library for parsing JSON.</li>
 </ul>
 
 <ul>
@@ -1798,7 +1878,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/AdaCore/xmlada" rel="noopener noreferrer">xmlada (⭐28)</a> - The XML/Ada toolkit.</li>
+<li><a href="https://github.com/AdaCore/xmlada" rel="noopener noreferrer">xmlada (⭐29)</a> - The XML/Ada toolkit.</li>
 </ul>
 
 <ul>
@@ -1820,7 +1900,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>Graphics and Multimedia / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/flyx/OpenGLAda" rel="noopener noreferrer">opengl-ada (⭐104)</a> - Thick Ada binding for OpenGL and GLFW.</li>
+<li><a href="https://github.com/flyx/OpenGLAda" rel="noopener noreferrer">opengl-ada (⭐105)</a> - Thick Ada binding for OpenGL and GLFW.</li>
 </ul>
 <h3><p>Sound / GPL (no linking exception)</p>
 </h3>
@@ -1845,7 +1925,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>Drivers / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AdaCore/Ada_Drivers_Library" rel="noopener noreferrer">ada-drivers-library (⭐278)</a> - Ada drivers for various MCU and sensors.</li>
+<li><a href="https://github.com/AdaCore/Ada_Drivers_Library" rel="noopener noreferrer">ada-drivers-library (⭐282)</a> - Ada drivers for various MCU and sensors.</li>
 </ul>
 
 <ul>
@@ -1884,7 +1964,7 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Fabien-Chouteau/Wee-Noise-Maker" rel="noopener noreferrer">wee-noise-maker (⭐35)</a> - Wee Noise Maker is an open source pocket synthesizer.</li>
+<li><a href="https://github.com/Fabien-Chouteau/Wee-Noise-Maker" rel="noopener noreferrer">wee-noise-maker (⭐37)</a> - Wee Noise Maker is an open source pocket synthesizer.</li>
 </ul>
 
 <ul>
@@ -1937,12 +2017,12 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 <h3><p>Generators / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AdaCore/svd2ada" rel="noopener noreferrer">svd2ada (⭐70)</a> - An Ada binding generator from SVD descriptions for bare board ARM devices.</li>
+<li><a href="https://github.com/AdaCore/svd2ada" rel="noopener noreferrer">svd2ada (⭐71)</a> - An Ada binding generator from SVD descriptions for bare board ARM devices.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/43/">Oct 22 - Oct 28, 2018</a></h2><h3><p>Web / GPL (no linking exception)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AdaCore/aws" rel="noopener noreferrer">aws (⭐154)</a> - Ada Web Server is a complete framework to develop Web based applications in Ada.</li>
+<li><a href="https://github.com/AdaCore/aws" rel="noopener noreferrer">aws (⭐158)</a> - Ada Web Server is a complete framework to develop Web based applications in Ada.</li>
 </ul>
 <h3><p>Algorithms, Containers and Protocols / GPL (no linking exception)</p>
 </h3>
@@ -1956,5 +2036,47 @@ language.  It is loosely modelled after JUnit and some ideas from AUnit.</li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
