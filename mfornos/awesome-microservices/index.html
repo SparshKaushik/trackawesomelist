@@ -16,22 +16,107 @@
     <meta property="og:title" content="Track Awesome Microservices Updates Daily" />
     <meta property="og:description" content="A curated list of Microservice Architecture related principles and technologies." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Microservices Updates Daily</h1>
 <p>A curated list of Microservice Architecture related principles and technologies.</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/mfornos/awesome-microservices/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/mfornos/awesome-microservices">😺 mfornos/awesome-microservices</a><span> · </span><span>⭐ 14K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/mfornos/awesome-microservices/week/">Weekly</a><span> / </span><a href="/mfornos/awesome-microservices/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/06/05/">Jun 05, 2026</a></h2><h3><p>Security / Scala</p>
+</h3>
+<ul>
+<li><a href="https://github.com/OWASP/www-project-agent-memory-guard" rel="noopener noreferrer">OWASP Agent Memory Guard</a> — Runtime defense layer for AI agent memory poisoning (OWASP ASI06). Detects tampered memory entries, prompt injection in memory paths, and secret leakage. YAML policies, microsecond latency, zero external dependencies.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/01/17/">Jan 17, 2026</a></h2><h3><p>Platforms</p>
 </h3>
 <ul>
@@ -39,7 +124,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/apache/openwhisk" rel="noopener noreferrer">OpenWhisk (⭐6.7k)</a> - Serverless, open source cloud platform that executes functions in response to events at any scale.</li>
+<li><a href="https://github.com/apache/openwhisk" rel="noopener noreferrer">OpenWhisk</a> - Serverless, open source cloud platform that executes functions in response to events at any scale.</li>
 </ul>
 <h3><p>Frameworks / Runtimes</p>
 </h3>
@@ -49,7 +134,7 @@
 <h3><p>C</p>
 </h3>
 <ul>
-<li><a href="https://github.com/uNetworking/uSockets" rel="noopener noreferrer">uSockets (⭐1.4k)</a> - Miniscule cross-platform eventing, networking &amp; crypto for async applications.</li>
+<li><a href="https://github.com/uNetworking/uSockets" rel="noopener noreferrer">uSockets (⭐1.5k)</a> - Miniscule cross-platform eventing, networking &amp; crypto for async applications.</li>
 </ul>
 <h3><p>C++</p>
 </h3>
@@ -59,7 +144,7 @@
 <h3><p>Go / Erlang</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tal-tech/go-zero" rel="noopener noreferrer">Go-zero (⭐32k)</a> - A web and rpc distributed system development framework.</li>
+<li><a href="https://github.com/tal-tech/go-zero" rel="noopener noreferrer">Go-zero (⭐33k)</a> - A web and rpc distributed system development framework.</li>
 </ul>
 <h3><p>Java VM / Clojure</p>
 </h3>
@@ -69,7 +154,7 @@
 <h3><p>Java VM / Java</p>
 </h3>
 <ul>
-<li><a href="https://github.com/activej/activej" rel="noopener noreferrer">ActiveJ (⭐978)</a> - Lightweight and fast library for complex high-load distributed applications and Memcached-like solutions.</li>
+<li><a href="https://github.com/activej/activej" rel="noopener noreferrer">ActiveJ</a> - Lightweight and fast library for complex high-load distributed applications and Memcached-like solutions.</li>
 </ul>
 
 <ul>
@@ -98,12 +183,12 @@
 <h3><p>Async / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/asyncapi/spec" rel="noopener noreferrer">AsyncAPI (⭐5k)</a> - AsyncAPI specification, the industry standard for defining asynchronous APIs.</li>
+<li><a href="https://github.com/asyncapi/spec" rel="noopener noreferrer">AsyncAPI (⭐5.2k)</a> - AsyncAPI specification, the industry standard for defining asynchronous APIs.</li>
 </ul>
 <h3><p>REST / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/scalar/scalar" rel="noopener noreferrer">Scalar (⭐14k)</a> - Open-source API platform: beautiful API references and 1st-class OpenAPI/Swagger support.</li>
+<li><a href="https://github.com/scalar/scalar" rel="noopener noreferrer">Scalar (⭐15k)</a> - Open-source API platform: beautiful API references and 1st-class OpenAPI/Swagger support.</li>
 </ul>
 <h3><p>Articles &amp; Papers / Scala</p>
 </h3>
@@ -113,12 +198,12 @@
 <h2><a href="https://www.trackawesomelist.com/2025/01/20/">Jan 20, 2025</a></h2><h3><p>Workflow Orchestration / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/inngest/inngest" rel="noopener noreferrer">Inngest (⭐4.7k)</a> - Durable functions for reliable background logic, from background jobs to complex workflows.</li>
+<li><a href="https://github.com/inngest/inngest" rel="noopener noreferrer">Inngest (⭐5.5k)</a> - Durable functions for reliable background logic, from background jobs to complex workflows.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/10/18/">Oct 18, 2024</a></h2><h3><p>Frameworks / Runtimes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/holepunchto/pear" rel="noopener noreferrer">Pears (⭐203)</a> - Peer-to-peer runtime, development and deployment.</li>
+<li><a href="https://github.com/holepunchto/pear" rel="noopener noreferrer">Pears (⭐243)</a> - Peer-to-peer runtime, development and deployment.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/10/17/">Oct 17, 2024</a></h2><h3><p>Security / Scala</p>
 </h3>
@@ -138,22 +223,22 @@
 <h2><a href="https://www.trackawesomelist.com/2024/08/07/">Aug 07, 2024</a></h2><h3><p>Rust / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/c410-f3r/wtx" rel="noopener noreferrer">Wtx (⭐336)</a> - HTTP/2 client/server framework.</li>
+<li><a href="https://github.com/c410-f3r/wtx" rel="noopener noreferrer">Wtx (⭐356)</a> - HTTP/2 client/server framework.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/04/09/">Apr 09, 2024</a></h2><h3><p>Node.js / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/trpc/trpc" rel="noopener noreferrer">tRPC (⭐39k)</a> - End-to-end typesafe APIs.</li>
+<li><a href="https://github.com/trpc/trpc" rel="noopener noreferrer">tRPC (⭐40k)</a> - End-to-end typesafe APIs.</li>
 </ul>
 <h3><p>API Gateways / Edge Services / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cloudflare/pingora" rel="noopener noreferrer">Pingora (⭐26k)</a> - A library for building fast, reliable and evolvable network services.</li>
+<li><a href="https://github.com/cloudflare/pingora" rel="noopener noreferrer">Pingora (⭐27k)</a> - A library for building fast, reliable and evolvable network services.</li>
 </ul>
 <h3><p>Elasticity / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/valkey-io/valkey" rel="noopener noreferrer">Valkey (⭐24k)</a> - A new project to resume development on the formerly open-source Redis project.</li>
+<li><a href="https://github.com/valkey-io/valkey" rel="noopener noreferrer">Valkey (⭐26k)</a> - A new project to resume development on the formerly open-source Redis project.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/02/01/">Feb 01, 2024</a></h2><h3><p>PHP / Scala</p>
 </h3>
@@ -187,25 +272,25 @@
 <h3><p>C++</p>
 </h3>
 <ul>
-<li><a href="https://github.com/CppMicroServices/CppMicroServices" rel="noopener noreferrer">C++ Micro Services (⭐859)</a> - An OSGi-like C++ dynamic module system and service registry.</li>
+<li><a href="https://github.com/CppMicroServices/CppMicroServices" rel="noopener noreferrer">C++ Micro Services</a> - An OSGi-like C++ dynamic module system and service registry.</li>
 </ul>
 <h3><p>Go / Erlang</p>
 </h3>
 <ul>
-<li><a href="https://github.com/go-chi/chi" rel="noopener noreferrer">Chi (⭐21k)</a> - Lightweight, idiomatic and composable router for building Go HTTP services.</li>
+<li><a href="https://github.com/go-chi/chi" rel="noopener noreferrer">Chi (⭐22k)</a> - Lightweight, idiomatic and composable router for building Go HTTP services.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/luraproject/lura" rel="noopener noreferrer">Lura (⭐6.7k)</a> - Framework to build ultra performance API Gateways with middlewares.</li>
+<li><a href="https://github.com/luraproject/lura" rel="noopener noreferrer">Lura (⭐6.8k)</a> - Framework to build ultra performance API Gateways with middlewares.</li>
 </ul>
 <h3><p>Java VM / Java</p>
 </h3>
 <ul>
-<li><a href="https://github.com/palantir/conjure-java-runtime" rel="noopener noreferrer">Conjure (⭐87)</a> - Opinionated set of libraries for defining and creating RESTish/RPC servers and clients based on Feign or Retrofit as a client and Dropwizard/Jersey with JAX-RS service definitions as a server.</li>
+<li><a href="https://github.com/palantir/conjure-java-runtime" rel="noopener noreferrer">Conjure</a> - Opinionated set of libraries for defining and creating RESTish/RPC servers and clients based on Feign or Retrofit as a client and Dropwizard/Jersey with JAX-RS service definitions as a server.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/eclipse-ee4j/jersey" rel="noopener noreferrer">Jersey (⭐723)</a> - RESTful services in Java. JAX-RS reference implementation.</li>
+<li><a href="https://github.com/eclipse-ee4j/jersey" rel="noopener noreferrer">Jersey</a> - RESTful services in Java. JAX-RS reference implementation.</li>
 </ul>
 <h3><p>Node.js / Scala</p>
 </h3>
@@ -228,7 +313,7 @@
 <h3><p>Rust / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tower-rs/tower" rel="noopener noreferrer">Tower (⭐4.1k)</a> - Library of modular and reusable components for building robust networking clients and servers.</li>
+<li><a href="https://github.com/tower-rs/tower" rel="noopener noreferrer">Tower (⭐4.2k)</a> - Library of modular and reusable components for building robust networking clients and servers.</li>
 </ul>
 <h3><p>API Gateways / Edge Services / Scala</p>
 </h3>
@@ -237,11 +322,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/bunkerity/bunkerweb" rel="noopener noreferrer">Bunker Web (⭐9.8k)</a> - Web app hosting and reverse proxy secure by default.</li>
+<li><a href="https://github.com/bunkerity/bunkerweb" rel="noopener noreferrer">Bunker Web (⭐11k)</a> - Web app hosting and reverse proxy secure by default.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/kong/kong" rel="noopener noreferrer">Kong (⭐43k)</a> - Open source management layer for APIs.</li>
+<li><a href="https://github.com/kong/kong" rel="noopener noreferrer">Kong (⭐44k)</a> - Open source management layer for APIs.</li>
 </ul>
 <h3><p>Elasticity / Scala</p>
 </h3>
@@ -255,7 +340,7 @@
 <h3><p>Job Schedulers / Workload Automation / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/contribsys/faktory" rel="noopener noreferrer">Faktory (⭐6k)</a> - Language-agnostic persistent background job server.</li>
+<li><a href="https://github.com/contribsys/faktory" rel="noopener noreferrer">Faktory (⭐6.1k)</a> - Language-agnostic persistent background job server.</li>
 </ul>
 
 <ul>
@@ -263,7 +348,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/schedulix/schedulix" rel="noopener noreferrer">Schedulix (⭐128)</a> - Open source enterprise job scheduling system lays down ground-breaking standards for the professional automation of IT processes in advanced system environments.</li>
+<li><a href="https://github.com/schedulix/schedulix" rel="noopener noreferrer">Schedulix (⭐131)</a> - Open source enterprise job scheduling system lays down ground-breaking standards for the professional automation of IT processes in advanced system environments.</li>
 </ul>
 <h3><p>Logging / Scala</p>
 </h3>
@@ -272,7 +357,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/grafana/loki" rel="noopener noreferrer">Loki (⭐27k)</a> - Like Prometheus, but for logs.</li>
+<li><a href="https://github.com/grafana/loki" rel="noopener noreferrer">Loki (⭐28k)</a> - Like Prometheus, but for logs.</li>
 </ul>
 <h3><p>Monitoring &amp; Debugging / Scala</p>
 </h3>
@@ -304,7 +389,7 @@
 <h3><p>Storage / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Alluxio/alluxio" rel="noopener noreferrer">Alluxio (⭐7.1k)</a> - Virtual distributed storage system.</li>
+<li><a href="https://github.com/Alluxio/alluxio" rel="noopener noreferrer">Alluxio</a> - Virtual distributed storage system.</li>
 </ul>
 
 <ul>
@@ -321,16 +406,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Redocly/redoc" rel="noopener noreferrer">ReDoc (⭐25k)</a> - OpenAPI/Swagger-generated API Documentation.</li>
+<li><a href="https://github.com/Redocly/redoc" rel="noopener noreferrer">ReDoc</a> - OpenAPI/Swagger-generated API Documentation.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/slatedocs/slate" rel="noopener noreferrer">Slate (⭐36k)</a> - Beautiful static documentation for your API.</li>
+<li><a href="https://github.com/slatedocs/slate" rel="noopener noreferrer">Slate</a> - Beautiful static documentation for your API.</li>
 </ul>
 <h3><p>Self-sovereignty &amp; Decentralisation / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/decentralized-identity/didcomm-messaging" rel="noopener noreferrer">DIDComm (⭐182)</a> - Private communication methodology built atop the decentralized design of DIDs.</li>
+<li><a href="https://github.com/decentralized-identity/didcomm-messaging" rel="noopener noreferrer">DIDComm (⭐190)</a> - Private communication methodology built atop the decentralized design of DIDs.</li>
 </ul>
 <h3><p>RPC / Scala</p>
 </h3>
@@ -345,12 +430,12 @@
 <h2><a href="https://www.trackawesomelist.com/2023/11/07/">Nov 07, 2023</a></h2><h3><p>Workflow Orchestration / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kestra-io/kestra" rel="noopener noreferrer">Kestra (⭐26k)</a> - Open source microservices event-driven, language-agnostic orchestration and scheduling platform.</li>
+<li><a href="https://github.com/kestra-io/kestra" rel="noopener noreferrer">Kestra (⭐27k)</a> - Open source microservices event-driven, language-agnostic orchestration and scheduling platform.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/11/04/">Nov 04, 2023</a></h2><h3><p>Go / Erlang</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gofr-dev/gofr" rel="noopener noreferrer">GoFr (⭐15k)</a> - An opinionated microservice development framework emphasizing scalability and robustness. Designed to simplify the development of microservices.</li>
+<li><a href="https://github.com/gofr-dev/gofr" rel="noopener noreferrer">GoFr (⭐21k)</a> - An opinionated microservice development framework emphasizing scalability and robustness. Designed to simplify the development of microservices.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/03/28/">Mar 28, 2023</a></h2><h3><p>Node.js / Scala</p>
 </h3>
@@ -360,12 +445,12 @@
 <h2><a href="https://www.trackawesomelist.com/2023/03/24/">Mar 24, 2023</a></h2><h3><p>Frameworks / Runtimes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/fermyon/spin" rel="noopener noreferrer">Spin (⭐6.2k)</a> - An open source framework for building and running fast, secure, and composable cloud microservices with WebAssembly.</li>
+<li><a href="https://github.com/fermyon/spin" rel="noopener noreferrer">Spin</a> - An open source framework for building and running fast, secure, and composable cloud microservices with WebAssembly.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/02/02/">Feb 02, 2023</a></h2><h3><p>Node.js / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/senecajs/seneca" rel="noopener noreferrer">Seneca (⭐4k)</a> - A microservices toolkit for Node.js</li>
+<li><a href="https://github.com/senecajs/seneca" rel="noopener noreferrer">Seneca</a> - A microservices toolkit for Node.js</li>
 </ul>
 <h3><p>Testing / Scala</p>
 </h3>
@@ -405,7 +490,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/04/22/">Apr 22, 2022</a></h2><h3><p>Storage / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/citusdata/citus" rel="noopener noreferrer">Citus (⭐12k)</a> - Distributed PostgreSQL as an extension.</li>
+<li><a href="https://github.com/citusdata/citus" rel="noopener noreferrer">Citus (⭐13k)</a> - Distributed PostgreSQL as an extension.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/04/11/">Apr 11, 2022</a></h2><h3><p>Enterprise &amp; Verticals / Scala</p>
 </h3>
@@ -484,7 +569,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/08/20/">Aug 20, 2021</a></h2><h3><p>Articles &amp; Papers / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/binhnguyennus/awesome-scalability" rel="noopener noreferrer">Awesome Scalability (⭐68k)</a> ⭐ - An updated and organized reading list for illustrating the patterns of scalable, reliable, and performant large-scale systems. Concepts are explained in the articles of prominent engineers and credible references. Case studies are taken from battle-tested systems that serve millions to billions of users.</li>
+<li><a href="https://github.com/binhnguyennus/awesome-scalability" rel="noopener noreferrer">Awesome Scalability</a> ⭐ - An updated and organized reading list for illustrating the patterns of scalable, reliable, and performant large-scale systems. Concepts are explained in the articles of prominent engineers and credible references. Case studies are taken from battle-tested systems that serve millions to billions of users.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/08/02/">Aug 02, 2021</a></h2><h3><p>Security / Scala</p>
 </h3>
@@ -508,12 +593,12 @@
 <h3><p>Workflow Orchestration / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/temporalio/temporal" rel="noopener noreferrer">Temporal (⭐18k)</a> - Open source microservices orchestration platform for running mission critical code at any scale.</li>
+<li><a href="https://github.com/temporalio/temporal" rel="noopener noreferrer">Temporal (⭐21k)</a> - Open source microservices orchestration platform for running mission critical code at any scale.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/02/09/">Feb 09, 2021</a></h2><h3><p>CSharp</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mjebrahimi/Awesome-Microservices-NetCore" rel="noopener noreferrer">Awesome Microservices .NET Core (⭐3k)</a> ⭐ - A collection of awesome training series, articles, videos, books, courses, sample projects, and tools for microservices in .NET Core.</li>
+<li><a href="https://github.com/mjebrahimi/Awesome-Microservices-NetCore" rel="noopener noreferrer">Awesome Microservices .NET Core</a> ⭐ - A collection of awesome training series, articles, videos, books, courses, sample projects, and tools for microservices in .NET Core.</li>
 </ul>
 <h3><p>Rust / Scala</p>
 </h3>
@@ -523,12 +608,12 @@
 <h3><p>Frontend / UI / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ChristianUlbrich/awesome-microfrontends" rel="noopener noreferrer">Awesome Micro Frontends (⭐592)</a> ⭐ - A curated list of resources about Micro Frontends.</li>
+<li><a href="https://github.com/ChristianUlbrich/awesome-microfrontends" rel="noopener noreferrer">Awesome Micro Frontends</a> ⭐ - A curated list of resources about Micro Frontends.</li>
 </ul>
 <h3><p>Resilience / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dastergon/awesome-chaos-engineering" rel="noopener noreferrer">Awesome Chaos Engineering (⭐6.5k)</a> ⭐ - A curated list of awesome chaos engineering resources.</li>
+<li><a href="https://github.com/dastergon/awesome-chaos-engineering" rel="noopener noreferrer">Awesome Chaos Engineering (⭐6.6k)</a> ⭐ - A curated list of awesome chaos engineering resources.</li>
 </ul>
 <h3><p>Continuous Integration &amp; Delivery / Scala</p>
 </h3>
@@ -581,11 +666,11 @@
 <h2><a href="https://www.trackawesomelist.com/2020/11/07/">Nov 07, 2020</a></h2><h3><p>Go / Erlang</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gofiber/fiber" rel="noopener noreferrer">Fiber (⭐39k)</a> - Express inspired web framework built on top of Fasthttp, the fastest HTTP engine for Go. Designed to ease things up for fast development with zero memory allocation and performance in mind.</li>
+<li><a href="https://github.com/gofiber/fiber" rel="noopener noreferrer">Fiber (⭐40k)</a> - Express inspired web framework built on top of Fasthttp, the fastest HTTP engine for Go. Designed to ease things up for fast development with zero memory allocation and performance in mind.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/gin-gonic/gin" rel="noopener noreferrer">Gin (⭐88k)</a> - Gin is a HTTP web framework written in Go (Golang). It features a Martini-like API with much better performance, up to 40 times faster.</li>
+<li><a href="https://github.com/gin-gonic/gin" rel="noopener noreferrer">Gin (⭐89k)</a> - Gin is a HTTP web framework written in Go (Golang). It features a Martini-like API with much better performance, up to 40 times faster.</li>
 </ul>
 
 <ul>
@@ -599,7 +684,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/08/13/">Aug 13, 2020</a></h2><h3><p>PHP / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hyperf/hyperf" rel="noopener noreferrer">Hyperf (⭐6.7k)</a> - Hyperf is an extremely performant and flexible PHP CLI framework based on Swoole 4.5+, powered by the state-of-the-art coroutine server and a large number of battle-tested components.</li>
+<li><a href="https://github.com/hyperf/hyperf" rel="noopener noreferrer">Hyperf</a> - Hyperf is an extremely performant and flexible PHP CLI framework based on Swoole 4.5+, powered by the state-of-the-art coroutine server and a large number of battle-tested components.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/08/11/">Aug 11, 2020</a></h2><h3><p>API Gateways / Edge Services / Scala</p>
 </h3>
@@ -640,12 +725,12 @@
 <h2><a href="https://www.trackawesomelist.com/2020/06/26/">Jun 26, 2020</a></h2><h3><p>API Gateways / Edge Services / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/haproxy/haproxy" rel="noopener noreferrer">HAProxy (⭐6.3k)</a> - Reliable, high Performance TCP/HTTP load balancer.</li>
+<li><a href="https://github.com/haproxy/haproxy" rel="noopener noreferrer">HAProxy (⭐6.6k)</a> - Reliable, high Performance TCP/HTTP load balancer.</li>
 </ul>
 <h3><p>Job Schedulers / Workload Automation / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/celery/celery" rel="noopener noreferrer">Celery (⭐28k)</a> - Asynchronous task queue/job queue based on distributed message passing. Focused on real-time operation and supports scheduling.</li>
+<li><a href="https://github.com/celery/celery" rel="noopener noreferrer">Celery (⭐29k)</a> - Asynchronous task queue/job queue based on distributed message passing. Focused on real-time operation and supports scheduling.</li>
 </ul>
 <h3><p>QUIC / Scala</p>
 </h3>
@@ -674,7 +759,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/05/15/">May 15, 2020</a></h2><h3><p>API Gateways / Edge Services / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/3scale/APIcast" rel="noopener noreferrer">APIcast (⭐322)</a> - APIcast is an API gateway built on top of NGINX. It is part of the Red Hat 3scale API Management Platform.</li>
+<li><a href="https://github.com/3scale/APIcast" rel="noopener noreferrer">APIcast</a> - APIcast is an API gateway built on top of NGINX. It is part of the Red Hat 3scale API Management Platform.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/04/22/">Apr 22, 2020</a></h2><h3><p>Platforms</p>
 </h3>
@@ -699,7 +784,7 @@
 <h3><p>Rust / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/google/tarpc" rel="noopener noreferrer">Tarpc (⭐3.7k)</a> - RPC framework for Rust with a focus on ease of use.</li>
+<li><a href="https://github.com/google/tarpc" rel="noopener noreferrer">Tarpc</a> - RPC framework for Rust with a focus on ease of use.</li>
 </ul>
 <h3><p>Messaging / Scala</p>
 </h3>
@@ -718,7 +803,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/03/21/">Mar 21, 2020</a></h2><h3><p>PHP / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/swoft-cloud/swoft/" rel="noopener noreferrer">Swoft (⭐5.6k)</a> - PHP microservices coroutine framework for building high-performance web systems, APIs, middleware, and basic services.</li>
+<li><a href="https://github.com/swoft-cloud/swoft/" rel="noopener noreferrer">Swoft</a> - PHP microservices coroutine framework for building high-performance web systems, APIs, middleware, and basic services.</li>
 </ul>
 <h3><p>Python / Scala</p>
 </h3>
@@ -869,7 +954,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/01/30/">Jan 30, 2019</a></h2><h3><p>Frameworks / Runtimes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/networknt/light-4j" rel="noopener noreferrer">Light-4j (⭐3.7k)</a> - A high throughput, low latency, small memory footprint and more productive microservices platform.</li>
+<li><a href="https://github.com/networknt/light-4j" rel="noopener noreferrer">Light-4j</a> - A high throughput, low latency, small memory footprint and more productive microservices platform.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/11/30/">Nov 30, 2018</a></h2><h3><p>API Gateways / Edge Services / Scala</p>
 </h3>
@@ -914,7 +999,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/10/30/">Oct 30, 2017</a></h2><h3><p>Frameworks / Runtimes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/scalecube/scalecube" rel="noopener noreferrer">ScaleCube (⭐636)</a> - Toolkit for building reactive microservices for the JVM: low-latency, high-throughput, scalable and resilient.</li>
+<li><a href="https://github.com/scalecube/scalecube" rel="noopener noreferrer">ScaleCube (⭐637)</a> - Toolkit for building reactive microservices for the JVM: low-latency, high-throughput, scalable and resilient.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/10/01/">Oct 01, 2017</a></h2><h3><p>Go / Erlang</p>
 </h3>
@@ -929,7 +1014,7 @@
 <h3><p>API Gateways / Edge Services / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/apache/trafficserver" rel="noopener noreferrer">Traffic Server (⭐1.9k)</a> - High-performance building block for cloud services.</li>
+<li><a href="https://github.com/apache/trafficserver" rel="noopener noreferrer">Traffic Server (⭐2k)</a> - High-performance building block for cloud services.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/08/19/">Aug 19, 2017</a></h2><h3><p>API Gateways / Edge Services / Scala</p>
 </h3>
@@ -939,7 +1024,7 @@
 <h3><p>Testing / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/buger/goreplay" rel="noopener noreferrer">Goreplay (⭐19k)</a> - A tool for capturing and replaying live HTTP traffic into a test environment.</li>
+<li><a href="https://github.com/buger/goreplay" rel="noopener noreferrer">Goreplay</a> - A tool for capturing and replaying live HTTP traffic into a test environment.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/06/25/">Jun 25, 2017</a></h2><h3><p>Workflow Orchestration / Scala</p>
 </h3>
@@ -1012,11 +1097,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/keycloak/keycloak" rel="noopener noreferrer">Keycloak (⭐32k)</a> - Full-featured and extensible auth service. OpenID Connect provider and third-party OAuth 2.0 delegation.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/networknt/light-oauth2" rel="noopener noreferrer">Light OAuth2 (⭐318)</a> - A fast, lightweight and cloud native OAuth 2.0 authorization microservices based on light-java.</li>
+<li><a href="https://github.com/keycloak/keycloak" rel="noopener noreferrer">Keycloak (⭐34k)</a> - Full-featured and extensible auth service. OpenID Connect provider and third-party OAuth 2.0 delegation.</li>
 </ul>
 
 <ul>
@@ -1042,7 +1123,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/influxdata/influxdb" rel="noopener noreferrer">InfluxDB (⭐31k)</a> - Scalable datastore for metrics, events, and real-time analytics.</li>
+<li><a href="https://github.com/influxdata/influxdb" rel="noopener noreferrer">InfluxDB (⭐32k)</a> - Scalable datastore for metrics, events, and real-time analytics.</li>
 </ul>
 
 <ul>
@@ -1056,7 +1137,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/03/11/">Mar 11, 2017</a></h2><h3><p>API Gateways / Edge Services / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lyft/envoy" rel="noopener noreferrer">Envoy (⭐27k)</a> - Open source edge and service proxy, from the developers at Lyft.</li>
+<li><a href="https://github.com/lyft/envoy" rel="noopener noreferrer">Envoy</a> - Open source edge and service proxy, from the developers at Lyft.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/03/10/">Mar 10, 2017</a></h2><h3><p>Frameworks / Runtimes</p>
 </h3>
@@ -1113,7 +1194,7 @@
 <h3><p>Python / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/webpy/webpy/" rel="noopener noreferrer">Web.py (⭐5.9k)</a> - Minimalist web framework for Python.</li>
+<li><a href="https://github.com/webpy/webpy/" rel="noopener noreferrer">Web.py</a> - Minimalist web framework for Python.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/12/08/">Dec 08, 2016</a></h2><h3><p>API Gateways / Edge Services / Scala</p>
 </h3>
@@ -1123,7 +1204,7 @@
 <h3><p>Storage / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/palantir/atlasdb" rel="noopener noreferrer">AtlasDB (⭐72)</a> - Transactional layer on top of a key value store.</li>
+<li><a href="https://github.com/palantir/atlasdb" rel="noopener noreferrer">AtlasDB (⭐78)</a> - Transactional layer on top of a key value store.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/12/06/">Dec 06, 2016</a></h2><h3><p>Java VM / Scala</p>
 </h3>
@@ -1157,7 +1238,7 @@
 <h3><p>API Gateways / Edge Services / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zalando/skipper" rel="noopener noreferrer">Skipper (⭐3.2k)</a> - HTTP router useful for decoupling routing from service logic.</li>
+<li><a href="https://github.com/zalando/skipper" rel="noopener noreferrer">Skipper (⭐3.3k)</a> - HTTP router useful for decoupling routing from service logic.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/07/18/">Jul 18, 2016</a></h2><h3><p>Go / Erlang</p>
 </h3>
@@ -1167,12 +1248,12 @@
 <h3><p>Haskell / Erlang</p>
 </h3>
 <ul>
-<li><a href="https://github.com/haskell-servant/servant" rel="noopener noreferrer">Servant (⭐1.9k)</a> - Type-level web DSL.</li>
+<li><a href="https://github.com/haskell-servant/servant" rel="noopener noreferrer">Servant</a> - Type-level web DSL.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/05/22/">May 22, 2016</a></h2><h3><p>Frameworks / Runtimes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vert-x3/vertx-microservices-toolbox" rel="noopener noreferrer">Vert.X Toolbox (⭐118)</a> - A set of Vert.x components to build reactive microservice applications.</li>
+<li><a href="https://github.com/vert-x3/vertx-microservices-toolbox" rel="noopener noreferrer">Vert.X Toolbox (⭐119)</a> - A set of Vert.x components to build reactive microservice applications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/05/14/">May 14, 2016</a></h2><h3><p>Serialization / Scala</p>
 </h3>
@@ -1202,7 +1283,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/04/13/">Apr 13, 2016</a></h2><h3><p>C++</p>
 </h3>
 <ul>
-<li><a href="https://github.com/oktal/pistache" rel="noopener noreferrer">Pistache (⭐3.4k)</a> - A high-performance REST toolkit written in C++.</li>
+<li><a href="https://github.com/oktal/pistache" rel="noopener noreferrer">Pistache (⭐3.5k)</a> - A high-performance REST toolkit written in C++.</li>
 </ul>
 
 <ul>
@@ -1278,17 +1359,17 @@
 <h2><a href="https://www.trackawesomelist.com/2016/02/17/">Feb 17, 2016</a></h2><h3><p>Messaging / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/real-logic/Aeron" rel="noopener noreferrer">Aeron (⭐8.4k)</a> - Efficient reliable UDP unicast, UDP multicast, and IPC message transport.</li>
+<li><a href="https://github.com/real-logic/Aeron" rel="noopener noreferrer">Aeron</a> - Efficient reliable UDP unicast, UDP multicast, and IPC message transport.</li>
 </ul>
 <h3><p>Data Formats / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/FIXTradingCommunity/fix-simple-binary-encoding" rel="noopener noreferrer">SBE (⭐299)</a> - Simple Binary Encoding (SBE).</li>
+<li><a href="https://github.com/FIXTradingCommunity/fix-simple-binary-encoding" rel="noopener noreferrer">SBE (⭐311)</a> - Simple Binary Encoding (SBE).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/01/24/">Jan 24, 2016</a></h2><h3><p>Go / Erlang</p>
 </h3>
 <ul>
-<li><a href="https://github.com/goadesign/goa" rel="noopener noreferrer">Goa (⭐6k)</a> - Design-based HTTP microservices in Go.</li>
+<li><a href="https://github.com/goadesign/goa" rel="noopener noreferrer">Goa (⭐6.1k)</a> - Design-based HTTP microservices in Go.</li>
 </ul>
 <h3><p>Ruby / Scala</p>
 </h3>
@@ -1297,11 +1378,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/rightscale/praxis" rel="noopener noreferrer">Praxis (⭐301)</a> - Framework for both designing and implementing APIs.</li>
+<li><a href="https://github.com/rightscale/praxis" rel="noopener noreferrer">Praxis</a> - Framework for both designing and implementing APIs.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/wardrop/Scorched" rel="noopener noreferrer">Scorched (⭐275)</a> - Light-weight web framework for Ruby.</li>
+<li><a href="https://github.com/wardrop/Scorched" rel="noopener noreferrer">Scorched (⭐274)</a> - Light-weight web framework for Ruby.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/01/23/">Jan 23, 2016</a></h2><h3><p>Frameworks / Runtimes</p>
 </h3>
@@ -1326,7 +1407,7 @@
 <h3><p>Python / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/onefinestay/nameko" rel="noopener noreferrer">Nameko (⭐4.8k)</a> - Python framework for building microservices.</li>
+<li><a href="https://github.com/onefinestay/nameko" rel="noopener noreferrer">Nameko</a> - Python framework for building microservices.</li>
 </ul>
 
 <ul>
@@ -1369,7 +1450,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/01/07/">Jan 07, 2016</a></h2><h3><p>C++</p>
 </h3>
 <ul>
-<li><a href="https://github.com/endurox-dev/endurox/" rel="noopener noreferrer">Enduro/X (⭐136)</a> - XATMI based service framework for GNU/Linux.</li>
+<li><a href="https://github.com/endurox-dev/endurox/" rel="noopener noreferrer">Enduro/X</a> - XATMI based service framework for GNU/Linux.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/01/05/">Jan 05, 2016</a></h2><h3><p>Polyglot</p>
 </h3>
@@ -1389,7 +1470,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/12/31/">Dec 31, 2015</a></h2><h3><p>Messaging / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zeromq/malamute" rel="noopener noreferrer">Malamute (⭐334)</a> - ZeroMQ enterprise messaging broker.</li>
+<li><a href="https://github.com/zeromq/malamute" rel="noopener noreferrer">Malamute</a> - ZeroMQ enterprise messaging broker.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/12/19/">Dec 19, 2015</a></h2><h3><p>Storage / Scala</p>
 </h3>
@@ -1407,11 +1488,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/vcr/vcr" rel="noopener noreferrer">VCR (⭐6k)</a> - Record your test suite's HTTP interactions and replay them during future test runs for fast, deterministic, accurate tests. See the list of ports for implementations in other languages.</li>
+<li><a href="https://github.com/vcr/vcr" rel="noopener noreferrer">VCR (⭐6.1k)</a> - Record your test suite's HTTP interactions and replay them during future test runs for fast, deterministic, accurate tests. See the list of ports for implementations in other languages.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/epam/Wilma" rel="noopener noreferrer">Wilma (⭐59)</a> - Combined HTTP/HTTPS service stub and transparent proxy solution.</li>
+<li><a href="https://github.com/epam/Wilma" rel="noopener noreferrer">Wilma (⭐61)</a> - Combined HTTP/HTTPS service stub and transparent proxy solution.</li>
 </ul>
 
 <ul>
@@ -1467,7 +1548,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/elixir-lang/plug" rel="noopener noreferrer">Plug (⭐3k)</a> - A specification and conveniences for composable modules between web applications.</li>
+<li><a href="https://github.com/elixir-lang/plug" rel="noopener noreferrer">Plug</a> - A specification and conveniences for composable modules between web applications.</li>
 </ul>
 <h3><p>Erlang VM / Erlang</p>
 </h3>
@@ -1477,7 +1558,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/09/25/">Sep 25, 2015</a></h2><h3><p>Haskell / Erlang</p>
 </h3>
 <ul>
-<li><a href="https://github.com/scotty-web/scotty" rel="noopener noreferrer">Scotty (⭐1.8k)</a> - Micro web framework inspired by Ruby's Sinatra, using WAI and Warp.</li>
+<li><a href="https://github.com/scotty-web/scotty" rel="noopener noreferrer">Scotty</a> - Micro web framework inspired by Ruby's Sinatra, using WAI and Warp.</li>
 </ul>
 
 <ul>
@@ -1490,7 +1571,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/danielsz/system" rel="noopener noreferrer">System (⭐605)</a> - Built on top of Stuart Sierra's component library, offers a set of readymade components.</li>
+<li><a href="https://github.com/danielsz/system" rel="noopener noreferrer">System</a> - Built on top of Stuart Sierra's component library, offers a set of readymade components.</li>
 </ul>
 
 <ul>
@@ -1499,7 +1580,7 @@
 <h3><p>Java VM / Java</p>
 </h3>
 <ul>
-<li><a href="https://github.com/airlift/airlift" rel="noopener noreferrer">Airlift (⭐628)</a> - Framework for building REST services in Java.</li>
+<li><a href="https://github.com/airlift/airlift" rel="noopener noreferrer">Airlift</a> - Framework for building REST services in Java.</li>
 </ul>
 
 <ul>
@@ -1559,7 +1640,7 @@
 <h3><p>Configuration &amp; Discovery / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/coreos/etcd" rel="noopener noreferrer">Etcd (⭐51k)</a> - Highly-available key-value store for shared configuration and service discovery.</li>
+<li><a href="https://github.com/coreos/etcd" rel="noopener noreferrer">Etcd (⭐52k)</a> - Highly-available key-value store for shared configuration and service discovery.</li>
 </ul>
 
 <ul>
@@ -1585,7 +1666,7 @@
 <h3><p>Serialization / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ochrons/boopickle" rel="noopener noreferrer">BooPickle (⭐368)</a> - Binary serialization library for efficient network communication. For Scala and Scala.js</li>
+<li><a href="https://github.com/ochrons/boopickle" rel="noopener noreferrer">BooPickle (⭐370)</a> - Binary serialization library for efficient network communication. For Scala and Scala.js</li>
 </ul>
 
 <ul>
@@ -1597,7 +1678,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dakrone/cheshire" rel="noopener noreferrer">Cheshire (⭐1.5k)</a> - Clojure JSON and JSON SMILE encoding/decoding.</li>
+<li><a href="https://github.com/dakrone/cheshire" rel="noopener noreferrer">Cheshire (⭐1.6k)</a> - Clojure JSON and JSON SMILE encoding/decoding.</li>
 </ul>
 
 <ul>
@@ -1605,15 +1686,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/alibaba/fastjson" rel="noopener noreferrer">Fastjson (⭐26k)</a> - Fast JSON Processor.</li>
+<li><a href="https://github.com/alibaba/fastjson" rel="noopener noreferrer">Fastjson</a> - Fast JSON Processor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/FasterXML/jackson" rel="noopener noreferrer">Jackson (⭐9.6k)</a> -  A multi-purpose Java library for processing JSON data format.</li>
+<li><a href="https://github.com/FasterXML/jackson" rel="noopener noreferrer">Jackson (⭐9.7k)</a> -  A multi-purpose Java library for processing JSON data format.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/FasterXML/jackson-module-afterburner" rel="noopener noreferrer">Jackson Afterburner (⭐91)</a> - Jackson module that uses bytecode generation to further speed up data binding (+30-40% throughput for serialization, deserialization).</li>
+<li><a href="https://github.com/FasterXML/jackson-module-afterburner" rel="noopener noreferrer">Jackson Afterburner</a> - Jackson module that uses bytecode generation to further speed up data binding (+30-40% throughput for serialization, deserialization).</li>
 </ul>
 
 <ul>
@@ -1625,7 +1706,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/harrah/sbinary" rel="noopener noreferrer">SBinary (⭐74)</a> - Library for describing binary formats for Scala types.</li>
+<li><a href="https://github.com/harrah/sbinary" rel="noopener noreferrer">SBinary (⭐75)</a> - Library for describing binary formats for Scala types.</li>
 </ul>
 
 <ul>
@@ -1689,7 +1770,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/msgpack/msgpack/blob/master/spec.md" rel="noopener noreferrer">MSGPACK (⭐7.4k)</a> - MessagePack Specification.</li>
+<li><a href="https://github.com/msgpack/msgpack/blob/master/spec.md" rel="noopener noreferrer">MSGPACK (⭐7.5k)</a> - MessagePack Specification.</li>
 </ul>
 <h3><p>Sites &amp; Organizations / Scala</p>
 </h3>
@@ -1794,5 +1875,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
