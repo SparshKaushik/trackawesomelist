@@ -14,28 +14,111 @@
     <meta property="og:url" content="https://www.trackawesomelist.com/davidsonfellipe/awesome-wpo/readme/" />
     <meta property="og:type" content="summary" />
     <meta property="og:title" content="Awesome Wpo Overview" />
-    <meta property="og:description" content=":pencil: A curated list of Web Performance Optimization. Everyone can contribute here!" />
+    <meta property="og:description" content="A curated list of Web Performance Optimization. " />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Wpo Overview</h1>
-<p>:pencil: A curated list of Web Performance Optimization. Everyone can contribute here!</p>
+<p>A curated list of Web Performance Optimization. </p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/davidsonfellipe/awesome-wpo/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/davidsonfellipe/awesome-wpo">😺 davidsonfellipe/awesome-wpo</a><span> · </span><span>⭐ 8.9K</span><span> · </span><span>🏷️ Front-End Development</span></p>
 <p><span>[ </span><a href="/davidsonfellipe/awesome-wpo/">Daily</a><span> / </span><a href="/davidsonfellipe/awesome-wpo/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
 <h1 id="awesome-wpo-awesome"><a class="anchor" aria-hidden="true" tabindex="-1" href="#awesome-wpo-awesome"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Awesome WPO <a href="https://awesome.re" rel="noopener noreferrer"><img src="https://awesome.re/badge.svg" alt="Awesome" /></a></h1><p><a href="https://github.com/davidsonfellipe/awesome-wpo/graphs/contributors" rel="noopener noreferrer"><img src="https://img.shields.io/github/contributors/davidsonfellipe/awesome-wpo.svg" alt="GitHub contributors" /></a>
 <a href="https://davidsonfellipe.mit-license.org/" rel="noopener noreferrer"><img src="https://img.shields.io/github/license/mashape/apistatus.svg?style=flat" alt="MIT license" /></a></p>
 <p>Welcome to the curated list of Web Performance Optimization resources. This repository aims to gather the best tools, articles, blogs, books, and talks related to optimizing website performance. Whether you're a developer, designer, or performance enthusiast, you'll find valuable content here to supercharge your web projects.</p>
-<h2 id="categories"><a class="anchor" aria-hidden="true" tabindex="-1" href="#categories"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Categories</h2><p>📝 <a href="#articles">Awesome WPO / Articles</a></p>
-<p>📰 <a href="#blogs">Awesome WPO / Blogs</a></p>
+<blockquote>
+<p>:globe_with_meridians: <strong>Browse online:</strong> This list is also available as a website at <strong><a href="https://awesome-wpo.dev/" rel="noopener noreferrer">awesome-wpo.dev</a></strong>.</p>
+</blockquote>
+<h2 id="categories"><a class="anchor" aria-hidden="true" tabindex="-1" href="#categories"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Categories</h2><p>:globe_with_meridians: <a href="https://awesome-wpo.dev/" rel="noopener noreferrer">Awesome WPO / Website</a></p>
+<p>📝 <a href="#articles">Awesome WPO / Articles</a></p>
 <p>📚 <a href="#books">Awesome WPO / Books</a></p>
 <p>📖 <a href="#documentation">Awesome WPO / Docs</a></p>
 <p>📆 <a href="#events">Awesome WPO / Events</a></p>
@@ -73,17 +156,14 @@
 <p>Agent skills for web quality audits and optimization workflows.</p>
 </blockquote>
 <ul>
-<li><a href="https://github.com/addyosmani/web-quality-skills#web-quality-audit" rel="noopener noreferrer">web-quality-audit (⭐1.8k)</a> - Comprehensive quality review across all categories.</li>
-<li><a href="https://github.com/addyosmani/web-quality-skills#core-web-vitals" rel="noopener noreferrer">core-web-vitals (⭐1.8k)</a> - LCP, INP, and CLS specific optimizations.</li>
-<li><a href="https://github.com/addyosmani/web-quality-skills#accessibility" rel="noopener noreferrer">accessibility (⭐1.8k)</a> - WCAG compliance, screen reader support, and keyboard navigation.</li>
-<li><a href="https://github.com/addyosmani/web-quality-skills#performance" rel="noopener noreferrer">performance (⭐1.8k)</a> - Loading speed, runtime efficiency, and resource optimization.</li>
-<li><a href="https://github.com/addyosmani/web-quality-skills#best-practices" rel="noopener noreferrer">best-practices (⭐1.8k)</a> - Security, modern APIs, and code quality patterns.</li>
+<li><a href="https://github.com/addyosmani/web-quality-skills#web-quality-audit" rel="noopener noreferrer">web-quality-audit (⭐2.2k)</a> - Comprehensive quality review across all categories.</li>
+<li><a href="https://github.com/addyosmani/web-quality-skills#core-web-vitals" rel="noopener noreferrer">core-web-vitals (⭐2.2k)</a> - LCP, INP, and CLS specific optimizations.</li>
+<li><a href="https://github.com/addyosmani/web-quality-skills#accessibility" rel="noopener noreferrer">accessibility (⭐2.2k)</a> - WCAG compliance, screen reader support, and keyboard navigation.</li>
+<li><a href="https://github.com/addyosmani/web-quality-skills#performance" rel="noopener noreferrer">performance (⭐2.2k)</a> - Loading speed, runtime efficiency, and resource optimization.</li>
+<li><a href="https://github.com/addyosmani/web-quality-skills#best-practices" rel="noopener noreferrer">best-practices (⭐2.2k)</a> - Security, modern APIs, and code quality patterns.</li>
 </ul>
 <h2 id="articles"><a class="anchor" aria-hidden="true" tabindex="-1" href="#articles"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Articles</h2><blockquote>
-<p>Go to <a href="https://github.com/davidsonfellipe/awesome-wpo/blob/main/README.md/content/ARTICLES.md" rel="noopener noreferrer">ARTICLES.md</a>.</p>
-</blockquote>
-<h2 id="blogs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#blogs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Blogs</h2><blockquote>
-<p>Go to <a href="https://github.com/davidsonfellipe/awesome-wpo/blob/main/README.md/content/BLOGS.md" rel="noopener noreferrer">BLOGS</a>.</p>
+<p>Browse on <a href="https://awesome-wpo.dev/" rel="noopener noreferrer">awesome-wpo.dev</a> or see <a href="https://github.com/davidsonfellipe/awesome-wpo/blob/main/README.md/ARTICLES.md" rel="noopener noreferrer">ARTICLES.md</a>.</p>
 </blockquote>
 <h2 id="books"><a class="anchor" aria-hidden="true" tabindex="-1" href="#books"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Books</h2><blockquote>
 <p>Best books about WPO</p>
@@ -120,6 +200,7 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <li><a href="https://developer.yahoo.com/performance/rules.html" rel="noopener noreferrer">Best Practices for Speeding Up Your site</a> - The list includes 35 best practices divided into 7 categories, created by Yahoo! Exceptional Performance team.</li>
 <li><a href="https://developer.chrome.com/docs/performance/" rel="noopener noreferrer">Chrome Developers: Performance</a> - Deep guides on rendering, loading, and runtime performance.</li>
 <li><a href="https://developer.chrome.com/docs/lighthouse/" rel="noopener noreferrer">Lighthouse Docs</a> - Audit methodology, scoring details, and usage guidance.</li>
+<li><a href="https://webpack.js.org/guides/code-splitting/" rel="noopener noreferrer">Code Splitting (Webpack)</a> - Official guide to splitting JavaScript bundles for faster initial load and on-demand loading.</li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API" rel="noopener noreferrer">Navigation Timing API (MDN)</a> - Page navigation and load milestone metrics.</li>
 <li><a href="https://www.w3.org/TR/navigation-timing-2/" rel="noopener noreferrer">Navigation Timing Level 2 (W3C)</a> - Use <code>responseStart</code> and <code>requestStart</code> to derive Time to First Byte (TTFB).</li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API" rel="noopener noreferrer">Resource Timing API (MDN)</a> - Detailed network timing for assets.</li>
@@ -138,10 +219,10 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <li><a href="https://perfmattersconf.com/" rel="noopener noreferrer">PerfMatters</a> - Conference is the ONLINE web performance conference by internationally renowned performance developers.</li>
 </ul>
 <h3 id="meetups"><a class="anchor" aria-hidden="true" tabindex="-1" href="#meetups"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Meetups</h3><blockquote>
-<p>They are categorized into <a href="https://github.com/davidsonfellipe/awesome-wpo/blob/main/README.md/content/MEETUPS.md" rel="noopener noreferrer">content/MEETUPS.md</a>.</p>
+<p>Browse on <a href="https://awesome-wpo.dev/" rel="noopener noreferrer">awesome-wpo.dev</a> or see <a href="https://github.com/davidsonfellipe/awesome-wpo/blob/main/README.md/MEETUPS.md" rel="noopener noreferrer">MEETUPS.md</a>.</p>
 </blockquote>
 <h2 id="talks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#talks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Talks</h2><blockquote>
-<p>They are categorized into <a href="https://github.com/davidsonfellipe/awesome-wpo/blob/main/README.md/content/TALKS.md" rel="noopener noreferrer">content/TALKS.md</a>.</p>
+<p>Browse on <a href="https://awesome-wpo.dev/" rel="noopener noreferrer">awesome-wpo.dev</a> or see <a href="https://github.com/davidsonfellipe/awesome-wpo/blob/main/README.md/TALKS.md" rel="noopener noreferrer">TALKS.md</a>.</p>
 </blockquote>
 <h2 id="tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tools</h2><ul>
 <li><a href="https://www.corewebvitals.io/tools/speculation-rules-generator" rel="noopener noreferrer">Speculation Rules Generator</a> - Build speculation rules JSON for prefetch and prerender configurations.</li>
@@ -159,12 +240,12 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <li><a href="https://screpy.com" rel="noopener noreferrer">Screpy</a> - [Multi-audit] AI-based performance, SEO, uptime, and quality monitoring.</li>
 <li><a href="https://github.com/marcelduran/yslow" rel="noopener noreferrer">YSlow (⭐2.2k)</a> - Analyzes web pages and suggests ways to improve their performance based on a set of rules for high-performance web pages.</li>
 <li><a href="https://github.com/sideroad/grunt-wpt" rel="noopener noreferrer">Grunt-WebPageTest (⭐35)</a> - Grunt plugin for continuous measurement of WebPageTest. (<a href="http://sideroad.github.io/sample-wpt-page/" rel="noopener noreferrer">Demo</a>)</li>
-<li><a href="https://github.com/tkadlec/grunt-perfbudget" rel="noopener noreferrer">Grunt-perfbudget (⭐851)</a> - A Grunt.js task for enforcing a performance budget (<a href="https://timkadlec.com/2013/01/setting-a-performance-budget/" rel="noopener noreferrer">more on performance budgets</a>).</li>
+<li><a href="https://github.com/tkadlec/grunt-perfbudget" rel="noopener noreferrer">Grunt-perfbudget (⭐848)</a> - A Grunt.js task for enforcing a performance budget (<a href="https://timkadlec.com/2013/01/setting-a-performance-budget/" rel="noopener noreferrer">more on performance budgets</a>).</li>
 <li><a href="https://github.com/google/tracing-framework" rel="noopener noreferrer">Web Tracing Framework (⭐2.6k)</a> - Libraries, tools, and visualizers for tracing and investigating complex web applications.</li>
 <li><a href="https://github.com/yandex/yandex-tank" rel="noopener noreferrer">Yandex.Tank (⭐2.6k)</a> - An extensible open-source load testing tool for advanced Linux users which is especially good as a part of an automated load testing suite.</li>
 <li><a href="https://yellowlab.tools/" rel="noopener noreferrer">Yellow Lab Tools</a> - Online quick and easy tool that audits frontend bad practices, reveals performance issues, and profiles JavaScript.</li>
 <li><a href="https://pagelocity.com/" rel="noopener noreferrer">Pagelocity</a> - A web performance optimization and analysis tool.</li>
-<li><a href="https://github.com/speedracer/speedracer" rel="noopener noreferrer">Speed Racer (⭐1.9k)</a> - Collect performance metrics for your library/application using Chrome headless.</li>
+<li><a href="https://github.com/speedracer/speedracer" rel="noopener noreferrer">Speed Racer (⭐1.8k)</a> - Collect performance metrics for your library/application using Chrome headless.</li>
 <li><a href="https://lightest.app/" rel="noopener noreferrer">Lightest App</a> - Webpage load time is extremely important for conversion and revenue. Visualize web performance against competitors.</li>
 <li><a href="https://github.com/brancogao/redirect-checker" rel="noopener noreferrer">Redirect Checker (⭐0)</a> - Analyze HTTP redirect chains, detect loops, and measure performance impact on page load times.</li>
 <li><a href="https://tools.paulcalvano.com/wpt-third-party-analysis/" rel="noopener noreferrer">Third Party Analysis Tool</a> - Analyze third-party request risk, render-blocking impact, and potential single points of failure from WebPageTest runs.</li>
@@ -199,13 +280,13 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <li><a href="http://hughsk.io/disc/" rel="noopener noreferrer">Disc</a> - Visualise the module tree of browserify project bundles and track down bloat.</li>
 <li><a href="https://github.com/pajaydev/lasso-analyzer" rel="noopener noreferrer">Lasso-analyzer (⭐4)</a> - Analyze and visualise project bundles created by Lasso.</li>
 <li><a href="https://github.com/webpack/compression-webpack-plugin" rel="noopener noreferrer">Compression Webpack plugin (⭐1.4k)</a> - Prepare compressed versions of assets to serve them with Content-Encoding.</li>
-<li><a href="https://github.com/relative-ci/bundle-stats" rel="noopener noreferrer">BundleStats (⭐669)</a> - Generate bundle report(bundle size, assets, modules, packages) and compare the results between different builds.</li>
+<li><a href="https://github.com/relative-ci/bundle-stats" rel="noopener noreferrer">BundleStats (⭐670)</a> - Generate bundle report(bundle size, assets, modules, packages) and compare the results between different builds.</li>
 </ul>
 <h2 id="benchmarks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#benchmarks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Benchmarks</h2><blockquote>
 <p>A set of tools for creating test cases and comparing different implementations in CSS, JavaScript, and PHP.</p>
 </blockquote>
 <ul>
-<li><a href="https://github.com/mdo/css-perf" rel="noopener noreferrer">CSS-perf (⭐568)</a> - Completely unscientific way of testing CSS performance. Most of these tests will revolve around methodologies and techniques for determining effective CSS architecture. Put another way, I want to know what works best given a particular comparison of CSS strategies.</li>
+<li><a href="https://github.com/mdo/css-perf" rel="noopener noreferrer">CSS-perf (⭐569)</a> - Completely unscientific way of testing CSS performance. Most of these tests will revolve around methodologies and techniques for determining effective CSS architecture. Put another way, I want to know what works best given a particular comparison of CSS strategies.</li>
 <li><a href="https://jsbench.me/" rel="noopener noreferrer">JSBench</a> - A modern browser-based JavaScript benchmarking tool for quickly creating and sharing performance tests.</li>
 <li><a href="https://benchmarkjs.com/" rel="noopener noreferrer">Benchmark.js</a> - A robust benchmarking library that works on nearly all JavaScript platforms, supports high-resolution timers, and returns statistically significant results.</li>
 <li><a href="https://github.com/broofa/jslitmus" rel="noopener noreferrer">JSlitmus (⭐165)</a> - Lightweight tool for creating ad-hoc JavaScript benchmark tests.</li>
@@ -221,7 +302,7 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <h2 id="bookmarklets"><a class="anchor" aria-hidden="true" tabindex="-1" href="#bookmarklets"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Bookmarklets</h2><ul>
 <li><a href="https://developer.yahoo.com/yslow/" rel="noopener noreferrer">Yahoo YSlow for Mobile/Bookmarklet</a> - YSlow analyzes web pages and suggests ways to improve their performance based on a set of rules for high-performance web pages.</li>
 <li><a href="https://github.com/zeman/perfmap" rel="noopener noreferrer">PerfMap (⭐3.8k)</a> - A bookmarklet to create a frontend performance heatmap of resources loaded in the browser using the Resource Timing API.</li>
-<li><a href="https://github.com/madrobby/dom-monster" rel="noopener noreferrer">DOM Monster (⭐558)</a> - A cross-platform, cross-browser bookmarklet that will analyze the DOM &amp; other features of the page you're on, and give you its bill of health.</li>
+<li><a href="https://github.com/madrobby/dom-monster" rel="noopener noreferrer">DOM Monster (⭐557)</a> - A cross-platform, cross-browser bookmarklet that will analyze the DOM &amp; other features of the page you're on, and give you its bill of health.</li>
 <li><a href="https://andy.edinborough.org/CSS-Stress-Testing-and-Performance-Profiling" rel="noopener noreferrer">CSS Stress</a> - Stress testing and performance profiling for CSS.</li>
 <li><a href="https://github.com/micmro/performance-bookmarklet" rel="noopener noreferrer">Performance-Bookmarklet (⭐1.1k)</a> - Analyze the current page through the Resource Timing API, Navigation Timing API and User-Timing - Sort of a light live WebPageTest. As <a href="https://addons.mozilla.org/en-US/firefox/addon/performance-analyser/?src=cb-dl-created" rel="noopener noreferrer">Firefox Add-on</a> under the name Performance-Analyser.</li>
 </ul>
@@ -231,7 +312,7 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <ul>
 <li><a href="https://www.cloudflare.com/application-services/products/cdn/" rel="noopener noreferrer">Cloudflare CDN</a> - A content delivery network that uses next-gen tech to deliver fast, reliable, CDN services.</li>
 <li><a href="https://pagecdn.com/lib" rel="noopener noreferrer">PageCDN</a> - A state-of-the-art opensource CDN with aggressive content optimization using brotli-11 compression, HTTP/2 server push, better HTTP/2 multiplexing, and more. Supports 100s of libraries and 2000+ WordPress themes already. Easy to use, easy to link, and very fast.</li>
-<li><a href="https://github.com/jsdelivr/jsdelivr" rel="noopener noreferrer">jsDelivr (⭐6.2k)</a> - Similar to Google Hosted Libraries, jsDelivr is an open-source CDN that allows developers to host their own projects and anyone to link to our hosted files on their sites.</li>
+<li><a href="https://github.com/jsdelivr/jsdelivr" rel="noopener noreferrer">jsDelivr (⭐6.3k)</a> - Similar to Google Hosted Libraries, jsDelivr is an open-source CDN that allows developers to host their own projects and anyone to link to our hosted files on their sites.</li>
 <li><a href="https://developers.google.com/speed/libraries/" rel="noopener noreferrer">Google Hosted Libraries</a> - Google-run CDN for the most popular open-source JavaScript libraries.</li>
 <li><a href="https://cdnjs.com/" rel="noopener noreferrer">CDNjs</a> - An open-source CDN for JavaScript and CSS sponsored by Cloudflare that hosts everything from jQuery and Modernizr to Bootstrap.</li>
 <li><a href="https://aws.amazon.com/cloudfront/" rel="noopener noreferrer">Amazon CloudFront</a> - A content delivery network by Amazon that integrates nicely with other Amazon services or can be used standalone.</li>
@@ -248,10 +329,10 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <h2 id="core-web-vitals"><a class="anchor" aria-hidden="true" tabindex="-1" href="#core-web-vitals"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Core Web Vitals</h2><ul>
 <li><a href="https://github.com/GoogleChrome/web-vitals" rel="noopener noreferrer">web-vitals (⭐8.5k)</a> - Small library to accurately measure Core Web Vitals (LCP, FID, CLS, INP, TTFB) in the browser.</li>
 <li><a href="https://github.com/GoogleChrome/lighthouse" rel="noopener noreferrer">Lighthouse (⭐30k)</a> - Audits Core Web Vitals in lab conditions (see <a href="#analyzers">Analyzers</a>).</li>
-<li><a href="https://github.com/GoogleChrome/lighthouse-ci" rel="noopener noreferrer">Lighthouse CI (⭐6.9k)</a> - Run Lighthouse in CI to enforce Core Web Vitals budgets on every commit.</li>
+<li><a href="https://github.com/GoogleChrome/lighthouse-ci" rel="noopener noreferrer">Lighthouse CI (⭐7k)</a> - Run Lighthouse in CI to enforce Core Web Vitals budgets on every commit.</li>
 </ul>
 <h2 id="extensions"><a class="anchor" aria-hidden="true" tabindex="-1" href="#extensions"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Extensions</h2><ul>
-<li><a href="https://github.com/zenorocha/browser-calories" rel="noopener noreferrer">Browser Calories (⭐132)</a> - The easiest way to measure your performance budget.</li>
+<li><a href="https://github.com/zenorocha/browser-calories" rel="noopener noreferrer">Browser Calories (⭐130)</a> - The easiest way to measure your performance budget.</li>
 </ul>
 <h2 id="generators"><a class="anchor" aria-hidden="true" tabindex="-1" href="#generators"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Generators</h2><ul>
 <li><a href="https://github.com/jarred-sumner/atbuild" rel="noopener noreferrer">AtBuild (⭐35)</a> - JavaScript code generation tool that lets you write JavaScript that outputs JavaScript. Good for unrolling loops and writing libraries that compile away the runtime.</li>
@@ -284,10 +365,10 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <li><a href="https://optipng.sourceforge.net/" rel="noopener noreferrer">OptiPNG</a> - PNG optimizer that recompresses image files to a smaller size without losing information.</li>
 <li><a href="https://github.com/gruntjs/grunt-contrib-imagemin" rel="noopener noreferrer">Grunt-contrib-imagemin (⭐1.2k)</a> - Minify PNG and JPEG images for Grunt.</li>
 <li><a href="https://github.com/sindresorhus/gulp-imagemin" rel="noopener noreferrer">Gulp-imagemin (⭐1.9k)</a> - Minify PNG, JPEG, GIF and SVG images with imagemin for Gulp.</li>
-<li><a href="https://github.com/somerandomdude/grunt-webp" rel="noopener noreferrer">Grunt-WebP (⭐118)</a> - Convert your images to WebP format.</li>
+<li><a href="https://github.com/somerandomdude/grunt-webp" rel="noopener noreferrer">Grunt-WebP (⭐117)</a> - Convert your images to WebP format.</li>
 <li><a href="https://github.com/sindresorhus/gulp-webp" rel="noopener noreferrer">Gulp-WebP (⭐219)</a> - Convert images to WebP for Gulp.</li>
 <li><a href="https://imageoptim.com/mac" rel="noopener noreferrer">Imageoptim</a> - Free app that makes images take up less disk space and load faster, without sacrificing quality. It optimizes compression parameters, and removes junk metadata and unnecessary color profiles.</li>
-<li><a href="http://github.com/imager-io/imager" rel="noopener noreferrer">Imager (⭐724)</a> - Automated image compression for efficiently distributing images on the web.</li>
+<li><a href="http://github.com/imager-io/imager" rel="noopener noreferrer">Imager (⭐727)</a> - Automated image compression for efficiently distributing images on the web.</li>
 <li><a href="https://github.com/JamieMason/grunt-imageoptim" rel="noopener noreferrer">Grunt-imageoptim (⭐476)</a> - Make ImageOptim, ImageAlpha, and JPEGmini part of your automated build process.</li>
 <li><a href="https://github.com/JamieMason/ImageOptim-CLI" rel="noopener noreferrer">ImageOptim-CLI (⭐3.5k)</a> - Automates ImageOptim, ImageAlpha, and JPEGmini for Mac to make batch optimization of images part of your automated build process.</li>
 <li><a href="https://github.com/JafarAkhondali/Tapnesh" rel="noopener noreferrer">Tapnesh-CLI (⭐21)</a> - Tapnesh is a CLI tool that will optimize all your images in parallel easily and efficiently!</li>
@@ -297,15 +378,16 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <li><a href="https://github.com/mozilla/mozjpeg" rel="noopener noreferrer">mozjpeg (⭐5.7k)</a> - Improved JPEG encoder.</li>
 <li><a href="https://github.com/tjko/jpegoptim" rel="noopener noreferrer">Jpegoptim (⭐1.8k)</a> - Utility to optimize/compress JPEG files.</li>
 <li><a href="http://www.advancemame.it/doc-advpng.html" rel="noopener noreferrer">AdvPNG</a> - Recompress PNG files to get the smallest possible size.</li>
-<li><a href="https://github.com/JayXon/Leanify" rel="noopener noreferrer">Leanify (⭐851)</a> - Lightweight lossless file minifier/optimizer.</li>
+<li><a href="https://github.com/JayXon/Leanify" rel="noopener noreferrer">Leanify (⭐849)</a> - Lightweight lossless file minifier/optimizer.</li>
 <li><a href="https://trimage.org/" rel="noopener noreferrer">Trimage</a> - A cross-platform tool for losslessly optimizing PNG and JPG files.</li>
 <li><a href="https://imageengine.io" rel="noopener noreferrer">ImageEngine</a> - Cloud service for optimizing, resizing and caching images on the fly with great mobile support.</li>
 <li><a href="https://imagekit.io" rel="noopener noreferrer">ImageKit.io</a> - Intelligent real-time image optimizations, image transformations with a global delivery network and storage.</li>
-<li><a href="https://github.com/343dev/optimizt" rel="noopener noreferrer">Optimizt (⭐167)</a> - CLI image optimization tool. It can compress PNG, JPEG, GIF and SVG lossy and lossless, and also create AVIF and WebP versions for raster images.</li>
+<li><a href="https://github.com/343dev/optimizt" rel="noopener noreferrer">Optimizt (⭐175)</a> - CLI image optimization tool. It can compress PNG, JPEG, GIF and SVG lossy and lossless, and also create AVIF and WebP versions for raster images.</li>
 <li><a href="https://responsive-image.dev/" rel="noopener noreferrer">ResponsiveImage</a> - Generate optimized images (WebP, AVIF) and LQIP placeholders using Vite or Webpack plugins and render responsive image markup with an image component for multiple frameworks.</li>
+<li><a href="https://adaptive-images.com/" rel="noopener noreferrer">Adaptive Images</a> - Server-side PHP tool that detects screen size and automatically creates, caches, and delivers device-appropriate resized images from existing <code>&lt;img&gt;</code> markup.</li>
 </ul>
 <h2 id="lazyloaders"><a class="anchor" aria-hidden="true" tabindex="-1" href="#lazyloaders"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Lazyloaders</h2><ul>
-<li><a href="https://github.com/vvo/lazyload" rel="noopener noreferrer">lazyload (⭐935)</a> - Defer images, iframes, and widgets with a standalone JavaScript lazyloader (~1kb).</li>
+<li><a href="https://github.com/vvo/lazyload" rel="noopener noreferrer">lazyload (⭐934)</a> - Defer images, iframes, and widgets with a standalone JavaScript lazyloader (~1kb).</li>
 <li><a href="https://github.com/ApoorvSaxena/lozad.js" rel="noopener noreferrer">lozad.js (⭐7.5k)</a> - Highly performant, light ~0.9kb, and configurable lazy loader in pure JS with no dependencies for responsive images, iframes, and more.</li>
 <li><a href="https://github.com/GoogleChromeLabs/quicklink" rel="noopener noreferrer">quicklink (⭐11k)</a> - Prefetch links in the viewport (via Intersection Observer) to make future navigations faster.</li>
 </ul>
@@ -341,9 +423,9 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <h2 id="minifiers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#minifiers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Minifiers</h2><ul>
 <li><a href="https://code.google.com/archive/p/htmlcompressor/" rel="noopener noreferrer">HTMLCompressor</a> - Small, fast Java library that minifies HTML or XML by removing extra whitespace, comments, and unneeded characters without breaking structure. Includes a command-line build.</li>
 <li><a href="https://github.com/cobrateam/django-htmlmin" rel="noopener noreferrer">Django-htmlmin (⭐544)</a> - HTML minifier for Python with full support for HTML 5. Supports Django, Flask, and any other Python web framework, plus a command-line tool for static sites or deployment scripts.</li>
-<li><a href="https://github.com/kangax/html-minifier" rel="noopener noreferrer">HTMLMinifier (⭐5.1k)</a> - Highly configurable, well-tested, JavaScript-based HTML minifier with lint-like capabilities.</li>
-<li><a href="https://github.com/gruntjs/grunt-contrib-htmlmin" rel="noopener noreferrer">Grunt-contrib-htmlmin (⭐422)</a> - A grunt plugin to minify HTML that uses HTMLMinifier.</li>
-<li><a href="https://github.com/jonschlinkert/gulp-htmlmin" rel="noopener noreferrer">Gulp-htmlmin (⭐725)</a> - A gulp plugin to minify HTML that uses HTMLMinifier.</li>
+<li><a href="https://github.com/kangax/html-minifier" rel="noopener noreferrer">HTMLMinifier (⭐5k)</a> - Highly configurable, well-tested, JavaScript-based HTML minifier with lint-like capabilities.</li>
+<li><a href="https://github.com/gruntjs/grunt-contrib-htmlmin" rel="noopener noreferrer">Grunt-contrib-htmlmin (⭐421)</a> - A grunt plugin to minify HTML that uses HTMLMinifier.</li>
+<li><a href="https://github.com/jonschlinkert/gulp-htmlmin" rel="noopener noreferrer">Gulp-htmlmin (⭐726)</a> - A gulp plugin to minify HTML that uses HTMLMinifier.</li>
 <li><a href="https://github.com/jney/grunt-htmlcompressor" rel="noopener noreferrer">Grunt-htmlcompressor (⭐34)</a> - Grunt plugin for HTML compression, using htmlcompressor.</li>
 <li><a href="https://github.com/stereobooster/html_minifier" rel="noopener noreferrer">HTML_minifier (⭐12)</a> - Ruby wrapper for kangax html-minifier.</li>
 <li><a href="https://github.com/stereobooster/html_press" rel="noopener noreferrer">HTML_press (⭐35)</a> - Ruby gem for compressing html, that removes all whitespace junk, and leaves only HTML.</li>
@@ -353,33 +435,34 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <li><a href="https://github.com/deanhume/html-minifier" rel="noopener noreferrer">Html-minifier (⭐138)</a> - A simple Windows command-line tool to minify your HTML, Razor views &amp; Web Forms views.</li>
 <li><a href="https://github.com/mishoo/UglifyJS" rel="noopener noreferrer">UglifyJS2 (⭐13k)</a> - UglifyJS is a JavaScript parser, minifier, compressor or beautifier toolkit, written in JavaScript.</li>
 <li><a href="https://github.com/css/csso" rel="noopener noreferrer">CSSO (⭐3.8k)</a> - CSS minimizer unlike others. In addition to usual minification techniques, it can perform structural optimization of CSS files, resulting in smaller file size compared to other minifiers.</li>
-<li><a href="https://github.com/gruntjs/grunt-contrib-concat" rel="noopener noreferrer">Grunt-contrib-concat (⭐800)</a> - A Grunt plugin to concatenate files.</li>
+<li><a href="https://github.com/gruntjs/grunt-contrib-concat" rel="noopener noreferrer">Grunt-contrib-concat (⭐799)</a> - A Grunt plugin to concatenate files.</li>
 <li><a href="https://github.com/gruntjs/grunt-contrib-uglify" rel="noopener noreferrer">Grunt-contrib-uglify (⭐1.5k)</a> - A Grunt plugin to concatenate and minify JavaScript files.</li>
 <li><a href="https://github.com/clean-css/clean-css" rel="noopener noreferrer">Clean-css (⭐4.2k)</a> - A fast, efficient, and well-tested CSS minifier for node.js.</li>
 <li><a href="https://github.com/django-compressor/django-compressor" rel="noopener noreferrer">Django-compressor (⭐2.9k)</a> - Compresses linked and inline JavaScript or CSS into a single cached file.</li>
 <li><a href="https://github.com/jazzband/django-pipeline" rel="noopener noreferrer">Django-pipeline (⭐1.5k)</a> - Pipeline is an asset packaging library for Django, providing both CSS and JavaScript concatenation and compression, built-in JavaScript template support, and optional data-URI image and font embedding.</li>
-<li><a href="https://github.com/tedious/JShrink" rel="noopener noreferrer">JShrink (⭐761)</a> - PHP class that minifies JavaScript for faster delivery to the client.</li>
+<li><a href="https://github.com/tedious/JShrink" rel="noopener noreferrer">JShrink (⭐762)</a> - PHP class that minifies JavaScript for faster delivery to the client.</li>
 <li><a href="http://jscompress.com/" rel="noopener noreferrer">JSCompress</a> - The most minimalistic online JS Compress tool.</li>
 <li><a href="https://github.com/stoyan/cssshrink" rel="noopener noreferrer">CSSshrink (⭐1k)</a> - Because CSS is ospon the critical path to rendering pages. It must be small! Or else!</li>
 <li><a href="https://github.com/JohnCashmore/grunt-cssshrink" rel="noopener noreferrer">Grunt-cssshrink (⭐29)</a> - This is just a grunt wrapper for CSS Shrink.</li>
-<li><a href="https://github.com/torrottum/gulp-cssshrink" rel="noopener noreferrer">Gulp-cssshrink (⭐22)</a> - Shrinks CSS files using cssshrink for Gulp.</li>
+<li><a href="https://github.com/torrottum/gulp-cssshrink" rel="noopener noreferrer">Gulp-cssshrink (⭐21)</a> - Shrinks CSS files using cssshrink for Gulp.</li>
 <li><a href="https://github.com/stoyan/prettyugly" rel="noopener noreferrer">Prettyugly (⭐6)</a> - Uglify (strip spaces) or prettify (add consistent spaces) CSS code.</li>
 <li><a href="https://github.com/gruntjs/grunt-contrib-cssmin" rel="noopener noreferrer">Grunt-contrib-cssmin (⭐791)</a> - CSS Minifier for Grunt.</li>
 <li><a href="https://github.com/uncss/grunt-uncss" rel="noopener noreferrer">Grunt-uncss (⭐3.8k)</a> - A grunt task for removing unused CSS from your projects.</li>
-<li><a href="https://github.com/ben-eb/gulp-uncss" rel="noopener noreferrer">Gulp-uncss (⭐933)</a> - A gulp task for removing unused CSS from your projects.</li>
+<li><a href="https://github.com/ben-eb/gulp-uncss" rel="noopener noreferrer">Gulp-uncss (⭐932)</a> - A gulp task for removing unused CSS from your projects.</li>
 </ul>
 <h2 id="miscellaneous"><a class="anchor" aria-hidden="true" tabindex="-1" href="#miscellaneous"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Miscellaneous</h2><ul>
-<li><a href="https://github.com/unjs/fontaine" rel="noopener noreferrer">Fontaine (⭐1.9k)</a> - Automatic font fallback based on font metrics to reduce Cumulative Layout Shift (CLS) caused by web font loading.</li>
+<li><a href="https://github.com/unjs/fontaine" rel="noopener noreferrer">Fontaine (⭐2k)</a> - Automatic font fallback based on font metrics to reduce Cumulative Layout Shift (CLS) caused by web font loading.</li>
 <li><a href="http://socialitejs.com/" rel="noopener noreferrer">Socialite.js</a> - Socialite provides a very easy way to implement and activate a plethora of social sharing buttons — any time you wish. On document load, on article hover, on any event.</li>
 <li><a href="https://github.com/oyvindeh/ucss" rel="noopener noreferrer">uCSS (⭐1.6k)</a> - Crawls large sites to find unused CSS selectors (does not remove unused CSS).</li>
 <li><a href="https://github.com/jakutis/httpinvoke" rel="noopener noreferrer">HTTPinvoke (⭐341)</a> - A no-dependencies HTTP client library for browsers and Node.js with a promise-based or Node.js-style callback-based API to progress events, text, and binary file upload and download, partial response body, request and response headers, status code.</li>
 <li><a href="https://github.com/addyosmani/critical" rel="noopener noreferrer">Critical (⭐10k)</a> - Extract &amp; Inline Critical-path CSS in HTML pages (alpha).</li>
 <li><a href="https://github.com/stoyan/csscolormin" rel="noopener noreferrer">Csscolormin (⭐13)</a> - Utility that minifies CSS colors, example: min("white"); // minifies to "#fff".</li>
 <li><a href="https://github.com/aFarkas/lazysizes" rel="noopener noreferrer">Lazysizes (⭐18k)</a> - High-performance lazy loader for images (responsive and normal), iframes, and scripts, that detects any visibility changes triggered through user interaction, CSS or JavaScript without configuration.</li>
+<li><a href="https://github.com/bvaughn/react-virtualized" rel="noopener noreferrer">react-virtualized (⭐27k)</a> - React components for efficiently rendering large lists and tabular data by virtualizing visible rows.</li>
 <li><a href="https://github.com/addyosmani/tmi" rel="noopener noreferrer">TMI (⭐1.6k)</a> - Too Many Images: discover your image weight on the web.</li>
 </ul>
 <h2 id="svg"><a class="anchor" aria-hidden="true" tabindex="-1" href="#svg"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>SVG</h2><ul>
-<li><a href="https://github.com/svg/svgo" rel="noopener noreferrer">SVGO (⭐22k)</a> - Node.js-based optimizer for SVG vector graphics.</li>
+<li><a href="https://github.com/svg/svgo" rel="noopener noreferrer">SVGO (⭐23k)</a> - Node.js-based optimizer for SVG vector graphics.</li>
 <li><a href="https://jakearchibald.github.io/svgomg/" rel="noopener noreferrer">SVG OMG</a> - SVGOMG is SVGO's Missing GUI, aiming to expose the majority, if not all the configuration options of SVGO.</li>
 <li><a href="https://github.com/sindresorhus/grunt-svgmin" rel="noopener noreferrer">Grunt-svgmin (⭐434)</a> - Minify SVG using SVGO for Grunt.</li>
 <li><a href="https://www.npmjs.com/package/gulp-svgmin" rel="noopener noreferrer">Gulp-svgmin</a> - Minify SVG with SVGO for Gulp.</li>
@@ -424,12 +507,54 @@ Deprecated. This is deprecated and will be shut down in May 2019. Version 5 is t
 <li><a href="https://developer.chrome.com/docs/crux/" rel="noopener noreferrer">Chrome User Experience Report (CrUX)</a> - Origin-level real-user performance data from Chrome users.</li>
 </ul>
 <h2 id="other-awesome-lists"><a class="anchor" aria-hidden="true" tabindex="-1" href="#other-awesome-lists"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Other Awesome Lists</h2><ul>
-<li><a href="https://github.com/iamakulov/awesome-webpack-perf" rel="noopener noreferrer">iamakulov/awesome-webpack-perf (⭐961)</a> - A curated list of Webpack tools for web performance.</li>
+<li><a href="https://github.com/iamakulov/awesome-webpack-perf" rel="noopener noreferrer">iamakulov/awesome-webpack-perf (⭐963)</a> - A curated list of Webpack tools for web performance.</li>
 <li><a href="https://github.com/imteekay/web-performance-research" rel="noopener noreferrer">imteekay/web-performance-research (⭐1k)</a> - Research in Web Performance.</li>
 </ul>
 <h2 id="contributing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contributing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contributing</h2><p>For contributing, please check <a href="https://github.com/davidsonfellipe/awesome-wpo/blob/main/README.md/contributing.md" rel="noopener noreferrer">contributing.md</a>, then <a href="https://github.com/davidsonfellipe/awesome-wpo/issues" rel="noopener noreferrer">open an issue (⭐8.9k)</a> and/or a <a href="https://github.com/davidsonfellipe/awesome-wpo/pulls" rel="noopener noreferrer">pull request (⭐8.9k)</a>.</p>
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
