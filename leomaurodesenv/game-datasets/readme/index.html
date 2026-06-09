@@ -16,20 +16,100 @@
     <meta property="og:title" content="Game Datasets Overview" />
     <meta property="og:description" content=":video_game: A curated list of awesome game datasets, and tools to artificial intelligence in games" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Game Datasets Overview</h1>
 <p>:video_game: A curated list of awesome game datasets, and tools to artificial intelligence in games</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/leomaurodesenv/game-datasets/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/leomaurodesenv/game-datasets">😺 leomaurodesenv/game-datasets</a><span> · </span><span>⭐ 1K</span><span> · </span><span>🏷️ Gaming</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/leomaurodesenv/game-datasets/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/leomaurodesenv/game-datasets">😺 leomaurodesenv/game-datasets</a><span> · </span><span>⭐ 1.1K</span><span> · </span><span>🏷️ Gaming</span></p>
 <p><span>[ </span><a href="/leomaurodesenv/game-datasets/">Daily</a><span> / </span><a href="/leomaurodesenv/game-datasets/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
 <h1 id="video_game-awesome-game-datasets-awesome"><a class="anchor" aria-hidden="true" tabindex="-1" href="#video_game-awesome-game-datasets-awesome"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>:video_game: Awesome Game Datasets <a href="https://awesome.re" rel="noopener noreferrer"><img src="https://awesome.re/badge.svg" alt="Awesome" /></a></h1><p><a href="https://github.com/leomaurodesenv/game-datasets" rel="noopener noreferrer"><img src="https://img.shields.io/static/v1?label=Code&amp;message=GitHub&amp;color=blue&amp;style=flat-square" alt="GitHub" /></a>
 <a href="https://github.com/leomaurodesenv/game-datasets/blob/master/README.md/LICENSE" rel="noopener noreferrer"><img src="https://img.shields.io/static/v1?label=License&amp;message=CC-BY-4.0&amp;color=blue&amp;style=flat-square" alt="CC-BY-4.0 license" /></a>
@@ -75,18 +155,18 @@
 <li><a href="https://www.opencritic.com" rel="noopener noreferrer">OpenCritic</a> - Game reviews aggregator.</li>
 <li><a href="https://www.opendota.com/" rel="noopener noreferrer">OpenDota</a> - Platform providing Dota 2 data.</li>
 <li><a href="https://pandascore.co/" rel="noopener noreferrer">PandaScore</a> - Realtime eSports data.</li>
+<li><a href="https://pixelgameshub.com/ai-games/index" rel="noopener noreferrer">PixelGamesHub AI Games Index</a> - Curated index of AI-powered browser games with open JSON and CSV endpoints.</li>
 <li><a href="https://pokeapi.co/" rel="noopener noreferrer">PokéAPI</a> - Pokémon data of all generations.</li>
 <li><a href="https://developer.riotgames.com/" rel="noopener noreferrer">Riot Games</a> - Active games, match history, and ranked statistics.</li>
 <li><a href="https://github.com/leomaurodesenv/smm-course-search" rel="noopener noreferrer">smm-course-search (⭐4)</a> - Search courses from Super Mario Maker game.</li>
 <li><a href="https://github.com/leomaurodesenv/smm-course-viewer" rel="noopener noreferrer">smm-course-viewer (⭐17)</a> - Read courses from Super Mario Maker saves.</li>
 <li><a href="https://github.com/leomaurodesenv/smm-maker-profile" rel="noopener noreferrer">smm-maker-profile (⭐1)</a> - Fetch the user profile from Super Mario Maker game.</li>
 <li><a href="https://github.com/SteamDatabase" rel="noopener noreferrer">Steam Database</a> - Series of tools to Steam data. <a href="https://steamdb.info/" rel="noopener noreferrer">Website</a>.</li>
-<li><a href="https://github.com/Steambase" rel="noopener noreferrer">Steambase</a> - Steam data tools and insights. <a href="https://steambase.io/" rel="noopener noreferrer">Website</a>.</li>
 <li><a href="https://github.com/topics/steamspy" rel="noopener noreferrer">Steam Spy</a> - Game statistical from Steam users profiles.</li>
 <li><a href="https://developer.valvesoftware.com/wiki/Steam_Web_API" rel="noopener noreferrer">Steam Web API</a> - Query tool from Steam.</li>
 <li><a href="https://github.com/TheGamesDB/TheGamesDB/" rel="noopener noreferrer">TGDB (⭐137)</a> - General information of games from any platform. <a href="https://thegamesdb.net/" rel="noopener noreferrer">Website</a>.</li>
 <li><a href="https://trendingnow.games/data-feeds" rel="noopener noreferrer">TrendingNow.games</a> - Real-time trending Steam game data with free CSV, RSS, and JSON feeds updated hourly.</li>
-<li><a href="https://github.com/GregorUT/vgchartzScrape" rel="noopener noreferrer">vgchartzScrape (⭐86)</a> - Crawler from <a href="http://www.vgchartz.com" rel="noopener noreferrer">VGChartz</a>.</li>
+<li><a href="https://github.com/GregorUT/vgchartzScrape" rel="noopener noreferrer">vgchartzScrape (⭐87)</a> - Crawler from <a href="http://www.vgchartz.com" rel="noopener noreferrer">VGChartz</a>.</li>
 <li><a href="https://whatoplay.com" rel="noopener noreferrer">WhatoPlay</a> - Game reviews and ratings aggregator, and a recommender for discovering games.</li>
 <li><a href="https://github.com/xboxapi" rel="noopener noreferrer">Xbox LIVE API</a> - Games, apps, users stats and messages. <a href="https://doi.org/10.1145/1943552.1943569" rel="noopener noreferrer">paper</a>.</li>
 </ul>
@@ -95,8 +175,8 @@
 <li><a href="https://github.com/microsoft/CyberBattleSim" rel="noopener noreferrer">CyberBattleSim (⭐1.8k)</a> - Experimentation platform to investigate automated agents. <a href="https://www.microsoft.com/en-us/research/project/cyberbattlesim/" rel="noopener noreferrer">Website</a>.</li>
 <li><a href="https://www.daimonin.org/" rel="noopener noreferrer">Daimonin</a> - Isometric MMORPG.</li>
 <li><a href="http://www.deliantra.net/" rel="noopener noreferrer">Deliantra</a> - Adventure game in a medieval environment.</li>
-<li><a href="https://github.com/sentientdesigns/constructive" rel="noopener noreferrer">Dungeon and Cave Generation (⭐20)</a> - Constructive generation methods for dungeons and levels.</li>
-<li><a href="https://github.com/crawl/crawl" rel="noopener noreferrer">Dungeon Crawl: Stone Soup (⭐2.8k)</a> - Roguelike adventure.</li>
+<li><a href="https://github.com/sentientdesigns/constructive" rel="noopener noreferrer">Dungeon and Cave Generation (⭐21)</a> - Constructive generation methods for dungeons and levels.</li>
+<li><a href="https://github.com/crawl/crawl" rel="noopener noreferrer">Dungeon Crawl: Stone Soup (⭐2.9k)</a> - Roguelike adventure.</li>
 <li><a href="http://www.ice.ci.ritsumei.ac.jp/~ftgaic/" rel="noopener noreferrer">Fighting Game AI Competition</a> - Controller for a fighting game.</li>
 <li><a href="https://www.flightgear.org/" rel="noopener noreferrer">FlightGear Flight Simulator</a> - Flight simulator.</li>
 <li><a href="http://www.gvgai.net/" rel="noopener noreferrer">General Video Game AI</a> - Controller for general video game playing. <a href="https://arxiv.org/abs/1802.10363" rel="noopener noreferrer">Paper</a>.</li>
@@ -104,15 +184,15 @@
 <li><a href="http://hanabi.aiclash.com/" rel="noopener noreferrer">Hanabi Competition</a> - Board game competition.</li>
 <li><a href="http://www.marioai.org/" rel="noopener noreferrer">Infinite Mario Bros</a> - Super Mario competition. Platformer AI antecedent. <a href="http://julian.togelius.com/mariocompetition2009/" rel="noopener noreferrer">Website</a>.</li>
 <li><a href="https://github.com/Microsoft/malmo" rel="noopener noreferrer">Malmo (⭐4.3k)</a> - Platform built on top of <a href="https://www.minecraft.net/en-us/" rel="noopener noreferrer">Minecraft</a> game.</li>
-<li><a href="https://github.com/santiontanon/microrts" rel="noopener noreferrer">microRTS (⭐344)</a> - RTS game competition. <a href="https://github.com/rubensolv/MicroRTS" rel="noopener noreferrer">PT-BR (⭐5)</a>.</li>
-<li><a href="https://github.com/sentientdesigns/minidungeons" rel="noopener noreferrer">MiniDungeons (⭐8)</a> - Procedural dungeon-like game.</li>
+<li><a href="https://github.com/santiontanon/microrts" rel="noopener noreferrer">microRTS (⭐353)</a> - RTS game competition. <a href="https://github.com/rubensolv/MicroRTS" rel="noopener noreferrer">PT-BR (⭐5)</a>.</li>
+<li><a href="https://github.com/sentientdesigns/minidungeons" rel="noopener noreferrer">MiniDungeons (⭐9)</a> - Procedural dungeon-like game.</li>
 <li><a href="https://github.com/mguzdial3/Morai-Maker-Engine" rel="noopener noreferrer">Morai-Maker-Engine (⭐20)</a> - Cooperative game level editor. <a href="http://dx.doi.org/10.1145/3290605.3300854" rel="noopener noreferrer">Paper</a>.</li>
 <li><a href="http://gameaibook.org/wp-content/uploads/2016/10/mspacman-master.zip" rel="noopener noreferrer">Ms. Pac-Man</a> - Pac-Man game competition.</li>
 <li><a href="http://www.openlierox.net/" rel="noopener noreferrer">OpenLieroX</a> - Liero (similar to Worms) game.</li>
 <li><a href="https://gitlab.com/OpenMW/openmw" rel="noopener noreferrer">openmw</a> - Open-world RPG game. <a href="https://openmw.org/en/" rel="noopener noreferrer">Website</a>.</li>
 <li><a href="https://sites.google.com/site/platformersai/" rel="noopener noreferrer">Platformer AI</a> - Super Mario competition.</li>
-<li><a href="https://github.com/polyworld/polyworld" rel="noopener noreferrer">polyworld (⭐201)</a> - Artificial life system.</li>
-<li><a href="https://github.com/klaussilveira/qengine" rel="noopener noreferrer">qengine (⭐886)</a> - Retro game engine.</li>
+<li><a href="https://github.com/polyworld/polyworld" rel="noopener noreferrer">polyworld (⭐205)</a> - Artificial life system.</li>
+<li><a href="https://github.com/klaussilveira/qengine" rel="noopener noreferrer">qengine (⭐885)</a> - Retro game engine.</li>
 <li><a href="https://github.com/openai/retro" rel="noopener noreferrer">Retro Contest (⭐3.6k)</a> - Competition on SEGA Genesis games. <a href="https://openai.com/blog/retro-contest/" rel="noopener noreferrer">Website</a>.</li>
 <li><a href="https://robocode.sourceforge.io/" rel="noopener noreferrer">Robocode</a> - Robot battle tank competition.</li>
 <li><a href="https://github.com/scotchkorean27/showdownaiclient" rel="noopener noreferrer">Showdown AI Competition (⭐16)</a> - Competition of Pokemon battle.</li>
@@ -124,17 +204,17 @@
 <li><a href="https://gitlab.com/veloren/veloren" rel="noopener noreferrer">veloren</a> - Sandbox game. <a href="https://veloren.net/" rel="noopener noreferrer">Website</a>.</li>
 <li><a href="https://github.com/leomaurodesenv/vindinium" rel="noopener noreferrer">Vindinium (⭐0)</a> - Multi-player turn based on roguelike competition. <a href="https://pythonhosted.org/vindinium/" rel="noopener noreferrer">Documentation</a>.</li>
 <li><a href="https://github.com/mwydmuch/ViZDoom" rel="noopener noreferrer">Visual Doom AI Competition (⭐2k)</a> - Doom game competition.</li>
-<li><a href="https://github.com/Wargus/wargus" rel="noopener noreferrer">Wargus (⭐413)</a> - Real-time strategy game. <a href="https://wargus.github.io/" rel="noopener noreferrer">Website</a>.</li>
+<li><a href="https://github.com/Wargus/wargus" rel="noopener noreferrer">Wargus (⭐420)</a> - Real-time strategy game. <a href="https://wargus.github.io/" rel="noopener noreferrer">Website</a>.</li>
 </ul>
 <h3 id="mobile"><a class="anchor" aria-hidden="true" tabindex="-1" href="#mobile"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Mobile</h3><ul>
-<li><a href="https://github.com/HabitRPG/habitica-android" rel="noopener noreferrer">Habitica (⭐1.7k)</a> - Gamify your life.</li>
+<li><a href="https://github.com/HabitRPG/habitica-android" rel="noopener noreferrer">Habitica (⭐1.8k)</a> - Gamify your life.</li>
 <li><a href="https://github.com/watabou/pixel-dungeon" rel="noopener noreferrer">Pixel Dungeon (⭐3.9k)</a> - Roguelike game.</li>
-<li><a href="https://github.com/00-Evan/shattered-pixel-dungeon" rel="noopener noreferrer">Shattered Pixel Dungeon (⭐5.9k)</a> - Improved Pixel Dungeon.</li>
+<li><a href="https://github.com/00-Evan/shattered-pixel-dungeon" rel="noopener noreferrer">Shattered Pixel Dungeon (⭐6.2k)</a> - Improved Pixel Dungeon.</li>
 </ul>
 <h3 id="web"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web</h3><ul>
-<li><a href="https://github.com/lutzroeder/digger" rel="noopener noreferrer">Digger (⭐96)</a> - Boulderdash game.</li>
-<li><a href="https://github.com/MattSurabian/DuckHunt-JS" rel="noopener noreferrer">Duck Hunt (⭐618)</a> - Shooting game in ducks. <a href="http://duckhuntjs.com/" rel="noopener noreferrer">Play</a>.</li>
-<li><a href="https://github.com/robertkleffner/mariohtml5" rel="noopener noreferrer">Infinite Mario Bros (⭐520)</a> - Super Mario Bros. <a href="https://openhtml5games.github.io/games-mirror/dist/mariohtml5/main.html" rel="noopener noreferrer">Play</a>.</li>
+<li><a href="https://github.com/lutzroeder/digger" rel="noopener noreferrer">Digger (⭐94)</a> - Boulderdash game.</li>
+<li><a href="https://github.com/MattSurabian/DuckHunt-JS" rel="noopener noreferrer">Duck Hunt (⭐623)</a> - Shooting game in ducks. <a href="http://duckhuntjs.com/" rel="noopener noreferrer">Play</a>.</li>
+<li><a href="https://github.com/robertkleffner/mariohtml5" rel="noopener noreferrer">Infinite Mario Bros (⭐522)</a> - Super Mario Bros. <a href="https://openhtml5games.github.io/games-mirror/dist/mariohtml5/main.html" rel="noopener noreferrer">Play</a>.</li>
 <li><a href="https://github.com/lostdecade/onslaught_arena" rel="noopener noreferrer">Onslaught! Arena (⭐203)</a> - Fight off hordes of medieval monsters. <a href="http://arcade.lostdecadegames.com/onslaught-arena/" rel="noopener noreferrer">Play</a>.</li>
 <li><a href="http://maettig.com/code/canvas/starship-sorades-13k.zip" rel="noopener noreferrer">Starship</a> - Traditional starship game.</li>
 <li><a href="https://github.com/leomaurodesenv/TapAI" rel="noopener noreferrer">TapAI (⭐1)</a> - User interactions with a tap on screen game.</li>
@@ -175,15 +255,15 @@
 <li><a href="https://www.kaggle.com/datasets/noahx1/csgo-steam-reviews" rel="noopener noreferrer">CS:GO Steam Reviews</a> - Steam Reviews.</li>
 <li><a href="https://www.kaggle.com/lucianomartins/data-game-clashroyale" rel="noopener noreferrer">Data Game ClashRoyale</a> - Player data of Clash Royale game.</li>
 <li><a href="https://www.kaggle.com/raxnamosa/defense-of-the-ancients" rel="noopener noreferrer">Defense of the Ancients</a> - Monsters data from Warcraft III game.</li>
-<li><a href="https://github.com/oganm/dnddata" rel="noopener noreferrer">dnddata (⭐120)</a> - Dataset of Dungeons and Dragons characters.</li>
+<li><a href="https://github.com/oganm/dnddata" rel="noopener noreferrer">dnddata (⭐122)</a> - Dataset of Dungeons and Dragons characters.</li>
 <li><a href="https://archive.ics.uci.edu/ml/datasets/Dota2+Games+Results" rel="noopener noreferrer">Dota 2 Games (UCI)</a> - Matches results.</li>
 <li><a href="https://www.kaggle.com/datasets/noahx1/elden-ring-steam-reviews" rel="noopener noreferrer">Elden Ring Steam Reviews</a> - Steam Reviews.</li>
 <li><a href="https://www.kaggle.com/thec03u5/fifa-18-demo-player-dataset" rel="noopener noreferrer">FIFA 18 Complete Player Dataset</a> - Players and their attributes.</li>
 <li><a href="https://data.world/kreynol3/fortnite-statistics80-games" rel="noopener noreferrer">Fortnite Statistics_80 Games</a> - End games statistics.</li>
 <li><a href="https://www.kaggle.com/jruots/fortnite-battle-royale-weapon-attributes" rel="noopener noreferrer">Fortnite: Battle Royale - Weapon Attributes</a> - Stats of the weapons.</li>
-<li><a href="https://github.com/NabajeetBarman/GamingHDRVideoSET" rel="noopener noreferrer">GamingVideoSET (⭐5)</a> - A Dataset for Gaming Video Streaming Applications. <a href="https://ieeexplore.ieee.org/document/8463362" rel="noopener noreferrer">Paper</a></li>
+<li><a href="https://github.com/NabajeetBarman/GamingHDRVideoSET" rel="noopener noreferrer">GamingVideoSET (⭐6)</a> - A Dataset for Gaming Video Streaming Applications. <a href="https://ieeexplore.ieee.org/document/8463362" rel="noopener noreferrer">Paper</a></li>
 <li><a href="https://www.kaggle.com/romovpa/gosuai-dota-2-game-chats" rel="noopener noreferrer">GOSU.AI Dota 2 Game Chats</a> - Chats from matches replays.</li>
-<li><a href="https://github.com/oscarmcnulty/gta-3d-dataset" rel="noopener noreferrer">GTA-3D Dataset (⭐145)</a> - 2D and 3D images from Grand Theft Auto 5 game.</li>
+<li><a href="https://github.com/oscarmcnulty/gta-3d-dataset" rel="noopener noreferrer">GTA-3D Dataset (⭐146)</a> - 2D and 3D images from Grand Theft Auto 5 game.</li>
 <li><a href="https://www.kaggle.com/jeradrose/hearthstone-cards" rel="noopener noreferrer">Hearthstone Cards</a> - Collection of cards.</li>
 <li><a href="https://www.kaggle.com/daynearthur/heroes-of-might-and-magic-3-units" rel="noopener noreferrer">Heroes of Might and Magic 3 Units</a> - Units of a game.</li>
 <li><a href="https://www.kaggle.com/romainvincent/history-of-hearthstone" rel="noopener noreferrer">History of Hearthstone</a> - Collection of decks.</li>
@@ -202,7 +282,7 @@
 <li><a href="https://www.kaggle.com/gagazet/path-of-exile-league-statistic" rel="noopener noreferrer">Path of exile game statistic</a> - Players data.</li>
 <li><a href="https://drive.google.com/drive/folders/0B93_a48_LnJ0VEc3NklYbWpVZXM" rel="noopener noreferrer">Platform Experience Dataset</a> - Super Mario Bros matches. <a href="https://doi.org/10.1109/ACII.2015.7344647" rel="noopener noreferrer">Paper</a>.</li>
 <li><a href="https://www.kaggle.com/datasets/alopez247/pokemon" rel="noopener noreferrer">Pokémon for Data Mining and Machine Learning</a> - Stats of 721 Pokémon of the first six generations.</li>
-<li><a href="https://github.com/Biuni/PokemonGO-Pokedex" rel="noopener noreferrer">Pokémon GO Pokédex (⭐130)</a> - Encyclopedia Pokemon.</li>
+<li><a href="https://github.com/Biuni/PokemonGO-Pokedex" rel="noopener noreferrer">Pokémon GO Pokédex (⭐132)</a> - Encyclopedia Pokemon.</li>
 <li><a href="https://www.kaggle.com/abcsds/pokemon" rel="noopener noreferrer">Pokemon with stats</a> - Pokemon data with stats and types.</li>
 <li><a href="https://data.world/notgibs/pokemon-wonder-trade-results" rel="noopener noreferrer">Pokemon Wonder Trade Results</a> - Results of wonder trades in Pokemon Moon version.</li>
 <li><a href="https://www.kaggle.com/terminus7/pokemon-challenge" rel="noopener noreferrer">Pokemon- Weedle's Cave</a> - Battle data of Pokemon.</li>
@@ -217,11 +297,12 @@
 <li><a href="https://www.kaggle.com/alimbekovkz/starcraft-ii-matches-history" rel="noopener noreferrer">StarCraft II matches history</a> - Results of matches.</li>
 <li><a href="https://www.kaggle.com/sfu-summit/starcraft-ii-replay-analysis" rel="noopener noreferrer">StarCraft II Replay Analysis</a> - Aggregation of the replays.</li>
 <li><a href="https://www.kaggle.com/kinguistics/starcraft-scouting-the-enemy" rel="noopener noreferrer">Starcraft: Scouting The Enemy</a> - Player reconnaissance in professional-level.</li>
-<li><a href="https://github.com/TorchCraft/StarData" rel="noopener noreferrer">StarData (⭐572)</a> - Matches, videos, etc. <a href="http://nova.wolfwork.com/dataMining.html" rel="noopener noreferrer">Website</a>, <a href="https://arxiv.org/abs/1708.02139" rel="noopener noreferrer">paper</a>.</li>
+<li><a href="https://github.com/TorchCraft/StarData" rel="noopener noreferrer">StarData (⭐575)</a> - Matches, videos, etc. <a href="http://nova.wolfwork.com/dataMining.html" rel="noopener noreferrer">Website</a>, <a href="https://arxiv.org/abs/1708.02139" rel="noopener noreferrer">paper</a>.</li>
+<li><a href="https://pixelgameshub.com/research/state-of-browser-games-2026" rel="noopener noreferrer">State of Browser Games 2026</a> - Browser games industry metrics across competitor sites, downloadable as open CSV under CC-BY-4.0.</li>
 <li><a href="https://www.kaggle.com/kandebonfim/super-trunfo-dinossaurs-2" rel="noopener noreferrer">Super Trunfo - Dinossaurs 2</a> - Cards of this game.</li>
 <li><a href="https://www.kaggle.com/lemonkoala/terra-mystica" rel="noopener noreferrer">Terra Mystica Snellman Statistics</a> - Game logs and statistics.</li>
 <li><a href="https://www.kaggle.com/datasets/rounakbanik/pokemon" rel="noopener noreferrer">The Complete Pokemon Dataset</a> - Pokemon data from all generations.</li>
-<li><a href="https://github.com/googlecreativelab/quickdraw-dataset" rel="noopener noreferrer">The Quick, Draw! Dataset (⭐6.7k)</a> - Collection of 50 million drawings across 345 categories.</li>
+<li><a href="https://github.com/googlecreativelab/quickdraw-dataset" rel="noopener noreferrer">The Quick, Draw! Dataset (⭐6.8k)</a> - Collection of 50 million drawings across 345 categories.</li>
 <li><a href="https://www.kaggle.com/cblesa/travian-buildings" rel="noopener noreferrer">Travian buildings</a> - Time, cost and bonus of buildings.</li>
 <li><a href="https://www.kaggle.com/mylesoneill/warcraft-avatar-history" rel="noopener noreferrer">World of Warcraft Avatar History</a> - Collection of records.</li>
 <li><a href="https://www.kaggle.com/cblesa/world-of-warcraft-battlegrounds" rel="noopener noreferrer">World of Warcraft Battlegrounds</a> - Details of battlegrounds.</li>
@@ -241,7 +322,7 @@
 <li><a href="https://data.world/jshep512/pew-gaming-broadband" rel="noopener noreferrer">PEW-Gaming-Broadband</a> - Questions about video games.</li>
 <li><a href="https://github.com/CraigKelly/steam-data" rel="noopener noreferrer">Steam Game Data (⭐32)</a> - Combination of Steam API and Steam Spy.</li>
 <li><a href="https://www.kaggle.com/datasets/nikatomashvili/steam-games-dataset" rel="noopener noreferrer">Steam Games Dataset</a> - Dataset scraped from Steam search system.</li>
-<li><a href="https://github.com/mulhod/steam_reviews" rel="noopener noreferrer">Steam Review Datasets (⭐43)</a> - Steam user reviews.</li>
+<li><a href="https://github.com/mulhod/steam_reviews" rel="noopener noreferrer">Steam Review Datasets (⭐45)</a> - Steam user reviews.</li>
 <li><a href="https://www.kaggle.com/datasets/nikdavis/steam-store-games" rel="noopener noreferrer">Steam Store Games</a> - Information about 27,000 games scraped from Steam and SteamSpy APIs.</li>
 <li><a href="https://www.kaggle.com/datasets/tamber/steam-video-games" rel="noopener noreferrer">Steam Video Games</a> - Steam user interactions.</li>
 <li><a href="https://www.kaggle.com/floval/12-000-video-game-reviews-from-vandal" rel="noopener noreferrer">Vandal Game Reviews</a> - Game data from <a href="https://vandal.elespanol.com/" rel="noopener noreferrer">Vandal.com</a>.</li>
@@ -262,9 +343,9 @@
 <hr />
 <h2 id="miscellaneous"><a class="anchor" aria-hidden="true" tabindex="-1" href="#miscellaneous"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Miscellaneous</h2><ul>
 <li><a href="http://academictorrents.com/" rel="noopener noreferrer">Academic Torrents</a> - Sharing enormous datasets.</li>
-<li><a href="https://github.com/soruly/awesome-acg" rel="noopener noreferrer">Awesome ACG (⭐1.4k)</a> - Technologies related to anime, comic and games.</li>
-<li><a href="https://github.com/strift/awesome-esports" rel="noopener noreferrer">Awesome Esports (⭐95)</a> - Competitiosn using video games.</li>
-<li><a href="https://github.com/Calinou/awesome-gamedev" rel="noopener noreferrer">Awesome Gamedev (⭐2.9k)</a> - Collection of open-source games.</li>
+<li><a href="https://github.com/soruly/awesome-acg" rel="noopener noreferrer">Awesome ACG (⭐1.5k)</a> - Technologies related to anime, comic and games.</li>
+<li><a href="https://github.com/strift/awesome-esports" rel="noopener noreferrer">Awesome Esports (⭐101)</a> - Competitiosn using video games.</li>
+<li><a href="https://github.com/Calinou/awesome-gamedev" rel="noopener noreferrer">Awesome Gamedev (⭐3k)</a> - Collection of open-source games.</li>
 <li><a href="https://aws.amazon.com/datasets/" rel="noopener noreferrer">AWS Datasets</a> - Amazon public datasets.</li>
 <li><a href="https://data.world" rel="noopener noreferrer">data.world</a> - Datasets.</li>
 <li><a href="https://github.com/cncplyr/datasets-games" rel="noopener noreferrer">datasets-games (⭐14)</a> - Datasets from a variety of games.</li>
@@ -276,7 +357,6 @@
 <li><a href="https://libregamewiki.org/Main_Page" rel="noopener noreferrer">Libre Game Wiki</a> - Free gaming encyclopedia.</li>
 <li><a href="https://github.com/OpenHTML5Games" rel="noopener noreferrer">Open HTML5 Games</a> - JavaScript and HTML5 games.</li>
 <li><a href="https://pt.wikipedia.org/wiki/Lista_de_jogos_de_c%C3%B3digo_aberto" rel="noopener noreferrer">Open-source games</a> - Open-source games (PT-BR).</li>
-<li><a href="https://www.reddit.com/r/datasets" rel="noopener noreferrer">Reddit - Datasets</a> - Forum of datasets.</li>
 <li><a href="https://archive.ics.uci.edu/" rel="noopener noreferrer">UCI</a> - Datasets.</li>
 </ul>
 <hr />
@@ -287,5 +367,47 @@
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
