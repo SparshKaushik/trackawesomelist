@@ -16,17 +16,97 @@
     <meta property="og:title" content="Awesome Mongodb Overview" />
     <meta property="og:description" content=":leaves: A curated list of awesome MongoDB resources, libraries, tools and applications" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Mongodb Overview</h1>
 <p>:leaves: A curated list of awesome MongoDB resources, libraries, tools and applications</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/ramnes/awesome-mongodb/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/ramnes/awesome-mongodb">😺 ramnes/awesome-mongodb</a><span> · </span><span>⭐ 2.6K</span><span> · </span><span>🏷️ Databases</span></p>
@@ -36,7 +116,7 @@
 <blockquote>
 <p>A curated list of awesome MongoDB resources, libraries, tools and applications</p>
 </blockquote>
-<p>Inspired by the <a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">awesome (⭐453k)</a> list thing. Feel free to improve this list by <a href="https://github.com/ramnes/awesome-mongodb/blob/master/README.md/CONTRIBUTING.md" rel="noopener noreferrer">contributing</a>!</p>
+<p>Inspired by the <a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">awesome (⭐474k)</a> list thing. Feel free to improve this list by <a href="https://github.com/ramnes/awesome-mongodb/blob/master/README.md/CONTRIBUTING.md" rel="noopener noreferrer">contributing</a>!</p>
 <h2 id="table-of-contents"><a class="anchor" aria-hidden="true" tabindex="-1" href="#table-of-contents"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Table of Contents</h2><ul>
 <li><a href="#resources">Resources</a><ul>
 <li><a href="#documentation">Documentation</a></li>
@@ -132,28 +212,28 @@
 <li><a href="https://github.com/ballerina-platform/module-ballerinax-mongodb" rel="noopener noreferrer">ballerina-mongodb (⭐122)</a> - Official Ballerina driver</li>
 </ul>
 <h3 id="c"><a class="anchor" aria-hidden="true" tabindex="-1" href="#c"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>C</h3><ul>
-<li><a href="https://github.com/mongodb/mongo-c-driver" rel="noopener noreferrer">mongo-c-driver (⭐863)</a> - Official C driver</li>
+<li><a href="https://github.com/mongodb/mongo-c-driver" rel="noopener noreferrer">mongo-c-driver (⭐871)</a> - Official C driver</li>
 </ul>
 <h3 id="c-1"><a class="anchor" aria-hidden="true" tabindex="-1" href="#c-1"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>C++</h3><ul>
 <li><a href="https://github.com/mongodb/mongo-cxx-driver" rel="noopener noreferrer">mongo-cxx-driver (⭐1.1k)</a> - Official C++ driver</li>
 </ul>
 <h3 id="cnet"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cnet"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>C#/.NET</h3><ul>
 <li><a href="https://github.com/mongodb/mongo-csharp-driver" rel="noopener noreferrer">mongo-csharp-driver (⭐3.2k)</a> - Official C# driver</li>
-<li><a href="https://github.com/mongodb/mongo-efcore-provider" rel="noopener noreferrer">mongo-efcore-provider (⭐396)</a> - Official Entity Framework (EF) Core provider for MongoDB</li>
+<li><a href="https://github.com/mongodb/mongo-efcore-provider" rel="noopener noreferrer">mongo-efcore-provider (⭐399)</a> - Official Entity Framework (EF) Core provider for MongoDB</li>
 <li><a href="https://github.com/RobThree/MongoRepository" rel="noopener noreferrer">MongoRepository (⭐311)</a> - Repository abstraction layer on top of the C# driver</li>
 </ul>
 <h3 id="d"><a class="anchor" aria-hidden="true" tabindex="-1" href="#d"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>D</h3><ul>
 <li><a href="https://vibed.org/docs#mongo" rel="noopener noreferrer">vibe.d</a> - D web framework shipping with a MongoDB driver</li>
 </ul>
 <h3 id="dart"><a class="anchor" aria-hidden="true" tabindex="-1" href="#dart"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Dart</h3><ul>
-<li><a href="https://github.com/mongo-dart/mongo_dart" rel="noopener noreferrer">mongo_dart (⭐459)</a> - Community Dart driver</li>
+<li><a href="https://github.com/mongo-dart/mongo_dart" rel="noopener noreferrer">mongo_dart (⭐458)</a> - Community Dart driver</li>
 </ul>
 <h3 id="delphi"><a class="anchor" aria-hidden="true" tabindex="-1" href="#delphi"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Delphi</h3><ul>
 <li><a href="https://github.com/MagicFoundation/Alcinoe" rel="noopener noreferrer">Alcinoe (⭐1.1k)</a> - Library for Delphi that includes a MongoDB client</li>
 <li><a href="https://github.com/stijnsanders/TMongoWire" rel="noopener noreferrer">TMongoWire (⭐104)</a> - Minimal community Delphi driver</li>
 </ul>
 <h3 id="elixir"><a class="anchor" aria-hidden="true" tabindex="-1" href="#elixir"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Elixir</h3><ul>
-<li><a href="https://github.com/zookzook/elixir-mongodb-driver" rel="noopener noreferrer">elixir-mongodb-driver (⭐269)</a> - Community Elixir driver</li>
+<li><a href="https://github.com/zookzook/elixir-mongodb-driver" rel="noopener noreferrer">elixir-mongodb-driver (⭐270)</a> - Community Elixir driver</li>
 <li><a href="https://github.com/kobil-systems/mongodb" rel="noopener noreferrer">mongodb (⭐567)</a> - Community Elixir driver</li>
 <li><a href="https://github.com/kobil-systems/mongodb_ecto" rel="noopener noreferrer">mongodb_ecto (⭐379)</a> - Adapter for the Ecto database wrapper</li>
 </ul>
@@ -170,31 +250,31 @@
 <li><a href="https://github.com/mongodb-haskell/mongodb/" rel="noopener noreferrer">mongodb (⭐170)</a> - Community Haskell driver</li>
 </ul>
 <h3 id="java"><a class="anchor" aria-hidden="true" tabindex="-1" href="#java"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Java</h3><ul>
-<li><a href="https://github.com/bguerout/jongo" rel="noopener noreferrer">Jongo (⭐590)</a> - Query in Java as in Mongo shell</li>
+<li><a href="https://github.com/bguerout/jongo" rel="noopener noreferrer">Jongo (⭐589)</a> - Query in Java as in Mongo shell</li>
 <li><a href="https://github.com/hibernate/hibernate-ogm" rel="noopener noreferrer">Hibernate OGM (⭐324)</a> - The power and simplicity of JPA for NoSQL datastores</li>
 <li><a href="https://github.com/mongodb/mongo-java-driver" rel="noopener noreferrer">mongo-java-driver (⭐2.7k)</a> - Official Java driver</li>
-<li><a href="https://github.com/mongojack/mongojack" rel="noopener noreferrer">Mongojack (⭐275)</a> - Based on Jackson, allows you to easily handle your mongo objects as POJOs</li>
+<li><a href="https://github.com/mongojack/mongojack" rel="noopener noreferrer">Mongojack (⭐276)</a> - Based on Jackson, allows you to easily handle your mongo objects as POJOs</li>
 <li><a href="https://github.com/MorphiaOrg/morphia" rel="noopener noreferrer">Morphia (⭐1.7k)</a> - Java ODM</li>
 <li><a href="https://github.com/sboesebeck/morphium" rel="noopener noreferrer">Morphium (⭐62)</a> - Java ODM and caching layer</li>
 <li><a href="https://github.com/spring-projects/spring-data-mongodb" rel="noopener noreferrer">Spring Data MongoDB (⭐1.7k)</a> - Spring based, object-document support and repositories</li>
 </ul>
 <h3 id="javascript"><a class="anchor" aria-hidden="true" tabindex="-1" href="#javascript"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>JavaScript</h3><ul>
-<li><a href="https://github.com/scottwrobinson/camo" rel="noopener noreferrer">Camo (⭐557)</a> - Class-based ES6 ODM for Mongo-like databases</li>
+<li><a href="https://github.com/scottwrobinson/camo" rel="noopener noreferrer">Camo (⭐556)</a> - Class-based ES6 ODM for Mongo-like databases</li>
 <li><a href="https://github.com/jdesboeufs/connect-mongo" rel="noopener noreferrer">connect-mongo (⭐2k)</a> - MongoDB session store for Connect and Express written in Typescript.</li>
-<li><a href="https://github.com/denodrivers/mongo" rel="noopener noreferrer">deno_mongo (⭐515)</a> - Community Deno driver</li>
+<li><a href="https://github.com/denodrivers/mongo" rel="noopener noreferrer">deno_mongo (⭐513)</a> - Community Deno driver</li>
 <li><a href="https://github.com/meanjs/mean" rel="noopener noreferrer">MEAN.JS (⭐4.8k)</a> - Full stack based on MongoDB, Express, AngularJS, and Node.js</li>
-<li><a href="https://github.com/Hashnode/mern-starter" rel="noopener noreferrer">MERN (mern-starter) (⭐5.2k)</a> - Full stack based on MongoDB, Express, React and Node.js</li>
+<li><a href="https://github.com/Hashnode/mern-starter" rel="noopener noreferrer">MERN (mern-starter) (⭐5.1k)</a> - Full stack based on MongoDB, Express, React and Node.js</li>
 <li><a href="https://github.com/meteor/meteor" rel="noopener noreferrer">Meteor (⭐45k)</a> - Real-time/reactive client-server framework based on MongoDB, with lots of features</li>
 <li><a href="https://github.com/morris/mongomq2" rel="noopener noreferrer">MongoMQ2 (⭐21)</a> - A general-purpose message and event queuing library for MongoDB</li>
 <li><a href="https://github.com/Automattic/mongoose" rel="noopener noreferrer">Mongoose (⭐27k)</a> - Node.js asynchronous ODM</li>
-<li><a href="https://github.com/stalniy/casl/tree/master/packages/casl-mongoose" rel="noopener noreferrer">CASL Mongoose (⭐6.9k)</a> - Permissions management library integrated with Mongoose</li>
+<li><a href="https://github.com/stalniy/casl/tree/master/packages/casl-mongoose" rel="noopener noreferrer">CASL Mongoose (⭐7k)</a> - Permissions management library integrated with Mongoose</li>
 <li><a href="https://github.com/awapps/mongration" rel="noopener noreferrer">mongration (⭐86)</a> - Node.js migration framework</li>
 <li><a href="https://github.com/neuledge/engine-js" rel="noopener noreferrer">Neuledge (⭐234)</a> - Universal schema-based ORM with multi-state representation for entities</li>
 <li><a href="https://github.com/mongodb/node-mongodb-native" rel="noopener noreferrer">node-mongodb-native (⭐10k)</a> - Official Node.js driver</li>
 </ul>
 <h3 id="kotlin"><a class="anchor" aria-hidden="true" tabindex="-1" href="#kotlin"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Kotlin</h3><ul>
 <li><a href="https://github.com/mongodb/mongo-java-driver/tree/master/driver-kotlin-coroutine" rel="noopener noreferrer">driver-kotlin-coroutine (⭐2.7k)</a> - Official Kotlin driver</li>
-<li><a href="https://github.com/Litote/kmongo" rel="noopener noreferrer">kmongo (⭐770)</a> - Kotlin toolkit based on the Java driver</li>
+<li><a href="https://github.com/Litote/kmongo" rel="noopener noreferrer">kmongo (⭐769)</a> - Kotlin toolkit based on the Java driver</li>
 </ul>
 <h3 id="lisp"><a class="anchor" aria-hidden="true" tabindex="-1" href="#lisp"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Lisp</h3><ul>
 <li><a href="https://github.com/fons/cl-mongo" rel="noopener noreferrer">cl-mongo (⭐144)</a> - Community Common Lisp interface</li>
@@ -204,8 +284,8 @@
 </ul>
 <h3 id="php"><a class="anchor" aria-hidden="true" tabindex="-1" href="#php"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>PHP</h3><ul>
 <li><a href="https://github.com/mongodb/laravel-mongodb" rel="noopener noreferrer">laravel-mongodb (⭐7.1k)</a> - Official Eloquent model and query builder for Laravel</li>
-<li><a href="https://github.com/mongodb/mongo-php-driver" rel="noopener noreferrer">PHP Driver (⭐922)</a> - Official PHP driver</li>
-<li><a href="https://github.com/doctrine/mongodb-odm" rel="noopener noreferrer">Doctrine MongoDB ODM (⭐1.1k)</a> and <a href="https://github.com/doctrine/DoctrineMongoDBBundle" rel="noopener noreferrer">MongoDB ODM Bundle for Symfony (⭐384)</a> - Fully featured ORM with Symfony integration</li>
+<li><a href="https://github.com/mongodb/mongo-php-driver" rel="noopener noreferrer">PHP Driver (⭐921)</a> - Official PHP driver</li>
+<li><a href="https://github.com/doctrine/mongodb-odm" rel="noopener noreferrer">Doctrine MongoDB ODM (⭐1.1k)</a> and <a href="https://github.com/doctrine/DoctrineMongoDBBundle" rel="noopener noreferrer">MongoDB ODM Bundle for Symfony (⭐385)</a> - Fully featured ORM with Symfony integration</li>
 <li><a href="https://github.com/facile-it/mongodb-bundle" rel="noopener noreferrer">MongoDB Bundle (⭐37)</a> - Integration of the official library with Symfony, without ORM</li>
 <li><a href="https://github.com/yiisoft/yii2-mongodb" rel="noopener noreferrer">yii-mongodb (⭐331)</a> - Yii 2 MongoDB extension</li>
 <li><a href="https://github.com/opentelemetry-php/contrib-auto-mongodb" rel="noopener noreferrer">opentelemetry php auto-mongodb (⭐2)</a> - Automatic monitoring of MongoDB commands with OpenTelemetry</li>
@@ -219,14 +299,14 @@
 <li><a href="https://github.com/roman-right/beanie" rel="noopener noreferrer">Beanie (⭐2.7k)</a> - Asynchronous ODM based on <a href="https://motor.readthedocs.io/en/stable/" rel="noopener noreferrer">Motor</a> and <a href="https://pydantic-docs.helpmanual.io/" rel="noopener noreferrer">Pydantic</a>, which supports migrations out of the box</li>
 <li><a href="https://github.com/nesdis/djongo" rel="noopener noreferrer">Djongo (⭐1.9k)</a> - MongoDB connector for Django compatible with Django ORM</li>
 <li><a href="https://github.com/numberly/mongo-thingy" rel="noopener noreferrer">Mongo-Thingy (⭐69)</a> - Powerful schema-less ODM for MongoDB and Python (sync + async)</li>
-<li><a href="https://github.com/MongoEngine/mongoengine" rel="noopener noreferrer">MongoEngine (⭐4.4k)</a> - ODM on top of PyMongo</li>
+<li><a href="https://github.com/MongoEngine/mongoengine" rel="noopener noreferrer">MongoEngine (⭐4.3k)</a> - ODM on top of PyMongo</li>
 <li><a href="https://github.com/mongodb/motor" rel="noopener noreferrer">Motor (⭐2.5k)</a> - Official non-blocking Python driver for Tornado or asyncio</li>
 <li><a href="https://github.com/mongodb/mongo-python-driver" rel="noopener noreferrer">PyMongo (⭐4.3k)</a> - Official Python driver</li>
 <li><a href="https://github.com/art049/odmantic" rel="noopener noreferrer">ODMantic (⭐1.2k)</a> - Asynchronous ODM on top of pydantic</li>
-<li><a href="https://github.com/twisted/txmongo" rel="noopener noreferrer">TxMongo (⭐340)</a> - Twisted's MongoDB driver</li>
+<li><a href="https://github.com/twisted/txmongo" rel="noopener noreferrer">TxMongo (⭐341)</a> - Twisted's MongoDB driver</li>
 </ul>
 <h3 id="r"><a class="anchor" aria-hidden="true" tabindex="-1" href="#r"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>R</h3><ul>
-<li><a href="https://github.com/jeroen/mongolite" rel="noopener noreferrer">mongolite (⭐289)</a> - Fast and simple client for R</li>
+<li><a href="https://github.com/jeroen/mongolite" rel="noopener noreferrer">mongolite (⭐288)</a> - Fast and simple client for R</li>
 </ul>
 <h3 id="ruby"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ruby"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Ruby</h3><ul>
 <li><a href="https://github.com/mongodb/mongo-ruby-driver" rel="noopener noreferrer">mongo-ruby-driver (⭐1.4k)</a> - Official Ruby driver</li>
@@ -237,15 +317,15 @@
 </ul>
 <h3 id="scala"><a class="anchor" aria-hidden="true" tabindex="-1" href="#scala"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Scala</h3><ul>
 <li><a href="https://github.com/mongodb/mongo-java-driver/tree/master/driver-scala" rel="noopener noreferrer">driver-scala (⭐2.7k)</a> - Official Scala driver</li>
-<li><a href="https://github.com/ReactiveMongo/ReactiveMongo" rel="noopener noreferrer">ReactiveMongo (⭐853)</a> - Non-blocking Scala driver</li>
-<li><a href="https://github.com/Stratio/Spark-MongoDB" rel="noopener noreferrer">Spark-MongoDB (⭐306)</a> - Read/write data with Spark SQL</li>
+<li><a href="https://github.com/ReactiveMongo/ReactiveMongo" rel="noopener noreferrer">ReactiveMongo (⭐854)</a> - Non-blocking Scala driver</li>
+<li><a href="https://github.com/Stratio/Spark-MongoDB" rel="noopener noreferrer">Spark-MongoDB (⭐305)</a> - Read/write data with Spark SQL</li>
 </ul>
 <h3 id="smalltalk"><a class="anchor" aria-hidden="true" tabindex="-1" href="#smalltalk"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Smalltalk</h3><ul>
 <li><a href="https://github.com/pharo-nosql/mongotalk" rel="noopener noreferrer">MongoTalk (⭐19)</a> - Community Smalltalk driver</li>
 </ul>
 <h3 id="swift"><a class="anchor" aria-hidden="true" tabindex="-1" href="#swift"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Swift</h3><ul>
-<li><a href="https://github.com/mongodb/mongo-swift-driver" rel="noopener noreferrer">MongoSwift (⭐348)</a> - Official MongoDB Swift driver (discontinued)</li>
-<li><a href="https://github.com/orlandos-nl/MongoKitten" rel="noopener noreferrer">MongoKitten (⭐750)</a> - Community asynchronous Swift driver</li>
+<li><a href="https://github.com/mongodb/mongo-swift-driver" rel="noopener noreferrer">MongoSwift (⭐347)</a> - Official MongoDB Swift driver (discontinued)</li>
+<li><a href="https://github.com/orlandos-nl/MongoKitten" rel="noopener noreferrer">MongoKitten (⭐751)</a> - Community asynchronous Swift driver</li>
 </ul>
 <h2 id="tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tools</h2><h3 id="administration"><a class="anchor" aria-hidden="true" tabindex="-1" href="#administration"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Administration</h3><ul>
 <li><a href="https://github.com/stefanprodan/mgob" rel="noopener noreferrer">mgob (⭐761)</a> - Full-featured MongoDB dockerized backup agent</li>
@@ -274,18 +354,19 @@
 <li><a href="https://www.mongodb.com/products/cluster-to-cluster-sync" rel="noopener noreferrer">Cluster to cluster sync</a> - MongoDB Inc. solution for continuous data sync between separate clusters</li>
 </ul>
 <h3 id="deployment"><a class="anchor" aria-hidden="true" tabindex="-1" href="#deployment"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Deployment</h3><ul>
-<li><a href="https://github.com/UnderGreen/ansible-role-mongodb" rel="noopener noreferrer">ansible-role-mongodb (⭐349)</a> - Ansible role</li>
+<li><a href="https://github.com/UnderGreen/ansible-role-mongodb" rel="noopener noreferrer">ansible-role-mongodb (⭐348)</a> - Ansible role</li>
 <li><a href="https://github.com/edelight/chef-mongodb" rel="noopener noreferrer">chef-mongodb (⭐363)</a> - Chef cookbook</li>
 <li><a href="https://hub.docker.com/_/mongo/" rel="noopener noreferrer">DockerHub Official Docker Image</a></li>
 <li><a href="https://github.com/helm/charts/tree/master/stable/mongodb" rel="noopener noreferrer">Helm Chart (⭐15k)</a></li>
 <li><a href="https://github.com/voxpupuli/puppet-mongodb" rel="noopener noreferrer">puppet-mongodb (⭐90)</a> - Puppet module (formerly puppetlabs-mongodb)</li>
 </ul>
 <h3 id="desktop"><a class="anchor" aria-hidden="true" tabindex="-1" href="#desktop"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Desktop</h3><ul>
-<li><a href="https://github.com/mongodb-js/compass" rel="noopener noreferrer">Compass (⭐1.4k)</a> - Free Cross-platform GUI from MongoDB</li>
+<li><a href="https://github.com/mongodb-js/compass" rel="noopener noreferrer">Compass (⭐1.5k)</a> - Free Cross-platform GUI from MongoDB</li>
+<li><a href="https://github.com/geek-fun/dockit" rel="noopener noreferrer">DocKit (⭐1.1k)</a> - Open-source MongoDB GUI client with built-in Data AI Agent for natural language queries, collection management, and import/export. Cross-platform (Tauri + Vue 3).</li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode" rel="noopener noreferrer">MongoDB for VS Code</a> - Connect to MongoDB and prototype queries from VS Code</li>
 <li><a href="https://github.com/mongodb-js/mongodb-mcp-server" rel="noopener noreferrer">MongoDB MCP Server (⭐1k)</a> - Official Model Context Protocol server for interacting with MongoDB databases and MongoDB Atlas</li>
 <li><a href="https://github.com/jeromelebel/MongoHub-Mac" rel="noopener noreferrer">MongoHub (⭐2.4k)</a> - Mac native client</li>
-<li><a href="https://github.com/WebDB-App/app" rel="noopener noreferrer">WebDB (⭐335)</a> – Web-based and open-source "efficient database IDE". Provides ERDs, data generators, an AI assistant, a NoSQL structure manager, a time machine, auto-completion and more</li>
+<li><a href="https://github.com/WebDB-App/app" rel="noopener noreferrer">WebDB (⭐336)</a> – Web-based and open-source "efficient database IDE". Provides ERDs, data generators, an AI assistant, a NoSQL structure manager, a time machine, auto-completion and more</li>
 </ul>
 <p>Services:</p>
 <ul>
@@ -299,11 +380,11 @@
 <li><a href="https://visualeaf.com/" rel="noopener noreferrer">VisuaLeaf</a> - MongoDB GUI designed for speed, clarity, and effortless data exploration</li>
 </ul>
 <h3 id="development"><a class="anchor" aria-hidden="true" tabindex="-1" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Development</h3><ul>
-<li><a href="https://github.com/mongodb/mongo-csharp-analyzer" rel="noopener noreferrer">C# Analyzer (⭐28)</a> - View the MongoDB Query API equivalents of your builder expressions in Visual Studio</li>
+<li><a href="https://github.com/mongodb/mongo-csharp-analyzer" rel="noopener noreferrer">C# Analyzer (⭐29)</a> - View the MongoDB Query API equivalents of your builder expressions in Visual Studio</li>
 <li><a href="https://github.com/feliixx/mgodatagen" rel="noopener noreferrer">mgodatagen (⭐328)</a> - Random data generator</li>
 <li><a href="https://github.com/seppevs/migrate-mongo" rel="noopener noreferrer">migrate-mongo (⭐1k)</a> - Database migration tool</li>
 <li><a href="https://github.com/feliixx/mongoplayground" rel="noopener noreferrer">Mongo Playground (⭐191)</a> - Online query playground</li>
-<li><a href="https://github.com/pkosiec/mongo-seeding" rel="noopener noreferrer">Mongo Seeding (⭐563)</a> - Node.js library, CLI and Docker image for populating databases using JS and JSON files</li>
+<li><a href="https://github.com/pkosiec/mongo-seeding" rel="noopener noreferrer">Mongo Seeding (⭐562)</a> - Node.js library, CLI and Docker image for populating databases using JS and JSON files</li>
 <li><a href="https://github.com/mongoeye/mongoeye" rel="noopener noreferrer">Mongoeye (⭐173)</a> - Schema and data analyzer: explore data in your collections</li>
 <li><a href="https://github.com/vincentrussell/sql-to-mongo-db-query-converter" rel="noopener noreferrer">sql-to-mongo-db-query-converter (⭐318)</a> - Query converter from SQL to MongoDB</li>
 <li><a href="https://github.com/variety/variety" rel="noopener noreferrer">Variety (⭐1.8k)</a> - Schema analyzer: see what fields are in your collection and what's their content</li>
@@ -316,7 +397,7 @@
 </ul>
 <h3 id="monitoring"><a class="anchor" aria-hidden="true" tabindex="-1" href="#monitoring"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Monitoring</h3><ul>
 <li><a href="https://github.com/erh/mongo-munin" rel="noopener noreferrer">mongo-munin (⭐143)</a> - Collection of Munin plugins</li>
-<li><a href="https://github.com/mzupan/nagios-plugin-mongodb" rel="noopener noreferrer">nagios-plugin-mongodb (⭐343)</a> - Nagios plugin (in Python)</li>
+<li><a href="https://github.com/mzupan/nagios-plugin-mongodb" rel="noopener noreferrer">nagios-plugin-mongodb (⭐342)</a> - Nagios plugin (in Python)</li>
 <li><a href="https://github.com/percona/pmm" rel="noopener noreferrer">Percona Monitoring and Management (⭐1k)</a> - Free and open-source platform for managing and monitoring databases performances</li>
 <li><a href="https://github.com/mrsarm/mongotail" rel="noopener noreferrer">mongotail (⭐202)</a> - Log all MongoDB queries in a "tail"able way</li>
 </ul>
@@ -341,8 +422,8 @@
 <li><a href="https://retool.com/" rel="noopener noreferrer">Retool</a> - Drag-and-drop editor with pre-built components to build internal tools</li>
 </ul>
 <h3 id="shell"><a class="anchor" aria-hidden="true" tabindex="-1" href="#shell"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Shell</h3><ul>
-<li><a href="https://github.com/mongodb/mongodb-atlas-cli" rel="noopener noreferrer">MongoDB Atlas CLI (⭐182)</a> - Official Atlas API command-line client</li>
-<li><a href="https://github.com/mongodb-js/mongosh" rel="noopener noreferrer">mongosh (⭐385)</a> - Official command-line client</li>
+<li><a href="https://github.com/mongodb/mongodb-atlas-cli" rel="noopener noreferrer">MongoDB Atlas CLI (⭐184)</a> - Official Atlas API command-line client</li>
+<li><a href="https://github.com/mongodb-js/mongosh" rel="noopener noreferrer">mongosh (⭐389)</a> - Official command-line client</li>
 </ul>
 <h3 id="web"><a class="anchor" aria-hidden="true" tabindex="-1" href="#web"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Web</h3><ul>
 <li><a href="https://github.com/mrvautin/adminMongo" rel="noopener noreferrer">adminMongo (⭐3.9k)</a> - Web-based user interface to handle connections and databases needs</li>
@@ -357,13 +438,13 @@
 </ul>
 <h2 id="applications"><a class="anchor" aria-hidden="true" tabindex="-1" href="#applications"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Applications</h2><p>Those open-source applications have MongoDB somewhere in their stack:</p>
 <ul>
-<li><a href="https://github.com/aelassas/bookcars" rel="noopener noreferrer">BookCars (⭐568)</a> - Cross-platform, customizable and cost-efficient car rental management application</li>
+<li><a href="https://github.com/aelassas/bookcars" rel="noopener noreferrer">BookCars (⭐585)</a> - Cross-platform, customizable and cost-efficient car rental management application</li>
 <li><a href="https://github.com/codecombat/codecombat" rel="noopener noreferrer">CodeCombat (⭐8.5k)</a> - Multiplayer programming game for learning how to code</li>
 <li><a href="https://github.com/countly/countly-server" rel="noopener noreferrer">Countly (⭐5.9k)</a> - Mobile &amp; web analytics and marketing platform built with Node.js</li>
 <li><a href="https://github.com/errbit/errbit" rel="noopener noreferrer">Errbit (⭐4.3k)</a> - A Ruby on Rails based tool for collecting and managing errors from other applications.</li>
 <li><a href="https://github.com/fiction-com/factor" rel="noopener noreferrer">FactorJS (⭐1.5k)</a> - JavaScript CMS built with Mongoose</li>
 <li><a href="https://github.com/grandnode/grandnode" rel="noopener noreferrer">GrandNode (⭐1.9k)</a> - Multi-platform e-commerce shopping cart built with ASP.NET</li>
-<li><a href="https://github.com/jonradoff/lastsaas" rel="noopener noreferrer">LastSaaS (⭐82)</a> - Open-source SaaS platform foundation with multi-tenant auth, Stripe billing, and MCP server, built with Go and MongoDB</li>
+<li><a href="https://github.com/jonradoff/lastsaas" rel="noopener noreferrer">LastSaaS (⭐111)</a> - Open-source SaaS platform foundation with multi-tenant auth, Stripe billing, and MCP server, built with Go and MongoDB</li>
 <li><a href="https://github.com/leanote/leanote" rel="noopener noreferrer">Leanote (⭐12k)</a> - Evernote clone built with Go</li>
 <li><a href="https://github.com/NodeBB/NodeBB" rel="noopener noreferrer">NodeBB (⭐15k)</a> - Node.js based forum software ("built for the modern web")</li>
 <li><a href="https://github.com/reactioncommerce/reaction" rel="noopener noreferrer">Reaction (⭐12k)</a> - Event-driven, real-time commerce platform built with ES6</li>
@@ -376,5 +457,47 @@
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
