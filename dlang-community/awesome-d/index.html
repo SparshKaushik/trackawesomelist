@@ -16,36 +16,116 @@
     <meta property="og:title" content="Track Awesome D Updates Daily" />
     <meta property="og:description" content="  A curated list of awesome D documents, frameworks, libraries and software. Inspired by awesome-python." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome D Updates Daily</h1>
 <p>  A curated list of awesome D documents, frameworks, libraries and software. Inspired by awesome-python.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/dlang-community/awesome-d/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/dlang-community/awesome-d">😺 dlang-community/awesome-d</a><span> · </span><span>⭐ 740</span><span> · </span><span>🏷️ Programming Languages</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/dlang-community/awesome-d/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/dlang-community/awesome-d">😺 dlang-community/awesome-d</a><span> · </span><span>⭐ 754</span><span> · </span><span>🏷️ Programming Languages</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/dlang-community/awesome-d/week/">Weekly</a><span> / </span><a href="/dlang-community/awesome-d/readme/">Overview</a><span> ]</span></p>
 
-<h2><a href="https://www.trackawesomelist.com/2026/02/01/">Feb 01, 2026</a></h2><h3><p>Programming Languages</p>
+<h2><a href="https://www.trackawesomelist.com/2026/06/17/">Jun 17, 2026</a></h2><h3><p>Programming Languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pouyathe/glang" rel="noopener noreferrer">Glang (⭐4)</a> - Interpreter for G programming language.</li>
+<li><a href="https://codeberg.org/GuineaPigUuhh/brainfuck-d" rel="noopener noreferrer">brainfuck-d</a> - Brainfuck interpreter, compiler and REPL written in D.</li>
 </ul>
-<h3><p>GUI Libraries</p>
+<h2><a href="https://www.trackawesomelist.com/2026/02/01/">Feb 01, 2026</a></h2><h3><p>GUI Libraries</p>
 </h3>
 <ul>
-<li><a href="https://arsd-official.dpldocs.info/arsd.minigui.html" rel="noopener noreferrer">minigui</a> - A smallish GUI widget library, aiming to be on par with at least HTML4 forms and a few other expected gui components. It's part of the <a href="https://github.com/adamdruppe/arsd/blob/master/minigui.d" rel="noopener noreferrer">arsd libraries (⭐548)</a>.</li>
+<li><a href="https://arsd-official.dpldocs.info/arsd.minigui.html" rel="noopener noreferrer">minigui</a> - A smallish GUI widget library, aiming to be on par with at least HTML4 forms and a few other expected gui components. It's part of the <a href="https://github.com/adamdruppe/arsd/blob/master/minigui.d" rel="noopener noreferrer">arsd libraries (⭐555)</a>.</li>
 </ul>
 <h3><p>Game Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AuburnSounds/godot-math" rel="noopener noreferrer">godot-math (⭐3)</a> - A D port of Godot's linear algebra with unchanged semantics.</li>
+<li><a href="https://github.com/AuburnSounds/godot-math" rel="noopener noreferrer">godot-math (⭐4)</a> - A D port of Godot's linear algebra with unchanged semantics.</li>
 </ul>
 
 <ul>
@@ -54,7 +134,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/12/27/">Dec 27, 2025</a></h2><h3><p>Testing Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gedaiu/fluent-asserts" rel="noopener noreferrer">fluent-asserts (⭐47)</a> - Fluent assertion framework with expressive syntax and detailed error messages.</li>
+<li><a href="https://github.com/gedaiu/fluent-asserts" rel="noopener noreferrer">fluent-asserts (⭐48)</a> - Fluent assertion framework with expressive syntax and detailed error messages.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/11/19/">Nov 19, 2025</a></h2><h3><p>Getting Help</p>
 </h3>
@@ -101,7 +181,7 @@
 <h3><p>Lexers, Parsers &amp; Generators</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dlang-community/Pegged" rel="noopener noreferrer">Pegged</a> - A Parsing Expression Grammar (PEG) module written in D.</li>
+<li><a href="https://github.com/dlang-community/Pegged" rel="noopener noreferrer">Pegged (⭐547)</a> - A Parsing Expression Grammar (PEG) module written in D.</li>
 </ul>
 <h3><p>Operating Systems</p>
 </h3>
@@ -111,22 +191,22 @@
 <h3><p>Game Bindings</p>
 </h3>
 <ul>
-<li><a href="https://github.com/floooh/sokol-d" rel="noopener noreferrer">sokol-d (⭐23)</a> - D bindings for the sokol headers.</li>
+<li><a href="https://github.com/floooh/sokol-d" rel="noopener noreferrer">sokol-d (⭐27)</a> - D bindings for the sokol headers.</li>
 </ul>
 <h3><p>Configuration / Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dlang-community/SDLang-D" rel="noopener noreferrer">sdlang (⭐119)</a> - An SDL (Simple Declarative Language) library for D.</li>
+<li><a href="https://github.com/dlang-community/SDLang-D" rel="noopener noreferrer">sdlang (⭐121)</a> - An SDL (Simple Declarative Language) library for D.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/11/11/">Nov 11, 2025</a></h2><h3><p>GUI Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Kapendev/microui-d" rel="noopener noreferrer">microui-d (⭐11)</a> - A tiny immediate-mode UI library.</li>
+<li><a href="https://github.com/Kapendev/microui-d" rel="noopener noreferrer">microui-d (⭐14)</a> - A tiny immediate-mode UI library.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/09/08/">Sep 08, 2025</a></h2><h3><p>CLI Applications</p>
 </h3>
 <ul>
-<li><a href="https://github.com/soulfind-dev/soulfind" rel="noopener noreferrer">Soulfind (⭐38)</a> - Soulseek server implementation in D.</li>
+<li><a href="https://github.com/soulfind-dev/soulfind" rel="noopener noreferrer">Soulfind (⭐42)</a> - Soulseek server implementation in D.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/07/25/">Jul 25, 2025</a></h2><h3><p>Official Websites</p>
 </h3>
@@ -159,7 +239,7 @@
 <h3><p>Compilers</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dlang/dmd" rel="noopener noreferrer">DMD (⭐3.2k)</a> - The reference compiler for the D programming language. Stable, builds insanely fast, very good for learning and rapid prototyping/development. Currently the frontend is implemented in D, and shared between dmd, ldc and gdc, the backend is implemented in C++.</li>
+<li><a href="https://github.com/dlang/dmd" rel="noopener noreferrer">DMD (⭐3.3k)</a> - The reference compiler for the D programming language. Stable, builds insanely fast, very good for learning and rapid prototyping/development. Currently the frontend is implemented in D, and shared between dmd, ldc and gdc, the backend is implemented in C++.</li>
 </ul>
 
 <ul>
@@ -167,12 +247,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/D-Programming-GDC/GDC" rel="noopener noreferrer">GDC</a> - GNU D Compiler. Use DMD frontend and GCC backend. Currently targets the most platforms due to the use of GCC. Generated code runs faster than DMD in most cases, on par with LDC. In the process of integration with the official GCC toolchain.</li>
+<li><a href="https://github.com/D-Programming-GDC/GDC" rel="noopener noreferrer">GDC (⭐359)</a> - GNU D Compiler. Use DMD frontend and GCC backend. Currently targets the most platforms due to the use of GCC. Generated code runs faster than DMD in most cases, on par with LDC. In the process of integration with the official GCC toolchain.</li>
 </ul>
 <h3><p>Alternative / WIP Compilers</p>
 </h3>
 <ul>
-<li><a href="https://github.com/snazzy-d/SDC" rel="noopener noreferrer">SDC (⭐267)</a> - The Snazzy D Compiler. Written in D. Grows Smarter every day.</li>
+<li><a href="https://github.com/snazzy-d/SDC" rel="noopener noreferrer">SDC (⭐270)</a> - The Snazzy D Compiler. Written in D. Grows Smarter every day.</li>
 </ul>
 
 <ul>
@@ -181,22 +261,22 @@
 <h3><p>Cryptography / Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/etcimon/botan" rel="noopener noreferrer">Botan (⭐92)</a> - Block &amp; stream ciphers, public key crypto, hashing, KDF, MAC, PKCS, TLS, ASN.1, BER/DER, etc.</li>
+<li><a href="https://github.com/etcimon/botan" rel="noopener noreferrer">Botan (⭐91)</a> - Block &amp; stream ciphers, public key crypto, hashing, KDF, MAC, PKCS, TLS, ASN.1, BER/DER, etc.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/D-Programming-Deimos/openssl" rel="noopener noreferrer">OpenSSL (⭐48)</a> - D version of the C headers for OpenSSL.</li>
+<li><a href="https://github.com/D-Programming-Deimos/openssl" rel="noopener noreferrer">OpenSSL (⭐47)</a> - D version of the C headers for OpenSSL.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/shove70/crypto" rel="noopener noreferrer">Crypto (⭐33)</a> - A D Library of encryption, decryption, encode, hash, and message digital signatures.</li>
+<li><a href="https://github.com/shove70/crypto" rel="noopener noreferrer">Crypto (⭐32)</a> - A D Library of encryption, decryption, encode, hash, and message digital signatures.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/06/25/">Jun 25, 2025</a></h2><h3><p>Game Bindings</p>
 </h3>
 <ul>
 <li><a href="https://github.com/DerelictOrg" rel="noopener noreferrer">DerelictOrg</a> - Bindings, now largely outdated. BindBC is its modern successor.<ul>
 <li><a href="https://github.com/DerelictOrg/DerelictGLES" rel="noopener noreferrer">OpenGLES (⭐4)</a> - Graphics API</li>
-<li><a href="https://github.com/DerelictOrg/DerelictENet" rel="noopener noreferrer">ENet (⭐8)</a> - Networking library</li>
+<li><a href="https://github.com/DerelictOrg/DerelictENet" rel="noopener noreferrer">ENet (⭐9)</a> - Networking library</li>
 <li><a href="https://github.com/DerelictOrg/DerelictTheora" rel="noopener noreferrer">libtheora (⭐2)</a> - Video codec</li>
 <li><a href="https://github.com/DerelictOrg/DerelictOgg" rel="noopener noreferrer">libogg (⭐5)</a> - Audio codec</li>
 <li><a href="https://github.com/DerelictOrg/DerelictVorbis" rel="noopener noreferrer">libvorbis (⭐3)</a> - Audio codec</li>
@@ -210,21 +290,21 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/godot-d/godot-d" rel="noopener noreferrer">Godot-D (⭐209)</a> - D language bindings for the Godot Engine's GDNative API.</li>
+<li><a href="https://github.com/godot-d/godot-d" rel="noopener noreferrer">Godot-D (⭐212)</a> - D language bindings for the Godot Engine's GDNative API.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/BindBC" rel="noopener noreferrer">BindBC</a> - Bindings compatible with <code>-betterC</code> and <code>@nogc</code>, using <a href="https://github.com/BindBC/bindbc-loader" rel="noopener noreferrer">bindbc-loader (⭐26)</a>.<ul>
+<li><a href="https://github.com/BindBC" rel="noopener noreferrer">BindBC</a> - Bindings compatible with <code>-betterC</code> and <code>@nogc</code>, using <a href="https://github.com/BindBC/bindbc-loader" rel="noopener noreferrer">bindbc-loader (⭐27)</a>.<ul>
 <li><a href="https://github.com/BindBC/bindbc-opengl" rel="noopener noreferrer">OpenGL (⭐42)</a> - Graphics API</li>
 <li><a href="https://github.com/BindBC/bindbc-glfw" rel="noopener noreferrer">GLFW 3 (⭐42)</a> - Window/Input library</li>
-<li><a href="https://github.com/BindBC/bindbc-sdl" rel="noopener noreferrer">SDL 2 (⭐124)</a> - Multimedia library</li>
+<li><a href="https://github.com/BindBC/bindbc-sdl" rel="noopener noreferrer">SDL 2 (⭐129)</a> - Multimedia library</li>
 <li><a href="https://github.com/aferust/bindbc-sdlgfx" rel="noopener noreferrer">SDL2_gfx (⭐1)</a> - Drawing primitives for SDL2</li>
 <li><a href="https://github.com/BindBC/bindbc-sfml" rel="noopener noreferrer">SFML 2 (⭐12)</a> - Multimedia library</li>
-<li><a href="https://github.com/Inochi2D/i2d-imgui" rel="noopener noreferrer">Imgui (⭐23)</a> - Immediate mode GUI</li>
-<li><a href="https://github.com/Timu5/bindbc-nuklear" rel="noopener noreferrer">Nuklear (⭐45)</a> - Immediate mode GUI</li>
+<li><a href="https://github.com/Inochi2D/i2d-imgui" rel="noopener noreferrer">Imgui (⭐25)</a> - Immediate mode GUI</li>
+<li><a href="https://github.com/Timu5/bindbc-nuklear" rel="noopener noreferrer">Nuklear (⭐46)</a> - Immediate mode GUI</li>
 <li><a href="https://github.com/o3o/bindbc-raylib3" rel="noopener noreferrer">raylib3 (⭐16)</a> - Game library</li>
 <li><a href="https://github.com/GoaLitiuM/bindbc-bgfx" rel="noopener noreferrer">bgfx (⭐21)</a> - Cross-Platform renderer</li>
-<li><a href="https://github.com/DLangGamedev/bindbc-wgpu" rel="noopener noreferrer">WebGPU (⭐32)</a> - Modern GPU API</li>
+<li><a href="https://github.com/DLangGamedev/bindbc-wgpu" rel="noopener noreferrer">WebGPU (⭐33)</a> - Modern GPU API</li>
 <li><a href="https://github.com/ZILtoid1991/bindbc-zstandard" rel="noopener noreferrer">Zstandard (⭐2)</a> - Fast compression</li>
 <li><a href="https://github.com/darkridder/bindbc-nng" rel="noopener noreferrer">nanomsg-next-gen (⭐1)</a> - Messaging library</li>
 <li><a href="https://github.com/BindBC/bindbc-openal" rel="noopener noreferrer">OpenAL (⭐9)</a> - Audio library</li>
@@ -237,23 +317,23 @@
 <li><a href="https://github.com/DLangGamedev/bindbc-newton" rel="noopener noreferrer">Newton Dynamics (⭐9)</a> - Physics library</li>
 <li><a href="https://github.com/BindBC/bindbc-freeimage" rel="noopener noreferrer">FreeImage (⭐6)</a> - Image loading</li>
 <li><a href="https://github.com/BindBC/bindbc-freetype" rel="noopener noreferrer">FreeType (⭐19)</a> - Font rendering</li>
-<li><a href="https://github.com/DlangGraphicsWG/bindbc-harfbuzz" rel="noopener noreferrer">HarfBuzz (⭐2)</a> - Text shaping</li>
+<li><a href="https://github.com/DlangGraphicsWG/bindbc-harfbuzz" rel="noopener noreferrer">HarfBuzz (⭐3)</a> - Text shaping</li>
 </ul>
 </li>
 </ul>
 <h3><p>GitHub Actions</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dlang-community/setup-dlang" rel="noopener noreferrer">setup-dlang</a> - Install D compilers &amp; DUB inside GitHub Actions</li>
+<li><a href="https://github.com/dlang-community/setup-dlang" rel="noopener noreferrer">setup-dlang (⭐48)</a> - Install D compilers &amp; DUB inside GitHub Actions</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/WebFreak001/dub-upgrade" rel="noopener noreferrer">dub-upgrade</a> - Run <code>dub upgrade</code> trying to repeat on network failure and using package cache on GitHub Actions</li>
+<li><a href="https://github.com/WebFreak001/dub-upgrade" rel="noopener noreferrer">dub-upgrade (⭐1)</a> - Run <code>dub upgrade</code> trying to repeat on network failure and using package cache on GitHub Actions</li>
 </ul>
 <h3><p>Testing Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/atilaneves/unit-threaded" rel="noopener noreferrer">unit-threaded</a> - Multi-threaded unit test framework</li>
+<li><a href="https://github.com/atilaneves/unit-threaded" rel="noopener noreferrer">unit-threaded (⭐121)</a> - Multi-threaded unit test framework</li>
 </ul>
 
 <ul>
@@ -266,11 +346,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Inochi2D/nulib" rel="noopener noreferrer">NuLib (⭐9)</a> - D "standard" library built ontop of numem.</li>
+<li><a href="https://github.com/Inochi2D/nulib" rel="noopener noreferrer">NuLib (⭐10)</a> - D "standard" library built ontop of numem.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Kapendev/joka" rel="noopener noreferrer">Joka (⭐19)</a> - A nogc utility library.</li>
+<li><a href="https://github.com/Kapendev/joka" rel="noopener noreferrer">Joka (⭐25)</a> - A nogc utility library.</li>
 </ul>
 <h3><p>Game Libraries</p>
 </h3>
@@ -279,7 +359,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/gecko0307/dagon" rel="noopener noreferrer">Dagon (⭐383)</a> - 3D game engine for D. See: <a href="https://gecko0307.github.io/dagon/" rel="noopener noreferrer">https://gecko0307.github.io/dagon/</a></li>
+<li><a href="https://github.com/gecko0307/dagon" rel="noopener noreferrer">Dagon (⭐397)</a> - 3D game engine for D. See: <a href="https://gecko0307.github.io/dagon/" rel="noopener noreferrer">https://gecko0307.github.io/dagon/</a></li>
 </ul>
 
 <ul>
@@ -288,7 +368,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/06/17/">Jun 17, 2025</a></h2><h3><p>Operating Systems</p>
 </h3>
 <ul>
-<li><a href="https://github.com/PowerNex/PowerNex" rel="noopener noreferrer">PowerNex (⭐504)</a> - A kernel written in D</li>
+<li><a href="https://github.com/PowerNex/PowerNex" rel="noopener noreferrer">PowerNex (⭐505)</a> - A kernel written in D</li>
 </ul>
 
 <ul>
@@ -296,7 +376,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/xomboverlord/xomb" rel="noopener noreferrer">XOmB (⭐0)</a> - An exokernel operating system written in D</li>
+<li><a href="https://github.com/xomboverlord/xomb" rel="noopener noreferrer">XOmB (⭐1)</a> - An exokernel operating system written in D</li>
 </ul>
 <h3><p>Bare Metal / Kernel Development</p>
 </h3>
@@ -309,7 +389,7 @@
 </ul>
 
 <ul>
-<li><a href="https://web.archive.org/web/20161214232759/http://wiki.xomb.org/index.php?title=XOmB_Bare_Bones" rel="noopener noreferrer">XOmB bare bones</a> - an exokernel operating system written in D. <a href="https://web.archive.org/web/20161201061242/http://wiki.xomb.org/index.php?title=Main_Page" rel="noopener noreferrer">Main page</a>, <a href="https://github.com/xomboverlord/xomb/tree/unborn" rel="noopener noreferrer">github (⭐0)</a>.</li>
+<li><a href="https://web.archive.org/web/20161214232759/http://wiki.xomb.org/index.php?title=XOmB_Bare_Bones" rel="noopener noreferrer">XOmB bare bones</a> - an exokernel operating system written in D. <a href="https://web.archive.org/web/20161201061242/http://wiki.xomb.org/index.php?title=Main_Page" rel="noopener noreferrer">Main page</a>, <a href="https://github.com/xomboverlord/xomb/tree/unborn" rel="noopener noreferrer">github (⭐1)</a>.</li>
 </ul>
 
 <ul>
@@ -336,19 +416,19 @@
 <h3><p>CLI Applications</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zyedidia/Literate" rel="noopener noreferrer">Literate (⭐895)</a> - A literate programming tool for any language.</li>
+<li><a href="https://github.com/zyedidia/Literate" rel="noopener noreferrer">Literate (⭐907)</a> - A literate programming tool for any language.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/abraunegg/onedrive" rel="noopener noreferrer">onedrive (⭐12k)</a> - #1 Free OneDrive Client for Linux.</li>
+<li><a href="https://github.com/abraunegg/onedrive" rel="noopener noreferrer">onedrive (⭐13k)</a> - #1 Free OneDrive Client for Linux.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/trikko/tshare" rel="noopener noreferrer">tshare (⭐137)</a> - Fast file sharing from cli, using transfer.sh.</li>
+<li><a href="https://github.com/trikko/tshare" rel="noopener noreferrer">tshare (⭐141)</a> - Fast file sharing from cli, using transfer.sh.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/BlackEdder/todod" rel="noopener noreferrer">todod (⭐17)</a> - Todod is a command line based todo list manager. It also has support for shell interaction based on <a href="https://github.com/antirez/linenoise" rel="noopener noreferrer">linenoise (⭐4.2k)</a>.</li>
+<li><a href="https://github.com/BlackEdder/todod" rel="noopener noreferrer">todod (⭐17)</a> - Todod is a command line based todo list manager. It also has support for shell interaction based on <a href="https://github.com/antirez/linenoise" rel="noopener noreferrer">linenoise (⭐4.3k)</a>.</li>
 </ul>
 <h3><p>Logging / Language Processing</p>
 </h3>
@@ -370,17 +450,17 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/burner/inifiled" rel="noopener noreferrer">inifile-D (⭐22)</a> - A compile time ini file parser and writter generator for D</li>
+<li><a href="https://github.com/burner/inifiled" rel="noopener noreferrer">inifile-D (⭐22)</a> - A compile time ini file parser and writer generator for D</li>
 </ul>
 <h3><p>Blog Engine / Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mihails-strasuns/mood" rel="noopener noreferrer">mood (⭐44)</a> - simple vibe.d based blog engine</li>
+<li><a href="https://github.com/mihails-strasuns/mood" rel="noopener noreferrer">mood (⭐45)</a> - simple vibe.d based blog engine</li>
 </ul>
 <h3><p>Dependency Injection / Language Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mbierlee/poodinis" rel="noopener noreferrer">Poodinis (⭐73)</a> - A dependency injection framework for D with support for autowiring.</li>
+<li><a href="https://github.com/mbierlee/poodinis" rel="noopener noreferrer">Poodinis (⭐72)</a> - A dependency injection framework for D with support for autowiring.</li>
 </ul>
 <h3><p>Unmaintained / Language Processing</p>
 </h3>
@@ -389,7 +469,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/huntlabs/hunt" rel="noopener noreferrer">hunt (⭐98)</a> - A refined core library for D programming language. The module has concurrency / collection / event / io / logging / text / serialize and more.</li>
+<li><a href="https://github.com/huntlabs/hunt" rel="noopener noreferrer">hunt (⭐97)</a> - A refined core library for D programming language. The module has concurrency / collection / event / io / logging / text / serialize and more.</li>
 </ul>
 
 <ul>
@@ -413,11 +493,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/huntlabs/hunt-framework/" rel="noopener noreferrer">Hunt Framework (⭐309)</a> - Hunt is a high-level D Programming Language Web framework that encourages rapid development and clean, pragmatic design. It lets you build high-performance Web applications quickly and easily.</li>
+<li><a href="https://github.com/huntlabs/hunt-framework/" rel="noopener noreferrer">Hunt Framework (⭐300)</a> - Hunt is a high-level D Programming Language Web framework that encourages rapid development and clean, pragmatic design. It lets you build high-performance Web applications quickly and easily.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/huntlabs/grpc-dlang" rel="noopener noreferrer">grpc (⭐43)</a> - Grpc for D programming language, hunt-http library based.</li>
+<li><a href="https://github.com/huntlabs/grpc-dlang" rel="noopener noreferrer">grpc (⭐44)</a> - Grpc for D programming language, hunt-http library based.</li>
 </ul>
 
 <ul>
@@ -449,25 +529,25 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/d-widget-toolkit/dwt" rel="noopener noreferrer">DWT (⭐141)</a> - A library for creating cross-platform GUI applications. GWT is a port of the Java SWT library to D. DWT was promoted as a semi-standard GUI library for D, but unfortunately didn't catch up popularity yet.</li>
+<li><a href="https://github.com/d-widget-toolkit/dwt" rel="noopener noreferrer">DWT (⭐139)</a> - A library for creating cross-platform GUI applications. GWT is a port of the Java SWT library to D. DWT was promoted as a semi-standard GUI library for D, but unfortunately didn't catch up popularity yet.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Extrawurst/DerelictLibui" rel="noopener noreferrer">LibUI (⭐34)</a> - Dynamic Binding for <a href="https://github.com/andlabs/libui" rel="noopener noreferrer">libui (⭐11k)</a></li>
+<li><a href="https://github.com/Extrawurst/DerelictLibui" rel="noopener noreferrer">LibUI (⭐33)</a> - Dynamic Binding for <a href="https://github.com/andlabs/libui" rel="noopener noreferrer">libui (⭐11k)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/06/04/">Jun 04, 2025</a></h2><h3><p>GUI Applications</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Inochi2D/inochi-creator" rel="noopener noreferrer">Inochi Creator (⭐1.1k)</a> - Inochi2D Rigging Application.</li>
+<li><a href="https://github.com/Inochi2D/inochi-creator" rel="noopener noreferrer">Inochi Creator (⭐1.2k)</a> - Inochi2D Rigging Application.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Inochi2D/inochi-session" rel="noopener noreferrer">Inochi Session (⭐374)</a> - Application that allows streaming with Inochi2D puppets.</li>
+<li><a href="https://github.com/Inochi2D/inochi-session" rel="noopener noreferrer">Inochi Session (⭐388)</a> - Application that allows streaming with Inochi2D puppets.</li>
 </ul>
 <h3><p>Game Bindings</p>
 </h3>
 <ul>
-<li><a href="https://github.com/schveiguy/raylib-d" rel="noopener noreferrer">raylib-d (⭐80)</a> - D bindings for raylib.</li>
+<li><a href="https://github.com/schveiguy/raylib-d" rel="noopener noreferrer">raylib-d (⭐92)</a> - D bindings for raylib.</li>
 </ul>
 
 <ul>
@@ -480,21 +560,21 @@
 <h2><a href="https://www.trackawesomelist.com/2025/05/31/">May 31, 2025</a></h2><h3><p>General Containers</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dlang-community/containers" rel="noopener noreferrer">EMSI containers (⭐111)</a> - Containers that do not use the GC</li>
+<li><a href="https://github.com/dlang-community/containers" rel="noopener noreferrer">EMSI containers (⭐112)</a> - Containers that do not use the GC</li>
 </ul>
 <h3><p>Database Clients</p>
 </h3>
 <ul>
-<li><a href="https://github.com/adamdruppe/arsd" rel="noopener noreferrer">arsd (⭐548)</a> - Adam D. Ruppe's library; in addition to a Web backend, it also has support for database access with database.d, sqlite.d, mysql.d and postgres.d.</li>
+<li><a href="https://github.com/adamdruppe/arsd" rel="noopener noreferrer">arsd (⭐555)</a> - Adam D. Ruppe's library; in addition to a Web backend, it also has support for database access with database.d, sqlite.d, mysql.d and postgres.d.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/buggins/hibernated" rel="noopener noreferrer">hibernated (⭐83)</a> - HibernateD is an ORM for D (similar to <a href="https://hibernate.org/" rel="noopener noreferrer">Hibernate</a>).</li>
+<li><a href="https://github.com/buggins/hibernated" rel="noopener noreferrer">hibernated (⭐84)</a> - HibernateD is an ORM for D (similar to <a href="https://hibernate.org/" rel="noopener noreferrer">Hibernate</a>).</li>
 </ul>
 <h3><p>Game Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Inochi2D/inmath" rel="noopener noreferrer">InMath (⭐10)</a> - Games math library for D.</li>
+<li><a href="https://github.com/Inochi2D/inmath" rel="noopener noreferrer">InMath (⭐11)</a> - Games math library for D.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/05/30/">May 30, 2025</a></h2><h3><p>Web Frameworks</p>
 </h3>
@@ -503,11 +583,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/andrewlalis/handy-httpd" rel="noopener noreferrer">Handy-Httpd (⭐36)</a> - A simple, lightweight, and well-documented HTTP server that lets you bootstrap ideas and have something up and running in minutes.</li>
+<li><a href="https://github.com/andrewlalis/handy-httpd" rel="noopener noreferrer">Handy-Httpd (⭐37)</a> - A simple, lightweight, and well-documented HTTP server that lets you bootstrap ideas and have something up and running in minutes.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/trikko/serverino" rel="noopener noreferrer">serverino (⭐74)</a> - Small and ready-to-go http server, in D</li>
+<li><a href="https://github.com/trikko/serverino" rel="noopener noreferrer">serverino (⭐77)</a> - Small and ready-to-go http server, in D</li>
 </ul>
 
 <ul>
@@ -520,7 +600,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Abscissa/scriptlike" rel="noopener noreferrer">scriptlike (⭐94)</a> - Utility library to aid writing script-like programs in D.</li>
+<li><a href="https://github.com/Abscissa/scriptlike" rel="noopener noreferrer">scriptlike (⭐92)</a> - Utility library to aid writing script-like programs in D.</li>
 </ul>
 
 <ul>
@@ -532,12 +612,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/markuslaker/Argon" rel="noopener noreferrer">Argon (⭐17)</a> - A processor for command-line arguments, an alternative to Getopt, written in D.</li>
+<li><a href="https://github.com/markuslaker/Argon" rel="noopener noreferrer">Argon (⭐16)</a> - A processor for command-line arguments, an alternative to Getopt, written in D.</li>
 </ul>
 <h3><p>GUI Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Kymorphia/gid" rel="noopener noreferrer">giD (⭐32)</a> - GObject Introspection D Package Repository.</li>
+<li><a href="https://github.com/Kymorphia/gid" rel="noopener noreferrer">giD (⭐37)</a> - GObject Introspection D Package Repository.</li>
 </ul>
 
 <ul>
@@ -546,7 +626,7 @@
 <h3><p>GUI Applications</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gnunn1/tilix" rel="noopener noreferrer">tilix (⭐5.6k)</a> - A tiling terminal emulator for Linux using GTK+ 3.</li>
+<li><a href="https://github.com/gnunn1/tilix" rel="noopener noreferrer">tilix (⭐5.7k)</a> - A tiling terminal emulator for Linux using GTK+ 3.</li>
 </ul>
 <h3><p>Games</p>
 </h3>
@@ -573,15 +653,15 @@
 <h3><p>Game Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Kapendev/parin" rel="noopener noreferrer">Parin (⭐55)</a> - A delightfully simple 2D game engine.</li>
+<li><a href="https://github.com/Kapendev/parin" rel="noopener noreferrer">Parin (⭐76)</a> - A delightfully simple 2D game engine.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ZILtoid1991/pixelperfectengine" rel="noopener noreferrer">PixelPerfectEngine (⭐105)</a> - 2D graphics engine written in D.</li>
+<li><a href="https://github.com/ZILtoid1991/pixelperfectengine" rel="noopener noreferrer">PixelPerfectEngine (⭐104)</a> - 2D graphics engine written in D.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/MrcSnm/HipremeEngine" rel="noopener noreferrer">HipremeEngine (⭐134)</a> - Cross Platform D-Lang Game Engine with scripting support.</li>
+<li><a href="https://github.com/MrcSnm/HipremeEngine" rel="noopener noreferrer">HipremeEngine (⭐140)</a> - Cross Platform D-Lang Game Engine with scripting support.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/05/21/">May 21, 2025</a></h2><h3><p>Version Managers</p>
 </h3>
@@ -635,7 +715,7 @@
 <h3><p>Games</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gecko0307/electronvolt" rel="noopener noreferrer">Electronvolt (formerly Atrium) (⭐115)</a> - FPS game with physics based puzzles using OpenGL.</li>
+<li><a href="https://github.com/gecko0307/electronvolt" rel="noopener noreferrer">Electronvolt (formerly Atrium) (⭐114)</a> - FPS game with physics based puzzles using OpenGL.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/03/06/">Mar 06, 2023</a></h2><h3><p>Machine Learning</p>
 </h3>
@@ -674,7 +754,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/03/20/">Mar 20, 2021</a></h2><h3><p>Data Serialization</p>
 </h3>
 <ul>
-<li>arsd <a href="https://github.com/adamdruppe/arsd/blob/master/dom.d" rel="noopener noreferrer">dom.d (⭐548)</a> - an xml/html DOM based on what Javascript provides in browsers</li>
+<li>arsd <a href="https://github.com/adamdruppe/arsd/blob/master/dom.d" rel="noopener noreferrer">dom.d (⭐555)</a> - an xml/html DOM based on what Javascript provides in browsers</li>
 </ul>
 <h3><p>Internationalization</p>
 </h3>
@@ -721,7 +801,7 @@
 <h3><p>Organizations</p>
 </h3>
 <ul>
-<li><a href="https://symmetryinvestments.com/" rel="noopener noreferrer">Symmetry Investments</a> - Symmetry Investments LP is an investment management company with approximately US$4.7 billion in assets under management as of 31 December 2018. Main sponsor of the <a href="https://dlang.org/blog/symmetry-autumn-of-code/" rel="noopener noreferrer">Symmetry Autumn of Code</a>. Have sponsored the development of <a href="https://dlang.org/blog/2017/05/31/project-highlight-excel-d/" rel="noopener noreferrer">excel-d</a>, <a href="https://github.com/atilaneves/dpp" rel="noopener noreferrer">dpp (⭐241)</a>, <a href="https://github.com/symmetryinvestments/autowrap" rel="noopener noreferrer">autowrap</a>, <a href="https://github.com/libmir/mir-algorithm" rel="noopener noreferrer">mir-algorithm (⭐178)</a>, and various other projects.</li>
+<li><a href="https://symmetryinvestments.com/" rel="noopener noreferrer">Symmetry Investments</a> - Symmetry Investments LP is an investment management company with approximately US$4.7 billion in assets under management as of 31 December 2018. Main sponsor of the <a href="https://dlang.org/blog/symmetry-autumn-of-code/" rel="noopener noreferrer">Symmetry Autumn of Code</a>. Have sponsored the development of <a href="https://dlang.org/blog/2017/05/31/project-highlight-excel-d/" rel="noopener noreferrer">excel-d</a>, <a href="https://github.com/atilaneves/dpp" rel="noopener noreferrer">dpp (⭐245)</a>, <a href="https://github.com/symmetryinvestments/autowrap" rel="noopener noreferrer">autowrap (⭐82)</a>, <a href="https://github.com/libmir/mir-algorithm" rel="noopener noreferrer">mir-algorithm (⭐178)</a>, and various other projects.</li>
 </ul>
 <h3><p>Books</p>
 </h3>
@@ -783,7 +863,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Vild/Wild" rel="noopener noreferrer">wild (⭐6)</a> - Wild build system, used to build the <a href="https://github.com/PowerNex/PowerNex" rel="noopener noreferrer">PowerNex (⭐504)</a> kernel</li>
+<li><a href="https://github.com/Vild/Wild" rel="noopener noreferrer">wild (⭐6)</a> - Wild build system, used to build the <a href="https://github.com/PowerNex/PowerNex" rel="noopener noreferrer">PowerNex (⭐505)</a> kernel</li>
 </ul>
 <h3><p>IDEs &amp; Editors</p>
 </h3>
@@ -804,12 +884,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Pure-D/serve-d" rel="noopener noreferrer">serve-d (⭐252)</a> - Language Server Protocol (LSP) implementation for D. Adds modern IDE features to any editor with LSP support (VSCode, Atom, Vim/Neovim and others)</li>
+<li><a href="https://github.com/Pure-D/serve-d" rel="noopener noreferrer">serve-d (⭐263)</a> - Language Server Protocol (LSP) implementation for D. Adds modern IDE features to any editor with LSP support (VSCode, Atom, Vim/Neovim and others)</li>
 </ul>
 <h3><p>Lexers, Parsers &amp; Generators</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dlang-community/libdparse" rel="noopener noreferrer">libdparse</a> - A D language lexer and parser, (possibly) future standard D parser/lexer.</li>
+<li><a href="https://github.com/dlang-community/libdparse" rel="noopener noreferrer">libdparse (⭐123)</a> - A D language lexer and parser, (possibly) future standard D parser/lexer.</li>
 </ul>
 <h3><p>Web Frameworks</p>
 </h3>
@@ -831,7 +911,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/libmir/asdf" rel="noopener noreferrer">asdf (⭐24)</a> - Cache oriented string based JSON representation for fast read &amp; writes and serialisation.</li>
+<li><a href="https://github.com/libmir/asdf" rel="noopener noreferrer">asdf (⭐23)</a> - Cache oriented string based JSON representation for fast read &amp; writes and serialisation.</li>
 </ul>
 <h3><p>Database Clients</p>
 </h3>
@@ -846,7 +926,7 @@
 <h3><p>GUI Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sciter-sdk/Sciter-Dport" rel="noopener noreferrer">Sciter-Dport (⭐34)</a> - D bindings for the <a href="https://sciter.com" rel="noopener noreferrer">Sciter</a> - crossplatform HTML/CSS/script desktop UI toolkit.</li>
+<li><a href="https://github.com/sciter-sdk/Sciter-Dport" rel="noopener noreferrer">Sciter-Dport (⭐33)</a> - D bindings for the <a href="https://sciter.com" rel="noopener noreferrer">Sciter</a> - crossplatform HTML/CSS/script desktop UI toolkit.</li>
 </ul>
 <h3><p>Games</p>
 </h3>
@@ -876,11 +956,11 @@
 <h2><a href="https://www.trackawesomelist.com/2019/11/14/">Nov 14, 2019</a></h2><h3><p>Dev Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dlang-community/D-Scanner" rel="noopener noreferrer">D-Scanner (⭐249)</a> - Swiss-army knife for D source code (linting, static analysis, D code parsing, etc.)</li>
+<li><a href="https://github.com/dlang-community/D-Scanner" rel="noopener noreferrer">D-Scanner (⭐254)</a> - Swiss-army knife for D source code (linting, static analysis, D code parsing, etc.)</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/dlang-community/dfmt" rel="noopener noreferrer">dfmt (⭐212)</a> - formatter for D source code</li>
+<li><a href="https://github.com/dlang-community/dfmt" rel="noopener noreferrer">dfmt (⭐216)</a> - formatter for D source code</li>
 </ul>
 <h3><p>IDEs &amp; Editors</p>
 </h3>
@@ -928,7 +1008,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/11/20/">Nov 20, 2017</a></h2><h3><p>Parallel Computing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/libmir/dcompute" rel="noopener noreferrer">DCompute (⭐139)</a> - <a href="https://dlang.org/blog/2017/07/17/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/" rel="noopener noreferrer">GPGPU with Native D for OpenCL and CUDA</a></li>
+<li><a href="https://github.com/libmir/dcompute" rel="noopener noreferrer">DCompute (⭐143)</a> - <a href="https://dlang.org/blog/2017/07/17/dcompute-gpgpu-with-native-d-for-opencl-and-cuda/" rel="noopener noreferrer">GPGPU with Native D for OpenCL and CUDA</a></li>
 </ul>
 
 <ul>
@@ -941,11 +1021,11 @@
 <h2><a href="https://www.trackawesomelist.com/2017/08/20/">Aug 20, 2017</a></h2><h3><p>Scientific</p>
 </h3>
 <ul>
-<li><a href="https://github.com/libmir/mir" rel="noopener noreferrer">mir (⭐211)</a> - Sandbox for some mir packages: sparse tensors, Hoffman and others.</li>
+<li><a href="https://github.com/libmir/mir" rel="noopener noreferrer">mir (⭐210)</a> - Sandbox for some mir packages: sparse tensors, Hoffman and others.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/libmir/mir" rel="noopener noreferrer">mir-algorithm (⭐211)</a> - N-dimensional arrays (matrixes, tensors), algorithms, general purpose library.</li>
+<li><a href="https://github.com/libmir/mir" rel="noopener noreferrer">mir-algorithm (⭐210)</a> - N-dimensional arrays (matrixes, tensors), algorithms, general purpose library.</li>
 </ul>
 
 <ul>
@@ -964,12 +1044,12 @@
 <h3><p>Build Tools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dlang/dub" rel="noopener noreferrer">dub (⭐719)</a> - De facto official package and build management system for D. Will be included officially soon.</li>
+<li><a href="https://github.com/dlang/dub" rel="noopener noreferrer">dub (⭐726)</a> - De facto official package and build management system for D. Will be included officially soon.</li>
 </ul>
 <h3><p>IDEs &amp; Editors</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dlang/visuald" rel="noopener noreferrer">Visual D (⭐300)</a> - Visual Studio extension for the D programming language.</li>
+<li><a href="https://github.com/dlang/visuald" rel="noopener noreferrer">Visual D (⭐305)</a> - Visual Studio extension for the D programming language.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/05/28/">May 28, 2016</a></h2><h3><p>Build Tools</p>
 </h3>
@@ -983,7 +1063,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/adamdruppe/arsd/blob/master/color.d" rel="noopener noreferrer">color.d (⭐548)</a> + <a href="https://github.com/adamdruppe/arsd/blob/master/bmp.d" rel="noopener noreferrer">bmp.d (⭐548)</a>, <a href="https://github.com/adamdruppe/arsd/blob/master/jpg.d" rel="noopener noreferrer">jpg.d (⭐548)</a>, <a href="https://github.com/adamdruppe/arsd/blob/master/png.d" rel="noopener noreferrer">png.d (⭐548)</a> - basic color struct, HSL functions and reading and writing image files</li>
+<li><a href="https://github.com/adamdruppe/arsd/blob/master/color.d" rel="noopener noreferrer">color.d (⭐555)</a> + <a href="https://github.com/adamdruppe/arsd/blob/master/bmp.d" rel="noopener noreferrer">bmp.d (⭐555)</a>, <a href="https://github.com/adamdruppe/arsd/blob/master/jpg.d" rel="noopener noreferrer">jpg.d (⭐555)</a>, <a href="https://github.com/adamdruppe/arsd/blob/master/png.d" rel="noopener noreferrer">png.d (⭐555)</a> - basic color struct, HSL functions and reading and writing image files</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/05/26/">May 26, 2016</a></h2><h3><p>Articles</p>
 </h3>
@@ -997,7 +1077,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/atilaneves/reggae" rel="noopener noreferrer">reggae</a> - meta build system in D</li>
+<li><a href="https://github.com/atilaneves/reggae" rel="noopener noreferrer">reggae (⭐188)</a> - meta build system in D</li>
 </ul>
 
 <ul>
@@ -1005,7 +1085,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dcarp/cmake-d" rel="noopener noreferrer">cmake-d (⭐66)</a> - CMake D Projects</li>
+<li><a href="https://github.com/dcarp/cmake-d" rel="noopener noreferrer">cmake-d (⭐65)</a> - CMake D Projects</li>
 </ul>
 <h3><p>Data Serialization</p>
 </h3>
@@ -1038,7 +1118,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/01/29/">Jan 29, 2016</a></h2><h3><p>GUI Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/buggins/dlangui" rel="noopener noreferrer">DLangUI (⭐858)</a> - Cross Platform GUI for D programming language. My personal favorite, because it is written in D(not a binding), and is cross platform. DLangUI also has a good showcase in the IDE <a href="https://github.com/buggins/dlangide" rel="noopener noreferrer">DLangIDE (⭐482)</a>.</li>
+<li><a href="https://github.com/buggins/dlangui" rel="noopener noreferrer">DLangUI (⭐862)</a> - Cross Platform GUI for D programming language. My personal favorite, because it is written in D(not a binding), and is cross platform. DLangUI also has a good showcase in the IDE <a href="https://github.com/buggins/dlangide" rel="noopener noreferrer">DLangIDE (⭐490)</a>.</li>
 </ul>
 
 <ul>
@@ -1086,7 +1166,7 @@
 <h3><p>Database Clients</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mysql-d/mysql-native" rel="noopener noreferrer">mysql-native (⭐82)</a> - A MySQL client implemented in native D.</li>
+<li><a href="https://github.com/mysql-d/mysql-native" rel="noopener noreferrer">mysql-native (⭐80)</a> - A MySQL client implemented in native D.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/10/09/">Oct 09, 2015</a></h2><h3><p>Programming Languages</p>
 </h3>
@@ -1096,7 +1176,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/06/30/">Jun 30, 2015</a></h2><h3><p>Web Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/etcimon/libasync" rel="noopener noreferrer">libasync (⭐149)</a> - Cross-platform event loop library of asynchronous objects</li>
+<li><a href="https://github.com/etcimon/libasync" rel="noopener noreferrer">libasync (⭐148)</a> - Cross-platform event loop library of asynchronous objects</li>
 </ul>
 
 <ul>
@@ -1110,7 +1190,7 @@
 <h2><a href="https://www.trackawesomelist.com/2014/08/10/">Aug 10, 2014</a></h2><h3><p>CLI Libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/adamdruppe/arsd/blob/master/terminal.d" rel="noopener noreferrer">terminal.d (⭐548)</a> - Part of Adam Ruppe's <a href="https://github.com/adamdruppe/arsd" rel="noopener noreferrer">arsd (⭐548)</a> library supporting cursor and color manipulation on the console.</li>
+<li><a href="https://github.com/adamdruppe/arsd/blob/master/terminal.d" rel="noopener noreferrer">terminal.d (⭐555)</a> - Part of Adam Ruppe's <a href="https://github.com/adamdruppe/arsd" rel="noopener noreferrer">arsd (⭐555)</a> library supporting cursor and color manipulation on the console.</li>
 </ul>
 <h3><p>Image Processing</p>
 </h3>
@@ -1130,7 +1210,7 @@
 <h2><a href="https://www.trackawesomelist.com/2014/07/28/">Jul 28, 2014</a></h2><h3><p>Tutorials</p>
 </h3>
 <ul>
-<li><a href="https://github.com/PhilippeSigaud/D-templates-tutorial" rel="noopener noreferrer">D Template Tutorial (⭐233)</a> - A tutorial dedicated to D Templates. Very good explanation about templates. Has pdf version. by Philippe Sigaud.</li>
+<li><a href="https://github.com/PhilippeSigaud/D-templates-tutorial" rel="noopener noreferrer">D Template Tutorial (⭐234)</a> - A tutorial dedicated to D Templates. Very good explanation about templates. Has pdf version. by Philippe Sigaud.</li>
 </ul>
 <h3><p>Blogs</p>
 </h3>
@@ -1140,7 +1220,7 @@
 <h2><a href="https://www.trackawesomelist.com/2014/07/25/">Jul 25, 2014</a></h2><h3><p>Organizations</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Circular-Studios" rel="noopener noreferrer">Circular Studios</a> - We are a group of game developers at Rochester Institute of Technology building games and game tech. Hosts <a href="https://github.com/Circular-Studios/Dash" rel="noopener noreferrer">Dash (⭐428)</a>, a 3D game engine written in D, and other related libs.</li>
+<li><a href="https://github.com/Circular-Studios" rel="noopener noreferrer">Circular Studios</a> - We are a group of game developers at Rochester Institute of Technology building games and game tech. Hosts <a href="https://github.com/Circular-Studios/Dash" rel="noopener noreferrer">Dash (⭐424)</a>, a 3D game engine written in D, and other related libs.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2014/07/18/">Jul 18, 2014</a></h2><h3><p>Lexers, Parsers &amp; Generators</p>
 </h3>
@@ -1171,7 +1251,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/nomad-software/tkd" rel="noopener noreferrer">tkD (⭐119)</a> - GUI toolkit for the D programming language based on Tcl/Tk.</li>
+<li><a href="https://github.com/nomad-software/tkd" rel="noopener noreferrer">tkD (⭐118)</a> - GUI toolkit for the D programming language based on Tcl/Tk.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2014/07/08/">Jul 08, 2014</a></h2><h3><p>Lexers, Parsers &amp; Generators</p>
 </h3>
@@ -1185,9 +1265,51 @@
 <h3><p>Web Frameworks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rikkimax/Cmsed" rel="noopener noreferrer">cmsed (⭐19)</a> - A component library for Vibe that functions as a CMS.</li>
+<li><a href="https://github.com/rikkimax/Cmsed" rel="noopener noreferrer">cmsed (⭐18)</a> - A component library for Vibe that functions as a CMS.</li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
