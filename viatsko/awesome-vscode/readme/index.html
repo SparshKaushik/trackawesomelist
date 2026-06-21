@@ -16,20 +16,100 @@
     <meta property="og:title" content="Awesome Vscode Overview" />
     <meta property="og:description" content="🎨 A curated list of delightful VS Code packages and resources." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Vscode Overview</h1>
 <p>🎨 A curated list of delightful VS Code packages and resources.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/viatsko/awesome-vscode/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/viatsko/awesome-vscode">😺 viatsko/awesome-vscode</a><span> · </span><span>⭐ 27K</span><span> · </span><span>🏷️ Editors</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/viatsko/awesome-vscode/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/viatsko/awesome-vscode">😺 viatsko/awesome-vscode</a><span> · </span><span>⭐ 29K</span><span> · </span><span>🏷️ Editors</span></p>
 <p><span>[ </span><a href="/viatsko/awesome-vscode/">Daily</a><span> / </span><a href="/viatsko/awesome-vscode/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
 <br />
 <div>
@@ -40,7 +120,7 @@
 
 <p>A curated list of delightful <a href="https://code.visualstudio.com/">Visual Studio Code</a>
 packages and resources. For more awesomeness, check
-out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br /> <img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome" /> <img src="https://travis-ci.org/viatsko/awesome-vscode.svg" alt="Build Status" /></p>
+out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br /> <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome" /></a> <a href="https://github.com/viatsko/awesome-vscode/actions/workflows/links.yml"><img src="https://github.com/viatsko/awesome-vscode/actions/workflows/links.yml/badge.svg" alt="Links Status" /></a></p>
 </div>
 <br />
 
@@ -54,6 +134,7 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <li><a href="#migrating-from-sublime-text">Migrating from Sublime Text</a></li>
 <li><a href="#migrating-from-visual-studio">Migrating from Visual Studio</a></li>
 <li><a href="#migrating-from-intellij-idea">Migrating from Intellij IDEA</a></li>
+<li><a href="#migrating-from-xcode">Migrating from Xcode</a></li>
 <li><a href="#camel-humps">Camel Humps</a></li>
 </ul>
 </li>
@@ -95,7 +176,6 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <li><a href="#debugger-for-chrome">Debugger for Chrome</a></li>
 <li><a href="#facebook-flow">Facebook Flow</a></li>
 <li><a href="#typescript">TypeScript</a></li>
-<li><a href="#debugger-for-chrome-1">Debugger for Chrome</a></li>
 </ul>
 </li>
 <li><a href="#matlab">MATLAB</a></li>
@@ -103,6 +183,7 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <li><a href="#markdownlint">markdownlint</a></li>
 <li><a href="#markdown-all-in-one">Markdown All in One</a></li>
 <li><a href="#markdown-emoji">Markdown Emoji</a></li>
+<li><a href="#meo">MEO</a></li>
 </ul>
 </li>
 <li><a href="#php">PHP</a><ul>
@@ -124,12 +205,12 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 </ul>
 </li>
 <li><a href="#reasonml">ReasonML</a></li>
+<li><a href="#ruby">Ruby</a></li>
 <li><a href="#rust">Rust</a></li>
 <li><a href="#terraform">Terraform</a></li>
 </ul>
 </li>
 <li><a href="#github">GitHub</a><ul>
-<li><a href="#github-1">GitHub</a></li>
 <li><a href="#github-pull-requests-and-issues">GitHub Pull Requests and Issues</a></li>
 <li><a href="#gistpad">GistPad</a></li>
 <li><a href="#github-actions">GitHub Actions</a></li>
@@ -142,11 +223,10 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <li><a href="#azure-cosmos-db">Azure Cosmos DB</a></li>
 <li><a href="#azure-iot-toolkit">Azure IoT Toolkit</a></li>
 <li><a href="#bookmarks">Bookmarks</a></li>
-<li><a href="#browser-preview">Browser Preview (deprecated)</a></li>
+<li><a href="#microsoft-edge-tools">Microsoft Edge Tools</a></li>
 <li><a href="#color-tabs">Color Tabs</a></li>
 <li><a href="#create-tests">Create tests</a></li>
 <li><a href="#dendron">Dendron</a></li>
-<li><a href="#deploy">Deploy</a></li>
 <li><a href="#duplicate-action">Duplicate Action</a></li>
 <li><a href="#error-lens">Error Lens</a></li>
 <li><a href="#toggle">Toggle</a></li>
@@ -158,7 +238,6 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <li><a href="#git-project-manager">Git Project Manager</a></li>
 <li><a href="#gitlink">GitLink</a></li>
 <li><a href="#gitlens">GitLens</a></li>
-<li><a href="#git-indicators">Git Indicators</a></li>
 <li><a href="#gitlab-workflow">GitLab Workflow</a><ul>
 <li><a href="#gradle-tasks">Gradle Tasks</a></li>
 </ul>
@@ -166,11 +245,10 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <li><a href="#icon-fonts">Icon Fonts</a></li>
 <li><a href="#import-cost">Import Cost</a></li>
 <li><a href="#jira-and-bitbucket">Jira and Bitbucket</a></li>
-<li><a href="#js-parameter-annotations">JS Parameter Annotations</a></li>
-<li><a href="#jumpy">Jumpy</a></li>
+<li><a href="#find-jump">Find-Jump</a></li>
 <li><a href="#kanban">Kanban</a></li>
 <li><a href="#live-server">Live Server</a></li>
-<li><a href="#multiple-clipboards">Multiple clipboards</a></li>
+<li><a href="#clipboard-manager">Clipboard Manager</a></li>
 <li><a href="#ngrok-for-vscode">ngrok for VSCode</a></li>
 <li><a href="#dotnet-core-test-explorer">Dotnet Core Test Explorer</a></li>
 <li><a href="#i18n-ally">i18n Ally</a></li>
@@ -189,31 +267,31 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <li><a href="#project-dashboard">Project Dashboard</a></li>
 <li><a href="#rainbow-csv">Rainbow CSV</a></li>
 <li><a href="#remote-development">Remote Development</a></li>
-<li><a href="#remote-vscode">Remote VSCode</a></li>
 <li><a href="#rest-client">REST Client</a></li>
 <li><a href="#text-power-tools">Text Power Tools</a></li>
 <li><a href="#todo-tree">Todo Tree</a></li>
 <li><a href="#toggle-quotes">Toggle Quotes</a></li>
 <li><a href="#typescript-destructure">Typescript Destructure</a></li>
 <li><a href="#wakatime">WakaTime</a></li>
-<li><a href="#yo">Yo</a></li>
 <li><a href="#timing">Timing</a></li>
+<li><a href="#httpyac">httpYac</a></li>
+<li><a href="#devdb">DevDb</a></li>
+<li><a href="#keploy">Keploy</a></li>
+<li><a href="#semanticdiff">SemanticDiff</a></li>
+<li><a href="#trunk">Trunk</a></li>
+<li><a href="#peacock">Peacock</a></li>
+<li><a href="#github-copilot">GitHub Copilot</a></li>
 </ul>
 </li>
 <li><a href="#formatting--beautification">Formatting &amp; Beautification</a><ul>
 <li><a href="#better-align">Better Align</a></li>
 <li><a href="#auto-rename-tag">Auto Rename Tag</a></li>
-<li><a href="#beautify">beautify</a><ul>
 <li><a href="#html2pug">html2pug</a></li>
-</ul>
-</li>
-<li><a href="#ecmascript-quotes-transformer">ECMAScript Quotes Transformer</a></li>
 <li><a href="#paste-and-indent">Paste and Indent</a></li>
 <li><a href="#sort-lines">Sort Lines</a></li>
 <li><a href="#surround">Surround</a></li>
 <li><a href="#wrap-selection">Wrap Selection</a></li>
 <li><a href="#formatting-toggle">Formatting Toggle</a></li>
-<li><a href="#auto-import">Auto Import</a></li>
 <li><a href="#shell-format">shell-format</a></li>
 <li><a href="#vscode-google-translate">Vscode Google Translate</a></li>
 <li><a href="#explorer-icons">Explorer Icons</a><ul>
@@ -234,24 +312,22 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <li><a href="#dash">Dash</a></li>
 <li><a href="#edit-with-shell-command">Edit with Shell Command</a></li>
 <li><a href="#editor-config-for-vs-code">Editor Config for VS Code</a></li>
-<li><a href="#ftp-sync">ftp-sync</a></li>
+<li><a href="#sftp">SFTP</a></li>
 <li><a href="#highlight-jsxhtml-tags">Highlight JSX/HTML tags</a></li>
 <li><a href="#indent-rainbow">Indent Rainbow</a></li>
 <li><a href="#iterm2-theme-sync">iTerm2 Theme Sync</a></li>
 <li><a href="#password-generator">Password Generator</a></li>
-<li><a href="#platformio">PlatformIO</a></li>
+<li><a href="#platformio-ide">PlatformIO IDE</a></li>
 <li><a href="#polacode">Polacode</a></li>
 <li><a href="#carbon-now-sh">carbon-now-sh</a></li>
 <li><a href="#quokka">Quokka</a></li>
 <li><a href="#runner">Runner</a></li>
-<li><a href="#slack">Slack</a></li>
-<li><a href="#spotify">Spotify</a></li>
 <li><a href="#svg">SVG</a></li>
-<li><a href="#svg-viewer">SVG Viewer</a></li>
 <li><a href="#text-marker-highlighter">Text Marker (Highlighter)</a></li>
-<li><a href="#esdoc-mdn">ESDOC MDN</a></li>
 <li><a href="#interface-generator">Interface generator</a></li>
 <li><a href="#jfrog">JFrog</a></li>
+<li><a href="#sarif-explorer">SARIF Explorer</a></li>
+<li><a href="#document-viewer">Document Viewer</a></li>
 </ul>
 </li>
 <li><a href="#themes">Themes</a><ul>
@@ -276,7 +352,8 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <li><a href="#material-palenight-theme-by-whizkydee">Material Palenight Theme by whizkydee</a></li>
 <li><a href="#material-theme-by-mattia-astorino">Material Theme by Mattia Astorino</a></li>
 <li><a href="#mno-by-u29dc">Mno by u29dc</a></li>
-<li><a href="#monokai-oblique-by-pushqrdx">Monokai Oblique by pushqrdx</a></li>
+<li><a href="#omni-by-rocketseat">Omni by Rocketseat</a></li>
+<li><a href="#one-monokai-by-azemoh">One Monokai by azemoh</a></li>
 <li><a href="#monokai-pro-by-monokai-commercial">Monokai Pro by monokai (commercial)</a></li>
 <li><a href="#night-owl-by-sarah-drasner">Night Owl by Sarah Drasner</a></li>
 <li><a href="#plastic-by-will-stone">Plastic by Will Stone</a></li>
@@ -306,16 +383,16 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 </ul>
 <h1 id="official"><a class="anchor" aria-hidden="true" tabindex="-1" href="#official"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Official</h1><ul>
 <li><a href="https://code.visualstudio.com/" rel="noopener noreferrer">Official website</a></li>
-<li><a href="https://github.com/microsoft/vscode" rel="noopener noreferrer">Source code</a> on GitHub</li>
+<li><a href="https://github.com/microsoft/vscode" rel="noopener noreferrer">Source code (⭐186k)</a> on GitHub</li>
 <li><a href="https://code.visualstudio.com/download" rel="noopener noreferrer">Releases (stable channel)</a></li>
 <li><a href="https://code.visualstudio.com/insiders" rel="noopener noreferrer">Releases (insiders channel)</a></li>
-<li><a href="https://github.com/Microsoft/vscode/issues?utf8=%E2%9C%93&amp;q=label%3Aiteration-plan+" rel="noopener noreferrer">Monthly iteration plans</a></li>
+<li><a href="https://github.com/Microsoft/vscode/issues?utf8=%E2%9C%93&amp;q=label%3Aiteration-plan+" rel="noopener noreferrer">Monthly iteration plans (⭐186k)</a></li>
 </ul>
 <h1 id="syntax"><a class="anchor" aria-hidden="true" tabindex="-1" href="#syntax"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Syntax</h1><p>Language packages extend the editor with syntax highlighting and/or snippets for a specific language or file format.</p>
 <ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino" rel="noopener noreferrer">Arduino</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=vscode-arduino.vscode-arduino-community" rel="noopener noreferrer">Arduino</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=kagof.befunge" rel="noopener noreferrer">Befunge</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=melmass.blink" rel="noopener noreferrer">Blink</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=virgilsisoe.nuke-tools" rel="noopener noreferrer">Blink (Nuke Tools)</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=smkamranqadri.vscode-bolt-language" rel="noopener noreferrer">Bolt</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=yiwwan.vscode-bond" rel="noopener noreferrer">Bond</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=twxs.cmake" rel="noopener noreferrer">CMake</a></li>
@@ -340,21 +417,20 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <li><a href="https://marketplace.visualstudio.com/items?itemName=openhab.openhab" rel="noopener noreferrer">openHAB</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=viatsko.parser3" rel="noopener noreferrer">Parser 3</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.pascal" rel="noopener noreferrer">Pascal</a>, or <a href="https://marketplace.visualstudio.com/items?itemName=Wosi.omnipascal" rel="noopener noreferrer">OmniPascal</a> (only for Windows)</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=viatsko.perl-html-template" rel="noopener noreferrer">Perl HTML-Template</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=jmaxwilson.vscode-povray" rel="noopener noreferrer">POV-Ray</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=peterj.proto" rel="noopener noreferrer">Protobuf</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=groksrc.ruby" rel="noopener noreferrer">Ruby</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=scala-lang.scala" rel="noopener noreferrer">Scala</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-lsp" rel="noopener noreferrer">Ruby</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=scalameta.metals" rel="noopener noreferrer">Scala</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=slevesque.shader" rel="noopener noreferrer">Shaders (<em>HLSL</em>, <em>GLSL</em>, <em>Cg</em>) </a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=sysoev.language-stylus" rel="noopener noreferrer">Stylus</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=Kasik96.swift" rel="noopener noreferrer">Swift</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=swiftlang.swift-vscode" rel="noopener noreferrer">Swift</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=melmass.vex" rel="noopener noreferrer">VEX</a></li>
-<li><a href="https://github.com/antfu/wenyan-lang-vscode" rel="noopener noreferrer">Wenyan</a></li>
+<li><a href="https://github.com/antfu/wenyan-lang-vscode" rel="noopener noreferrer">Wenyan (⭐296)</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=zephir-lang.zephir" rel="noopener noreferrer">Zephir</a></li>
 </ul>
 <h1 id="migrating-from-other-editors"><a class="anchor" aria-hidden="true" tabindex="-1" href="#migrating-from-other-editors"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Migrating from other editors</h1><p>The VSCode team provides keymaps from popular editors, making the transition to VSCode almost seamless and easy.</p>
 <h2 id="migrating-from-vim"><a class="anchor" aria-hidden="true" tabindex="-1" href="#migrating-from-vim"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim" rel="noopener noreferrer">Migrating from Vim</a></h2><blockquote>
-<p><strong>Vim Mode</strong> - Relatively new, but promising extension implementing Vim features in VSCode</p>
+<p><strong>Vim Mode</strong> - The most popular Vim emulation for VS Code: modal editing, motions, and support for many popular Vim plugins.</p>
 </blockquote>
 <h2 id="migrating-from-atom"><a class="anchor" aria-hidden="true" tabindex="-1" href="#migrating-from-atom"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.atom-keybindings" rel="noopener noreferrer">Migrating from Atom</a></h2><blockquote>
 <p>Popular Atom key bindings for Visual Studio Code</p>
@@ -368,11 +444,14 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <h2 id="migrating-from-intellij-idea"><a class="anchor" aria-hidden="true" tabindex="-1" href="#migrating-from-intellij-idea"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=k--kato.intellij-idea-keybindings" rel="noopener noreferrer">Migrating from Intellij IDEA</a></h2><blockquote>
 <p>Popular Intellij IDEA key bindings for VS Code.</p>
 </blockquote>
+<h2 id="migrating-from-xcode"><a class="anchor" aria-hidden="true" tabindex="-1" href="#migrating-from-xcode"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=stevemoser.xcode-keybindings" rel="noopener noreferrer">Migrating from Xcode</a></h2><blockquote>
+<p>Popular Xcode key bindings for VS Code.</p>
+</blockquote>
 <h2 id="camel-humps"><a class="anchor" aria-hidden="true" tabindex="-1" href="#camel-humps"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://www.damirscorner.com/blog/posts/20190726-CamelHumpsNavigationInVsCode.html" rel="noopener noreferrer">Camel Humps</a></h2><blockquote>
 <p>Like with Visual Studio and Resharper or Intellij IDEA</p>
 </blockquote>
 <h1 id="using-vs-code-with-particular-technologies"><a class="anchor" aria-hidden="true" tabindex="-1" href="#using-vs-code-with-particular-technologies"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Using VS Code with particular technologies</h1><p>Microsoft created a collection of recipes for using VS Code with particular technologies (mostly Web).</p>
-<p>Make sure to visit it at <a href="https://github.com/Microsoft/vscode-recipes" rel="noopener noreferrer">Microsoft/vscode-recipes</a></p>
+<p>Make sure to visit it at <a href="https://github.com/Microsoft/vscode-recipes" rel="noopener noreferrer">Microsoft/vscode-recipes (⭐6k)</a></p>
 <h1 id="lint-and-intellisense"><a class="anchor" aria-hidden="true" tabindex="-1" href="#lint-and-intellisense"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Lint and IntelliSense</h1><p>In case the awesome nirvana that is linting has not yet been unleashed upon you:</p>
 <blockquote>
 <p>lint was the name originally given to a particular program that flagged some suspicious and non-portable constructs (likely to be bugs) in C language source code. The term is now applied generically to tools that flag suspicious usage in software written in any computer language.</p>
@@ -394,21 +473,17 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <h3 id="shellman"><a class="anchor" aria-hidden="true" tabindex="-1" href="#shellman"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=Remisa.shellman" rel="noopener noreferrer">Shellman</a></h3><blockquote>
 <p>Bash script snippets extension</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/yousefvand/shellman/master/images/demo.gif" alt="Shellman" /></p>
+<p><img src="https://raw.githubusercontent.com/yousefvand/shellman/master/images/banner.gif" alt="Shellman" /></p>
 <h2 id="c"><a class="anchor" aria-hidden="true" tabindex="-1" href="#c"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>C++</h2><ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools" rel="noopener noreferrer">C/C++</a> - Preview C/C++ extension by <a href="https://www.microsoft.com" rel="noopener noreferrer">Microsoft</a>, read <a href="https://blogs.msdn.microsoft.com/vcblog/2016/03/31/cc-extension-for-visual-studio-code/" rel="noopener noreferrer">official blog post</a> for the details</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools" rel="noopener noreferrer">C/C++</a> - C/C++ IntelliSense, debugging and code browsing by <a href="https://www.microsoft.com" rel="noopener noreferrer">Microsoft</a>; see the <a href="https://code.visualstudio.com/docs/languages/cpp" rel="noopener noreferrer">official docs</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd" rel="noopener noreferrer">Clangd</a> - Provides C/C++ language IDE features for VS Code using clangd: code completion, compile errors and warnings, go-to-definition and cross references, include management, code formatting, simple refactorings.</li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=austin.code-gnu-global" rel="noopener noreferrer">gnu-global-tags</a> - Provide Intellisense for C/C++ with the help of the GNU Global tool.</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=RichardHe.you-complete-me" rel="noopener noreferrer">YouCompleteMe</a> - Provides semantic completions for C/C++ (and TypeScript, JavaScript, Objective-C, Golang, Rust) using <a href="http://ycm-core.github.io/YouCompleteMe/" rel="noopener noreferrer">YouCompleteMe</a>.</li>
-<li><a href="https://github.com/mitaki28/vscode-clang" rel="noopener noreferrer">C/C++ Clang Command Adapter</a> - Completion and Diagnostic for C/C++/Objective-C using Clang command.</li>
-<li><a href="https://github.com/cquery-project/vscode-cquery" rel="noopener noreferrer">CQuery</a> - <a href="https://github.com/jacobdufault/cquery" rel="noopener noreferrer">C/C++ language server</a> supporting multi-million line code base, powered by libclang. Cross references, completion, diagnostics, semantic highlighting and more.</li>
 </ul>
 <h4 id="more"><a class="anchor" aria-hidden="true" tabindex="-1" href="#more"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>More</h4><ul>
 <li><a href="https://devblogs.microsoft.com/cppblog/vscode-cpp-may-2019-update/" rel="noopener noreferrer">Microsoft's tutorial on using VSCode for remote C/C++ development</a></li>
 </ul>
 <h2 id="c-asp-net-and-net-core"><a class="anchor" aria-hidden="true" tabindex="-1" href="#c-asp-net-and-net-core"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>C#, ASP .NET and .NET Core</h2><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp" rel="noopener noreferrer">C#</a> - C# extension by <a href="https://www.microsoft.com" rel="noopener noreferrer">Microsoft</a>, read <a href="https://code.visualstudio.com/docs/languages/csharp" rel="noopener noreferrer">official documentation</a> for the details</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=Leopotam.csharpfixformat" rel="noopener noreferrer">C# FixFormat</a> - Fix format of usings / indents / braces / empty lines</li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=jchannon.csharpextensions" rel="noopener noreferrer">C# Extensions</a> - Provides extensions to the IDE that will speed up your development workflow.</li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=tintoy.msbuild-project-tools" rel="noopener noreferrer">MSBuild Project Tools</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=fernandoescolar.vscode-solution-explorer" rel="noopener noreferrer">VSCode Solution Explorer</a></li>
@@ -426,6 +501,8 @@ out <a href="https://github.com/sindresorhus/awesome">awesome</a>. <br /> <br />
 <ul>
 <li><p><a href="https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint" rel="noopener noreferrer">stylelint</a> - Lint CSS/SCSS.</p>
 </li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss" rel="noopener noreferrer">Tailwind CSS IntelliSense</a> - Autocomplete, linting and hover previews for Tailwind CSS.</p>
+</li>
 <li><p><a href="https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-autoprefixer" rel="noopener noreferrer">Autoprefixer</a>
 Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <img src="https://cloud.githubusercontent.com/assets/7034281/16823311/da82a3c6-496b-11e6-8d95-0bebbf0b9607.gif" alt="Autoprefixer" /></p>
@@ -442,12 +519,11 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 </ul>
 <p><img src="https://raw.githubusercontent.com/nvuillam/vscode-groovy-lint/master/images/vscode-anim.gif" alt="VsCode Groovy Lint" /></p>
 <h2 id="haskell"><a class="anchor" aria-hidden="true" tabindex="-1" href="#haskell"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Haskell</h2><ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=hoovercj.haskell-linter" rel="noopener noreferrer">haskell-linter</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=alanz.vscode-hie-server" rel="noopener noreferrer">Haskell IDE engine</a> - provides <a href="https://github.com/haskell/haskell-ide-engine" rel="noopener noreferrer">language server</a> for stack and cabal projects.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=haskell.haskell" rel="noopener noreferrer">Haskell</a> - Official Haskell support powered by the Haskell Language Server (HLS); supersedes the former Haskell IDE Engine and haskell-linter.</li>
 </ul>
 <h2 id="hlsl"><a class="anchor" aria-hidden="true" tabindex="-1" href="#hlsl"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>HLSL</h2><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=TimGJones.hlsltools" rel="noopener noreferrer">HLSL Tools</a> - provides rich language support for editing HLSL files in VS Code
-<img src="https://github.com/tgjones/HlslTools/raw/master/src/ShaderTools.VSCode/art/statement-completion.gif" alt="Example of statement completion using HLSL Tools for VS Code" /></li>
+<img src="https://raw.githubusercontent.com/tgjones/HlslTools/master/src/ShaderTools.VSCode/art/statement-completion.gif" alt="Example of statement completion using HLSL Tools for VS Code" /></li>
 </ul>
 <h2 id="shell"><a class="anchor" aria-hidden="true" tabindex="-1" href="#shell"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Shell</h2><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=truman.autocomplate-shell" rel="noopener noreferrer">autocomplate-shell</a></li>
@@ -459,29 +535,27 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 </li>
 <li><p><a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-maven" rel="noopener noreferrer">Maven for Java</a></p>
 </li>
-<li><p><a href="https://marketplace.visualstudio.com/items?itemName=GabrielBB.vscode-lombok" rel="noopener noreferrer">Lombok</a></p>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-lombok" rel="noopener noreferrer">Lombok</a></p>
 </li>
 </ul>
 <h2 id="javascript"><a class="anchor" aria-hidden="true" tabindex="-1" href="#javascript"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>JavaScript</h2><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=ipatalas.vscode-postfix-ts" rel="noopener noreferrer">TS/JS postfix completion</a></li>
 </ul>
-<p><img src="https://github.com/ipatalas/vscode-postfix-ts/raw/master/images/demo-multiline.gif" alt="TS/JS postfix completion demo" /></p>
+<p><img src="https://raw.githubusercontent.com/ipatalas/vscode-postfix-ts/master/images/demo-multiline.gif" alt="TS/JS postfix completion demo" /></p>
 <ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=mgmcdermott.vscode-language-babel" rel="noopener noreferrer">Babel JavaScript</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode" rel="noopener noreferrer">Visual Studio IntelliCode</a> - This extension provides AI-assisted development features including autocomplete and other insights based on understanding your code context.
 <img src="https://docs.microsoft.com/en-us/visualstudio/intellicode/media/python-intellicode.gif" alt="Visual Studio IntelliCode" /></li>
 </ul>
-<p>See the difference between these two <a href="https://github.com/michaelgmcd/vscode-language-babel/issues/1" rel="noopener noreferrer">here</a></p>
+<p>See the difference between these two <a href="https://github.com/michaelgmcd/vscode-language-babel/issues/1" rel="noopener noreferrer">here (⭐133)</a></p>
 <h3 id="linters"><a class="anchor" aria-hidden="true" tabindex="-1" href="#linters"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Linters</h3><ul>
-<li><p><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin" rel="noopener noreferrer">tslint (deprecated)</a> - TSLint for Visual Studio Code (with <code>"tslint.jsEnable": true</code>).</p>
-</li>
 <li><p><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint" rel="noopener noreferrer">eslint</a> - Linter for <a href="https://eslint.org/" rel="noopener noreferrer">eslint</a>.</p>
 </li>
-<li><p><a href="https://marketplace.visualstudio.com/items?itemName=samverschueren.linter-xo" rel="noopener noreferrer">XO</a> - Linter for <a href="https://github.com/xojs/xo" rel="noopener noreferrer">XO</a>.</p>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=samverschueren.linter-xo" rel="noopener noreferrer">XO</a> - Linter for <a href="https://github.com/xojs/xo" rel="noopener noreferrer">XO (⭐8k)</a>.</p>
 </li>
-<li><p><a href="https://marketplace.visualstudio.com/items?itemName=samverschueren.ava" rel="noopener noreferrer">AVA</a> - Snippets for <a href="https://github.com/avajs/ava" rel="noopener noreferrer">AVA</a>.</p>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=samverschueren.ava" rel="noopener noreferrer">AVA</a> - Snippets for <a href="https://github.com/avajs/ava" rel="noopener noreferrer">AVA (⭐21k)</a>.</p>
 </li>
-<li><p><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode" rel="noopener noreferrer">Prettier</a> - Linter, Formatter and Pretty printer for <a href="https://github.com/prettier/prettier-vscode" rel="noopener noreferrer">Prettier</a>.</p>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode" rel="noopener noreferrer">Prettier</a> - Opinionated code formatter for <a href="https://github.com/prettier/prettier-vscode" rel="noopener noreferrer">Prettier (⭐5.5k)</a>.</p>
 </li>
 <li><p><a href="https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker" rel="noopener noreferrer">Code Spell Checker</a> - Spelling Checker for Visual Studio Code (English). Also supports other languages via external extensions.</p>
 </li>
@@ -489,22 +563,18 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 </li>
 </ul>
 <h3 id="framework-specific"><a class="anchor" aria-hidden="true" tabindex="-1" href="#framework-specific"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Framework-specific</h3><ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=octref.vetur" rel="noopener noreferrer">Vetur</a> - Toolkit for Vue.js
-<img src="https://github.com/viatsko/awesome-vscode/raw/master/screenshots/Vetur.png" alt="Vetur" /></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=Vue.volar" rel="noopener noreferrer">Vue - Official</a> - Official Vue language support (Volar). Supersedes Vetur, which is now in maintenance mode.</li>
 </ul>
 <h3 id="debugger-for-chrome"><a class="anchor" aria-hidden="true" tabindex="-1" href="#debugger-for-chrome"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome" rel="noopener noreferrer">Debugger for Chrome</a></h3><blockquote>
-<p>A VS Code extension to debug your JavaScript code in the Chrome browser, or other targets that support the Chrome Debugging Protocol.</p>
+<p>⚠️ Deprecated — debugging JavaScript in Chrome/Edge is now built into VS Code via the bundled <strong>JavaScript Debugger</strong>, so this extension is no longer needed.</p>
 </blockquote>
 <h3 id="facebook-flow"><a class="anchor" aria-hidden="true" tabindex="-1" href="#facebook-flow"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Facebook Flow</h3><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode" rel="noopener noreferrer">Flow Language Support</a> - provides all the functionality you would expect — linting, intellisense, type tooltips and click-to-definition</li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=gcazaciuc.vscode-flow-ide" rel="noopener noreferrer">vscode-flow-ide</a> - an alternative Flowtype extension for Visual Studio Code</li>
 </ul>
 <h3 id="typescript"><a class="anchor" aria-hidden="true" tabindex="-1" href="#typescript"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>TypeScript</h3><ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin" rel="noopener noreferrer">tslint (deprecated)</a> - TSLint for Visual Studio Code.</li>
+<li>TSLint reached end-of-life in 2019 — use <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint" rel="noopener noreferrer">ESLint</a> with <a href="https://typescript-eslint.io/" rel="noopener noreferrer">typescript-eslint</a> to lint TypeScript.</li>
 </ul>
-<h3 id="debugger-for-chrome-1"><a class="anchor" aria-hidden="true" tabindex="-1" href="#debugger-for-chrome-1"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome" rel="noopener noreferrer">Debugger for Chrome</a></h3><blockquote>
-<p>A VS Code extension to debug your JavaScript code in the Chrome browser, or other targets that support the Chrome Debugging Protocol.</p>
-</blockquote>
 <h2 id="matlab"><a class="anchor" aria-hidden="true" tabindex="-1" href="#matlab"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=MathWorks.language-matlab" rel="noopener noreferrer">MATLAB</a></h2><blockquote>
 <p>This extension provides support for editing MATLAB® code in Visual Studio® Code and includes features such as syntax highlighting, code analysis, navigation support, and more.</p>
 </blockquote>
@@ -515,7 +585,7 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <li>Commenting</li>
 <li>Code folding</li>
 </ul>
-<p><img src="https://github.com/mathworks/MATLAB-extension-for-vscode/raw/HEAD/public/BasicFeatures.gif" alt="Without MATLAB Installed" /></p>
+<p><img src="https://raw.githubusercontent.com/mathworks/MATLAB-extension-for-vscode/main/public/BasicFeatures.gif" alt="Without MATLAB Installed" /></p>
 <p>With MATLAB installed:</p>
 <ul>
 <li>Automatic code completion</li>
@@ -523,9 +593,9 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <li>Code navigation</li>
 <li>Code analysis, such as continuous code checking and automatic fixes</li>
 </ul>
-<p><img src="https://github.com/mathworks/MATLAB-extension-for-vscode/raw/HEAD/public/AdvancedFeatures.gif" alt="MATLAB Installed" /></p>
+<p><img src="https://raw.githubusercontent.com/mathworks/MATLAB-extension-for-vscode/main/public/AdvancedFeatures.gif" alt="MATLAB Installed" /></p>
 <h2 id="markdown"><a class="anchor" aria-hidden="true" tabindex="-1" href="#markdown"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Markdown</h2><h3 id="markdownlint"><a class="anchor" aria-hidden="true" tabindex="-1" href="#markdownlint"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint" rel="noopener noreferrer">markdownlint</a></h3><blockquote>
-<p>Linter for <a href="https://github.com/DavidAnson/markdownlint" rel="noopener noreferrer">markdownlint</a>.</p>
+<p>Linter for <a href="https://github.com/DavidAnson/markdownlint" rel="noopener noreferrer">markdownlint (⭐6.1k)</a>.</p>
 </blockquote>
 <h3 id="markdown-all-in-one"><a class="anchor" aria-hidden="true" tabindex="-1" href="#markdown-all-in-one"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one" rel="noopener noreferrer">Markdown All in One</a></h3><blockquote>
 <p>All-in-one markdown plugin (keyboard shortcuts, table of contents, auto preview, list editing and more)</p>
@@ -535,14 +605,15 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <p>Adds emoji syntax support to VS Code's built-in Markdown preview</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/mjbvz/vscode-markdown-emoji/master/docs/example.png" alt="Markdown Emoji" /></p>
+<h3 id="meo"><a class="anchor" aria-hidden="true" tabindex="-1" href="#meo"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=vadimmelnicuk.meo" rel="noopener noreferrer">MEO</a></h3><blockquote>
+<p>A markdown editor with a single-tab live/source toggle for distraction-free writing.</p>
+</blockquote>
 <h2 id="php"><a class="anchor" aria-hidden="true" tabindex="-1" href="#php"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>PHP</h2><h3 id="php-tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#php-tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=DEVSENSE.phptools-vscode" rel="noopener noreferrer">PHP Tools</a></h3><blockquote>
 <p>Rich language support for the PHP language: linting, debugging, intellisense, auto-completion, code formatting, refactoring, unit testing, profiling, and more.</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/DEVSENSE/phptools-docs/master/docs/vscode/imgs/completion-tooltip.gif" alt="PHP Tools Intellisense demo screenshot" /></p>
-<h3 id="intellisense"><a class="anchor" aria-hidden="true" tabindex="-1" href="#intellisense"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>IntelliSense</h3><p>These extensions provide slightly different sets of features. While the first one offers better autocompletion support, the second one seems to have more features overall.</p>
-<ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client" rel="noopener noreferrer">PHP Intelephense</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-intellisense" rel="noopener noreferrer">PHP IntelliSense</a></li>
+<h3 id="intellisense"><a class="anchor" aria-hidden="true" tabindex="-1" href="#intellisense"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>IntelliSense</h3><ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client" rel="noopener noreferrer">PHP Intelephense</a> - The de-facto standard PHP language server: autocompletion, diagnostics, go-to-definition and more. (The former PHP IntelliSense by felixfbecker is deprecated.)</li>
 </ul>
 <h3 id="laravel"><a class="anchor" aria-hidden="true" tabindex="-1" href="#laravel"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Laravel</h3><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=onecentlin.laravel5-snippets" rel="noopener noreferrer">Laravel 5 Snippets</a> - Laravel 5 snippets for Visual Studio Code</li>
@@ -561,6 +632,9 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <li><a href="https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv" rel="noopener noreferrer">DotENV</a> - Support for dotenv file syntax</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/mikestead/vscode-dotenv/master/images/screenshot.png" alt="Support for dotenv file syntax screenshot" /></p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=open-southeners.laravel-pint" rel="noopener noreferrer">Laravel Pint</a> - Run and configure Laravel Pint, the opinionated PHP code-style fixer for Laravel.</li>
+</ul>
 <h3 id="twig"><a class="anchor" aria-hidden="true" tabindex="-1" href="#twig"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Twig</h3><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=mblode.twig-language-2" rel="noopener noreferrer">Twig Language 2</a></li>
 </ul>
@@ -579,7 +653,8 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <p><img src="https://raw.githubusercontent.com/RiFi2k/format-html-in-php/master/format-html-in-php.gif" alt="Format HTML in PHP" /></p>
 <ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=ikappas.composer" rel="noopener noreferrer">Composer</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug" rel="noopener noreferrer">PHP Debug</a> - XDebug extension for Visual Studio Code</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=jaguadoromero.vscode-php-create-class" rel="noopener noreferrer">PHP Create Class</a> - Create PHP classes, interfaces, traits and enums from the context menu.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug" rel="noopener noreferrer">PHP Debug</a> - XDebug extension for Visual Studio Code</li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=neilbrayfield.php-docblocker" rel="noopener noreferrer">PHP DocBlocker</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=junstyle.php-cs-fixer" rel="noopener noreferrer">php cs fixer</a> - PHP CS Fixer extension for VS Code, php formatter, php code beautify tool</li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs" rel="noopener noreferrer">phpcs</a> - PHP CodeSniffer for Visual Studio Code</li>
@@ -598,9 +673,11 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h3 id="tensorflow"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tensorflow"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>TensorFlow</h3><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=vahidk.tensorflow-snippets" rel="noopener noreferrer">TensorFlow Snippets</a> - This extension includes a set of useful code snippets for developing TensorFlow models in Visual Studio Code.</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/vahidk/tensorflow-snippets/master/images/framework.gif" alt="TensorFlow Snippets GIF" /></p>
 <h2 id="reasonml"><a class="anchor" aria-hidden="true" tabindex="-1" href="#reasonml"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>ReasonML</h2><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=jaredly.reason-vscode" rel="noopener noreferrer">ReasonML</a> - Intellisense, code formatting, refactoring, code lens and more</li>
+</ul>
+<h2 id="ruby"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ruby"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Ruby</h2><ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=kaiwood.endwise" rel="noopener noreferrer">endwise</a> - Automatically add <code>end</code> to Ruby code blocks as you type.</li>
 </ul>
 <h2 id="rust"><a class="anchor" aria-hidden="true" tabindex="-1" href="#rust"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Rust</h2><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer" rel="noopener noreferrer">rust-analyzer</a> - Linting, auto-completion, code formatting, snippets and more</li>
@@ -608,17 +685,14 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h2 id="terraform"><a class="anchor" aria-hidden="true" tabindex="-1" href="#terraform"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Terraform</h2><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform" rel="noopener noreferrer">Terraform</a> - Syntax highlighting, linting, formatting, and validation for Hashicorp's Terraform</li>
 </ul>
-<h1 id="github"><a class="anchor" aria-hidden="true" tabindex="-1" href="#github"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>GitHub</h1><h2 id="github-1"><a class="anchor" aria-hidden="true" tabindex="-1" href="#github-1"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-github" rel="noopener noreferrer">GitHub</a></h2><blockquote>
-<p>Provides GitHub workflow support. For example browse project, issues, file (the current line), create and manage pull request. Support for other providers (e.g. gitlab or bitbucket) is planned.</p>
-</blockquote>
-<h2 id="github-pull-requests-and-issues"><a class="anchor" aria-hidden="true" tabindex="-1" href="#github-pull-requests-and-issues"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github" rel="noopener noreferrer">GitHub Pull Requests and Issues</a></h2><blockquote>
+<h1 id="github"><a class="anchor" aria-hidden="true" tabindex="-1" href="#github"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>GitHub</h1><h2 id="github-pull-requests-and-issues"><a class="anchor" aria-hidden="true" tabindex="-1" href="#github-pull-requests-and-issues"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github" rel="noopener noreferrer">GitHub Pull Requests and Issues</a></h2><blockquote>
 <p>Review and manage GitHub pull requests and issues</p>
 </blockquote>
 <h2 id="gistpad"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gistpad"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=vsls-contrib.gistfs" rel="noopener noreferrer">GistPad</a></h2><blockquote>
 <p>Allows you to manage GitHub Gists entirely within the editor. You can open, create, delete, fork, star and clone gists, and then seamlessly begin editing files as if they were local. It's like your very own developer library for building and referencing code snippets, commonly used config/scripts, programming-related notes/documentation, and interactive samples.</p>
 </blockquote>
 <p><img src="https://user-images.githubusercontent.com/116461/69910156-96274b80-13fe-11ea-9be4-d801f4e9c377.gif" alt="GistPad gist management" /></p>
-<h2 id="github-actions"><a class="anchor" aria-hidden="true" tabindex="-1" href="#github-actions"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=cschleiden.vscode-github-actions" rel="noopener noreferrer">GitHub Actions</a></h2><blockquote>
+<h2 id="github-actions"><a class="anchor" aria-hidden="true" tabindex="-1" href="#github-actions"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=github.vscode-github-actions" rel="noopener noreferrer">GitHub Actions</a></h2><blockquote>
 <p>Shows GitHub Actions workflows and runs</p>
 </blockquote>
 <h2 id="github-repositories"><a class="anchor" aria-hidden="true" tabindex="-1" href="#github-repositories"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.remotehub" rel="noopener noreferrer">GitHub Repositories</a></h2><blockquote>
@@ -643,10 +717,9 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h2 id="bookmarks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#bookmarks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks" rel="noopener noreferrer">Bookmarks</a></h2><blockquote>
 <p>Mark lines and jump to them</p>
 </blockquote>
-<h2 id="browser-preview-deprecated"><a class="anchor" aria-hidden="true" tabindex="-1" href="#browser-preview-deprecated"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=auchenberg.vscode-browser-preview" rel="noopener noreferrer">Browser Preview (deprecated)</a></h2><blockquote>
-<p>Browser Preview for VS Code enables you to open a real browser preview inside your editor that you can debug. Browser Preview is powered by Chrome Headless, and works by starting a headless Chrome instance in a new process. This enables a secure way to render web content inside VS Code, and enables interesting features such as in-editor debugging and more!</p>
+<h2 id="microsoft-edge-tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#microsoft-edge-tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=ms-edgedevtools.vscode-edge-devtools" rel="noopener noreferrer">Microsoft Edge Tools</a></h2><blockquote>
+<p>Use the Microsoft Edge browser's DevTools (Elements, Network, Console) and an in-editor browser preview directly inside VS Code.</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/auchenberg/vscode-browser-preview/master/resources/demo.gif" alt="Browser Preview Demo" /></p>
 <h2 id="color-tabs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#color-tabs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=orepor.color-tabs-vscode-ext" rel="noopener noreferrer">Color Tabs</a></h2><blockquote>
 <p>An extension for big projects or monorepos that colors your tab/titlebar based on the current package</p>
 </blockquote>
@@ -659,10 +732,6 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <p>An extension that can turn Visual Studio Code into a PKM tool, with excellent UX, using Markdown files to organize and reference any amount of knowledge. Whether you organize your notes with PARA or Zettelkasten, link notes together like Roam, or simply create notes in an ad-hoc manner, Dendron can help. Think of it as a second brain to help you make sense of all the information you care about. Bonus: Dendron can also publish a static site via NextJS if also using <code>dendron-cli</code>.</p>
 </blockquote>
 <p><img src="https://foundation-prod-assetspublic53c57cce-8cpvgjldwysl.s3-us-west-2.amazonaws.com/assets/images/graph-intro.gif" alt="dendron.dendron" /></p>
-<h2 id="deploy"><a class="anchor" aria-hidden="true" tabindex="-1" href="#deploy"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=mkloubert.vs-deploy" rel="noopener noreferrer">Deploy</a></h2><blockquote>
-<p>Commands for upload or copy files of a workspace to a destination.</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/mkloubert/vs-deploy/master/img/demo.gif" alt="Upload/copy files animation" /></p>
 <h2 id="duplicate-action"><a class="anchor" aria-hidden="true" tabindex="-1" href="#duplicate-action"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-duplicate" rel="noopener noreferrer">Duplicate Action</a></h2><blockquote>
 <p>Ability to duplicate files and directories.</p>
 </blockquote>
@@ -696,20 +765,14 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h2 id="gitlens"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gitlens"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" rel="noopener noreferrer">GitLens</a></h2><blockquote>
 <p>Provides Git CodeLens information (most recent commit, # of authors), on-demand inline blame annotations, status bar blame information, file and blame history explorers, and commands to compare changes with the working tree or previous versions.</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/eamodio/vscode-git-codelens/master/images/docs/gitlens-preview.gif" alt="GitLens inline git information animation" /></p>
-<h2 id="git-indicators"><a class="anchor" aria-hidden="true" tabindex="-1" href="#git-indicators"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=lamartire.git-indicators" rel="noopener noreferrer">Git Indicators</a></h2><blockquote>
-<p>Atom-like git indicators on active panel</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/lamartire/vscode-git-indicators/master/preview/added.png" alt="git added indicator screenshot" />
-<img src="https://raw.githubusercontent.com/lamartire/vscode-git-indicators/master/preview/removed.png" alt="git removed indicator screenshot" />
-<img src="https://raw.githubusercontent.com/lamartire/vscode-git-indicators/master/preview/modified.png" alt="git modified indicator screenshot" /></p>
+<p><img src="https://raw.githubusercontent.com/gitkraken/vscode-gitlens/main/images/docs/revision-navigation.gif" alt="GitLens inline git information animation" /></p>
 <h2 id="gitlab-workflow"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gitlab-workflow"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=gitlab.gitlab-workflow" rel="noopener noreferrer">GitLab Workflow</a></h2><blockquote>
 <p>Adds a GitLab sidebar icon to view issues, merge requests and other GitLab resources.  You can also view the results of your GitLab CI/CD pipeline and check the syntax of your <code>.gitlab-ci.yml</code>.</p>
 </blockquote>
-<h4 id="gradle-tasks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gradle-tasks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=richardwillis.vscode-gradle" rel="noopener noreferrer">Gradle Tasks</a></h4><blockquote>
+<h4 id="gradle-tasks"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gradle-tasks"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle" rel="noopener noreferrer">Gradle Tasks</a></h4><blockquote>
 <p>Run gradle tasks in VS Code.</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/badsyntax/vscode-gradle/master/images/screencast.gif" alt="Gradle Tasks" /></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-gradle/develop/images/gradle-tasks-view.png" alt="Gradle Tasks" /></p>
 <h2 id="icon-fonts"><a class="anchor" aria-hidden="true" tabindex="-1" href="#icon-fonts"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=idleberg.icon-fonts" rel="noopener noreferrer">Icon Fonts</a></h2><blockquote>
 <p>Snippets for popular icon fonts such as Font Awesome, Ionicons, Glyphicons, Octicons, Material Design Icons and many more!</p>
 </blockquote>
@@ -720,14 +783,9 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <p>Bringing the power of Jira and Bitbucket to VS Code - With Atlassian for VS Code you can create and view issues, start work on issues, create pull requests, do code reviews, start builds, get build statuses and more!</p>
 </blockquote>
 <p><img src="https://bitbucket.org/atlassianlabs/atlascode/raw/master/.readme/dev-workflow.gif" alt="Jira and Bitbucket workflow" /></p>
-<h2 id="js-parameter-annotations"><a class="anchor" aria-hidden="true" tabindex="-1" href="#js-parameter-annotations"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=lannonbr.vscode-js-annotations" rel="noopener noreferrer">JS Parameter Annotations</a></h2><blockquote>
-<p>Provides annotations on function calls in JS/TS files to provide parameter names to arguments.</p>
+<h2 id="find-jump"><a class="anchor" aria-hidden="true" tabindex="-1" href="#find-jump"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=usernamehw.find-jump" rel="noopener noreferrer">Find-Jump</a></h2><blockquote>
+<p>Fast label-based cursor movement — jump to anywhere visible by typing a few characters (in the spirit of Atom's Jumpy).</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/lannonbr/vscode-js-annotations/master/jsannotations.png" alt="JS Parameter Annotations" /></p>
-<h2 id="jumpy"><a class="anchor" aria-hidden="true" tabindex="-1" href="#jumpy"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=wmaurer.vscode-jumpy" rel="noopener noreferrer">Jumpy</a></h2><blockquote>
-<p>Provides fast cursor movement, inspired by Atom's package of the same name.</p>
-</blockquote>
-<p><img src="https://cloud.githubusercontent.com/assets/2899448/19660934/0481c44c-9a32-11e6-87cc-1f8913922ccb.gif" alt="Jumpy" /></p>
 <h2 id="kanban"><a class="anchor" aria-hidden="true" tabindex="-1" href="#kanban"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=mkloubert.vscode-kanban" rel="noopener noreferrer">Kanban</a></h2><p><img src="https://raw.githubusercontent.com/mkloubert/vscode-kanban/master/img/demo1.gif" alt="kanban" /></p>
 <blockquote>
 <p>Simple Kanban board for use in Visual Studio Code, with time tracking and Markdown support.</p>
@@ -736,8 +794,8 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <p>Launch a development local Server with live reload feature for static &amp; dynamic pages.</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/ritwickdey/vscode-live-server/master/images/Screenshot/vscode-live-server-animated-demo.gif" alt="live-server" /></p>
-<h2 id="multiple-clipboards"><a class="anchor" aria-hidden="true" tabindex="-1" href="#multiple-clipboards"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=slevesque.vscode-multiclip" rel="noopener noreferrer">Multiple clipboards</a></h2><blockquote>
-<p>Override the regular Copy and Cut commands to keep selections in a clipboard ring</p>
+<h2 id="clipboard-manager"><a class="anchor" aria-hidden="true" tabindex="-1" href="#clipboard-manager"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=EdgardMessias.clipboard-manager" rel="noopener noreferrer">Clipboard Manager</a></h2><blockquote>
+<p>Keeps a history of your copies and cuts so you can pick any earlier entry to paste again.</p>
 </blockquote>
 <h2 id="ngrok-for-vscode"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ngrok-for-vscode"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=philnash.ngrok-for-vscode" rel="noopener noreferrer">ngrok for VSCode</a></h2><blockquote>
 <p>ngrok allows you to expose a web server running on your local machine to the internet. Just tell ngrok what port your web server is listening on. This extension allows you to control <a href="https://ngrok.com/" rel="noopener noreferrer">ngrok</a> from the VSCode command palette</p>
@@ -790,7 +848,7 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h2 id="project-manager"><a class="anchor" aria-hidden="true" tabindex="-1" href="#project-manager"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager" rel="noopener noreferrer">Project Manager</a></h2><blockquote>
 <p>Easily switch between projects.</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/alefragnani/vscode-project-manager/master/images/project-manager-commands.png" alt="Switch between projects screenshot" /></p>
+<p><img src="https://raw.githubusercontent.com/alefragnani/vscode-project-manager/master/images/vscode-project-manager-side-bar.png" alt="Switch between projects screenshot" /></p>
 <h2 id="project-dashboard"><a class="anchor" aria-hidden="true" tabindex="-1" href="#project-dashboard"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=kruemelkatze.vscode-dashboard" rel="noopener noreferrer">Project Dashboard</a></h2><blockquote>
 <p>VSCode Project Dashboard is a Visual Studio Code extension that lets you organize your projects in a speed-dial like manner. Pin your frequently visited folders, files, and SSH remotes onto a dashboard to access them quickly.</p>
 </blockquote>
@@ -803,9 +861,6 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <p>Allows users to open any folder in a container, on a remote machine, container or in Windows Subsystem for Linux(WSL) and take advantage of VS Code's full feature set.</p>
 </blockquote>
 <p><img src="https://microsoft.github.io/vscode-remote-release/images/ssh-readme.gif" alt="Remote SSH extension at work" /></p>
-<h2 id="remote-vscode"><a class="anchor" aria-hidden="true" tabindex="-1" href="#remote-vscode"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode" rel="noopener noreferrer">Remote VSCode</a></h2><blockquote>
-<p>Allow user to edit files from Remote server in Visual Studio Code directly.</p>
-</blockquote>
 <h2 id="rest-client"><a class="anchor" aria-hidden="true" tabindex="-1" href="#rest-client"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client" rel="noopener noreferrer">REST Client</a></h2><blockquote>
 <p>Allows you to send HTTP request and view the response in Visual Studio Code directly.</p>
 </blockquote>
@@ -817,7 +872,7 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h2 id="todo-tree"><a class="anchor" aria-hidden="true" tabindex="-1" href="#todo-tree"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree" rel="noopener noreferrer">Todo Tree</a></h2><blockquote>
 <p>Custom keywords, highlighting, and colors for TODO comments. As well as a sidebar to view all your current tags.</p>
 </blockquote>
-<p><img src="https://thumbs.gfycat.com/PowerlessWindyCivet-size_restricted.gif" alt="Todo Tree" /></p>
+<p><img src="https://raw.githubusercontent.com/Gruntfuggly/todo-tree/master/resources/screenshot.png" alt="Todo Tree" /></p>
 <h2 id="toggle-quotes"><a class="anchor" aria-hidden="true" tabindex="-1" href="#toggle-quotes"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=BriteSnow.vscode-toggle-quotes" rel="noopener noreferrer">Toggle Quotes</a></h2><blockquote>
 <p>Cycle between single, double and backtick quotes</p>
 </blockquote>
@@ -829,14 +884,31 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h2 id="wakatime"><a class="anchor" aria-hidden="true" tabindex="-1" href="#wakatime"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=WakaTime.vscode-wakatime" rel="noopener noreferrer">WakaTime</a></h2><blockquote>
 <p>Automatic time tracker and productivity dashboard showing how long you coded in each project, file, branch, and language.</p>
 </blockquote>
-<h2 id="yo"><a class="anchor" aria-hidden="true" tabindex="-1" href="#yo"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=samverschueren.yo" rel="noopener noreferrer">Yo</a></h2><blockquote>
-<p>Scaffold projects using <a href="https://yeoman.io/" rel="noopener noreferrer">Yeoman</a></p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/SamVerschueren/vscode-yo/master/media/yo.gif" alt="Using yeoman animation" /></p>
 <h2 id="timing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#timing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=HaaLeo.timing" rel="noopener noreferrer">Timing</a></h2><blockquote>
 <p>Time converter extension to convert timestamps from/to various formats and insert them on demand or just display them. It further provides a neat hover provider to beautify epoch timestamps instantly. All features are highly customizable.</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/HaaLeo/vscode-timing/master/doc/Convert_Sample.gif" alt="Timing" /></p>
+<h2 id="httpyac"><a class="anchor" aria-hidden="true" tabindex="-1" href="#httpyac"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=anweber.vscode-httpyac" rel="noopener noreferrer">httpYac</a></h2><blockquote>
+<p>Send HTTP, REST, GraphQL, gRPC, WebSocket and MQTT requests directly from VS Code.</p>
+</blockquote>
+<h2 id="devdb"><a class="anchor" aria-hidden="true" tabindex="-1" href="#devdb"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=damms005.devdb" rel="noopener noreferrer">DevDb</a></h2><blockquote>
+<p>A zero-config database GUI that auto-loads and lets you browse your database directly inside VS Code.</p>
+</blockquote>
+<h2 id="keploy"><a class="anchor" aria-hidden="true" tabindex="-1" href="#keploy"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=Keploy.keployio" rel="noopener noreferrer">Keploy</a></h2><blockquote>
+<p>Generate unit tests and API tests with mocks from your application traffic.</p>
+</blockquote>
+<h2 id="semanticdiff"><a class="anchor" aria-hidden="true" tabindex="-1" href="#semanticdiff"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=semanticdiff.semanticdiff" rel="noopener noreferrer">SemanticDiff</a></h2><blockquote>
+<p>Language-aware diffs that ignore formatting-only changes and highlight the meaningful edits.</p>
+</blockquote>
+<h2 id="trunk"><a class="anchor" aria-hidden="true" tabindex="-1" href="#trunk"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=Trunk.io" rel="noopener noreferrer">Trunk</a></h2><blockquote>
+<p>Meta-linter and formatter that runs and manages many linters/formatters from one config, plus check, test and merge tooling.</p>
+</blockquote>
+<h2 id="peacock"><a class="anchor" aria-hidden="true" tabindex="-1" href="#peacock"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock" rel="noopener noreferrer">Peacock</a></h2><blockquote>
+<p>Subtly change the color of your VS Code workspace — ideal for telling apart identical windows or monorepo projects.</p>
+</blockquote>
+<h2 id="github-copilot"><a class="anchor" aria-hidden="true" tabindex="-1" href="#github-copilot"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot" rel="noopener noreferrer">GitHub Copilot</a></h2><blockquote>
+<p>AI pair programmer that suggests whole lines and functions as you type, with an in-editor chat.</p>
+</blockquote>
 <h1 id="formatting--beautification"><a class="anchor" aria-hidden="true" tabindex="-1" href="#formatting--beautification"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Formatting &amp; Beautification</h1><h2 id="better-align"><a class="anchor" aria-hidden="true" tabindex="-1" href="#better-align"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=wwm.better-align" rel="noopener noreferrer">Better Align</a></h2><blockquote>
 <p>Align your code by colon(:), assignment(=,+=,-=,*=,/=) and arrow(=&gt;). It has additional support for comma-first coding style and trailing comment.</p>
 <p>And it doesn't require you to select what to be aligned, the extension will figure it out by itself.</p>
@@ -849,16 +921,9 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <p>Auto rename paired HTML/XML tags</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/formulahendry/vscode-auto-rename-tag/master/images/usage.gif" alt="Auto rename paired HTML/XML tags animation" /></p>
-<h2 id="beautify"><a class="anchor" aria-hidden="true" tabindex="-1" href="#beautify"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify" rel="noopener noreferrer">beautify</a></h2><blockquote>
-<p>Beautify code in place for VS Code</p>
-</blockquote>
-<h3 id="html2pug"><a class="anchor" aria-hidden="true" tabindex="-1" href="#html2pug"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=dbalas.vscode-html2pug" rel="noopener noreferrer">html2pug</a></h3><blockquote>
+<h2 id="html2pug"><a class="anchor" aria-hidden="true" tabindex="-1" href="#html2pug"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=dbalas.vscode-html2pug" rel="noopener noreferrer">html2pug</a></h2><blockquote>
 <p>Transform html to pug inside your Visual Studio Code, forget about using an external page anymore.</p>
 </blockquote>
-<h2 id="ecmascript-quotes-transformer"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ecmascript-quotes-transformer"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=vilicvane.es-quotes" rel="noopener noreferrer">ECMAScript Quotes Transformer</a></h2><blockquote>
-<p>Transform quotes of ECMAScript string literals</p>
-</blockquote>
-<p><img src="https://cloud.githubusercontent.com/assets/970430/10563944/4cc04462-75d1-11e5-984b-41e0a21a72c3.gif" alt="Transform quotes of ECMAScript string literals animation" /></p>
 <h2 id="paste-and-indent"><a class="anchor" aria-hidden="true" tabindex="-1" href="#paste-and-indent"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=Rubymaniac.vscode-paste-and-indent" rel="noopener noreferrer">Paste and Indent</a></h2><blockquote>
 <p>Paste code with "correct" indentation</p>
 </blockquote>
@@ -878,11 +943,7 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h2 id="formatting-toggle"><a class="anchor" aria-hidden="true" tabindex="-1" href="#formatting-toggle"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=tombonnike.vscode-status-bar-format-toggle" rel="noopener noreferrer">Formatting Toggle</a></h2><blockquote>
 <p>Allows you to toggle your formatter on and off with a simple click</p>
 </blockquote>
-<h2 id="auto-import"><a class="anchor" aria-hidden="true" tabindex="-1" href="#auto-import"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=steoates.autoimport" rel="noopener noreferrer">Auto Import</a></h2><blockquote>
-<p>Automatically finds, parses and provides code actions and code completion for all available imports. Works with Typescript and TSX.</p>
-</blockquote>
-<p><img src="https://camo.githubusercontent.com/c952445b4a04a9d358be991cc2d830f2a4c0f33b/68747470733a2f2f67696679752e636f6d2f696d616765732f6175746f696d706f72742e676966" alt="Auto import" /></p>
-<h2 id="shell-format"><a class="anchor" aria-hidden="true" tabindex="-1" href="#shell-format"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://github.com/foxundermoon/vs-shell-format" rel="noopener noreferrer">shell-format</a></h2><blockquote>
+<h2 id="shell-format-⭐550"><a class="anchor" aria-hidden="true" tabindex="-1" href="#shell-format-⭐550"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://github.com/foxundermoon/vs-shell-format" rel="noopener noreferrer">shell-format (⭐550)</a></h2><blockquote>
 <p>shell script &amp; Dockerfile &amp; dotenv format</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/foxundermoon/vs-shell-format/master/image/shell_format.gif" alt="shell-format" /></p>
@@ -909,7 +970,7 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h2 id="color-highlight"><a class="anchor" aria-hidden="true" tabindex="-1" href="#color-highlight"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight" rel="noopener noreferrer">Color Highlight</a></h2><blockquote>
 <p>Highlight web colors in your editor</p>
 </blockquote>
-<p><img src="https://cdn-images-1.medium.com/max/1600/1*ZwE7OHKR5opvDCJJOw9KeQ.png" alt="Highlight web colors in your editor screenshot" /></p>
+<p><img src="https://cdn-images-1.medium.com/v2/resize:fit:1600/1*ZwE7OHKR5opvDCJJOw9KeQ.png" alt="Highlight web colors in your editor screenshot" /></p>
 <h2 id="output-colorizer"><a class="anchor" aria-hidden="true" tabindex="-1" href="#output-colorizer"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=IBM.output-colorizer" rel="noopener noreferrer">Output Colorizer</a></h2><blockquote>
 <p>Syntax highlighting for the VS Code Output Panel and log files</p>
 </blockquote>
@@ -917,7 +978,7 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h2 id="dash"><a class="anchor" aria-hidden="true" tabindex="-1" href="#dash"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=deerawan.vscode-dash" rel="noopener noreferrer">Dash</a></h2><blockquote>
 <p>Dash integration in Visual Studio Code</p>
 </blockquote>
-<p><img src="https://cdn-images-1.medium.com/max/2000/1*sqGllC-pgXNaEBfB-cxG9Q.png" alt="Dash integration screenshot" /></p>
+<p><img src="https://cdn-images-1.medium.com/v2/resize:fit:2000/1*sqGllC-pgXNaEBfB-cxG9Q.png" alt="Dash integration screenshot" /></p>
 <h2 id="edit-with-shell-command"><a class="anchor" aria-hidden="true" tabindex="-1" href="#edit-with-shell-command"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=ryu1kn.edit-with-shell" rel="noopener noreferrer">Edit with Shell Command</a></h2><blockquote>
 <p>Leverage your favourite shell commands to edit text</p>
 </blockquote>
@@ -925,10 +986,9 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h2 id="editor-config-for-vs-code"><a class="anchor" aria-hidden="true" tabindex="-1" href="#editor-config-for-vs-code"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig" rel="noopener noreferrer">Editor Config for VS Code</a></h2><blockquote>
 <p>Editor Config for VS Code</p>
 </blockquote>
-<h2 id="ftp-sync"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ftp-sync"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=lukasz-wronski.ftp-sync" rel="noopener noreferrer">ftp-sync</a></h2><blockquote>
-<p>Auto-sync your work to remote FTP server</p>
+<h2 id="sftp"><a class="anchor" aria-hidden="true" tabindex="-1" href="#sftp"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=Natizyskunk.sftp" rel="noopener noreferrer">SFTP</a></h2><blockquote>
+<p>Sync files to a remote server over SFTP/FTP, with upload-on-save, diff and remote browsing. Maintained successor to the original liximomo SFTP extension.</p>
 </blockquote>
-<p><img src="https://i.imgur.com/W9h4pwW.gif" alt="Auto-sync your work to remote FTP server animation" /></p>
 <h2 id="highlight-jsxhtml-tags"><a class="anchor" aria-hidden="true" tabindex="-1" href="#highlight-jsxhtml-tags"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag" rel="noopener noreferrer">Highlight JSX/HTML tags</a></h2><blockquote>
 <p>Highlights matching tags in the file.</p>
 </blockquote>
@@ -945,10 +1005,9 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <p>Create a secure password using our generator tool. Help prevent a security threat by getting a strong password today.</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/ftonato/vscode-password-generator/master/preview.gif" alt="Password Generator" /></p>
-<h2 id="platformio"><a class="anchor" aria-hidden="true" tabindex="-1" href="#platformio"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.platformio" rel="noopener noreferrer">PlatformIO</a></h2><blockquote>
-<p>An open source ecosystem for IoT development: supports 350+ embedded boards, 20+ development platforms, 10+ frameworks. Arduino and ARM mbed compatible.</p>
+<h2 id="platformio-ide"><a class="anchor" aria-hidden="true" tabindex="-1" href="#platformio-ide"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide" rel="noopener noreferrer">PlatformIO IDE</a></h2><blockquote>
+<p>The official PlatformIO IDE: a cross-platform ecosystem for embedded/IoT development supporting 1000+ boards and many platforms and frameworks, with build, debug and unit testing.</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/formulahendry/vscode-platformio/master/images/build.gif" alt="Build using platformio animation" /></p>
 <h2 id="polacode"><a class="anchor" aria-hidden="true" tabindex="-1" href="#polacode"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=pnp.polacode" rel="noopener noreferrer">Polacode</a></h2><blockquote>
 <p>Polaroid for your code 📸.</p>
 </blockquote>
@@ -965,30 +1024,14 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <p>Run various scripts right from VS Code</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/mattn/vscode-runner/master/images/screenshot.gif" alt="Run various scripts right from VS Code animation" /></p>
-<h2 id="slack"><a class="anchor" aria-hidden="true" tabindex="-1" href="#slack"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=sozercan.slack" rel="noopener noreferrer">Slack</a></h2><blockquote>
-<p>Send messages and code snippets, upload files to Slack</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/sozercan/vscode-slack/master/slack-upload.gif" alt="Send messages or code snippets to Slack animation" /></p>
-<h2 id="spotify"><a class="anchor" aria-hidden="true" tabindex="-1" href="#spotify"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=shyykoserhiy.vscode-spotify" rel="noopener noreferrer">Spotify</a></h2><blockquote>
-<p>Provides integration with Spotify Desktop client. Shows the currently playing song in status bar, search lyrics and provides commands for controlling Spotify with buttons and hotkeys.</p>
-</blockquote>
-<p><img src="https://media.giphy.com/media/3ohhwMgeIj1MhEdBJe/giphy.gif" alt="vscode-spotify" /></p>
 <h2 id="svg"><a class="anchor" aria-hidden="true" tabindex="-1" href="#svg"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=jock.svg" rel="noopener noreferrer">SVG</a></h2><blockquote>
 <p>A Powerful SVG Language Support Extension(beta). Almost all the features you need to handle SVG.</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/lishu/vscode-svg/master/images/f1.png" alt="SVG" /></p>
-<h2 id="svg-viewer"><a class="anchor" aria-hidden="true" tabindex="-1" href="#svg-viewer"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=cssho.vscode-svgviewer" rel="noopener noreferrer">SVG Viewer</a></h2><blockquote>
-<p>View an SVG in the editor and export it as data URI scheme or PNG.</p>
-</blockquote>
-<p><img src="https://github.com/cssho/vscode-svgviewer/raw/master/img/preview.png" alt="SVG Viewer" /></p>
 <h2 id="text-marker-highlighter"><a class="anchor" aria-hidden="true" tabindex="-1" href="#text-marker-highlighter"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=ryu1kn.text-marker" rel="noopener noreferrer">Text Marker (Highlighter)</a></h2><blockquote>
 <p>Highlight multiple text patterns with different colors at the same time. Highlighting a single text pattern can be done with the editor's search functionality, but it cannot highlight multiple patterns at the same time, and this is where this extension comes handy.</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/ryu1kn/vscode-text-marker/master/images/animations/public.gif" alt="Text Marker (Highlighter)" /></p>
-<h2 id="esdoc-mdn"><a class="anchor" aria-hidden="true" tabindex="-1" href="#esdoc-mdn"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=samundrak.esdoc-mdn" rel="noopener noreferrer">ESDOC MDN</a></h2><blockquote>
-<p>Quickly bring up helpful MDN documentation in the editor</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/samundrak/vscode-esdoc-mdn/master/demo.gif" alt="ESDOC MDN" /></p>
 <h2 id="interface-generator"><a class="anchor" aria-hidden="true" tabindex="-1" href="#interface-generator"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=dotup.dotup-vscode-interface-generator" rel="noopener noreferrer">Interface generator</a></h2><blockquote>
 <p>Quickly generate interface definitions from typescript class</p>
 </blockquote>
@@ -996,11 +1039,16 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <h2 id="jfrog"><a class="anchor" aria-hidden="true" tabindex="-1" href="#jfrog"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=JFrog.jfrog-vscode-extension" rel="noopener noreferrer">JFrog</a></h2><blockquote>
 <p>Adds JFrog Xray scanning of project dependencies to your VS Code IDE. It allows developers to view panels displaying vulnerability information about the components and their dependencies directly in their VS Code IDE. The extension also allows developers to track the status of the code while it is being built, tested and scanned on the CI server.</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/jfrog/jfrog-vscode-extension/master/resources/readme/gifs/show_in_dependency_tree.gif" alt="JFrog" /></p>
+<p><img src="https://raw.githubusercontent.com/jfrog/jfrog-vscode-extension/master/resources/readme/introduction.png" alt="JFrog" /></p>
+<h2 id="sarif-explorer"><a class="anchor" aria-hidden="true" tabindex="-1" href="#sarif-explorer"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=trailofbits.sarif-explorer" rel="noopener noreferrer">SARIF Explorer</a></h2><blockquote>
+<p>Triage static-analysis results from SARIF files: view, group, filter and annotate findings. By Trail of Bits.</p>
+</blockquote>
+<h2 id="document-viewer"><a class="anchor" aria-hidden="true" tabindex="-1" href="#document-viewer"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://marketplace.visualstudio.com/items?itemName=SyncfusionInc.Document-Viewer-VSCode-Extensions" rel="noopener noreferrer">Document Viewer</a></h2><blockquote>
+<p>View Word, Excel, PDF, Markdown and CSV files directly inside VS Code.</p>
+</blockquote>
 <h1 id="themes"><a class="anchor" aria-hidden="true" tabindex="-1" href="#themes"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Themes</h1><h2 id="ui"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ui"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>UI</h2><p>If you're feeling brave, there are at least two custom UIs for VS Code:</p>
 <ul>
-<li><a href="https://github.com/essence-language/vscode-extension" rel="noopener noreferrer">Essence</a></li>
-<li><a href="https://github.com/orta/Essence" rel="noopener noreferrer">Pragmatic Essence</a></li>
+<li><a href="https://github.com/essence-language/vscode-extension" rel="noopener noreferrer">Essence (⭐4)</a></li>
 </ul>
 <h2 id="syntax-1"><a class="anchor" aria-hidden="true" tabindex="-1" href="#syntax-1"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Syntax</h2><h3 id="2077-theme-by-endormi"><a class="anchor" aria-hidden="true" tabindex="-1" href="#2077-theme-by-endormi"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://vscodethemes.com/e/Endormi.2077-theme" rel="noopener noreferrer">2077 theme by Endormi</a></h3><p>Cyberpunk 2077 inspired theme</p>
 <a href="https://vscodethemes.com/e/Endormi.2077-theme">
@@ -1097,9 +1145,14 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
   <img src="https://github.com/viatsko/awesome-vscode/raw/master/./themes/screenshots/u29dc.mno.png" width="600" />
 </a>
 
-<h3 id="monokai-oblique-by-pushqrdx"><a class="anchor" aria-hidden="true" tabindex="-1" href="#monokai-oblique-by-pushqrdx"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://vscodethemes.com/e/pushqrdx.theme-monokai-oblique-vscode" rel="noopener noreferrer">Monokai Oblique by pushqrdx</a></h3><p>Monokai inspired theme for <a href="https://vscodethemes.com/e/pushqrdx.theme-monokai-oblique-vscode" rel="noopener noreferrer">Visual Studio Code</a> and <a href="https://github.com/pushqrdx/monokai" rel="noopener noreferrer">Visual Studio IDE</a>.</p>
-<a href="https://marketplace.visualstudio.com/items?itemName=pushqrdx.theme-monokai-oblique-vscode">
-  <img src="https://github.com/viatsko/awesome-vscode/raw/master/./themes/screenshots/moblique.png" width="600" />
+<h3 id="omni-by-rocketseat"><a class="anchor" aria-hidden="true" tabindex="-1" href="#omni-by-rocketseat"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://vscodethemes.com/e/rocketseat.theme-omni" rel="noopener noreferrer">Omni by Rocketseat</a></h3><p>A dark theme with vibrant colors by Rocketseat.</p>
+<a href="https://marketplace.visualstudio.com/items?itemName=rocketseat.theme-omni">
+  <img src="https://storage.googleapis.com/golden-wind/github/omni/omni.png" width="600" />
+</a>
+
+<h3 id="one-monokai-by-azemoh"><a class="anchor" aria-hidden="true" tabindex="-1" href="#one-monokai-by-azemoh"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://vscodethemes.com/e/azemoh.one-monokai" rel="noopener noreferrer">One Monokai by azemoh</a></h3><p>A popular free Monokai theme for Visual Studio Code, blending Monokai with Atom's One Dark.</p>
+<a href="https://marketplace.visualstudio.com/items?itemName=azemoh.one-monokai">
+  <img src="https://raw.githubusercontent.com/azemoh/vscode-one-monokai/master/screenshot-v0.2.0.png" width="600" />
 </a>
 
 <h3 id="monokai-pro-by-monokai-commercial"><a class="anchor" aria-hidden="true" tabindex="-1" href="#monokai-pro-by-monokai-commercial"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a href="https://vscodethemes.com/e/monokai.theme-monokai-pro-vscode" rel="noopener noreferrer">Monokai Pro by monokai (commercial)</a></h3><p>Beautiful functionality for professional developers, from the author of the original Monokai color scheme.</p>
@@ -1156,9 +1209,8 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <li><a href="https://twitter.com/_clarkio" rel="noopener noreferrer">@_clarkio</a> - Developer Advocate @ Azure. Creator of VS Code release highlight videos</li>
 <li><a href="https://twitter.com/eamodio" rel="noopener noreferrer">@eamodio</a> - GitLens creator</li>
 <li><a href="https://twitter.com/ErichGamma" rel="noopener noreferrer">@ErichGamma</a> - VS Code Dev</li>
-<li><a href="https://twitter.com/@IsidorN" rel="noopener noreferrer">@IsidorN</a> - VS Code Dev</li>
+<li><a href="https://twitter.com/IsidorN" rel="noopener noreferrer">@IsidorN</a> - VS Code Dev</li>
 <li><a href="https://twitter.com/joaomoreno" rel="noopener noreferrer">@joaomoreno</a> - VS Code Dev</li>
-<li><a href="https://twitter.com/johannesrieken" rel="noopener noreferrer">@johannesrieken</a> - VS Code Dev</li>
 <li><a href="https://twitter.com/lannonbr" rel="noopener noreferrer">@lannonbr</a> - Creator of vscode.rocks &amp; JS Parameter Annotations extension</li>
 <li><a href="https://twitter.com/maeschli" rel="noopener noreferrer">@maeschli</a> - VS Code Dev</li>
 <li><a href="https://twitter.com/mattbierner" rel="noopener noreferrer">@mattbierner</a> - VS Code Dev</li>
@@ -1171,23 +1223,22 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 <li><a href="https://code.visualstudio.com/api" rel="noopener noreferrer">Visual Studio Code API</a> section of <a href="https://code.visualstudio.com/docs" rel="noopener noreferrer">Official Documentation</a></li>
 </ul>
 <h2 id="libraries"><a class="anchor" aria-hidden="true" tabindex="-1" href="#libraries"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Libraries</h2><ul>
-<li><a href="https://github.com/mlewand-org/vscode-test-content" rel="noopener noreferrer">vscode-test-content</a> - A method to set/get editor content, and it's selection. Especially useful for unit tests.</li>
-<li><a href="https://www.npmjs.com/typed-vscode" rel="noopener noreferrer">typed-vscode</a> - Generates types from contribution points of your extension manifest</li>
+<li><a href="https://www.npmjs.com/package/typed-vscode" rel="noopener noreferrer">typed-vscode</a> - Generates types from contribution points of your extension manifest</li>
 </ul>
 <h2 id="tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tools</h2><ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare" rel="noopener noreferrer">Live Share</a> - Visual Studio Live Share enables you to collaboratively edit and debug with others in real time, regardless what programming languages you're using or app types you're building.</li>
-<li><a href="https://tmtheme-editor.herokuapp.com/" rel="noopener noreferrer">Online TextMate Themes Editor</a> - since VS Code supports TextMate themes, you can create them in this online editor and then create a new VS Code package using <a href="https://code.visualstudio.com/docs/extensions/yocode" rel="noopener noreferrer">Yo Code</a> tool</li>
+<li><a href="https://el-angel.github.io/theme-editor/" rel="noopener noreferrer">Online TextMate Themes Editor</a> - since VS Code supports TextMate themes, you can create them in this online editor and then create a new VS Code package using <a href="https://code.visualstudio.com/docs/extensions/yocode" rel="noopener noreferrer">Yo Code</a> tool</li>
 <li><a href="https://code.visualstudio.com/docs/extensions/yocode" rel="noopener noreferrer">Yo Code - Extension Generator</a></li>
-<li><a href="https://github.com/sozercan/OpenInCode" rel="noopener noreferrer">Open in Code</a> - macOS Finder toolbar app to open current folder in Visual Studio Code</li>
+<li><a href="https://github.com/sozercan/OpenInCode" rel="noopener noreferrer">Open in Code (⭐911)</a> - macOS Finder toolbar app to open current folder in Visual Studio Code</li>
 </ul>
 <p><img src="https://camo.githubusercontent.com/edbae5fe27d6c7af23218e60cb07e3a5061bbbab/687474703a2f2f692e696d6775722e636f6d2f4c6d56484978572e676966" alt="macOS Finder toolbar app to open current folder in Visual Studio Code animation" /></p>
 <ul>
-<li><a href="https://themer.dev" rel="noopener noreferrer">Themer</a> - Easily create your own theme for VS Code (and matching ones for your other tools).</li>
-<li><a href="https://github.com/bradygaster-zz/azure-tools-vscode" rel="noopener noreferrer">Azure Tools for Visual Studio Code</a> - This extension for Visual Studio Code gives Azure developers some convenient commands for creating or accessing resources directly in the editor.</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/johnpapa/vscode-azure-functions-tools/master/images/json-schema-function.gif" alt="azure-tools-vscode" /></p>
-<ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced" rel="noopener noreferrer">Mark down preview</a> - Markdown Preview Enhanced is an extension that provides you with many useful functionalities such as automatic scroll sync, math typesetting, mermaid, PlantUML, pandoc, PDF export, code chunk, presentation writer, etc. A lot of its ideas are inspired by Markdown Preview Plus and RStudio Markdown.</li>
+<li><p><a href="https://themer.dev" rel="noopener noreferrer">Themer</a> - Easily create your own theme for VS Code (and matching ones for your other tools).</p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-node-azure-pack" rel="noopener noreferrer">Azure Tools</a> - Microsoft's official Azure extension pack, bundling the core Azure extensions for working with Azure resources directly from VS Code.</p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced" rel="noopener noreferrer">Mark down preview</a> - Markdown Preview Enhanced is an extension that provides you with many useful functionalities such as automatic scroll sync, math typesetting, mermaid, PlantUML, pandoc, PDF export, code chunk, presentation writer, etc. A lot of its ideas are inspired by Markdown Preview Plus and RStudio Markdown.</p>
+</li>
 </ul>
 <h1 id="online-courses"><a class="anchor" aria-hidden="true" tabindex="-1" href="#online-courses"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Online Courses</h1><h2 id="visual-studio-code-power-user-course-commercial"><a class="anchor" aria-hidden="true" tabindex="-1" href="#visual-studio-code-power-user-course-commercial"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Visual Studio Code Power User Course (commercial)</h2><p>After 10 years with Sublime Text, <a href="https://twitter.com/MrAhmadAwais/" rel="noopener noreferrer">Ahmad Awais</a> switched to VSCode, built <a href="https://marketplace.visualstudio.com/items?itemName=ahmadawais.shades-of-purple" rel="noopener noreferrer">Shades of Purple theme</a>, and spent over a 1,000 hours perfecting his setup. He has launched a VSCode Power User Course to help you switch today. You can bring all your custom settings from the previous editor and learn the power user workflows for HTML/CSS, Git/GitHub &amp; Open Source, supercharged Markdown, and everything from JavaScript to PHP, Go, Python, C++, C#, ROR. In this course, you'll also learn to install/setup 50+ Extensions.</p>
 <ul>
@@ -1201,5 +1252,47 @@ Parse CSS,SCSS, LESS and add vendor prefixes automatically.
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
