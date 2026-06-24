@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Track Awesome Terminals (cdleon/awesome-terminals) Updates Daily - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/cdleon/awesome-terminals/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Track Awesome Terminals Updates Daily" />
+    <meta property="og:description" content="Terminal Emulators" />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
+    <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
+      }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Track Awesome Terminals Updates Daily</h1>
+<p>Terminal Emulators</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/cdleon/awesome-terminals/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/cdleon/awesome-terminals">😺 cdleon/awesome-terminals</a><span> · </span><span>⭐ 2.8K</span><span> · </span><span>🏷️ Development Environment</span></p>
+<p><span>[ </span><span>Daily</span><span> / </span><a href="/cdleon/awesome-terminals/week/">Weekly</a><span> / </span><a href="/cdleon/awesome-terminals/readme/">Overview</a><span> ]</span></p>
+
+<h2><a href="https://www.trackawesomelist.com/2026/06/24/">Jun 24, 2026</a></h2><h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/sortlist/overloop-cli" rel="noopener noreferrer">overloop-cli (⭐4)</a> - AI-powered outbound engine. Source contacts, run multi-channel campaigns (email + LinkedIn), and manage conversations. JSON output.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/sortlist/signals-cli" rel="noopener noreferrer">signals-cli (⭐1)</a> - Intent signal monitoring for B2B. Track LinkedIn engagement, keyword posters, job changers, and funding events. JSON output.</li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/domcyrus/rustnet" rel="noopener noreferrer">rustnet (⭐4.5k)</a> - A cross-platform network monitoring TUI with process identification and deep packet inspection.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/09/22/">Sep 22, 2025</a></h2><h3><p>Tools / CMD</p>
+</h3>
+<ul>
+<li><a href="https://github.com/qw3rtman/gg" rel="noopener noreferrer">gg (⭐1.4k)</a> - <strong>[DEPRECATED]</strong> Git Goodies: At-A-Glance, Efficient, and Aesthetically Pleasing Git Shortcuts <a href="https://git.io/gitgoodies" rel="noopener noreferrer">https://git.io/gitgoodies</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/07/16/">Jul 16, 2025</a></h2><h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/bmf-san/ggc" rel="noopener noreferrer">ggc (⭐284)</a> - A modern Git CLI tool with both traditional command-line and interactive incremental-search UI.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/11/07/">Nov 07, 2024</a></h2><h3><p>Shells</p>
+</h3>
+<ul>
+<li><a href="https://github.com/oilshell/oil" rel="noopener noreferrer">Oils (⭐3.4k)</a> - Oils is a new Unix shell. It's our upgrade path from bash to a better language and runtime. It's also for Python and JavaScript users who avoid shell!</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/10/03/">Oct 03, 2024</a></h2><h3><p>Tools / Bash</p>
+</h3>
+<ul>
+<li><a href="https://codeberg.org/jahway603/ramfetch" rel="noopener noreferrer">ramfetch</a> - Fetchs memory info using /proc/meminfo.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/09/11/">Sep 11, 2024</a></h2><h3><p>Shells</p>
+</h3>
+<ul>
+<li><a href="https://github.com/lmorg/murex" rel="noopener noreferrer">Murex (⭐1.9k)</a> - A smarter shell and scripting environment with advanced features designed for usability, safety and productivity <a href="https://murex.rocks" rel="noopener noreferrer">https://murex.rocks</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/09/02/">Sep 02, 2024</a></h2><h3><p>Tools / sh (macOS)</p>
+</h3>
+<ul>
+<li><a href="https://github.com/x-cmd/x-cmd" rel="noopener noreferrer">x-cmd (⭐4.5k)</a> A vast and interesting collection of tools that can then bootstrap lots of other programs / functions in a consistent and structured way.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/08/23/">Aug 23, 2024</a></h2><h3><p>Shells</p>
+</h3>
+<ul>
+<li><a href="https://sourceforge.net/p/zsh/code/ci/master/tree/" rel="noopener noreferrer">Z Shell</a> - Zsh is a shell designed for interactive use, although it is also a powerful scripting language. <a href="https://www.zsh.org/" rel="noopener noreferrer">https://www.zsh.org/</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/05/27/">May 27, 2024</a></h2><h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/FinecoFinit/goterpix" rel="noopener noreferrer">goterpix (⭐4)</a> - Draw pixel art images with Ansi Escape code.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/05/04/">May 04, 2024</a></h2><h3><p>Tools / Ruby</p>
+</h3>
+<ul>
+<li><a href="https://github.com/remi/teamocil" rel="noopener noreferrer">teamocil (⭐2.4k)</a> - Teamocil is a simple tool used to automatically create windows and panes in tmux with YAML files.</li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/alexcaza/weztermocil" rel="noopener noreferrer">weztermocil (⭐14)</a> - Automatically create windows and panes in Wezterm via YAML configs (like Teamocil and iTermocil).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/04/17/">Apr 17, 2024</a></h2><h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ogham/exa" rel="noopener noreferrer">exa (⭐24k)</a> - <strong>[DEPRECATED]</strong> A modern version of ‘ls’. <a href="https://the.exa.website/" rel="noopener noreferrer">https://the.exa.website/</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/02/24/">Feb 24, 2024</a></h2><h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/eza-community/eza" rel="noopener noreferrer">eza (⭐22k)</a> - A modern version of ‘ls’. <a href="https://eza.rocks/" rel="noopener noreferrer">https://eza.rocks/</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/01/25/">Jan 25, 2024</a></h2><h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/atuinsh/atuin" rel="noopener noreferrer">atuin (⭐30k)</a> - ✨ Magical shell history <a href="https://atuin.sh/" rel="noopener noreferrer">https://atuin.sh/</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/11/07/">Nov 07, 2023</a></h2><h3><p>Dotfiles / Swift</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ferdinandyb/dotfiles" rel="noopener noreferrer">dotfiles (⭐21)</a> - Various dotfiles, most notably for terminal email (aerc, isync, mailctl, mstmp(q), ranked addressbook etc), various terminals (kitty, contour, wezterm), zsh, ipython, vim, regolith and some git goodies.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/08/07/">Aug 07, 2023</a></h2><h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/browsh-org/browsh" rel="noopener noreferrer">browsh (⭐19k)</a> - A fully-modern text-based browser, rendering to TTY and browsers. <a href="https://www.brow.sh/" rel="noopener noreferrer">https://www.brow.sh/</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/07/19/">Jul 19, 2023</a></h2><h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dvorka/hstr" rel="noopener noreferrer">hstr (⭐4.4k)</a> - bash and zsh shell history suggest box - easily view, navigate, search and manage your command history.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/01/31/">Jan 31, 2023</a></h2><h3><p>Tools / Bash</p>
+</h3>
+<ul>
+<li><a href="https://github.com/hackerb9/lsix" rel="noopener noreferrer">lsix (⭐4.2k)</a> - Like "ls", but for images. Shows thumbnails in terminal using sixel graphics.</li>
+</ul>
+<h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/p-gen/smenu" rel="noopener noreferrer">smenu (⭐2.5k)</a> -  Terminal utility that reads words from standard input or from a file and creates an interactive selection window just below the cursor. The selected word(s) are sent to standard output for further processing.</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tylertreat/comcast" rel="noopener noreferrer">comcast (⭐11k)</a> - Simulating shitty network connections so you can build better systems.</li>
+</ul>
+<h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/vladocar/screenshoteer" rel="noopener noreferrer">screenshoteer (⭐1.7k)</a> - Make website screenshots and mobile emulations from the command line.</li>
+</ul>
+<h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/donnemartin/haxor-news" rel="noopener noreferrer">hn (⭐4.1k)</a> -  Browse Hacker News like a haxor: A Hacker News command line interface (CLI).</li>
+</ul>
+<h3><p>Tools / sh</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nvm-sh/nvm" rel="noopener noreferrer">nvm (⭐94k)</a> - Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.</li>
+</ul>
+<h3><p>Tools / sh (macOS)</p>
+</h3>
+<ul>
+<li><a href="https://github.com/guarinogabriel/Mac-CLI" rel="noopener noreferrer">mac (⭐9.1k)</a> -  OS X command line tools for developers – The ultimate tool to manage your Mac. It provides a huge set of command line commands that automatize the usage of your OS X system.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/01/11/">Jan 11, 2023</a></h2><h3><p>Shells</p>
+</h3>
+<ul>
+<li><a href="https://github.com/xonsh/xonsh" rel="noopener noreferrer">xonsh (⭐9.5k)</a> - 🐚 Python-powered, cross-platform, Unix-gazing shell</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/10/28/">Oct 28, 2022</a></h2><h3><p>Tools / Ruby</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ttscoff/doing" rel="noopener noreferrer">doing (⭐1.3k)</a> - A command line tool for remembering what you were doing and tracking what you've done.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/09/29/">Sep 29, 2022</a></h2><h3><p>Tools / Bash</p>
+</h3>
+<ul>
+<li><a href="https://github.com/basherpm/basher" rel="noopener noreferrer">basher (⭐1.3k)</a> - A package manager for shell scripts. <a href="https://www.basher.it/" rel="noopener noreferrer">https://www.basher.it/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mofarrell/p2pvc" rel="noopener noreferrer">p2pvc (⭐2.9k)</a> - A point to point color terminal video chat.</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/charmbracelet/gum" rel="noopener noreferrer">gum (⭐24k)</a> - A tool for glamorous shell scripts 🎀</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/variadico/noti" rel="noopener noreferrer">noti (⭐4.9k)</a> - Monitor a process and trigger a notification.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/rapidloop/rtop" rel="noopener noreferrer">rtop (⭐2.2k)</a> - rtop is an interactive, remote system monitoring tool based on SSH. <a href="http://www.rtop-monitor.org/" rel="noopener noreferrer">http://www.rtop-monitor.org/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/zquestz/s" rel="noopener noreferrer">s (⭐2.6k)</a> - Open a web search in your terminal.</li>
+</ul>
+<h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/darrikonn/td-cli" rel="noopener noreferrer">td (⭐214)</a> - A todo command line todo manager ✔️ <a href="https://pypi.org/project/td-cli/" rel="noopener noreferrer">https://pypi.org/project/td-cli/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/buckket/twtxt" rel="noopener noreferrer">twtxt (⭐2.2k)</a> - Decentralised, minimalist microblogging service for hackers. <a href="https://twtxt.readthedocs.io/en/stable/" rel="noopener noreferrer">https://twtxt.readthedocs.io/en/stable/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/xxh/xxh" rel="noopener noreferrer">xxh (⭐6k)</a> - 🚀 Bring your favorite shell wherever you go through the ssh.</li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jmacdonald/amp" rel="noopener noreferrer">amp (⭐4.1k)</a> - A complete text editor for your terminal.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Wilfred/difftastic" rel="noopener noreferrer">difft (⭐26k)</a> - a structural diff that understands syntax 🟥🟩</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Byron/dua-cli" rel="noopener noreferrer">dua (⭐6k)</a> - View disk space usage and delete unwanted data, fast. <a href="https://lib.rs/crates/dua-cli" rel="noopener noreferrer">https://lib.rs/crates/dua-cli</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/helix-editor/helix" rel="noopener noreferrer">hx (⭐45k)</a> - A post-modern modal text editor.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Rigellute/spotify-tui" rel="noopener noreferrer">spt (⭐19k)</a> - Spotify for the terminal written in Rust 🚀</li>
+</ul>
+<h3><p>Dotfiles / Swift</p>
+</h3>
+<ul>
+<li><a href="https://github.com/craftzdog/dotfiles-public" rel="noopener noreferrer">dotfiles-public (⭐7.1k)</a> - My personal dotfiles</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/09/20/">Sep 20, 2021</a></h2><h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/yt-dlp/yt-dlp" rel="noopener noreferrer">yt-dlp (⭐173k)</a> - A youtube-dl fork with additional features and fixes</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/08/02/">Aug 02, 2021</a></h2><h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ggreer/the_silver_searcher" rel="noopener noreferrer">ag (⭐27k)</a> - A code-searching tool similar to ack, but faster. <a href="https://geoff.greer.fm/ag/" rel="noopener noreferrer">https://geoff.greer.fm/ag/</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/07/19/">Jul 19, 2021</a></h2><h3><p>Tools / C++</p>
+</h3>
+<ul>
+<li><a href="https://github.com/netxs-group/VTM" rel="noopener noreferrer">vtm (⭐3.3k)</a> - Terminal multiplexer with TUI window manager and multi-party session sharing <a href="https://vtm.netxs.online/" rel="noopener noreferrer">https://vtm.netxs.online/</a></li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/cheat/cheat" rel="noopener noreferrer">cheat (⭐13k)</a> - cheat allows you to create and view interactive cheatsheets on the command-line. It was designed to help remind *nix system administrators of options for commands that they use frequently, but not frequently enough to remember.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/rs/curlie" rel="noopener noreferrer">curlie (⭐3.7k)</a> - The power of curl, the ease of use of httpie. <a href="https://curlie.io/" rel="noopener noreferrer">https://curlie.io/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/six-ddc/plow" rel="noopener noreferrer">plow (⭐4.5k)</a> - A high-performance HTTP benchmarking tool with real-time web UI and terminal displaying</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/maaslalani/slides" rel="noopener noreferrer">slides (⭐12k)</a> - Terminal based presentation tool <a href="https://maaslalani.com/slides/" rel="noopener noreferrer">https://maaslalani.com/slides/</a></li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Canop/broot" rel="noopener noreferrer">br (⭐13k)</a> - A new way to see and navigate directory trees <a href="https://dystroy.org/broot" rel="noopener noreferrer">https://dystroy.org/broot</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ClementTsang/bottom" rel="noopener noreferrer">btm (⭐13k)</a> - Yet another cross-platform graphical process/system monitor. <a href="https://clementtsang.github.io/bottom/nightly/" rel="noopener noreferrer">https://clementtsang.github.io/bottom/nightly/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/theryangeary/choose" rel="noopener noreferrer">choose (⭐2.2k)</a> - A human-friendly and fast alternative to cut and (sometimes) awk</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dandavison/delta" rel="noopener noreferrer">delta (⭐31k)</a> - A viewer for git and diff output</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ogham/dog" rel="noopener noreferrer">dog (⭐6.7k)</a> - A command-line DNS client. <a href="https://dns.lookup.dog/" rel="noopener noreferrer">https://dns.lookup.dog/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kamiyaa/joshuto" rel="noopener noreferrer">joshuto (⭐3.7k)</a> - ranger-like terminal file manager written in Rust</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/cantino/mcfly" rel="noopener noreferrer">mcfly (⭐7.7k)</a> - Fly through your shell history. Great Scott!</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ducaale/xh" rel="noopener noreferrer">xh (⭐7.9k)</a> - Friendly and fast tool for sending HTTP requests</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ajeetdsouza/zoxide" rel="noopener noreferrer">zoxide (⭐37k)</a> - A smarter cd command. Supports all major shells.</li>
+</ul>
+<h3><p>Tools / sh</p>
+</h3>
+<ul>
+<li><a href="https://github.com/fcambus/ansiweather" rel="noopener noreferrer">ansiweather (⭐1.9k)</a> - Weather in terminal, with ANSI colors and Unicode symbols</li>
+</ul>
+<h3><p>Dotfiles / Swift</p>
+</h3>
+<ul>
+<li><a href="https://github.com/caarlos0/dotfiles.fish" rel="noopener noreferrer">dotfiles.fish (⭐309)</a> - my own dotfiles ported to fish</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/06/06/">Jun 06, 2021</a></h2><h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/LinusDierheimer/fastfetch" rel="noopener noreferrer">fastfetch (⭐23k)</a> - Like neofetch, but much faster because written in c. Only Linux.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/05/19/">May 19, 2021</a></h2><h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/climech/grit" rel="noopener noreferrer">grit (⭐1.7k)</a> - Multitree-based personal task manager.</li>
+</ul>
+<h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/google/zx" rel="noopener noreferrer">zx (⭐46k)</a> - A tool for writing better scripts</li>
+</ul>
+<h3><p>Dotfiles / Swift</p>
+</h3>
+<ul>
+<li><a href="https://github.com/makccr/dot" rel="noopener noreferrer">dot (⭐635)</a> - These are my dot files. I've primarily been a MacOS user for most of the time I've been collecting dotfiles, but I've recently switched to Linux</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/koekeishiya/dotfiles" rel="noopener noreferrer">dotfiles (⭐376)</a> - Configuration files.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/NerdyPepper/dotfiles" rel="noopener noreferrer">dotfiles (⭐349)</a> - Files that define my GNU/Linux box.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dikiaap/dotfiles" rel="noopener noreferrer">dotfiles (⭐1.5k)</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mathiasbynens/dotfiles" rel="noopener noreferrer">dotfiles (⭐31k)</a> - 🔧 .files, including ~/.macos — sensible hacker defaults for macOS</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/yutkat/dotfiles" rel="noopener noreferrer">dotfiles (⭐970)</a> - The best and strongest dotfiles. Editor: Neovim(coc.nvim); Shell: zsh(zinit, powerlevel10k); Terminal: tmux, alacritty; Desktop: i3-gaps/sway, rofi, dunst; OS: ArchLinux, (Ubuntu/Fedora/CentOS)</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/04/24/">Apr 24, 2021</a></h2><h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/vifm/vifm" rel="noopener noreferrer">vifm (⭐3.2k)</a> - Vifm is a file manager with curses interface, which provides Vi[m]-like environment for managing objects within file systems, extended with some useful ideas from mutt. <a href="https://github.com/vifm/vifm" rel="noopener noreferrer">https://github.com/vifm/vifm (⭐3.2k)</a></li>
+</ul>
+<h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ranger/ranger" rel="noopener noreferrer">ranger (⭐17k)</a> - A VIM-inspired filemanager for the console <a href="https://ranger.github.io/" rel="noopener noreferrer">https://ranger.github.io/</a></li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/zellij-org/zellij" rel="noopener noreferrer">zellij (⭐34k)</a> - A terminal workspace with batteries included. <a href="https://zellij.dev/" rel="noopener noreferrer">https://zellij.dev/</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/04/23/">Apr 23, 2021</a></h2><h3><p>Tools / Bash</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dylanaraps/fff" rel="noopener noreferrer">fff (⭐4.2k)</a> - 📁 A simple file manager written in bash.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/04/03/">Apr 03, 2021</a></h2><h3><p>Shells</p>
+</h3>
+<ul>
+<li><a href="https://github.com/PowerShell/PowerShell" rel="noopener noreferrer">PowerShell (⭐54k)</a> - PowerShell for every system!</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/birchb1024/frangipanni" rel="noopener noreferrer">frangipanni (⭐1.2k)</a> - Program to convert lines of text into a tree structure.</li>
+</ul>
+<h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/esbenp/pdf-bot" rel="noopener noreferrer">pdf-bot (⭐2.6k)</a> - 🤖 A Node queue API for generating PDFs using headless Chrome. Comes with a CLI, S3 storage and webhooks for notifying subscribers about generated PDFs.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jsonresume/resume-cli" rel="noopener noreferrer">resume (⭐4.7k)</a> - CLI tool to easily setup a new resume.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/03/23/">Mar 23, 2021</a></h2><h3><p>Tools / C++</p>
+</h3>
+<ul>
+<li><a href="https://github.com/flameshot-org/flameshot" rel="noopener noreferrer">flameshot (⭐30k)</a> - Powerful yet simple to use screenshot software 🖥️ 📸.</li>
+</ul>
+<h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Overv/outrun" rel="noopener noreferrer">outrun (⭐3.1k)</a> - Execute a local command using the processing power of another Linux machine.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/rahulunair/repo-peek" rel="noopener noreferrer">repk</a> - open a remote repo locally quickly</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/03/14/">Mar 14, 2021</a></h2><h3><p>Dotfiles / Swift</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nickjj/dotfiles" rel="noopener noreferrer">dotfiles (⭐1.3k)</a> - Settings for various tools I use.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/03/06/">Mar 06, 2021</a></h2><h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/cjbassi/gotop" rel="noopener noreferrer">gotop (⭐7.4k)</a> - <strong>[DEPRECATED]</strong> A terminal based graphical activity monitor inspired by gtop and vtop.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2021/02/20/">Feb 20, 2021</a></h2><h3><p>Tools / C++</p>
+</h3>
+<ul>
+<li><a href="https://github.com/GothenburgBitFactory/timewarrior" rel="noopener noreferrer">timew (⭐1.6k)</a> - Commandline Time Reporting</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/achannarasappa/ticker" rel="noopener noreferrer">ticker (⭐6.1k)</a> - Terminal stock ticker with live updates and position tracking.</li>
+</ul>
+<h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jarun/buku" rel="noopener noreferrer">buku (⭐7.1k)</a> - Browser-independent bookmark manager</li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/atanunq/viu" rel="noopener noreferrer">viu (⭐3.2k)</a> - Simple terminal image viewer written in Rust.</li>
+</ul>
+<h3><p>Tools / sh</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Bugswriter/tuxi" rel="noopener noreferrer">tuxi (⭐1.3k)</a> - Tuxi is a cli assistant. Get answers of your questions instantly.</li>
+</ul>
+<h3><p>Tools / Swift</p>
+</h3>
+<ul>
+<li><a href="https://github.com/sindresorhus/macos-trash" rel="noopener noreferrer">trash (⭐438)</a> - Move files and folders to the trash.</li>
+</ul>
+<h3><p>Dotfiles / Swift</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Who23/dots" rel="noopener noreferrer">dots (⭐178)</a> - My macOS dots :)</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/12/29/">Dec 29, 2020</a></h2><h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/posva/catimg" rel="noopener noreferrer">catimage (⭐1.6k)</a> - 🦦 Insanely fast image printing in your terminal.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/12/24/">Dec 24, 2020</a></h2><h3><p>Tools / Bash</p>
+</h3>
+<ul>
+<li><a href="https://github.com/akinomyoga/ble.sh" rel="noopener noreferrer">ble.sh (⭐4.4k)</a> - Bash Line Editor -- a full-featured line editor written in pure Bash! Syntax highlighting, auto suggestions, vim modes, etc. are available in Bash interactive sessions!</li>
+</ul>
+<h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/13-CF/afetch" rel="noopener noreferrer">afetch (⭐239)</a> - Simple system info written in C</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/aaronjanse/3mux" rel="noopener noreferrer">3mux (⭐1.8k)</a> - Terminal multiplexer inspired by i3.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/12/13/">Dec 13, 2020</a></h2><h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/rcaloras/bashhub-client" rel="noopener noreferrer">bashhub (⭐1.3k)</a> - Bash history in the cloud. Indexed and searchable. <a href="https://bashhub.com" rel="noopener noreferrer">https://bashhub.com</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/aristocratos/bpytop" rel="noopener noreferrer">bpytop (⭐11k)</a> - Linux/OSX/FreeBSD resource monitor.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/termius/termius-cli" rel="noopener noreferrer">termius (⭐588)</a> - CLI for the ssh client Termius <a href="https://termius.com" rel="noopener noreferrer">https://termius.com</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/11/21/">Nov 21, 2020</a></h2><h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/orf/gping" rel="noopener noreferrer">gping (⭐13k)</a> - Ping, but with a graph.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/11/17/">Nov 17, 2020</a></h2><h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jarun/nnn" rel="noopener noreferrer">nnn (⭐22k)</a> - n³ The unorthodox terminal file manager.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/11/15/">Nov 15, 2020</a></h2><h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/simeg/eureka" rel="noopener noreferrer">eureka (⭐868)</a> - 💡 CLI tool to input and store your ideas without leaving the terminal.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/10/19/">Oct 19, 2020</a></h2><h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/chriswalz/bit" rel="noopener noreferrer">bit (⭐6.1k)</a> - Bit is a modern Git CLI.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/charmbracelet/glow" rel="noopener noreferrer">glow (⭐26k)</a> - Render markdown on the CLI, with pizzazz! 💅🏻</li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/bvaisvil/zenith" rel="noopener noreferrer">zenith (⭐3k)</a> - sort of like top or htop but with zoom-able charts, CPU, GPU, network, and disk usage.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/10/11/">Oct 11, 2020</a></h2><h3><p>Tools / Bash</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tomlockwood/dn" rel="noopener noreferrer">dn (⭐249)</a> - Daily notes command line tool</li>
+</ul>
+<h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/hpjansson/chafa" rel="noopener noreferrer">chafa (⭐5k)</a> - 📺🗿 Terminal graphics for the 21st century.</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/screego/server" rel="noopener noreferrer">screego (⭐10k)</a> - Screen sharing for developers. <a href="https://screego.net/" rel="noopener noreferrer">https://screego.net/</a></li>
+</ul>
+<h3><p>Tools / Haskell</p>
+</h3>
+<ul>
+<li><a href="https://github.com/koalaman/shellcheck" rel="noopener noreferrer">shellcheck (⭐40k)</a> - ShellCheck, a static analysis tool for shell scripts. <a href="https://www.shellcheck.net/" rel="noopener noreferrer">https://www.shellcheck.net/</a></li>
+</ul>
+<h3><p>Tools / sh</p>
+</h3>
+<ul>
+<li><a href="https://github.com/xwmx/nb" rel="noopener noreferrer">nb (⭐8.2k)</a> - CLI plain-text note-taking, bookmarking, and archiving with encryption, filtering and search, Git-backed versioning and syncing, Pandoc-backed conversion, and more in a single portable script. <a href="https://xwmx.github.io/nb/" rel="noopener noreferrer">https://xwmx.github.io/nb/</a></li>
+</ul>
+<h3><p>Dotfiles / Swift</p>
+</h3>
+<ul>
+<li><a href="https://github.com/maximbaz/dotfiles" rel="noopener noreferrer">~/.dotfiles (⭐1.1k)</a> - Configuration for Arch Linux, sway, kitty, kakoune, zsh and more + scripted installation guide.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/safinsingh/dots" rel="noopener noreferrer">dots (⭐53)</a> - My dotfiles for Arch Linux and awesomeWM.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/10/04/">Oct 04, 2020</a></h2><h3><p>Shells</p>
+</h3>
+<ul>
+<li><a href="https://github.com/fish-shell/fish-shell" rel="noopener noreferrer">fish (⭐34k)</a> - The user-friendly command line shell.</li>
+</ul>
+
+<ul>
+<li><a href="https://git.savannah.gnu.org/cgit/bash.git/" rel="noopener noreferrer">GNU Bash</a> - Bash is the GNU Project's Bourne Again SHell, a complete implementation of the POSIX shell spec.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/nushell/nushell" rel="noopener noreferrer">Nu Shell (⭐40k)</a> - A new type of shell.</li>
+</ul>
+<h3><p>Tools / C++</p>
+</h3>
+<ul>
+<li><a href="https://github.com/microsoft/winget-cli" rel="noopener noreferrer">winget (⭐26k)</a> - Windows Package Manager CLI (aka winget).</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/schollz/croc" rel="noopener noreferrer">croc (⭐35k)</a> - Easily and securely send things from one computer to another 🐊 📦.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/muesli/duf" rel="noopener noreferrer">duf (⭐15k)</a> - Disk Usage/Free Utility.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/cli/cli" rel="noopener noreferrer">gh (⭐45k)</a> - GitHub’s official command line tool</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/zyedidia/micro" rel="noopener noreferrer">micro (⭐29k)</a> - A modern and intuitive terminal-based text editor. <a href="https://micro-editor.github.io/" rel="noopener noreferrer">https://micro-editor.github.io/</a></li>
+</ul>
+<h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/splash-cli/splash-cli" rel="noopener noreferrer">splash (⭐577)</a> - 📸 Beautiful wallpapers from Unsplash 🖼️🛠️</li>
+</ul>
+<h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/gnebbia/kb" rel="noopener noreferrer">kb (⭐3.4k)</a> - A minimalist command line knowledge base manager.</li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/imsnif/bandwhich" rel="noopener noreferrer">bandwhich (⭐12k)</a> - Terminal bandwidth utilization tool.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/bootandy/dust" rel="noopener noreferrer">dust (⭐12k)</a> - A more intuitive version of du in rust.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/sharkdp/fd" rel="noopener noreferrer">fd (⭐43k)</a> - A simple, fast and user-friendly alternative to 'find'</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pemistahl/grex" rel="noopener noreferrer">grex (⭐8.1k)</a> - A command-line tool and library for generating regular expressions from user-provided test cases.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dalance/procs" rel="noopener noreferrer">procs (⭐6.1k)</a> - A modern replacement for ps written in Rust.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/chmln/sd" rel="noopener noreferrer">sd (⭐7.2k)</a> - Intuitive find &amp; replace CLI (sed alternative).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dbrgn/tealdeer" rel="noopener noreferrer">tldr (⭐6.3k)</a> - A very fast implementation of tldr in Rust.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/XAMPPRocky/tokei" rel="noopener noreferrer">tokei (⭐15k)</a> - Count your code, quickly.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/BurntSushi/xsv" rel="noopener noreferrer">xsv (⭐11k)</a> - A fast CSV command line toolkit written in Rust.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ajeetdsouza/zoxide" rel="noopener noreferrer">z (⭐37k)</a> - A faster way to navigate your filesystem.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/09/15/">Sep 15, 2020</a></h2><h3><p>Tools / sh</p>
+</h3>
+<ul>
+<li><a href="https://github.com/wfxr/tmux-fzf-url" rel="noopener noreferrer">tmux-fzf-url (⭐718)</a> - 🚀 Quickly open urls on terminal screen!</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/09/11/">Sep 11, 2020</a></h2><h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/vinayak-mehta/present" rel="noopener noreferrer">present (⭐4.3k)</a> - A terminal-based presentation tool with colors and effects. <a href="https://present.readthedocs.io/en/latest/" rel="noopener noreferrer">https://present.readthedocs.io/en/latest/</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/08/05/">Aug 05, 2020</a></h2><h3><p>Tools / Bash</p>
+</h3>
+<ul>
+<li><a href="https://github.com/kdabir/has" rel="noopener noreferrer">has (⭐812)</a> - ✅ checks presence of various command line tools and their versions on the path.</li>
+</ul>
+<h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tsl0922/ttyd" rel="noopener noreferrer">ttyd (⭐12k)</a> - Share your terminal over the web.</li>
+</ul>
+<h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/faressoft/terminalizer" rel="noopener noreferrer">terminalizer (⭐16k)</a> - 🦄 Record your terminal and generate animated gif images or share a web player.</li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/sharkdp/hyperfine" rel="noopener noreferrer">hyperfine (⭐28k)</a> - A command-line benchmarking tool.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/05/24/">May 24, 2020</a></h2><h3><p>Tools / sh (macOS)</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dylanaraps/pfetch" rel="noopener noreferrer">pfetch (⭐2.2k)</a> - 🐧 A pretty system information tool written in POSIX sh.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/04/30/">Apr 30, 2020</a></h2><h3><p>Tools / Bash</p>
+</h3>
+<ul>
+<li><a href="https://github.com/aristocratos/bashtop" rel="noopener noreferrer">bashtop (⭐11k)</a> - Linux resource monitor.</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/claudiodangelis/qrcp" rel="noopener noreferrer">qrcp (⭐10k)</a> - Transfer files over wifi from your computer to your mobile device by scanning a QR code without leaving the terminal. <a href="https://claudiodangelis.com/qrcp" rel="noopener noreferrer">https://claudiodangelis.com/qrcp</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/04/23/">Apr 23, 2020</a></h2><h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/albacoretuna/moro" rel="noopener noreferrer">moro (⭐463)</a> - Simple CLI tool for tracking work hours <a href="https://moro.js.org/" rel="noopener noreferrer">https://moro.js.org/</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/04/05/">Apr 05, 2020</a></h2><h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dduan/tre" rel="noopener noreferrer">tre (⭐1.2k)</a> - Tree command, improved.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/03/18/">Mar 18, 2020</a></h2><h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/denisidoro/navi" rel="noopener noreferrer">navi (⭐17k)</a> - An interactive cheatsheet tool for the command-line.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/03/12/">Mar 12, 2020</a></h2><h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/darkHarry/yts-cli" rel="noopener noreferrer">yts (⭐23)</a> - A Python script to download yts movies with the help of transmission-gtk torrent client.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/02/28/">Feb 28, 2020</a></h2><h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mptre/yank" rel="noopener noreferrer">yank (⭐1.7k)</a> - Yank terminal output to clipboard.</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jesseduffield/lazygit" rel="noopener noreferrer">lazygit (⭐80k)</a> - Simple terminal UI for git commands.</li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/allthemusicllc/atm-cli" rel="noopener noreferrer">atm (⭐1.4k)</a> - Command line tool for generating and working with MIDI files.<a href="http://allthemusic.info" rel="noopener noreferrer">http://allthemusic.info</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/01/23/">Jan 23, 2020</a></h2><h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dthree/cash" rel="noopener noreferrer">cash (⭐7.7k)</a> - Cross-platform Linux commands in ES6.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/sindresorhus/fkill-cli" rel="noopener noreferrer">fkill (⭐7k)</a> - Fabulously kill processes. Cross-platform.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/manrajgrover/football-cli" rel="noopener noreferrer">football (⭐1.1k)</a> - ⚽ Command line interface for Hackers who love football.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/rafaelrinaldi/hn-cli" rel="noopener noreferrer">hn (⭐467)</a> - 📰 CLI to browse Hacker News.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jiahaog/nativefier" rel="noopener noreferrer">nativefier (⭐35k)</a> -  Make any web page a desktop application.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/danburzo/percollate" rel="noopener noreferrer">percollate (⭐4.6k)</a> - 🌐 → 📖 A command-line tool to turn web pages into beautifully formatted PDFs.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kefranabg/readme-md-generator" rel="noopener noreferrer">readme (⭐11k)</a> - CLI that generates beautiful README.md files. <a href="https://www.npmjs.com/package/readme-md-generator" rel="noopener noreferrer">https://www.npmjs.com/package/readme-md-generator</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/WeiChiaChang/stacks-cli" rel="noopener noreferrer">stacks-cli (⭐2k)</a> - 📊 Analyze website stack from the terminal 💻.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/10/21/">Oct 21, 2019</a></h2><h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/liamg/furious" rel="noopener noreferrer">furious (⭐600)</a> - Golang IP/port scanner with SYN (stealth) scanning and device manufacturer identification.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/10/17/">Oct 17, 2019</a></h2><h3><p>Tools / Bash</p>
+</h3>
+<ul>
+<li><a href="https://github.com/denilsonsa/prettyping" rel="noopener noreferrer">prettyping (⭐1.3k)</a> - <code>prettyping</code> is a wrapper around the standard <code>ping</code> tool, making the output prettier, more colorful, more compact, and easier to read. <a href="http://denilsonsa.github.io/prettyping" rel="noopener noreferrer">http://denilsonsa.github.io/prettyping</a></li>
+</ul>
+<h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Atoptool/atop" rel="noopener noreferrer">atop (⭐1k)</a> - System and process monitor for Linux.</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/miguelmota/cointop" rel="noopener noreferrer">cointop (⭐4.4k)</a> - The fastest and most interactive terminal based UI application for tracking cryptocurrencies. <a href="https://cointop.sh" rel="noopener noreferrer">https://cointop.sh</a></li>
+</ul>
+<h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ageitgey/node-unfluff" rel="noopener noreferrer">unfluff (⭐2.2k)</a> - Automatically extract body content (and other cool stuff) from an html document.</li>
+</ul>
+<h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nicolargo/glances" rel="noopener noreferrer">glances (⭐33k)</a> - Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems. <a href="http://nicolargo.github.io/glances/" rel="noopener noreferrer">http://nicolargo.github.io/glances/</a></li>
+</ul>
+<h3><p>Tools / Ruby</p>
+</h3>
+<ul>
+<li><a href="https://github.com/specious/facebook-cli" rel="noopener noreferrer">facebook-cli (⭐402)</a> - 💻 Facebook command line tool <a href="https://asciinema.org/a/87129" rel="noopener noreferrer">https://asciinema.org/a/87129</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/10/15/">Oct 15, 2019</a></h2><h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/allinurl/goaccess" rel="noopener noreferrer">goaccess (⭐21k)</a> - GoAccess is a real-time web log analyzer and interactive viewer that runs in a terminal in *nix systems or through your browser. <a href="https://goaccess.io" rel="noopener noreferrer">https://goaccess.io</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/10/14/">Oct 14, 2019</a></h2><h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/direnv/direnv" rel="noopener noreferrer">direnv (⭐15k)</a> - unclutter your .profile. <a href="http://direnv.net" rel="noopener noreferrer">http://direnv.net</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/wagoodman/dive" rel="noopener noreferrer">dive (⭐54k)</a> - A tool for exploring each layer in a docker image.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kashav/fsql" rel="noopener noreferrer">fsql (⭐4k)</a> - Search through your filesystem with SQL-esque queries.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/yudai/gotty" rel="noopener noreferrer">gotty (⭐20k)</a> - Share your terminal as a web application.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/malfunkt/hyperfox" rel="noopener noreferrer">hyperfox (⭐1.6k)</a> - HTTP/HTTPs MITM proxy and traffic recorder with on-the-fly TLS cert generation.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/davrodpin/mole" rel="noopener noreferrer">mole (⭐1.7k)</a> - cli app to create ssh tunnels <a href="https://davrodpin.github.io/mole/" rel="noopener noreferrer">https://davrodpin.github.io/mole/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jamescun/switcher" rel="noopener noreferrer">switcher (⭐902)</a> - Run SSH and HTTP(S) on the same port.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/akavel/up" rel="noopener noreferrer">up (⭐8.8k)</a> - Ultimate Plumber is a tool for writing Linux pipes with instant live preview.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/maxmcd/webtty" rel="noopener noreferrer">webtty (⭐2.8k)</a> - Share a terminal session over WebRTC <a href="https://maxmcd.github.io/webtty/" rel="noopener noreferrer">https://maxmcd.github.io/webtty/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/schachmat/wego" rel="noopener noreferrer">wego (⭐8.5k)</a> -  weather app for the terminal.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/wtfutil/wtf" rel="noopener noreferrer">wtf (⭐17k)</a> - The personal information dashboard for your terminal. <a href="http://wtfutil.com" rel="noopener noreferrer">http://wtfutil.com</a></li>
+</ul>
+<h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tldr-pages/tldr" rel="noopener noreferrer">tldr (⭐63k)</a> - 📚 Simplified and community-driven man pages <a href="https://tldr.sh" rel="noopener noreferrer">https://tldr.sh</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/simonw/datasette" rel="noopener noreferrer">datasette (⭐11k)</a> - A tool for exploring and publishing data. <a href="http://datasette.readthedocs.io/" rel="noopener noreferrer">http://datasette.readthedocs.io/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/facebook/PathPicker" rel="noopener noreferrer">fpp (⭐5.2k)</a> - PathPicker accepts a wide range of input -- output from git commands, grep results, searches -- pretty much anything.After parsing the input, PathPicker presents you with a nice UI to select which files you're interested in. After that you can open them in your favorite editor or execute arbitrary commands. <a href="http://facebook.github.io/PathPicker/" rel="noopener noreferrer">http://facebook.github.io/PathPicker/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/nvbn/thefuck" rel="noopener noreferrer">fuck (⭐97k)</a> - Magnificent app which corrects your previous console command.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/schollz/howmanypeoplearearound" rel="noopener noreferrer">howmanypeoplearearound (⭐7.1k)</a> - Count the number of people around you 👨‍👨‍👦 by monitoring wifi signals 📡.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/eliangcs/http-prompt" rel="noopener noreferrer">http-prompt (⭐9.1k)</a> - HTTPie + prompt_toolkit = an interactive command-line HTTP client featuring autocomplete and syntax highlighting. <a href="http://http-prompt.com" rel="noopener noreferrer">http://http-prompt.com</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/TomAnthony/itermocil" rel="noopener noreferrer">itermocil (⭐2.4k)</a> - Create pre-defined window/pane layouts and run commands in iTerm.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/achiku/jungle" rel="noopener noreferrer">jungle (⭐843)</a> - AWS operations by cli should be simpler.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/JuanPotato/Legofy" rel="noopener noreferrer">legofy (⭐3.2k)</a> - Make images look as if they are made out of 1x1 LEGO blocks.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/wummel/linkchecker" rel="noopener noreferrer">linkchecker (⭐1.4k)</a> - check links in web documents or full websites. <a href="http://wummel.github.io/linkchecker/" rel="noopener noreferrer">http://wummel.github.io/linkchecker/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dbcli/mycli" rel="noopener noreferrer">mycli (⭐12k)</a> - A Terminal Client for MySQL with AutoCompletion and Syntax Highlighting. <a href="http://mycli.net" rel="noopener noreferrer">http://mycli.net</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Russell91/pythonpy" rel="noopener noreferrer">py</a> - the swiss army knife of the command line.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/avinassh/rockstar" rel="noopener noreferrer">rockstar (⭐4.2k)</a> - Makes you a Rockstar C++ Programmer in 2 minutes.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jayfk/statuspage" rel="noopener noreferrer">statuspage (⭐3.9k)</a> - A statuspage generator that lets you host your statuspage for free on Github.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/fastmonkeys/stellar" rel="noopener noreferrer">stellar (⭐3.9k)</a> - Fast database snapshot and restore tool for development.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/wifiphisher/wifiphisher" rel="noopener noreferrer">wifiphisher (⭐15k)</a> - The Rogue Access Point Framework <a href="https://wifiphisher.org" rel="noopener noreferrer">https://wifiphisher.org</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/soimort/you-get" rel="noopener noreferrer">you-get (⭐57k)</a> - ⏬ Dumb downloader that scrapes the web <a href="https://you-get.org/" rel="noopener noreferrer">https://you-get.org/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ytdl-org/youtube-dl" rel="noopener noreferrer">youtube-dl (⭐141k)</a> - Command-line program to download videos from YouTube.com and other video sites <a href="http://ytdl-org.github.io/youtube-dl/" rel="noopener noreferrer">http://ytdl-org.github.io/youtube-dl/</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/10/13/">Oct 13, 2019</a></h2><h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/hashcat/hashcat-legacy" rel="noopener noreferrer">hashcat (⭐2.2k)</a> - Advanced CPU-based password recovery utility.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/cloudwu/mptun" rel="noopener noreferrer">mptun (⭐1.2k)</a> - Multi-path Tunnel.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/machyve/xhyve" rel="noopener noreferrer">xhyve (⭐6.4k)</a> - xhyve, a lightweight OS X virtualization solution.</li>
+</ul>
+<h3><p>Tools / C++</p>
+</h3>
+<ul>
+<li><a href="https://github.com/google/guetzli" rel="noopener noreferrer">guetzli (⭐13k)</a> - Perceptual JPEG encoder.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/razimantv/mazegenerator" rel="noopener noreferrer">mazegen (⭐1.1k)</a> - Generate mazes of different shapes and arbitrary sizes.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/openalpr/openalpr" rel="noopener noreferrer">openalpr (⭐11k)</a> - Automatic License Plate Recognition library <a href="http://www.openalpr.com" rel="noopener noreferrer">http://www.openalpr.com</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/hzeller/timg" rel="noopener noreferrer">timg (⭐2.7k)</a> - A terminal image viewer.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/facebook/watchman" rel="noopener noreferrer">watchman (⭐14k)</a> - Watches files and records, or triggers actions, when they change. <a href="https://facebook.github.io/watchman/" rel="noopener noreferrer">https://facebook.github.io/watchman/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mattgodbolt/zindex" rel="noopener noreferrer">zindex (⭐657)</a> - Create an index on a compressed text file.</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/schollz/hostyoself" rel="noopener noreferrer">hostyoself (⭐1.8k)</a> - Host yo' self from your browser, your phone, your toaster. <a href="https://hostyoself.com" rel="noopener noreferrer">https://hostyoself.com</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/alexellis/inlets" rel="noopener noreferrer">inlets</a> -  Expose your local endpoints to the Internet. <a href="https://blog.alexellis.io/https-inlets-local-endpoints/" rel="noopener noreferrer">https://blog.alexellis.io/https-inlets-local-endpoints/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/FiloSottile/mkcert" rel="noopener noreferrer">mkcert (⭐59k)</a> - A simple zero-config tool to make locally trusted development certificates with any names you'd like. <a href="https://mkcert.dev" rel="noopener noreferrer">https://mkcert.dev</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ericchiang/pup" rel="noopener noreferrer">pup (⭐8.4k)</a> - Parsing HTML at the command line.</li>
+</ul>
+<h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/IonicaBizau/git-stats" rel="noopener noreferrer">git-stats (⭐6.6k)</a> - 🍀 Local git statistics including GitHub-like contributions calendars.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/kilianc/rtail" rel="noopener noreferrer">rtail (⭐1.6k)</a> - Terminal output to the browser in seconds, using UNIX pipes. <a href="http://rtail.org" rel="noopener noreferrer">http://rtail.org</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/synox/youtube-dl-interactive" rel="noopener noreferrer">youtube-dl-interactive</a> - Interactively select the quality and format for youtube-dl.</li>
+</ul>
+<h3><p>Tools / Ruby</p>
+</h3>
+<ul>
+<li><a href="https://github.com/michenriksen/hibp" rel="noopener noreferrer">hibp (⭐68)</a> - A simple tool to check a bunch of email addresses against the Have I Been Pwned API. <a href="https://rubygems.org/gems/hibp" rel="noopener noreferrer">https://rubygems.org/gems/hibp</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/htty/htty" rel="noopener noreferrer">htty (⭐1.8k)</a> - htty is the HTTP TTY, a console application for interacting with web servers. <a href="http://htty.github.io" rel="noopener noreferrer">http://htty.github.io</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tmuxinator/tmuxinator" rel="noopener noreferrer">tmuxinator (⭐14k)</a> -  Manage complex tmux sessions easily.</li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/sharkdp/bat" rel="noopener noreferrer">bat (⭐59k)</a> - A cat(1) clone with wings.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/uutils/coreutils" rel="noopener noreferrer">coreutils (⭐24k)</a> -  Cross-platform Rust rewrite of the GNU coreutils.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Edu4rdSHL/findomain" rel="noopener noreferrer">findomain (⭐3.8k)</a> - The fastest and cross-platform subdomain enumerator, don't waste your time.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/sharkdp/hexyl" rel="noopener noreferrer">hexyl (⭐10k)</a> - A command-line hex viewer.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/BurntSushi/ripgrep" rel="noopener noreferrer">rg (⭐65k)</a> - ripgrep recursively searches directories for a regex pattern.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/starship/starship" rel="noopener noreferrer">starship (⭐58k)</a> - ☄🌌️ The cross-shell prompt for astronauts. <a href="https://starship.rs" rel="noopener noreferrer">https://starship.rs</a></li>
+</ul>
+<h3><p>Tools / sh (macOS)</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jlhonora/lsusb" rel="noopener noreferrer">lsusb (⭐391)</a> - lsusb command for Mac OS X.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/10/12/">Oct 12, 2019</a></h2><h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jpmens/jo" rel="noopener noreferrer">jo (⭐4.9k)</a> - JSON output from a shell. <a href="https://jpmens.net/2016/03/05/a-shell-command-to-create-json-jo/" rel="noopener noreferrer">https://jpmens.net/2016/03/05/a-shell-command-to-create-json-jo/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/stedolan/jq" rel="noopener noreferrer">jq (⭐35k)</a> - Command-line JSON processor. <a href="https://stedolan.github.io/jq/" rel="noopener noreferrer">https://stedolan.github.io/jq/</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Xfennec/progress" rel="noopener noreferrer">progress (⭐8.8k)</a> - Linux tool to show progress for cp, mv, dd, ... (formerly known as cv).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/facebook/zstd" rel="noopener noreferrer">zstd (⭐27k)</a> - Zstandard - Fast real-time compression algorithm <a href="http://www.zstd.net" rel="noopener noreferrer">http://www.zstd.net</a></li>
+</ul>
+<h3><p>Guides / sh</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Neilpang/acme.sh" rel="noopener noreferrer">acme.sh (⭐47k)</a> - A pure Unix shell script implementing ACME client protocol. <a href="https://acme.sh" rel="noopener noreferrer">https://acme.sh</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/10/11/">Oct 11, 2019</a></h2><h3><p>Tools / Bash</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jamesob/desk" rel="noopener noreferrer">desk (⭐2.6k)</a> - A lightweight workspace manager for the shell.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mrowa44/emojify" rel="noopener noreferrer">emojify (⭐1.6k)</a> - Emoji on the command line 😱.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dylanaraps/neofetch" rel="noopener noreferrer">neofetch (⭐24k)</a> - A command-line system information tool written in bash 3.2+.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/drduh/pwd.sh" rel="noopener noreferrer">pwd.sh (⭐1.6k)</a> - GPG symmetric password manager.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/KittyKatt/screenFetch" rel="noopener noreferrer">screenfetch (⭐4.1k)</a> - Fetches system/theme information in terminal for Linux desktop screenshots.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/coursehero/slacktee" rel="noopener noreferrer">slacktee (⭐828)</a> - slacktee is a bash script that works like tee command. Instead of writing the standard input to files, slacktee posts it to Slack.</li>
+</ul>
+<h3><p>Tools / C</p>
+</h3>
+<ul>
+<li><a href="https://github.com/hishamhm/htop" rel="noopener noreferrer">htop (⭐5.9k)</a> - htop is an interactive text-mode process viewer for Unix systems. It aims to be a better 'top'.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/eddieantonio/imgcat" rel="noopener noreferrer">imgcat (⭐920)</a> - It's like cat, but for images.</li>
+</ul>
+
+<ul>
+<li><a href="https://ivarch.com/programs/pv.shtml" rel="noopener noreferrer">pv</a> - Pipe Viewer - is a terminal-based tool for monitoring the progress of data through a pipeline.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tmux/tmux" rel="noopener noreferrer">tmux (⭐47k)</a> - tmux is a terminal multiplexer.</li>
+</ul>
+<h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jingweno/ccat" rel="noopener noreferrer">ccat (⭐3.2k)</a> - Colorizing <code>cat</code>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/cortesi/devd" rel="noopener noreferrer">devd (⭐3.5k)</a> - A local webserver for developers.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/junegunn/fzf" rel="noopener noreferrer">fzf (⭐81k)</a> - A command-line fuzzy finder.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/motemen/ghq" rel="noopener noreferrer">ghq (⭐3.7k)</a> - Remote repository management made easy.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jedisct1/piknik" rel="noopener noreferrer">piknik (⭐2.5k)</a> - Copy/paste anything over the network.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/m3ng9i/ran" rel="noopener noreferrer">ran (⭐876)</a> - a simple static web server written in Go.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/cespare/reflex" rel="noopener noreferrer">reflex (⭐3.6k)</a> - Run a command when files change.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/sqshq/sampler" rel="noopener noreferrer">sampler (⭐15k)</a> - A tool for shell commands execution, visualization and alerting. Configured with a simple YAML file. <a href="https://sampler.dev" rel="noopener noreferrer">https://sampler.dev</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/boyter/scc" rel="noopener noreferrer">scc (⭐8.5k)</a> -  Sloc, Cloc and Code: scc is a very fast accurate code counter with complexity calculations and COCOMO estimates written in pure Go.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/gcla/termshark" rel="noopener noreferrer">termshark (⭐9.9k)</a> - A terminal UI for tshark, inspired by Wireshark.</li>
+</ul>
+<h3><p>Tools / Haskell</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Gabriel439/bench" rel="noopener noreferrer">bench (⭐912)</a> - Command-line benchmark tool.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jgm/pandoc" rel="noopener noreferrer">pandoc (⭐45k)</a> - Universal markup converter <a href="https://pandoc.org" rel="noopener noreferrer">https://pandoc.org</a></li>
+</ul>
+<h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/aksakalli/gtop" rel="noopener noreferrer">gtop (⭐9.9k)</a> - System monitoring dashboard for terminal.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/sindresorhus/trash" rel="noopener noreferrer">trash (⭐2.7k)</a> - Move files and directories to the trash.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/MrRio/vtop" rel="noopener noreferrer">vtop (⭐4.2k)</a> - Wow such top. So stats. More better than regular top. <a href="http://parall.ax/vtop" rel="noopener noreferrer">http://parall.ax/vtop</a></li>
+</ul>
+<h3><p>Tools / Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/asciinema/asciinema" rel="noopener noreferrer">asciinema (⭐17k)</a> - Terminal session recorder 📹 <a href="https://asciinema.org" rel="noopener noreferrer">https://asciinema.org</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ageitgey/face_recognition" rel="noopener noreferrer">face_recognition (⭐57k)</a> - The world's simplest facial recognition api for Python and the command line.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jakubroztocil/httpie" rel="noopener noreferrer">httpie (⭐38k)</a> - As easy as HTTPie /aitch-tee-tee-pie/ 🥧 Modern command line HTTP client – user-friendly curl alternative with intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. <a href="https://httpie.org" rel="noopener noreferrer">https://httpie.org</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/architv/soccer-cli" rel="noopener noreferrer">soccer (⭐1.1k)</a> - ⚽️ Football scores for hackers. 💻 A command line interface for all the football scores.</li>
+</ul>
+<h3><p>Tools / Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/cgag/loc" rel="noopener noreferrer">loc (⭐2.5k)</a> - Count lines of code quickly.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Peltoche/lsd" rel="noopener noreferrer">lsd (⭐16k)</a> - The next gen ls command.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/sharkdp/pastel" rel="noopener noreferrer">pastel (⭐6.4k)</a> - A command-line tool to generate, analyze, convert and manipulate colors.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dflemstr/rq" rel="noopener noreferrer">rq (⭐2.3k)</a> - Record Query - A tool for doing record analysis and transformation.</li>
+</ul>
+<h3><p>Tools / sh (macOS)</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mas-cli/mas" rel="noopener noreferrer">mas (⭐12k)</a> - 📦 Mac App Store command line interface.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/rgcr/m-cli" rel="noopener noreferrer">m-cli (⭐9.9k)</a> -  Swiss Army Knife for macOS.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/apaszke/termtile" rel="noopener noreferrer">termtile (⭐1.3k)</a> - Terminal window manager for OS X.</li>
+</ul>
+<h3><p>Guides / Bash</p>
+</h3>
+<ul>
+<li><a href="https://github.com/alexanderepstein/Bash-Snippets" rel="noopener noreferrer">Bash-Snippets (⭐9.9k)</a> - A collection of small bash scripts for heavy terminal users</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dylanaraps/pure-bash-bible" rel="noopener noreferrer">pure bash bible (⭐42k)</a> - A collection of pure bash alternatives to external processes.</li>
+</ul>
+<h3><p>Guides / sh</p>
+</h3>
+<ul>
+<li><a href="https://github.com/learnbyexample/Command-line-text-processing" rel="noopener noreferrer">Command Line Text Processing (⭐10k)</a> - From finding text to search and replace, from sorting to beautifying text and more.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jlevy/the-art-of-command-line" rel="noopener noreferrer">The Art of Command Line (⭐161k)</a> - Master the command line, in one page.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/10/10/">Oct 10, 2019</a></h2><h3><p>Tools / Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/github/hub" rel="noopener noreferrer">hub (⭐23k)</a> - A command-line tool that makes git easier to use with GitHub. <a href="https://hub.github.com/" rel="noopener noreferrer">https://hub.github.com/</a></li>
+</ul>
+<h3><p>Tools / Node</p>
+</h3>
+<ul>
+<li><a href="https://github.com/soheilpro/catj" rel="noopener noreferrer">catj (⭐1.3k)</a> - Displays JSON files in a flat format.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ottomatica/slim" rel="noopener noreferrer">slim (⭐2.1k)</a> - Build and run tiny vms from Dockerfiles. Small and sleek.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/10/07/">Oct 07, 2019</a></h2><h3><p>Tools / Bash</p>
+</h3>
+<ul>
+<li><a href="https://github.com/EricFreeman/fuck" rel="noopener noreferrer">fuck (⭐399)</a> - Fix command line spelling errors like it's 1999.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mrzool/bash-sensible" rel="noopener noreferrer">Sensible Bash (⭐2.1k)</a> - An attempt at saner Bash defaults. <a href="https://github.com/mrzool/bash-sensible/blob/master/sensible.bash" rel="noopener noreferrer">https://github.com/mrzool/bash-sensible/blob/master/sensible.bash (⭐2.1k)</a></li>
+</ul>
+<h3><p>Tools / PowerShell</p>
+</h3>
+<ul>
+<li><a href="https://github.com/fireeye/commando-vm" rel="noopener noreferrer">commando-vm (⭐7.7k)</a> - Complete Mandiant Offensive VM (Commando VM), a fully customizable Windows-based pentesting virtual machine distribution. <a href="https://github.com/cdleon/awesome-terminals/blob/master/README.md/mailto:commandovm@fireeye.com" rel="noopener noreferrer">commandovm@fireeye.com</a>. <a href="https://www.fireeye.com/blog/threat-research/2019/08/commando-vm-customization-containers-kali.html" rel="noopener noreferrer">https://www.fireeye.com/blog/threat-research/2019/08/commando-vm-customization-containers-kali.html</a></li>
+</ul>
+<h3><p>Tools / sh</p>
+</h3>
+<ul>
+<li><a href="https://github.com/shellfire-dev/shellfire" rel="noopener noreferrer">shellfire (⭐1.2k)</a> - A repository of namespaced, composable shell (bash, sh and dash) function libraries. Takes aware the pain of shell scripting, making it robust and reusable. Includes secure curl usage, JSON, XML and Debian control file parsers, dependency documentation via attributes, and more. Batteries ARE included.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/marcan/takeover.sh" rel="noopener noreferrer">takeover.sh (⭐7.3k)</a> - Wipe and reinstall a running Linux system via SSH, without rebooting. You know you want to.</li>
+</ul>
+
+    </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
+  </body>
+</html>
