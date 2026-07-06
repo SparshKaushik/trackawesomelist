@@ -16,22 +16,226 @@
     <meta property="og:title" content="Track Awesome Quantified Self Updates Daily" />
     <meta property="og:description" content=":bar_chart: Websites, Resources, Devices, Wearables, Applications, and Platforms for Self Tracking" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Quantified Self Updates Daily</h1>
 <p>:bar_chart: Websites, Resources, Devices, Wearables, Applications, and Platforms for Self Tracking</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/woop/awesome-quantified-self/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/woop/awesome-quantified-self">😺 woop/awesome-quantified-self</a><span> · </span><span>⭐ 2.5K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/woop/awesome-quantified-self/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/woop/awesome-quantified-self">😺 woop/awesome-quantified-self</a><span> · </span><span>⭐ 2.7K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/woop/awesome-quantified-self/week/">Weekly</a><span> / </span><a href="/woop/awesome-quantified-self/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/07/06/">Jul 06, 2026</a></h2><h3><p>Applications and Platforms / Fitness</p>
+</h3>
+<ul>
+<li><a href="https://runnerapp.pro/" rel="noopener noreferrer">Smart Runner</a> - Privacy-respecting on-device running and marathon training coach with adaptive plans (iOS &amp; Apple Watch).</li>
+</ul>
+<h3><p>Applications and Platforms / Aggregators &amp; Dashboards</p>
+</h3>
+<ul>
+<li><a href="https://healthsync.megabyte.sh/apple-health-app-sync" rel="noopener noreferrer">HealthSync</a> - Sync selected Apple Health data to a private backend API (iOS).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ashugaev/bloodboy-biomarkers-tracker" rel="noopener noreferrer">Bloodboy (⭐17)</a> - Biomarker analyzer that extracts lab results from PDFs, converts units, and visualizes trends.</li>
+</ul>
+
+<ul>
+<li><a href="https://logzero.app" rel="noopener noreferrer">LogZero</a> - Private tracker for mood, food, weight, meds, and exercise with a local correlation engine that surfaces relationships between metrics; on-device, no account (iOS).</li>
+</ul>
+<h3><p>Applications and Platforms / Data Collection</p>
+</h3>
+<ul>
+<li><a href="https://github.com/deep0410/garmin-ai-notifier" rel="noopener noreferrer">Garmin AI Notifier (⭐0)</a> - Free daily pipeline that pulls Garmin Connect into SQLite, computes full-history wellness stats, generates a Gemini-written brief, and pushes it to your phone via ntfy, Telegram, or email. Runs on GitHub Actions.</li>
+</ul>
+<h3><p>Applications and Platforms / Diet</p>
+</h3>
+<ul>
+<li><a href="https://tract.health" rel="noopener noreferrer">Tract</a> - AI gut-health coach with food, symptom, and bowel-movement tracking for IBD, IBS, and elimination diets.</li>
+</ul>
+
+<ul>
+<li><a href="https://apps.apple.com/us/app/intermittent-fasting-if24/id6738324344" rel="noopener noreferrer">Intermittent Fasting: IF24</a> - Free intermittent fasting timer with live metabolic phases; private and offline (iOS).</li>
+</ul>
+
+<ul>
+<li><a href="https://mealthinker.com" rel="noopener noreferrer">MealThinker</a> - AI meal planner that suggests meals based on your preferences, dietary needs, and kitchen inventory, with automatic nutrition tracking (Web &amp; iOS).</li>
+</ul>
+<h3><p>Applications and Platforms / Habits</p>
+</h3>
+<ul>
+<li><a href="https://habitit.app" rel="noopener noreferrer">HabitIt</a> - Habit tracker with auto-tapering schedules. Habit chains, automatic pattern detection, money-saved counter, AI insights, Health sync (iOS, Android, Apple Watch, Wear OS).</li>
+</ul>
+
+<ul>
+<li><a href="https://openhabittracker.net" rel="noopener noreferrer">OpenHabitTracker</a> - Free, open source habit tracker with notes and tasks (Web, Windows, Linux, Android, iOS, macOS).</li>
+</ul>
+<h3><p>Applications and Platforms / Health</p>
+</h3>
+<ul>
+<li><a href="https://folicle.app/" rel="noopener noreferrer">Folicle</a> - Hair-growth tracker with aligned scalp photos, a numeric Hair Score over time, and dermatologist-ready exports; non-diagnostic (iOS, Android).</li>
+</ul>
+
+<ul>
+<li><a href="https://fixfirst.health" rel="noopener noreferrer">FixFirst</a> - Free tool that analyzes uploaded blood-test PDFs and ranks health priorities using age- and sex-adjusted thresholds; no account required (Web).</li>
+</ul>
+<h3><p>Applications and Platforms / Mood</p>
+</h3>
+<ul>
+<li><a href="https://mirrornotes.org" rel="noopener noreferrer">MirrorNotes</a> - Private AI journaling with on-device mood tracking, daily reflection prompts, and "Ask your journal" queries. AI (Gemma 3) runs locally, so no data leaves your device (iOS).</li>
+</ul>
+
+<ul>
+<li><a href="https://getdailyvox.com" rel="noopener noreferrer">DailyVox</a> - Voice journal that tracks mood and surfaces patterns on-device, building a private "Digital Twin" from your spoken entries. No account or cloud; free and open source (iOS).</li>
+</ul>
+<h3><p>Applications and Platforms / Sleep</p>
+</h3>
+<ul>
+<li><a href="https://cpapclarity.com" rel="noopener noreferrer">CPAP Clarity</a> - Analyzes CPAP and sleep data in your browser and explains it in plain language, with no upload and no account (Web).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/airwaylab-app/airwaylab" rel="noopener noreferrer">AirwayLab (⭐22)</a> - Browser-based PAP therapy analysis with flow limitation scoring and an oximetry pipeline. All processing runs locally (Web).</li>
+</ul>
+<h3><p>Applications and Platforms / Wealth</p>
+</h3>
+<ul>
+<li><a href="https://github.com/mayswind/ezbookkeeping" rel="noopener noreferrer">ezBookkeeping (⭐5.1k)</a> - A lightweight, self-hosted personal finance and bookkeeping app.</li>
+</ul>
+<h3><p>Devices and Wearables / Wealth</p>
+</h3>
+<ul>
+<li><a href="https://www.polar.com/" rel="noopener noreferrer">Polar</a> - Heart rate monitors and fitness, sleep, and recovery tracking wearables.</li>
+</ul>
+<h3><p>Research and Analysis / Wealth</p>
+</h3>
+<ul>
+<li><a href="https://github.com/shmlkv/dna-claude-analysis" rel="noopener noreferrer">DNA Claude Analysis (⭐46)</a> - Interactive personal genome analysis toolkit using Claude Code. Analyzes raw DNA data from 23andMe, AncestryDNA, and others across 17 categories including health risks, pharmacogenomics, nutrition, and longevity.</li>
+</ul>
+<h3><p>Open Source Projects / Wealth</p>
+</h3>
+<ul>
+<li><a href="https://github.com/timelinize/timelinize" rel="noopener noreferrer">Timelinize (⭐3.5k)</a> - A data aggregation and and timeline visualization tool.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/KristianP26/ble-scale-sync" rel="noopener noreferrer">ble-scale-sync (⭐117)</a> - Self-hosted CLI that reads BLE smart scales (23 brands), calculates body composition (fat %, muscle, BMR, etc.), and exports to Garmin Connect, MQTT, InfluxDB, Webhook, and Ntfy. <a href="https://blescalesync.dev" rel="noopener noreferrer">Website</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/screenpipe/screenpipe" rel="noopener noreferrer">Screenpipe (⭐20k)</a> - 24/7 local screen and audio recording with AI-powered search. Captures everything you see, say, and hear for personal analytics and lifelogging.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.goldencheetah.org/" rel="noopener noreferrer">GoldenCheetah</a> - FOSS software to import and analyse fitness data locally on Linux, MacOS and Windows.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/nopara73/LongevityWorldCup" rel="noopener noreferrer">Longevity World Cup (⭐21)</a> - Open source healthspan competition platform with biological age calculators, athlete profiles, and public leaderboards.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/shenas-org/shenas" rel="noopener noreferrer">shenas (⭐0)</a> - Local-first personal analytics platform that ingests health, finance, and activity data into a per-user DuckDB; raw data stays on your device and models train via federated learning.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/liujuanjuan1984/lifeos-cli" rel="noopener noreferrer">lifeos-cli (⭐10)</a> - Terminal-native LifeOS for personal workflows, habits, and timelogs.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pankajkumardev/gitstory-2025" rel="noopener noreferrer">GitStory (⭐177)</a> - Generates a "Spotify Wrapped" style visual summary of your yearly GitHub contribution activity.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/chukwumaonyeije/pgis-manus-skill#readme" rel="noopener noreferrer">PGIS (⭐1)</a> - Open-source decision-support framework for optimizing endurance training while managing Type 2 diabetes, integrating CGM, HRV, sleep, and training load data.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2025/05/29/">May 29, 2025</a></h2><h3><p>Applications and Platforms / Habits</p>
 </h3>
 <ul>
@@ -45,7 +249,7 @@
 <h2><a href="https://www.trackawesomelist.com/2025/03/16/">Mar 16, 2025</a></h2><h3><p>Open Source Projects / Wealth</p>
 </h3>
 <ul>
-<li><a href="https://github.com/karlicoss/HPI" rel="noopener noreferrer">HumanProgrammingInterface (⭐1.5k)</a> - Unify, acces and interact with all of your personal data.</li>
+<li><a href="https://github.com/karlicoss/HPI" rel="noopener noreferrer">HumanProgrammingInterface (⭐1.6k)</a> - Unify, acces and interact with all of your personal data.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/09/06/">Sep 06, 2024</a></h2><h3><p>Applications and Platforms / Data Collection</p>
 </h3>
@@ -73,15 +277,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/chronicle-app/chronicle-etl" rel="noopener noreferrer">Chronicle (⭐168)</a> - A CLI toolkit for extracting and working with your digital history.</li>
+<li><a href="https://github.com/chronicle-app/chronicle-etl" rel="noopener noreferrer">Chronicle (⭐197)</a> - A CLI toolkit for extracting and working with your digital history.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/QS-Schema/qs-schema" rel="noopener noreferrer">QS-Schema (⭐1)</a> - Open schemes for QS applications.</li>
+<li><a href="https://github.com/QS-Schema/qs-schema" rel="noopener noreferrer">QS-Schema (⭐3)</a> - Open schemes for QS applications.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/simonw/datasette" rel="noopener noreferrer">Datasette (⭐10k)</a> - An open source multi-tool for exploring and publishing data.</li>
+<li><a href="https://github.com/simonw/datasette" rel="noopener noreferrer">Datasette (⭐11k)</a> - An open source multi-tool for exploring and publishing data.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/02/20/">Feb 20, 2024</a></h2><h3><p>Applications and Platforms / Data Collection</p>
 </h3>
@@ -96,7 +300,7 @@
 <h3><p>Open Source Projects / Wealth</p>
 </h3>
 <ul>
-<li><a href="https://github.com/danfang/me-api" rel="noopener noreferrer">Me API (⭐831)</a> - An extensible, personal API with custom integrations.</li>
+<li><a href="https://github.com/danfang/me-api" rel="noopener noreferrer">Me API (⭐841)</a> - An extensible, personal API with custom integrations.</li>
 </ul>
 
 <ul>
@@ -105,16 +309,12 @@
 <h2><a href="https://www.trackawesomelist.com/2023/08/18/">Aug 18, 2023</a></h2><h3><p>Applications and Platforms / Aggregators &amp; Dashboards</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NoTranslationLayer/biomarkerdash" rel="noopener noreferrer">BiomarkerDash (⭐20)</a> - Simple dashboard to visualize trends in bloodwork biomarkers.</li>
+<li><a href="https://github.com/NoTranslationLayer/biomarkerdash" rel="noopener noreferrer">BiomarkerDash (⭐25)</a> - Simple dashboard to visualize trends in bloodwork biomarkers.</li>
 </ul>
 <h3><p>Open Source Projects / Wealth</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mholt/timeliner" rel="noopener noreferrer">Timeliner (⭐3.6k)</a> - A data aggregation and and timeline visualization tool.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/facebookresearch/personal-timeline" rel="noopener noreferrer">TimelineBuilder (⭐366)</a> - A data aggregation and and timeline visualization tool by Facebook.</li>
+<li><a href="https://github.com/facebookresearch/personal-timeline" rel="noopener noreferrer">TimelineBuilder (⭐373)</a> - A data aggregation and and timeline visualization tool by Facebook.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/05/04/">May 04, 2023</a></h2><h3><p>Applications and Platforms / Habits</p>
 </h3>
@@ -134,7 +334,7 @@
 <h3><p>Applications and Platforms / Wealth</p>
 </h3>
 <ul>
-<li><a href="https://github.com/firefly-iii/firefly-iii" rel="noopener noreferrer">Firefly III (⭐20k)</a> - A free and open source personal finance manager</li>
+<li><a href="https://github.com/firefly-iii/firefly-iii" rel="noopener noreferrer">Firefly III (⭐24k)</a> - A free and open source personal finance manager</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/12/13/">Dec 13, 2022</a></h2><h3><p>Applications and Platforms / Fitness</p>
 </h3>
@@ -352,11 +552,6 @@
 <ul>
 <li><a href="https://timingapp.com/" rel="noopener noreferrer">Timing</a> - Automatic time and productivity tracking for Mac. Helps you stay on track with your work and tells you exactly how many seconds you spent in each document, website and app (Mac).</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2017/05/31/">May 31, 2017</a></h2><h3><p>Open Source Projects / Wealth</p>
-</h3>
-<ul>
-<li><a href="https://github.com/onejgordon/flow-dashboard" rel="noopener noreferrer">Flow Dashboard (⭐1.7k)</a> - Habit tracker and personal data analytics app.</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2017/05/24/">May 24, 2017</a></h2><h3><p>Applications and Platforms / Time</p>
 </h3>
 <ul>
@@ -500,7 +695,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ledger/ledger" rel="noopener noreferrer">Ledger (⭐5.6k)</a> - Simple but powerful command line accounting.</li>
+<li><a href="https://github.com/ledger/ledger" rel="noopener noreferrer">Ledger (⭐6k)</a> - Simple but powerful command line accounting.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/11/16/">Nov 16, 2016</a></h2><h3><p>Devices and Wearables / Wealth</p>
 </h3>
@@ -715,5 +910,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
