@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Track Awesome Git (dictcp/awesome-git) Updates Daily - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/dictcp/awesome-git/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Track Awesome Git Updates Daily" />
+    <meta property="og:description" content="A curated list of amazingly awesome Git tools, resources and shiny things" />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
+    <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
+      }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Track Awesome Git Updates Daily</h1>
+<p>A curated list of amazingly awesome Git tools, resources and shiny things</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/dictcp/awesome-git/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/dictcp/awesome-git">😺 dictcp/awesome-git</a><span> · </span><span>⭐ 2.9K</span><span> · </span><span>🏷️ Development Environment</span></p>
+<p><span>[ </span><span>Daily</span><span> / </span><a href="/dictcp/awesome-git/week/">Weekly</a><span> / </span><a href="/dictcp/awesome-git/readme/">Overview</a><span> ]</span></p>
+
+<h2><a href="https://www.trackawesomelist.com/2026/07/07/">Jul 07, 2026</a></h2><h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://github.com/DetachHead/rebased" rel="noopener noreferrer">Rebased (⭐4.6k)</a> - A git client based on the IntelliJ platform</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/roblillack/gitj" rel="noopener noreferrer">gitj (Git Journey) (⭐1)</a> - Fast, small, cross-platform GUI git client (gitk/git-gui style) with image diff support</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2025/02/04/">Feb 04, 2025</a></h2><h3><p>Self-Hosted Repository</p>
+</h3>
+<ul>
+<li><a href="https://developer.harness.io/docs/open-source" rel="noopener noreferrer">Harness Open Source</a> - Open Source code hosting with secret scanning based on Gitleaks. Self-hosted and Apache-2.0 license.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/12/10/">Dec 10, 2024</a></h2><h3><p>Self-Hosted Repository</p>
+</h3>
+<ul>
+<li><a href="https://forgejo.org/" rel="noopener noreferrer">Forgejo</a> - a community managed fork of Gitea, started after Gitea changed ownership.<a href="https://gitea-open-letter.coding.social/" rel="noopener noreferrer">*</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/12/15/">Dec 15, 2023</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://maciejb2k.github.io/no-bs-git/" rel="noopener noreferrer">No Bullsh*t Git</a> - free and complete explanation of git internals and the <code>.git/</code> directory.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/11/05/">Nov 05, 2023</a></h2><h3><p>Hook management / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://pre-commit.com" rel="noopener noreferrer">pre-commit</a> - a framework for managing and maintaining multi-language pre-commit hooks.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/typicode/husky" rel="noopener noreferrer">husky (⭐35k)</a> - modern native Git hooks made easy.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/brigade/overcommit" rel="noopener noreferrer">Overcommit (⭐4k)</a> - a extendable Git hook manager written with Ruby.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/evilmartians/lefthook" rel="noopener noreferrer">lefthook (⭐8.5k)</a> - fast and powerful Git hooks manager for any type of project.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Escape-Technologies/mookme" rel="noopener noreferrer">Mookme (⭐105)</a> - A simple and easy-to-use, yet powerful and language agnostic git hook for monorepos.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dirk/quickhook" rel="noopener noreferrer">quickhook (⭐62)</a> - a fast, Unix'y, opinionated Git hook runner.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/10/20/">Oct 20, 2023</a></h2><h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jonas/tig" rel="noopener noreferrer">tig (⭐13k)</a> - text-mode interface for git.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/10/07/">Oct 07, 2023</a></h2><h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Murmele/Gittyup" rel="noopener noreferrer">Gittyup (⭐2.2k)</a> - a graphical Git client designed to help you understand and manage your source code history.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/07/19/">Jul 19, 2023</a></h2><h3><p>Workflow / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://git-repo.info/en/2020/03/agit-flow-and-git-repo/" rel="noopener noreferrer">Agit-flow</a> - Inspired by Gerrit workflow, Agit-flow is a centralized git workflow and used in Alibaba’s internal source code platform</li>
+</ul>
+<h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/amitsaha/gitbackup" rel="noopener noreferrer">gitbackup (⭐232)</a> - a tool to backup your Bitbucket, GitHub and GitLab repositories.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/07/09/">Jul 09, 2023</a></h2><h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jonhadfield/soba" rel="noopener noreferrer">soba (⭐165)</a> - scheduled backups of repositories from popular providers with change detection.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2023/03/28/">Mar 28, 2023</a></h2><h3><p>Self-Hosted Repository</p>
+</h3>
+<ul>
+<li><a href="https://github.com/charmbracelet/soft-serve" rel="noopener noreferrer">Soft Serve (⭐7.1k)</a> - a tasty, self-hostable Git server for the command line</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/12/11/">Dec 11, 2022</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://github.com/groda/the_ultimate_gitignore_guide" rel="noopener noreferrer">The ultimate guide to <code>.gitignore</code> (⭐41)</a> All about <code>.gitignore</code>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/06/29/">Jun 29, 2022</a></h2><h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jesseduffield/lazygit" rel="noopener noreferrer">lazygit (⭐80k)</a> - A simple terminal UI for git commands, written in Go</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/05/21/">May 21, 2022</a></h2><h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://mooltiverse.github.io/nyx/guide/user/best-practice/branching-models/" rel="noopener noreferrer">Branching Models article from Nyx</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/04/27/">Apr 27, 2022</a></h2><h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://kellyjonbrazil.github.io/jc/docs/parsers/git_log" rel="noopener noreferrer">jc --git-log</a> - Convert your git log to JSON.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/04/20/">Apr 20, 2022</a></h2><h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tummychow/git-absorb" rel="noopener noreferrer">git-absorb (⭐5.6k)</a> - <code>git commit --fixup</code>, but automatic</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2022/04/14/">Apr 14, 2022</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://github.com/k88hudson/git-flight-rules" rel="noopener noreferrer">Flight rules for Git (⭐43k)</a> - guide about what to do when things go wrong</li>
+</ul>
+
+<ul>
+<li><a href="https://lostechies.com/joshuaflanagan/2010/09/03/use-gitk-to-understand-git/" rel="noopener noreferrer">Use gitk to understand git</a> - all important Git terms (commit, commit SHA, branch, merge, rebase) explained using gitk</li>
+</ul>
+<h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://www.gitkraken.com/" rel="noopener noreferrer">GitKraken</a> - a cross Git client for Windows, Mac &amp; Linux. Electron based. Free for non-commercial use and paid Pro version is available.</li>
+</ul>
+
+<ul>
+<li><a href="https://git-fork.com" rel="noopener noreferrer">Fork</a> - An awesome and free git client for macOS and Windows</li>
+</ul>
+
+<ul>
+<li><a href="https://tortoisegit.org/" rel="noopener noreferrer">TortoiseGit</a> - an easy-to-use Git client on Windows. well-integrated with Windows Explorer.</li>
+</ul>
+<h3><p>Repository Hosting</p>
+</h3>
+<ul>
+<li><a href="https://www.jetbrains.com/space/" rel="noopener noreferrer">Jetbrains Space</a> - Jetbrains all-in-one solution for software teams, with IM, ticket tracking, source control.</li>
+</ul>
+
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/services/devops/" rel="noopener noreferrer">Azure DevOps</a> - cloud service for software development formerly known as Visual Studio Team Services, Visual Studio Online and Team Foundation Service Preview</li>
+</ul>
+
+<ul>
+<li><a href="https://www.fogcreek.com/kiln/" rel="noopener noreferrer">Kiln</a> - paid Git repository hosting service</li>
+</ul>
+<h3><p>Self-Hosted Repository</p>
+</h3>
+<ul>
+<li><a href="https://github.com/theonedev/onedev" rel="noopener noreferrer">onedev (⭐15k)</a> - Self-hosted Git Server with Kanban and CI/CD</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/takezoe/gitbucket/" rel="noopener noreferrer">GitBucket (⭐9.4k)</a> - a GitHub clone powered by Scala.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.phacility.com/" rel="noopener noreferrer">Phabricator</a> - an integrated set of powerful tools to help companies build higher quality software<ul>
+<li>Effective June 1, 2021: Phabricator is no longer actively maintained.<a href="https://admin.phacility.com/phame/post/view/11/phacility_is_winding_down_operations/" rel="noopener noreferrer">*</a></li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><a href="https://www.jetbrains.com/upsource" rel="noopener noreferrer">Upsource</a> - recent offer from Jetbrains, a famous developer-oriented software company. Code repository hosting feature pending. Free for 10 users. Good integration with YouTrack and TeamCity<ul>
+<li>Upsource is no longer available as a commercial product as of February 1, 2022.<a href="https://www.jetbrains.com/upsource/" rel="noopener noreferrer">*</a></li>
+</ul>
+</li>
+</ul>
+<h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://martinfowler.com/articles/branching-patterns.html" rel="noopener noreferrer">Patterns for Managing Source Code Branches</a></li>
+</ul>
+<h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/lindell/multi-gitter" rel="noopener noreferrer">multi-gitter (⭐1.2k)</a> - a tool to make changes in multiple repositories simultaneously</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pazdera/gitwalk" rel="noopener noreferrer">gitwalk (⭐122)</a> - Bulk processing of git repos</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/webpro/release-it" rel="noopener noreferrer">release-it (⭐9k)</a> - Automate releases for Git repositories and/or npm packages. Changelog generation, GitHub/GitLab releases, etc.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/cooperspencer/gickup" rel="noopener noreferrer">gickup (⭐1.4k)</a> - Backup repos from various hosters to local or other hosters.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/12/03/">Dec 03, 2020</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://www.loginradius.com/blog/async/git-cherry-pick/" rel="noopener noreferrer">Git Cherry-pick and its usages</a> - A blog explaining how command git cherry-pick works.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/11/26/">Nov 26, 2020</a></h2><h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://vershd.io/" rel="noopener noreferrer">Vershd</a> - a free for personal use effortless Git GUI for Windows, Mac, &amp; Linux.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/08/03/">Aug 03, 2020</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://shop.oreilly.com/product/0636920024972" rel="noopener noreferrer">Git Pocket Guide</a> - a short O'Reilly book on Git</li>
+</ul>
+
+<ul>
+<li><a href="https://pcottle.github.io/learnGitBranching/" rel="noopener noreferrer">Git Branching</a> - visual way to learn git branching</li>
+</ul>
+
+<ul>
+<li><a href="https://githowto.com" rel="noopener noreferrer">Git How To</a> - step by step intro</li>
+</ul>
+
+<ul>
+<li><a href="https://vooban.com/en/tips-articles-geek-stuff/migrating-to-git-lfs-for-developing-deep-learning-applications-with-large-files/" rel="noopener noreferrer">Migrating to Git LFS</a> - Use Git LFS on an existing repository to manage large files in a better way</li>
+</ul>
+
+<ul>
+<li><a href="https://onlywei.github.io/explain-git-with-d3/" rel="noopener noreferrer">Explain Git with D3</a> - Visualized few basic Git concepts using D3.js: commit, branch, checkout, reset, revert, merge, rebase, fetch, pull, push, tag</li>
+</ul>
+
+<ul>
+<li><a href="https://ndpsoftware.com/git-cheatsheet.html" rel="noopener noreferrer">Interactive/Contextual/Visual Cheat Sheet</a></li>
+</ul>
+
+<ul>
+<li><a href="https://codebasicshub.com/tutorial/git-github/what-is-git" rel="noopener noreferrer">CodeBasicsHub: Git Video Tutorials</a></li>
+</ul>
+
+<ul>
+<li><a href="https://sethrobertson.github.io/GitFixUm/fixup.html" rel="noopener noreferrer">A Git Choose Your Own Adventure</a> - I never found a git tutorial I didn't understand while doing it. Just sometimes those tutorials didn't line up very well with my actual work. This git help in the form of a choose your own adventure was a life saver when I was first starting out.</li>
+</ul>
+<h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://www.git-tower.com/" rel="noopener noreferrer">Tower</a> - a popular non-free Git GUI client. Mac and Windows</li>
+</ul>
+
+<ul>
+<li><a href="https://www.syntevo.com/smartgit/" rel="noopener noreferrer">SmartGit</a> - a commercial comprehensive SCM client with Git, SVN, Mercurial. cross-platform (works on Windows, Mac and Linux)</li>
+</ul>
+
+<ul>
+<li><a href="https://git-cola.github.io/" rel="noopener noreferrer">git-cola</a> - a cross-platform Git GUI client</li>
+</ul>
+<h3><p>Repository Hosting</p>
+</h3>
+<ul>
+<li><a href="https://bitbucket.org/" rel="noopener noreferrer">BitBucket</a> - well-known for its free private repository (5 user max).</li>
+</ul>
+<h3><p>Self-Hosted Repository</p>
+</h3>
+<ul>
+<li><a href="https://gitolite.com/gitolite/" rel="noopener noreferrer">Gitolite</a> - a simple with fine-grained access control</li>
+</ul>
+
+<ul>
+<li><a href="https://gogs.io/" rel="noopener noreferrer">Gogs</a> - a self-hosted Git Service written in Go.</li>
+</ul>
+<h3><p>Workflow / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://nvie.com/posts/a-successful-git-branching-model/" rel="noopener noreferrer">Gitflow</a> - the most well-known Git workflow model</li>
+</ul>
+<h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://fabioz.github.io/mu-repo/" rel="noopener noreferrer">mu-repo</a> - a tool to help in dealing with multiple git repositories</li>
+</ul>
+
+<ul>
+<li><a href="https://etckeeper.branchable.com/" rel="noopener noreferrer">etckeeper</a> - a collection of tools to let /etc be stored in a git repository</li>
+</ul>
+
+<ul>
+<li><a href="https://gitless.com/" rel="noopener noreferrer">Gitless</a> - an experimental version of Git that changes some of Git's underlying concepts</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/02/21/">Feb 21, 2020</a></h2><h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://magit.vc" rel="noopener noreferrer">Magit</a> - A Git porcelain inside Emacs</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/02/12/">Feb 12, 2020</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://krishnabiradar.com/blogs/deconstructing-a-git-commit/" rel="noopener noreferrer">Deconstructing a git commit</a> - A blog explaining how git creates and stores commit histories.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2020/01/13/">Jan 13, 2020</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://github.com/jlord/git-it-electron" rel="noopener noreferrer">Git-It (⭐4.9k)</a> - Interactive Tutorial App that runs on your Desktop!</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/12/16/">Dec 16, 2019</a></h2><h3><p>Workflow / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://www.alibabacloud.com/blog/how-do-we-manage-code-branches-at-alibaba_593834" rel="noopener noreferrer">Aoneflow</a> - an interesting branch model which delays the final merge to production branch, adopted by Alibaba. more article (in Chinese text) at <a href="https://segmentfault.com/a/1190000016373314" rel="noopener noreferrer">1</a>, <a href="https://yq.aliyun.com/articles/573549" rel="noopener noreferrer">2</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/10/08/">Oct 08, 2019</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://sethrobertson.github.io/GitFixUm/fixup.html" rel="noopener noreferrer">On undoing, fixing, or removing commits in git</a> - fairly comprehensive guide to recovering from what you did not mean to do when using git</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/05/16/">May 16, 2019</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://www.youtube.com/c/DanGitschoolDude" rel="noopener noreferrer">Git School Dude</a> - It's a YouTube channel with a lot of great git videos. It covers everything from the basics to advanced Git topics.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/05/13/">May 13, 2019</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://www.deployhq.com/git" rel="noopener noreferrer">Learn how to use Git</a> - free tutorials and resources to help you learn the basics of Git</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/10/12/">Oct 12, 2018</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://github.com/susam/gitpr" rel="noopener noreferrer">Fork and Pull Request Workflow (⭐963)</a> - Very nicely explained, simple and crisp way of understanding git fork and pull request workflow.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/08/05/">Aug 05, 2018</a></h2><h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/conventional-changelog/conventional-changelog" rel="noopener noreferrer">conventional-changelog (⭐8.5k)</a> - a set of tools for parsing <a href="https://conventionalcommits.org/" rel="noopener noreferrer">conventional commit</a> messages from git histories</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/08/03/">Aug 03, 2018</a></h2><h3><p>Style Guide</p>
+</h3>
+<ul>
+<li><a href="https://udacity.github.io/git-styleguide/index.html" rel="noopener noreferrer">Udacity Nanodegree Style Guide</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/06/29/">Jun 29, 2018</a></h2><h3><p>Self-Hosted Repository</p>
+</h3>
+<ul>
+<li><a href="https://gitea.io/" rel="noopener noreferrer">Gitea</a> - a community managed fork of Gogs, lightweight code hosting solution written in Go.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/06/07/">Jun 07, 2018</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://git-scm.com/book/" rel="noopener noreferrer">Pro Git</a> - free Git book, also available on paper (CC BY-NC-SA 3.0)</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/arslanbilal/git-cheat-sheet" rel="noopener noreferrer">Git &amp; Git-Flow Cheat Sheet (⭐7.4k)</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/git-tips/tips" rel="noopener noreferrer">Git Tips (⭐22k)</a></li>
+</ul>
+
+<ul>
+<li><a href="http://justinhileman.info/article/git-pretty/git-pretty.png" rel="noopener noreferrer">The 'Git Pretty' Flow-Chart</a> - How to Recover from a Mess</li>
+</ul>
+
+<ul>
+<li><a href="https://software-carpentry.org/lessons/" rel="noopener noreferrer">Software Carpentry: Git Lessons</a></li>
+</ul>
+
+<ul>
+<li><a href="http://tom.preston-werner.com/2009/05/19/the-git-parable.html" rel="noopener noreferrer">The Git Parable</a> - GitHub Cofounder's Narrative-style Intro to Git Concepts</li>
+</ul>
+
+<ul>
+<li><a href="http://www.columbia.edu/~zjn2101/intermediate-git/#1" rel="noopener noreferrer">Intermediate Git</a> - lower-level, more structural explanation of git concepts</li>
+</ul>
+<h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://github.com/stevemao/awesome-git-addons" rel="noopener noreferrer">Git Add-ons (⭐2.2k)</a> - Enhance the basic <code>git</code> CLI</li>
+</ul>
+<h3><p>Repository Hosting</p>
+</h3>
+<ul>
+<li><a href="https://github.com/" rel="noopener noreferrer">GitHub</a> - the de-facto git hosting service. Perfect integration with most external services.<ul>
+<li><a href="https://github.com/phillipadsmith/awesome-github" rel="noopener noreferrer">Awesome GitHub (⭐967)</a> - Resources &amp; Learning for GitHub<ul>
+<li><a href="https://github.com/tiimgreen/github-cheat-sheet" rel="noopener noreferrer">GitHub Cheat Sheet (⭐58k)</a></li>
+<li><a href="https://github.com/stefanbuck/awesome-browser-extensions-for-github" rel="noopener noreferrer">GitHub Browser Extensions (⭐3.3k)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/04/13/">Apr 13, 2018</a></h2><h3><p>Hook management / Comparing workflows</p>
+</h3>
+<ul>
+<li>more on <a href="https://githooks.com/" rel="noopener noreferrer">https://githooks.com/</a></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/10/31/">Oct 31, 2017</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://appendto.com/2015/06/making-sense-of-git-a-visual-perspective/" rel="noopener noreferrer">Making Sense of Git – A Visual Perspective</a> - Git from a timeline and level perspective and git commands cheatsheet grouped by functionality</li>
+</ul>
+<h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/magicmonty/bash-git-prompt" rel="noopener noreferrer">bash-git-prompt (⭐6.9k)</a> - An informative and fancy bash prompt for Git users</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/10/26/">Oct 26, 2017</a></h2><h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://workingcopyapp.com" rel="noopener noreferrer">WorkingCopy</a> - a powerful Git client for iOS. Free with in-app purchase to unlock the ability to push commits.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/07/05/">Jul 05, 2017</a></h2><h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/stevemao/awesome-git-addons" rel="noopener noreferrer">awesome-git-addons (⭐2.2k)</a> - lists more than 20 git addons including all available commands</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/06/21/">Jun 21, 2017</a></h2><h3><p>Extensions / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Microsoft/GVFS" rel="noopener noreferrer">Git Virtual File System or GVFS (⭐6.1k)</a> - solution for managing very large Git repository while maintaining speed and efficiency of most operations. in developement by Microsoft.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/05/05/">May 05, 2017</a></h2><h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nickolasburr/git-follow" rel="noopener noreferrer">git-follow (⭐32)</a> - a tool for following lifetime changes of a file throughout the history of a Git repository.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2017/03/06/">Mar 06, 2017</a></h2><h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://gitextensions.github.io/" rel="noopener noreferrer">GitExtensions</a> - a shell extension, a Visual Studio 2010-2015 plugin and a standalone Git repository tool.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/11/29/">Nov 29, 2016</a></h2><h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="http://gitup.co" rel="noopener noreferrer">GitUp</a> - a clean, minimal Git client. Mac only.</li>
+</ul>
+<h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/unixorn/git-extra-commands" rel="noopener noreferrer">git-extra-commands (⭐1.2k)</a> - Another collection of useful git commands.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/10/28/">Oct 28, 2016</a></h2><h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/motemen/ghq" rel="noopener noreferrer">ghq (⭐3.7k)</a> — Organization for remote repositories</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/10/16/">Oct 16, 2016</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://www.manning.com/books/learn-git-in-a-month-of-lunches" rel="noopener noreferrer">Learn Git in a Month of Lunches</a> - tutorial-based book by Manning Publications</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/10/08/">Oct 08, 2016</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="http://www-cs-students.stanford.edu/~blynn/gitmagic/index.html" rel="noopener noreferrer">Git Magic</a> - short book about Git</li>
+</ul>
+
+<ul>
+<li><a href="https://jwiegley.github.io/git-from-the-bottom-up/" rel="noopener noreferrer">Git from the bottom up</a> - great series of articles about Git</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/10/03/">Oct 03, 2016</a></h2><h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="http://mixu.net/gr/" rel="noopener noreferrer">gr</a> - a tool for managing multiple git repositories</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/09/27/">Sep 27, 2016</a></h2><h3><p>Repository Hosting</p>
+</h3>
+<ul>
+<li><a href="https://deveo.com/" rel="noopener noreferrer">Deveo</a> - a paid repository hosting service with support for Git, Subversion, Mercurial, WebDAV</li>
+</ul>
+<h3><p>Self-Hosted Repository</p>
+</h3>
+<ul>
+<li><a href="http://gitblit.com/" rel="noopener noreferrer">GitBlit</a> - Pure Java Stack for managing, view, and serving Git repositories.</li>
+</ul>
+
+<ul>
+<li><a href="https://allura.apache.org/" rel="noopener noreferrer">Apache Allura</a> - an open source implementation of project hosting platform</li>
+</ul>
+
+<ul>
+<li><a href="https://rhodecode.com/" rel="noopener noreferrer">RhodeCode CE/EE</a> - a platform delivering enterprise source code management</li>
+</ul>
+<h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/michenriksen/gitrob" rel="noopener noreferrer">Gitrob (⭐6.2k)</a> - a command line tool to find sensitive information lingering in publicly available files on GitHub</li>
+</ul>
+
+<ul>
+<li><a href="https://www.presslabs.com/gitfs/" rel="noopener noreferrer">gitFS</a> - a FUSE file system that fully integrates with git</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/09/22/">Sep 22, 2016</a></h2><h3><p>Self-Hosted Repository</p>
+</h3>
+<ul>
+<li><a href="https://www.atlassian.com/software/bitbucket/server" rel="noopener noreferrer">Bitbucket Server</a> - self-hosted refrom Atlassian. Good integration with JIRA and other Atlassian products</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2016/07/26/">Jul 26, 2016</a></h2><h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/tj/git-extras" rel="noopener noreferrer">git-extras (⭐18k)</a> – git utilities adding useful git commands.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/10/07/">Oct 07, 2015</a></h2><h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://github.com/FredrikNoren/ungit" rel="noopener noreferrer">Ungit (⭐11k)</a> - The easiest way to use git. On any platform. Anywhere.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/09/24/">Sep 24, 2015</a></h2><h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://www.sourcetreeapp.com/" rel="noopener noreferrer">SourceTree</a> - free (in-beer) GUI client. Windows and Mac only</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/09/22/">Sep 22, 2015</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://try.github.io/" rel="noopener noreferrer">Try Git</a> - learn Git in 15 minutes with pseudo-terminal interface</li>
+</ul>
+
+<ul>
+<li><a href="https://www.atlassian.com/git/tutorials/" rel="noopener noreferrer">Atlassian Git Tutorial</a> - comprehensive tutorial on Git</li>
+</ul>
+
+<ul>
+<li><a href="https://www.codeschool.com/courses/git-real/" rel="noopener noreferrer">Git Real: Code School</a> - paid training course from Code School</li>
+</ul>
+<h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://github.com/sheimi/SGit" rel="noopener noreferrer">SGit (⭐378)</a> - Git client for Android 4.x</li>
+</ul>
+<h3><p>Repository Hosting</p>
+</h3>
+<ul>
+<li><a href="https://about.gitlab.com/gitlab-com/" rel="noopener noreferrer">GitLab.com</a> - a free Git repository hosting service served by GitLab EE. Unlimited repositories and private collaborators</li>
+</ul>
+
+<ul>
+<li><a href="https://aws.amazon.com/codecommit/" rel="noopener noreferrer">AWS CodeCommit</a> - a SaaS service provided by Amazon Web Service on high availability infrastructure</li>
+</ul>
+<h3><p>Self-Hosted Repository</p>
+</h3>
+<ul>
+<li><a href="https://gitlab.com/" rel="noopener noreferrer">GitLab CE/EE</a> - a popular open-source Git (CE) with paid support option (EE).</li>
+</ul>
+<h3><p>Workflow / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="http://scottchacon.com/2011/08/31/github-flow.html" rel="noopener noreferrer">GitHub flow</a> - a simple branching model with a single master</li>
+</ul>
+
+<ul>
+<li><a href="https://about.gitlab.com/2014/09/29/gitlab-flow/" rel="noopener noreferrer">GitLab flow</a></li>
+</ul>
+
+<ul>
+<li><a href="https://gist.github.com/djspiewak/9f2f91085607a4859a66" rel="noopener noreferrer">Git DMZ Flow</a></li>
+</ul>
+<h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/github/gitignore" rel="noopener noreferrer">GitIgnore Collection (⭐175k)</a> - collection of gitignore files for various programming language</li>
+</ul>
+<h3><p>Extensions / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://git-lfs.github.com/" rel="noopener noreferrer">Git Large File Storage</a> - practical solution for versioning large files. supported by GitHub</li>
+</ul>
+
+<ul>
+<li><a href="https://git-annex.branchable.com/" rel="noopener noreferrer">git-annex</a> - allow managing large binaries among machines, as if operation a normal git repository. possible to creates a synchronised folder with <a href="https://git-annex.branchable.com/assistant/" rel="noopener noreferrer">git-annex assistant</a>.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2015/09/15/">Sep 15, 2015</a></h2><h3><p>Tutorial</p>
+</h3>
+<ul>
+<li><a href="https://www.git-tower.com/learn/" rel="noopener noreferrer">Learn Version Control with Git</a> - freemium ebook from fournova Software (makers for Tower), associated with paid video course</li>
+</ul>
+
+<ul>
+<li><a href="https://schacon.github.io/gitbook/" rel="noopener noreferrer">The Git Community Book</a> - book built by dozens of people in the Git community</li>
+</ul>
+<h3><p>Client</p>
+</h3>
+<ul>
+<li><a href="https://desktop.github.com/" rel="noopener noreferrer">GitHub Desktop</a> - Git Client by GitHub. works with GitHub and GitHub Enterprise seamlessly</li>
+</ul>
+
+<ul>
+<li><a href="http://rabbitvcs.org/" rel="noopener noreferrer">RabbitVCS</a> - TortoiseSVN inspired graphic tool for version control systems, with Nautilus and Thunar integration</li>
+</ul>
+
+<ul>
+<li><a href="https://wiki.gnome.org/Apps/Gitg/" rel="noopener noreferrer">gitg</a> - a open-source GTK+ GUI client</li>
+</ul>
+<h3><p>Self-Hosted Repository</p>
+</h3>
+<ul>
+<li><a href="https://enterprise.github.com/" rel="noopener noreferrer">GitHub Enterprise</a> - self-hosted solution provided from GitHub</li>
+</ul>
+<h3><p>Workflow</p>
+</h3>
+<ul>
+<li><a href="https://git-scm.com/book/it/v2/Distributed-Git-Distributed-Workflows" rel="noopener noreferrer">Pro Git - Distributed Workflows</a></li>
+</ul>
+
+<ul>
+<li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows" rel="noopener noreferrer">Atlassian Git Tutorial - Comparing Workflows</a></li>
+</ul>
+<h3><p>Tools / Comparing workflows</p>
+</h3>
+<ul>
+<li><a href="https://myrepos.branchable.com/" rel="noopener noreferrer">myrepos</a> - a tool to manage multiple version control repositories</li>
+</ul>
+
+<ul>
+<li><a href="https://rtyley.github.io/bfg-repo-cleaner/" rel="noopener noreferrer">BFG Repo-Cleaner</a> - a simpler, faster alternative to git-filter-branch for cleansing bad data out of your Git repository history</li>
+</ul>
+
+    </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
+  </body>
+</html>

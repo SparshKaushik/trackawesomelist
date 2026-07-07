@@ -16,63 +16,347 @@
     <meta property="og:title" content="Track Awesome Capacitor Updates Weekly" />
     <meta property="og:description" content="😎 Awesome lists of capacitor plugins. Made by Capgo" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Capacitor Updates Weekly</h1>
 <p>😎 Awesome lists of capacitor plugins. Made by Capgo</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/riderx/awesome-capacitor/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/riderx/awesome-capacitor">😺 riderx/awesome-capacitor</a><span> · </span><span>⭐ 603</span><span> · </span><span>🏷️ Platforms</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/riderx/awesome-capacitor/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/riderx/awesome-capacitor">😺 riderx/awesome-capacitor</a><span> · </span><span>⭐ 630</span><span> · </span><span>🏷️ Platforms</span></p>
 <p><span>[ </span><a href="/riderx/awesome-capacitor/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/riderx/awesome-capacitor/readme/">Overview</a><span> ]</span></p>
 
-<h2><a href="https://www.trackawesomelist.com/2026/8/">Feb 23 - Mar 01, 2026</a></h2><h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Device &amp; Sensors</p>
+<h2><a href="https://www.trackawesomelist.com/2026/28/">Jul 13 - Jul 19, 2026</a></h2><h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Core &amp; Updates</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-age-range" rel="noopener noreferrer">Age Range (⭐2)</a> - Cross-platform age range detection for Android and iOS.</li>
+<li><a href="https://github.com/Cap-go/capacitor-patch" rel="noopener noreferrer">Capacitor Patch (⭐3)</a> - Apply vetted Capgo patches during cap sync and cap update.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-plus" rel="noopener noreferrer">Capacitor+ (⭐18)</a> - Always-synced Capacitor fork with community fixes and faster releases.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Device &amp; Sensors</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-device-info" rel="noopener noreferrer">Device Info (⭐3)</a> - Read CPU, memory, GPU, storage, and onboard sensor metrics.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-persistent-uuid" rel="noopener noreferrer">Persistent UUID (⭐2)</a> - Persist an app UUID across reinstalls and updates.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-proximity" rel="noopener noreferrer">Proximity (⭐4)</a> - Monitor proximity sensor state in mobile apps.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Camera &amp; Media</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-asset-cache" rel="noopener noreferrer">Asset Cache (⭐4)</a> - Transparently cache large images and videos locally.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Storage &amp; Files</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-file-sharer" rel="noopener noreferrer">File Sharer (⭐2)</a> - Share and save files on Android, iOS, and Web.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Location &amp; Navigation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-mock-location-detector" rel="noopener noreferrer">Mock Location Detector (⭐3)</a> - Detect simulated GPS locations and spoofing developer tools.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Authentication &amp; Security</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-app-attest" rel="noopener noreferrer">App Attest (⭐1)</a> - Device attestation with Apple App Attest (iOS) and Play Integrity (Android).</li>
+<li><a href="https://github.com/Cap-go/capacitor-device-integrity" rel="noopener noreferrer">Device Integrity (⭐0)</a> - Check Widevine, Play Integrity, App Attest, and DeviceCheck signals.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-app-tracking-transparency" rel="noopener noreferrer">App Tracking Transparency (⭐2)</a> - Request ATT authorization for tracking on iOS.</li>
+<li><a href="https://github.com/Cap-go/capacitor-passkey" rel="noopener noreferrer">Passkey (⭐3)</a> - WebAuthn-compatible passkey shim for native apps.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-persona" rel="noopener noreferrer">Persona (⭐1)</a> - Launch Persona inquiry flows on iOS and Android.</li>
+<li><a href="https://github.com/Cap-go/capacitor-recaptcha" rel="noopener noreferrer">reCAPTCHA (⭐2)</a> - Generate reCAPTCHA and reCAPTCHA Enterprise tokens.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-ssl-pinning" rel="noopener noreferrer">SSL Pinning (⭐3)</a> - Pin HTTPS certificates through CapacitorHttp on Android and iOS.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-verisoul" rel="noopener noreferrer">Verisoul (⭐2)</a> - Fraud prevention sessions for Capacitor apps.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / UI &amp; Display</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-live-activities" rel="noopener noreferrer">Live Activities</a> - Manage iOS Live Activities from Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-native-navigation" rel="noopener noreferrer">Native Navigation (⭐23)</a> - Native navbar, tabbar, safe-area handling, and WebView transitions.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-native-loader" rel="noopener noreferrer">Native Loader (⭐3)</a> - Native animated loaders, transparent overlays, Lottie assets, and WebView resizing.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-pretty-toast" rel="noopener noreferrer">Pretty Toast (⭐4)</a> - Native-first toast notifications for Capacitor and the web.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-privacy-screen" rel="noopener noreferrer">Privacy Screen (⭐4)</a> - Hide app content in screenshots and app switcher previews.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-date-picker" rel="noopener noreferrer">Date Picker (⭐2)</a> - Native date, time, date-time, year-month, and range pickers.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-sheets" rel="noopener noreferrer">Sheets (⭐4)</a> - Framework-agnostic sheets, drawers, dialogs, and overlay primitives.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Purchases &amp; Payments</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-stripe-identity" rel="noopener noreferrer">Stripe Identity (⭐2)</a> - Verify identities with Stripe Identity.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-stripe-pay" rel="noopener noreferrer">Stripe Pay (⭐3)</a> - Payment Sheet, Apple Pay, and Google Pay for Stripe.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-stripe-terminal" rel="noopener noreferrer">Stripe Terminal (⭐4)</a> - In-person Stripe Terminal payments.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Communication &amp; Messaging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-intercom" rel="noopener noreferrer">Intercom</a> - Intercom SDK integration for Capacitor apps.</li>
+<li><a href="https://github.com/Cap-go/capacitor-incoming-call-kit" rel="noopener noreferrer">Incoming Call Kit (⭐3)</a> - Native incoming call UI with Android full-screen notifications and iOS CallKit.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-mqtt" rel="noopener noreferrer">MQTT (⭐3)</a> - Connect to MQTT brokers on Android and iOS.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Analytics &amp; Tracking</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-appsflyer" rel="noopener noreferrer">AppsFlyer (⭐3)</a> - Attribution, analytics, and deep links for AppsFlyer.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-contentsquare" rel="noopener noreferrer">Contentsquare (⭐4)</a> - Mobile analytics SDK integration for Capacitor apps.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-facebook-analytics" rel="noopener noreferrer">Facebook Analytics (⭐2)</a> - Meta/Facebook App Events analytics for Capacitor apps.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-install-referrer" rel="noopener noreferrer">Install Referrer (⭐4)</a> - Attribution via Google Play Install Referrer and Apple AdServices.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-rudderstack" rel="noopener noreferrer">RudderStack (⭐2)</a> - Analytics, identity, and event tracking for RudderStack.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Contacts &amp; Health</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-calendar" rel="noopener noreferrer">Calendar (⭐2)</a> - Manage calendar events on iOS and Android.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Android Specific</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-android-sms-retriever" rel="noopener noreferrer">Android SMS Retriever (⭐2)</a> - SMS Retriever and Phone Number Hint APIs on Android.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Platform Integrations</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-auto" rel="noopener noreferrer">Auto (⭐3)</a> - CarPlay and Android Auto communication.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-intune" rel="noopener noreferrer">Intune (⭐2)</a> - Microsoft Intune MAM enrollment, app protection policies, app config, and MSAL authentication.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-widget-kit" rel="noopener noreferrer">Widget Kit (⭐6)</a> - Build iOS widgets, Live Activities, and shared App Group integrations.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Firebase</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/appcheck/README.md" rel="noopener noreferrer">App Check (⭐6)</a> - Firebase App Check for Capacitor.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-webview-version-checker" rel="noopener noreferrer">WebView Version Checker (⭐1)</a> - Check Android WebView version and prompt users to update when needed.</li>
+<li><a href="https://github.com/Cap-go/capacitor-background-task" rel="noopener noreferrer">Background Task (⭐2)</a> - Periodic background fetch tasks on iOS and Android.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-network-diagnostics" rel="noopener noreferrer">Network Diagnostics (⭐3)</a> - Run native network diagnostics from Capacitor.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-webview-crash" rel="noopener noreferrer">WebView Crash (⭐2)</a> - Detect recovered WebView crashes.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Specialized Hardware</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-uwb" rel="noopener noreferrer">UWB (⭐3)</a> - Ultra-Wideband ranging on iOS and Android.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-zebra-datawedge" rel="noopener noreferrer">Zebra DataWedge (⭐2)</a> - Manage Zebra DataWedge profiles, notifications, queries, and soft scanning.</li>
+</ul>
+<h3><p>Other plugins / Specialized Hardware</p>
+</h3>
+<ul>
+<li><a href="https://github.com/isaforge/capacitor-thermal-state" rel="noopener noreferrer">capacitor-thermal-state (⭐4)</a> - Monitor device thermal state (overheating detection) on iOS and Android.</li>
+</ul>
+<h3><p>Helpers / Incompatible</p>
+</h3>
+<ul>
+<li><a href="https://https://github.com/benoitlahoz/vue-capacitor-haptics" rel="noopener noreferrer">vue-capacitor-haptics</a> - A Vue 3 wrapper for the Capacitor Haptics plugin (composable + directive), providing an easy-to-use interface for adding haptic feedback to Ionic-Vue applications.</li>
+</ul>
+<h3><p>Learning / Crash Courses</p>
+</h3>
+<ul>
+<li><a href="https://www.udemy.com/course/capacitor-crash-course/" rel="noopener noreferrer">Capacitor Crash Course</a> - Learn to use Capacitor with Ionic by Simon Grimm.</li>
+</ul>
+<h3><p>Freelancers / Case study</p>
+</h3>
+<ul>
+<li><a href="https://book.capgo.app/adrien/" rel="noopener noreferrer">Adrien</a> - Creator of Capstart the best boilerplate for Capacitor and Capgo part-time developper.</li>
+</ul>
+
+<ul>
+<li><a href="https://book.capgo.app/jordan/" rel="noopener noreferrer">Jordan</a> - Creator of multiple mobile app and Capgo part-time developper.</li>
+</ul>
+
+<ul>
+<li><a href="https://capgo.app/consulting/" rel="noopener noreferrer">Capgo consulting</a> - Creator of this list and of Capgo live update system + 150 plugins.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/8/">Feb 23 - Mar 01, 2026</a></h2><h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Device &amp; Sensors</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-age-range" rel="noopener noreferrer">Age Range (⭐3)</a> - Cross-platform age range detection for Android and iOS.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Authentication &amp; Security</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-app-attest" rel="noopener noreferrer">App Attest (⭐6)</a> - Device attestation with Apple App Attest (iOS) and Play Integrity (Android).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-app-tracking-transparency" rel="noopener noreferrer">App Tracking Transparency (⭐3)</a> - Request ATT authorization for tracking on iOS.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-persona" rel="noopener noreferrer">Persona (⭐3)</a> - Launch Persona inquiry flows on iOS and Android.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / UI &amp; Display</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-live-activities" rel="noopener noreferrer">Live Activities (⭐6)</a> - Manage iOS Live Activities from Capacitor.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Communication &amp; Messaging</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-intercom" rel="noopener noreferrer">Intercom (⭐3)</a> - Customer messaging SDK integration for Capacitor apps.</li>
+</ul>
+<h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Utilities</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Cap-go/capacitor-webview-version-checker" rel="noopener noreferrer">WebView Version Checker (⭐5)</a> - Check Android WebView version and prompt users to update when needed.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/5/">Feb 02 - Feb 08, 2026</a></h2><h3><p>Official plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-filesystem" rel="noopener noreferrer">File system (⭐4)</a> - Provides a NodeJS-like API for working with files on the device.</li>
+<li><a href="https://github.com/ionic-team/capacitor-filesystem" rel="noopener noreferrer">File system (⭐6)</a> - Provides a NodeJS-like API for working with files on the device.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-geolocation" rel="noopener noreferrer">Geolocation (⭐11)</a> - Provides simple methods for getting and tracking the current position of the device using GPS, along with altitude, heading, and speed information if available.</li>
+<li><a href="https://github.com/ionic-team/capacitor-geolocation" rel="noopener noreferrer">Geolocation (⭐12)</a> - Provides simple methods for getting and tracking the current position of the device using GPS, along with altitude, heading, and speed information if available.</li>
 </ul>
 
 <ul>
@@ -80,25 +364,25 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-keyboard" rel="noopener noreferrer">Keyboard (⭐1)</a> - Provides keyboard display and visibility control, along with event tracking when the keyboard shows and hides.</li>
+<li><a href="https://github.com/ionic-team/capacitor-keyboard" rel="noopener noreferrer">Keyboard (⭐3)</a> - Provides keyboard display and visibility control, along with event tracking when the keyboard shows and hides.</li>
 </ul>
 <h3><p>Community plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/capacitor-community/sqlite" rel="noopener noreferrer">SQLite (⭐638)</a> - Native &amp; electron SQLite databases.</li>
+<li><a href="https://github.com/capacitor-community/sqlite" rel="noopener noreferrer">SQLite (⭐655)</a> - Native &amp; electron SQLite databases.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/mia-z/capacitor-websocket" rel="noopener noreferrer">WebSocket (⭐20)</a> - Plugin providing native WebSocket implementations for each platform.</li>
+<li><a href="https://github.com/mia-z/capacitor-websocket" rel="noopener noreferrer">WebSocket (⭐22)</a> - Plugin providing native WebSocket implementations for each platform.</li>
 </ul>
 <h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jepiqueau/capacitor-data-storage-sqlite" rel="noopener noreferrer">Data Storage SQLite (⭐97)</a> - Providing a key-value permanent store for simple data of type string only to SQLite on iOS, Android and Electron platforms and to IndexedDB for the Web platform.</li>
+<li><a href="https://github.com/jepiqueau/capacitor-data-storage-sqlite" rel="noopener noreferrer">Data Storage SQLite (⭐103)</a> - Providing a key-value permanent store for simple data of type string only to SQLite on iOS, Android and Electron platforms and to IndexedDB for the Web platform.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/OrdinarySF/capacitor-websocket-client" rel="noopener noreferrer">WebSocket Client (⭐51)</a> - Native client for real-time bidirectional communication.</li>
+<li><a href="https://github.com/OrdinarySF/capacitor-websocket-client" rel="noopener noreferrer">WebSocket Client (⭐52)</a> - Native client for real-time bidirectional communication.</li>
 </ul>
 <h3><p>Cordova plugins / Compatible</p>
 </h3>
@@ -126,431 +410,417 @@
 <ul>
 <li><a href="https://aasa-tester.capgo.app" rel="noopener noreferrer">AASA Tester</a> - Test Apple App Site Association (AASA) configuration.</li>
 </ul>
-<h3><p>Learning / Crash Courses</p>
-</h3>
-<ul>
-<li><a href="https://www.udemy.com/course/capacitor-crash-course" rel="noopener noreferrer">Capacitor Crash Course</a> - Learn to use Capacitor with Ionic by Simon Grimm.</li>
-</ul>
 <h3><p>Community / Case study</p>
 </h3>
 <ul>
 <li><a href="https://reddit.com/r/capacitor" rel="noopener noreferrer">Reddit</a> - Official Reddit community.</li>
 </ul>
-<h3><p>Freelancers / Case study</p>
-</h3>
-<ul>
-<li><a href="https://cal.com/martindonadieu/30min" rel="noopener noreferrer">Martin Donadieu</a> - Creator of this list and of Capgo live update system + 10 plugins.</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/2/">Jan 12 - Jan 18, 2026</a></h2><h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Core &amp; Updates</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-updater" rel="noopener noreferrer">Updater (⭐685)</a> - Live update for capacitor apps.</li>
+<li><a href="https://github.com/Cap-go/capacitor-updater" rel="noopener noreferrer">Updater (⭐800)</a> - Live update for capacitor apps.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-live-reload" rel="noopener noreferrer">Live Reload (⭐3)</a> - Reload Capacitor apps from a remote Vite dev server.</li>
+<li><a href="https://github.com/Cap-go/capacitor-live-reload" rel="noopener noreferrer">Live Reload (⭐9)</a> - Reload Capacitor apps from a remote Vite dev server.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Device &amp; Sensors</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-accelerometer" rel="noopener noreferrer">Accelerometer (⭐3)</a> - Read device accelerometer measurements.</li>
+<li><a href="https://github.com/Cap-go/capacitor-accelerometer" rel="noopener noreferrer">Accelerometer (⭐8)</a> - Read device accelerometer measurements.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-barometer" rel="noopener noreferrer">Barometer (⭐4)</a> - Access device barometer readings.</li>
+<li><a href="https://github.com/Cap-go/capacitor-barometer" rel="noopener noreferrer">Barometer (⭐7)</a> - Access device barometer readings.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-brightness" rel="noopener noreferrer">Brightness (⭐4)</a> - Control screen brightness on iOS and Android.</li>
+<li><a href="https://github.com/Cap-go/capacitor-brightness" rel="noopener noreferrer">Brightness (⭐5)</a> - Control screen brightness on iOS and Android.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-compass" rel="noopener noreferrer">Compass (⭐5)</a> - Native compass heading plugin.</li>
+<li><a href="https://github.com/Cap-go/capacitor-compass" rel="noopener noreferrer">Compass (⭐6)</a> - Native compass heading plugin.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-light-sensor" rel="noopener noreferrer">Light Sensor (⭐4)</a> - Access the device light sensor (Android only).</li>
+<li><a href="https://github.com/Cap-go/capacitor-light-sensor" rel="noopener noreferrer">Light Sensor (⭐5)</a> - Access the device light sensor (Android only).</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-mute" rel="noopener noreferrer">Mute (⭐9)</a> - Detect if the mute switch is enabled/disabled on a device.</li>
+<li><a href="https://github.com/Cap-go/capacitor-mute" rel="noopener noreferrer">Mute (⭐14)</a> - Detect if the mute switch is enabled/disabled on a device.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-pedometer" rel="noopener noreferrer">Pedometer (⭐4)</a> - Access pedometer data including steps, distance, pace, cadence, and floors.</li>
+<li><a href="https://github.com/Cap-go/capacitor-pedometer" rel="noopener noreferrer">Pedometer (⭐11)</a> - Access pedometer data including steps, distance, pace, cadence, and floors.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-shake" rel="noopener noreferrer">Shake (⭐15)</a> - Detect shake gesture in device.</li>
+<li><a href="https://github.com/Cap-go/capacitor-shake" rel="noopener noreferrer">Shake (⭐19)</a> - Detect shake gesture in device.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-volume-buttons" rel="noopener noreferrer">Volume Buttons (⭐3)</a> - Listen to volume button presses.</li>
+<li><a href="https://github.com/Cap-go/capacitor-volume-buttons" rel="noopener noreferrer">Volume Buttons (⭐7)</a> - Listen to volume button presses.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-sim" rel="noopener noreferrer">SIM (⭐4)</a> - Get information from device's sim cards.</li>
+<li><a href="https://github.com/Cap-go/capacitor-sim" rel="noopener noreferrer">SIM (⭐10)</a> - Get information from device's sim cards.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Camera &amp; Media</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-camera-preview" rel="noopener noreferrer">Camera Preview (⭐34)</a> - Native camera preview with custom controls.</li>
+<li><a href="https://github.com/Cap-go/capacitor-camera-preview" rel="noopener noreferrer">Camera Preview (⭐47)</a> - Native camera preview with custom controls.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-document-scanner" rel="noopener noreferrer">Document Scanner (⭐14)</a> - Scan documents on iOS and Android.</li>
+<li><a href="https://github.com/Cap-go/capacitor-document-scanner" rel="noopener noreferrer">Document Scanner (⭐22)</a> - Scan documents on iOS and Android.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-audio-recorder" rel="noopener noreferrer">Audio Recorder (⭐5)</a> - Record audio on iOS, Android, and Web.</li>
+<li><a href="https://github.com/Cap-go/capacitor-audio-recorder" rel="noopener noreferrer">Audio Recorder (⭐13)</a> - Record audio on iOS, Android, and Web.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-native-audio" rel="noopener noreferrer">Native Audio (⭐62)</a> - A native plugin for native audio engine.</li>
+<li><a href="https://github.com/Cap-go/capacitor-native-audio" rel="noopener noreferrer">Native Audio (⭐74)</a> - A native plugin for native audio engine.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-audiosession" rel="noopener noreferrer">Audio Session (⭐4)</a> - Get notified about audio interrupts &amp; route changes on iOS.</li>
+<li><a href="https://github.com/Cap-go/capacitor-audiosession" rel="noopener noreferrer">Audio Session (⭐8)</a> - Get notified about audio interrupts &amp; route changes on iOS.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-screen-recorder" rel="noopener noreferrer">Screen Recorder (⭐18)</a> - Record device's screen.</li>
+<li><a href="https://github.com/Cap-go/capacitor-screen-recorder" rel="noopener noreferrer">Screen Recorder (⭐26)</a> - Record device's screen.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-video-player" rel="noopener noreferrer">Video Player (⭐3)</a> - Play video in native player.</li>
+<li><a href="https://github.com/Cap-go/capacitor-video-player" rel="noopener noreferrer">Video Player (⭐12)</a> - Play video in native player.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-video-thumbnails" rel="noopener noreferrer">Video Thumbnails (⭐4)</a> - Generate video thumbnails from local or remote video files.</li>
+<li><a href="https://github.com/Cap-go/capacitor-video-thumbnails" rel="noopener noreferrer">Video Thumbnails (⭐5)</a> - Generate video thumbnails from local or remote video files.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-photo-library" rel="noopener noreferrer">Photo Library (⭐5)</a> - Display photo gallery as web page or native screen.</li>
+<li><a href="https://github.com/Cap-go/capacitor-photo-library" rel="noopener noreferrer">Photo Library (⭐10)</a> - Display photo gallery as web page or native screen.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-ffmpeg" rel="noopener noreferrer">FFmpeg (⭐3)</a> - Exposes the FFmpeg API to Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-ffmpeg" rel="noopener noreferrer">FFmpeg (⭐9)</a> - Exposes the FFmpeg API to Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-ivs-player" rel="noopener noreferrer">IVS Player (⭐5)</a> - Amazon IVS player for Capacitor apps.</li>
+<li><a href="https://github.com/Cap-go/capacitor-ivs-player" rel="noopener noreferrer">IVS Player (⭐10)</a> - Amazon IVS player for Capacitor apps.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-jw-player" rel="noopener noreferrer">JW Player (⭐4)</a> - Play videos from jwplayer.com.</li>
+<li><a href="https://github.com/Cap-go/capacitor-jw-player" rel="noopener noreferrer">JW Player (⭐9)</a> - Play videos from jwplayer.com.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-mux-player" rel="noopener noreferrer">Mux Player (⭐4)</a> - Native Mux Player SDK to play video on iOS and Android.</li>
+<li><a href="https://github.com/Cap-go/capacitor-mux-player" rel="noopener noreferrer">Mux Player (⭐9)</a> - Native Mux Player SDK to play video on iOS and Android.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-youtube-player" rel="noopener noreferrer">YouTube Player (⭐3)</a> - Embed YouTube player controls in Capacitor apps.</li>
+<li><a href="https://github.com/Cap-go/capacitor-youtube-player" rel="noopener noreferrer">YouTube Player (⭐9)</a> - Embed YouTube player controls in Capacitor apps.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-media-session" rel="noopener noreferrer">Media Session (⭐4)</a> - Expose media session controls of the device.</li>
+<li><a href="https://github.com/Cap-go/capacitor-media-session" rel="noopener noreferrer">Media Session (⭐8)</a> - Expose media session controls of the device.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Storage &amp; Files</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-data-storage-sqlite" rel="noopener noreferrer">Data Storage SQLite (⭐97)</a> - SQLite Storage of key/value strings pair.</li>
+<li><a href="https://github.com/Cap-go/capacitor-data-storage-sqlite" rel="noopener noreferrer">Data Storage SQLite (⭐103)</a> - SQLite Storage of key/value strings pair.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-fast-sql" rel="noopener noreferrer">Fast SQL (⭐9)</a> - High-performance native SQLite plugin with custom protocol for efficient sync operations.</li>
+<li><a href="https://github.com/Cap-go/capacitor-fast-sql" rel="noopener noreferrer">Fast SQL (⭐18)</a> - High-performance native SQLite plugin with custom protocol for efficient sync operations.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-file" rel="noopener noreferrer">File (⭐4)</a> - System operations compatible with Cordova File plugin API.</li>
+<li><a href="https://github.com/Cap-go/capacitor-file" rel="noopener noreferrer">File (⭐5)</a> - System operations compatible with Cordova File plugin API.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-file-picker" rel="noopener noreferrer">File Picker (⭐4)</a> - Pick files, images, videos, and directories.</li>
+<li><a href="https://github.com/Cap-go/capacitor-file-picker" rel="noopener noreferrer">File Picker (⭐6)</a> - Pick files, images, videos, and directories.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-file-compressor" rel="noopener noreferrer">File Compressor (⭐4)</a> - Efficient image compression supporting PNG, JPEG, and WebP formats.</li>
+<li><a href="https://github.com/Cap-go/capacitor-file-compressor" rel="noopener noreferrer">File Compressor (⭐7)</a> - Efficient image compression supporting PNG, JPEG, and WebP formats.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-downloader" rel="noopener noreferrer">Downloader (⭐4)</a> - Download file in background or foreground.</li>
+<li><a href="https://github.com/Cap-go/capacitor-downloader" rel="noopener noreferrer">Downloader (⭐12)</a> - Download file in background or foreground.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-uploader" rel="noopener noreferrer">Uploader (⭐19)</a> - Upload file natively.</li>
+<li><a href="https://github.com/Cap-go/capacitor-uploader" rel="noopener noreferrer">Uploader (⭐25)</a> - Upload file natively.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-zip" rel="noopener noreferrer">Zip (⭐3)</a> - Zipping and unzipping files on iOS, Android, and Web.</li>
+<li><a href="https://github.com/Cap-go/capacitor-zip" rel="noopener noreferrer">Zip (⭐4)</a> - Zipping and unzipping files on iOS, Android, and Web.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Location &amp; Navigation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-background-geolocation" rel="noopener noreferrer">Background Geolocation (⭐13)</a> - Receive accurate geolocation updates even while the app is in the background.</li>
+<li><a href="https://github.com/Cap-go/capacitor-background-geolocation" rel="noopener noreferrer">Background Geolocation (⭐22)</a> - Receive accurate geolocation updates even while the app is in the background.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-nativegeocoder" rel="noopener noreferrer">Native Geocoder (⭐35)</a> - Native forward and reverse geocoding.</li>
+<li><a href="https://github.com/Cap-go/capacitor-nativegeocoder" rel="noopener noreferrer">Native Geocoder (⭐41)</a> - Native forward and reverse geocoding.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-launch-navigator" rel="noopener noreferrer">Launch Navigator (⭐5)</a> - Launch native route navigation apps for Android and iOS.</li>
+<li><a href="https://github.com/Cap-go/capacitor-launch-navigator" rel="noopener noreferrer">Launch Navigator (⭐8)</a> - Launch native route navigation apps for Android and iOS.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Authentication &amp; Security</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-native-biometric" rel="noopener noreferrer">Native Biometric (⭐69)</a> - Access native biometric APIs for Android and iOS.</li>
+<li><a href="https://github.com/Cap-go/capacitor-native-biometric" rel="noopener noreferrer">Native Biometric (⭐77)</a> - Access native biometric APIs for Android and iOS.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-social-login" rel="noopener noreferrer">Social Login (⭐180)</a> - All social logins in one plugin.</li>
+<li><a href="https://github.com/Cap-go/capacitor-social-login" rel="noopener noreferrer">Social Login (⭐213)</a> - All social logins in one plugin.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-autofill-save-password" rel="noopener noreferrer">Autofill Save Password (⭐9)</a> - Prompt to save login into device password manager.</li>
+<li><a href="https://github.com/Cap-go/capacitor-autofill-save-password" rel="noopener noreferrer">Autofill Save Password (⭐16)</a> - Prompt to save login into device password manager.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-persistent-account" rel="noopener noreferrer">Persistent Account (⭐5)</a> - Securely store account information for a user.</li>
+<li><a href="https://github.com/Cap-go/capacitor-persistent-account" rel="noopener noreferrer">Persistent Account (⭐10)</a> - Securely store account information for a user.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-is-root" rel="noopener noreferrer">Is Root (⭐6)</a> - Jailbreak/Root Detection Plugin.</li>
+<li><a href="https://github.com/Cap-go/capacitor-is-root" rel="noopener noreferrer">Is Root (⭐12)</a> - Jailbreak/Root Detection Plugin.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / UI &amp; Display</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-inappbrowser" rel="noopener noreferrer">In App Browser (⭐113)</a> - Native in-app browser for secure web content.</li>
+<li><a href="https://github.com/Cap-go/capacitor-inappbrowser" rel="noopener noreferrer">In App Browser (⭐128)</a> - Native in-app browser for secure web content.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-navigation-bar" rel="noopener noreferrer">Navigation Bar (⭐20)</a> - Set navigation bar color for Android Lollipop and higher.</li>
+<li><a href="https://github.com/Cap-go/capacitor-navigation-bar" rel="noopener noreferrer">Navigation Bar (⭐25)</a> - Set navigation bar color for Android Lollipop and higher.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-home-indicator" rel="noopener noreferrer">Home Indicator (⭐3)</a> - Hide and show home button indicator in Capacitor app.</li>
+<li><a href="https://github.com/Cap-go/capacitor-home-indicator" rel="noopener noreferrer">Home Indicator (⭐9)</a> - Hide and show home button indicator in Capacitor app.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-screen-orientation" rel="noopener noreferrer">Screen Orientation (⭐3)</a> - Control device orientation with support for bypassing orientation lock.</li>
+<li><a href="https://github.com/Cap-go/capacitor-screen-orientation" rel="noopener noreferrer">Screen Orientation (⭐6)</a> - Control device orientation with support for bypassing orientation lock.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-flash" rel="noopener noreferrer">Flash (⭐18)</a> - Switch the Flashlight / Torch of your device.</li>
+<li><a href="https://github.com/Cap-go/capacitor-flash" rel="noopener noreferrer">Flash (⭐23)</a> - Switch the Flashlight / Torch of your device.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-keep-awake" rel="noopener noreferrer">Keep Awake (⭐5)</a> - Prevent the device screen from dimming or sleeping.</li>
+<li><a href="https://github.com/Cap-go/capacitor-keep-awake" rel="noopener noreferrer">Keep Awake (⭐6)</a> - Prevent the device screen from dimming or sleeping.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-textinteraction" rel="noopener noreferrer">Text Interaction (⭐3)</a> - Toggle text interaction in Capacitor based iOS apps.</li>
+<li><a href="https://github.com/Cap-go/capacitor-textinteraction" rel="noopener noreferrer">Text Interaction (⭐8)</a> - Toggle text interaction in Capacitor based iOS apps.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-transitions" rel="noopener noreferrer">Transitions (⭐1)</a> - Framework-agnostic page transitions for Capacitor apps - iOS-style navigation.</li>
+<li><a href="https://github.com/Cap-go/capacitor-transitions" rel="noopener noreferrer">Transitions (⭐17)</a> - Framework-agnostic page transitions for Capacitor apps - iOS-style navigation.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-printer" rel="noopener noreferrer">Printer (⭐6)</a> - Print documents, HTML, PDFs, images and web views.</li>
+<li><a href="https://github.com/Cap-go/capacitor-printer" rel="noopener noreferrer">Printer</a> - Print documents, HTML, PDFs, images and web views.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-pdf-generator" rel="noopener noreferrer">PDF Generator (⭐3)</a> - Generate PDF files from HTML strings or URLs.</li>
+<li><a href="https://github.com/Cap-go/capacitor-pdf-generator" rel="noopener noreferrer">PDF Generator (⭐9)</a> - Generate PDF files from HTML strings or URLs.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Purchases &amp; Payments</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-native-purchases" rel="noopener noreferrer">Native Purchases (⭐37)</a> - In-app Subscriptions Made Easy.</li>
+<li><a href="https://github.com/Cap-go/capacitor-native-purchases" rel="noopener noreferrer">Native Purchases (⭐45)</a> - In-app Subscriptions Made Easy.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-pay" rel="noopener noreferrer">Pay (⭐6)</a> - Trigger native payment for iOS (Apple Pay) and Android (Google Pay).</li>
+<li><a href="https://github.com/Cap-go/capacitor-pay" rel="noopener noreferrer">Pay (⭐11)</a> - Trigger native payment for iOS (Apple Pay) and Android (Google Pay).</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Communication &amp; Messaging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-crisp" rel="noopener noreferrer">Crisp (⭐11)</a> - Native SDK for customer messaging and chat support.</li>
+<li><a href="https://github.com/Cap-go/capacitor-crisp" rel="noopener noreferrer">Crisp</a> - Native SDK for customer messaging and chat support.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-nfc" rel="noopener noreferrer">NFC (⭐14)</a> - Native NFC tag discovery, reading and writing for iOS and Android.</li>
+<li><a href="https://github.com/Cap-go/capacitor-nfc" rel="noopener noreferrer">NFC (⭐24)</a> - Native NFC tag discovery, reading and writing for iOS and Android.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-bluetooth-low-energy" rel="noopener noreferrer">Bluetooth Low Energy (⭐4)</a> - BLE plugin with support for scanning, connecting, reading, writing, and notifications.</li>
+<li><a href="https://github.com/Cap-go/capacitor-bluetooth-low-energy" rel="noopener noreferrer">Bluetooth Low Energy (⭐8)</a> - BLE plugin with support for scanning, connecting, reading, writing, and notifications.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-wifi" rel="noopener noreferrer">WiFi (⭐6)</a> - Manage WiFi connectivity for your Capacitor app.</li>
+<li><a href="https://github.com/Cap-go/capacitor-wifi" rel="noopener noreferrer">WiFi (⭐9)</a> - Manage WiFi connectivity for your Capacitor app.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-ibeacon" rel="noopener noreferrer">iBeacon (⭐4)</a> - Proximity detection and beacon region monitoring.</li>
+<li><a href="https://github.com/Cap-go/capacitor-ibeacon" rel="noopener noreferrer">iBeacon (⭐11)</a> - Proximity detection and beacon region monitoring.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-speech-recognition" rel="noopener noreferrer">Speech Recognition (⭐8)</a> - Comprehensive on-device speech recognition with live partial results.</li>
+<li><a href="https://github.com/Cap-go/capacitor-speech-recognition" rel="noopener noreferrer">Speech Recognition (⭐17)</a> - Comprehensive on-device speech recognition with live partial results.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-speech-synthesis" rel="noopener noreferrer">Speech Synthesis (⭐5)</a> - Synthesize speech from text with full control over language, voice, pitch, rate, and volume.</li>
+<li><a href="https://github.com/Cap-go/capacitor-speech-synthesis" rel="noopener noreferrer">Speech Synthesis (⭐7)</a> - Synthesize speech from text with full control over language, voice, pitch, rate, and volume.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Video Calling &amp; Real-time</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-streamcall" rel="noopener noreferrer">Stream Call (⭐8)</a> - Uses the getstream.io SDK to implement calling in Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-streamcall" rel="noopener noreferrer">Stream Call (⭐14)</a> - Uses the getstream.io SDK to implement calling in Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-realtimekit" rel="noopener noreferrer">RealtimeKit (⭐4)</a> - Cloudflare Calls integration for Capacitor apps with built-in UI for meetings.</li>
+<li><a href="https://github.com/Cap-go/capacitor-realtimekit" rel="noopener noreferrer">RealtimeKit (⭐10)</a> - Cloudflare Calls integration for Capacitor apps with built-in UI for meetings.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-twilio-voice" rel="noopener noreferrer">Twilio Voice (⭐4)</a> - Integrates the Twilio Voice SDK into Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-twilio-voice" rel="noopener noreferrer">Twilio Voice (⭐9)</a> - Integrates the Twilio Voice SDK into Capacitor.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Analytics &amp; Tracking</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-admob" rel="noopener noreferrer">AdMob (⭐6)</a> - Bridge AdMob SDKs for iOS and Android.</li>
+<li><a href="https://github.com/Cap-go/capacitor-admob" rel="noopener noreferrer">AdMob (⭐12)</a> - Bridge AdMob SDKs for iOS and Android.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-gtm" rel="noopener noreferrer">GTM (⭐5)</a> - Google Tag Manager plugin for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-gtm" rel="noopener noreferrer">GTM (⭐10)</a> - Google Tag Manager plugin for Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-appinsights" rel="noopener noreferrer">App Insights (⭐3)</a> - A wrapper around the Apptopia App Insights SDK.</li>
+<li><a href="https://github.com/Cap-go/capacitor-appinsights" rel="noopener noreferrer">App Insights (⭐7)</a> - A wrapper around the Apptopia App Insights SDK.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Contacts &amp; Health</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-contacts" rel="noopener noreferrer">Contacts (⭐4)</a> - Work with device contacts using Capacitor APIs.</li>
+<li><a href="https://github.com/Cap-go/capacitor-contacts" rel="noopener noreferrer">Contacts (⭐10)</a> - Work with device contacts using Capacitor APIs.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-health" rel="noopener noreferrer">Health (⭐13)</a> - Interact with data from Apple HealthKit and Health Connect.</li>
+<li><a href="https://github.com/Cap-go/capacitor-health" rel="noopener noreferrer">Health (⭐20)</a> - Interact with data from Apple HealthKit and Health Connect.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / App Store &amp; Market</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-native-market" rel="noopener noreferrer">Native Market (⭐10)</a> - A native market plugin for linking to Google Play or App Store.</li>
+<li><a href="https://github.com/Cap-go/capacitor-native-market" rel="noopener noreferrer">Native Market (⭐15)</a> - A native market plugin for linking to Google Play or App Store.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-in-app-review" rel="noopener noreferrer">In App Review (⭐5)</a> - Prompt users to submit app store ratings and reviews without leaving your app.</li>
+<li><a href="https://github.com/Cap-go/capacitor-in-app-review" rel="noopener noreferrer">In App Review (⭐6)</a> - Prompt users to submit app store ratings and reviews without leaving your app.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Android Specific</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-android-usagestatsmanager" rel="noopener noreferrer">Usage Stats Manager (⭐4)</a> - Exposes the Android's UsageStatsManager SDK.</li>
+<li><a href="https://github.com/Cap-go/capacitor-android-usagestatsmanager" rel="noopener noreferrer">Usage Stats Manager (⭐8)</a> - Exposes the Android's UsageStatsManager SDK.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-android-age-signals" rel="noopener noreferrer">Android Age Signals (⭐4)</a> - Exposes Google Play Age Signals to your app.</li>
+<li><a href="https://github.com/Cap-go/capacitor-android-age-signals" rel="noopener noreferrer">Android Age Signals (⭐8)</a> - Exposes Google Play Age Signals to your app.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-android-inline-install" rel="noopener noreferrer">Android Inline Install (⭐3)</a> - Trigger Android inline install feature.</li>
+<li><a href="https://github.com/Cap-go/capacitor-android-inline-install" rel="noopener noreferrer">Android Inline Install</a> - Trigger Android inline install feature.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-android-kiosk" rel="noopener noreferrer">Android Kiosk (⭐7)</a> - Lock device into kiosk mode with launcher functionality.</li>
+<li><a href="https://github.com/Cap-go/capacitor-android-kiosk" rel="noopener noreferrer">Android Kiosk (⭐11)</a> - Lock device into kiosk mode with launcher functionality.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-intent-launcher" rel="noopener noreferrer">Intent Launcher (⭐6)</a> - Launch Android intents and open system settings screens on Android and iOS.</li>
+<li><a href="https://github.com/Cap-go/capacitor-intent-launcher" rel="noopener noreferrer">Intent Launcher (⭐8)</a> - Launch Android intents and open system settings screens on Android and iOS.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Platform Integrations</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-supabase" rel="noopener noreferrer">Supabase (⭐6)</a> - Native Supabase SDK integration - Auth, Database, and JWT access.</li>
+<li><a href="https://github.com/Cap-go/capacitor-supabase" rel="noopener noreferrer">Supabase</a> - Native Supabase SDK integration - Auth, Database, and JWT access.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-wechat" rel="noopener noreferrer">WeChat (⭐9)</a> - SDK for authentication, sharing, payments, and mini-programs.</li>
+<li><a href="https://github.com/Cap-go/capacitor-wechat" rel="noopener noreferrer">WeChat (⭐14)</a> - SDK for authentication, sharing, payments, and mini-programs.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-watch" rel="noopener noreferrer">Watch (⭐8)</a> - Apple Watch communication with bidirectional messaging support.</li>
+<li><a href="https://github.com/Cap-go/capacitor-watch" rel="noopener noreferrer">Watch</a> - Apple Watch communication with bidirectional messaging support.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-share-target" rel="noopener noreferrer">Share Target (⭐9)</a> - Receive shared content from other apps.</li>
+<li><a href="https://github.com/Cap-go/capacitor-share-target" rel="noopener noreferrer">Share Target (⭐19)</a> - Receive shared content from other apps.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Firebase</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/analytics/README.md" rel="noopener noreferrer">Analytics (⭐5)</a> - Firebase Analytics for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/analytics/README.md" rel="noopener noreferrer">Analytics (⭐6)</a> - Firebase Analytics for Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/app/README.md" rel="noopener noreferrer">App (⭐5)</a> - Firebase App for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/app/README.md" rel="noopener noreferrer">App (⭐6)</a> - Firebase App for Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/app-check/README.md" rel="noopener noreferrer">App Check (⭐5)</a> - Firebase App Check for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/authentication/README.md" rel="noopener noreferrer">Authentication (⭐6)</a> - Firebase Authentication for Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/authentication/README.md" rel="noopener noreferrer">Authentication (⭐5)</a> - Firebase Authentication for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/crashlytics/README.md" rel="noopener noreferrer">Crashlytics (⭐6)</a> - Firebase Crashlytics for Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/crashlytics/README.md" rel="noopener noreferrer">Crashlytics (⭐5)</a> - Firebase Crashlytics for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/firestore/README.md" rel="noopener noreferrer">Firestore (⭐6)</a> - Firebase Cloud Firestore for Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/firestore/README.md" rel="noopener noreferrer">Firestore (⭐5)</a> - Firebase Cloud Firestore for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/functions/README.md" rel="noopener noreferrer">Functions (⭐6)</a> - Firebase Cloud Functions for Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/functions/README.md" rel="noopener noreferrer">Functions (⭐5)</a> - Firebase Cloud Functions for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/messaging/README.md" rel="noopener noreferrer">Messaging (⭐6)</a> - Firebase Cloud Messaging (FCM) for Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/messaging/README.md" rel="noopener noreferrer">Messaging (⭐5)</a> - Firebase Cloud Messaging (FCM) for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/performance/README.md" rel="noopener noreferrer">Performance (⭐6)</a> - Firebase Performance Monitoring for Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/performance/README.md" rel="noopener noreferrer">Performance (⭐5)</a> - Firebase Performance Monitoring for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/remote-config/README.md" rel="noopener noreferrer">Remote Config (⭐6)</a> - Firebase Remote Config for Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/remote-config/README.md" rel="noopener noreferrer">Remote Config (⭐5)</a> - Firebase Remote Config for Capacitor.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/storage/README.md" rel="noopener noreferrer">Storage (⭐5)</a> - Firebase Cloud Storage for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-firebase/blob/main/packages/storage/README.md" rel="noopener noreferrer">Storage (⭐6)</a> - Firebase Cloud Storage for Capacitor.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Utilities</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-alarm" rel="noopener noreferrer">Alarm (⭐6)</a> - Manage native alarms.</li>
+<li><a href="https://github.com/Cap-go/capacitor-alarm" rel="noopener noreferrer">Alarm (⭐12)</a> - Manage native alarms.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-env" rel="noopener noreferrer">Env (⭐3)</a> - Set Env var in Capacitor config and read them at runtime.</li>
+<li><a href="https://github.com/Cap-go/capacitor-env" rel="noopener noreferrer">Env (⭐8)</a> - Set Env var in Capacitor config and read them at runtime.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-webview-guardian" rel="noopener noreferrer">WebView Guardian (⭐5)</a> - Detect when the WebView was killed in the background and relaunch it on foreground.</li>
+<li><a href="https://github.com/Cap-go/capacitor-webview-guardian" rel="noopener noreferrer">WebView Guardian (⭐8)</a> - Detect when the WebView was killed in the background and relaunch it on foreground.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-llm" rel="noopener noreferrer">LLM (⭐14)</a> - Adds support for LLM locally run for Capacitor.</li>
+<li><a href="https://github.com/Cap-go/capacitor-llm" rel="noopener noreferrer">LLM (⭐40)</a> - Adds support for LLM locally run for Capacitor.</li>
 </ul>
 <h3><p><a href="https://capgo.app/" rel="noopener noreferrer">Capgo plugins</a> / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Cap-go/capacitor-ricoh360-camera-plugin" rel="noopener noreferrer">Ricoh360 Camera (⭐3)</a> - SDK for the Ricoh360 cameras.</li>
+<li><a href="https://github.com/Cap-go/capacitor-ricoh360-camera-plugin" rel="noopener noreferrer">Ricoh360 Camera (⭐7)</a> - SDK for the Ricoh360 cameras.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/40/">Oct 06 - Oct 12, 2025</a></h2><h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/smartcompanion-app/native-audio-player" rel="noopener noreferrer">Native Audio Player (⭐4)</a> - Play audio that keeps playing in the background, player is shown in system controls, audio output can be switched between speaker/earpiece.</li>
+<li><a href="https://github.com/smartcompanion-app/native-audio-player" rel="noopener noreferrer">Native Audio Player (⭐5)</a> - Play audio that keeps playing in the background, player is shown in system controls, audio output can be switched between speaker/earpiece.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/29/">Jul 21 - Jul 27, 2025</a></h2><h3><p>Other plugins / Specialized Hardware</p>
 </h3>
@@ -563,16 +833,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ludufre/capacitor-live-activities" rel="noopener noreferrer">capacitor-live-activities (⭐18)</a> - Capacitor plugin to use Live Activities on iOS 16.2+.</li>
+<li><a href="https://github.com/ludufre/capacitor-live-activities" rel="noopener noreferrer">capacitor-live-activities (⭐19)</a> - Capacitor plugin to use Live Activities on iOS 16.2+.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ludufre/capacitor-lottie-splash-screen" rel="noopener noreferrer">capacitor-lottie-splash-screen (⭐19)</a> - Capacitor plugin to use Lottie animations as splash screen.</li>
+<li><a href="https://github.com/ludufre/capacitor-lottie-splash-screen" rel="noopener noreferrer">capacitor-lottie-splash-screen (⭐20)</a> - Capacitor plugin to use Lottie animations as splash screen.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/3/">Jan 20 - Jan 26, 2025</a></h2><h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tchvu3/capacitor-voice-recorder" rel="noopener noreferrer">Capacitor voice recorder (⭐116)</a> - A plugin for simple voice recording.</li>
+<li><a href="https://github.com/tchvu3/capacitor-voice-recorder" rel="noopener noreferrer">Capacitor voice recorder (⭐120)</a> - A plugin for simple voice recording.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/33/">Aug 12 - Aug 18, 2024</a></h2><h3><p>Community plugins</p>
 </h3>
@@ -582,7 +852,7 @@
 <h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AlwaysLoveme/capacitor-plugin-safe-area" rel="noopener noreferrer">Safe Area (⭐138)</a> - Get SafeArea info on Android and IOS.</li>
+<li><a href="https://github.com/AlwaysLoveme/capacitor-plugin-safe-area" rel="noopener noreferrer">Safe Area (⭐145)</a> - Get SafeArea info on Android and IOS.</li>
 </ul>
 <h3><p>Tools / Incompatible</p>
 </h3>
@@ -592,7 +862,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/31/">Jul 29 - Aug 04, 2024</a></h2><h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ebarooni/capacitor-calendar" rel="noopener noreferrer">Capacitor Calendar (⭐75)</a> - A plugin for interacting with calendar and reminders.</li>
+<li><a href="https://github.com/ebarooni/capacitor-calendar" rel="noopener noreferrer">Capacitor Calendar (⭐85)</a> - A plugin for interacting with calendar and reminders.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/29/">Jul 15 - Jul 21, 2024</a></h2><h3><p>Tools / Incompatible</p>
 </h3>
@@ -612,25 +882,25 @@
 <h2><a href="https://www.trackawesomelist.com/2023/37/">Sep 11 - Sep 17, 2023</a></h2><h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/RevenueCat/purchases-capacitor" rel="noopener noreferrer">Purchases (⭐224)</a> - Capacitor in-app purchases and subscriptions made easy with RevenueCat.</li>
+<li><a href="https://github.com/RevenueCat/purchases-capacitor" rel="noopener noreferrer">Purchases (⭐231)</a> - Capacitor in-app purchases and subscriptions made easy with RevenueCat.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2023/36/">Sep 04 - Sep 10, 2023</a></h2><h3><p><a href="https://github.com/aparajita?tab=repositories&amp;q=capacitor" rel="noopener noreferrer">Aparajita plugins</a> / Specialized Hardware</p>
+<h2><a href="https://www.trackawesomelist.com/2023/36/">Sep 04 - Sep 10, 2023</a></h2><h3><p>Aparajita plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/aparajita/capacitor-biometric-auth" rel="noopener noreferrer">Biometric Auth (⭐220)</a> - Easy access to native biometric auth APIs on iOS and Android.</li>
+<li><a href="https://github.com/aparajita/capacitor-biometric-auth" rel="noopener noreferrer">Biometric Auth</a> - Easy access to native biometric auth APIs on iOS and Android.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/aparajita/capacitor-logger" rel="noopener noreferrer">Logger (⭐21)</a> - Better logging for the web and native Ionic/Capacitor apps.</li>
+<li><a href="https://github.com/aparajita/capacitor-logger" rel="noopener noreferrer">Logger (⭐22)</a> - Better logging for the web and native Ionic/Capacitor apps.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/aparajita/capacitor-secure-storage" rel="noopener noreferrer">Secure Storage (⭐160)</a> - Secure, flexible storage for Capacitor apps using iOS Keychain and Android Keystore. Supports Keychain sync across devices on iOS.</li>
+<li><a href="https://github.com/aparajita/capacitor-secure-storage" rel="noopener noreferrer">Secure Storage (⭐165)</a> - Secure, flexible storage for Capacitor apps using iOS Keychain and Android Keystore. Supports Keychain sync across devices on iOS.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2023/32/">Aug 07 - Aug 13, 2023</a></h2><h3><p><a href="https://github.com/aparajita?tab=repositories&amp;q=capacitor" rel="noopener noreferrer">Aparajita plugins</a> / Specialized Hardware</p>
+<h2><a href="https://www.trackawesomelist.com/2023/32/">Aug 07 - Aug 13, 2023</a></h2><h3><p>Aparajita plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/aparajita/capacitor-dark-mode" rel="noopener noreferrer">Dark Mode (⭐33)</a> - Universal, reliable dark mode support on the web, iOS and Android.</li>
+<li><a href="https://github.com/aparajita/capacitor-dark-mode" rel="noopener noreferrer">Dark Mode (⭐34)</a> - Universal, reliable dark mode support on the web, iOS and Android.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/19/">May 08 - May 14, 2023</a></h2><h3><p>Learning / Community Tutorials</p>
 </h3>
@@ -644,11 +914,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/floatinghotpot/cordova-admob-pro" rel="noopener noreferrer"><code>cordova-plugin-admobpro</code></a> (<a href="https://github.com/ionic-team/capacitor/issues/1101" rel="noopener noreferrer">see details (⭐15k)</a>)</li>
+<li><a href="https://github.com/floatinghotpot/cordova-admob-pro" rel="noopener noreferrer"><code>cordova-plugin-admobpro</code></a> (<a href="https://github.com/ionic-team/capacitor/issues/1101" rel="noopener noreferrer">see details</a>)</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Taracque/cordova-plugin-braintree" rel="noopener noreferrer"><code>cordova-plugin-braintree</code></a> (<a href="https://github.com/ionic-team/capacitor/issues/1415" rel="noopener noreferrer">see details (⭐15k)</a>)</li>
+<li><a href="https://github.com/Taracque/cordova-plugin-braintree" rel="noopener noreferrer"><code>cordova-plugin-braintree</code></a> (<a href="https://github.com/ionic-team/capacitor/issues/1415" rel="noopener noreferrer">see details</a>)</li>
 </ul>
 
 <ul>
@@ -668,11 +938,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/fechanique/cordova-plugin-fcm" rel="noopener noreferrer"><code>cordova-plugin-fcm</code></a> (<a href="https://github.com/ionic-team/capacitor/issues/584" rel="noopener noreferrer">see details (⭐15k)</a>)</li>
+<li><a href="https://github.com/fechanique/cordova-plugin-fcm" rel="noopener noreferrer"><code>cordova-plugin-fcm</code></a> (<a href="https://github.com/ionic-team/capacitor/issues/584" rel="noopener noreferrer">see details</a>)</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/arnesson/cordova-plugin-firebase" rel="noopener noreferrer"><code>cordova-plugin-firebase</code></a> (<a href="https://github.com/ionic-team/capacitor/issues/815" rel="noopener noreferrer">see details (⭐15k)</a>)</li>
+<li><a href="https://github.com/arnesson/cordova-plugin-firebase" rel="noopener noreferrer"><code>cordova-plugin-firebase</code></a> (<a href="https://github.com/ionic-team/capacitor/issues/815" rel="noopener noreferrer">see details</a>)</li>
 </ul>
 
 <ul>
@@ -688,7 +958,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/bitpay/cordova-plugin-qrscanner" rel="noopener noreferrer"><code>cordova-plugin-qrscanner</code></a> (<a href="https://github.com/ionic-team/capacitor/issues/1213" rel="noopener noreferrer">see details (⭐15k)</a>)</li>
+<li><a href="https://github.com/bitpay/cordova-plugin-qrscanner" rel="noopener noreferrer"><code>cordova-plugin-qrscanner</code></a> (<a href="https://github.com/ionic-team/capacitor/issues/1213" rel="noopener noreferrer">see details</a>)</li>
 </ul>
 
 <ul>
@@ -706,14 +976,14 @@
 <ul>
 <li><a href="https://github.com/mapsplugin/cordova-plugin-googlemaps" rel="noopener noreferrer"><code>cordova-plugin-googlemaps</code></a> (causes build failures on iOS, skipped for iOS only)</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2023/2/">Jan 09 - Jan 15, 2023</a></h2><h3><p><a href="https://www.transistorsoft.com//" rel="noopener noreferrer">Transistor Software plugins</a> / Specialized Hardware</p>
+<h2><a href="https://www.trackawesomelist.com/2023/2/">Jan 09 - Jan 15, 2023</a></h2><h3><p><a href="https://www.transistorsoft.com/" rel="noopener noreferrer">Transistor Software plugins</a> / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/transistorsoft/capacitor-background-geolocation" rel="noopener noreferrer">Background Geolocation (⭐132)</a> - The most sophisticated background location-tracking &amp; geofencing module with battery-conscious motion-detection intelligence for iOS and Android.</li>
+<li><a href="https://github.com/transistorsoft/capacitor-background-geolocation" rel="noopener noreferrer">Background Geolocation (⭐140)</a> - The most sophisticated background location-tracking &amp; geofencing module with battery-conscious motion-detection intelligence for iOS and Android.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/transistorsoft/capacitor-background-fetch" rel="noopener noreferrer">Background Fetch (⭐87)</a> - Periodic callbacks in the background for both iOS and Android.</li>
+<li><a href="https://github.com/transistorsoft/capacitor-background-fetch" rel="noopener noreferrer">Background Fetch (⭐91)</a> - Periodic callbacks in the background for both iOS and Android.</li>
 </ul>
 
 <ul>
@@ -722,7 +992,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/47/">Nov 21 - Nov 27, 2022</a></h2><h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/fresha/capacitor-plugin-applepay" rel="noopener noreferrer">Apple Pay (⭐17)</a> - Get Apple Pay payments in your app.</li>
+<li><a href="https://github.com/fresha/capacitor-plugin-applepay" rel="noopener noreferrer">Apple Pay (⭐18)</a> - Get Apple Pay payments in your app.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/46/">Nov 14 - Nov 20, 2022</a></h2><h3><p>Other plugins / Specialized Hardware</p>
 </h3>
@@ -738,16 +1008,16 @@
 <h2><a href="https://www.trackawesomelist.com/2022/41/">Oct 10 - Oct 16, 2022</a></h2><h3><p>Community plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/capacitor-community/file-opener" rel="noopener noreferrer">File opener (⭐81)</a> - The plugin is able to open a file given the mimeType and the file uri.</li>
+<li><a href="https://github.com/capacitor-community/file-opener" rel="noopener noreferrer">File opener (⭐84)</a> - The plugin is able to open a file given the mimeType and the file uri.</li>
 </ul>
 <h3><p>Capawesome plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/capawesome-team/capacitor-background-task" rel="noopener noreferrer">Background tasks (⭐51)</a> - A native plugin for running background tasks.</li>
+<li><a href="https://github.com/capawesome-team/capacitor-background-task" rel="noopener noreferrer">Background tasks (⭐50)</a> - A native plugin for running background tasks.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capawesome-team/capacitor-badge" rel="noopener noreferrer">Badge (⭐73)</a> - Access and update the badge number of the app icon.</li>
+<li><a href="https://github.com/capawesome-team/capacitor-badge" rel="noopener noreferrer">Badge (⭐72)</a> - Access and update the badge number of the app icon.</li>
 </ul>
 
 <ul>
@@ -760,18 +1030,18 @@
 <h2><a href="https://www.trackawesomelist.com/2022/35/">Aug 29 - Sep 04, 2022</a></h2><h3><p>Official plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/preferences" rel="noopener noreferrer">Preferences (⭐644)</a> - Provides a simple key/value persistent store for lightweight data, ex Storage.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/preferences" rel="noopener noreferrer">Preferences (⭐669)</a> - Provides a simple key/value persistent store for lightweight data, ex Storage.</li>
 </ul>
 <h3><p>Community plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/capacitor-community/electron" rel="noopener noreferrer">Electron (⭐388)</a> - Support for the Electron platform.</li>
+<li><a href="https://github.com/capacitor-community/electron" rel="noopener noreferrer">Electron (⭐398)</a> - Support for the Electron platform.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/29/">Jul 18 - Jul 24, 2022</a></h2><h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
 <li>Google<ul>
-<li><a href="https://github.com/CodetrixStudio/CapacitorGoogleAuth" rel="noopener noreferrer">Auth (⭐326)</a> - Google auth plugin for Capacitor.</li>
+<li><a href="https://github.com/CodetrixStudio/CapacitorGoogleAuth" rel="noopener noreferrer">Auth</a> - Google auth plugin for Capacitor.</li>
 <li><a href="https://github.com/cartona/capacitor-google-play-availability" rel="noopener noreferrer">Availability (⭐2)</a> - Verifies that Google Play services is installed and enabled, and request enabling Google Play services on device.</li>
 <li><a href="https://github.com/Ad-Scientiam/capacitor-google-fit" rel="noopener noreferrer">Fit (⭐23)</a> - Retrieve data from Google Fit.</li>
 <li><a href="https://github.com/hemangsk/capacitor-mlkit-language" rel="noopener noreferrer">MlKit Language (⭐3)</a> - Identify the language of a string of text.</li>
@@ -781,7 +1051,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/phiamo/capacitor-plugin-playlist" rel="noopener noreferrer">Playlist (⭐33)</a> - Native support for audio playlists, background support, and lock screen controls.</li>
+<li><a href="https://github.com/phiamo/capacitor-plugin-playlist" rel="noopener noreferrer">Playlist (⭐32)</a> - Native support for audio playlists, background support, and lock screen controls.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/17/">Apr 25 - May 01, 2022</a></h2><h3><p>Learning / Community Tutorials</p>
 </h3>
@@ -796,7 +1066,7 @@
 <h3><p>Community / Case study</p>
 </h3>
 <ul>
-<li><a href="https://github.com/capacitor-community/proposals" rel="noopener noreferrer">Proposal (⭐79)</a> - Official repo for plugin and platform requests.</li>
+<li><a href="https://github.com/capacitor-community/proposals" rel="noopener noreferrer">Proposal (⭐80)</a> - Official repo for plugin and platform requests.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/16/">Apr 18 - Apr 24, 2022</a></h2><h3><p>Other plugins / Specialized Hardware</p>
 </h3>
@@ -819,11 +1089,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/create-capacitor-plugin" rel="noopener noreferrer">Plugin generator (⭐120)</a> - Create a new Capacitor plugin.</li>
+<li><a href="https://github.com/ionic-team/create-capacitor-plugin" rel="noopener noreferrer">Plugin generator (⭐122)</a> - Create a new Capacitor plugin.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-assets" rel="noopener noreferrer">Assets (⭐576)</a> - Local Capacitor icon/splash screen resource generation tool.</li>
+<li><a href="https://github.com/ionic-team/capacitor-assets" rel="noopener noreferrer">Assets (⭐583)</a> - Local Capacitor icon/splash screen resource generation tool.</li>
 </ul>
 <h3><p>Learning / Offical guides</p>
 </h3>
@@ -887,20 +1157,20 @@
 <h3><p>Demo apps / Case study</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-testapp" rel="noopener noreferrer">capacitor-testapp (⭐39)</a> - The Capacitor TestApp is used to develop new features and verify bug fixes in Capacitor and the official plugins.</li>
+<li><a href="https://github.com/ionic-team/capacitor-testapp" rel="noopener noreferrer">capacitor-testapp (⭐41)</a> - The Capacitor TestApp is used to develop new features and verify bug fixes in Capacitor and the official plugins.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/robingenz/capacitor-plugin-demo" rel="noopener noreferrer">capacitor-plugin-demo (⭐124)</a> - Simple Ionic Angular app to demonstrate the use of certain Capacitor plugins.</li>
+<li><a href="https://github.com/robingenz/capacitor-plugin-demo" rel="noopener noreferrer">capacitor-plugin-demo (⭐127)</a> - Simple Ionic Angular app to demonstrate the use of certain Capacitor plugins.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/robingenz/capacitor-firebase-plugin-demo" rel="noopener noreferrer">capacitor-firebase-plugin-demo (⭐21)</a> - Simple Ionic Angular app to demonstrate the use of certain Capacitor Firebase plugins.</li>
+<li><a href="https://github.com/robingenz/capacitor-firebase-plugin-demo" rel="noopener noreferrer">capacitor-firebase-plugin-demo (⭐22)</a> - Simple Ionic Angular app to demonstrate the use of certain Capacitor Firebase plugins.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/14/">Apr 04 - Apr 10, 2022</a></h2><h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/websitebeaver/capacitor-document-scanner" rel="noopener noreferrer">Document Scanner (⭐106)</a> - Scan documents (notes, homework, business cards, receipts, or anything with a rectangular shape).</li>
+<li><a href="https://github.com/websitebeaver/capacitor-document-scanner" rel="noopener noreferrer">Document Scanner (⭐108)</a> - Scan documents (notes, homework, business cards, receipts, or anything with a rectangular shape).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/10/">Mar 07 - Mar 13, 2022</a></h2><h3><p>Other plugins / Specialized Hardware</p>
 </h3>
@@ -910,7 +1180,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/9/">Feb 28 - Mar 06, 2022</a></h2><h3><p>Official plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/device" rel="noopener noreferrer">Device (⭐644)</a> - Exposes internal information about the device, such as the model and operating system version, along with user information such as unique IDs.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/device" rel="noopener noreferrer">Device (⭐669)</a> - Exposes internal information about the device, such as the model and operating system version, along with user information such as unique IDs.</li>
 </ul>
 <h3><p>Learning / Community Tutorials</p>
 </h3>
@@ -963,12 +1233,12 @@
 <h2><a href="https://www.trackawesomelist.com/2022/4/">Jan 24 - Jan 30, 2022</a></h2><h3><p>Official plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/toast" rel="noopener noreferrer">Toast (⭐644)</a> - Provides a native notification pop up for displaying important information to a user.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/toast" rel="noopener noreferrer">Toast (⭐669)</a> - Provides a native notification pop up for displaying important information to a user.</li>
 </ul>
 <h3><p>Community plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/capacitor-community/keep-awake" rel="noopener noreferrer">Keep awake (⭐169)</a> - Prevent your screen from getting some sleep.</li>
+<li><a href="https://github.com/capacitor-community/keep-awake" rel="noopener noreferrer">Keep awake (⭐176)</a> - Prevent your screen from getting some sleep.</li>
 </ul>
 
 <ul>
@@ -982,7 +1252,7 @@
 <h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Ad-Scientiam/capacitor-healthkit" rel="noopener noreferrer">Healthkit (⭐86)</a> - Retrieve data from HealthKit.</li>
+<li><a href="https://github.com/Ad-Scientiam/capacitor-healthkit" rel="noopener noreferrer">Healthkit (⭐88)</a> - Retrieve data from HealthKit.</li>
 </ul>
 
 <ul>
@@ -991,26 +1261,26 @@
 <h2><a href="https://www.trackawesomelist.com/2022/3/">Jan 17 - Jan 23, 2022</a></h2><h3><p>Official plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/app" rel="noopener noreferrer">App (⭐644)</a> - Handles high-level App state and events.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/app" rel="noopener noreferrer">App (⭐669)</a> - Handles high-level App state and events.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/screen-reader" rel="noopener noreferrer">Screen Reader (⭐644)</a> - Provides access to TalkBack/VoiceOver/etc. and provides simple text-to-speech capabilities for visual accessibility.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/screen-reader" rel="noopener noreferrer">Screen Reader (⭐669)</a> - Provides access to TalkBack/VoiceOver/etc. and provides simple text-to-speech capabilities for visual accessibility.</li>
 </ul>
 <h3><p>Community plugins</p>
 </h3>
 <ul>
 <li>Firebase<ul>
-<li><a href="https://github.com/capacitor-community/firebase-analytics" rel="noopener noreferrer">Analytics (⭐173)</a> - A native plugin for Firebase analytics.</li>
+<li><a href="https://github.com/capacitor-community/firebase-analytics" rel="noopener noreferrer">Analytics (⭐177)</a> - A native plugin for Firebase analytics.</li>
 <li><a href="https://github.com/capacitor-community/firebase-crashlytics" rel="noopener noreferrer">Crashlytics (⭐75)</a> - Firebase Crashlytics.</li>
-<li><a href="https://github.com/capacitor-community/fcm" rel="noopener noreferrer">Fcm (⭐269)</a> - Enable Firebase Cloud Messaging features for Capacitor apps.</li>
+<li><a href="https://github.com/capacitor-community/fcm" rel="noopener noreferrer">Fcm (⭐273)</a> - Enable Firebase Cloud Messaging features for Capacitor apps.</li>
 <li><a href="https://github.com/capacitor-community/firebase-remote-config" rel="noopener noreferrer">Remote config (⭐23)</a> - A native plugin for Firebase remote config.</li>
 </ul>
 </li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/photoviewer" rel="noopener noreferrer">Photoviewer (⭐68)</a> - Table images with full-screen and sharing capabilities.</li>
+<li><a href="https://github.com/capacitor-community/photoviewer" rel="noopener noreferrer">Photoviewer (⭐69)</a> - Table images with full-screen and sharing capabilities.</li>
 </ul>
 
 <ul>
@@ -1023,20 +1293,16 @@
 <h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/IT-MikeS/capacitor-intents" rel="noopener noreferrer">Intent (⭐17)</a> - Supports multiple broadcast receiving of intents, and sending out BroadcastIntents in Android.</li>
+<li><a href="https://github.com/moberwasserlechner/capacitor-oauth2" rel="noopener noreferrer">Oauth2 (⭐280)</a> - Generic OAuth 2 client plugin. It let you configure the OAuth parameters yourself instead of using SDKs.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/moberwasserlechner/capacitor-oauth2" rel="noopener noreferrer">Oauth2 (⭐275)</a> - Generic OAuth 2 client plugin. It let you configure the OAuth parameters yourself instead of using SDKs.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/jepiqueau/capacitor-video-player" rel="noopener noreferrer">Video player (⭐127)</a> - Play a video full-screen on iOS, Android, Web and Electron platforms.</li>
+<li><a href="https://github.com/jepiqueau/capacitor-video-player" rel="noopener noreferrer">Video player (⭐130)</a> - Play a video full-screen on iOS, Android, Web and Electron platforms.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/52/">Dec 27 - Jan 02, 2021</a></h2><h3><p>Community plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/capacitor-community/app-icon" rel="noopener noreferrer">App-icon (⭐97)</a> - Capacitor community plugin for changing an app's icon.</li>
+<li><a href="https://github.com/capacitor-community/app-icon" rel="noopener noreferrer">App-icon (⭐104)</a> - Capacitor community plugin for changing an app's icon.</li>
 </ul>
 <h3><p>Other plugins / Specialized Hardware</p>
 </h3>
@@ -1046,92 +1312,92 @@
 <h2><a href="https://www.trackawesomelist.com/2021/46/">Nov 15 - Nov 21, 2021</a></h2><h3><p>Official plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/action-sheet" rel="noopener noreferrer">Action Sheet (⭐644)</a> - Provides access to native Action Sheets.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/action-sheet" rel="noopener noreferrer">Action Sheet (⭐669)</a> - Provides access to native Action Sheets.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/app-launcher" rel="noopener noreferrer">App Launcher (⭐644)</a> - Allows to check if an app can be opened and open it.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/app-launcher" rel="noopener noreferrer">App Launcher (⭐669)</a> - Allows to check if an app can be opened and open it.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/browser" rel="noopener noreferrer">Browser (⭐644)</a> - Provides the ability to open an in-app browser and subscribe to browser events.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/browser" rel="noopener noreferrer">Browser (⭐669)</a> - Provides the ability to open an in-app browser and subscribe to browser events.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/camera" rel="noopener noreferrer">Camera (⭐644)</a> - Provides the ability to take a photo with the camera or choose an existing one from the photo album.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/camera" rel="noopener noreferrer">Camera (⭐669)</a> - Provides the ability to take a photo with the camera or choose an existing one from the photo album.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/clipboard" rel="noopener noreferrer">Clipboard (⭐644)</a> - Enables copy and pasting to/from the system clipboard.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/clipboard" rel="noopener noreferrer">Clipboard (⭐669)</a> - Enables copy and pasting to/from the system clipboard.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/dialog" rel="noopener noreferrer">Dialog (⭐644)</a> - Provides methods for triggering native dialog windows for alerts, confirmations, and input prompts.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/dialog" rel="noopener noreferrer">Dialog (⭐669)</a> - Provides methods for triggering native dialog windows for alerts, confirmations, and input prompts.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/local-notifications" rel="noopener noreferrer">Local Notifications (⭐644)</a> - Provides a way to schedule device notifications locally (i.e. without a server sending push notifications).</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/local-notifications" rel="noopener noreferrer">Local Notifications (⭐669)</a> - Provides a way to schedule device notifications locally (i.e. without a server sending push notifications).</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/motion" rel="noopener noreferrer">Motion (⭐644)</a> - Tracks accelerometer and device orientation (compass heading, etc.).</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/motion" rel="noopener noreferrer">Motion (⭐669)</a> - Tracks accelerometer and device orientation (compass heading, etc.).</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/network" rel="noopener noreferrer">Network (⭐644)</a> - Provides network and connectivity information.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/network" rel="noopener noreferrer">Network (⭐669)</a> - Provides network and connectivity information.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/push-notifications" rel="noopener noreferrer">Push Notifications (⭐644)</a> - Provides access to native push notifications.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/push-notifications" rel="noopener noreferrer">Push Notifications (⭐669)</a> - Provides access to native push notifications.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/share" rel="noopener noreferrer">Share (⭐644)</a> - Provides methods for sharing content in any sharing-enabled apps the user may have installed.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/share" rel="noopener noreferrer">Share (⭐669)</a> - Provides methods for sharing content in any sharing-enabled apps the user may have installed.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/splash-screen" rel="noopener noreferrer">Splash Screen (⭐644)</a> - Provides methods for showing or hiding a Splash image.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/splash-screen" rel="noopener noreferrer">Splash Screen (⭐669)</a> - Provides methods for showing or hiding a Splash image.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/status-bar" rel="noopener noreferrer">Status Bar (⭐644)</a> - Provides methods for configuring the style of the Status Bar, along with showing or hiding it.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/status-bar" rel="noopener noreferrer">Status Bar (⭐669)</a> - Provides methods for configuring the style of the Status Bar, along with showing or hiding it.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/text-zoom" rel="noopener noreferrer">Text Zoom (⭐644)</a> - Provides the ability to change Web View text size for visual accessibility.</li>
+<li><a href="https://github.com/ionic-team/capacitor-plugins/tree/main/text-zoom" rel="noopener noreferrer">Text Zoom (⭐669)</a> - Provides the ability to change Web View text size for visual accessibility.</li>
 </ul>
 <h3><p>Community plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/capacitor-community/admob" rel="noopener noreferrer">Admob (⭐277)</a> - A native plugin for AdMob.</li>
+<li><a href="https://github.com/capacitor-community/admob" rel="noopener noreferrer">Admob (⭐294)</a> - A native plugin for AdMob.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/apple-sign-in" rel="noopener noreferrer">Apple sign in (⭐167)</a> - Capacitor Sign in with Apple.</li>
+<li><a href="https://github.com/capacitor-community/apple-sign-in" rel="noopener noreferrer">Apple sign in (⭐168)</a> - Capacitor Sign in with Apple.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/background-geolocation" rel="noopener noreferrer">Background geolocation (⭐240)</a> - Receive geolocation updates even while app is backgrounded.</li>
+<li><a href="https://github.com/capacitor-community/background-geolocation" rel="noopener noreferrer">Background geolocation (⭐246)</a> - Receive geolocation updates even while app is backgrounded.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/barcode-scanner" rel="noopener noreferrer">Barcode scanner (⭐445)</a> - A fast and efficient QR / barcode scanner for Capacitor.</li>
+<li><a href="https://github.com/capacitor-community/barcode-scanner" rel="noopener noreferrer">Barcode scanner (⭐446)</a> - A fast and efficient QR / barcode scanner for Capacitor.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/bluetooth-le" rel="noopener noreferrer">Bluetooth-le (⭐349)</a> - Bluetooth Low Energy.</li>
+<li><a href="https://github.com/capacitor-community/bluetooth-le" rel="noopener noreferrer">Bluetooth-le (⭐357)</a> - Bluetooth Low Energy.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/camera-preview" rel="noopener noreferrer">Camera preview (⭐226)</a> - Native camera preview with custom controls.</li>
+<li><a href="https://github.com/capacitor-community/camera-preview" rel="noopener noreferrer">Camera preview (⭐228)</a> - Native camera preview with custom controls.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/capacitor-googlemaps-native" rel="noopener noreferrer">Googlemaps (⭐162)</a> - Plugin using native Maps API for Android and iOS.</li>
+<li><a href="https://github.com/capacitor-community/capacitor-googlemaps-native" rel="noopener noreferrer">Googlemaps (⭐163)</a> - Plugin using native Maps API for Android and iOS.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/contacts" rel="noopener noreferrer">Contacts (⭐143)</a> - Plugin for accessing device contacts.</li>
+<li><a href="https://github.com/capacitor-community/contacts" rel="noopener noreferrer">Contacts (⭐144)</a> - Plugin for accessing device contacts.</li>
 </ul>
 
 <ul>
@@ -1139,7 +1405,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/facebook-login" rel="noopener noreferrer">Facebook Login (⭐115)</a> - A native plugin for Facebook Login.</li>
+<li><a href="https://github.com/capacitor-community/facebook-login" rel="noopener noreferrer">Facebook Login (⭐114)</a> - A native plugin for Facebook Login.</li>
 </ul>
 
 <ul>
@@ -1147,7 +1413,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/http" rel="noopener noreferrer">Http (⭐211)</a> - A native HTTP plugin for CORS-free requests and file transfers.</li>
+<li><a href="https://github.com/capacitor-community/http" rel="noopener noreferrer">Http (⭐210)</a> - A native HTTP plugin for CORS-free requests and file transfers.</li>
 </ul>
 
 <ul>
@@ -1155,31 +1421,31 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/media" rel="noopener noreferrer">Media (⭐133)</a> - Enable some media features for Capacitor such as create albums, save videos, gifs and more.</li>
+<li><a href="https://github.com/capacitor-community/media" rel="noopener noreferrer">Media (⭐134)</a> - Enable some media features for Capacitor such as create albums, save videos, gifs and more.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/native-audio" rel="noopener noreferrer">Native audio (⭐148)</a> - A native plugin for native audio engine.</li>
+<li><a href="https://github.com/capacitor-community/native-audio" rel="noopener noreferrer">Native audio (⭐152)</a> - A native plugin for native audio engine.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/native-market" rel="noopener noreferrer">Native market (⭐33)</a> - A native market plugin for linking to google play or app store.</li>
+<li><a href="https://github.com/capacitor-community/native-market" rel="noopener noreferrer">Native market (⭐34)</a> - A native market plugin for linking to google play or app store.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/react-hooks" rel="noopener noreferrer">React hooks (⭐265)</a> - Hooks for using Capacitor plugins in React apps.</li>
+<li><a href="https://github.com/capacitor-community/react-hooks" rel="noopener noreferrer">React hooks (⭐266)</a> - Hooks for using Capacitor plugins in React apps.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/realm" rel="noopener noreferrer">Realm (⭐27)</a> - A native plugin for MongoDB Realm.</li>
+<li><a href="https://github.com/capacitor-community/realm" rel="noopener noreferrer">Realm (⭐26)</a> - A native plugin for MongoDB Realm.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/speech-recognition" rel="noopener noreferrer">Speech recognition (⭐124)</a> - A native plugin for speech recognition.</li>
+<li><a href="https://github.com/capacitor-community/speech-recognition" rel="noopener noreferrer">Speech recognition (⭐127)</a> - A native plugin for speech recognition.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/stripe" rel="noopener noreferrer">Stripe (⭐235)</a> - SDK bindings for payment processing in Capacitor Applications.</li>
+<li><a href="https://github.com/capacitor-community/stripe" rel="noopener noreferrer">Stripe (⭐246)</a> - SDK bindings for payment processing in Capacitor Applications.</li>
 </ul>
 
 <ul>
@@ -1187,7 +1453,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/capacitor-community/text-to-speech" rel="noopener noreferrer">Text to speech (⭐122)</a> - Synthesizing speech from text.</li>
+<li><a href="https://github.com/capacitor-community/text-to-speech" rel="noopener noreferrer">Text to speech (⭐129)</a> - Synthesizing speech from text.</li>
 </ul>
 
 <ul>
@@ -1200,15 +1466,15 @@
 <h3><p>Other plugins / Specialized Hardware</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mahnuh/capacitor-plugin-app-tracking-transparency" rel="noopener noreferrer">App Tracking Transparency (⭐40)</a> - Request user authorization to access app-related data for tracking the user or the device. iOS only.</li>
+<li><a href="https://github.com/mahnuh/capacitor-plugin-app-tracking-transparency" rel="noopener noreferrer">App Tracking Transparency (⭐42)</a> - Request user authorization to access app-related data for tracking the user or the device. iOS only.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/rdlabo-team/capacitor-brotherprint" rel="noopener noreferrer">Brother Print (⭐24)</a> - A native Brother Print SDK implementation for iOS &amp; Android.</li>
+<li><a href="https://github.com/rdlabo-team/capacitor-brotherprint" rel="noopener noreferrer">Brother Print</a> - A native Brother Print SDK implementation for iOS &amp; Android.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/epicshaggy/capacitor-native-biometric" rel="noopener noreferrer">Biometric (⭐197)</a> - Use biometrics confirm device owner presence or authenticate users.</li>
+<li><a href="https://github.com/epicshaggy/capacitor-native-biometric" rel="noopener noreferrer">Biometric (⭐198)</a> - Use biometrics confirm device owner presence or authenticate users.</li>
 </ul>
 
 <ul>
@@ -1216,7 +1482,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/EinfachHans/capacitor-email-composer" rel="noopener noreferrer">Email composer (⭐26)</a> - Open a native E-Mail Composer within your Capacitor App.</li>
+<li><a href="https://github.com/EinfachHans/capacitor-email-composer" rel="noopener noreferrer">Email composer (⭐27)</a> - Open a native E-Mail Composer within your Capacitor App.</li>
 </ul>
 
 <ul>
@@ -1228,7 +1494,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/calvinckho/capacitor-jitsi-meet" rel="noopener noreferrer">Jitsi (⭐93)</a> - Make video calls through the free, open-sourced Jitsi video platform.</li>
+<li><a href="https://github.com/calvinckho/capacitor-jitsi-meet" rel="noopener noreferrer">Jitsi (⭐95)</a> - Make video calls through the free, open-sourced Jitsi video platform.</li>
 </ul>
 
 <ul>
@@ -1236,7 +1502,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/RaphaelWoude/capacitor-native-settings" rel="noopener noreferrer">Native settings (⭐136)</a> - Open native settings screens.</li>
+<li><a href="https://github.com/RaphaelWoude/capacitor-native-settings" rel="noopener noreferrer">Native settings (⭐139)</a> - Open native settings screens.</li>
 </ul>
 
 <ul>
@@ -1248,11 +1514,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/hugotomazi/navigation-bar" rel="noopener noreferrer">Navigation bar (⭐83)</a> - Manipulation and control of the navigation bar visibility.</li>
+<li><a href="https://github.com/hugotomazi/navigation-bar" rel="noopener noreferrer">Navigation bar (⭐85)</a> - Manipulation and control of the navigation bar visibility.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Nodonisko/capacitor-rate-app" rel="noopener noreferrer">Rate app (⭐221)</a> - Let users rate your app using native rate app dialog for both Android and iOS.</li>
+<li><a href="https://github.com/Nodonisko/capacitor-rate-app" rel="noopener noreferrer">Rate app (⭐234)</a> - Let users rate your app using native rate app dialog for both Android and iOS.</li>
 </ul>
 
 <ul>
@@ -1264,11 +1530,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/tavosansal/capacitor-plugin-send-intent" rel="noopener noreferrer">Send intent (⭐12)</a> - Expose a listener in your JavaScript application for when another application sends data to your Capacitor application via the Android share menu or share sheet.</li>
+<li><a href="https://github.com/tavosansal/capacitor-plugin-send-intent" rel="noopener noreferrer">Send intent (⭐13)</a> - Expose a listener in your JavaScript application for when another application sends data to your Capacitor application via the Android share menu or share sheet.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/getsentry/sentry-capacitor" rel="noopener noreferrer">Sentry (⭐145)</a> - Add Sentry error tracking and performance monitoring for Capacitor apps.</li>
+<li><a href="https://github.com/getsentry/sentry-capacitor" rel="noopener noreferrer">Sentry (⭐147)</a> - Add Sentry error tracking and performance monitoring for Capacitor apps.</li>
 </ul>
 
 <ul>
@@ -1288,5 +1554,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
