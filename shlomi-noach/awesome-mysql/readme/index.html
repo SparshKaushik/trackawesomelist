@@ -16,17 +16,97 @@
     <meta property="og:title" content="Awesome Mysql Overview" />
     <meta property="og:description" content="A curated list of awesome MySQL software, libraries, tools and resources" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Mysql Overview</h1>
 <p>A curated list of awesome MySQL software, libraries, tools and resources</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/shlomi-noach/awesome-mysql/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/shlomi-noach/awesome-mysql">😺 shlomi-noach/awesome-mysql</a><span> · </span><span>⭐ 2.6K</span><span> · </span><span>🏷️ Databases</span></p>
@@ -67,41 +147,41 @@
 <ul>
 <li><a href="https://github.com/box/Anemometer" rel="noopener noreferrer">Anemometer (⭐1.4k)</a> - Box SQL slow query monitor.</li>
 <li><a href="https://github.com/jeremycole/innodb_ruby" rel="noopener noreferrer">innodb-ruby (⭐1.8k)</a> - A parser for InnoDB file formats, in Ruby.</li>
-<li><a href="https://github.com/innotop/innotop" rel="noopener noreferrer">innotop (⭐798)</a> - a 'top' clone for MySQL with many features and flexibility.</li>
+<li><a href="https://github.com/innotop/innotop" rel="noopener noreferrer">innotop (⭐801)</a> - a 'top' clone for MySQL with many features and flexibility.</li>
 <li><a href="https://github.com/Preetam/explain-analyzer" rel="noopener noreferrer">MySQL Explain Analyzer (⭐97)</a> - A web-based analyzer of <code>EXPLAIN FORMAT=JSON</code> output, providing comments, scalability analysis and permalinks for saved samples.</li>
 <li><a href="https://github.com/db-art/mysql-statsd" rel="noopener noreferrer">mysql-statsd (⭐101)</a> - A Python daemon to collect information from MySQL and send it via StatsD to Graphite.</li>
-<li><a href="https://github.com/major/MySQLTuner-perl" rel="noopener noreferrer">MySQLTuner-perl (⭐9.4k)</a> - A script that allows you to review a MySQL installation quickly and make adjustments to increase performance and stability.</li>
-<li><a href="https://github.com/prometheus/prometheus" rel="noopener noreferrer">Prometheus (⭐64k)</a>/<a href="https://github.com/prometheus/mysqld_exporter" rel="noopener noreferrer">mysqld_exporter (⭐2.4k)</a> - Time series database for real-time monitoring and alerting.</li>
-<li><a href="https://github.com/sjmudd/ps-top" rel="noopener noreferrer">pstop (⭐210)</a> - a top-like program for MySQL, collecting, aggregating and displaying information from performance_schema.</li>
-<li><a href="https://github.com/Mughees52/mysql-explain-analyzer" rel="noopener noreferrer">ReliaDB EXPLAIN Analyzer (⭐0)</a> - a browser-based MySQL and MariaDB EXPLAIN visualizer with issue detection, index recommendations, and query rewrites. 100% client-side.</li>
+<li><a href="https://github.com/major/MySQLTuner-perl" rel="noopener noreferrer">MySQLTuner-perl (⭐9.5k)</a> - A script that allows you to review a MySQL installation quickly and make adjustments to increase performance and stability.</li>
+<li><a href="https://github.com/prometheus/prometheus" rel="noopener noreferrer">Prometheus (⭐65k)</a>/<a href="https://github.com/prometheus/mysqld_exporter" rel="noopener noreferrer">mysqld_exporter (⭐2.5k)</a> - Time series database for real-time monitoring and alerting.</li>
+<li><a href="https://github.com/sjmudd/ps-top" rel="noopener noreferrer">pstop (⭐211)</a> - a top-like program for MySQL, collecting, aggregating and displaying information from performance_schema.</li>
+<li><a href="https://github.com/Mughees52/mysql-explain-analyzer" rel="noopener noreferrer">ReliaDB EXPLAIN Analyzer (⭐5)</a> - a browser-based MySQL and MariaDB EXPLAIN visualizer with issue detection, index recommendations, and query rewrites. 100% client-side.</li>
 <li><a href="https://gitlab.com/wireshark/wireshark/" rel="noopener noreferrer">Wireshark</a> - a protocol analyzer that can decode the MySQL protocol.</li>
-<li><a href="https://github.com/charles-001/dolphie" rel="noopener noreferrer">Dolphie (⭐1.1k)</a> - a modern terminal tool for real-time analytics into MySQL/MariaDB &amp; ProxySQL</li>
-<li><a href="https://github.com/mickamy/sql-tap" rel="noopener noreferrer">sql-tap (⭐1.5k)</a> - Real-time SQL traffic viewer.</li>
+<li><a href="https://github.com/charles-001/dolphie" rel="noopener noreferrer">Dolphie (⭐1.2k)</a> - a modern terminal tool for real-time analytics into MySQL/MariaDB &amp; ProxySQL</li>
+<li><a href="https://github.com/mickamy/sql-tap" rel="noopener noreferrer">sql-tap (⭐1.6k)</a> - Real-time SQL traffic viewer.</li>
 </ul>
 <h2 id="backup"><a class="anchor" aria-hidden="true" tabindex="-1" href="#backup"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Backup</h2><p><em>Backup/restore/recovery tools</em></p>
 <ul>
-<li><a href="https://github.com/databasus/databasus" rel="noopener noreferrer">Databasus (⭐6.4k)</a> - tool for scheduled MySQL backups via web UI with external storages (local, S3, FTP, Google Drive, etc.), notifications (webhook, Discord, Slack, etc.) and team management.</li>
+<li><a href="https://github.com/databasus/databasus" rel="noopener noreferrer">Databasus (⭐7.7k)</a> - tool for scheduled MySQL backups via web UI with external storages (local, S3, FTP, Google Drive, etc.), notifications (webhook, Discord, Slack, etc.) and team management.</li>
 <li><a href="https://github.com/pingcap/tidb/tree/master/dumpling" rel="noopener noreferrer">Dumpling (⭐40k)</a> - Logical, parallel backup/dumper tool for MySQL/TiDB written in GoLang - support csv format output and integrated as library</li>
-<li><a href="https://github.com/mydumper/mydumper" rel="noopener noreferrer">MyDumper (⭐3.1k)</a> - Logical, parallel backup/dumper tool for MySQL</li>
+<li><a href="https://github.com/mydumper/mydumper" rel="noopener noreferrer">MyDumper (⭐3.2k)</a> - Logical, parallel backup/dumper tool for MySQL</li>
 <li><a href="https://github.com/percona/percona-xtrabackup" rel="noopener noreferrer">Percona Xtrabackup (⭐1.5k)</a> - an open-source hot backup utility for MySQL - based servers that doesn’t lock your database during the backup.</li>
-<li><a href="https://github.com/Portabase/portabase" rel="noopener noreferrer">Portabase (⭐681)</a> - Agent-based platform for MySQL backups and restores with decentralized execution and centralized orchestration.</li>
+<li><a href="https://github.com/Portabase/portabase" rel="noopener noreferrer">Portabase (⭐1.2k)</a> - Agent-based platform for MySQL backups and restores with decentralized execution and centralized orchestration.</li>
 </ul>
 <h2 id="benchmarking"><a class="anchor" aria-hidden="true" tabindex="-1" href="#benchmarking"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Benchmarking</h2><p><em>Tools to stress your servers</em></p>
 <ul>
-<li><a href="https://github.com/TPC-Council/HammerDB" rel="noopener noreferrer">HammerDB (⭐749)</a> - An open-source database benchmark for MySQL/MariaDB and other open source and commercial databases.</li>
+<li><a href="https://github.com/TPC-Council/HammerDB" rel="noopener noreferrer">HammerDB (⭐769)</a> - An open-source database benchmark for MySQL/MariaDB and other open source and commercial databases.</li>
 <li><a href="https://github.com/pingcap/go-tpc" rel="noopener noreferrer">go-tpc (⭐211)</a> - A golang port of <a href="http://www.tpc.org/tpcc/" rel="noopener noreferrer">TPCC</a> and <a href="http://www.tpc.org/tpch/" rel="noopener noreferrer">TPCH</a> benchmark for MySQL.</li>
-<li><a href="https://github.com/tmcallaghan/iibench-mysql" rel="noopener noreferrer">iibench-mysql (⭐46)</a> - Java based version of the Index Insertion Benchmark for MySQL/Percona/MariaDB.</li>
-<li><a href="https://github.com/akopytov/sysbench" rel="noopener noreferrer">Sysbench (⭐6.7k)</a> - a modular, cross-platform and multi-threaded benchmark tool.</li>
-<li><a href="https://github.com/Percona-Lab/tpcc-mysql" rel="noopener noreferrer">TPCC-MySQL (⭐488)</a> (archived) - A port of the popular <a href="http://www.tpc.org/tpcc/" rel="noopener noreferrer">TPCC</a> benchmark for MySQL.</li>
+<li><a href="https://github.com/tmcallaghan/iibench-mysql" rel="noopener noreferrer">iibench-mysql (⭐47)</a> - Java based version of the Index Insertion Benchmark for MySQL/Percona/MariaDB.</li>
+<li><a href="https://github.com/akopytov/sysbench" rel="noopener noreferrer">Sysbench (⭐6.8k)</a> - a modular, cross-platform and multi-threaded benchmark tool.</li>
+<li><a href="https://github.com/Percona-Lab/tpcc-mysql" rel="noopener noreferrer">TPCC-MySQL (⭐487)</a> (archived) - A port of the popular <a href="http://www.tpc.org/tpcc/" rel="noopener noreferrer">TPCC</a> benchmark for MySQL.</li>
 </ul>
 <h2 id="binlog-replication"><a class="anchor" aria-hidden="true" tabindex="-1" href="#binlog-replication"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Binlog-Replication</h2><ul>
-<li><a href="https://github.com/pingcap/tiflow" rel="noopener noreferrer">DM (⭐456)</a> - A High-Availability data migration platform which supports migrating data from MySQL/MariaDB to TiDB and merging shard tables</li>
-<li><a href="https://github.com/flike/kingbus" rel="noopener noreferrer">Kingbus (⭐897)</a> - A distributed MySQL binlog storage system built on Raft</li>
-<li><a href="https://github.com/google/mysql-ripple" rel="noopener noreferrer">mysql-ripple (⭐377)</a> (archived) - Ripple, a server that can serve as a middleman in MySQL replication</li>
+<li><a href="https://github.com/pingcap/tiflow" rel="noopener noreferrer">DM (⭐461)</a> - A High-Availability data migration platform which supports migrating data from MySQL/MariaDB to TiDB and merging shard tables</li>
+<li><a href="https://github.com/flike/kingbus" rel="noopener noreferrer">Kingbus (⭐894)</a> - A distributed MySQL binlog storage system built on Raft</li>
+<li><a href="https://github.com/google/mysql-ripple" rel="noopener noreferrer">mysql-ripple (⭐380)</a> (archived) - Ripple, a server that can serve as a middleman in MySQL replication</li>
 </ul>
 <h2 id="chatops"><a class="anchor" aria-hidden="true" tabindex="-1" href="#chatops"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>ChatOps</h2><p><em>Scripts integrated into chat rooms</em></p>
 <ul>
-<li><a href="https://github.com/samlambert/hubot-mysql-chatops" rel="noopener noreferrer">Hubot MySQL ChatOps (⭐90)</a></li>
+<li><a href="https://github.com/samlambert/hubot-mysql-chatops" rel="noopener noreferrer">Hubot MySQL ChatOps (⭐89)</a></li>
 </ul>
 <h2 id="configuration"><a class="anchor" aria-hidden="true" tabindex="-1" href="#configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Configuration</h2><p><em>MySQL sample configuration and advisors</em></p>
 <ul>
@@ -110,78 +190,78 @@
 <h2 id="connectors"><a class="anchor" aria-hidden="true" tabindex="-1" href="#connectors"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Connectors</h2><p><em>MySQL connectors for various programming languages</em></p>
 <ul>
 <li><a href="https://github.com/ballerina-platform/module-ballerinax-mysql" rel="noopener noreferrer">ballerinax/mysql (⭐111)</a> - Official Ballerina connector for MySQL.</li>
-<li><a href="https://github.com/perl5-dbi/DBD-MariaDB" rel="noopener noreferrer">DBD::MariaDB (⭐40)</a> - MariaDB and MySQL driver for the Perl5 Database Interface.</li>
+<li><a href="https://github.com/perl5-dbi/DBD-MariaDB" rel="noopener noreferrer">DBD::MariaDB (⭐41)</a> - MariaDB and MySQL driver for the Perl5 Database Interface.</li>
 <li><a href="https://github.com/perl5-dbi/DBD-mysql" rel="noopener noreferrer">DBD::mysql (⭐67)</a> - MySQL driver for the Perl5 Database Interface.</li>
 <li><a href="https://github.com/go-sql-driver/mysql" rel="noopener noreferrer">go-sql-driver (⭐15k)</a> - a lightweight and fast MySQL-Driver for Go's (golang) database/sql package.</li>
 <li><a href="https://github.com/libattachsql/libattachsql" rel="noopener noreferrer">libAttachSQL (⭐29)</a> - libAttachSQL is a lightweight, non-blocking C API for MySQL servers.</li>
 <li><a href="https://github.com/mariadb-corporation/mariadb-connector-j" rel="noopener noreferrer">MariaDB Connector/J (⭐358)</a> - LGPL-licensed MariaDB Client Library for Java Applications.</li>
 <li><a href="https://github.com/markuman/mex-mariadb" rel="noopener noreferrer">mex-mariadb (⭐2)</a> - MIT licensed MariaDB/MySQL Client Library for GNU Octave and Matlab.</li>
 <li><a href="https://dev.mysql.com/downloads/c-api/" rel="noopener noreferrer">MySQL C API</a> - Official C driver for MySQL.</li>
-<li><a href="https://github.com/mysql/mysql-connector-cpp" rel="noopener noreferrer">MySQL Connector/C++ (⭐703)</a> - Official C/C++ driver for MySQL.</li>
+<li><a href="https://github.com/mysql/mysql-connector-cpp" rel="noopener noreferrer">MySQL Connector/C++ (⭐705)</a> - Official C/C++ driver for MySQL.</li>
 <li><a href="https://github.com/mysql/mysql-connector-j" rel="noopener noreferrer">MySQL Connector/J (⭐1k)</a> - a standardized database driver for the Java platforms and development.</li>
-<li><a href="https://github.com/mysql/mysql-connector-net" rel="noopener noreferrer">MySQL Connector/NET (⭐325)</a> - a standardized database driver for .Net platforms and development.</li>
-<li><a href="https://github.com/mysql/mysql-connector-nodejs" rel="noopener noreferrer">MySQL Connector/Node.js (⭐159)</a> - Official Node.js driver for MySQL.</li>
-<li><a href="https://github.com/mysql/mysql-connector-python" rel="noopener noreferrer">MySQL Connector/Python (⭐951)</a> - a standardized database driver for Python platforms and development.</li>
+<li><a href="https://github.com/mysql/mysql-connector-net" rel="noopener noreferrer">MySQL Connector/NET (⭐333)</a> - a standardized database driver for .Net platforms and development.</li>
+<li><a href="https://github.com/mysql/mysql-connector-nodejs" rel="noopener noreferrer">MySQL Connector/Node.js (⭐160)</a> - Official Node.js driver for MySQL.</li>
+<li><a href="https://github.com/mysql/mysql-connector-python" rel="noopener noreferrer">MySQL Connector/Python (⭐956)</a> - a standardized database driver for Python platforms and development.</li>
 <li><a href="https://github.com/PyMySQL/mysqlclient" rel="noopener noreferrer">mysqlclient-python (⭐2.5k)</a> - MySQL database connector for Python.</li>
 <li><a href="https://github.com/mysqljs/mysql" rel="noopener noreferrer">node-mysql (⭐19k)</a> - A pure Nodejs Javascript client implementing the MySQL protocol.</li>
 <li><a href="https://www.php.net/manual/en/book.mysqlnd.php" rel="noopener noreferrer">PHP mysqlnd</a> - MySQL native driver for PHP.</li>
 <li><a href="https://github.com/PyMySQL/PyMySQL" rel="noopener noreferrer">PyMySQL (⭐7.8k)</a> - MySQL database connector for Python.</li>
 <li><a href="https://github.com/brianmario/mysql2" rel="noopener noreferrer">Ruby Mysql2 gem (⭐2.3k)</a> - MySQL driver for Ruby and Rails projects.</li>
-<li><a href="https://github.com/speed2exe/myzql" rel="noopener noreferrer">MyZql (⭐68)</a> - MySQL and MariaDB driver in native Zig.</li>
-<li><a href="https://github.com/c410-f3r/wtx" rel="noopener noreferrer">wtx (⭐350)</a> - Client for MySQL/MariaDB/Percona written in Rust</li>
+<li><a href="https://github.com/speed2exe/myzql" rel="noopener noreferrer">MyZql (⭐73)</a> - MySQL and MariaDB driver in native Zig.</li>
+<li><a href="https://github.com/c410-f3r/wtx" rel="noopener noreferrer">wtx (⭐364)</a> - Client for MySQL/MariaDB/Percona written in Rust</li>
 </ul>
 <h2 id="deployment"><a class="anchor" aria-hidden="true" tabindex="-1" href="#deployment"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Deployment</h2><p><em>MySQL deployment tools</em></p>
 <ul>
-<li><a href="https://github.com/MariaDB4j/MariaDB4j" rel="noopener noreferrer">MariaDB4j (⭐896)</a> - A Java launcher to run MariaDB without installation or external dependencies.</li>
+<li><a href="https://github.com/MariaDB4j/MariaDB4j" rel="noopener noreferrer">MariaDB4j (⭐898)</a> - A Java launcher to run MariaDB without installation or external dependencies.</li>
 </ul>
 <h2 id="development"><a class="anchor" aria-hidden="true" tabindex="-1" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Development</h2><p><em>Tools to support MySQL-related development</em></p>
 <ul>
-<li><a href="https://github.com/flyway/flyway" rel="noopener noreferrer">Flywaydb (⭐9.7k)</a> - Database migrations; Evolve your database schema easily and reliably across all your instances</li>
-<li><a href="https://github.com/nethalo/dbsafe" rel="noopener noreferrer">dbsafe (⭐11)</a> - Pre-execution safety analysis for MySQL DDL/DML operations</li>
-<li><a href="https://github.com/liquibase/liquibase" rel="noopener noreferrer">Liquibase (⭐5.5k)</a> - Source control for your database</li>
-<li><a href="https://github.com/square/shift" rel="noopener noreferrer">Shift (⭐741)</a> - An application that helps you run schema migrations on MySQL databases</li>
+<li><a href="https://github.com/flyway/flyway" rel="noopener noreferrer">Flywaydb (⭐9.9k)</a> - Database migrations; Evolve your database schema easily and reliably across all your instances</li>
+<li><a href="https://github.com/nethalo/dbsafe" rel="noopener noreferrer">dbsafe (⭐12)</a> - Pre-execution safety analysis for MySQL DDL/DML operations</li>
+<li><a href="https://github.com/liquibase/liquibase" rel="noopener noreferrer">Liquibase (⭐5.6k)</a> - Source control for your database</li>
+<li><a href="https://github.com/square/shift" rel="noopener noreferrer">Shift (⭐739)</a> - An application that helps you run schema migrations on MySQL databases</li>
 <li><a href="https://github.com/skeema/skeema" rel="noopener noreferrer">Skeema (⭐1.4k)</a> - Declarative pure-SQL schema management system for MySQL and MariaDB, with support for sharding and external online schema change tools</li>
 <li><a href="https://github.com/actiontech/sqle/blob/main/README_en.md" rel="noopener noreferrer">SQLE (⭐1.5k)</a> - SQLE is a SQL audit platform for DBA or developer</li>
 <li><a href="https://github.com/datacharmer/test_db" rel="noopener noreferrer">Test database (⭐4.4k)</a> - A sample MySQL database with an integrated test suite, used to test applications and servers</li>
-<li><a href="https://github.com/verizonconnect/database-development" rel="noopener noreferrer">cover_me (⭐3)</a> - code coverage tool for mysql stored procedures and functions</li>
+<li><a href="https://github.com/verizonconnect/cover_me" rel="noopener noreferrer">cover_me (⭐0)</a> - code coverage tool for mysql stored procedures and functions</li>
 </ul>
 <h2 id="gui"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gui"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>GUI</h2><p><em>GUI frontends &amp; applications</em></p>
 <ul>
-<li><a href="https://github.com/vrana/adminer/" rel="noopener noreferrer">Adminer (⭐7.3k)</a> - Database management in a single PHP file.</li>
-<li><a href="https://github.com/dbeaver/dbeaver/" rel="noopener noreferrer">DBeaver (⭐50k)</a> - A cross-platform SQL and NoSQL database client.</li>
-<li><a href="https://github.com/HeidiSQL/HeidiSQL" rel="noopener noreferrer">HeidiSQL (⭐5.9k)</a> - MySQL GUI frontend for Windows.</li>
+<li><a href="https://github.com/vrana/adminer/" rel="noopener noreferrer">Adminer (⭐7.5k)</a> - Database management in a single PHP file.</li>
+<li><a href="https://github.com/dbeaver/dbeaver/" rel="noopener noreferrer">DBeaver (⭐51k)</a> - A cross-platform SQL and NoSQL database client.</li>
+<li><a href="https://github.com/HeidiSQL/HeidiSQL" rel="noopener noreferrer">HeidiSQL (⭐6.2k)</a> - MySQL GUI frontend for Windows.</li>
 <li><a href="https://github.com/illacloud/illa-builder" rel="noopener noreferrer">ILLA Cloud (⭐12k)</a> - Low-code internal tool builder integrated with Mysql, can be used as GUI for Mysql.</li>
 <li><a href="https://github.com/dbcli/mycli" rel="noopener noreferrer">mycli (⭐12k)</a> - A Terminal Client for MySQL with AutoCompletion and Syntax Highlighting.</li>
-<li><a href="https://github.com/mysql/mysql-shell/" rel="noopener noreferrer">MySQL Shell (⭐218)</a> - Advanced client and code editor for MySQL that supports development and administration for the MySQL Server and MySQL InnoDB cluster (AdminAPI) with an interactive JavaScript, Python, or SQL interface.</li>
-<li><a href="https://github.com/mysql/mysql-workbench" rel="noopener noreferrer">MySQL Workbench (⭐988)</a> - provides DBAs and developers an integrated tools environment for database design &amp; modeling; SQL devleopment; database administration.</li>
+<li><a href="https://github.com/mysql/mysql-shell/" rel="noopener noreferrer">MySQL Shell (⭐222)</a> - Advanced client and code editor for MySQL that supports development and administration for the MySQL Server and MySQL InnoDB cluster (AdminAPI) with an interactive JavaScript, Python, or SQL interface.</li>
+<li><a href="https://github.com/mysql/mysql-workbench" rel="noopener noreferrer">MySQL Workbench (⭐994)</a> - provides DBAs and developers an integrated tools environment for database design &amp; modeling; SQL devleopment; database administration.</li>
 <li><a href="https://github.com/ocelot-inc/ocelotgui" rel="noopener noreferrer">Ocelot GUI (⭐63)</a> - GUI client for MySQL or MariaDB, including debugger.</li>
 <li><a href="https://github.com/OmniDB/OmniDB" rel="noopener noreferrer">OmniDB: Web tool for database management (⭐3.3k)</a></li>
-<li><a href="https://github.com/percona/pmm" rel="noopener noreferrer">Percona Monitoring and Management (⭐1k)</a> - An open-source platform for managing and monitoring MySQL performance.</li>
+<li><a href="https://github.com/percona/pmm" rel="noopener noreferrer">Percona Monitoring and Management (⭐1.1k)</a> - An open-source platform for managing and monitoring MySQL performance.</li>
 <li><a href="https://github.com/phpmyadmin/phpmyadmin" rel="noopener noreferrer">phpMyAdmin (⭐7.9k)</a> - a free software tool written in PHP, intended to handle the administration of MySQL over the Web.</li>
 <li><a href="https://github.com/okbob/pspg" rel="noopener noreferrer">pspg (⭐2.7k)</a> - provides a pager with enhanced visualization and navigation for tabular data. Originally implemented for PostgreSQL, but also supports MySQL.</li>
 <li><a href="https://github.com/Sequel-Ace/Sequel-Ace" rel="noopener noreferrer">Sequel Ace (⭐7.4k)</a> - a Mac database management application for working with MySQL databases.</li>
-<li><a href="https://github.com/TableProApp/TablePro" rel="noopener noreferrer">TablePro (⭐2.1k)</a> - Native macOS client for MySQL and many other databases with inline editing, SSH tunneling, and AI assistant. Free and open-source.</li>
+<li><a href="https://github.com/TableProApp/TablePro" rel="noopener noreferrer">TablePro (⭐5.1k)</a> - Native macOS client for MySQL and many other databases with inline editing, SSH tunneling, and AI assistant. Free and open-source.</li>
 <li><a href="https://github.com/webyog/sqlyog-community" rel="noopener noreferrer">SQLyog Community edition (⭐2.3k)</a> - SQLyog Community edition. For Windows, works fine under wine in Mac and Linux</li>
-<li><a href="https://github.com/eduardofuncao/squix" rel="noopener noreferrer">squix (⭐205)</a> - SQL command-line client with query management and interactive results.</li>
-<li><a href="https://github.com/WebDB-App/app" rel="noopener noreferrer">WebDB (⭐335)</a> – Open Source and Efficient Database IDE. Featuring Easy server connection, Modern ERD, Intelligent data generator, AI assistant, NoSQL structure manager, Time machine and Powerful query editor</li>
+<li><a href="https://github.com/eduardofuncao/squix" rel="noopener noreferrer">squix (⭐244)</a> - SQL command-line client with query management and interactive results.</li>
+<li><a href="https://github.com/WebDB-App/app" rel="noopener noreferrer">WebDB (⭐334)</a> – Open Source and Efficient Database IDE. Featuring Easy server connection, Modern ERD, Intelligent data generator, AI assistant, NoSQL structure manager, Time machine and Powerful query editor</li>
 </ul>
 <h2 id="ha"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ha"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>HA</h2><p><em>High availability solutions</em></p>
 <ul>
-<li><a href="https://github.com/codership/galera" rel="noopener noreferrer">Galera Cluster (⭐490)</a> - a true Multimaster Cluster based on synchronous replication.</li>
-<li><a href="https://github.com/yoshinorim/mha4mysql-node" rel="noopener noreferrer">mha4mysql-node (⭐408)</a> and <a href="https://github.com/yoshinorim/mha4mysql-manager" rel="noopener noreferrer">mha4mysql-manager (⭐1.5k)</a> (both unmaintained) - Master High Availability Manager and tools for MySQL.</li>
+<li><a href="https://github.com/codership/galera" rel="noopener noreferrer">Galera Cluster (⭐497)</a> - a true Multimaster Cluster based on synchronous replication.</li>
+<li><a href="https://github.com/yoshinorim/mha4mysql-node" rel="noopener noreferrer">mha4mysql-node (⭐410)</a> and <a href="https://github.com/yoshinorim/mha4mysql-manager" rel="noopener noreferrer">mha4mysql-manager (⭐1.5k)</a> (both unmaintained) - Master High Availability Manager and tools for MySQL.</li>
 <li><a href="https://github.com/openark/orchestrator" rel="noopener noreferrer">Orchestrator (⭐5.8k)</a> (archived) - MySQL replication topology management and High Availability solution.</li>
 <li><a href="https://github.com/percona/replication-manager" rel="noopener noreferrer">Percona Replication Manager (⭐7)</a> - Asynchronous MySQL replication manager agent for Pacemaker. Supports file and GTID based replication, geo-distributed clusters using booth.</li>
-<li><a href="https://github.com/signal18/replication-manager" rel="noopener noreferrer">replication-manager (⭐726)</a> - a high availability solution to manage MariaDB 10.x and MySQL &amp; Percona Server 5.7 GTID replication topologies.</li>
+<li><a href="https://github.com/signal18/replication-manager" rel="noopener noreferrer">replication-manager (⭐733)</a> - a high availability solution to manage MariaDB 10.x and MySQL &amp; Percona Server 5.7 GTID replication topologies.</li>
 </ul>
 <h2 id="mcp"><a class="anchor" aria-hidden="true" tabindex="-1" href="#mcp"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>MCP</h2><ul>
-<li><a href="https://github.com/MariaDB/mcp" rel="noopener noreferrer">MCP MariaDB Server (⭐164)</a> - the official MariaDB MCP server.</li>
-<li><a href="https://github.com/askdba/mysql-mcp-server" rel="noopener noreferrer">MySQL MCP Server (⭐25)</a> - Advanced MCP server exposing MySQL via the Model Context Protocol</li>
+<li><a href="https://github.com/MariaDB/mcp" rel="noopener noreferrer">MCP MariaDB Server (⭐180)</a> - the official MariaDB MCP server.</li>
+<li><a href="https://github.com/askdba/mysql-mcp-server" rel="noopener noreferrer">MySQL MCP Server (⭐39)</a> - Advanced MCP server exposing MySQL via the Model Context Protocol</li>
 <li><a href="https://pingcap.github.io/ai/integrations/tidb-mcp-server/" rel="noopener noreferrer">TiDB MCP Server</a> - MCP Server for TiDB.</li>
 </ul>
 <h2 id="proxy"><a class="anchor" aria-hidden="true" tabindex="-1" href="#proxy"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Proxy</h2><p><em>Proxies to MySQL</em></p>
 <ul>
 <li><a href="https://dev.mysql.com/doc/mysql-router/en/" rel="noopener noreferrer">MySQL Router</a> - MySQL Router is part of InnoDB cluster, and is a lightweight middleware that provides transparent routing between your application and back-end MySQL Servers.</li>
-<li><a href="https://github.com/sysown/proxysql" rel="noopener noreferrer">ProxySQL (⭐6.7k)</a> - High performance proxy for MySQL.</li>
+<li><a href="https://github.com/sysown/proxysql" rel="noopener noreferrer">ProxySQL (⭐6.9k)</a> - High performance proxy for MySQL.</li>
 </ul>
 <h2 id="replication"><a class="anchor" aria-hidden="true" tabindex="-1" href="#replication"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Replication</h2><p><em>Replication related software</em></p>
 <ul>
@@ -189,20 +269,20 @@
 </ul>
 <h2 id="schema"><a class="anchor" aria-hidden="true" tabindex="-1" href="#schema"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Schema</h2><p><em>Add-on schemas</em></p>
 <ul>
-<li><a href="https://github.com/shlomi-noach/common_schema" rel="noopener noreferrer">common_schema (⭐126)</a> - DBA's framework for MySQL, providing a function library, views library and QueryScript interpreter.</li>
-<li><a href="https://github.com/mysql/mysql-sys" rel="noopener noreferrer">sys (⭐828)</a> (archived) - A collection of views, functions and procedures to help MySQL administrators get insight in to MySQL Database usage. See <a href="https://dev.mysql.com/doc/refman/8.4/en/sys-schema.html" rel="noopener noreferrer">sys schema docs</a></li>
+<li><a href="https://github.com/shlomi-noach/common_schema" rel="noopener noreferrer">common_schema (⭐127)</a> - DBA's framework for MySQL, providing a function library, views library and QueryScript interpreter.</li>
+<li><a href="https://github.com/mysql/mysql-sys" rel="noopener noreferrer">sys (⭐827)</a> (archived) - A collection of views, functions and procedures to help MySQL administrators get insight in to MySQL Database usage. See <a href="https://dev.mysql.com/doc/refman/8.4/en/sys-schema.html" rel="noopener noreferrer">sys schema docs</a></li>
 </ul>
 <h2 id="security"><a class="anchor" aria-hidden="true" tabindex="-1" href="#security"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Security</h2><p><em>Tools that prevents leaking of sensitive data from database (encryption, masking and tokenization, honey-pots, etc)</em></p>
 <ul>
 <li><a href="https://github.com/cossacklabs/acra" rel="noopener noreferrer">Acra (⭐1.5k)</a> - SQL database protection suite: strong selective encryption, SQL injections prevention, intrusion detection system.</li>
-<li><a href="https://github.com/ppomes/myanon" rel="noopener noreferrer">myanon (⭐118)</a> - Streaming anonymizer for MySQL dump files, reading mysqldump output from stdin and writing anonymized data to stdout. Supports deterministic hashing, fixed values, JSON field anonymization, and Python extensions.</li>
+<li><a href="https://github.com/ppomes/myanon" rel="noopener noreferrer">myanon (⭐122)</a> - Streaming anonymizer for MySQL dump files, reading mysqldump output from stdin and writing anonymized data to stdout. Supports deterministic hashing, fixed values, JSON field anonymization, and Python extensions.</li>
 <li><a href="https://github.com/6eh01der/myldapsync" rel="noopener noreferrer">myldapsync (⭐0)</a> - Synchronize MySQL or MariaDB users with users in an LDAP directory.</li>
 </ul>
 <h2 id="server"><a class="anchor" aria-hidden="true" tabindex="-1" href="#server"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Server</h2><p><em>MySQL server flavors</em></p>
 <ul>
-<li><a href="https://github.com/MariaDB/server" rel="noopener noreferrer">MariaDB (⭐7.4k)</a> - Community developed fork of MySQL server.</li>
+<li><a href="https://github.com/MariaDB/server" rel="noopener noreferrer">MariaDB (⭐7.9k)</a> - Community developed fork of MySQL server.</li>
 <li><a href="https://github.com/mysql/mysql-server" rel="noopener noreferrer">MySQL Server &amp; MySQL Cluster (⭐12k)</a> - Official Oracle's MySQL server &amp; MySQL Cluster distribution.</li>
-<li><a href="https://github.com/askdba/myvector" rel="noopener noreferrer">MyVector (⭐8)</a> - Native vector search plugin for MySQL, shipped as a server plugin.</li>
+<li><a href="https://github.com/askdba/myvector" rel="noopener noreferrer">MyVector (⭐23)</a> - Native vector search plugin for MySQL, shipped as a server plugin.</li>
 <li><a href="https://github.com/percona/percona-server" rel="noopener noreferrer">Percona Server (⭐1.3k)</a> - An enhanced, drop-in MySQL replacement.</li>
 <li><a href="https://github.com/pingcap/tidb" rel="noopener noreferrer">TiDB (⭐40k)</a> - A distributed HTAP database compatible with the MySQL protocol.</li>
 </ul>
@@ -214,12 +294,12 @@
 <h2 id="toolkits"><a class="anchor" aria-hidden="true" tabindex="-1" href="#toolkits"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Toolkits</h2><p><em>Toolkits, general purpose scripts</em></p>
 <ul>
 <li><a href="https://github.com/github/gh-ost/" rel="noopener noreferrer">gh-ost (⭐13k)</a> - GitHub's online schema migration for MySQL.</li>
-<li><a href="https://github.com/go-mysql-org/go-mysql" rel="noopener noreferrer">go-mysql (⭐4.9k)</a> - A pure go library to handle MySQL network protocol and replication.</li>
+<li><a href="https://github.com/go-mysql-org/go-mysql" rel="noopener noreferrer">go-mysql (⭐5k)</a> - A pure go library to handle MySQL network protocol and replication.</li>
 <li><a href="https://github.com/mysql/mysql-utilities" rel="noopener noreferrer">MySQL Utilities (⭐276)</a> (deprecated) - a collection of command-line utilities, written in Python, that are used for maintaining and administering MySQL servers, either individually, or within Replication hierarchies.</li>
 <li><a href="https://github.com/percona/percona-toolkit" rel="noopener noreferrer">Percona Toolkit (⭐1.5k)</a> - a collection of advanced command-line tools to perform a variety of MySQL server and system tasks that are too difficult or complex to perform manually.</li>
-<li><a href="https://github.com/HelgeSverre/sql-splitter" rel="noopener noreferrer">sql-splitter (⭐5)</a> - High-performance CLI for splitting, merging, converting, validating, and sampling mysqldump files.</li>
+<li><a href="https://github.com/HelgeSverre/sql-splitter" rel="noopener noreferrer">sql-splitter (⭐7)</a> - High-performance CLI for splitting, merging, converting, validating, and sampling mysqldump files.</li>
 <li><a href="https://github.com/StirlingMarketingGroup/swoof" rel="noopener noreferrer">Swoof (⭐29)</a> - Ultra fast MySQL table importer that stages swaps through temporary tables and supports file/clipboard targets.</li>
-<li><a href="https://github.com/twindb/undrop-for-innodb" rel="noopener noreferrer">UnDROP (⭐420)</a> (archived) - a tool to recover data from dropped or corrupted InnoDB tables.</li>
+<li><a href="https://github.com/twindb/undrop-for-innodb" rel="noopener noreferrer">UnDROP (⭐423)</a> (archived) - a tool to recover data from dropped or corrupted InnoDB tables.</li>
 </ul>
 <h1 id="resources"><a class="anchor" aria-hidden="true" tabindex="-1" href="#resources"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Resources</h1><p><em>At this stage "resources" will not include websites, blogs, slides, presentation videos, etc. in fear of list size</em></p>
 <h2 id="e-books"><a class="anchor" aria-hidden="true" tabindex="-1" href="#e-books"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>e-books</h2><p><em>e-books as well as relevant materials on and around MySQL</em></p>
@@ -229,10 +309,52 @@
 </ul>
 <h2 id="incubating"><a class="anchor" aria-hidden="true" tabindex="-1" href="#incubating"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Incubating</h2><p>Projects that are known to be non-production and yet have either traction or substance that warrants exposure.</p>
 <ul>
-<li><a href="https://github.com/villagesql/villagesql-server" rel="noopener noreferrer">VillageSQL (⭐123)</a> - A drop-in replacement for MySQL with extensions for the agentic AI era.</li>
+<li><a href="https://github.com/villagesql/villagesql-server" rel="noopener noreferrer">VillageSQL (⭐153)</a> - A drop-in replacement for MySQL with extensions for the agentic AI era.</li>
 </ul>
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
