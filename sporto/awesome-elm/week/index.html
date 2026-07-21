@@ -16,26 +16,226 @@
     <meta property="og:title" content="Track Awesome Elm Updates Weekly" />
     <meta property="og:description" content="A curated list of useful Elm tutorials, libraries and software. Inspired by awesome list. Feel free to contribute. :rocket:" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Elm Updates Weekly</h1>
 <p>A curated list of useful Elm tutorials, libraries and software. Inspired by awesome list. Feel free to contribute. :rocket:</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/sporto/awesome-elm/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/sporto/awesome-elm">😺 sporto/awesome-elm</a><span> · </span><span>⭐ 3.7K</span><span> · </span><span>🏷️ Programming Languages</span></p>
 <p><span>[ </span><a href="/sporto/awesome-elm/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/sporto/awesome-elm/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/30/">Jul 27 - Aug 02, 2026</a></h2><h3><p>Learning Guides</p>
+</h3>
+<ul>
+<li><a href="https://elm-lang.org/docs" rel="noopener noreferrer">Official tutorial</a> — General information and in-depth guide with examples.</li>
+</ul>
+
+<ul>
+<li><a href="https://exercism.io/languages/elm" rel="noopener noreferrer">Exercism Elm Track</a> - Collection of Elm exercises.</li>
+</ul>
+
+<ul>
+<li><a href="https://learnyouanelm.github.io/" rel="noopener noreferrer">Learn you an Elm</a> - Elm tutorial with exhaustive examples and descriptions.</li>
+</ul>
+
+<ul>
+<li><a href="https://elmprogramming.com/" rel="noopener noreferrer">Beginning Elm</a> - A gentle introduction to the Elm programming language.</li>
+</ul>
+
+<ul>
+<li><a href="https://sporto.github.io/elm-patterns/index.html" rel="noopener noreferrer">Elm patterns</a> - A collection of common patterns in Elm.</li>
+</ul>
+
+<ul>
+<li><a href="https://rundis.github.io/blog/2016/elm_maybe.html" rel="noopener noreferrer">Elm Maybe - Dealing with null/Nothing</a> - Working with the Maybe type, with nicely commented code examples.</li>
+</ul>
+<h3><p>Learning Guides / Outdated Tutorials and books (Elm 0.18 or earlier)</p>
+</h3>
+<ul>
+<li><a href="https://courses.knowthen.com/courses/elm-for-beginners" rel="noopener noreferrer">Elm For Beginners - Video Course</a> - Build your first Elm Web App.</li>
+</ul>
+
+<ul>
+<li><a href="https://faq.elm-community.org/" rel="noopener noreferrer">Elm FAQ</a> - Elm FAQ from <a href="https://elm-community.org/" rel="noopener noreferrer">Elm Community</a>.</li>
+</ul>
+<h3><p>Articles / Why Elm?</p>
+</h3>
+<ul>
+<li><a href="https://nonullpointers.com/posts/2019-05-28-side-effects-of-elm-in-production.html?utm_campaign=Elm%20Weekly&amp;utm_medium=email&amp;utm_source=Revue%20newsletter" rel="noopener noreferrer">Side-effects of Elm in production</a> - An experience report from Bellroy</li>
+</ul>
+
+<ul>
+<li><a href="https://futurice.com/blog/elm-in-the-real-world" rel="noopener noreferrer">How Elm Made Our Work Better</a> - How a team built a business-critical web app for a customer using Elm.</li>
+</ul>
+
+<ul>
+<li><a href="https://elm-lang.org/blog/blazing-fast-html" rel="noopener noreferrer">Blazing Fast HTML</a> - Virtual DOM in Elm.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.gizra.com/content/elm-business-perspective/" rel="noopener noreferrer">Elm from a Business Perspective</a> - This article discusses topics about Elm from a business perspective</li>
+</ul>
+<h3><p>Conference Videos / Miscellaneous videos</p>
+</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=FV0DXNB94NE" rel="noopener noreferrer">Richard Feldman: Make the Back-End Team Jealous: Elm in Production | 2015</a> - A talk about Elm and initial steps to use it in production.</li>
+</ul>
+<h3><p>News / Miscellaneous videos</p>
+</h3>
+<ul>
+<li><a href="https://www.elmweekly.nl/" rel="noopener noreferrer">Elm Weekly</a> - A weekly newsletter about Elm</li>
+</ul>
+<h3><p>Podcasts / Individual Podcast episodes</p>
+</h3>
+<ul>
+<li><a href="https://softwareengineeringdaily.com/2015/11/03/elm-with-richard-feldman-and-srinivas-rao/" rel="noopener noreferrer">Software Engineering Daily</a> - Elm with Richard Feldman and Srinivas Rao.</li>
+</ul>
+
+<ul>
+<li><a href="https://thewebplatform.libsyn.com/functional-programming-with-elm-clojurescript-om-and-react" rel="noopener noreferrer">The Web Platform Podcast 15</a> - Functional Programming with Elm, ClojureScript, Om, and React.</li>
+</ul>
+
+<ul>
+<li><a href="https://thewebplatformpodcast.com/76-the-elm-programming-language" rel="noopener noreferrer">The Web Platform Podcast 76</a> - The Elm Programming Language.</li>
+</ul>
+
+<ul>
+<li><a href="https://thewebplatformpodcast.com/108-elm-revisited" rel="noopener noreferrer">The Web Platform Podcast 108</a> - Elm Revisited.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.fullstackradio.com/44" rel="noopener noreferrer">Full Stack Radio 44</a> - What the heck is Elm? In this episode, Joel Clermont talks about Elm and functional programming.</li>
+</ul>
+<h3><p>Code generators / Individual Podcast episodes</p>
+</h3>
+<ul>
+<li><a href="https://mbylstra.github.io/html-to-elm/" rel="noopener noreferrer">HTML to Elm</a> - Convert HTML to Elm Html. Useful when porting an app to Elm.</li>
+</ul>
+<h3><p>Libraries / Individual Podcast episodes</p>
+</h3>
+<ul>
+<li><a href="https://klaftertief.github.io/elm-search/" rel="noopener noreferrer">Elm Search</a> - Search Elm documentation for operators, function signatures, etc.</li>
+</ul>
+<h3><p>Static site generators / Outdated Boilerplates</p>
+</h3>
+<ul>
+<li><a href="https://elm-pages.com" rel="noopener noreferrer">Elm Pages</a> - Static site generator that prerenders HTML and hydrates into an Elm client-side app (<a href="https://elm-pages.com/blog/introducing-elm-pages#comparing-elm-pages-and-elmstatic" rel="noopener noreferrer">here is a brief comparison with elmstatic</a>).</li>
+</ul>
+<h3><p>Showcase generators / Outdated Boilerplates</p>
+</h3>
+<ul>
+<li><a href="https://elm-book-in-elm-book.netlify.app" rel="noopener noreferrer">Elm Book</a> - Rich documentation builder based on Storybook and HexDocs.</li>
+</ul>
+<h3><p>Examples / Other editors</p>
+</h3>
+<ul>
+<li><a href="https://builtwithelm.co/" rel="noopener noreferrer">Builtwithelm</a> - Web site built with elm with list of projects and apps built with Elm.</li>
+</ul>
+
+<ul>
+<li><a href="https://rtfeldman.github.io/elm-spa-example/" rel="noopener noreferrer">Elm SPA Example</a> - Full stack Elm app w/ CRUD operations, Auth, routing, pagination and more. <a href="https://github.com/rtfeldman/elm-spa-example" rel="noopener noreferrer">Code (⭐3.3k)</a> / <a href="https://dev.to/rtfeldman/tour-of-an-open-source-elm-spa" rel="noopener noreferrer">Article</a> / <a href="https://youtu.be/RN2_NchjrJQ" rel="noopener noreferrer">Video</a></li>
+</ul>
+
+<ul>
+<li><a href="https://elm-playground.maciejsmolinski.com/" rel="noopener noreferrer">Elm Playground</a> - Tiny Elm projects implemented for the sake of learning by example.</li>
+</ul>
+<h3><p>Community and Support / Games</p>
+</h3>
+<ul>
+<li><a href="https://webchat.freenode.net/?channels=elm" rel="noopener noreferrer">IRC</a> - Ask questions on elm freenode.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2025/42/">Oct 20 - Oct 26, 2025</a></h2><h3><p>Inspired by Elm / Games</p>
 </h3>
 <ul>
-<li><a href="https://github.com/easafe/purescript-flame" rel="noopener noreferrer">Flame (⭐310)</a> - A library that provides The Elm Architecture in PureScript.</li>
+<li><a href="https://github.com/easafe/purescript-flame" rel="noopener noreferrer">Flame (⭐320)</a> - A library that provides The Elm Architecture in PureScript.</li>
 </ul>
 
 <ul>
@@ -47,11 +247,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/lustre-labs/lustre" rel="noopener noreferrer">Lustre (⭐1.8k)</a> - A library that provides The Elm Architecture in Gleam.</li>
+<li><a href="https://github.com/lustre-labs/lustre" rel="noopener noreferrer">Lustre (⭐2.4k)</a> - A library that provides The Elm Architecture in Gleam.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/dmjio/miso" rel="noopener noreferrer">Miso (⭐2.3k)</a> - A library that provides The Elm Architecture in Haskell.</li>
+<li><a href="https://github.com/dmjio/miso" rel="noopener noreferrer">Miso (⭐2.4k)</a> - A library that provides The Elm Architecture in Haskell.</li>
 </ul>
 
 <ul>
@@ -59,20 +259,20 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/vankeisb/react-tea-cup" rel="noopener noreferrer">React-tea-cup (⭐26)</a> - A thin library that provides The Elm Architecture in react, used by IBM.</li>
+<li><a href="https://github.com/vankeisb/react-tea-cup" rel="noopener noreferrer">React-tea-cup (⭐33)</a> - A thin library that provides The Elm Architecture in react, used by IBM.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/roc-lang/roc" rel="noopener noreferrer">Roc (⭐5.2k)</a> - A language that targets WebAssembly and machine code inspired by Elm.</li>
+<li><a href="https://github.com/roc-lang/roc" rel="noopener noreferrer">Roc (⭐5.9k)</a> - A language that targets WebAssembly and machine code inspired by Elm.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ivanceras/sauron" rel="noopener noreferrer">Sauron (⭐2k)</a> - A library that provides The Elm Architecture in Rust targeting the web.</li>
+<li><a href="https://github.com/ivanceras/sauron" rel="noopener noreferrer">Sauron (⭐2.1k)</a> - A library that provides The Elm Architecture in Rust targeting the web.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/14/">Apr 07 - Apr 13, 2025</a></h2><h3><p>Static site generators / Outdated Boilerplates</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lucamug/elm-starter" rel="noopener noreferrer">elm-starter (⭐87)</a> - An experimental Elm-based bootstrapper that can also be plugged into already existing Elm applications.</li>
+<li><a href="https://github.com/lucamug/elm-starter" rel="noopener noreferrer">elm-starter (⭐90)</a> - An experimental Elm-based bootstrapper that can also be plugged into already existing Elm applications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/50/">Dec 09 - Dec 15, 2024</a></h2><h3><p>Inspired by Elm / Games</p>
 </h3>
@@ -113,7 +313,7 @@
 <h2><a href="https://www.trackawesomelist.com/2024/15/">Apr 08 - Apr 14, 2024</a></h2><h3><p>Examples / Other editors</p>
 </h3>
 <ul>
-<li><a href="https://github.com/johannesvollmer/regex-nodes" rel="noopener noreferrer">Regex Nodes (⭐38)</a> - A <a href="https://johannesvollmer.com/regex-nodes/" rel="noopener noreferrer">node-based visual editor for fiddling with regular expressions</a>, built with Elm.</li>
+<li><a href="https://github.com/johannesvollmer/regex-nodes" rel="noopener noreferrer">Regex Nodes (⭐41)</a> - A <a href="https://johannesvollmer.com/regex-nodes/" rel="noopener noreferrer">node-based visual editor for fiddling with regular expressions</a>, built with Elm.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/29/">Jul 17 - Jul 23, 2023</a></h2><h3><p>News / Miscellaneous videos</p>
 </h3>
@@ -124,11 +324,6 @@
 </h3>
 <ul>
 <li><a href="https://elm.camp/" rel="noopener noreferrer">Elm Camp</a></li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2023/13/">Mar 27 - Apr 02, 2023</a></h2><h3><p>Examples / Other editors</p>
-</h3>
-<ul>
-<li><a href="http://rtfeldman.github.io/elm-spa-example/" rel="noopener noreferrer">Elm SPA Example</a> - Full stack Elm app w/ CRUD operations, Auth, routing, pagination and more. <a href="https://github.com/rtfeldman/elm-spa-example" rel="noopener noreferrer">Code (⭐3.3k)</a> / <a href="https://dev.to/rtfeldman/tour-of-an-open-source-elm-spa" rel="noopener noreferrer">Article</a> / <a href="https://youtu.be/RN2_NchjrJQ" rel="noopener noreferrer">Video</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/47/">Nov 21 - Nov 27, 2022</a></h2><h3><p>Examples / Other editors</p>
 </h3>
@@ -143,39 +338,35 @@
 <h3><p>Code generators / Individual Podcast episodes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/agrafix/elm-bridge" rel="noopener noreferrer">Elm Bridge (⭐105)</a> - Generate Elm types from Haskell</li>
+<li><a href="https://github.com/agrafix/elm-bridge" rel="noopener noreferrer">Elm Bridge (⭐107)</a> - Generate Elm types from Haskell</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/mdgriffith/elm-codegen" rel="noopener noreferrer">Elm CodeGen (⭐141)</a> - Generate Elm code</li>
+<li><a href="https://github.com/mdgriffith/elm-codegen" rel="noopener noreferrer">Elm CodeGen (⭐146)</a> - Generate Elm code</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/vendrinc/elm-gql" rel="noopener noreferrer">elm-gql (⭐70)</a> - Generate GraphQl client code from GraphQL queries</li>
+<li><a href="https://github.com/vendrinc/elm-gql" rel="noopener noreferrer">elm-gql (⭐71)</a> - Generate GraphQl client code from GraphQL queries</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/dillonkearns/elm-graphql" rel="noopener noreferrer">elm-graphql (⭐782)</a> - Generate GraphQl client code from GraphQL schemas</li>
+<li><a href="https://github.com/dillonkearns/elm-graphql" rel="noopener noreferrer">elm-graphql (⭐789)</a> - Generate GraphQl client code from GraphQL schemas</li>
 </ul>
 
 <ul>
-<li><a href="http://mbylstra.github.io/html-to-elm/" rel="noopener noreferrer">HTML to Elm</a> - Convert HTML to Elm Html. Useful when porting an app to Elm.</li>
+<li><a href="https://github.com/dragonwasrobot/json-schema-to-elm" rel="noopener noreferrer">JSON Schema to Elm (⭐92)</a> - Generates Elm types, JSON decoders, JSON encoders and fuzz tests from JSON schema specifications</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/dragonwasrobot/json-schema-to-elm" rel="noopener noreferrer">JSON Schema to Elm (⭐90)</a> - Generates Elm types, JSON decoders, JSON encoders and fuzz tests from JSON schema specifications</li>
+<li><a href="https://github.com/OpenAPITools/openapi-generator" rel="noopener noreferrer">OpenApi Generator (⭐26k)</a> - Generate OpenApi types for Elm.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/OpenAPITools/openapi-generator" rel="noopener noreferrer">OpenApi Generator (⭐25k)</a> - Generate OpenApi types for Elm.</li>
+<li><a href="https://github.com/quicktype/quicktype" rel="noopener noreferrer">Quicktype (⭐14k)</a> - Generate JSON decoders and encoders from JSON</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/quicktype/quicktype" rel="noopener noreferrer">Quicktype (⭐13k)</a> - Generate JSON decoders and encoders from JSON</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/andreasewering/travelm-agency" rel="noopener noreferrer">Travelm Agency (⭐47)</a> - Generate typesafe Elm code from translation files</li>
+<li><a href="https://github.com/andreasewering/travelm-agency" rel="noopener noreferrer">Travelm Agency (⭐50)</a> - Generate typesafe Elm code from translation files</li>
 </ul>
 <h3><p>Frameworks / Outdated Boilerplates</p>
 </h3>
@@ -188,16 +379,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/rogeriochaves/spades" rel="noopener noreferrer">Spades (⭐299)</a> - Start an Elm SPA ready to the real world.</li>
+<li><a href="https://github.com/rogeriochaves/spades" rel="noopener noreferrer">Spades (⭐301)</a> - Start an Elm SPA ready to the real world.</li>
 </ul>
 <h3><p>Compile and bundle / Outdated Boilerplates</p>
 </h3>
 <ul>
-<li><a href="https://github.com/elm/compiler" rel="noopener noreferrer">elm-compiler (⭐7.7k)</a> - The official Elm compiler.</li>
+<li><a href="https://github.com/elm/compiler" rel="noopener noreferrer">elm-compiler (⭐7.8k)</a> - The official Elm compiler.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/elm-community/elm-webpack-loader" rel="noopener noreferrer">elm-webpack-loader (⭐534)</a> - Webpack loader Elm.</li>
+<li><a href="https://github.com/elm-community/elm-webpack-loader" rel="noopener noreferrer">elm-webpack-loader (⭐532)</a> - Webpack loader Elm.</li>
 </ul>
 
 <ul>
@@ -205,7 +396,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/hmsk/vite-plugin-elm" rel="noopener noreferrer">vite-plugin-elm (⭐214)</a> - Vite plugin for Elm.</li>
+<li><a href="https://github.com/hmsk/vite-plugin-elm" rel="noopener noreferrer">vite-plugin-elm (⭐217)</a> - Vite plugin for Elm.</li>
 </ul>
 <h3><p>Community and Support / Games</p>
 </h3>
@@ -215,7 +406,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/41/">Oct 10 - Oct 16, 2022</a></h2><h3><p>Code generators / Individual Podcast episodes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/andreasewering/protoc-gen-elm" rel="noopener noreferrer">Protoc Gen Elm (⭐17)</a> - Generate Protobuf En/Decoders from .proto files</li>
+<li><a href="https://github.com/andreasewering/protoc-gen-elm" rel="noopener noreferrer">Protoc Gen Elm (⭐19)</a> - Generate Protobuf En/Decoders from .proto files</li>
 </ul>
 <h3><p>Examples / Games</p>
 </h3>
@@ -225,7 +416,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/37/">Sep 12 - Sep 18, 2022</a></h2><h3><p>Run Elm / Outdated Boilerplates</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lydell/elm-watch" rel="noopener noreferrer">Elm Watch (⭐175)</a> - <code>elm make</code> in watch mode. Fast and reliable.</li>
+<li><a href="https://github.com/lydell/elm-watch" rel="noopener noreferrer">Elm Watch (⭐186)</a> - <code>elm make</code> in watch mode. Fast and reliable.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/25/">Jun 20 - Jun 26, 2022</a></h2><h3><p>Boilerplates / Outdated Boilerplates</p>
 </h3>
@@ -240,7 +431,7 @@
 <h3><p>Beyond the DOM / Games</p>
 </h3>
 <ul>
-<li><a href="https://github.com/albertdahlin/elm-posix" rel="noopener noreferrer">elm-posix (⭐92)</a> - Write CLI programs using Elm</li>
+<li><a href="https://github.com/albertdahlin/elm-posix" rel="noopener noreferrer">elm-posix (⭐93)</a> - Write CLI programs using Elm</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/30/">Jul 26 - Aug 01, 2021</a></h2><h3><p>Learning Guides</p>
 </h3>
@@ -250,7 +441,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/29/">Jul 19 - Jul 25, 2021</a></h2><h3><p>Code generators / Individual Podcast episodes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dillonkearns/elm-ts-json" rel="noopener noreferrer">Elm TS Interop (⭐43)</a> - Build up Encoders/Decoders between Elm and TypeScript.</li>
+<li><a href="https://github.com/dillonkearns/elm-ts-json" rel="noopener noreferrer">Elm TS Interop (⭐45)</a> - Build up Encoders/Decoders between Elm and TypeScript.</li>
 </ul>
 
 <ul>
@@ -258,11 +449,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/folq/haskell-to-elm" rel="noopener noreferrer">haskell-to-elm (⭐62)</a> - Generate Elm types, encoders, and decoders from Haskell types</li>
+<li><a href="https://github.com/folq/haskell-to-elm" rel="noopener noreferrer">haskell-to-elm (⭐63)</a> - Generate Elm types, encoders, and decoders from Haskell types</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/monty5811/postcss-elm-tailwind" rel="noopener noreferrer">PostCSS Elm Tailwind (⭐98)</a> - Put some Tailwind in your Elm</li>
+<li><a href="https://github.com/monty5811/postcss-elm-tailwind" rel="noopener noreferrer">PostCSS Elm Tailwind (⭐99)</a> - Put some Tailwind in your Elm</li>
 </ul>
 <h3><p>Other tools / Unmaintained</p>
 </h3>
@@ -275,23 +466,23 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dmy/elm-doc-preview" rel="noopener noreferrer">Elm Doc Preview (⭐131)</a> - Elm offline documentation previewer.</li>
+<li><a href="https://github.com/dmy/elm-doc-preview" rel="noopener noreferrer">Elm Doc Preview (⭐137)</a> - Elm offline documentation previewer.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/avh4/elm-format" rel="noopener noreferrer">Elm Format (⭐1.3k)</a> - Automatic Elm code formatter adhering to <a href="http://elm-lang.org/docs/style-guide" rel="noopener noreferrer">Elm Style Guide</a>.</li>
+<li><a href="https://github.com/avh4/elm-format" rel="noopener noreferrer">Elm Format (⭐1.3k)</a> - Automatic Elm code formatter adhering to <a href="https://elm-lang.org/docs/style-guide" rel="noopener noreferrer">Elm Style Guide</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/zwilias/elm-json" rel="noopener noreferrer">Elm JSON (⭐181)</a> - Install, upgrade and uninstall Elm dependencies</li>
+<li><a href="https://github.com/zwilias/elm-json" rel="noopener noreferrer">Elm JSON (⭐185)</a> - Install, upgrade and uninstall Elm dependencies</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ElmCast/elm-oracle" rel="noopener noreferrer">Elm Oracle (⭐152)</a> - Query for information about values in elm source files. Used by most editor plugins.</li>
+<li><a href="https://github.com/ElmCast/elm-oracle" rel="noopener noreferrer">Elm Oracle (⭐153)</a> - Query for information about values in elm source files. Used by most editor plugins.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/stereobooster/type-o-rama" rel="noopener noreferrer">type-o-rama (⭐246)</a> - JS type systems interportability.</li>
+<li><a href="https://github.com/stereobooster/type-o-rama" rel="noopener noreferrer">type-o-rama (⭐247)</a> - JS type systems interportability.</li>
 </ul>
 
 <ul>
@@ -299,32 +490,24 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/gicentre/litvis" rel="noopener noreferrer">Litvis (⭐395)</a> - Literate Visualization with Elm</li>
+<li><a href="https://github.com/gicentre/litvis" rel="noopener noreferrer">Litvis (⭐409)</a> - Literate Visualization with Elm</li>
 </ul>
 <h3><p>Static analysis / Outdated Boilerplates</p>
 </h3>
 <ul>
-<li><a href="https://github.com/stil4m/elm-analyse" rel="noopener noreferrer">Elm Analyse (⭐415)</a> - Linter for the Elm programming language.</li>
+<li><a href="https://github.com/stil4m/elm-analyse" rel="noopener noreferrer">Elm Analyse (⭐416)</a> - Linter for the Elm programming language.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jfmengels/elm-review" rel="noopener noreferrer">Elm Review (⭐272)</a> - Code reviewer for the Elm programming language.</li>
+<li><a href="https://github.com/jfmengels/elm-review" rel="noopener noreferrer">Elm Review (⭐283)</a> - Code reviewer for the Elm programming language.</li>
 </ul>
 <h3><p>Static site generators / Outdated Boilerplates</p>
 </h3>
-<ul>
-<li><a href="http://elm-pages.com" rel="noopener noreferrer">Elm Pages</a> - Static site generator that prerenders HTML and hydrates into an Elm client-side app (<a href="https://elm-pages.com/blog/introducing-elm-pages#comparing-elm-pages-and-elmstatic" rel="noopener noreferrer">here is a brief comparison with elmstatic</a>).</li>
-</ul>
-
 <ul>
 <li><a href="https://korban.net/elm/elmstatic" rel="noopener noreferrer">Elmstatic</a> - Elm-based static site generator.</li>
 </ul>
 <h3><p>Showcase generators / Outdated Boilerplates</p>
 </h3>
-<ul>
-<li><a href="http://elm-book-in-elm-book.netlify.app" rel="noopener noreferrer">Elm Book</a> - Rich documentation builder based on Storybook and HexDocs.</li>
-</ul>
-
 <ul>
 <li><a href="https://github.com/kalutheo/elm-ui-explorer" rel="noopener noreferrer">Elm UI Explorer (⭐218)</a> - Showcase your views and states.</li>
 </ul>
@@ -339,7 +522,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jfairbank/run-elm" rel="noopener noreferrer">run-elm (⭐52)</a> — Run Elm code from the command line</li>
+<li><a href="https://github.com/jfairbank/run-elm" rel="noopener noreferrer">run-elm (⭐53)</a> — Run Elm code from the command line</li>
 </ul>
 
 <ul>
@@ -356,7 +539,7 @@
 <h3><p>Compile and bundle / Unmaintained</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rtfeldman/grunt-elm" rel="noopener noreferrer">grunt-elm (⭐19)</a> - Grunt plugin that compiles Elm files to JavaScript.</li>
+<li><a href="https://github.com/rtfeldman/grunt-elm" rel="noopener noreferrer">grunt-elm (⭐20)</a> - Grunt plugin that compiles Elm files to JavaScript.</li>
 </ul>
 <h3><p>Editor plugins / Atom</p>
 </h3>
@@ -387,16 +570,16 @@
 <h3><p>Editor plugins / IntelliJ</p>
 </h3>
 <ul>
-<li><a href="https://github.com/klazuka/intellij-elm" rel="noopener noreferrer">elm-plugin (⭐404)</a> - Elm plugin for IntelliJ IDEA.</li>
+<li><a href="https://github.com/klazuka/intellij-elm" rel="noopener noreferrer">elm-plugin (⭐407)</a> - Elm plugin for IntelliJ IDEA.</li>
 </ul>
 <h3><p>Editor plugins / Sublime Text</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sublimelsp/LSP-elm" rel="noopener noreferrer">LSP-elm (⭐8)</a> - Elm Language Server for Sublime (Recommended).</li>
+<li><a href="https://github.com/sublimelsp/LSP-elm" rel="noopener noreferrer">LSP-elm (⭐9)</a> - Elm Language Server for Sublime (Recommended).</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/elm-tooling/elm-language-server#sublime" rel="noopener noreferrer">Elm Language Server (⭐431)</a> - Language server implementation for Elm</li>
+<li><a href="https://github.com/elm-tooling/elm-language-server#sublime" rel="noopener noreferrer">Elm Language Server (⭐443)</a> - Language server implementation for Elm</li>
 </ul>
 
 <ul>
@@ -413,7 +596,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ElmCast/elm-vim" rel="noopener noreferrer">ElmCast/elm-vim (⭐574)</a> - Elm 0.18 mode for Vim/Neovim.</li>
+<li><a href="https://github.com/ElmCast/elm-vim" rel="noopener noreferrer">ElmCast/elm-vim (⭐572)</a> - Elm 0.18 mode for Vim/Neovim.</li>
 </ul>
 
 <ul>
@@ -439,12 +622,12 @@
 <h3><p>Editor plugins / Other editors</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rundis/elm-light" rel="noopener noreferrer">elm-light-table (⭐133)</a> - Syntax highlighting, REPL, autocompletion, package management and much more for Light Table.</li>
+<li><a href="https://github.com/rundis/elm-light" rel="noopener noreferrer">elm-light-table (⭐132)</a> - Syntax highlighting, REPL, autocompletion, package management and much more for Light Table.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/27/">Jul 05 - Jul 11, 2021</a></h2><h3><p>Testing / Individual Podcast episodes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/brian-watkins/elm-spec" rel="noopener noreferrer">Elm Spec (⭐33)</a> - Describe the behavior of Elm programs.</li>
+<li><a href="https://github.com/brian-watkins/elm-spec" rel="noopener noreferrer">Elm Spec (⭐34)</a> - Describe the behavior of Elm programs.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/11/">Mar 15 - Mar 21, 2021</a></h2><h3><p>Learning Guides</p>
 </h3>
@@ -463,7 +646,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/7/">Feb 15 - Feb 21, 2021</a></h2><h3><p>Inspired by Elm / Games</p>
 </h3>
 <ul>
-<li><a href="https://github.com/OvermindDL1/bucklescript-tea" rel="noopener noreferrer">Bucklescript-TEA (⭐601)</a> - The Elm Architecture based on OCaml / Reason and <a href="https://bucklescript.github.io/" rel="noopener noreferrer">Bucklescript</a></li>
+<li><a href="https://github.com/OvermindDL1/bucklescript-tea" rel="noopener noreferrer">Bucklescript-TEA (⭐600)</a> - The Elm Architecture based on OCaml / Reason and <a href="https://bucklescript.github.io/" rel="noopener noreferrer">Bucklescript</a></li>
 </ul>
 
 <ul>
@@ -490,7 +673,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/elm/compiler/tree/master/hints" rel="noopener noreferrer">Codings hints (⭐7.7k)</a> - A list of README files by Evan.</li>
+<li><a href="https://github.com/elm/compiler/tree/master/hints" rel="noopener noreferrer">Codings hints (⭐7.8k)</a> - A list of README files by Evan.</li>
 </ul>
 
 <ul>
@@ -505,24 +688,15 @@
 <ul>
 <li><a href="https://github.com/tarbh-engineering/journal" rel="noopener noreferrer">Bolster (⭐8)</a> - An end-to-end encrypted journal app.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2020/35/">Aug 31 - Sep 06, 2020</a></h2><h3><p>Learning Guides</p>
-</h3>
-<ul>
-<li><a href="http://sporto.github.io/elm-patterns/index.html" rel="noopener noreferrer">Elm patterns</a> - A collection of common patterns in Elm.</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2020/33/">Aug 17 - Aug 23, 2020</a></h2><h3><p>Examples / Games</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rofrol/elm-games" rel="noopener noreferrer">elm-games (⭐144)</a> - An excellent list of games made in Elm</li>
+<li><a href="https://github.com/rofrol/elm-games" rel="noopener noreferrer">elm-games (⭐146)</a> - An excellent list of games made in Elm</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/18/">May 04 - May 10, 2020</a></h2><h3><p>Examples / Other editors</p>
 </h3>
 <ul>
-<li><a href="http://builtwithelm.co/" rel="noopener noreferrer">Builtwithelm</a> - Web site built with elm with list of projects and apps built with Elm.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/sporto/elm-example-app" rel="noopener noreferrer">Elm Example App (⭐436)</a> - A small SPA example in Elm to learn the basics</li>
+<li><a href="https://github.com/sporto/elm-example-app" rel="noopener noreferrer">Elm Example App (⭐437)</a> - A small SPA example in Elm to learn the basics</li>
 </ul>
 
 <ul>
@@ -530,11 +704,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/andrewsuzuki/elm-todo-rest-api" rel="noopener noreferrer">TodoMVC with JSON API (⭐104)</a> - Bare-bones, modular, heavily-documented todo app with JSON API persistence.</li>
+<li><a href="https://github.com/andrewsuzuki/elm-todo-rest-api" rel="noopener noreferrer">TodoMVC with JSON API (⭐105)</a> - Bare-bones, modular, heavily-documented todo app with JSON API persistence.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ThomasWeiser/todomvc-elmfire" rel="noopener noreferrer">TodoMVC/Firebase (⭐60)</a> - Fork of TodoMVC demonstrating start-app, <a href="https://github.com/evancz/elm-architecture-tutorial" rel="noopener noreferrer">The Elm Architecture (⭐4.2k)</a> and Firebase as backend.</li>
+<li><a href="https://github.com/ThomasWeiser/todomvc-elmfire" rel="noopener noreferrer">TodoMVC/Firebase (⭐61)</a> - Fork of TodoMVC demonstrating start-app, <a href="https://github.com/evancz/elm-architecture-tutorial" rel="noopener noreferrer">The Elm Architecture (⭐4.2k)</a> and Firebase as backend.</li>
 </ul>
 
 <ul>
@@ -542,7 +716,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/matthieu-beteille/gipher" rel="noopener noreferrer">Gipher (⭐222)</a> - A Tinder-like application for gifs built with elm and firebase!</li>
+<li><a href="https://github.com/matthieu-beteille/gipher" rel="noopener noreferrer">Gipher (⭐223)</a> - A Tinder-like application for gifs built with elm and firebase!</li>
 </ul>
 
 <ul>
@@ -550,11 +724,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ohanhi/elm-ement" rel="noopener noreferrer">&lt;elm-ement&gt; (⭐49)</a> – Minimal example of a custom element.</li>
-</ul>
-
-<ul>
-<li><a href="http://elm-playground.maciejsmolinski.com/" rel="noopener noreferrer">Elm Playground</a> - Tiny Elm projects implemented for the sake of learning by example.</li>
+<li><a href="https://github.com/ohanhi/elm-ement" rel="noopener noreferrer">&lt;elm-ement&gt; (⭐50)</a> – Minimal example of a custom element.</li>
 </ul>
 
 <ul>
@@ -562,7 +732,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ronanyeah/elm-phoenix-example" rel="noopener noreferrer">Elm + Phoenix + Webpack (⭐56)</a> - A minimal Elm + Phoenix setup, using webpack instead of Brunch.</li>
+<li><a href="https://github.com/ronanyeah/elm-phoenix-example" rel="noopener noreferrer">Elm + Phoenix + Webpack (⭐57)</a> - A minimal Elm + Phoenix setup, using webpack instead of Brunch.</li>
 </ul>
 
 <ul>
@@ -582,11 +752,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/bkbooth/Elmstagram" rel="noopener noreferrer">Elmstagram (⭐18)</a> - Basic UI Clone of Instagram / Articles - <a href="https://benbooth.dev/building-a-basic-ui-clone-of-instagram-using-elm-part-1/" rel="noopener noreferrer">Part 1</a> <a href="https://benbooth.dev/building-a-basic-ui-clone-of-instagram-using-elm-part-2/" rel="noopener noreferrer">Part 2</a> <a href="https://benbooth.dev/building-a-basic-ui-clone-of-instagram-using-elm-part-3/" rel="noopener noreferrer">Part 3</a></li>
+<li><a href="https://github.com/bkbooth/Elmstagram" rel="noopener noreferrer">Elmstagram (⭐17)</a> - Basic UI Clone of Instagram / Articles - <a href="https://benbooth.dev/building-a-basic-ui-clone-of-instagram-using-elm-part-1/" rel="noopener noreferrer">Part 1</a> <a href="https://benbooth.dev/building-a-basic-ui-clone-of-instagram-using-elm-part-2/" rel="noopener noreferrer">Part 2</a> <a href="https://benbooth.dev/building-a-basic-ui-clone-of-instagram-using-elm-part-3/" rel="noopener noreferrer">Part 3</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/huytd/kanelm" rel="noopener noreferrer">Kanban Board in Elm (⭐303)</a> - A kanban board (trello-alike) built with Elm and HTML5 Drag &amp; Drop API</li>
+<li><a href="https://github.com/huytd/kanelm" rel="noopener noreferrer">Kanban Board in Elm (⭐308)</a> - A kanban board (trello-alike) built with Elm and HTML5 Drag &amp; Drop API</li>
 </ul>
 
 <ul>
@@ -598,11 +768,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jschomay/elm-narrative-engine" rel="noopener noreferrer">Elm Narrative Engine (⭐136)</a> - A framework for building interactive fiction style stories in Elm. Detailed example <a href="http://elmnarrativeengine.com" rel="noopener noreferrer">elmnarrativeengine.com</a> shows how to build a "chose your own adventure" game; perfect for beginners. <strong>Elm v.0.19</strong></li>
+<li><a href="https://github.com/jschomay/elm-narrative-engine" rel="noopener noreferrer">Elm Narrative Engine (⭐138)</a> - A framework for building interactive fiction style stories in Elm. Detailed example <a href="https://elmnarrativeengine.com" rel="noopener noreferrer">elmnarrativeengine.com</a> shows how to build a "chose your own adventure" game; perfect for beginners. <strong>Elm v.0.19</strong></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/theiceshelf/arisgarden" rel="noopener noreferrer">Ari's Garden (⭐54)</a> - A recipe <a href="https://arisgarden.theiceshelf.com/" rel="noopener noreferrer">site</a> built as an SPA that also makes use of the Elm parser.</li>
+<li><a href="https://github.com/theiceshelf/arisgarden" rel="noopener noreferrer">Ari's Garden (⭐55)</a> - A recipe <a href="https://arisgarden.theiceshelf.com/" rel="noopener noreferrer">site</a> built as an SPA that also makes use of the Elm parser.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/16/">Apr 20 - Apr 26, 2020</a></h2><h3><p>News / Miscellaneous videos</p>
 </h3>
@@ -617,7 +787,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/10/">Mar 09 - Mar 15, 2020</a></h2><h3><p>Learning Guides</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dwyl/learn-elm" rel="noopener noreferrer">Learn Elm (⭐488)</a> - Discover the beautiful programming language that makes front-end web apps a joy to build and maintain!</li>
+<li><a href="https://github.com/dwyl/learn-elm" rel="noopener noreferrer">Learn Elm (⭐495)</a> - Discover the beautiful programming language that makes front-end web apps a joy to build and maintain!</li>
 </ul>
 <h3><p>Conference Videos / Playlists</p>
 </h3>
@@ -639,16 +809,12 @@
 <h3><p>Community and Support / Games</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jah2488/elm-companies" rel="noopener noreferrer">Companies using Elm (⭐488)</a> - A list of companies using Elm in production.</li>
+<li><a href="https://github.com/jah2488/elm-companies" rel="noopener noreferrer">Companies using Elm (⭐493)</a> - A list of companies using Elm in production.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/3/">Jan 20 - Jan 26, 2020</a></h2><h3><p>Libraries / Individual Podcast episodes</p>
 </h3>
 <ul>
 <li><a href="https://package.elm-lang.org/" rel="noopener noreferrer">Elm packages</a> - The official registry</li>
-</ul>
-
-<ul>
-<li><a href="http://klaftertief.github.io/elm-search/" rel="noopener noreferrer">Elm Search</a> - Search Elm documentation for operators, function signatures, etc.</li>
 </ul>
 <h3><p>Boilerplates / Individual Podcast episodes</p>
 </h3>
@@ -667,7 +833,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/hecrj/iced" rel="noopener noreferrer">Iced (⭐28k)</a> - A cross-platform GUI library for Rust, inspired by Elm</li>
+<li><a href="https://github.com/hecrj/iced" rel="noopener noreferrer">Iced (⭐31k)</a> - A cross-platform GUI library for Rust, inspired by Elm</li>
 </ul>
 
 <ul>
@@ -691,11 +857,11 @@
 <h2><a href="https://www.trackawesomelist.com/2019/36/">Sep 09 - Sep 15, 2019</a></h2><h3><p>Testing / Individual Podcast episodes</p>
 </h3>
 <ul>
-<li><a href="https://github.com/elm-explorations/test" rel="noopener noreferrer">Elm test (⭐238)</a> - Unit and fuzz tests</li>
+<li><a href="https://github.com/elm-explorations/test" rel="noopener noreferrer">Elm test (⭐243)</a> - Unit and fuzz tests</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/avh4/elm-program-test/tree/3.0.0" rel="noopener noreferrer">Elm Program test (⭐94)</a> - Test complete Elm programs</li>
+<li><a href="https://github.com/avh4/elm-program-test/tree/3.0.0" rel="noopener noreferrer">Elm Program test (⭐95)</a> - Test complete Elm programs</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/30/">Jul 29 - Aug 04, 2019</a></h2><h3><p>Learning Guides</p>
 </h3>
@@ -706,10 +872,6 @@
 </h3>
 <ul>
 <li><a href="https://elm-lang.org/news" rel="noopener noreferrer">Official Elm News</a> - Official Elm blog</li>
-</ul>
-
-<ul>
-<li><a href="http://www.elmweekly.nl/" rel="noopener noreferrer">Elm Weekly</a> - A weekly newsletter about Elm</li>
 </ul>
 
 <ul>
@@ -726,11 +888,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/elmish/elmish" rel="noopener noreferrer">Elmish (⭐879)</a> - Elm-like abstractions for F# apps</li>
+<li><a href="https://github.com/elmish/elmish" rel="noopener noreferrer">Elmish (⭐902)</a> - Elm-like abstractions for F# apps</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/fsprojects/Fabulous" rel="noopener noreferrer">Fabulous (⭐1.2k)</a> - F# Functional App Development, using declarative dynamic UI</li>
+<li><a href="https://github.com/fsprojects/Fabulous" rel="noopener noreferrer">Fabulous (⭐1.3k)</a> - F# Functional App Development, using declarative dynamic UI</li>
 </ul>
 
 <ul>
@@ -743,24 +905,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Chadtech/elmish-wasm" rel="noopener noreferrer">elmish-wasm (⭐17)</a> A POC for compiling elm to Web Assembly</li>
+<li><a href="https://github.com/Chadtech/elmish-wasm" rel="noopener noreferrer">elmish-wasm (⭐18)</a> A POC for compiling elm to Web Assembly</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ktonon/elm-serverless" rel="noopener noreferrer">elm-serverless (⭐167)</a> Run Elm 0.18 on Cloud Functions using the Serverless Frameworks</li>
+<li><a href="https://github.com/ktonon/elm-serverless" rel="noopener noreferrer">elm-serverless (⭐168)</a> Run Elm 0.18 on Cloud Functions using the Serverless Frameworks</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/28/">Jul 15 - Jul 21, 2019</a></h2><h3><p>Learning Guides</p>
 </h3>
 <ul>
-<li><a href="http://exercism.io/languages/elm" rel="noopener noreferrer">Exercism Elm Track</a> - Collection of Elm exercises.</li>
-</ul>
-
-<ul>
-<li><a href="http://elmprogramming.com/" rel="noopener noreferrer">Beginning Elm</a> - A gentle introduction to the Elm programming language.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/robertjlooby/elm-koans" rel="noopener noreferrer">Elm Koans (⭐235)</a> - Practice exercises for learning Elm.</li>
+<li><a href="https://github.com/robertjlooby/elm-koans" rel="noopener noreferrer">Elm Koans (⭐238)</a> - Practice exercises for learning Elm.</li>
 </ul>
 
 <ul>
@@ -768,15 +922,11 @@
 </ul>
 
 <ul>
-<li><a href="http://rundis.github.io/blog/2016/elm_maybe.html" rel="noopener noreferrer">Elm Maybe - Dealing with null/Nothing</a> - Working with the Maybe type, with nicely commented code examples.</li>
-</ul>
-
-<ul>
 <li><a href="https://pragprog.com/book/jfelm/programming-elm" rel="noopener noreferrer">Programming Elm</a> - Thorough book from The Pragmatic Programmers that covers basics and advanced concepts.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/izdi/elm-cheat-sheet" rel="noopener noreferrer">Elm cheat sheet (⭐951)</a> - Syntax and features overview.</li>
+<li><a href="https://github.com/izdi/elm-cheat-sheet" rel="noopener noreferrer">Elm cheat sheet (⭐948)</a> - Syntax and features overview.</li>
 </ul>
 
 <ul>
@@ -809,22 +959,6 @@
 </ul>
 <h3><p>Articles / Why Elm?</p>
 </h3>
-<ul>
-<li><a href="http://nonullpointers.com/posts/2019-05-28-side-effects-of-elm-in-production.html?utm_campaign=Elm%20Weekly&amp;utm_medium=email&amp;utm_source=Revue%20newsletter" rel="noopener noreferrer">Side-effects of Elm in production</a> - An experience report from Bellroy</li>
-</ul>
-
-<ul>
-<li><a href="http://futurice.com/blog/elm-in-the-real-world" rel="noopener noreferrer">How Elm Made Our Work Better</a> - How a team built a business-critical web app for a customer using Elm.</li>
-</ul>
-
-<ul>
-<li><a href="http://elm-lang.org/blog/blazing-fast-html" rel="noopener noreferrer">Blazing Fast HTML</a> - Virtual DOM in Elm.</li>
-</ul>
-
-<ul>
-<li><a href="http://www.gizra.com/content/elm-business-perspective/" rel="noopener noreferrer">Elm from a Business Perspective</a> - This article discusses topics about Elm from a business perspective</li>
-</ul>
-
 <ul>
 <li><a href="https://medium.com/the-ahead-story/move-fast-and-dont-break-things-running-a-startup-on-elm-b5491082fe8b#.c534m1e1t" rel="noopener noreferrer">Move fast and don’t break things. Running a startup on Elm</a> - Some thoughts on Elm development by a Swedish startup.</li>
 </ul>
@@ -894,10 +1028,6 @@
 </ul>
 
 <ul>
-<li><a href="http://www.youtube.com/watch?v=FV0DXNB94NE" rel="noopener noreferrer">Richard Feldman: Make the Back-End Team Jealous: Elm in Production | 2015</a> - A talk about Elm and initial steps to use it in production.</li>
-</ul>
-
-<ul>
 <li><a href="https://www.youtube.com/watch?v=oYk8CKH7OhE" rel="noopener noreferrer">Evan Czaplicki: Let's be mainstream! User focused design in Elm | 2015</a> - A talk from the father of Elm about the philosophy behind the language.</li>
 </ul>
 <h3><p>Boilerplates / Individual Podcast episodes</p>
@@ -911,7 +1041,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/romariolopezc/elm-webpack-4-starter" rel="noopener noreferrer">elm-webpack-4-starter (⭐112)</a> - Elm webpack 4 starter template.</li>
+<li><a href="https://github.com/romariolopezc/elm-webpack-4-starter" rel="noopener noreferrer">elm-webpack-4-starter (⭐114)</a> - Elm webpack 4 starter template.</li>
 </ul>
 
 <ul>
@@ -967,30 +1097,10 @@
 <ul>
 <li><a href="https://www.infoq.com/podcasts/richard-feldman" rel="noopener noreferrer">InfoQ Podcast 2017-04-27</a> - Richard Feldman discusses how Elm compares to React.js</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2017/16/">Apr 17 - Apr 23, 2017</a></h2><h3><p>Learning Guides / Outdated Tutorials and books (Elm 0.18 or earlier)</p>
-</h3>
-<ul>
-<li><a href="http://faq.elm-community.org/" rel="noopener noreferrer">Elm FAQ</a> - Elm FAQ from <a href="http://elm-community.org/" rel="noopener noreferrer">Elm Community</a>.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2016/46/">Nov 14 - Nov 20, 2016</a></h2><h3><p>Learning Guides / Outdated Tutorials and books (Elm 0.18 or earlier)</p>
-</h3>
-<ul>
-<li><a href="http://courses.knowthen.com/courses/elm-for-beginners" rel="noopener noreferrer">Elm For Beginners - Video Course</a> - Build your first Elm Web App.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2016/43/">Oct 24 - Oct 30, 2016</a></h2><h3><p>Podcasts / Individual Podcast episodes</p>
-</h3>
-<ul>
-<li><a href="http://www.fullstackradio.com/44" rel="noopener noreferrer">Full Stack Radio 44</a> - What the heck is Elm? In this episode, Joel Clermont talks about Elm and functional programming.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2016/42/">Oct 17 - Oct 23, 2016</a></h2><h3><p>Podcasts / Individual Podcast episodes</p>
-</h3>
-<ul>
-<li><a href="http://thewebplatformpodcast.com/108-elm-revisited" rel="noopener noreferrer">The Web Platform Podcast 108</a> - Elm Revisited.</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2016/40/">Oct 03 - Oct 09, 2016</a></h2><h3><p>Boilerplates / Outdated Boilerplates</p>
 </h3>
 <ul>
-<li><a href="https://github.com/khusnetdinov/elmkit" rel="noopener noreferrer">elmkit (⭐51)</a> - A lightweight Brunch based setup for web app. Includes Brunch, Hot Module Replacement, Elm, Scss, Elm tests.</li>
+<li><a href="https://github.com/khusnetdinov/elmkit" rel="noopener noreferrer">elmkit (⭐52)</a> - A lightweight Brunch based setup for web app. Includes Brunch, Hot Module Replacement, Elm, Scss, Elm tests.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/39/">Sep 26 - Oct 02, 2016</a></h2><h3><p>Learning Guides / Outdated Tutorials and books (Elm 0.18 or earlier)</p>
 </h3>
@@ -1027,22 +1137,10 @@
 <ul>
 <li><a href="https://www.functionalgeekery.com/functional-geekery-episode-33-richard-feldman-and-tessa-kelly/" rel="noopener noreferrer">Functional Geekery 33</a> - Richard Feldman and Tessa Kelly.</li>
 </ul>
-
-<ul>
-<li><a href="http://softwareengineeringdaily.com/2015/11/03/elm-with-richard-feldman-and-srinivas-rao/" rel="noopener noreferrer">Software Engineering Daily</a> - Elm with Richard Feldman and Srinivas Rao.</li>
-</ul>
-
-<ul>
-<li><a href="http://thewebplatform.libsyn.com/functional-programming-with-elm-clojurescript-om-and-react" rel="noopener noreferrer">The Web Platform Podcast 15</a> - Functional Programming with Elm, ClojureScript, Om, and React.</li>
-</ul>
-
-<ul>
-<li><a href="http://thewebplatformpodcast.com/76-the-elm-programming-language" rel="noopener noreferrer">The Web Platform Podcast 76</a> - The Elm Programming Language.</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2016/10/">Mar 07 - Mar 13, 2016</a></h2><h3><p>Boilerplates / Outdated Boilerplates</p>
 </h3>
 <ul>
-<li><a href="https://github.com/moarwick/elm-webpack-starter" rel="noopener noreferrer">elm-webpack-starter (⭐852)</a> - A simple Webpack setup for writing Elm apps.</li>
+<li><a href="https://github.com/moarwick/elm-webpack-starter" rel="noopener noreferrer">elm-webpack-starter (⭐851)</a> - A simple Webpack setup for writing Elm apps.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/5/">Feb 01 - Feb 07, 2016</a></h2><h3><p>Learning Guides / Outdated Tutorials and books (Elm 0.18 or earlier)</p>
 </h3>
@@ -1052,22 +1150,12 @@
 <h2><a href="https://www.trackawesomelist.com/2016/4/">Jan 25 - Jan 31, 2016</a></h2><h3><p>Learning Guides / Outdated Tutorials and books (Elm 0.18 or earlier)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NoRedInk/take-home/wiki/Writing-Native" rel="noopener noreferrer">Writing native (⭐356)</a> - Learn how to create native JavaScript modules for Elm.</li>
+<li><a href="https://github.com/NoRedInk/take-home/wiki/Writing-Native" rel="noopener noreferrer">Writing native (⭐358)</a> - Learn how to create native JavaScript modules for Elm.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2016/3/">Jan 18 - Jan 24, 2016</a></h2><h3><p>Learning Guides</p>
-</h3>
-<ul>
-<li><a href="http://elm-lang.org/docs" rel="noopener noreferrer">Official tutorial</a> — General information and in-depth guide with examples.</li>
-</ul>
-<h3><p>Community and Support / Games</p>
+<h2><a href="https://www.trackawesomelist.com/2016/3/">Jan 18 - Jan 24, 2016</a></h2><h3><p>Community and Support / Games</p>
 </h3>
 <ul>
 <li><a href="https://www.reddit.com/r/elm" rel="noopener noreferrer">Reddit</a> - Elm board on reddit.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2016/2/">Jan 11 - Jan 17, 2016</a></h2><h3><p>Learning Guides</p>
-</h3>
-<ul>
-<li><a href="http://learnyouanelm.github.io/" rel="noopener noreferrer">Learn you an Elm</a> - Elm tutorial with exhaustive examples and descriptions.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/38/">Sep 21 - Sep 27, 2015</a></h2><h3><p>Articles / Outdated articles (Not relevant for current Elm architecture)</p>
 </h3>
@@ -1098,11 +1186,6 @@
 <ul>
 <li><a href="https://github.com/bayandin/awesome-awesomeness">awesome-awesomeness</a> by <a href="https://github.com/bayandin" rel="noopener noreferrer"><strong>@bayandin</strong></a></li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2015/20/">May 18 - May 24, 2015</a></h2><h3><p>Community and Support / Games</p>
-</h3>
-<ul>
-<li><a href="http://webchat.freenode.net/?channels=elm" rel="noopener noreferrer">IRC</a> - Ask questions on elm freenode.</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2015/17/">Apr 27 - May 03, 2015</a></h2><h3><p>Learning Guides</p>
 </h3>
 <ul>
@@ -1110,5 +1193,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
