@@ -16,20 +16,100 @@
     <meta property="og:title" content="Awesome Engineering Team Management Overview" />
     <meta property="og:description" content="👔 How to transition from software development to engineering management" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Engineering Team Management Overview</h1>
 <p>👔 How to transition from software development to engineering management</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/kdeldycke/awesome-engineering-team-management/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/kdeldycke/awesome-engineering-team-management">😺 kdeldycke/awesome-engineering-team-management</a><span> · </span><span>⭐ 2.2K</span><span> · </span><span>🏷️ Business</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/kdeldycke/awesome-engineering-team-management/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/kdeldycke/awesome-engineering-team-management">😺 kdeldycke/awesome-engineering-team-management</a><span> · </span><span>⭐ 2.6K</span><span> · </span><span>🏷️ Business</span></p>
 <p><span>[ </span><a href="/kdeldycke/awesome-engineering-team-management/">Daily</a><span> / </span><a href="/kdeldycke/awesome-engineering-team-management/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
 
 
@@ -41,9 +121,9 @@
 
 <p>
   <a href="https://github.com/sponsors/kdeldycke">
-    <strong>Yᴏᴜʀ Pʀᴏᴅᴜᴄᴛ ʜᴇʀᴇ!</strong>
+    <strong>Your brand → here 🚀</strong>
     <br />
-    <sup>Add a link to your company or project here: purchase a GitHub sponsorship.</sup>
+    <sup>SEO is dead. Place your product here to target AI's training data.</sup>
   </a>
 </p>
 
@@ -197,9 +277,9 @@
 </li>
 <li><p>“It is a job where your goal is to try disappoint people most slowly.” (<a href="https://news.ycombinator.com/item?id=18222488" rel="noopener noreferrer">source</a>).</p>
 </li>
-<li><p>“So the trick is basically to put them (your direct reports) in charge, not you. You have the supporting role, they can request things from you. But the goal needs to be very clear.” (<a href="https://news.ycombinator.com/item?id=23973859" rel="noopener noreferrer">source</a>) - A recipe on how to work with your direct reports, from a section of <a href="https://www.amazon.com/dp/1982137274?&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=5920a3d486de941b37430f948d377bc9&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">7 habits of highly effective people</a>.</p>
+<li><p>“So the trick is basically to put them (your direct reports) in charge, not you. You have the supporting role, they can request things from you. But the goal needs to be very clear.” (<a href="https://news.ycombinator.com/item?id=23973859" rel="noopener noreferrer">source</a>) - A recipe on how to work with your direct reports, from a section of <a href="https://openlibrary.org/isbn/1982137274" rel="noopener noreferrer">7 habits of highly effective people</a>.</p>
 </li>
-<li><p><a href="https://www.amazon.com/dp/0688103804?&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=704eff2e2cddae6d97ef082a6f25bafd&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">The One Minute Manager Meets the Monkey</a> - The author use a parable in which problems are monkeys. Unexperienced managers let monkeys being transferred to them, accumulates on their back and compounds. From this, the book teach you how to change from taking on responsibilities to delegating them so you don't become a bottleneck.</p>
+<li><p><a href="https://openlibrary.org/isbn/0688103804" rel="noopener noreferrer">The One Minute Manager Meets the Monkey</a> - The author use a parable in which problems are monkeys. Unexperienced managers let monkeys being transferred to them, accumulates on their back and compounds. From this, the book teach you how to change from taking on responsibilities to delegating them so you don't become a bottleneck.</p>
 </li>
 </ul>
 <h2 id="building-teams"><a class="anchor" aria-hidden="true" tabindex="-1" href="#building-teams"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Building Teams</h2><p>You got the title and the pay grade. Congratulation! This doesn't make you a manager yet. Whether you inherit an already existing team or have to start from scratch, you'll need to practice the art of building (and consolidating) them.</p>
@@ -208,7 +288,7 @@
 </li>
 <li><p><a href="https://web.archive.org/web/20250601205421/https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html" rel="noopener noreferrer">What Google Learned From Its Quest to Build the Perfect Team</a> - “Google's data indicated that psychological safety, more than anything else, was critical to making a team work. (…) The behaviors that create psychological safety — conversational turn-taking and empathy — are part of the same unwritten rules we often turn to, as individuals, when we need to establish a bond.”</p>
 </li>
-<li><p><a href="https://github.com/papers-we-love/papers-we-love/tree/master/software_engineering_orgs" rel="noopener noreferrer">Paper we love: Software Engineering Organizations</a> - “The practice of software engineering, and its history is, itself, a complex study in humanity, coordination, and communication.”</p>
+<li><p><a href="https://github.com/papers-we-love/papers-we-love/tree/master/software_engineering_orgs" rel="noopener noreferrer">Paper we love: Software Engineering Organizations (⭐108k)</a> - “The practice of software engineering, and its history is, itself, a complex study in humanity, coordination, and communication.”</p>
 </li>
 <li><p><a href="https://tomaytotomato.com/developer-tropes-2/" rel="noopener noreferrer">Developer Tropes: "Google does it"</a> - It's <a href="https://en.wikipedia.org/wiki/Cargo_cult" rel="noopener noreferrer">cargo-cultish</a> to imitate the big names in our industry as a path to success. Instead, the take home from this article “would be that managers and other leaders should be like ecologists; who measure, observe and nurture their ecosystems. Doing so will help build a unique workplace that will yield great results.”</p>
 </li>
@@ -216,7 +296,7 @@
 <h2 id="roles"><a class="anchor" aria-hidden="true" tabindex="-1" href="#roles"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Roles</h2><p>On the profiles, attitude, behaviors, and expectations between developers, managers and executives.</p>
 <h3 id="executives"><a class="anchor" aria-hidden="true" tabindex="-1" href="#executives"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Executives</h3><p>Executives are the senior/highest management layers of a company. They reports to a board of directors in bigger companies, or directly to the shareholders in smaller ones. Leadership is expected at this level. As a manager these are the people you report to.</p>
 <ul>
-<li><p><a href="https://apenwarr.ca/log/20190926" rel="noopener noreferrer">What do executives do, anyway?</a> - Paraphrasing <a href="https://www.amazon.com/dp/0394532341?&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=f80a2e0610594cad92d301c587380f0a&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">Andy Grove's book, High Output Management</a>, “the job of an executive is: to define and enforce culture and values for their whole organization, and to ratify good decisions.” The article also details the failures modes of a CEO: forcing his own decisions downstream, or various ways of not resolving conflicts.</p>
+<li><p><a href="https://apenwarr.ca/log/20190926" rel="noopener noreferrer">What do executives do, anyway?</a> - Paraphrasing <a href="https://openlibrary.org/isbn/0394532341" rel="noopener noreferrer">Andy Grove's book, High Output Management</a>, “the job of an executive is: to define and enforce culture and values for their whole organization, and to ratify good decisions.” The article also details the failures modes of a CEO: forcing his own decisions downstream, or various ways of not resolving conflicts.</p>
 </li>
 <li><p><a href="https://news.ycombinator.com/item?id=18089716" rel="noopener noreferrer">Executives ratify decisions made on the spot</a> - Tolstoy's thesis to business.</p>
 </li>
@@ -272,7 +352,7 @@
 </li>
 <li><p><a href="https://llis.nasa.gov/lesson/1956" rel="noopener noreferrer">100+ Lessons Learned for Project Managers</a> - 122 aphorisms providind insights into NASA project management success. Covers design, decision-making, managing staff, working with superiors and contractors.</p>
 </li>
-<li><p><a href="https://github.com/ryanburgess/engineer-manager" rel="noopener noreferrer">Engineering Manager Resources</a> - Huge list, but need some curation.</p>
+<li><p><a href="https://github.com/ryanburgess/engineer-manager" rel="noopener noreferrer">Engineering Manager Resources (⭐11k)</a> - Huge list, but need some curation.</p>
 </li>
 <li><p><a href="https://news.ycombinator.com/item?id=24802483" rel="noopener noreferrer">A vitally important part of the job: being a crap shield</a> - “A lot of the work of an EM is wading into the slurry pit with a shovel so your team are free to get the job done”.</p>
 </li>
@@ -318,9 +398,9 @@
 <h2 id="recruitment"><a class="anchor" aria-hidden="true" tabindex="-1" href="#recruitment"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Recruitment</h2><p>You're in a competitive sector in which talents are in high demand. Be prepared as a manager to spend a lot of time recruiting people, either to expand your team or fill-in open positions. The dynamics gets interesting too, as you are now on both sides of the hiring process: as a candidate to get a job, and as a recruiter to staff up your team.</p>
 <h3 id="job-boards"><a class="anchor" aria-hidden="true" tabindex="-1" href="#job-boards"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Job Boards</h3><p>By targeting the right place to post your job offer to, you're increasing your chances of targeting the right candidates.</p>
 <ul>
-<li><p><a href="https://github.com/tramcar/awesome-job-boards" rel="noopener noreferrer">Awesome Job Boards</a> - Niche job boards by domains, technology, roles and area.</p>
+<li><p><a href="https://github.com/tramcar/awesome-job-boards" rel="noopener noreferrer">Awesome Job Boards (⭐1.8k)</a> - Niche job boards by domains, technology, roles and area.</p>
 </li>
-<li><p><a href="https://github.com/poteto/hiring-without-whiteboards" rel="noopener noreferrer">Hiring Without Whiteboards</a> - List of companies without the kind of CS trivia questions that are associated with bad interview practices.</p>
+<li><p><a href="https://github.com/poteto/hiring-without-whiteboards" rel="noopener noreferrer">Hiring Without Whiteboards (⭐51k)</a> - List of companies without the kind of CS trivia questions that are associated with bad interview practices.</p>
 </li>
 </ul>
 <h3 id="hiring-process"><a class="anchor" aria-hidden="true" tabindex="-1" href="#hiring-process"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Hiring Process</h3><p>High-growth company will all need to industrialize the hiring process at one point.</p>
@@ -331,7 +411,7 @@
 </li>
 <li><p><a href="https://www.homerun.co/artofwork/guides/job-interviewing" rel="noopener noreferrer">Job Interviewing Guide</a> - A detailed description of a hiring process, a great source of inspiration for when your company gets big enough to start to formalize things up.</p>
 </li>
-<li><p><a href="https://github.com/cockroachlabs/open-sourced-interview-process" rel="noopener noreferrer">Open Sourced Interview Process</a> - Cockroach Labs published their process “to create familiarity for candidates and account for bias, resulting in a better candidate experience and hiring decisions.”</p>
+<li><p><a href="https://github.com/cockroachlabs/open-sourced-interview-process" rel="noopener noreferrer">Open Sourced Interview Process (⭐427)</a> - Cockroach Labs published their process “to create familiarity for candidates and account for bias, resulting in a better candidate experience and hiring decisions.”</p>
 </li>
 <li><p><a href="https://www.karllhughes.com/posts/rethinking-hiring" rel="noopener noreferrer">Rethinking the Hiring Process</a> - “Testing programmers at something they aren't actually expected to be good at and expecting to learn something about how they would work at your company is delusional, and I think these kind of interviews only serve to make the hiring team feel smarter and ensure better outcomes for engineers with traditional CS backgrounds.”</p>
 </li>
@@ -342,15 +422,13 @@
 </li>
 <li><p><a href="https://staysaasy.com/leadership/2021/04/12/the-intangible-skills-you-cant-interview-for.html" rel="noopener noreferrer">The Intangible Skills You Can't Interview For</a> - “1) Cut-Through on Crappy Tasks; 2) Knowing How to Finish; 3) Knowing How to Start; 4) Giving (And Receiving) Diagonal Feedback; 5) Harnessing the Value of Intangibles.”</p>
 </li>
-<li><p><a href="https://github.com/arialdomartini/Back-End-Developer-Interview-Questions" rel="noopener noreferrer">Back-End Developer Interview Questions</a> - A great source of inspiration.</p>
+<li><p><a href="https://github.com/arialdomartini/Back-End-Developer-Interview-Questions" rel="noopener noreferrer">Back-End Developer Interview Questions (⭐17k)</a> - A great source of inspiration.</p>
 </li>
-<li><p><a href="https://github.com/kaushikb9/em-interviews" rel="noopener noreferrer">Engineering Leadership Interviews</a> - An outline on how to recruit for engineering manager roles.</p>
-</li>
-<li><p><a href="https://github.com/viraptor/reverse-interview" rel="noopener noreferrer">Reverse interview</a> - Questions to ask the company during your interview. Be prepared to answer them as a manager.</p>
+<li><p><a href="https://github.com/viraptor/reverse-interview" rel="noopener noreferrer">Reverse interview (⭐29k)</a> - Questions to ask the company during your interview. Be prepared to answer them as a manager.</p>
 </li>
 <li><p><a href="https://www.keyvalues.com/culture-queries" rel="noopener noreferrer">Culture Queries</a> - A sample of question to ask in job interviews to try to understand the values of a company.</p>
 </li>
-<li><p><a href="https://medium.com/mbreads/book-summary-who-c4a437d8ae3a" rel="noopener noreferrer">Book Summary of "Who: The A Method for Hiring"</a> - The essential of <a href="https://www.amazon.com/Who-Geoff-Smart/dp/0345504194?_encoding=UTF8&amp;qid=1686402298&amp;sr=1-1&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=d4a63bc5d11e6d00d942c293a640e2c1&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer"><em>Who</em>, a popular book</a> on recruiting executives.</p>
+<li><p><a href="https://medium.com/mbreads/book-summary-who-c4a437d8ae3a" rel="noopener noreferrer">Book Summary of "Who: The A Method for Hiring"</a> - The essential of <a href="https://openlibrary.org/isbn/0345504194" rel="noopener noreferrer"><em>Who</em>, a popular book</a> on recruiting executives.</p>
 </li>
 <li><p>“It's true that not all developers make positive contributions, however, I think that blaming "lowering hiring standards" (…) is a complete red herring.” (<a href="https://news.ycombinator.com/item?id=13209317" rel="noopener noreferrer">source</a>) - Examples in which developers that might pass tough job interview just fine are bringing negative value later.</p>
 </li>
@@ -367,9 +445,9 @@
 </li>
 <li><p><a href="https://web.archive.org/web/20211020130141/https://triplebyte.com/blog/fizzbuzz-2-0-pragmatic-programming-questions-for-software-engineers" rel="noopener noreferrer">FizzBuzz 2.0: Pragmatic Programming Questions for Software Engineers</a> - Five multiple-choice questions to easily separate the real software engineers from the rest.</p>
 </li>
-<li><p><a href="https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition" rel="noopener noreferrer">FizzBuzz Enterprise Edition</a> - A satire of over-engineering for the sake of enterprise-grade software.</p>
+<li><p><a href="https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition" rel="noopener noreferrer">FizzBuzz Enterprise Edition (⭐24k)</a> - A satire of over-engineering for the sake of enterprise-grade software.</p>
 </li>
-<li><p><a href="https://github.com/MaximAbramchuck/awesome-interview-questions" rel="noopener noreferrer">Awesome Interviews</a> - A huge database of questions sorted by topic to get inspiration from.</p>
+<li><p><a href="https://github.com/MaximAbramchuck/awesome-interview-questions" rel="noopener noreferrer">Awesome Interviews (⭐84k)</a> - A huge database of questions sorted by topic to get inspiration from.</p>
 </li>
 </ul>
 <h3 id="negotiation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#negotiation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Negotiation</h3><p>A critical step to close up the hiring process.</p>
@@ -393,7 +471,7 @@
 </li>
 <li><p><a href="https://boz.com/articles/career-cold-start" rel="noopener noreferrer">A Career Cold Start Algorithm</a> - The author developed an algorithm to ramp-up quickly when joining an existing team where he had a massive knowledge deficit and no pre-existing relationships.</p>
 </li>
-<li><p><a href="https://www.annashipman.co.uk/jfdi/meeting-everyone.html" rel="noopener noreferrer">Meeting everyone on a new team</a> - Right after inheriting a position at the top of an organization of 50 engineers, the author bootstraped the relationship with that big team by meeting everyone in 30 minutes 1:1s. It was a huge time investment, and despite fears of being boring, it allows for recognizing patterns of what change was needed.</p>
+<li><p><a href="https://www.annashipman.co.uk/jfdi/meeting-everyone.html" rel="noopener noreferrer">Meeting everyone on a new team</a> - Right after inheriting a position at the top of an organization of 50 engineers, the author bootstrapped the relationship with that big team by meeting everyone in 30 minutes 1:1s. It was a huge time investment, and despite fears of being boring, it allows for recognizing patterns of what change was needed.</p>
 </li>
 </ul>
 <h2 id="motivation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#motivation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Motivation</h2><ul>
@@ -407,7 +485,7 @@
 </li>
 </ul>
 <h3 id="happiness"><a class="anchor" aria-hidden="true" tabindex="-1" href="#happiness"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Happiness</h3><ul>
-<li><p><a href="https://www.amazon.com/dp/1595621113?&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=cc8ac8de84cb23f23ca5577dcb7af139&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">First, Break All the Rules: What the World's Greatest Managers Do Differently</a> - We learn in this book that employee happiness was not correlated to company success. A comment on HN details the <a href="https://news.ycombinator.com/item?id=20571219" rel="noopener noreferrer">questions that were highly correlated to company success</a>.</p>
+<li><p><a href="https://openlibrary.org/isbn/1595621113" rel="noopener noreferrer">First, Break All the Rules: What the World's Greatest Managers Do Differently</a> - We learn in this book that employee happiness was not correlated to company success. A comment on HN details the <a href="https://news.ycombinator.com/item?id=20571219" rel="noopener noreferrer">questions that were highly correlated to company success</a>.</p>
 </li>
 <li><p>“My team tracks life impact as a metric (pages outside business hours) and works to drive that down to zero.” (<a href="https://x.com/dwc/status/962179099606200320" rel="noopener noreferrer">source</a>) - Maybe the best indicator of a happy team is how little it is disturbed outside office hours.</p>
 </li>
@@ -421,7 +499,7 @@
 </li>
 </ul>
 <h2 id="culture"><a class="anchor" aria-hidden="true" tabindex="-1" href="#culture"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Culture</h2><ul>
-<li><p><a href="https://github.com/dwmkerr/hacker-laws" rel="noopener noreferrer">hacker-laws</a> - Laws, Theories, Principles and Patterns that developers will find useful.</p>
+<li><p><a href="https://github.com/dwmkerr/hacker-laws" rel="noopener noreferrer">hacker-laws (⭐27k)</a> - Laws, Theories, Principles and Patterns that developers will find useful.</p>
 </li>
 <li><p><a href="https://sci-hub.st/10.1016/s0303-2647%2801%2900170-8" rel="noopener noreferrer">Adaptation vs adaptability</a> - There is a spectrum between perfect efficiency and being completely flexible. This article explores ecosystems and the flows of material and energy between different organisms within the ecosystem. (<a href="https://news.ycombinator.com/item?id=20963513" rel="noopener noreferrer">hinted by HN comment</a>)</p>
 </li>
@@ -439,7 +517,7 @@
 </li>
 <li><p><a href="https://www.slideshare.net/reed2001/culture-1798664" rel="noopener noreferrer">Netflix Culture</a> - “The actual company values, as opposed to the nice-sounding values, are shown by who gets rewarded, promoted, or let go.”</p>
 </li>
-<li><p><a href="https://github.com/pdfernhout/High-Performance-Organizations-Reading-List" rel="noopener noreferrer">High Performance Organizations Reading List</a> - A list of books, web pages, and videos about how to design better organizations, divided into 3 categories: organization and motivation, health and wellness, and software development specific.</p>
+<li><p><a href="https://github.com/pdfernhout/High-Performance-Organizations-Reading-List" rel="noopener noreferrer">High Performance Organizations Reading List (⭐1.3k)</a> - A list of books, web pages, and videos about how to design better organizations, divided into 3 categories: organization and motivation, health and wellness, and software development specific.</p>
 </li>
 <li><p><a href="https://queue.acm.org/detail.cfm?id=1142065" rel="noopener noreferrer">A Conversation with Werner Vogels, Learning from the Amazon technology platform</a> - Scaling systems is not only a technical challenge. It has to be about teams and culture too. One lesson learned from the early days of AWS: “Giving developers operational responsibilities has greatly enhanced the quality of the services, both from a customer and a technology point of view. (…) You build it, you run it.”</p>
 </li>
@@ -455,11 +533,11 @@
 </li>
 <li><p><a href="https://medium.com/@yegg/mental-models-i-find-repeatedly-useful-936f1cc405d#.qb3gkdmtk" rel="noopener noreferrer">Mental Models I Find Repeatedly Useful</a> - Huge compiled list of mental models. Became the basis of book.</p>
 </li>
-<li><p><a href="https://untools.co" rel="noopener noreferrer">Tools for better thinking</a> - “Collection of thinking tools and frameworks to help you solve problems, make decisions and understand systems.”</p>
+<li><p><a href="https://untools.co" rel="noopener noreferrer">Tools for better thinking</a> - 🆓 “Collection of thinking tools and frameworks to help you solve problems, make decisions and understand systems.”</p>
 </li>
 <li><p><a href="https://www.collaborativefund.com/blog/a-few-rules/" rel="noopener noreferrer">A Few Rules</a> - A formalized list of some wisdom you probably encountered elsewhere.</p>
 </li>
-<li><p><a href="https://github.com/lukasz-madon/awesome-concepts" rel="noopener noreferrer">Awesome Concepts</a> - Laws, principles, mental models and cognitive biases.</p>
+<li><p><a href="https://github.com/lukasz-madon/awesome-concepts" rel="noopener noreferrer">Awesome Concepts (⭐624)</a> - Laws, principles, mental models and cognitive biases.</p>
 </li>
 <li><p><a href="https://keepsimple.io/uxcore" rel="noopener noreferrer">UX Core</a> - 105 cognitive biases with simple descriptions, brief and detailed examples.</p>
 </li>
@@ -515,7 +593,7 @@
 </li>
 <li><p><a href="https://techreflect.net/2020/01/05/eye-candy-qa-2005-2011/" rel="noopener noreferrer">Eye Candy QA</a> - Retelling of author's job at Apple: “John Louch was my boss. (…) John always shared everything with us, even the <em>don't share this with your team</em> stuff. We were people he trusted, so it was as it should be. It made you feel like you were part of something greater.” Or why sharing some open secret promote strong trust in your entourage.</p>
 </li>
-<li><p><a href="https://www.teamtechnology.co.uk/tt/t-articl/apollo.htm" rel="noopener noreferrer">The Apollo Syndrome</a> - A phenomenon discovered by Dr Meredith Belbin, and exposed in his 1981 <a href="https://www.amazon.com/dp/1856178072?&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=486a53a41992fa334ccd6de4b3f689e1&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">book on Management Teams</a>, where teams of highly capable individuals can, collectively, perform badly.</p>
+<li><p><a href="https://www.teamtechnology.co.uk/tt/t-articl/apollo.htm" rel="noopener noreferrer">The Apollo Syndrome</a> - A phenomenon discovered by Dr Meredith Belbin, and exposed in his 1981 <a href="https://openlibrary.org/isbn/1856178072" rel="noopener noreferrer">book on Management Teams</a>, where teams of highly capable individuals can, collectively, perform badly.</p>
 </li>
 <li><p><a href="https://youtu.be/cIQ36Kt7UVg?t=203" rel="noopener noreferrer">A conversation with Elon Musk about Starship</a> - In a team with very talented contributors, everyone's is a chief engineer: you are expected to challenge the status-quo and questions other department's constraints. This allow smart engineers to avoid the trap of optimizing for something that should not exist in the first place. Might be a cure for the Apollo Syndrome.</p>
 </li>
@@ -535,16 +613,16 @@
 </li>
 <li><p>“The best managers I met tended to be those that if the circumstance required it, could do the job of those two levels below.” (<a href="https://news.ycombinator.com/item?id=23891984" rel="noopener noreferrer">source</a>) - Another way of putting it: managers needs domain knowledge and to know the work their reports do.</p>
 </li>
-<li><p>“Over the years we have developed the policy that it is important for the supervisor to thoroughly know and understand the work of his group.” (<a href="https://news.ycombinator.com/item?id=20683609" rel="noopener noreferrer">source</a>) - This quote is <a href="https://www.amazon.com/HP-Way-Hewlett-Built-Company/dp/0887307477?_encoding=UTF8&amp;qid=1686404404&amp;sr=1-1&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=e6069674f9b0b4ef884b0f8f70eb8f94&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">from David Packard</a> (HP co-founder), decades before current <a href="https://en.wikipedia.org/wiki/Management_fad" rel="noopener noreferrer">management fad</a>.</p>
+<li><p>“Over the years we have developed the policy that it is important for the supervisor to thoroughly know and understand the work of his group.” (<a href="https://news.ycombinator.com/item?id=20683609" rel="noopener noreferrer">source</a>) - This quote is <a href="https://openlibrary.org/isbn/0887307477" rel="noopener noreferrer">from David Packard</a> (HP co-founder), decades before current <a href="https://en.wikipedia.org/wiki/Management_fad" rel="noopener noreferrer">management fad</a>.</p>
 </li>
 </ul>
 <h3 id="systems-complexity"><a class="anchor" aria-hidden="true" tabindex="-1" href="#systems-complexity"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Systems Complexity</h3><p>Whatever the technical stack, we are building systems first, and have to manage its complexity.</p>
 <ul>
 <li><p><a href="https://en.wikipedia.org/wiki/Second-system_effect" rel="noopener noreferrer">Second-system effect</a> - “Tendency of small, elegant, and successful systems, to be succeeded by over-engineered, bloated systems”.</p>
 </li>
-<li><p><a href="https://www.amazon.com/Living-Complexity-Donald-Norman-2010/dp/B00DEKM5GK?_encoding=UTF8&amp;qid=1686404524&amp;sr=1-1&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=497ae387bbd398624d897bdfbf90f7b6&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">Living with Complexity, by Donald A. Norman</a> - In which we learn that, based on <a href="https://en.wikipedia.org/wiki/Law_of_conservation_of_complexity" rel="noopener noreferrer">Tesler's law of the conservation of complexity</a>, “the total complexity of a system is a constant: as you make the person's interaction simpler, the hidden complexity behind the scenes increases. Make one part of the system simpler, said Tesler, and the rest of the system gets more complex.”</p>
+<li><p><a href="https://openlibrary.org/isbn/0262014866" rel="noopener noreferrer">Living with Complexity, by Donald A. Norman</a> - In which we learn that, based on <a href="https://en.wikipedia.org/wiki/Law_of_conservation_of_complexity" rel="noopener noreferrer">Tesler's law of the conservation of complexity</a>, “the total complexity of a system is a constant: as you make the person's interaction simpler, the hidden complexity behind the scenes increases. Make one part of the system simpler, said Tesler, and the rest of the system gets more complex.”</p>
 </li>
-<li><p><a href="https://flocrivello.com/the-efficiency-destroying-magic-of-tidying-up/" rel="noopener noreferrer">The Efficiency-Destroying Magic of Tidying Up</a> - “Efficiency tends to look messy, and good looks tend to be inefficient.” A reminder that sometimes we should just accept <a href="https://github.com/kdeldycke/awesome-falsehood" rel="noopener noreferrer">the messiness of the world</a>.</p>
+<li><p><a href="https://flocrivello.com/the-efficiency-destroying-magic-of-tidying-up/" rel="noopener noreferrer">The Efficiency-Destroying Magic of Tidying Up</a> - “Efficiency tends to look messy, and good looks tend to be inefficient.” A reminder that sometimes we should just accept <a href="https://github.com/kdeldycke/awesome-falsehood" rel="noopener noreferrer">the messiness of the world (⭐28k)</a>.</p>
 </li>
 <li><p><a href="https://news.ycombinator.com/item?id=11042400" rel="noopener noreferrer">I try to optimize my code around reducing state, coupling, complexity and code, in that order</a> - An engineer's perspective on which priorities should be addressed first to increase robustness of systems.</p>
 </li>
@@ -564,13 +642,13 @@
 </li>
 <li><p><a href="https://www.johndcook.com/blog/2011/02/03/lego-blocks-and-organ-transplants/" rel="noopener noreferrer">LEGO blocks and organ transplants</a> - “People have been comparing software components to LEGO blocks for a couple decades. (…) Integrating two software systems is usually more like performing a heart transplant than snapping together LEGO blocks.”</p>
 </li>
-<li><p>“Software development is more akin to the product design and development phase of industrial production than to the manufacturing.” (<a href="https://accu.org/bookreviews/1998/kloss_1668/" rel="noopener noreferrer">source</a>) - This quote is from a review of <a href="https://www.amazon.com/dp/0201502089?&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=dc65849a678d52afa9f3685159673d6e&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer"><em>Superdistribution - Objects as Property on the Electronic Frontier</em></a>, in which the creator of Objective-C was advocating in the 90's for a new economic framework that rewards creation of components in proportion to their use. But software production is not like manufacturing of widgets in a factory. <a href="https://x.com/kdeldycke/status/1697974273623675254" rel="noopener noreferrer">A (software) object is not an (hardware) widget</a>.</p>
+<li><p>“Software development is more akin to the product design and development phase of industrial production than to the manufacturing.” (<a href="https://accu.org/bookreviews/1998/kloss_1668/" rel="noopener noreferrer">source</a>) - This quote is from a review of <a href="https://openlibrary.org/isbn/0201502089" rel="noopener noreferrer"><em>Superdistribution - Objects as Property on the Electronic Frontier</em></a>, in which the creator of Objective-C was advocating in the 90's for a new economic framework that rewards creation of components in proportion to their use. But software production is not like manufacturing of widgets in a factory. <a href="https://x.com/kdeldycke/status/1697974273623675254" rel="noopener noreferrer">A (software) object is not an (hardware) widget</a>.</p>
 </li>
 </ul>
 <h3 id="engineering-practices"><a class="anchor" aria-hidden="true" tabindex="-1" href="#engineering-practices"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Engineering Practices</h3><ul>
 <li><p><a href="https://www.youtube.com/watch?v=HrVtA-ue-x0" rel="noopener noreferrer">Software Engineering's Greatest Hits</a> - When scientific method meet the practice of software development. My takeaways: the best metric is less lines of code, there is no 10x developers, too much unused configuration options, pair programing is for transfer of domain-specific knowledge and hackathon don't produce long term projects.</p>
 </li>
-<li><p><a href="https://github.com/google/eng-practices/blob/master/review/reviewer/speed.md#why-should-code-reviews-be-fast-why" rel="noopener noreferrer">Code reviews at Google</a> - “Why Should Code Reviews Be Fast? (…) To optimize for the speed at which a team of developers can produce a product together, as opposed to optimizing for the speed at which an individual developer can write code.”</p>
+<li><p><a href="https://github.com/google/eng-practices/blob/master/review/reviewer/speed.md#why-should-code-reviews-be-fast-why" rel="noopener noreferrer">Code reviews at Google (⭐23k)</a> - “Why Should Code Reviews Be Fast? (…) To optimize for the speed at which a team of developers can produce a product together, as opposed to optimizing for the speed at which an individual developer can write code.”</p>
 </li>
 <li><p><a href="https://google.github.io/eng-practices/" rel="noopener noreferrer">Google Engineering Practices</a> - Explains how to perform code reviews and how to submit them.</p>
 </li>
@@ -584,7 +662,7 @@
 </li>
 <li><p><a href="https://web.archive.org/web/20190313164624/https://medium.com/@erichiggins/technical-debt-is-like-tetris-168f64d8b700" rel="noopener noreferrer">Technical Debt Is Like Tetris</a> - Another way to explain technical debt: “Scenarios like these create technical debt within the product code. A buried gap in Tetris represents technical debt. (…) Paying down technical debt keeps you competitive. It keeps you in the game.”</p>
 </li>
-<li><p><a href="https://daverupert.com/2020/11/technical-debt-as-a-lack-of-understanding/" rel="noopener noreferrer">Technical debt as a lack of understanding</a> - “The problem lies in "never reorganizing [the code] to reflect your understanding." (…) Organizationally, you pay in velocity and turnover; talented people are going to leave after a few rounds of bullshit.”</p>
+<li><p><a href="https://daverupert.com/2020/11/technical-debt-as-a-lack-of-understanding/" rel="noopener noreferrer">Technical debt as a lack of understanding</a> - “The problem lies in "never reorganizing (the code) to reflect your understanding." (…) Organizationally, you pay in velocity and turnover; talented people are going to leave after a few rounds of bullshit.”</p>
 </li>
 <li><p><a href="https://www.amazingcto.com/develop-for-impact-not-for-backlog/" rel="noopener noreferrer">The Framing of the Developer</a> - Default framing is around the backlog, which leads to an asymmetry in which failure is blamed on lacks of developer performance, and success is celebrated as the full realization of the PM's vision. But “technology is the bank that gave credit”, and technical debt should be called product debt “because product took the credit to get a feature faster and must pay back by investing the time to clean up.” The alternative? “Companies today need a frame of impact. In this world-view success is defined by impact.”</p>
 </li>
@@ -604,7 +682,7 @@
 </li>
 <li><p><a href="https://increment.com/teams/a-guide-to-distributed-teams/" rel="noopener noreferrer">A guide to distributed teams</a> - A nice wrap up on the numerous dispositions required to have a highly effective distributed team.</p>
 </li>
-<li><p><a href="https://github.com/lukasz-madon/awesome-remote-job" rel="noopener noreferrer">Awesome Remote Job</a> - Resources on working remotely, including job boards, coworking spaces, and a list of companies embracing the culture.</p>
+<li><p><a href="https://github.com/lukasz-madon/awesome-remote-job" rel="noopener noreferrer">Awesome Remote Job (⭐47k)</a> - Resources on working remotely, including job boards, coworking spaces, and a list of companies embracing the culture.</p>
 </li>
 </ul>
 <h2 id="meetings"><a class="anchor" aria-hidden="true" tabindex="-1" href="#meetings"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Meetings</h2><p>Two humans + a (virtual) room = a meeting.</p>
@@ -622,7 +700,7 @@
 </li>
 <li><p><a href="https://larahogan.me/blog/first-one-on-one-questions/" rel="noopener noreferrer">Questions for our first 1:1</a> - A personal list of high-level questions from a manager.</p>
 </li>
-<li><p><a href="https://github.com/VGraupera/1on1-questions" rel="noopener noreferrer">1 on 1 Meeting Questions</a> - A mega list in which most of them are great starters for conversation, some others are clearly bad ideas. A great source of inspiration nonetheless, but choose carefully.</p>
+<li><p><a href="https://github.com/VGraupera/1on1-questions" rel="noopener noreferrer">1 on 1 Meeting Questions (⭐9.6k)</a> - A mega list in which most of them are great starters for conversation, some others are clearly bad ideas. A great source of inspiration nonetheless, but choose carefully.</p>
 </li>
 </ul>
 <h3 id="standups"><a class="anchor" aria-hidden="true" tabindex="-1" href="#standups"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Standups</h3><p>A staple of agile decorum, too often misused.</p>
@@ -647,9 +725,9 @@
 <ul>
 <li><p>“You're the broker for a lot of unstructured information and have to fend off all kinds of disruptive influences to land even close to where you're trying to go.” (<a href="https://news.ycombinator.com/item?id=19050555" rel="noopener noreferrer">source</a>)</p>
 </li>
-<li><p><a href="https://github.com/dend/awesome-product-management" rel="noopener noreferrer">Awesome Product Management</a> - A reference. All the missing pieces are found below.</p>
+<li><p><a href="https://github.com/dend/awesome-product-management" rel="noopener noreferrer">Awesome Product Management (⭐2.3k)</a> - A reference. All the missing pieces are found below.</p>
 </li>
-<li><p><a href="https://github.com/tron1991/open-product-management" rel="noopener noreferrer">Open Product Management</a> - Resources, interviews, case studies, sample products &amp; projects, communities, open source tools, free &amp; paid services on product management, for technical people to learn the field.</p>
+<li><p><a href="https://github.com/tron1991/open-product-management" rel="noopener noreferrer">Open Product Management (⭐4.4k)</a> - Resources, interviews, case studies, sample products &amp; projects, communities, open source tools, free &amp; paid services on product management, for technical people to learn the field.</p>
 </li>
 <li><p><a href="https://archive.ph/vH4D1" rel="noopener noreferrer">Things Many People Find Too Obvious To Have Told You Already</a> - A set of heuristics on tech companies and the ecosystem they live in.</p>
 </li>
@@ -657,15 +735,12 @@
 </li>
 <li><p><a href="https://web.archive.org/web/20250528080513/https://spacecraft.ssl.umd.edu/akins_laws.html" rel="noopener noreferrer">Akin's Laws of Spacecraft Design</a> - Lots of wisdom about space program management.</p>
 </li>
-<li><p><a href="https://github.com/hakluke/how-to-exit-vim/blob/master/README.md#the-product-manager-way" rel="noopener noreferrer">How to exit vim, the Product Manager way</a> - A satire with a grain of truth, especially the comparison between the basic vs experienced level.</p>
+<li><p><a href="https://github.com/hakluke/how-to-exit-vim/blob/master/README.md#the-product-manager-way" rel="noopener noreferrer">How to exit vim, the Product Manager way (⭐7.2k)</a> - A satire with a grain of truth, especially the comparison between the basic vs experienced level.</p>
 </li>
 </ul>
 <h3 id="hiring-pms"><a class="anchor" aria-hidden="true" tabindex="-1" href="#hiring-pms"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Hiring PMs</h3><p>On interviewing for a PM position. And how to conduct an interview to assess a PM's abilities.</p>
 <ul>
-<li><p><a href="http://www.venturegrit.com/what-everybody-ought-to-know-about-the-product-manager-case-interview/" rel="noopener noreferrer">What Everybody Ought To Know About The Product Manager Case Interview</a></p>
-</li>
-<li><p><a href="https://www.quora.com/What-are-frequently-asked-questions-in-product-manager-interviews" rel="noopener noreferrer">What are frequently asked questions in product manager interviews?</a></p>
-</li>
+<li><a href="http://www.venturegrit.com/what-everybody-ought-to-know-about-the-product-manager-case-interview/" rel="noopener noreferrer">What Everybody Ought To Know About The Product Manager Case Interview</a></li>
 </ul>
 <h3 id="product-market-fit"><a class="anchor" aria-hidden="true" tabindex="-1" href="#product-market-fit"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Product-Market Fit</h3><p>The first step to validate your product: is the market finding interest in your venture?</p>
 <ul>
@@ -710,7 +785,7 @@
 </ul>
 <h3 id="product-marketing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#product-marketing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Product Marketing</h3><p>How to find users, grow your customer base and make people talks about you product.</p>
 <ul>
-<li><p><a href="https://github.com/LisaDziuba/Marketing-for-Engineers" rel="noopener noreferrer">Marketing for Engineers</a> - Lots of resources to help bootstrap your marketing activities and solve practical tasks.</p>
+<li><p><a href="https://github.com/LisaDziuba/Marketing-for-Engineers" rel="noopener noreferrer">Marketing for Engineers (⭐13k)</a> - Lots of resources to help bootstrap your marketing activities and solve practical tasks.</p>
 </li>
 <li><p><a href="https://archive.ph/DggAq" rel="noopener noreferrer">How the biggest consumer apps got their first 1,000 users</a> - How the biggest apps out there started: from going to your user directly (both online and offline), creating FOMO and word-of-mouth, to build a community first and get press.</p>
 </li>
@@ -728,7 +803,7 @@
 </li>
 </ul>
 <h3 id="specifications"><a class="anchor" aria-hidden="true" tabindex="-1" href="#specifications"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Specifications</h3><ul>
-<li><p>“Walking on water and developing software from a specification are easy if both are frozen.” Edward V. Berard - <a href="https://www.amazon.com/dp/0132888955?&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=559e579e5b00fde12559bbbb91ec1b95&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">Essays on object-oriented software engineering</a>.</p>
+<li><p>“Walking on water and developing software from a specification are easy if both are frozen.” Edward V. Berard - <a href="https://openlibrary.org/isbn/0132888955" rel="noopener noreferrer">Essays on object-oriented software engineering</a>.</p>
 </li>
 <li><p><a href="https://www.youtube.com/watch?v=Ed94CfxgsCA" rel="noopener noreferrer">The art of destroying software</a> - Greg Young described a good way to deal with requirements volatility: optimize from the beginning to be able to delete your code, and structure your code so that any part of it is no bigger than 1 week's worth of coding. So that any part can be re-written in 1 week.</p>
 </li>
@@ -782,7 +857,7 @@
 </ul>
 <h2 id="key-performance-indicator-kpi"><a class="anchor" aria-hidden="true" tabindex="-1" href="#key-performance-indicator-kpi"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Key Performance Indicator (KPI)</h2><p>KPIs are a set of quantitative measurements at the team or organizational level, to measure the success of the business.</p>
 <ul>
-<li><p>“Numerical goals set for other people, without a road map to reach the goal, have effects opposite to the effects sought.” - <a href="https://www.amazon.com/Out-Crisis-W-Edwards-Deming/dp/0911379010?_encoding=UTF8&amp;qid=&amp;sr=&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=ec7a442a2cd5bfcfb5b6c32ea1409f2f&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">W. Edwards Deming</a></p>
+<li><p>“Numerical goals set for other people, without a road map to reach the goal, have effects opposite to the effects sought.” - <a href="https://openlibrary.org/isbn/0911379010" rel="noopener noreferrer">W. Edwards Deming</a></p>
 </li>
 <li><p><a href="https://cloudplatform.googleblog.com/2018/07/sre-fundamentals-slis-slas-and-slos.html" rel="noopener noreferrer">SRE fundamentals: SLIs, SLAs and SLOs</a> - If you are in the business of cloud services, these metrics are certainly great KPIs.</p>
 </li>
@@ -801,7 +876,7 @@
 </li>
 <li><p><a href="https://news.ycombinator.com/item?id=17492038" rel="noopener noreferrer">Google's usage of OKRs</a> - OKR grades are public, but not used for promotion. It was never taken very seriously there.</p>
 </li>
-<li><p><a href="https://github.com/domenicosolazzo/awesome-okr" rel="noopener noreferrer">Awesome OKR</a> - There is no shortage of content on how to measure and communicate objectives.</p>
+<li><p><a href="https://github.com/domenicosolazzo/awesome-okr" rel="noopener noreferrer">Awesome OKR (⭐1.8k)</a> - There is no shortage of content on how to measure and communicate objectives.</p>
 </li>
 </ul>
 <h2 id="training"><a class="anchor" aria-hidden="true" tabindex="-1" href="#training"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Training</h2><p>On mentoring, education and learning.</p>
@@ -810,7 +885,7 @@
 </li>
 <li><p><a href="https://www.scotthyoung.com/blog/2019/06/07/apprenticeships/" rel="noopener noreferrer">What Medieval People Got Right About Learning</a> - “Why apprenticeships beat classrooms”.</p>
 </li>
-<li><p><a href="https://roadmap.sh/roadmaps" rel="noopener noreferrer">Developer Roadmaps</a> - Very high-level guides and paths to learn different practice and tools.</p>
+<li><p><a href="https://roadmap.sh/roadmaps" rel="noopener noreferrer">Developer Roadmaps</a> - 💸 Very high-level guides and paths to learn different practice and tools.</p>
 </li>
 </ul>
 <h2 id="communication"><a class="anchor" aria-hidden="true" tabindex="-1" href="#communication"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Communication</h2><p>It is not only about reading, writing and talking. It encompass all the social practice and context sharing of the team's activities.</p>
@@ -924,9 +999,7 @@
 </ul>
 <h2 id="compensation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#compensation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Compensation</h2><p>It's not only about the salary, but the whole package: equity, bonuses, perks, and the dealings around all of these.</p>
 <h3 id="salary"><a class="anchor" aria-hidden="true" tabindex="-1" href="#salary"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Salary</h3><ul>
-<li><p><a href="https://www.levels.fyi" rel="noopener noreferrer">levels.fyi</a> - Compares salary range and compensation charts across big tech companies.</p>
-</li>
-<li><p><a href="https://benefits.fyi" rel="noopener noreferrer">benefits.fyi</a> - Same as above, but trying to evaluate the values of benefits across companies.</p>
+<li><p><a href="https://www.levels.fyi" rel="noopener noreferrer">levels.fyi</a> - 💸 Compares salary range, compensation charts, and benefits across big tech companies.</p>
 </li>
 <li><p><a href="https://news.ycombinator.com/item?id=21823987" rel="noopener noreferrer">L8-L10 salaries at AWS</a> - A reference point to what $M+ compensation packages looks like.</p>
 </li>
@@ -957,9 +1030,9 @@
 </li>
 <li><p><a href="https://www.ribbonfarm.com/the-gervais-principle/" rel="noopener noreferrer">The Gervais Principle</a> - A cynical, bleak, but still fascinating take on the management ladder, based on <em>The Office</em>.</p>
 </li>
-<li><p><a href="https://www.amazon.com/dp/0140280197?&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=bf129d7f7a3495a445cf2bf667d3d3c6&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">The 48 Laws of Power</a> - By Robert Greene. Can teach you how to cover your ass and be effective in a highly political org.</p>
+<li><p><a href="https://openlibrary.org/isbn/0140280197" rel="noopener noreferrer">The 48 Laws of Power</a> - By Robert Greene. Can teach you how to cover your ass and be effective in a highly political org.</p>
 </li>
-<li><p><a href="https://www.amazon.com/Rules-Power-Surprising-but-True-Advice-Advance/dp/1637741227?_encoding=UTF8&amp;qid=&amp;sr=&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=1a2a7107ccffa7b19e03cdb88e616daf&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">7 Rules of Power</a> - By Jeffery Pfeffer. Tells you <a href="https://news.ycombinator.com/item?id=39084979" rel="noopener noreferrer">how to play office politics if success in the workplace is the only thing you care about</a>.</p>
+<li><p><a href="https://openlibrary.org/isbn/1637741227" rel="noopener noreferrer">7 Rules of Power</a> - By Jeffery Pfeffer. Tells you <a href="https://news.ycombinator.com/item?id=39084979" rel="noopener noreferrer">how to play office politics if success in the workplace is the only thing you care about</a>.</p>
 </li>
 <li><p><a href="https://en.wikipedia.org/wiki/Selectorate_theory" rel="noopener noreferrer">Selectorate theory</a> - “In selectorate theory, three groups of people affect leaders. These groups are the nominal selectorate, the real selectorate, and the winning coalition. (…) To remain in power, leaders must maintain their winning coalition.”</p>
 </li>
@@ -1118,12 +1191,54 @@
 </li>
 </ul>
 <h2 id="contributing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contributing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contributing</h2><p>Your contributions are always welcome! Please take a look at the <a href="https://github.com/kdeldycke/awesome-engineering-team-management/blob/main/readme.md/.github/contributing.md" rel="noopener noreferrer">contribution guidelines</a> first.</p>
-<h2 id="footnotes"><a class="anchor" aria-hidden="true" tabindex="-1" href="#footnotes"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Footnotes</h2><p>The <a href="https://github.com/kdeldycke/awesome-engineering-team-management/blob/main/assets/awesome-management-header.png" rel="noopener noreferrer">header image</a> is based on a modified <a href="https://unsplash.com/photos/6dDHofabCQ8" rel="noopener noreferrer">photo taken in November 2017</a> by <a href="https://unsplash.com/@werner01" rel="noopener noreferrer">Werner Du plessis</a>.</p>
+<h2 id="footnotes"><a class="anchor" aria-hidden="true" tabindex="-1" href="#footnotes"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Footnotes</h2><p>The <a href="https://github.com/kdeldycke/awesome-engineering-team-management/blob/main/assets/awesome-management-header.png" rel="noopener noreferrer">header image (⭐2.6k)</a> is based on a modified <a href="https://unsplash.com/photos/6dDHofabCQ8" rel="noopener noreferrer">photo taken in November 2017</a> by <a href="https://unsplash.com/@werner01" rel="noopener noreferrer">Werner Du plessis</a>.</p>
 
 
-<p><a>[1]</a>: <a href="https://www.amazon.com/dp/0321934113?&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=9a6c692819b070f38feb70816e6635ab&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer"><em>Peopleware: Productive Projects and Teams, 1987</em>, page 34</a> (Addison-Wesley Professional, 3rd edition, 2013). <a href="#intro-quote-ref">[↑]</a></p>
+<p><a>[1]</a>: <a href="https://openlibrary.org/isbn/0321934113" rel="noopener noreferrer"><em>Peopleware: Productive Projects and Teams, 1987</em>, page 34</a> (Addison-Wesley Professional, 3rd edition, 2013). <a href="#intro-quote-ref">[↑]</a></p>
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
