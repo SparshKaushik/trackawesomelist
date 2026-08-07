@@ -16,20 +16,100 @@
     <meta property="og:title" content="Awesome Falsehood Overview" />
     <meta property="og:description" content="😱 Falsehoods Programmers Believe in" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Falsehood Overview</h1>
 <p>😱 Falsehoods Programmers Believe in</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/kdeldycke/awesome-falsehood/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/kdeldycke/awesome-falsehood">😺 kdeldycke/awesome-falsehood</a><span> · </span><span>⭐ 27K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/kdeldycke/awesome-falsehood/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/kdeldycke/awesome-falsehood">😺 kdeldycke/awesome-falsehood</a><span> · </span><span>⭐ 28K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><a href="/kdeldycke/awesome-falsehood/">Daily</a><span> / </span><a href="/kdeldycke/awesome-falsehood/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
 
 
@@ -101,7 +181,7 @@
 <h2 id="business"><a class="anchor" aria-hidden="true" tabindex="-1" href="#business"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Business</h2><ul>
 <li><a href="https://wiesmann.codiferes.net/wordpress/archives/22201" rel="noopener noreferrer">Falsehoods about Online Shopping</a> - Covers prices, currencies and inventory.</li>
 <li><a href="https://gist.github.com/rgs/6509585" rel="noopener noreferrer">Falsehoods about Prices</a> - Covers currencies, amounts and localization.</li>
-<li><a href="https://github.com/globalcitizen/php-iban/blob/master/docs/FALSEHOODS.md" rel="noopener noreferrer">Falsehoods about IBANs (⭐503)</a> - International Bank Account Numbers are not international.</li>
+<li><a href="https://github.com/globalcitizen/php-iban/blob/master/docs/FALSEHOODS.md" rel="noopener noreferrer">Falsehoods about IBANs (⭐507)</a> - International Bank Account Numbers are not international.</li>
 <li><a href="http://exple.tive.org/blarg/2016/09/22/falsehoods-programmers-believe-about-economics/" rel="noopener noreferrer">Falsehoods about Economics</a> - Economics are not simple or rational.</li>
 <li><a href="https://web.archive.org/web/20230615151102/https://old.reddit.com/r/Etsy/comments/hz4877/if_you_are_an_etsy_seller_do_not_purchase_postage/" rel="noopener noreferrer">Decimal Point Error in Etsy's Accounting System</a> - The importance of types in accounting software: missing the decimal point ends up with 100x over-charges.</li>
 <li><a href="https://web.archive.org/web/20250326135824/http://rachelbythebay.com/w/2022/12/02/25k/" rel="noopener noreferrer">Twenty five thousand dollars of funny money</a> - Same error as above at Google Ads, or the danger of separating your pennies from your dollars, where $250 internal coupons turned into $25,000. My advice: <a href="https://twitter.com/kdeldycke/status/1599113889093890049" rel="noopener noreferrer">get rid of integers and floats for monetary values. Use decimals. Or fallback to strings and parse them, don't validate.</a></li>
@@ -112,7 +192,7 @@
 <li><a href="https://github.com/commerceguys/tax" rel="noopener noreferrer"><code>tax</code></a> - 🆓 A PHP 5.4+ tax management library.</li>
 </ul>
 <h2 id="cryptocurrency"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cryptocurrency"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Cryptocurrency</h2><ul>
-<li><a href="https://github.com/theborakompanioni/spring-boot-bitcoin-starter/blob/master/docs/FALSEHOODS.md" rel="noopener noreferrer">Falsehoods about Bitcoin (⭐82)</a> - A list of mistaken perspectives on Bitcoin.</li>
+<li><a href="https://github.com/theborakompanioni/spring-boot-bitcoin-starter/blob/master/docs/FALSEHOODS.md" rel="noopener noreferrer">Falsehoods about Bitcoin (⭐85)</a> - A list of mistaken perspectives on Bitcoin.</li>
 <li><a href="https://gist.github.com/spalladino/a349f0ca53dbb5fc3914243aaf7ea8c6" rel="noopener noreferrer">Falsehoods about Ethereum</a> - Misconceptions and common pitfalls in contract programming.</li>
 </ul>
 <h2 id="dates-and-time"><a class="anchor" aria-hidden="true" tabindex="-1" href="#dates-and-time"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Dates and Time</h2><ul>
@@ -136,7 +216,7 @@
 <li><a href="https://news.ycombinator.com/item?id=28047376" rel="noopener noreferrer">How to choose between UT1, TAI and UTC</a> - Depends on your priorities between SI seconds, earth rotation sync, leap seconds avoidance.</li>
 <li><a href="https://web.archive.org/web/20241124114705/https://stackoverflow.com/questions/6841333/why-is-subtracting-these-two-epoch-milli-times-in-year-1927-giving-a-strange-r/6841479#answer-6841479" rel="noopener noreferrer">Why is subtracting these two times (in 1927) giving a strange result?</a> - Infamous Stack Overflow answer about both complicated historical timezones, and how historical dates can be re-interpreted by newer versions of software.</li>
 <li><a href="https://web.archive.org/web/20150908004245/http://www.merlyn.demon.co.uk/critdate.htm" rel="noopener noreferrer">Critical and Significant Dates</a> - From Y2K to the overflow of 32-bit seconds from Unix epoch, a list of special date to watch for depending on the system.</li>
-<li>“I'm going to a commune in Vermont and will deal with no unit of time shorter than a season.” - Is the note left on his terminal by a quitting engineer in the 70s, after too much effort toiling away on sub-second timing concerns. Source: <a href="https://www.amazon.com/dp/0316491705?&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=ec2881e22fb26c2d43de0daeebd5424d&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer">The Soul of a New Machine</a>.</li>
+<li>“I'm going to a commune in Vermont and will deal with no unit of time shorter than a season.” - Is the note left on his terminal by a quitting engineer in the 70s, after too much effort toiling away on sub-second timing concerns. Source: <a href="https://openlibrary.org/isbn/0316491705" rel="noopener noreferrer">The Soul of a New Machine</a>.</li>
 </ul>
 <h2 id="education"><a class="anchor" aria-hidden="true" tabindex="-1" href="#education"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Education</h2><ul>
 <li><a href="https://www.netmeister.org/blog/cs-falsehoods.html" rel="noopener noreferrer">Falsehoods CS Students (Still) Believe Upon Graduating</a> - A list of things (not only) computer science students tend to erroneously and at times surprisingly believe even though they (probably) should know better.</li>
@@ -178,14 +258,14 @@
 <li><a href="https://wiesmann.codiferes.net/wordpress/archives/30296" rel="noopener noreferrer">Falsehoods about text</a> - Practical examples illustrating Unicode normalization, ligatures, surrogate pairs, character widths, and grapheme cluster pitfalls in substring operations.</li>
 <li><a href="https://www.youtube.com/watch?v=0j74jcxSunY" rel="noopener noreferrer">Internationalis(z)ing Code</a> - A video about things you need to keep in mind when internationalizing your code.</li>
 <li><a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/" rel="noopener noreferrer">Minimum to Know About Unicode and Character Sets</a> - A good introduction to unicode, its historical context and origins, followed by an overview of its inner working.</li>
-<li><a href="https://github.com/jagracey/Awesome-Unicode" rel="noopener noreferrer">Awesome Unicode (⭐971)</a> - A curated list of delightful Unicode tidbits, packages and resources.</li>
+<li><a href="https://github.com/jagracey/Awesome-Unicode" rel="noopener noreferrer">Awesome Unicode (⭐979)</a> - A curated list of delightful Unicode tidbits, packages and resources.</li>
 <li><a href="https://eev.ee/blog/2015/09/12/dark-corners-of-unicode/" rel="noopener noreferrer">Dark corners of Unicode</a> - Unicode is extensive, here be dragons.</li>
 <li><a href="https://manishearth.github.io/blog/2017/01/14/stop-ascribing-meaning-to-unicode-code-points/" rel="noopener noreferrer">Let's Stop Ascribing Meaning to Code Points</a> - Dives deeper in Unicode and dispels myths about code points.</li>
 <li><a href="https://jean.abou-samra.fr/blog/unicode-misconceptions/" rel="noopener noreferrer">Unicode misconceptions</a> - A collection of falsehoods on case, encodings, string length, and more.</li>
 <li><a href="https://manishearth.github.io/blog/2017/01/15/breaking-our-latin-1-assumptions/" rel="noopener noreferrer">Breaking Our <code>Latin-1</code> Assumptions</a> - Most programmers spend so much time with <code>Latin-1</code> they forgets about other's scripts quirks.</li>
 <li><a href="http://i.imgur.com/4J7Il0m.jpg" rel="noopener noreferrer">Ode to a shipping label</a> - Character encoding is hard, more so when each broken layer of data input adds its own spice.</li>
 <li><a href="https://randomascii.wordpress.com/2023/10/17/localization-failure-temperature-is-hard/" rel="noopener noreferrer">Localization Failure: Temperature is Hard</a> - You cannot localize temperature differences as-is.</li>
-<li><a href="https://github.com/patch/i18n-testing" rel="noopener noreferrer">i18n Testing Data (⭐66)</a> - 🆓 Compilation of real-word international and diverse name data for unit testing and QA.</li>
+<li><a href="https://github.com/patch/i18n-testing" rel="noopener noreferrer">i18n Testing Data (⭐69)</a> - 🆓 Compilation of real-word international and diverse name data for unit testing and QA.</li>
 <li><a href="https://github.com/minimaxir/big-list-of-naughty-strings" rel="noopener noreferrer">Big List of Naughty Strings (⭐48k)</a> - 🆓 A huge corpus of strings which have a high probability of causing issues when used as user-input data. A must have set of practical edge-cases to test your software against.</li>
 </ul>
 <h2 id="management"><a class="anchor" aria-hidden="true" tabindex="-1" href="#management"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Management</h2><ul>
@@ -206,7 +286,7 @@
 </ul>
 <h2 id="phone-numbers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#phone-numbers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Phone Numbers</h2><ul>
 <li><a href="https://github.com/google/libphonenumber/blob/master/FALSEHOODS.md" rel="noopener noreferrer">Falsehoods about Phone Numbers (⭐18k)</a> - Covers phone numbers, their representation and meaning.</li>
-<li><a href="https://github.com/google/libphonenumber" rel="noopener noreferrer"><code>libphonenumber</code></a> - 🆓 Google's common Java, C++ and JavaScript library for parsing, formatting, and validating international phone numbers. Also available for <a href="https://github.com/twcclegg/libphonenumber-csharp" rel="noopener noreferrer">C# (⭐901)</a>, <a href="https://github.com/iziz/libPhoneNumber-iOS" rel="noopener noreferrer">Objective-C (⭐2.4k)</a>, <a href="https://github.com/daviddrysdale/python-phonenumbers" rel="noopener noreferrer">Python (⭐3.7k)</a> and <a href="https://github.com/giggsey/libphonenumber-for-php" rel="noopener noreferrer">PHP (⭐5k)</a>.</li>
+<li><a href="https://github.com/google/libphonenumber" rel="noopener noreferrer"><code>libphonenumber</code></a> - 🆓 Google's common Java, C++ and JavaScript library for parsing, formatting, and validating international phone numbers. Also available for <a href="https://github.com/twcclegg/libphonenumber-csharp" rel="noopener noreferrer">C# (⭐918)</a>, <a href="https://github.com/iziz/libPhoneNumber-iOS" rel="noopener noreferrer">Objective-C (⭐2.4k)</a>, <a href="https://github.com/daviddrysdale/python-phonenumbers" rel="noopener noreferrer">Python (⭐3.8k)</a> and <a href="https://github.com/giggsey/libphonenumber-for-php" rel="noopener noreferrer">PHP (⭐5k)</a>.</li>
 </ul>
 <h2 id="postal-addresses"><a class="anchor" aria-hidden="true" tabindex="-1" href="#postal-addresses"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Postal Addresses</h2><ul>
 <li><a href="https://www.mjt.me.uk/posts/falsehoods-programmers-believe-about-addresses/" rel="noopener noreferrer">Falsehoods about Addresses</a> - Covers streets, postal codes, buildings, cities and countries.</li>
@@ -231,7 +311,7 @@
 <li><a href="https://gist.github.com/Su-Shee/5d1a417fa9de19c15477" rel="noopener noreferrer">Falsehoods about Women In Tech</a> - Myth about women in STEM (Science, Technology, Engineering, Math) industries.</li>
 </ul>
 <h2 id="software-engineering"><a class="anchor" aria-hidden="true" tabindex="-1" href="#software-engineering"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Software Engineering</h2><ul>
-<li><a href="https://github.com/xenoterracide/falsehoods/blob/master/versions.md" rel="noopener noreferrer">Falsehoods about Versions (⭐70)</a> - Attributing an identity to a software release might be harder than thought.</li>
+<li><a href="https://github.com/xenoterracide/falsehoods/blob/master/versions.md" rel="noopener noreferrer">Falsehoods about Versions (⭐71)</a> - Attributing an identity to a software release might be harder than thought.</li>
 <li><a href="https://pozorvlak.livejournal.com/174763.html" rel="noopener noreferrer">Falsehoods about Build Systems</a> - Building software is hard. Building software that builds software is harder.</li>
 <li><a href="https://predr.ag/blog/falsehoods-programmers-believe-about-undefined-behavior/" rel="noopener noreferrer">Falsehoods about Undefined Behavior</a> - Invoking undefined behavior can cause <em>anything</em> to happen, for a much broader definition of "anything" than one might think.</li>
 <li><a href="https://software.rajivprab.com/2018/04/29/myths-programmers-believe-about-cpu-caches/" rel="noopener noreferrer">Myths about CPU Caches</a> - Misconceptions about caches often lead to false assertions, especially when it comes to concurrency and race conditions.</li>
@@ -264,7 +344,7 @@
 <li><a href="https://web.archive.org/web/20250528134345/https://travel.stackexchange.com/questions/149323/my-name-causes-an-issue-with-any-booking-names-end-with-mr-and-mrs" rel="noopener noreferrer">My name causes an issue with any booking!</a> - Old airline reservation systems considers the <code>MR</code> suffix as <code>Mister</code> and drops it.</li>
 </ul>
 <h2 id="typography"><a class="anchor" aria-hidden="true" tabindex="-1" href="#typography"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Typography</h2><ul>
-<li><a href="https://github.com/RoelN/Font-Falsehoods" rel="noopener noreferrer">Falsehoods about Fonts (⭐112)</a> - Assumptions about typography on the web and in desktop applications.</li>
+<li><a href="https://github.com/RoelN/Font-Falsehoods" rel="noopener noreferrer">Falsehoods about Fonts (⭐111)</a> - Assumptions about typography on the web and in desktop applications.</li>
 <li><a href="https://www.b-list.org/weblog/2018/nov/26/case/" rel="noopener noreferrer">Truths programmers should know about case</a> - A complete reverse of the falsehoods format, on the topic of case (as in uppercase and lowercase text).</li>
 </ul>
 <h2 id="video-games"><a class="anchor" aria-hidden="true" tabindex="-1" href="#video-games"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Video Games</h2><ul>
@@ -276,14 +356,56 @@
 <li><a href="https://www.netmeister.org/blog/urls.html" rel="noopener noreferrer">URLs: It's complicated…</a> - There's a lot of components in an URL, and all have their own logic.</li>
 <li><a href="https://web.archive.org/web/20230604033340/https://www.simplecto.com/complexity-downloading-favicons-told-in-15-plus-edge-cases/" rel="noopener noreferrer">The Hidden Complexity of Downloading Favicons, Told in 15+ Edge Cases</a> - Downloading that little icon you see in you browser tabs should be a simple exercise. It turned out to be a lot more complicated than you think. Be vigilant that you are not shaving a Yak.</li>
 </ul>
-<h2 id="contributing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contributing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contributing</h2><p>Your contributions are always welcome! Please take a look at the <a href="https://github.com/kdeldycke/awesome-falsehood/blob/main/.github/contributing.md" rel="noopener noreferrer">contribution guidelines (⭐27k)</a> first.</p>
-<h2 id="footnotes"><a class="anchor" aria-hidden="true" tabindex="-1" href="#footnotes"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Footnotes</h2><p>This list gathered some popularity in social medias over the past few years. See it being <a href="https://github.com/kdeldycke/kdeldycke/blob/main/in-the-media.md" rel="noopener noreferrer">discussed and mentioned elsewhere (⭐6)</a>.</p>
-<p>The <a href="https://github.com/kdeldycke/awesome-falsehood/blob/main/assets/awesome-falsehood-header.jpg" rel="noopener noreferrer">header image (⭐27k)</a> is based on a modified <a href="https://commons.wikimedia.org/wiki/File:BLW_Truth_and_Falsehood.jpg" rel="noopener noreferrer">photo taken in February 2010 by Iza Bella</a>, distributed under a <a href="https://creativecommons.org/licenses/by-sa/2.0/uk/deed.en" rel="noopener noreferrer">Creative Commons BY-SA 2.0 UK license</a>.</p>
+<h2 id="contributing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contributing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contributing</h2><p>Your contributions are always welcome! Please take a look at the <a href="https://github.com/kdeldycke/awesome-falsehood/blob/main/.github/contributing.md" rel="noopener noreferrer">contribution guidelines (⭐28k)</a> first.</p>
+<h2 id="footnotes"><a class="anchor" aria-hidden="true" tabindex="-1" href="#footnotes"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Footnotes</h2><p>This list gathered some popularity in social medias over the past few years. See it being <a href="https://github.com/kdeldycke/kdeldycke/blob/main/in-the-media.md" rel="noopener noreferrer">discussed and mentioned elsewhere (⭐9)</a>.</p>
+<p>The <a href="https://github.com/kdeldycke/awesome-falsehood/blob/main/assets/awesome-falsehood-header.jpg" rel="noopener noreferrer">header image (⭐28k)</a> is based on a modified <a href="https://commons.wikimedia.org/wiki/File:BLW_Truth_and_Falsehood.jpg" rel="noopener noreferrer">photo taken in February 2010 by Iza Bella</a>, distributed under a <a href="https://creativecommons.org/licenses/by-sa/2.0/uk/deed.en" rel="noopener noreferrer">Creative Commons BY-SA 2.0 UK license</a>.</p>
 
 
-<p><a>[1]</a>: <a href="https://www.amazon.com/dp/1324090804?&amp;linkCode=ll1&amp;tag=kevideld-20&amp;linkId=a1903c3fbfdc82fbe2e566fca40718fb&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer"><em>Notebooks, 1914-1916</em></a> (Liveright, 2022) - <a href="https://archive.org/details/notebooks191419100witt/page/n35" rel="noopener noreferrer">source: page 14e</a>. <a href="#intro-quote-ref">[↑]</a></p>
+<p><a>[1]</a>: <a href="https://openlibrary.org/isbn/1324090804" rel="noopener noreferrer"><em>Notebooks, 1914-1916</em></a> (Liveright, 2022) - <a href="https://archive.org/details/notebooks191419100witt/page/n35" rel="noopener noreferrer">source: page 14e</a>. <a href="#intro-quote-ref">[↑]</a></p>
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
