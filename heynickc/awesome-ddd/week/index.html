@@ -16,30 +16,184 @@
     <meta property="og:title" content="Track Awesome Ddd Updates Weekly" />
     <meta property="og:description" content="A curated list of Domain-Driven Design (DDD), Command Query Responsibility Segregation (CQRS), Event Sourcing, and Event Storming resources" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Ddd Updates Weekly</h1>
 <p>A curated list of Domain-Driven Design (DDD), Command Query Responsibility Segregation (CQRS), Event Sourcing, and Event Storming resources</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/heynickc/awesome-ddd/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/heynickc/awesome-ddd">😺 heynickc/awesome-ddd</a><span> · </span><span>⭐ 12K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><a href="/heynickc/awesome-ddd/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/heynickc/awesome-ddd/readme/">Overview</a><span> ]</span></p>
 
-<h2><a href="https://www.trackawesomelist.com/2024/45/">Nov 04 - Nov 10, 2024</a></h2><h3><p>Sample Projects / .NET (C#/F#)</p>
+<h2><a href="https://www.trackawesomelist.com/2026/33/">Aug 17 - Aug 23, 2026</a></h2><h3><p>Books</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ryletko/LexiQuest-Modular-DDD" rel="noopener noreferrer">LexiQuest-Modular-DDD (⭐6)</a> - Modular application built with Clean Architecture and DDD principles which is ready to quickly get splitted into microserves.</li>
+<li><a href="https://amzn.to/4oN6fqk" rel="noopener noreferrer">Crafting Great APIs with Domain-Driven Design: Collaborative Craftsmanship of Asynchronous and Synchronous APIs</a> - A comprehensive guide to designing and building APIs using Domain-Driven Design principles, covering both event-driven asynchronous and synchronous API patterns.</li>
+</ul>
+<h3><p>Sample Projects / GO</p>
+</h3>
+<ul>
+<li><a href="https://github.com/sklinkert/go-ddd" rel="noopener noreferrer">Go DDD Template (⭐759)</a> - Production-grade DDD and CQRS template with value objects, race-safe idempotent commands, domain events with a transactional outbox, and a tutorial series teaching DDD from zero.</li>
+</ul>
+<h3><p>Sample Projects / .NET (C#/F#)</p>
+</h3>
+<ul>
+<li><a href="https://github.com/bravodev-hub/appointme" rel="noopener noreferrer">AppointMe (⭐39)</a> - A production-grade SaaS template on .NET 10, React, modular monolith, vertical slices, multitenancy, CQRS, DDD, event-driven architecture, durable messaging (outbox).</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ryletko/Modular.StarterTemplate" rel="noopener noreferrer">Modular.StarterTemplate (⭐4)</a> - Starter template for a modular application in Clean Architecture DDD style with synchronous interaction between modules within single transaction. Perfect for ERP applications.</li>
+<li><a href="https://github.com/tung-le-lv/OpenMind.DDD.Patterns" rel="noopener noreferrer">OpenMind.DDD.Patterns (⭐5)</a> - A comprehensive C# demo of DDD tactical patterns (Entities, Value Objects, Aggregates, Domain Events) and strategic design (Bounded Contexts, Context Mapping) using an order management domain, with CQRS, Event-Driven Architecture, and MongoDB.</li>
+</ul>
+<h3><p>Sample Projects / JavaScript / TypeScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/osbytes/txob" rel="noopener noreferrer"><code>txob</code></a> - Transactional outbox event processor with Postgres and MongoDB native plugins — at-least-once delivery, near-realtime wakeup signals, graceful shutdown, and horizontal scalability.</li>
+</ul>
+<h3><p>Sample Projects / JVM languages</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nekzabirov/IGaming-Game-Engine" rel="noopener noreferrer">Casino Engine (⭐18)</a> - Production iGaming/casino engine in Kotlin/Ktor demonstrating Hexagonal Architecture with DDD and CQRS. Aggregates raise domain events, repository ports live in the domain layer, command and query handlers are wired through a Koin-discovered registry, and domain events are published to RabbitMQ after the write transaction commits. Apache 2.0.</li>
+</ul>
+<h3><p>Libraries and Frameworks / .NET</p>
+</h3>
+<ul>
+<li><a href="https://github.com/OpenCQRS/OpenCQRS" rel="noopener noreferrer">OpenCQRS (⭐28)</a> - OpenCQRS is a .NET framework for DDD, CQRS, and Event Sourcing. It can be used as a simple mediator or as a full Event Sourcing solution with Cosmos DB or Entity Framework Core as storage. It has built-in support for Service Bus, RabbitMQ, Redis Cache, Memory Cache, and FluentValidation among other features.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/yesbert/Stratara" rel="noopener noreferrer">Stratara (⭐2)</a> - CQRS and Event Sourcing framework for .NET with tamper-evident streams and tenant-aware encryption, plus integrated mediator, outbox, sagas and projections.</li>
+</ul>
+
+<ul>
+<li><a href="https:///events.deveel.org" rel="noopener noreferrer">Deveel Events</a>- Provides an easy-to-use framework for the publication and subscription of events in .NET applications, supporting multiple messaging channels (eg. RabbitMQ, Azure Service Bus, etc.) and a variety of serialization formats (eg. JSON, XML, etc.).</li>
+</ul>
+<h3><p>Libraries and Frameworks / JavaScript / TypeScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Softtor/nestjs-hexagonal" rel="noopener noreferrer">nestjs-hexagonal (⭐5)</a> - Claude Code plugin for building NestJS bounded contexts with Hexagonal Architecture, DDD, CQRS, and event-driven patterns.</li>
+</ul>
+<h3><p>Libraries and Frameworks / JVM</p>
+</h3>
+<ul>
+<li><a href="https://github.com/sympol/pure-assert" rel="noopener noreferrer">Pure Assert (⭐4)</a> - A lightweight, zero-dependency Java library for expressive pure input assertions and domain invariants.</li>
+</ul>
+<h3><p>User Groups / Ruby</p>
+</h3>
+<ul>
+<li><a href="https://datawrapper.dwcdn.net/GhcEA/" rel="noopener noreferrer">Map of user groups in South America</a></li>
+</ul>
+
+<ul>
+<li><a href="https://datawrapper.dwcdn.net/jdLbp/" rel="noopener noreferrer">Map of user groups in Oceania</a></li>
+</ul>
+
+<ul>
+<li><a href="https://kommunity.com/worldwide-eventstorming" rel="noopener noreferrer">Worldwide</a> - Specific about EventStorming</li>
+</ul>
+
+<ul>
+<li><a href="https://kommunity.com/dddbcn" rel="noopener noreferrer">Barcelona</a></li>
+</ul>
+<h3><p>Tools / Ruby</p>
+</h3>
+<ul>
+<li><a href="https://dddtoolbox.com" rel="noopener noreferrer">DDD Toolbox</a> - Open-source collection of modern web-based tools including Domain Storytelling and Event Storming (<a href="https://github.com/poulainpi/ddd-toolbox" rel="noopener noreferrer">Source Code (⭐383)</a>).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2024/45/">Nov 04 - Nov 10, 2024</a></h2><h3><p>Sample Projects / .NET (C#/F#)</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ryletko/LexiQuest-Modular-DDD" rel="noopener noreferrer">LexiQuest-Modular-DDD (⭐7)</a> - Modular application built with Clean Architecture and DDD principles which is ready to quickly get splitted into microserves.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ryletko/Modular.StarterTemplate" rel="noopener noreferrer">Modular.StarterTemplate (⭐6)</a> - Starter template for a modular application in Clean Architecture DDD style with synchronous interaction between modules within single transaction. Perfect for ERP applications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/38/">Sep 16 - Sep 22, 2024</a></h2><h3><p>Libraries and Frameworks / .NET</p>
 </h3>
@@ -69,7 +223,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/50/">Dec 11 - Dec 17, 2023</a></h2><h3><p>Libraries and Frameworks / JVM</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Ahoo-Wang/Wow" rel="noopener noreferrer">Ahoo-Wang/Wow (⭐255)</a> - A Modern Reactive CQRS Architecture Microservice development framework based on DDD and EventSourcing.</li>
+<li><a href="https://github.com/Ahoo-Wang/Wow" rel="noopener noreferrer">Ahoo-Wang/Wow (⭐303)</a> - A Modern Reactive CQRS Architecture Microservice development framework based on DDD and EventSourcing.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/46/">Nov 13 - Nov 19, 2023</a></h2><h3><p>Sample Projects / GO</p>
 </h3>
@@ -99,21 +253,21 @@
 <h2><a href="https://www.trackawesomelist.com/2023/20/">May 15 - May 21, 2023</a></h2><h3><p>Libraries and Frameworks / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/knucklesuganda/py_assimilator/" rel="noopener noreferrer">PyAssimilator (⭐214)</a> - Quickly create DDD Python patterns, Event-Based Systems, CRUD applications. Set of Python patterns for database access that support SQLAlchemy, MongoDB, Redis, or Pure Python. PyAssimilator allows you to write code without dependencies, meaning you can switch SQL to NoSQL without changing a single file in your system.</li>
+<li><a href="https://github.com/knucklesuganda/py_assimilator/" rel="noopener noreferrer">PyAssimilator (⭐216)</a> - Quickly create DDD Python patterns, Event-Based Systems, CRUD applications. Set of Python patterns for database access that support SQLAlchemy, MongoDB, Redis, or Pure Python. PyAssimilator allows you to write code without dependencies, meaning you can switch SQL to NoSQL without changing a single file in your system.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/16/">Apr 17 - Apr 23, 2023</a></h2><h3><p>Sample Projects / JavaScript / TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bitloops/ddd-hexagonal-cqrs-es-eda" rel="noopener noreferrer">Over-engineered ToDo app (⭐1.3k)</a> - Complete working example of using Domain Driven Design (DDD), Hexagonal Architecture, CQRS, Event Sourcing (ES), Event Driven Architecture (EDA), Behaviour Driven Development (BDD) using TypeScript and NestJS generated using the <a href="https://github.com/bitloops/bitloops-language" rel="noopener noreferrer">Bitloops Language (BL) (⭐353)</a>.</li>
+<li><a href="https://github.com/bitloops/ddd-hexagonal-cqrs-es-eda" rel="noopener noreferrer">Over-engineered ToDo app (⭐1.4k)</a> - Complete working example of using Domain Driven Design (DDD), Hexagonal Architecture, CQRS, Event Sourcing (ES), Event Driven Architecture (EDA), Behaviour Driven Development (BDD) using TypeScript and NestJS generated using the <a href="https://github.com/bitloops/bitloops-language" rel="noopener noreferrer">Bitloops Language (BL) (⭐357)</a>.</li>
 </ul>
 <h3><p>Libraries and Frameworks / JavaScript / TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bitloops/bitloops-language" rel="noopener noreferrer">Bitloops Language (BL) (⭐353)</a> - Open-source, 4th-generation, transpiled programming language that helps you write clean code, well-designed systems, and build high-quality software that is testable, auditable and maintainable using DDD and Hexagonal Architecture.</li>
+<li><a href="https://github.com/bitloops/bitloops-language" rel="noopener noreferrer">Bitloops Language (BL) (⭐357)</a> - Open-source, 4th-generation, transpiled programming language that helps you write clean code, well-designed systems, and build high-quality software that is testable, auditable and maintainable using DDD and Hexagonal Architecture.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/talyssonoc/node-api-boilerplate" rel="noopener noreferrer">Node API Boilerplate (⭐3.3k)</a> - NodeJS web API boilerplate for DDD and Clean Architecture applications.</li>
+<li><a href="https://github.com/talyssonoc/node-api-boilerplate" rel="noopener noreferrer">Node API Boilerplate (⭐3.4k)</a> - NodeJS web API boilerplate for DDD and Clean Architecture applications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/14/">Apr 03 - Apr 09, 2023</a></h2><h3><p>Community Resources</p>
 </h3>
@@ -126,7 +280,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ddd-cqrs-es/community" rel="noopener noreferrer">DDD/CQRS/ES Discord (⭐76)</a> - A Discord (old Slack) team for those who want to chat about Domain-Driven Design, CQRS, Event Sourcing and sometimes random things. Main channel is language and framework agnostic.</li>
+<li><a href="https://github.com/ddd-cqrs-es/community" rel="noopener noreferrer">DDD/CQRS/ES Discord (⭐81)</a> - A Discord (old Slack) team for those who want to chat about Domain-Driven Design, CQRS, Event Sourcing and sometimes random things. Main channel is language and framework agnostic.</li>
 </ul>
 
 <ul>
@@ -134,7 +288,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/hofstef/awesome-domain-storytelling" rel="noopener noreferrer">Awesome Domain Storytelling (⭐196)</a> - awesome list that focuses only on Domain Storytelling.</li>
+<li><a href="https://github.com/hofstef/awesome-domain-storytelling" rel="noopener noreferrer">Awesome Domain Storytelling (⭐203)</a> - awesome list that focuses only on Domain Storytelling.</li>
 </ul>
 
 <ul>
@@ -197,7 +351,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/5/">Jan 31 - Feb 06, 2022</a></h2><h3><p>Community Resources</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ddd-crew/context-mapping" rel="noopener noreferrer">Context Mapping by ddd-crew (⭐1.7k)</a> -     Context Mapping Cheatsheet and Starter Kit by ddd-crew.</li>
+<li><a href="https://github.com/ddd-crew/context-mapping" rel="noopener noreferrer">Context Mapping by ddd-crew (⭐1.8k)</a> -     Context Mapping Cheatsheet and Starter Kit by ddd-crew.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/48/">Nov 29 - Dec 05, 2021</a></h2><h3><p>Video Collections</p>
 </h3>
@@ -216,12 +370,12 @@
 <h2><a href="https://www.trackawesomelist.com/2021/44/">Nov 01 - Nov 07, 2021</a></h2><h3><p>Sample Projects / Idris</p>
 </h3>
 <ul>
-<li><a href="http://github.com/andorp/order-taking" rel="noopener noreferrer">OrderTaking (⭐138)</a> - Dependently typed implementation of the Domain Modeling Made Functional book. An example project how to formalize Bounded Context and Workflow diagram with dependent types. A NodeJS deployable demo.</li>
+<li><a href="http://github.com/andorp/order-taking" rel="noopener noreferrer">OrderTaking (⭐145)</a> - Dependently typed implementation of the Domain Modeling Made Functional book. An example project how to formalize Bounded Context and Workflow diagram with dependent types. A NodeJS deployable demo.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/43/">Oct 25 - Oct 31, 2021</a></h2><h3><p>Sample Projects / .NET (C#/F#)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hamed-shirbandi/TaskoMask" rel="noopener noreferrer">TaskoMask (⭐708)</a> - Task management system based on .NET Core with DDD, CQRS and Event Sourcing Concepts.</li>
+<li><a href="https://github.com/hamed-shirbandi/TaskoMask" rel="noopener noreferrer">TaskoMask (⭐721)</a> - Task management system based on .NET Core with DDD, CQRS and Event Sourcing Concepts.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/41/">Oct 11 - Oct 17, 2021</a></h2><h3><p>Books</p>
 </h3>
@@ -231,7 +385,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/30/">Jul 26 - Aug 01, 2021</a></h2><h3><p>Libraries and Frameworks / .NET</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hlaueriksson/CommandQuery" rel="noopener noreferrer">CommandQuery (⭐110)</a> - Command Query Separation for 🌐ASP.NET Core ⚡AWS Lambda ⚡Azure Functions ⚡Google Cloud Functions 🌐ASP.NET Web API 2</li>
+<li><a href="https://github.com/hlaueriksson/CommandQuery" rel="noopener noreferrer">CommandQuery (⭐111)</a> - Command Query Separation for 🌐ASP.NET Core ⚡AWS Lambda ⚡Azure Functions ⚡Google Cloud Functions 🌐ASP.NET Web API 2</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/22/">May 31 - Jun 06, 2021</a></h2><h3><p>Sample Projects / PHP</p>
 </h3>
@@ -241,12 +395,12 @@
 <h2><a href="https://www.trackawesomelist.com/2021/21/">May 24 - May 30, 2021</a></h2><h3><p>Sample Projects / JVM languages</p>
 </h3>
 <ul>
-<li><a href="https://eclipse-ee4j.github.io/cargotracker/" rel="noopener noreferrer">Eclipse CargoTracker</a> - This project demonstrates how you can develop applications with the Jakarta EE platform using widely adopted architectural best practices like Domain-Driven Design (DDD). <a href="https://github.com/eclipse-ee4j/cargotracker/" rel="noopener noreferrer">The code (⭐364)</a> is intended to mirror a non-trivial application that developers in the real work would work on. It attempts to demonstrate first-hand how you can use Jakarta EE to effectively meet practical enterprise concerns such as productivity, agility, testability, flexibility, maintainability, scalability and security. The project is directly based on the well known original <a href="https://github.com/citerus/dddsample-core" rel="noopener noreferrer">Java DDD sample application (⭐5.2k)</a> developed by DDD pioneer Eric Evans' company Domain Language and the Swedish software consulting company Citerus.</li>
+<li><a href="https://eclipse-ee4j.github.io/cargotracker/" rel="noopener noreferrer">Eclipse CargoTracker</a> - This project demonstrates how you can develop applications with the Jakarta EE platform using widely adopted architectural best practices like Domain-Driven Design (DDD). <a href="https://github.com/eclipse-ee4j/cargotracker/" rel="noopener noreferrer">The code (⭐391)</a> is intended to mirror a non-trivial application that developers in the real work would work on. It attempts to demonstrate first-hand how you can use Jakarta EE to effectively meet practical enterprise concerns such as productivity, agility, testability, flexibility, maintainability, scalability and security. The project is directly based on the well known original <a href="https://github.com/citerus/dddsample-core" rel="noopener noreferrer">Java DDD sample application (⭐5.3k)</a> developed by DDD pioneer Eric Evans' company Domain Language and the Swedish software consulting company Citerus.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/16/">Apr 19 - Apr 25, 2021</a></h2><h3><p>Sample Projects / JVM languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/felipexw/clean-arch-ddd-intro" rel="noopener noreferrer">https://github.com/felipexw/clean-arch-ddd-intro (⭐21)</a> - Simple DDD + Clean Architecture using Micronaut.</li>
+<li><a href="https://github.com/felipexw/clean-arch-ddd-intro" rel="noopener noreferrer">https://github.com/felipexw/clean-arch-ddd-intro (⭐23)</a> - Simple DDD + Clean Architecture using Micronaut.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/7/">Feb 15 - Feb 21, 2021</a></h2><h3><p>Sample Projects / GO</p>
 </h3>
@@ -255,23 +409,23 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/marcusolsson/goddd" rel="noopener noreferrer">Citerus DDD Sample App GO Port (⭐2.4k)</a> - This is an attempt to port the <a href="https://github.com/citerus/dddsample-core" rel="noopener noreferrer">DDD Sample App (⭐5.2k)</a> to idiomatic Go. It can be run in a dockerized mode for previewing the application.</li>
+<li><a href="https://github.com/marcusolsson/goddd" rel="noopener noreferrer">Citerus DDD Sample App GO Port (⭐2.5k)</a> - This is an attempt to port the <a href="https://github.com/citerus/dddsample-core" rel="noopener noreferrer">DDD Sample App (⭐5.3k)</a> to idiomatic Go. It can be run in a dockerized mode for previewing the application.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ThreeDotsLabs/wild-workouts-go-ddd-example" rel="noopener noreferrer">DDD by Refactoring (⭐5.8k)</a> - Complete serverless application to show how to apply DDD, Clean Architecture, and CQRS by practical refactoring of a Go project. A full blog series about it can be found at <a href="https://threedots.tech/" rel="noopener noreferrer">https://threedots.tech/</a>.</li>
+<li><a href="https://github.com/ThreeDotsLabs/wild-workouts-go-ddd-example" rel="noopener noreferrer">DDD by Refactoring (⭐6.4k)</a> - Complete serverless application to show how to apply DDD, Clean Architecture, and CQRS by practical refactoring of a Go project. A full blog series about it can be found at <a href="https://threedots.tech/" rel="noopener noreferrer">https://threedots.tech/</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/victorsteven/food-app-server" rel="noopener noreferrer">DDD Food App (⭐673)</a> - Sample DDD application implementing the 4 layers (Domain, Infrastructure, Application and Interface) and considering two domain patterns. There's a blog article written for it <a href="https://dev.to/stevensunflash/using-domain-driven-design-ddd-in-golang-3ee5" rel="noopener noreferrer">here</a>.</li>
+<li><a href="https://github.com/victorsteven/food-app-server" rel="noopener noreferrer">DDD Food App (⭐675)</a> - Sample DDD application implementing the 4 layers (Domain, Infrastructure, Application and Interface) and considering two domain patterns. There's a blog article written for it <a href="https://dev.to/stevensunflash/using-domain-driven-design-ddd-in-golang-3ee5" rel="noopener noreferrer">here</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/takashabe/go-ddd-sample" rel="noopener noreferrer">DDD Sample in GO (⭐288)</a> - Just another sample application implementing the four layers of DDD.</li>
+<li><a href="https://github.com/takashabe/go-ddd-sample" rel="noopener noreferrer">DDD Sample in GO (⭐291)</a> - Just another sample application implementing the four layers of DDD.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/friendsofgo/gopherapi" rel="noopener noreferrer">Evolutive CRUD API (⭐78)</a> - API implementation with full CRUD using a SOLID, Hexagonal Architecture. There is a series of blog post written for it at <a href="https://blog.friendsofgo.tech/" rel="noopener noreferrer">https://blog.friendsofgo.tech/</a>.</li>
+<li><a href="https://github.com/friendsofgo/gopherapi" rel="noopener noreferrer">Evolutive CRUD API (⭐80)</a> - API implementation with full CRUD using a SOLID, Hexagonal Architecture. There is a series of blog post written for it at <a href="https://blog.friendsofgo.tech/" rel="noopener noreferrer">https://blog.friendsofgo.tech/</a>.</li>
 </ul>
 
 <ul>
@@ -280,11 +434,11 @@
 <h3><p>Libraries and Frameworks / GO</p>
 </h3>
 <ul>
-<li><a href="https://github.com/onsi/ginkgo" rel="noopener noreferrer">Ginkgo (⭐8.7k)</a> - Ginkgo builds on Go's testing package, allowing expressive Behavior-Driven Development ("BDD") style tests.</li>
+<li><a href="https://github.com/onsi/ginkgo" rel="noopener noreferrer">Ginkgo (⭐9k)</a> - Ginkgo builds on Go's testing package, allowing expressive Behavior-Driven Development ("BDD") style tests.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/go-bdd/gobdd" rel="noopener noreferrer">GOBDD (⭐124)</a> - Small BDD framework for GO.</li>
+<li><a href="https://github.com/go-bdd/gobdd" rel="noopener noreferrer">GOBDD (⭐142)</a> - Small BDD framework for GO.</li>
 </ul>
 
 <ul>
@@ -292,7 +446,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/cucumber/godog" rel="noopener noreferrer">Godog (⭐2.5k)</a> - Package godog is the official Cucumber BDD framework for Golang, it merges specification and test documentation into one cohesive whole, using Gherkin formatted scenarios in the format of Given, When, Then.</li>
+<li><a href="https://github.com/cucumber/godog" rel="noopener noreferrer">Godog (⭐2.7k)</a> - Package godog is the official Cucumber BDD framework for Golang, it merges specification and test documentation into one cohesive whole, using Gherkin formatted scenarios in the format of Given, When, Then.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/6/">Feb 08 - Feb 14, 2021</a></h2><h3><p>Libraries and Frameworks / Databases</p>
 </h3>
@@ -304,11 +458,6 @@
 <ul>
 <li><a href="https://eventide-project.org" rel="noopener noreferrer">Eventide</a> - Event Sourcing and Microservices Stack for Ruby. A set of libraries for writing event driven, autonomous services.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2021/2/">Jan 11 - Jan 17, 2021</a></h2><h3><p>User Groups / Ruby</p>
-</h3>
-<ul>
-<li><a href="https://www.meetup.com/worldwide-eventstorming-meetup/" rel="noopener noreferrer">Worldwide</a> - Specific about EventStorming</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2020/51/">Dec 21 - Dec 27, 2020</a></h2><h3><p>Books</p>
 </h3>
 <ul>
@@ -317,7 +466,7 @@
 <h3><p>Sample Projects / JavaScript / TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/boostercloud/booster/tree/master/docs/examples" rel="noopener noreferrer">Booster framework examples (⭐432)</a> Example applications built with Booster Framework.</li>
+<li><a href="https://github.com/boostercloud/booster/tree/master/docs/examples" rel="noopener noreferrer">Booster framework examples (⭐448)</a> Example applications built with Booster Framework.</li>
 </ul>
 <h3><p>Libraries and Frameworks / JavaScript / TypeScript</p>
 </h3>
@@ -337,7 +486,7 @@
 <h3><p>Sample Projects / JVM languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/citerus/dddsample-core" rel="noopener noreferrer">DDDSample (⭐5.2k)</a> - Sample DDD project using Spring Boot (originally hosted in <a href="http://dddsample.sourceforge.net/" rel="noopener noreferrer">http://dddsample.sourceforge.net/</a>)</li>
+<li><a href="https://github.com/citerus/dddsample-core" rel="noopener noreferrer">DDDSample (⭐5.3k)</a> - Sample DDD project using Spring Boot (originally hosted in <a href="http://dddsample.sourceforge.net/" rel="noopener noreferrer">http://dddsample.sourceforge.net/</a>)</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/43/">Oct 26 - Nov 01, 2020</a></h2><h3><p>Free eBooks</p>
 </h3>
@@ -352,7 +501,7 @@
 <h3><p>Libraries and Frameworks / JVM</p>
 </h3>
 <ul>
-<li><a href="https://github.com/funkygao/cp-ddd-framework" rel="noopener noreferrer">DDDplus framework (⭐1.1k)</a> - A lightweight flexible development framework for complex business architecture based on DDD.</li>
+<li><a href="https://github.com/funkygao/cp-ddd-framework" rel="noopener noreferrer">DDDplus framework (⭐1.2k)</a> - A lightweight flexible development framework for complex business architecture based on DDD.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/39/">Sep 28 - Oct 04, 2020</a></h2><h3><p>Libraries and Frameworks / JVM</p>
 </h3>
@@ -372,11 +521,11 @@
 <h2><a href="https://www.trackawesomelist.com/2020/32/">Aug 10 - Aug 16, 2020</a></h2><h3><p>Sample Projects / .NET (C#/F#)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/itlibrium/DDD-starter-dotnet" rel="noopener noreferrer">DDD-starter-dotnet (⭐401)</a> - Sample implementation and comparison of various approaches to building DDD applications. Useful as a baseline to quickly start a DDD .net project.</li>
+<li><a href="https://github.com/itlibrium/DDD-starter-dotnet" rel="noopener noreferrer">DDD-starter-dotnet (⭐404)</a> - Sample implementation and comparison of various approaches to building DDD applications. Useful as a baseline to quickly start a DDD .net project.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/OKTAYKIR/EventFlow.Example" rel="noopener noreferrer">EventFlow.Example (⭐202)</a> - DDD, CQRS, and Event-Sourcing example and contains following technology stack: <a href="https://github.com/eventflow/EventFlow" rel="noopener noreferrer">EventFlow (⭐2.5k)</a>, <a href="https://eventstore.com" rel="noopener noreferrer">EventStore</a>, <a href="https://www.rabbitmq.com" rel="noopener noreferrer">RabbitMQ</a>, <a href="https://www.mongodb.com" rel="noopener noreferrer">MongoDB</a>, <a href="https://www.postgresql.org" rel="noopener noreferrer">PostgreSQL</a>, <a href="https://www.docker.com" rel="noopener noreferrer">Docker</a></li>
+<li><a href="https://github.com/OKTAYKIR/EventFlow.Example" rel="noopener noreferrer">EventFlow.Example (⭐204)</a> - DDD, CQRS, and Event-Sourcing example and contains following technology stack: <a href="https://github.com/eventflow/EventFlow" rel="noopener noreferrer">EventFlow (⭐2.6k)</a>, <a href="https://eventstore.com" rel="noopener noreferrer">EventStore</a>, <a href="https://www.rabbitmq.com" rel="noopener noreferrer">RabbitMQ</a>, <a href="https://www.mongodb.com" rel="noopener noreferrer">MongoDB</a>, <a href="https://www.postgresql.org" rel="noopener noreferrer">PostgreSQL</a>, <a href="https://www.docker.com" rel="noopener noreferrer">Docker</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/28/">Jul 13 - Jul 19, 2020</a></h2><h3><p>Libraries and Frameworks / Databases</p>
 </h3>
@@ -386,22 +535,22 @@
 <h2><a href="https://www.trackawesomelist.com/2020/27/">Jul 06 - Jul 12, 2020</a></h2><h3><p>Blogs</p>
 </h3>
 <ul>
-<li><a href="https://ardalis.com/blog" rel="noopener noreferrer">Ardalis.com</a> - Steve Smith. Pluralsight author and author of <a href="https://www.pluralsight.com/courses/domain-driven-design-fundamentals" rel="noopener noreferrer">DDD Fundamentals</a> course and Microsoft <a href="https://github.com/dotnet-architecture/eShopOnWeb" rel="noopener noreferrer">eShopOnWeb sample app (⭐10k)</a>.</li>
+<li><a href="https://ardalis.com/blog" rel="noopener noreferrer">Ardalis.com</a> - Steve Smith. Pluralsight author and author of <a href="https://www.pluralsight.com/courses/domain-driven-design-fundamentals" rel="noopener noreferrer">DDD Fundamentals</a> course and Microsoft <a href="https://github.com/dotnet-architecture/eShopOnWeb" rel="noopener noreferrer">eShopOnWeb sample app (⭐11k)</a>.</li>
 </ul>
 <h3><p>Sample Projects / .NET (C#/F#)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dotnet-architecture/eShopOnWeb" rel="noopener noreferrer">eShopOnWeb (⭐10k)</a> - Full ASP.NET Core 3.1 reference application from Microsoft showing monolithic deployment architecture</li>
+<li><a href="https://github.com/dotnet-architecture/eShopOnWeb" rel="noopener noreferrer">eShopOnWeb (⭐11k)</a> - Full ASP.NET Core 3.1 reference application from Microsoft showing monolithic deployment architecture</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/26/">Jun 29 - Jul 05, 2020</a></h2><h3><p>Sample Projects / PHP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ferrius/ddd-cqrs-example" rel="noopener noreferrer">DDD CQRS Todo Sample (⭐366)</a> - DDD CQRS ADR hexagonal architecture implementation built with PHP 7 and Symfony 5.</li>
+<li><a href="https://github.com/ferrius/ddd-cqrs-example" rel="noopener noreferrer">DDD CQRS Todo Sample (⭐365)</a> - DDD CQRS ADR hexagonal architecture implementation built with PHP 7 and Symfony 5.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/24/">Jun 15 - Jun 21, 2020</a></h2><h3><p>Sample Projects / .NET (C#/F#)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/EduardoPires/EquinoxProject" rel="noopener noreferrer">Equinox Project (⭐6.7k)</a> - Full ASP.NET Core 3.1 application with Clean Architecture, DDD, CQRS and Event Sourcing concepts</li>
+<li><a href="https://github.com/EduardoPires/EquinoxProject" rel="noopener noreferrer">Equinox Project (⭐6.8k)</a> - Full ASP.NET Core 3.1 application with Clean Architecture, DDD, CQRS and Event Sourcing concepts</li>
 </ul>
 <h3><p>Libraries and Frameworks / .NET</p>
 </h3>
@@ -455,27 +604,27 @@
 <h3><p>Sample Projects / .NET (C#/F#)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/oskardudycz/EventSourcing.NetCore" rel="noopener noreferrer">Event Sourcing .NET (⭐3.6k)</a> - samples and resources about Event Sourcing and CQRS in .NET. Contains also a self-paced kit of how to built own Event Store</li>
+<li><a href="https://github.com/oskardudycz/EventSourcing.NetCore" rel="noopener noreferrer">Event Sourcing .NET (⭐3.7k)</a> - samples and resources about Event Sourcing and CQRS in .NET. Contains also a self-paced kit of how to built own Event Store</li>
 </ul>
 <h3><p>Libraries and Frameworks / .NET</p>
 </h3>
 <ul>
-<li><a href="https://github.com/JasperFx/marten" rel="noopener noreferrer">Marten (⭐3.2k)</a> - Postgresql as a Document Database and Event Store for .Net Applications.</li>
+<li><a href="https://github.com/JasperFx/marten" rel="noopener noreferrer">Marten (⭐3.4k)</a> - Postgresql as a Document Database and Event Store for .Net Applications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/12/">Mar 23 - Mar 29, 2020</a></h2><h3><p>Sample Projects / .NET (C#/F#)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/asc-lab/dotnet-cqrs-intro" rel="noopener noreferrer">DotNet CQRS Intro (⭐140)</a> - Examples of implementation CQRS with Event Sourcing - evolutionary approach (no CQRS, separate models and commands with the same model, separate models and commands with separate models, separate storage engines, event sourcing).</li>
+<li><a href="https://github.com/asc-lab/dotnet-cqrs-intro" rel="noopener noreferrer">DotNet CQRS Intro (⭐138)</a> - Examples of implementation CQRS with Event Sourcing - evolutionary approach (no CQRS, separate models and commands with the same model, separate models and commands with separate models, separate storage engines, event sourcing).</li>
 </ul>
 <h3><p>Sample Projects / JVM languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/asc-lab/java-cqrs-intro" rel="noopener noreferrer">Java CQRS Intro (⭐209)</a> - Examples of implementation CQRS with Event Sourcing - evolutionary approach (no CQRS, separate models and commands with the same model, separate models and commands with separate models, separate storage engines, event sourcing).</li>
+<li><a href="https://github.com/asc-lab/java-cqrs-intro" rel="noopener noreferrer">Java CQRS Intro (⭐216)</a> - Examples of implementation CQRS with Event Sourcing - evolutionary approach (no CQRS, separate models and commands with the same model, separate models and commands with separate models, separate storage engines, event sourcing).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/10/">Mar 09 - Mar 15, 2020</a></h2><h3><p>Libraries and Frameworks / .NET</p>
 </h3>
 <ul>
-<li><a href="https://github.com/younos1986/Core.EventStore" rel="noopener noreferrer">Core.EventStore (⭐5)</a> - A library to facilitate communication between CommandService and QueryService. The Idea is when any event occures in commandService, it should be persisted in QueryService in MongoDb.</li>
+<li><a href="https://github.com/younos1986/Core.EventStore" rel="noopener noreferrer">Core.EventStore (⭐6)</a> - A library to facilitate communication between CommandService and QueryService. The Idea is when any event occures in commandService, it should be persisted in QueryService in MongoDb.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/9/">Mar 02 - Mar 08, 2020</a></h2><h3><p>User Groups / Ruby</p>
 </h3>
@@ -485,7 +634,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/8/">Feb 24 - Mar 01, 2020</a></h2><h3><p>Sample Projects / JVM languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/humank/EventStormingWorkShop/" rel="noopener noreferrer">EventStormingWorkshop - Designing Cloud Native Microservices On AWS (⭐318)</a> - A concrete sample to go through EventStorming workshop and implement DDD tactical design pattern in Java, apply AWS cloud native services to build up business Event based Coffeeshop scenario.</li>
+<li><a href="https://github.com/humank/EventStormingWorkShop/" rel="noopener noreferrer">EventStormingWorkshop - Designing Cloud Native Microservices On AWS (⭐321)</a> - A concrete sample to go through EventStorming workshop and implement DDD tactical design pattern in Java, apply AWS cloud native services to build up business Event based Coffeeshop scenario.</li>
 </ul>
 <h3><p>User Groups / Ruby</p>
 </h3>
@@ -526,7 +675,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/50/">Dec 16 - Dec 22, 2019</a></h2><h3><p>Sample Projects / .NET (C#/F#)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/asc-lab/better-code-with-ddd" rel="noopener noreferrer">Better code with DDD building blocks (⭐320)</a> - solution presents usage of DDD tactical patterns to achieve better readability and expressiveness of the code. Applying DDD patterns together with ubiquitous language closes the gap between language spoken by experts and the team and language used in the code.</li>
+<li><a href="https://github.com/asc-lab/better-code-with-ddd" rel="noopener noreferrer">Better code with DDD building blocks (⭐321)</a> - solution presents usage of DDD tactical patterns to achieve better readability and expressiveness of the code. Applying DDD patterns together with ubiquitous language closes the gap between language spoken by experts and the team and language used in the code.</li>
 </ul>
 
 <ul>
@@ -535,7 +684,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/45/">Nov 11 - Nov 17, 2019</a></h2><h3><p>Libraries and Frameworks / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/johnbywater/eventsourcing" rel="noopener noreferrer">Eventsoucing in Python (⭐1.6k)</a> - Mature, stable Python library for event sourcing and DDD. Supports wide variety of databases, different kinds of orderings of domain events, application level encryption, snapshotting, optimistic concurrency control, and process events. Applications, and entire systems of applications, can be defined independently of infrastructure, and run in different ways (single threaded, multi-threaded, clocked, stepping, multi-process, actor model) and with different infrastructure.</li>
+<li><a href="https://github.com/johnbywater/eventsourcing" rel="noopener noreferrer">Eventsoucing in Python (⭐1.7k)</a> - Mature, stable Python library for event sourcing and DDD. Supports wide variety of databases, different kinds of orderings of domain events, application level encryption, snapshotting, optimistic concurrency control, and process events. Applications, and entire systems of applications, can be defined independently of infrastructure, and run in different ways (single threaded, multi-threaded, clocked, stepping, multi-process, actor model) and with different infrastructure.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/43/">Oct 28 - Nov 03, 2019</a></h2><h3><p>Books</p>
 </h3>
@@ -545,7 +694,7 @@
 <h3><p>Sample Projects / .NET (C#/F#)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kgrzybek/modular-monolith-with-ddd" rel="noopener noreferrer">Modular Monolith (⭐12k)</a> - Full Modular Monolith .NET application with Domain-Driven Design approach.</li>
+<li><a href="https://github.com/kgrzybek/modular-monolith-with-ddd" rel="noopener noreferrer">Modular Monolith (⭐14k)</a> - Full Modular Monolith .NET application with Domain-Driven Design approach.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/38/">Sep 23 - Sep 29, 2019</a></h2><h3><p>Blogs</p>
 </h3>
@@ -555,17 +704,17 @@
 <h3><p>Sample Projects / .NET (C#/F#)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mastreeno/Merp" rel="noopener noreferrer">Companion Code for Microsoft .NET Architecting Applications for the Enterprise (⭐503)</a> - An event based Micro ERP.</li>
+<li><a href="https://github.com/mastreeno/Merp" rel="noopener noreferrer">Companion Code for Microsoft .NET Architecting Applications for the Enterprise (⭐502)</a> - An event based Micro ERP.</li>
 </ul>
 <h3><p>Sample Projects / JVM languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/fabriciorissetto/kotlin-ddd-sample" rel="noopener noreferrer">Kotlin DDD Sample (⭐301)</a> - Sample DDD/CQRS project written in Kotlin.</li>
+<li><a href="https://github.com/fabriciorissetto/kotlin-ddd-sample" rel="noopener noreferrer">Kotlin DDD Sample (⭐306)</a> - Sample DDD/CQRS project written in Kotlin.</li>
 </ul>
 <h3><p>Libraries and Frameworks / .NET</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sm-g/ByValue" rel="noopener noreferrer">ByValue (⭐9)</a> - This library helps to create ValueObjects (even with collection properties) with properly implemented equality behavior.</li>
+<li><a href="https://github.com/sm-g/ByValue" rel="noopener noreferrer">ByValue (⭐7)</a> - This library helps to create ValueObjects (even with collection properties) with properly implemented equality behavior.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/32/">Aug 12 - Aug 18, 2019</a></h2><h3><p>Sample Projects / JVM languages</p>
 </h3>
@@ -585,12 +734,12 @@
 <h2><a href="https://www.trackawesomelist.com/2019/23/">Jun 10 - Jun 16, 2019</a></h2><h3><p>Sample Projects / PHP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/simara-svatopluk/cart" rel="noopener noreferrer">Shop Cart in PHP (⭐106)</a> - Sample project that demonstrates how simple shop cart can look like. Domain objects,Doctrine integration.,TDD,layers,unit testing</li>
+<li><a href="https://github.com/simara-svatopluk/cart" rel="noopener noreferrer">Shop Cart in PHP (⭐108)</a> - Sample project that demonstrates how simple shop cart can look like. Domain objects,Doctrine integration.,TDD,layers,unit testing</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/21/">May 27 - Jun 02, 2019</a></h2><h3><p>Sample Projects / PHP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/codeliner/php-ddd-cargo-sample" rel="noopener noreferrer">Eric Evans DDD Cargo Sample (⭐795)</a> - PHP 7 Version of the cargo sample used in Eric Evans DDD book</li>
+<li><a href="https://github.com/codeliner/php-ddd-cargo-sample" rel="noopener noreferrer">Eric Evans DDD Cargo Sample (⭐789)</a> - PHP 7 Version of the cargo sample used in Eric Evans DDD book</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/20/">May 20 - May 26, 2019</a></h2><h3><p>Books</p>
 </h3>
@@ -600,7 +749,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/18/">May 06 - May 12, 2019</a></h2><h3><p>Sample Projects / JVM languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ddd-by-examples/library" rel="noopener noreferrer">DDD By Examples - Library (⭐5.3k)</a> - sample project of a library driven by real business requirements. Modular monolith implemented with the help od DDD, BDD, EventStorming, Example Mapping, CQRS, and more.</li>
+<li><a href="https://github.com/ddd-by-examples/library" rel="noopener noreferrer">DDD By Examples - Library (⭐5.8k)</a> - sample project of a library driven by real business requirements. Modular monolith implemented with the help od DDD, BDD, EventStorming, Example Mapping, CQRS, and more.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/17/">Apr 29 - May 05, 2019</a></h2><h3><p>Free eBooks</p>
 </h3>
@@ -679,7 +828,7 @@
 </ul>
 
 <ul>
-<li><a href="https://dotnet.microsoft.com/download/thank-you/aspnet-ebook" rel="noopener noreferrer">Architecting Modern Web Applications with ASP.NET Core and Microsoft Azure</a> - Provides end-to-end guidance on building monolithic web applications using DDD, ASP.NET Core, and Azure. <a href="https://github.com/dotnet-architecture/eShopOnWeb" rel="noopener noreferrer">eShopOnWeb sample (⭐10k)</a></li>
+<li><a href="https://dotnet.microsoft.com/download/thank-you/aspnet-ebook" rel="noopener noreferrer">Architecting Modern Web Applications with ASP.NET Core and Microsoft Azure</a> - Provides end-to-end guidance on building monolithic web applications using DDD, ASP.NET Core, and Azure. <a href="https://github.com/dotnet-architecture/eShopOnWeb" rel="noopener noreferrer">eShopOnWeb sample (⭐11k)</a></li>
 </ul>
 
 <ul>
@@ -721,48 +870,48 @@
 <h3><p>Community Resources</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mariuszgil/awesome-eventstorming" rel="noopener noreferrer">Awesome Event Storming (⭐2.3k)</a> - awesome list that focuses only on Event Storming.</li>
+<li><a href="https://github.com/mariuszgil/awesome-eventstorming" rel="noopener noreferrer">Awesome Event Storming (⭐2.4k)</a> - awesome list that focuses only on Event Storming.</li>
 </ul>
 <h3><p>Sample Projects / .NET (C#/F#)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dcomartin/DDD-CQRS-ES-Example" rel="noopener noreferrer">CQRS-DDD Example (⭐135)</a> - Domain Driven Design, CQRS, &amp; Event Sourcing Example using GetEventStore, CommonDomain, NServiceBus, Entity Framework, SQL Server, SignalR.</li>
+<li><a href="https://github.com/dcomartin/DDD-CQRS-ES-Example" rel="noopener noreferrer">CQRS-DDD Example (⭐133)</a> - Domain Driven Design, CQRS, &amp; Event Sourcing Example using GetEventStore, CommonDomain, NServiceBus, Entity Framework, SQL Server, SignalR.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jbogard/ContosoUniversityCore" rel="noopener noreferrer">ContosoUniversityCore (⭐587)</a> - ContosoUniversity on ASP.NET Core with Full .NET Framework.</li>
+<li><a href="https://github.com/jbogard/ContosoUniversityCore" rel="noopener noreferrer">ContosoUniversityCore (⭐586)</a> - ContosoUniversity on ASP.NET Core with Full .NET Framework.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/eulerfx/DDDInventoryItemFSharp" rel="noopener noreferrer">DDDInventoryItemFSharp (⭐186)</a> - An idiomatic F# implementation of Domain-Driven Design</li>
+<li><a href="https://github.com/eulerfx/DDDInventoryItemFSharp" rel="noopener noreferrer">DDDInventoryItemFSharp (⭐187)</a> - An idiomatic F# implementation of Domain-Driven Design</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/andras-nemes/DDDSkeletonNet" rel="noopener noreferrer">DDDSkeletonNet (⭐180)</a> (C#) - a .NET skeleton project to introduce the concepts of Domain Driven Design and loosely coupled layers.</li>
+<li><a href="https://github.com/andras-nemes/DDDSkeletonNet" rel="noopener noreferrer">DDDSkeletonNet (⭐179)</a> (C#) - a .NET skeleton project to introduce the concepts of Domain Driven Design and loosely coupled layers.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/xhafan/emailmaker" rel="noopener noreferrer">EmailMaker (⭐13)</a> - Email marketing ASP.NET Core MVC and ASP.NET MVC demo app demonstrating <a href="https://github.com/xhafan/coreddd" rel="noopener noreferrer">CoreDdd (⭐70)</a> usage</li>
+<li><a href="https://github.com/xhafan/emailmaker" rel="noopener noreferrer">EmailMaker (⭐13)</a> - Email marketing ASP.NET Core MVC and ASP.NET MVC demo app demonstrating <a href="https://github.com/xhafan/coreddd" rel="noopener noreferrer">CoreDdd (⭐72)</a> usage</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/volak/eShopOnContainersDDD" rel="noopener noreferrer">eShopOnContainersDDD (⭐321)</a> - eShop fullstack example featuring catalog, basket, checkout, and order bounded contexts</li>
+<li><a href="https://github.com/volak/eShopOnContainersDDD" rel="noopener noreferrer">eShopOnContainersDDD (⭐319)</a> - eShop fullstack example featuring catalog, basket, checkout, and order bounded contexts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/MarkNijhof/Fohjin" rel="noopener noreferrer">Fohjin (⭐700)</a> - Example project that accompanies Mark Nijhof's <a href="https://leanpub.com/cqrs" rel="noopener noreferrer">CQRS</a> book.</li>
+<li><a href="https://github.com/MarkNijhof/Fohjin" rel="noopener noreferrer">Fohjin (⭐697)</a> - Example project that accompanies Mark Nijhof's <a href="https://leanpub.com/cqrs" rel="noopener noreferrer">CQRS</a> book.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/thinkbeforecoding/FsUno" rel="noopener noreferrer">FsUno (⭐76)</a> - Event sourcing implementation sample in F#.</li>
+<li><a href="https://github.com/thinkbeforecoding/FsUno" rel="noopener noreferrer">FsUno (⭐78)</a> - Event sourcing implementation sample in F#.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/VaughnVernon/IDDD_Samples_NET" rel="noopener noreferrer">IDDD Samples in .NET (⭐936)</a> - These are the sample Bounded Contexts for C#.NET from the book "Implementing Domain-Driven Design" by Vaughn Vernon.</li>
+<li><a href="https://github.com/VaughnVernon/IDDD_Samples_NET" rel="noopener noreferrer">IDDD Samples in .NET (⭐943)</a> - These are the sample Bounded Contexts for C#.NET from the book "Implementing Domain-Driven Design" by Vaughn Vernon.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/cesarcastrocuba/nlayerappv3" rel="noopener noreferrer">NLayerAppV3 (⭐155)</a> (.Net Core Preview 2) - a N-Layered Architecture Sample Project.</li>
+<li><a href="https://github.com/cesarcastrocuba/nlayerappv3" rel="noopener noreferrer">NLayerAppV3 (⭐154)</a> (.Net Core Preview 2) - a N-Layered Architecture Sample Project.</li>
 </ul>
 
 <ul>
@@ -770,7 +919,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/kgrzybek/sample-dotnet-core-cqrs-api" rel="noopener noreferrer">Sample .NET Core CQRS REST API (⭐3k)</a> - .NET Core REST API CQRS implementation with raw SQL and DDD using Clean Architecture.</li>
+<li><a href="https://github.com/kgrzybek/sample-dotnet-core-cqrs-api" rel="noopener noreferrer">Sample .NET Core CQRS REST API (⭐3.1k)</a> - .NET Core REST API CQRS implementation with raw SQL and DDD using Clean Architecture.</li>
 </ul>
 
 <ul>
@@ -783,7 +932,7 @@
 <h3><p>Sample Projects / Haskell</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Eventuria/gsd" rel="noopener noreferrer">Eventuria gsd (⭐52)</a> - Haskell todo list reactive application with DDD, CQRS and Event Sourcing, FRP.</li>
+<li><a href="https://github.com/Eventuria/gsd" rel="noopener noreferrer">Eventuria gsd (⭐53)</a> - Haskell todo list reactive application with DDD, CQRS and Event Sourcing, FRP.</li>
 </ul>
 <h3><p>Sample Projects / JavaScript / TypeScript</p>
 </h3>
@@ -793,7 +942,7 @@
 <h3><p>Sample Projects / JVM languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Pragmatists/eventsourcing-java-example" rel="noopener noreferrer">Event Sourcing Example (⭐100)</a> - A simplified (in memory) example of Event Sourcing and CQRS implementation for Java code (modeled for banking domain use cases).</li>
+<li><a href="https://github.com/Pragmatists/eventsourcing-java-example" rel="noopener noreferrer">Event Sourcing Example (⭐99)</a> - A simplified (in memory) example of Event Sourcing and CQRS implementation for Java code (modeled for banking domain use cases).</li>
 </ul>
 
 <ul>
@@ -806,16 +955,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jorge07/ddd-playground/" rel="noopener noreferrer">DDD Playground (⭐600)</a> - Sample implementation in PHP.</li>
+<li><a href="https://github.com/jorge07/ddd-playground/" rel="noopener noreferrer">DDD Playground (⭐593)</a> - Sample implementation in PHP.</li>
 </ul>
 <h3><p>Libraries and Frameworks / .NET</p>
 </h3>
 <ul>
-<li><a href="https://github.com/volak/Aggregates.NET" rel="noopener noreferrer">Aggregates.NET (⭐440)</a> - .NET event sourced domain driven design model via NServicebus and GetEventStore.</li>
+<li><a href="https://github.com/volak/Aggregates.NET" rel="noopener noreferrer">Aggregates.NET (⭐441)</a> - .NET event sourced domain driven design model via NServicebus and GetEventStore.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/yreynhout/aggregateSource" rel="noopener noreferrer">AggregateSource (⭐259)</a> - Lightweight infrastructure for doing eventsourcing using aggregates.</li>
+<li><a href="https://github.com/yreynhout/aggregateSource" rel="noopener noreferrer">AggregateSource (⭐258)</a> - Lightweight infrastructure for doing eventsourcing using aggregates.</li>
 </ul>
 
 <ul>
@@ -831,11 +980,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/d60/Cirqus" rel="noopener noreferrer">Cirqus (⭐232)</a> - d60 event sourcing + CQRS framework.</li>
+<li><a href="https://github.com/d60/Cirqus" rel="noopener noreferrer">Cirqus (⭐231)</a> - d60 event sourcing + CQRS framework.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/xhafan/coreddd" rel="noopener noreferrer">CoreDdd (⭐70)</a> - Set of open-source .NET libraries helping with DDD and CQRS, with NHibernate persistence</li>
+<li><a href="https://github.com/xhafan/coreddd" rel="noopener noreferrer">CoreDdd (⭐72)</a> - Set of open-source .NET libraries helping with DDD and CQRS, with NHibernate persistence</li>
 </ul>
 
 <ul>
@@ -847,7 +996,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/eventflow/EventFlow" rel="noopener noreferrer">EventFlow (⭐2.5k)</a> - Async/await first CQRS+ES and DDD framework for .NET <a href="http://geteventflow.net/" rel="noopener noreferrer">http://geteventflow.net/</a>.</li>
+<li><a href="https://github.com/eventflow/EventFlow" rel="noopener noreferrer">EventFlow (⭐2.6k)</a> - Async/await first CQRS+ES and DDD framework for .NET <a href="http://geteventflow.net/" rel="noopener noreferrer">http://geteventflow.net/</a>.</li>
 </ul>
 
 <ul>
@@ -855,27 +1004,27 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/MassTransit/MassTransit" rel="noopener noreferrer">MassTransit (⭐7.5k)</a> - Distributed Application Framework for .NET.</li>
+<li><a href="https://github.com/MassTransit/MassTransit" rel="noopener noreferrer">MassTransit (⭐7.8k)</a> - Distributed Application Framework for .NET.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Particular/NServiceBus" rel="noopener noreferrer">NServiceBus (⭐2.1k)</a> - Service bus for .NET.</li>
+<li><a href="https://github.com/Particular/NServiceBus" rel="noopener noreferrer">NServiceBus (⭐2.2k)</a> - Service bus for .NET.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ElderJames/shriek-fx" rel="noopener noreferrer">shriek-fx (⭐657)</a> - An simple,elegant and useful Domain-Driven Design and CQRS framework developed using .NET Core 2.0.</li>
+<li><a href="https://github.com/ElderJames/shriek-fx" rel="noopener noreferrer">shriek-fx (⭐652)</a> - An simple,elegant and useful Domain-Driven Design and CQRS framework developed using .NET Core 2.0.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/damianh/SqlStreamStore" rel="noopener noreferrer">SqlStreamStore (⭐468)</a> - .NET Stream Store library targeting SQL based implementations.</li>
+<li><a href="https://github.com/damianh/SqlStreamStore" rel="noopener noreferrer">SqlStreamStore</a> - .NET Stream Store library targeting SQL based implementations.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/mission202/Stringly.Typed" rel="noopener noreferrer">Stringly.Typed (⭐47)</a> - Making it easier to convert strings to/from .NET types.</li>
+<li><a href="https://github.com/mission202/Stringly.Typed" rel="noopener noreferrer">Stringly.Typed (⭐49)</a> - Making it easier to convert strings to/from .NET types.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jeyjeyemem/Xer.Cqrs" rel="noopener noreferrer">Xer.Cqrs (⭐101)</a> - A simple library for creating applications based on the CQRS pattern with support for attribute routing and hosted handlers. Developed in C# targeting .NET Standard 1.0.</li>
+<li><a href="https://github.com/jeyjeyemem/Xer.Cqrs" rel="noopener noreferrer">Xer.Cqrs (⭐103)</a> - A simple library for creating applications based on the CQRS pattern with support for attribute routing and hosted handlers. Developed in C# targeting .NET Standard 1.0.</li>
 </ul>
 <h3><p>Libraries and Frameworks / Databases</p>
 </h3>
@@ -885,17 +1034,17 @@
 <h3><p>Libraries and Frameworks / Elixir</p>
 </h3>
 <ul>
-<li><a href="https://github.com/otobus/event_bus" rel="noopener noreferrer">Event Bus (⭐702)</a> - Traceable, extendable and minimalist event bus implementation for Elixir with built-in event store and event watcher based on ETS.</li>
+<li><a href="https://github.com/otobus/event_bus" rel="noopener noreferrer">Event Bus (⭐703)</a> - Traceable, extendable and minimalist event bus implementation for Elixir with built-in event store and event watcher based on ETS.</li>
 </ul>
 <h3><p>Libraries and Frameworks / JavaScript / TypeScript</p>
 </h3>
 <ul>
-<li><a href="http://cqrs.js.org" rel="noopener noreferrer">cqrs.js</a> - CQRS implementations in node.js.  Includes <a href="https://github.com/adrai/node-eventstore" rel="noopener noreferrer">node-eventstore (⭐540)</a>, <a href="https://github.com/adrai/node-cqrs-domain" rel="noopener noreferrer">node-cqrs-domain (⭐270)</a>, <a href="https://github.com/adrai/node-cqrs-eventdenormalizer" rel="noopener noreferrer">node-eventdenormalizer (⭐39)</a>, <a href="https://github.com/adrai/node-cqrs-saga" rel="noopener noreferrer">node-cqrs-saga (⭐62)</a>.</li>
+<li><a href="http://cqrs.js.org" rel="noopener noreferrer">cqrs.js</a> - CQRS implementations in node.js.  Includes <a href="https://github.com/adrai/node-eventstore" rel="noopener noreferrer">node-eventstore (⭐536)</a>, <a href="https://github.com/adrai/node-cqrs-domain" rel="noopener noreferrer">node-cqrs-domain</a>, <a href="https://github.com/adrai/node-cqrs-eventdenormalizer" rel="noopener noreferrer">node-eventdenormalizer</a>, <a href="https://github.com/adrai/node-cqrs-saga" rel="noopener noreferrer">node-cqrs-saga</a>.</li>
 </ul>
 <h3><p>Libraries and Frameworks / JVM</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pawelkaczor/akka-ddd" rel="noopener noreferrer">akka-ddd (⭐355)</a> - Reusable artifacts for building applications on top of the Akka platform following CQRS/DDDD-based approach.</li>
+<li><a href="https://github.com/pawelkaczor/akka-ddd" rel="noopener noreferrer">akka-ddd (⭐360)</a> - Reusable artifacts for building applications on top of the Akka platform following CQRS/DDDD-based approach.</li>
 </ul>
 
 <ul>
@@ -942,7 +1091,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/6/">Feb 11 - Feb 17, 2019</a></h2><h3><p>Tools / Ruby</p>
 </h3>
 <ul>
-<li><a href="http://www.domainstorytelling.org/" rel="noopener noreferrer">Domain Storytelling</a> - a knowledge-crunching technique that helps the people involved to familiarize themselves with the domain and work out a model that expresses their shared understanding. Available as a <a href="http://www.domainstorytelling.org/images/DST_Whiteboard-Kit.pdf" rel="noopener noreferrer">print-out template</a>, as well as open-source online tool, <a href="https://www.wps.de/modeler" rel="noopener noreferrer">WPS Modeler</a> (<a href="https://github.com/wps/domain-story-modeler" rel="noopener noreferrer">source (⭐792)</a>).</li>
+<li><a href="http://www.domainstorytelling.org/" rel="noopener noreferrer">Domain Storytelling</a> - a knowledge-crunching technique that helps the people involved to familiarize themselves with the domain and work out a model that expresses their shared understanding. Available as a <a href="http://www.domainstorytelling.org/images/DST_Whiteboard-Kit.pdf" rel="noopener noreferrer">print-out template</a>, as well as open-source online tool, <a href="https://www.wps.de/modeler" rel="noopener noreferrer">WPS Modeler</a> (<a href="https://github.com/wps/domain-story-modeler" rel="noopener noreferrer">source (⭐834)</a>).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/4/">Jan 28 - Feb 03, 2019</a></h2><h3><p>Blogs</p>
 </h3>
@@ -953,11 +1102,6 @@
 </h3>
 <ul>
 <li><a href="https://www.quora.com/topic/Domain-Driven-Design-DDD" rel="noopener noreferrer">Quora</a> - Questions tagged <em>domain-driven-design</em>.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2018/35/">Aug 27 - Sep 02, 2018</a></h2><h3><p>User Groups / Ruby</p>
-</h3>
-<ul>
-<li><a href="https://www.meetup.com/dddbcn/" rel="noopener noreferrer">Barcelona</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/14/">Apr 02 - Apr 08, 2018</a></h2><h3><p>Video Collections</p>
 </h3>
@@ -1033,17 +1177,17 @@
 <h2><a href="https://www.trackawesomelist.com/2017/29/">Jul 17 - Jul 23, 2017</a></h2><h3><p>Sample Projects / JVM languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pilloPl/event-source-cqrs-sample" rel="noopener noreferrer">Event Sourcing and CQRS Sample (⭐476)</a> - Sample event sourced application with Command Query Responsibility Segregation</li>
+<li><a href="https://github.com/pilloPl/event-source-cqrs-sample" rel="noopener noreferrer">Event Sourcing and CQRS Sample (⭐475)</a> - Sample event sourced application with Command Query Responsibility Segregation</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/28/">Jul 10 - Jul 16, 2017</a></h2><h3><p>Community Resources</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sebastianharko/adv-es-cqrs-ddd" rel="noopener noreferrer">Advanced Topics in Event Sourcing / CQRS / DDD (⭐110)</a> - Advanced Topics in Event Sourcing / CQRS / DDD list compiled and maintaned by @<a href="https://github.com/sebastianharko" rel="noopener noreferrer">sebastianharko</a>.</li>
+<li><a href="https://github.com/sebastianharko/adv-es-cqrs-ddd" rel="noopener noreferrer">Advanced Topics in Event Sourcing / CQRS / DDD (⭐109)</a> - Advanced Topics in Event Sourcing / CQRS / DDD list compiled and maintaned by @<a href="https://github.com/sebastianharko" rel="noopener noreferrer">sebastianharko</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/26/">Jun 26 - Jul 02, 2017</a></h2><h3><p>Sample Projects / JVM languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/andreschaffer/event-sourcing-cqrs-examples" rel="noopener noreferrer">Event Sourcing and CQRS Examples (⭐582)</a> - A pragmatic application of Event Sourcing and CQRS in Java with good references for common related problems, e.g. event ordering and idempotency.</li>
+<li><a href="https://github.com/andreschaffer/event-sourcing-cqrs-examples" rel="noopener noreferrer">Event Sourcing and CQRS Examples (⭐598)</a> - A pragmatic application of Event Sourcing and CQRS in Java with good references for common related problems, e.g. event ordering and idempotency.</li>
 </ul>
 <h3><p>Libraries and Frameworks / JavaScript / TypeScript</p>
 </h3>
@@ -1053,7 +1197,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/13/">Mar 27 - Apr 02, 2017</a></h2><h3><p>Libraries and Frameworks / Elixir</p>
 </h3>
 <ul>
-<li><a href="https://github.com/slashdotdash/eventstore" rel="noopener noreferrer">eventstore (⭐1.1k)</a> - CQRS event store using PostgreSQL for persistence.</li>
+<li><a href="https://github.com/slashdotdash/eventstore" rel="noopener noreferrer">eventstore (⭐1.2k)</a> - CQRS event store using PostgreSQL for persistence.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/11/">Mar 13 - Mar 19, 2017</a></h2><h3><p>Conferences / Ruby</p>
 </h3>
@@ -1067,7 +1211,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/10/">Mar 06 - Mar 12, 2017</a></h2><h3><p>Libraries and Frameworks / Elixir</p>
 </h3>
 <ul>
-<li><a href="https://github.com/slashdotdash/commanded" rel="noopener noreferrer">Commanded (⭐1.9k)</a> - Command handling middleware for CQRS/ES applications, Pure Functional Data Structures for Aggregates and Process Managers, Point-to-Point message routing, and much more in Elixir (Erlang VM) - All in Actor concurrency model.</li>
+<li><a href="https://github.com/slashdotdash/commanded" rel="noopener noreferrer">Commanded (⭐2k)</a> - Command handling middleware for CQRS/ES applications, Pure Functional Data Structures for Aggregates and Process Managers, Point-to-Point message routing, and much more in Elixir (Erlang VM) - All in Actor concurrency model.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/7/">Feb 13 - Feb 19, 2017</a></h2><h3><p>Books</p>
 </h3>
@@ -1290,11 +1434,11 @@
 <h3><p>Sample Projects / JVM languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mdonkers/akka-cqrs-es-demo" rel="noopener noreferrer">Akka CQRS ES Demo (⭐57)</a> - Demo project to implement the CQRS and Event Sourcing patterns in Scala-Akka.</li>
+<li><a href="https://github.com/mdonkers/akka-cqrs-es-demo" rel="noopener noreferrer">Akka CQRS ES Demo (⭐56)</a> - Demo project to implement the CQRS and Event Sourcing patterns in Scala-Akka.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/BottegaIT/ddd-leaven-v2" rel="noopener noreferrer">DDD Leaven (⭐874)</a> - DDD-CQRS sample v2.0 project that helps you with starting out advanced domain modeling using Spring, JPA and testing.</li>
+<li><a href="https://github.com/BottegaIT/ddd-leaven-v2" rel="noopener noreferrer">DDD Leaven (⭐881)</a> - DDD-CQRS sample v2.0 project that helps you with starting out advanced domain modeling using Spring, JPA and testing.</li>
 </ul>
 <h3><p>Libraries and Frameworks / .NET</p>
 </h3>
@@ -1303,11 +1447,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/yreynhout/Projac" rel="noopener noreferrer">Projac (⭐138)</a> - Projac is a set of projection libraries that allow you to write projections targetting various backing stores.</li>
+<li><a href="https://github.com/yreynhout/Projac" rel="noopener noreferrer">Projac (⭐139)</a> - Projac is a set of projection libraries that allow you to write projections targetting various backing stores.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/yevhen/Streamstone" rel="noopener noreferrer">Streamstone (⭐401)</a> - Event Store for Azure Table Storage.</li>
+<li><a href="https://github.com/yevhen/Streamstone" rel="noopener noreferrer">Streamstone (⭐403)</a> - Event Store for Azure Table Storage.</li>
 </ul>
 <h3><p>Podcasts and Interviews / Ruby</p>
 </h3>
@@ -1378,5 +1522,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
