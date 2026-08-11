@@ -16,51 +16,309 @@
     <meta property="og:title" content="Track Awesome Langchain Updates Weekly" />
     <meta property="og:description" content="😎 Awesome list of tools and projects with the awesome LangChain framework" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Langchain Updates Weekly</h1>
 <p>😎 Awesome list of tools and projects with the awesome LangChain framework</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/kyrolabs/awesome-langchain/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/kyrolabs/awesome-langchain">😺 kyrolabs/awesome-langchain</a><span> · </span><span>⭐ 9.3K</span><span> · </span><span>🏷️ ChatGPT</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/kyrolabs/awesome-langchain/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/kyrolabs/awesome-langchain">😺 kyrolabs/awesome-langchain</a><span> · </span><span>⭐ 9.5K</span><span> · </span><span>🏷️ ChatGPT</span></p>
 <p><span>[ </span><a href="/kyrolabs/awesome-langchain/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/kyrolabs/awesome-langchain/readme/">Overview</a><span> ]</span></p>
 
-<h2><a href="https://www.trackawesomelist.com/2026/18/">May 04 - May 10, 2026</a></h2><h3><p>Open Source Projects / Knowledge Management</p>
+<h2><a href="https://www.trackawesomelist.com/2026/33/">Aug 17 - Aug 23, 2026</a></h2><h3><p>LangChain Framework</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NameetP/pdfmux" rel="noopener noreferrer">pdfmux (⭐57)</a>: PDF-to-Markdown extraction with per-page confidence scoring and self-healing fallback. Native LangChain document loader (<code>PdfmuxLoader</code>); built for RAG pipelines that can't tolerate silent extraction failures. <img src="https://img.shields.io/github/stars/NameetP/pdfmux?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/langchain-ai/langchain" rel="noopener noreferrer">LangChain (⭐143k)</a>: the original 🐍 <img src="https://img.shields.io/github/stars/langchain-ai/langchain?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/langchain-ai/langchainjs" rel="noopener noreferrer">LangChain.js (⭐18k)</a>: the js brother ✨ <img src="https://img.shields.io/github/stars/langchain-ai/langchainjs?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://x.com/LangChainAI" rel="noopener noreferrer">Twitter account</a>: follow to get fresh updates</li>
+</ul>
+<h3><p>Ports to other languages</p>
+</h3>
+<ul>
+<li><a href="https://github.com/patterns-ai-core/langchainrb" rel="noopener noreferrer">LangchainRb (⭐2k)</a>: Ruby Langchain <img src="https://img.shields.io/github/stars/patterns-ai-core/langchainrb?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+<h3><p>Tools / Low-code</p>
+</h3>
+<ul>
+<li><a href="https://github.com/langflow-ai/langflow" rel="noopener noreferrer">Langflow (⭐153k)</a>: LangFlow is a UI for LangChain <img src="https://img.shields.io/github/stars/langflow-ai/langflow?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+<h3><p>Tools / Services</p>
+</h3>
+<ul>
+<li><a href="https://github.com/rlancemartin/auto-evaluator" rel="noopener noreferrer">Auto-evaluator (⭐1.1k)</a>: a lightweight evaluation tool for question-answering using Langchain <img src="https://img.shields.io/github/stars/rlancemartin/auto-evaluator?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Dicklesworthstone/swiss_army_llama" rel="noopener noreferrer">Swiss Army Llama (⭐1.1k)</a>: Llama2 Embeddings FastAPI Service using LangChain <img src="https://img.shields.io/github/stars/Dicklesworthstone/swiss_army_llama?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+<h3><p>Tools / Agents</p>
+</h3>
+<ul>
+<li><a href="https://github.com/zylon-ai/private-gpt" rel="noopener noreferrer">Private GPT (⭐57k)</a>: Interact privately with your documents using the power of GPT, 100% privately, no data leaks <img src="https://img.shields.io/github/stars/zylon-ai/private-gpt?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/hpcaitech/ColossalAI" rel="noopener noreferrer">Colossal-AI (⭐41k)</a>: LLM training and inference system whose ColossalChat application implements LLM with RLHF <img src="https://img.shields.io/github/stars/hpcaitech/ColossalAI?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/crewAIInc/crewAI" rel="noopener noreferrer">CrewAI (⭐57k)</a>: Cutting-edge framework for orchestrating role-playing, autonomous AI agents. <img src="https://img.shields.io/github/stars/crewAIInc/crewAI?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jina-ai/thinkgpt" rel="noopener noreferrer">ThinkGPT (⭐1.6k)</a>: Agent techniques to augment your LLM and push it beyond its limits <img src="https://img.shields.io/github/stars/jina-ai/thinkgpt?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/superagent-ai/superagent" rel="noopener noreferrer">SuperAgent (⭐6.7k)</a>: Deploy LLM Agents to production <img src="https://img.shields.io/github/stars/superagent-ai/superagent?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/steamship-core/langchain-production-starter" rel="noopener noreferrer">Multi-Modal LangChain agents in Production (⭐477)</a>: Deploy LangChain Agents and connect them to Telegram <img src="https://img.shields.io/github/stars/steamship-core/langchain-production-starter?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/orgexyz/BlockAGI" rel="noopener noreferrer">BlockAGI (⭐322)</a>: BlockAGI conducts iterative, domain-specific research, and outputs detailed narrative reports to showcase its findings <img src="https://img.shields.io/github/stars/orgexyz/BlockAGI?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/langchain-ai/deepagents" rel="noopener noreferrer">deepagents (⭐28k)</a>: LangChain's framework for building deep agents that plan, delegate to sub-agents, and work against a virtual file system over long-horizon tasks. Includes dcode, a model-agnostic open-source coding agent. <img src="https://img.shields.io/github/stars/langchain-ai/deepagents?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+<h3><p>Tools / Templates</p>
+</h3>
+<ul>
+<li><a href="https://github.com/vercel/ai" rel="noopener noreferrer">AI (⭐26k)</a>: Vercel template to build AI-powered applications with React, Svelte, and Vue, first class support for LangChain <img src="https://img.shields.io/github/stars/vercel/ai?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mem0ai/mem0" rel="noopener noreferrer">Mem0 (⭐62k)</a>: Universal memory layer for AI agents. <img src="https://img.shields.io/github/stars/mem0ai/mem0?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+<h3><p>Open Source Projects / Knowledge Management</p>
+</h3>
+<ul>
+<li><a href="https://github.com/QuivrHQ/quivr" rel="noopener noreferrer">Quivr (⭐39k)</a>: Opinionated RAG for integrating GenAI into your apps <img src="https://img.shields.io/github/stars/QuivrHQ/quivr?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+<h3><p>Open Source Projects / Other / Chatbots</p>
+</h3>
+<ul>
+<li><a href="https://github.com/eosphoros-ai/DB-GPT" rel="noopener noreferrer">DB GPT (⭐20k)</a>: Interact your data and environment using the local GPT, no data leaks, 100% privately, 100% security <img src="https://img.shields.io/github/stars/eosphoros-ai/DB-GPT?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Future-House/paper-qa" rel="noopener noreferrer">Paper QA (⭐9k)</a>: LLM Chain for answering questions from documents with citations <img src="https://img.shields.io/github/stars/Future-House/paper-qa?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/langchain-ai/chat-langchain" rel="noopener noreferrer">Chat Langchain (⭐6.4k)</a>: locally hosted chatbot specifically focused on question answering over the LangChain documentation <img src="https://img.shields.io/github/stars/langchain-ai/chat-langchain?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/akshata29/entaoai" rel="noopener noreferrer">Entaoai (⭐866)</a>: ChatGPT + Enterprise data with Azure OpenAI <img src="https://img.shields.io/github/stars/akshata29/entaoai?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/yvann-ba/Robby-chatbot" rel="noopener noreferrer">Robby-Chatbot (⭐814)</a>: AI chatbot 🤖 for chat with CSV, PDF, TXT files 📄 and YTB videos 🎥 | using Langchain🦜 | OpenAI | Streamlit ⚡.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/vercel/chatbot" rel="noopener noreferrer">AI Chatbot (⭐21k)</a>: A full-featured, hackable Next.js AI chatbot built by Vercel Labs <img src="https://img.shields.io/github/stars/vercel/chatbot?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/joshpxyne/gpt-migrate" rel="noopener noreferrer">GPT Migrate (⭐7k)</a>: Easily migrate your codebase from one framework or language to another.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/lobehub/lobehub" rel="noopener noreferrer">LobeHub (⭐81k)</a> An open-source, extensible (Function Calling), high-performance chatbot framework <img src="https://img.shields.io/github/stars/lobehub/lobehub?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/minhbtrc/langchain-chatbot" rel="noopener noreferrer">PersonalityChatbot (⭐63)</a>: Langchain chatbot for chat with personality using Langchain🦜 | LangSmith | MongoDB. <img src="https://img.shields.io/github/stars/minhbtrc/langchain-chatbot?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+<h3><p>Learn / Notebooks</p>
+</h3>
+<ul>
+<li><a href="https://github.com/pinecone-io/examples" rel="noopener noreferrer">LangChain Handbook (⭐3k)</a>: Pinecone / James Briggs' LangChain handbook</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/prof-frink-lab/slangchain" rel="noopener noreferrer">BYO Knowledge Graph (⭐199)</a></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/promptise-com/foundry" rel="noopener noreferrer">Promptise Foundry (⭐815)</a>: Production Python framework for agentic AI — controllable reasoning, a full MCP server SDK, autonomous runtime, memory, governance, security, and observability. Works with any LangChain <code>BaseChatModel</code>. <img src="https://img.shields.io/github/stars/promptise-com/foundry?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/run-llama/llama_index" rel="noopener noreferrer">LlamaIndex (⭐51k)</a>: provides a central interface to connect your LLM's with external data. <img src="https://img.shields.io/github/stars/run-llama/llama_index?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Josh-XT/AGiXT" rel="noopener noreferrer">AGiXT (⭐3.2k)</a>: Dynamic AI agent automation platform that orchestrates instruction following and complex task management. <img src="https://img.shields.io/github/stars/Josh-XT/AGiXT?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/FoundationAgents/MetaGPT" rel="noopener noreferrer">MetaGPT (⭐70k)</a>: The Multi-Agent Meta Programming Framework: Given one line Requirement, return PRD, Design, Tasks, Repo and CI <img src="https://img.shields.io/github/stars/FoundationAgents/MetaGPT?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/blib-la/hyv" rel="noopener noreferrer">Hyv (⭐24)</a>: Probably the easiest way to use any AI Model in Node.js and create complex interactions with ease. <img src="https://img.shields.io/github/stars/blib-la/hyv?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/axflow/axflow" rel="noopener noreferrer">Axflow (⭐1.1k)</a>: A comprehensive AI framework for TypeScript <img src="https://img.shields.io/github/stars/axflow/axflow?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dottxt-ai/outlines" rel="noopener noreferrer">Outlines (⭐15k)</a>: Fast and reliable neural text generation. <img src="https://img.shields.io/github/stars/dottxt-ai/outlines?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/letta-ai/letta" rel="noopener noreferrer">Letta (⭐24k)</a>: Platform for stateful agents with advanced memory that learn and self-improve <img src="https://img.shields.io/github/stars/letta-ai/letta?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/agentlabs-dev/agentlabs" rel="noopener noreferrer">Agentlabs (⭐555)</a>: Universal AI Agent Frontend. Build your backend we handle the rest. <img src="https://img.shields.io/github/stars/agentlabs-dev/agentlabs?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/the-open-agent/openagent" rel="noopener noreferrer">OpenAgent (⭐5.5k)</a>: Open-source AI LangChain-like RAG (Retrieval-Augmented Generation) knowledge database with web UI and Enterprise SSO⚡️, supports OpenAI, Azure, LLaMA, Google Gemini, HuggingFace, Claude, Grok, etc <img src="https://img.shields.io/github/stars/the-open-agent/openagent?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/SWE-agent/SWE-agent" rel="noopener noreferrer">SWE Agent (⭐20k)</a>: SWE-agent takes a GitHub issue and tries to automatically fix it, using GPT-4, or your LM of choice. <img src="https://img.shields.io/github/stars/SWE-agent/SWE-agent?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tjmlabs/AgentRun" rel="noopener noreferrer">AgentRun (⭐376)</a>: The easiest, and fastest way to run AI-generated Python code safely <img src="https://img.shields.io/github/stars/tjmlabs/AgentRun?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/agentscope-ai/agentscope" rel="noopener noreferrer">AgentScope (⭐29k)</a>: Start building LLM-empowered multi-agent applications in an easier way. <img src="https://img.shields.io/github/stars/agentscope-ai/agentscope?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/agno-agi/agno" rel="noopener noreferrer">Agno (⭐42k)</a>: Build, run, and manage agent platforms. <img src="https://img.shields.io/github/stars/agno-agi/agno?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2026/18/">May 04 - May 10, 2026</a></h2><h3><p>Open Source Projects / Knowledge Management</p>
+</h3>
+<ul>
+<li><a href="https://github.com/NameetP/pdfmux" rel="noopener noreferrer">pdfmux (⭐80)</a>: PDF-to-Markdown extraction with per-page confidence scoring and self-healing fallback. Native LangChain document loader (<code>PdfmuxLoader</code>); built for RAG pipelines that can't tolerate silent extraction failures. <img src="https://img.shields.io/github/stars/NameetP/pdfmux?style=social" alt="GitHub Repo stars" /></li>
+</ul>
+<h3><p>Other LLM Frameworks / Videos Playlists</p>
+</h3>
+<ul>
+<li><a href="https://github.com/promptise-com/foundry" rel="noopener noreferrer">Promptise Foundry (⭐863)</a>: Production Python framework for agentic AI — controllable reasoning, a full MCP server SDK, autonomous runtime, memory, governance, security, and observability. Works with any LangChain <code>BaseChatModel</code>. <img src="https://img.shields.io/github/stars/promptise-com/foundry?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/13/">Mar 30 - Apr 05, 2026</a></h2><h3><p>Tools / Platforms</p>
 </h3>
 <ul>
-<li><a href="https://github.com/future-agi/traceAI" rel="noopener noreferrer">traceAI (⭐168)</a>: Open-source OpenTelemetry-native tracing framework for LLM applications, with native LangChain instrumentation and support for 20+ frameworks. <a href="https://github.com/future-agi/traceAI" rel="noopener noreferrer"><img src="https://img.shields.io/github/stars/future-agi/traceAI?style=social" alt="GitHub Repo stars" /></a></li>
+<li><a href="https://github.com/future-agi/traceAI" rel="noopener noreferrer">traceAI (⭐211)</a>: Open-source OpenTelemetry-native tracing framework for LLM applications, with native LangChain instrumentation and support for 20+ frameworks. <a href="https://github.com/future-agi/traceAI" rel="noopener noreferrer"><img src="https://img.shields.io/github/stars/future-agi/traceAI?style=social" alt="GitHub Repo stars" /></a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/2/">Jan 12 - Jan 18, 2026</a></h2><h3><p>Learn / Notebooks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/iparesh18/Learn-LangChain" rel="noopener noreferrer">Learn LangChain (JS) (⭐5)</a> – A structured, example-driven LangChain JS learning repository covering prompts, chains, tools, embeddings, RAG, agents, Puppeteer scraping, and LangGraph-based multi-agent workflows.</li>
+<li><a href="https://github.com/iparesh18/Learn-LangChain" rel="noopener noreferrer">Learn LangChain (JS) (⭐6)</a> – A structured, example-driven LangChain JS learning repository covering prompts, chains, tools, embeddings, RAG, agents, Puppeteer scraping, and LangGraph-based multi-agent workflows.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/49/">Dec 08 - Dec 14, 2025</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mastra-ai/mastra" rel="noopener noreferrer">Mastra AI (⭐23k)</a>: a framework for building AI-powered applications and agents with a modern TypeScript stack.</li>
+<li><a href="https://github.com/mastra-ai/mastra" rel="noopener noreferrer">Mastra AI (⭐27k)</a>: a framework for building AI-powered applications and agents with a modern TypeScript stack.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/33/">Aug 18 - Aug 24, 2025</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/maximhq/bifrost" rel="noopener noreferrer">Bifrost (⭐4.3k)</a>: Bifrost is the fastest LLM gateway, with just 11μs overhead at 5,000 RPS, making it 50x faster than LiteLLM. <img src="https://img.shields.io/github/stars/maximhq/bifrost?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/maximhq/bifrost" rel="noopener noreferrer">Bifrost (⭐6.9k)</a>: Bifrost is the fastest LLM gateway, with just 11μs overhead at 5,000 RPS, making it 50x faster than LiteLLM. <img src="https://img.shields.io/github/stars/maximhq/bifrost?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/19/">May 12 - May 18, 2025</a></h2><h3><p>Ports to other languages</p>
 </h3>
@@ -69,7 +327,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/brainlid/langchain" rel="noopener noreferrer">Langchain</a>: Elixir implementation of a LangChain <img src="https://img.shields.io/github/stars/brainlid/langchain?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/brainlid/langchain" rel="noopener noreferrer">Langchain (⭐1.2k)</a>: Elixir implementation of a LangChain <img src="https://img.shields.io/github/stars/brainlid/langchain?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
@@ -78,36 +336,26 @@
 <h3><p>Tools / Services</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cvs-health/uqlm" rel="noopener noreferrer">UQLM (⭐1.1k)</a>: UQLM: Uncertainty Quantification for Language Models, is a Python library for LLM hallucination detection using state-of-the-art uncertainty quantification techniques <img src="https://img.shields.io/github/stars/cvs-health/uqlm?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h3><p>Other LLM Frameworks / Videos Playlists</p>
-</h3>
-<ul>
-<li><a href="https://github.com/tensorzero/tensorzero" rel="noopener noreferrer">TensorZero (⭐11k)</a>: An open-source framework for building production-grade LLM applications. It unifies an LLM gateway, observability, optimization, evaluations, and experimentation. <img src="https://img.shields.io/github/stars/tensorzero/tensorzero?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/cvs-health/uqlm" rel="noopener noreferrer">UQLM (⭐1.2k)</a>: UQLM: Uncertainty Quantification for Language Models, is a Python library for LLM hallucination detection using state-of-the-art uncertainty quantification techniques <img src="https://img.shields.io/github/stars/cvs-health/uqlm?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/17/">Apr 28 - May 04, 2025</a></h2><h3><p>Tools / Services</p>
 </h3>
 <ul>
-<li><a href="https://github.com/langwatch/langwatch" rel="noopener noreferrer">LangWatch (⭐3.2k)</a>: An Open Source tool for observing, evaluating and optimising your llm apps and prompts, which supports LangChain out of the box! <img src="https://img.shields.io/github/stars/langwatch/langwatch?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/langwatch/langwatch" rel="noopener noreferrer">LangWatch (⭐3.4k)</a>: An Open Source tool for observing, evaluating and optimising your llm apps and prompts, which supports LangChain out of the box! <img src="https://img.shields.io/github/stars/langwatch/langwatch?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/splx-ai/agentic-radar" rel="noopener noreferrer">Agentic Radar (⭐956)</a> - Open-source CLI security scanner for agentic workflows. Scans your workflow’s source code, detects vulnerabilities, and generates an interactive visualization along with a detailed security report. <img src="https://img.shields.io/github/stars/splx-ai/agentic-radar?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/splx-ai/agentic-radar" rel="noopener noreferrer">Agentic Radar (⭐1k)</a> - Open-source CLI security scanner for agentic workflows. Scans your workflow’s source code, detects vulnerabilities, and generates an interactive visualization along with a detailed security report. <img src="https://img.shields.io/github/stars/splx-ai/agentic-radar?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/10/">Mar 10 - Mar 16, 2025</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cloudwego/eino" rel="noopener noreferrer">Eino (⭐11k)</a>: Eino provides a Golang AI application development framework with various component integrations and the ability to orchestrate Chains and Graphs similar to LangChain and LangGraph. <img src="https://img.shields.io/github/stars/cloudwego/eino?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/cloudwego/eino" rel="noopener noreferrer">Eino (⭐13k)</a>: Eino provides a Golang AI application development framework with various component integrations and the ability to orchestrate Chains and Graphs similar to LangChain and LangGraph. <img src="https://img.shields.io/github/stars/cloudwego/eino?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/8/">Feb 24 - Mar 02, 2025</a></h2><h3><p>Tools / Low-code</p>
 </h3>
 <ul>
 <li><a href="https://github.com/Onelevenvy/flock" rel="noopener noreferrer">Flock (⭐1.1k)</a>: Flock is a workflow-based low-code platform for rapidly building chatbots, RAG, and coordinating multi-agent teams<img src="https://img.shields.io/github/stars/Onelevenvy/flock?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h3><p>Tools / Agents</p>
-</h3>
-<ul>
-<li><a href="https://github.com/joaomdmoura/crewai" rel="noopener noreferrer">CrewAI (⭐50k)</a>: Cutting-edge framework for orchestrating role-playing, autonomous AI agents. <img src="https://img.shields.io/github/stars/joaomdmoura/crewai?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Open Source Projects / Knowledge Management</p>
 </h3>
@@ -122,21 +370,21 @@
 <h2><a href="https://www.trackawesomelist.com/2025/5/">Feb 03 - Feb 09, 2025</a></h2><h3><p>Tools / Services</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cvs-health/langfair" rel="noopener noreferrer">LangFair (⭐257)</a>: LangFair is a Python library for conducting use-case-specific LLM bias and fairness assessments <img src="https://img.shields.io/github/stars/cvs-health/langfair?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/cvs-health/langfair" rel="noopener noreferrer">LangFair (⭐261)</a>: LangFair is a Python library for conducting use-case-specific LLM bias and fairness assessments <img src="https://img.shields.io/github/stars/cvs-health/langfair?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/33/">Aug 12 - Aug 18, 2024</a></h2><h3><p>Tools / Services</p>
 </h3>
 <ul>
-<li><a href="https://github.com/CopilotKit/CopilotKit" rel="noopener noreferrer">CopilotKit</a>: A framework for building custom AI Copilots 🤖 in-app AI chatbots, in-app AI Agents, &amp; AI-powered Textareas <img src="https://img.shields.io/github/stars/CopilotKit/CopilotKit?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/CopilotKit/CopilotKit" rel="noopener noreferrer">CopilotKit (⭐36k)</a>: A framework for building custom AI Copilots 🤖 in-app AI chatbots, in-app AI Agents, &amp; AI-powered Textareas <img src="https://img.shields.io/github/stars/CopilotKit/CopilotKit?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/SakanaAI/AI-Scientist" rel="noopener noreferrer">AI Scientist (⭐13k)</a>: The AI Scientist: Towards Fully Automated Open-Ended Scientific <img src="https://img.shields.io/github/stars/SakanaAI/AI-Scientist?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/SakanaAI/AI-Scientist" rel="noopener noreferrer">AI Scientist (⭐14k)</a>: The AI Scientist: Towards Fully Automated Open-Ended Scientific <img src="https://img.shields.io/github/stars/SakanaAI/AI-Scientist?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/stanfordnlp/dspy" rel="noopener noreferrer">DSPy (⭐34k)</a>: The framework for programming—not prompting—foundation models <img src="https://img.shields.io/github/stars/stanfordnlp/dspy?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/stanfordnlp/dspy" rel="noopener noreferrer">DSPy (⭐36k)</a>: The framework for programming—not prompting—foundation models <img src="https://img.shields.io/github/stars/stanfordnlp/dspy?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/29/">Jul 15 - Jul 21, 2024</a></h2><h3><p>Open Source Projects / Other / Chatbots</p>
 </h3>
@@ -150,7 +398,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/run-llama/llama-agents" rel="noopener noreferrer">llama-agents (⭐355)</a>: llama-agents is an async-first framework for building, iterating, and productionizing multi-agent systems, including multi-agent communication, distributed tool execution, human-in-the-loop, and more <img src="https://img.shields.io/github/stars/run-llama/llama-agents?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/run-llama/llama-agents" rel="noopener noreferrer">llama-agents (⭐437)</a>: llama-agents is an async-first framework for building, iterating, and productionizing multi-agent systems, including multi-agent communication, distributed tool execution, human-in-the-loop, and more <img src="https://img.shields.io/github/stars/run-llama/llama-agents?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
@@ -159,12 +407,12 @@
 <h2><a href="https://www.trackawesomelist.com/2024/25/">Jun 17 - Jun 23, 2024</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dreadnode/rigging" rel="noopener noreferrer">Rigging (⭐409)</a>: Lightweight LLM Interaction Framework (rust) <img src="https://img.shields.io/github/stars/dreadnode/rigging?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/dreadnode/rigging" rel="noopener noreferrer">Rigging (⭐419)</a>: Lightweight LLM Interaction Framework (rust) <img src="https://img.shields.io/github/stars/dreadnode/rigging?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/23/">Jun 03 - Jun 09, 2024</a></h2><h3><p>Tools / Services</p>
 </h3>
 <ul>
-<li><a href="https://github.com/JetXu-LLM/llama-github" rel="noopener noreferrer">Llama-github (⭐324)</a>: Llama-github is a python library which built with Langchain framework that helps you retrieve the most relevant code snippets, issues, and repository information from GitHub <img src="https://img.shields.io/github/stars/JetXu-LLM/llama-github?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/JetXu-LLM/llama-github" rel="noopener noreferrer">Llama-github (⭐292)</a>: Llama-github is a python library which built with Langchain framework that helps you retrieve the most relevant code snippets, issues, and repository information from GitHub <img src="https://img.shields.io/github/stars/JetXu-LLM/llama-github?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/20/">May 13 - May 19, 2024</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
@@ -173,25 +421,17 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/pipecat-ai/pipecat" rel="noopener noreferrer">Pipecat (⭐12k)</a>: Open Source framework for voice and multimodal conversational AI. <img src="https://img.shields.io/github/stars/pipecat-ai/pipecat?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/phidatahq/phidata" rel="noopener noreferrer">Phidata (⭐40k)</a>: Build AI Assistants with memory, knowledge and tools. <img src="https://img.shields.io/github/stars/phidatahq/phidata?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/pipecat-ai/pipecat" rel="noopener noreferrer">Pipecat (⭐14k)</a>: Open Source framework for voice and multimodal conversational AI. <img src="https://img.shields.io/github/stars/pipecat-ai/pipecat?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/18/">Apr 29 - May 05, 2024</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
-<ul>
-<li><a href="https://github.com/modelscope/agentscope" rel="noopener noreferrer">AgentScope (⭐24k)</a>: Start building LLM-empowered multi-agent applications in an easier way. <img src="https://img.shields.io/github/stars/modelscope/agentscope?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
 <ul>
 <li><a href="https://github.com/kingjulio8238/memary" rel="noopener noreferrer">Memary (⭐2.6k)</a>: Longterm Memory for Autonomous Agents. <img src="https://img.shields.io/github/stars/kingjulio8238/memary?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/16/">Apr 15 - Apr 21, 2024</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Doriandarko/maestro" rel="noopener noreferrer">Maestro (⭐4.3k)</a>: A framework for Claude Opus to intelligently orchestrate subagents. <img src="https://img.shields.io/github/stars/Doriandarko/maestro?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/Doriandarko/maestro" rel="noopener noreferrer">Maestro (⭐4.4k)</a>: A framework for Claude Opus to intelligently orchestrate subagents. <img src="https://img.shields.io/github/stars/Doriandarko/maestro?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
@@ -199,23 +439,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/princeton-nlp/swe-agent" rel="noopener noreferrer">SWE Agent (⭐19k)</a>: SWE-agent takes a GitHub issue and tries to automatically fix it, using GPT-4, or your LM of choice. <img src="https://img.shields.io/github/stars/princeton-nlp/swe-agent?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/Portkey-AI/gateway" rel="noopener noreferrer">Gateway (⭐13k)</a>: A Blazing Fast AI Gateway. Route to 100+ LLMs with 1 fast &amp; friendly API. <img src="https://img.shields.io/github/stars/Portkey-AI/gateway?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Portkey-AI/gateway" rel="noopener noreferrer">Gateway (⭐11k)</a>: A Blazing Fast AI Gateway. Route to 100+ LLMs with 1 fast &amp; friendly API. <img src="https://img.shields.io/github/stars/Portkey-AI/gateway?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/Maximilian-Winter/llama-cpp-agent" rel="noopener noreferrer">LLama Cpp Agent (⭐652)</a>: The llama-cpp-agent framework is a tool designed for easy interaction with Large Language Models <img src="https://img.shields.io/github/stars/Maximilian-Winter/llama-cpp-agent?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Jonathan-Adly/AgentRun" rel="noopener noreferrer">AgentRun (⭐370)</a>: The easiest, and fastest way to run AI-generated Python code safely <img src="https://img.shields.io/github/stars/Jonathan-Adly/AgentRun?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/Maximilian-Winter/llama-cpp-agent" rel="noopener noreferrer">LLama Cpp Agent (⭐630)</a>: The llama-cpp-agent framework is a tool designed for easy interaction with Large Language Models <img src="https://img.shields.io/github/stars/Maximilian-Winter/llama-cpp-agent?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/AI4Finance-Foundation/FinRobot" rel="noopener noreferrer">FinRobot (⭐6.7k)</a>: An Open-Source AI Agent Platform for Financial Applications using LLMs <img src="https://img.shields.io/github/stars/AI4Finance-Foundation/FinRobot?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/AI4Finance-Foundation/FinRobot" rel="noopener noreferrer">FinRobot (⭐7.7k)</a>: An Open-Source AI Agent Platform for Financial Applications using LLMs <img src="https://img.shields.io/github/stars/AI4Finance-Foundation/FinRobot?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
@@ -224,16 +456,12 @@
 <h2><a href="https://www.trackawesomelist.com/2024/14/">Apr 01 - Apr 07, 2024</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nilsherzig/LLocalSearch" rel="noopener noreferrer">LLocalSearch (⭐6k)</a>: LLocalSearch is a completely locally running search aggregator using LLM Agents. The user can ask a question and the system will use a chain of LLMs to find the answer. The user can see the progress of the agents and the final answer. No OpenAI or Google API keys are needed. <img src="https://img.shields.io/github/stars/nilsherzig/LLocalSearch?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/plandex-ai/plandex" rel="noopener noreferrer">Plandex (⭐15k)</a>: An AI coding engine for complex tasks <img src="https://img.shields.io/github/stars/plandex-ai/plandex?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/plandex-ai/plandex" rel="noopener noreferrer">Plandex (⭐16k)</a>: An AI coding engine for complex tasks <img src="https://img.shields.io/github/stars/plandex-ai/plandex?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/13/">Mar 25 - Mar 31, 2024</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/semanser/codel" rel="noopener noreferrer">Codel (⭐2.4k)</a>: ✨ Fully autonomous AI Agent that can perform complicated tasks and projects using terminal, browser, and editor. <img src="https://img.shields.io/github/stars/semanser/codel?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/semanser/codel" rel="noopener noreferrer">Codel (⭐2.5k)</a>: ✨ Fully autonomous AI Agent that can perform complicated tasks and projects using terminal, browser, and editor. <img src="https://img.shields.io/github/stars/semanser/codel?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/12/">Mar 18 - Mar 24, 2024</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
@@ -243,20 +471,16 @@
 <h2><a href="https://www.trackawesomelist.com/2024/10/">Mar 04 - Mar 10, 2024</a></h2><h3><p>Tools / Services</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Mindinventory/MindSQL" rel="noopener noreferrer">MindSQL (⭐441)</a> - A python package for Txt-to-SQL with self hosting functionalities and RESTful APIs compatible with proprietary as well as open source LLM.<img src="https://img.shields.io/github/stars/mindinventory/mindsql?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/Mindinventory/MindSQL" rel="noopener noreferrer">MindSQL (⭐447)</a> - A python package for Txt-to-SQL with self hosting functionalities and RESTful APIs compatible with proprietary as well as open source LLM.<img src="https://img.shields.io/github/stars/mindinventory/mindsql?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/casibase/casibase" rel="noopener noreferrer">Casibase (⭐4.5k)</a>: Open-source AI LangChain-like RAG (Retrieval-Augmented Generation) knowledge database with web UI and Enterprise SSO⚡️, supports OpenAI, Azure, LLaMA, Google Gemini, HuggingFace, Claude, Grok, etc <img src="https://img.shields.io/github/stars/casibase/casibase?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/bananaml/fructose" rel="noopener noreferrer">Fructose (⭐747)</a>: Fructose is a python package to create a dependable, strongly-typed interface around an LLM call. <img src="https://img.shields.io/github/stars/bananaml/fructose?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/bananaml/fructose" rel="noopener noreferrer">Fructose (⭐750)</a>: Fructose is a python package to create a dependable, strongly-typed interface around an LLM call. <img src="https://img.shields.io/github/stars/bananaml/fructose?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/SciPhi-AI/R2R" rel="noopener noreferrer">R2R (⭐7.8k)</a>: A framework for rapid development and deployment of production-ready RAG systems <img src="https://img.shields.io/github/stars/SciPhi-AI/R2R?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/SciPhi-AI/R2R" rel="noopener noreferrer">R2R (⭐8k)</a>: A framework for rapid development and deployment of production-ready RAG systems <img src="https://img.shields.io/github/stars/SciPhi-AI/R2R?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/51/">Dec 18 - Dec 24, 2023</a></h2><h3><p>Tools / Services</p>
 </h3>
@@ -266,69 +490,51 @@
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/aymenfurter/microagents" rel="noopener noreferrer">MicroAgent (⭐808)</a>: Agents Capable of Self-Editing Their Prompts / Python Code <img src="https://img.shields.io/github/stars/aymenfurter/microagents?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2023/49/">Dec 04 - Dec 10, 2023</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
-</h3>
-<ul>
-<li><a href="https://github.com/microsoft/TaskWeaver" rel="noopener noreferrer">TaskWeaver (⭐6.2k)</a>: A code-first agent framework for seamlessly planning and executing data analytics tasks. <img src="https://img.shields.io/github/stars/microsoft/TaskWeaver?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/aymenfurter/microagents" rel="noopener noreferrer">MicroAgent (⭐826)</a>: Agents Capable of Self-Editing Their Prompts / Python Code <img src="https://img.shields.io/github/stars/aymenfurter/microagents?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/48/">Nov 27 - Dec 03, 2023</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/neurocult/agency" rel="noopener noreferrer">Agency (⭐506)</a>: 🕵️‍♂️ Library designed for developers eager to explore the potential of Large Language Models (LLMs) and other generative AI through a clean, effective, and Go-idiomatic approach <img src="https://img.shields.io/github/stars/neurocult/agency?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/neurocult/agency" rel="noopener noreferrer">Agency (⭐514)</a>: 🕵️‍♂️ Library designed for developers eager to explore the potential of Large Language Models (LLMs) and other generative AI through a clean, effective, and Go-idiomatic approach <img src="https://img.shields.io/github/stars/neurocult/agency?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/44/">Oct 30 - Nov 05, 2023</a></h2><h3><p>Tools / Services</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ju-bezdek/langchain-decorators" rel="noopener noreferrer">Langchain Decorators (⭐234)</a>: a layer on the top of LangChain that provides syntactic sugar 🍭 for writing custom langchain prompts and chains <img src="https://img.shields.io/github/stars/ju-bezdek/langchain-decorators?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h3><p>Tools / Templates</p>
-</h3>
-<ul>
-<li><a href="https://github.com/vercel-labs/ai" rel="noopener noreferrer">AI (⭐24k)</a>: Vercel template to build AI-powered applications with React, Svelte, and Vue, first class support for LangChain <img src="https://img.shields.io/github/stars/vercel-labs/ai?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/ju-bezdek/langchain-decorators" rel="noopener noreferrer">Langchain Decorators (⭐233)</a>: a layer on the top of LangChain that provides syntactic sugar 🍭 for writing custom langchain prompts and chains <img src="https://img.shields.io/github/stars/ju-bezdek/langchain-decorators?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
-<ul>
-<li><a href="https://github.com/pleisto/flappy" rel="noopener noreferrer">Flappy (⭐307)</a>: Production-Ready LLM Agent SDK for Every Developer <img src="https://img.shields.io/github/stars/pleisto/flappy.svg?style=social" alt="Github Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/agentlabs-inc/agentlabs" rel="noopener noreferrer">Agentlabs (⭐547)</a>: Universal AI Agent Frontend. Build your backend we handle the rest. <img src="https://img.shields.io/github/stars/agentlabs-inc/agentlabs?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
 <ul>
 <li><a href="https://github.com/axflow/axflow" rel="noopener noreferrer">axflow (⭐1.1k)</a>: The TypeScript framework for AI development <img src="https://img.shields.io/github/stars/axflow/axflow?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/krohling/bondai" rel="noopener noreferrer">bondai (⭐219)</a>: AI-powered assistant with a lightweight, versatile API for seamless integration into your own applications <img src="https://img.shields.io/github/stars/krohling/bondai?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/krohling/bondai" rel="noopener noreferrer">bondai (⭐223)</a>: AI-powered assistant with a lightweight, versatile API for seamless integration into your own applications <img src="https://img.shields.io/github/stars/krohling/bondai?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ThousandBirdsInc/chidori" rel="noopener noreferrer">Chidori (⭐1.3k)</a>: A reactive runtime for building durable AI agents <img src="https://img.shields.io/github/stars/ThousandBirdsInc/chidori?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/ThousandBirdsInc/chidori" rel="noopener noreferrer">Chidori (⭐1.4k)</a>: A reactive runtime for building durable AI agents <img src="https://img.shields.io/github/stars/ThousandBirdsInc/chidori?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/langroid/langroid" rel="noopener noreferrer">Langroid (⭐4k)</a>: an intuitive, lightweight, extensible and principled Python framework to easily build LLM-powered applications. <img src="https://img.shields.io/github/stars/langroid/langroid?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/langroid/langroid" rel="noopener noreferrer">Langroid (⭐4.1k)</a>: an intuitive, lightweight, extensible and principled Python framework to easily build LLM-powered applications. <img src="https://img.shields.io/github/stars/langroid/langroid?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/rogeriochaves/langstream" rel="noopener noreferrer">Langstream (⭐421)</a>: Build robust LLM applications with true composability 🔗 <img src="https://img.shields.io/github/stars/rogeriochaves/langstream?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/rogeriochaves/langstream" rel="noopener noreferrer">Langstream (⭐417)</a>: Build robust LLM applications with true composability 🔗 <img src="https://img.shields.io/github/stars/rogeriochaves/langstream?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/43/">Oct 23 - Oct 29, 2023</a></h2><h3><p>Open Source Projects / Knowledge Management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gustavz/DataChad" rel="noopener noreferrer">DataChad (⭐324)</a>: A streamlit app that lets you chat with any data source. Supporting both OpenAI and local mode with GPT4All. <img src="https://img.shields.io/github/stars/gustavz/DataChad?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/gustavz/DataChad" rel="noopener noreferrer">DataChad (⭐321)</a>: A streamlit app that lets you chat with any data source. Supporting both OpenAI and local mode with GPT4All. <img src="https://img.shields.io/github/stars/gustavz/DataChad?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/flepied/second-brain-agent" rel="noopener noreferrer">Second Brain AI Agent (⭐289)</a>: A streamlit app dialog with your second brain notes using OpenAI and ChromaDB locally. <img src="https://img.shields.io/github/stars/flepied/second-brain-agent?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/flepied/second-brain-agent" rel="noopener noreferrer">Second Brain AI Agent (⭐312)</a>: A streamlit app dialog with your second brain notes using OpenAI and ChromaDB locally. <img src="https://img.shields.io/github/stars/flepied/second-brain-agent?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/pnkvalavala/repochat" rel="noopener noreferrer">Repochat (⭐315)</a>: Chatbot assistant enabling GitHub repository interaction using LLMs with Retrieval Augmented Generation <img src="https://img.shields.io/github/stars/pnkvalavala/repochat?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/pnkvalavala/repochat" rel="noopener noreferrer">Repochat (⭐317)</a>: Chatbot assistant enabling GitHub repository interaction using LLMs with Retrieval Augmented Generation <img src="https://img.shields.io/github/stars/pnkvalavala/repochat?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
@@ -342,67 +548,35 @@
 <h2><a href="https://www.trackawesomelist.com/2023/42/">Oct 16 - Oct 22, 2023</a></h2><h3><p>Tools / Agents</p>
 </h3>
 <ul>
-<li><a href="https://github.com/imartinez/privateGPT" rel="noopener noreferrer">Private GPT (⭐57k)</a>: Interact privately with your documents using the power of GPT, 100% privately, no data leaks <img src="https://img.shields.io/github/stars/imartinez/privateGPT?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/assafelovic/gpt-researcher" rel="noopener noreferrer">GPT Researcher (⭐27k)</a>: GPT Researcher is an autonomous agent designed for comprehensive online research on a variety of tasks. <img src="https://img.shields.io/github/stars/assafelovic/gpt-researcher?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/assafelovic/gpt-researcher" rel="noopener noreferrer">GPT Researcher (⭐29k)</a>: GPT Researcher is an autonomous agent designed for comprehensive online research on a variety of tasks. <img src="https://img.shields.io/github/stars/assafelovic/gpt-researcher?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Tools / Platforms</p>
 </h3>
 <ul>
-<li><a href="https://github.com/traceloop/openllmetry" rel="noopener noreferrer">Openllmetry</a>: Open-source observability for your LLM application, based on OpenTelemetry <img src="https://img.shields.io/github/stars/traceloop/openllmetry?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h3><p>Open Source Projects / Other / Chatbots</p>
-</h3>
-<ul>
-<li><a href="https://github.com/btrcm00/chatbot-with-langchain" rel="noopener noreferrer">PersonalityChatbot (⭐63)</a>: Langchain chatbot for chat with personality using Langchain🦜 | LangSmith | MongoDB. <img src="https://img.shields.io/github/stars/btrcm00/chatbot-with-langchain?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/traceloop/openllmetry" rel="noopener noreferrer">Openllmetry (⭐7.4k)</a>: Open-source observability for your LLM application, based on OpenTelemetry <img src="https://img.shields.io/github/stars/traceloop/openllmetry?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/LangStream/langstream" rel="noopener noreferrer">LangStream (⭐433)</a>: Framework for building and running event-driven LLM applications using no-code and Python (including LangChain-based) agents. <img src="https://img.shields.io/github/stars/LangStream/langstream?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/LangStream/langstream" rel="noopener noreferrer">LangStream (⭐427)</a>: Framework for building and running event-driven LLM applications using no-code and Python (including LangChain-based) agents. <img src="https://img.shields.io/github/stars/LangStream/langstream?style=social" alt="GitHub Repo stars" /></li>
 </ul>
-
-<ul>
-<li><a href="https://github.com/cpacker/MemGPT" rel="noopener noreferrer">MemGPT (⭐22k)</a>: Teaching LLMs memory management for unbounded context <img src="https://img.shields.io/github/stars/cpacker/MemGPT?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2023/41/">Oct 09 - Oct 15, 2023</a></h2><h3><p>LangChain Framework</p>
+<h2><a href="https://www.trackawesomelist.com/2023/41/">Oct 09 - Oct 15, 2023</a></h2><h3><p>Open Source Projects / Other / Chatbots</p>
 </h3>
 <ul>
-<li><a href="https://github.com/langchain-ai/langserve" rel="noopener noreferrer">LangServe (⭐2.3k)</a>: LangServe helps developers deploy LangChain runnables and chains as a REST API. <img src="https://img.shields.io/github/stars/langchain-ai/langserve?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/shroominic/funcchain" rel="noopener noreferrer">Funcchain (⭐341)</a>: write prompts, pythonic <img src="https://img.shields.io/github/stars/shroominic/funcchain?style=social" alt="GitHub Repo stars" /></li>
 </ul>
-<h3><p>Open Source Projects / Other / Chatbots</p>
-</h3>
-<ul>
-<li><a href="https://github.com/shroominic/funcchain" rel="noopener noreferrer">Funcchain (⭐340)</a>: write prompts, pythonic <img src="https://img.shields.io/github/stars/shroominic/funcchain?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2023/40/">Oct 02 - Oct 08, 2023</a></h2><h3><p>Open Source Projects / Other / Chatbots</p>
-</h3>
-<ul>
-<li><a href="https://github.com/openchatai/OpenChat/" rel="noopener noreferrer">OpenChat (⭐5.3k)</a>: LLMs custom-chatbots console ⚡. <img src="https://img.shields.io/github/stars/openchatai/OpenChat?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/lobehub/lobe-chat" rel="noopener noreferrer">Lobe Chat (⭐76k)</a> An open-source, extensible (Function Calling), high-performance chatbot framework <img src="https://img.shields.io/github/stars/lobehub/lobe-chat?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h3><p>Other LLM Frameworks / Videos Playlists</p>
+<h2><a href="https://www.trackawesomelist.com/2023/40/">Oct 02 - Oct 08, 2023</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
 <li><a href="https://github.com/jackmpcollins/magentic" rel="noopener noreferrer">Magentic (⭐2.4k)</a>: Seamlessly integrate LLMs as Python functions <img src="https://img.shields.io/github/stars/jackmpcollins/magentic?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/microsoft/autogen" rel="noopener noreferrer">Autogen (⭐57k)</a>: Enable Next-Gen Large Language Model Applications.</li>
+<li><a href="https://github.com/microsoft/autogen" rel="noopener noreferrer">Autogen (⭐60k)</a>: Enable Next-Gen Large Language Model Applications.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/openbmb/agentverse" rel="noopener noreferrer">AgentVerse (⭐5k)</a> Provides a flexible framework that simplifies the process of building custom multi-agent environments for LLMs <img src="https://img.shields.io/github/stars/openbmb/agentverse?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2023/39/">Sep 25 - Oct 01, 2023</a></h2><h3><p>Tools / Agents</p>
-</h3>
-<ul>
-<li><a href="https://github.com/agi-merge/waggle-dance" rel="noopener noreferrer">waggledance.ai (⭐170)</a>: An opinionated, concurrent system of AI Agents. It implements Plan-Validate-Solve with data and tools for general goal-solving. <img src="https://img.shields.io/github/stars/agi-merge/waggle-dance?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/openbmb/agentverse" rel="noopener noreferrer">AgentVerse (⭐5.1k)</a> Provides a flexible framework that simplifies the process of building custom multi-agent environments for LLMs <img src="https://img.shields.io/github/stars/openbmb/agentverse?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/38/">Sep 18 - Sep 24, 2023</a></h2><h3><p>Learn / Notebooks</p>
 </h3>
@@ -412,11 +586,11 @@
 <h2><a href="https://www.trackawesomelist.com/2023/37/">Sep 11 - Sep 17, 2023</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Ironclad/rivet" rel="noopener noreferrer">Rivet (⭐4.5k)</a>: An IDE for creating complex AI agents and prompt chaining, and embedding it in your application. <img src="https://img.shields.io/github/stars/Ironclad/rivet?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/Ironclad/rivet" rel="noopener noreferrer">Rivet (⭐4.7k)</a>: An IDE for creating complex AI agents and prompt chaining, and embedding it in your application. <img src="https://img.shields.io/github/stars/Ironclad/rivet?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/promptfoo/promptfoo" rel="noopener noreferrer">Promptfoo (⭐21k)</a>: Test your prompts. Evaluate and compare LLM outputs, catch regressions, and improve prompt quality. <img src="https://img.shields.io/github/stars/promptfoo/promptfoo?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/promptfoo/promptfoo" rel="noopener noreferrer">Promptfoo (⭐24k)</a>: Test your prompts. Evaluate and compare LLM outputs, catch regressions, and improve prompt quality. <img src="https://img.shields.io/github/stars/promptfoo/promptfoo?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
@@ -425,7 +599,7 @@
 <h2><a href="https://www.trackawesomelist.com/2023/36/">Sep 04 - Sep 10, 2023</a></h2><h3><p>Tools / Agents</p>
 </h3>
 <ul>
-<li><a href="https://github.com/stepanogil/autonomous-hr-chatbot" rel="noopener noreferrer">Autonomous HR Chatbot (⭐442)</a>: An autonomous agent that can answer HR related queries autonomously using the tools it has on hand <img src="https://img.shields.io/github/stars/stepanogil/autonomous-hr-chatbot?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/stepanogil/autonomous-hr-chatbot" rel="noopener noreferrer">Autonomous HR Chatbot (⭐459)</a>: An autonomous agent that can answer HR related queries autonomously using the tools it has on hand <img src="https://img.shields.io/github/stars/stepanogil/autonomous-hr-chatbot?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/35/">Aug 28 - Sep 03, 2023</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
@@ -438,11 +612,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/InternLM/lagent" rel="noopener noreferrer">Lagent (⭐2.2k)</a>: A lightweight framework for building LLM-based agents <img src="https://img.shields.io/github/stars/InternLM/lagent?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/InternLM/lagent" rel="noopener noreferrer">Lagent (⭐2.3k)</a>: A lightweight framework for building LLM-based agents <img src="https://img.shields.io/github/stars/InternLM/lagent?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/different-ai/embedbase" rel="noopener noreferrer">Embedbase (⭐522)</a>: The native Software 3.0 stack for building AI-powered applications. <img src="https://img.shields.io/github/stars/different-ai/embedbase?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/different-ai/embedbase" rel="noopener noreferrer">Embedbase (⭐523)</a>: The native Software 3.0 stack for building AI-powered applications. <img src="https://img.shields.io/github/stars/different-ai/embedbase?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/34/">Aug 21 - Aug 27, 2023</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
@@ -452,65 +626,43 @@
 <h2><a href="https://www.trackawesomelist.com/2023/33/">Aug 14 - Aug 20, 2023</a></h2><h3><p>Ports to other languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/davidmigloz/langchain_dart" rel="noopener noreferrer">LangChainDart (⭐676)</a>: Build powerful LLM-based Dart/Flutter applications. <img src="https://img.shields.io/github/stars/davidmigloz/langchain_dart?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h3><p>Tools / Services</p>
-</h3>
-<ul>
-<li><a href="https://github.com/Dicklesworthstone/llama_embeddings_fastapi_service" rel="noopener noreferrer">Llama2 Embedding Server (⭐1.1k)</a>: Llama2 Embeddings FastAPI Service using LangChain <img src="https://img.shields.io/github/stars/Dicklesworthstone/llama_embeddings_fastapi_service?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/davidmigloz/langchain_dart" rel="noopener noreferrer">LangChainDart (⭐685)</a>: Build powerful LLM-based Dart/Flutter applications. <img src="https://img.shields.io/github/stars/davidmigloz/langchain_dart?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Open Source Projects / Knowledge Management</p>
 </h3>
 <ul>
 <li><a href="https://github.com/codeacme17/examor" rel="noopener noreferrer">examor (⭐1.1k)</a>: A website application that allows you to take exams based on your knowledge notes. Let you really remember what you have learned and written. <img src="https://img.shields.io/github/stars/codeacme17/examor?style=social" alt="GitHub Repo stars" /></li>
 </ul>
-<h3><p>Other LLM Frameworks / Videos Playlists</p>
-</h3>
-<ul>
-<li><a href="https://github.com/normal-computing/outlines" rel="noopener noreferrer">Outlines (⭐14k)</a>: Fast and reliable neural text generation. <img src="https://img.shields.io/github/stars/normal-computing/outlines?style=social" alt="GitHub Repo stars" /></li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2023/32/">Aug 07 - Aug 13, 2023</a></h2><h3><p>Tools / Low-code</p>
 </h3>
 <ul>
-<li><a href="https://github.com/FlowiseAI/Flowise" rel="noopener noreferrer">Flowise (⭐52k)</a>: Drag &amp; drop UI to build your customized LLM flow using LangchainJS <img src="https://img.shields.io/github/stars/FlowiseAI/Flowise?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/FlowiseAI/Flowise" rel="noopener noreferrer">Flowise (⭐55k)</a>: Drag &amp; drop UI to build your customized LLM flow using LangchainJS <img src="https://img.shields.io/github/stars/FlowiseAI/Flowise?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Open Source Projects / Knowledge Management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gmpetrov/databerry" rel="noopener noreferrer">Chaindesk (⭐2.9k)</a>: The no-code platform for semantic search and documents retrieval <img src="https://img.shields.io/github/stars/gmpetrov/databerry?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/gmpetrov/databerry" rel="noopener noreferrer">Chaindesk (⭐3k)</a>: The no-code platform for semantic search and documents retrieval <img src="https://img.shields.io/github/stars/gmpetrov/databerry?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/axilla-io/ax" rel="noopener noreferrer">Ax (⭐1.1k)</a>: A comprehensive AI framework for TypeScript <img src="https://img.shields.io/github/stars/axilla-io/ax?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/neuml/txtai" rel="noopener noreferrer">TextAI (⭐13k)</a>: 💡 All-in-one open-source embeddings database for semantic search, LLM orchestration and language model workflows. <img src="https://img.shields.io/github/stars/neuml/txtai?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/neuml/txtai" rel="noopener noreferrer">TextAI (⭐12k)</a>: 💡 All-in-one open-source embeddings database for semantic search, LLM orchestration and language model workflows. <img src="https://img.shields.io/github/stars/neuml/txtai?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/simonmesmith/agentflow" rel="noopener noreferrer">AgentFlow (⭐321)</a>: About Complex LLM Workflows from Simple JSON. <img src="https://img.shields.io/github/stars/simonmesmith/agentflow?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/simonmesmith/agentflow" rel="noopener noreferrer">AgentFlow (⭐320)</a>: About Complex LLM Workflows from Simple JSON. <img src="https://img.shields.io/github/stars/simonmesmith/agentflow?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/31/">Jul 31 - Aug 06, 2023</a></h2><h3><p>Ports to other languages</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tmc/langchaingo" rel="noopener noreferrer">Langchain Go (⭐9.1k)</a>: Golang Langchain <img src="https://img.shields.io/github/stars/tmc/langchaingo?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/tmc/langchaingo" rel="noopener noreferrer">Langchain Go (⭐9.6k)</a>: Golang Langchain <img src="https://img.shields.io/github/stars/tmc/langchaingo?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/andreibondarev/langchainrb" rel="noopener noreferrer">LangchainRb (⭐2k)</a>: Ruby Langchain <img src="https://img.shields.io/github/stars/andreibondarev/langchainrb?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/langchain4j/langchain4j" rel="noopener noreferrer">LangChain4j (⭐12k)</a>: LangChain for Java <img src="https://img.shields.io/github/stars/langchain4j/langchain4j?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/langchain4j/langchain4j" rel="noopener noreferrer">LangChain4j (⭐13k)</a>: LangChain for Java <img src="https://img.shields.io/github/stars/langchain4j/langchain4j?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Open Source Projects / Other / Chatbots</p>
 </h3>
-<ul>
-<li><a href="https://github.com/csunny/DB-GPT" rel="noopener noreferrer">DB GPT (⭐19k)</a>: Interact your data and environment using the local GPT, no data leaks, 100% privately, 100% security <img src="https://img.shields.io/github/stars/csunny/DB-GPT?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
 <ul>
 <li><a href="https://github.com/shroominic/codeinterpreter-api" rel="noopener noreferrer">Code Interpreter API (⭐3.8k)</a>: About Open source implementation of the ChatGPT Code Interpreter <img src="https://img.shields.io/github/stars/shroominic/codeinterpreter-api?style=social" alt="GitHub Repo stars" /></li>
 </ul>
@@ -525,7 +677,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/PrefectHQ/marvin" rel="noopener noreferrer">Marvin (⭐6.1k)</a>: ✨ Build AI interfaces that spark joy <img src="https://img.shields.io/github/stars/PrefectHQ/marvin?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/PrefectHQ/marvin" rel="noopener noreferrer">Marvin (⭐6.2k)</a>: ✨ Build AI interfaces that spark joy <img src="https://img.shields.io/github/stars/PrefectHQ/marvin?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
@@ -533,64 +685,32 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/stoyan-stoyanov/llmflows" rel="noopener noreferrer">LLMFlow (⭐706)</a>: Simple, Explicit and Transparent LLM Apps <img src="https://img.shields.io/github/stars/stoyan-stoyanov/llmflows?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2023/28/">Jul 10 - Jul 16, 2023</a></h2><h3><p>Other LLM Frameworks / Videos Playlists</p>
-</h3>
-<ul>
-<li><a href="https://github.com/geekan/MetaGPT" rel="noopener noreferrer">MetaGPT (⭐67k)</a>: The Multi-Agent Meta Programming Framework: Given one line Requirement, return PRD, Design, Tasks, Repo and CI <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/failfa-st/hyv" rel="noopener noreferrer">Hyv (⭐24)</a>: Probably the easiest way to use any AI Model in Node.js and create complex interactions with ease. <img src="https://img.shields.io/github/stars/failfa-st/hyv?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/stoyan-stoyanov/llmflows" rel="noopener noreferrer">LLMFlow (⭐707)</a>: Simple, Explicit and Transparent LLM Apps <img src="https://img.shields.io/github/stars/stoyan-stoyanov/llmflows?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/27/">Jul 03 - Jul 09, 2023</a></h2><h3><p>Tools / Services</p>
 </h3>
 <ul>
 <li><a href="https://github.com/ericzhang-cn/ailingbot" rel="noopener noreferrer">AilingBot (⭐64)</a>: Quickly integrate applications built on Langchain into IM such as Slack, WeChat Work, Feishu, DingTalk.</li>
 </ul>
-<h3><p>Tools / Agents</p>
-</h3>
-<ul>
-<li><a href="https://github.com/blockpipe/blockagi" rel="noopener noreferrer">BlockAGI (⭐320)</a>: BlockAGI conducts iterative, domain-specific research, and outputs detailed narrative reports to showcase its findings <img src="https://img.shields.io/github/stars/blockpipe/blockagi?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h3><p>Open Source Projects / Other / Chatbots</p>
-</h3>
-<ul>
-<li><a href="https://github.com/0xpayne/gpt-migrate" rel="noopener noreferrer">GPT Migrate (⭐7k)</a>: Easily migrate your codebase from one framework or language to another.</li>
-</ul>
 <h3><p>Learn / Videos Playlists</p>
 </h3>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=_v_fgW2SkkQ&amp;list=PLqZXAkvF1bPNQER9mLmDbntNfSpzdDIU5" rel="noopener noreferrer">Greg Kamradt Playlist</a></li>
 </ul>
-<h3><p>Other LLM Frameworks / Videos Playlists</p>
-</h3>
-<ul>
-<li><a href="https://github.com/lgrammel/ai-utils.js" rel="noopener noreferrer">AI Utils (⭐1.3k)</a>: TypeScript-first library for building AI apps, chatbots, and agents. <img src="https://img.shields.io/github/stars/lgrammel/ai-utils.js?style=social" alt="GitHub Repo stars" /></li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2023/26/">Jun 26 - Jul 02, 2023</a></h2><h3><p>Tools / Agents</p>
 </h3>
 <ul>
-<li><a href="https://github.com/steamship-packages/langchain-agent-production-starter" rel="noopener noreferrer">Multi-Modal LangChain agents in Production (⭐476)</a>: Deploy LangChain Agents and connect them to Telegram <img src="https://img.shields.io/github/stars/steamship-packages/langchain-agent-production-starter?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/melih-unsal/DemoGPT" rel="noopener noreferrer">DemoGPT</a>: DemoGPT enables you to create quick demos by just using prompt. It applies ToT approach on Langchain documentation tree. <img src="https://img.shields.io/github/stars/melih-unsal/DemoGPT?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/melih-unsal/DemoGPT" rel="noopener noreferrer">DemoGPT (⭐1.9k)</a>: DemoGPT enables you to create quick demos by just using prompt. It applies ToT approach on Langchain documentation tree. <img src="https://img.shields.io/github/stars/melih-unsal/DemoGPT?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Tools / Templates</p>
 </h3>
 <ul>
 <li><a href="https://github.com/a16z-infra/ai-getting-started" rel="noopener noreferrer">AI Getting Started (⭐4.1k)</a>: A Javascript AI getting started stack for weekend projects, including image/text models, vector stores, auth, and deployment configs <img src="https://img.shields.io/github/stars/a16z-infra/ai-getting-started?style=social" alt="GitHub Repo stars" /></li>
 </ul>
-
-<ul>
-<li><a href="https://github.com/embedchain/embedchain" rel="noopener noreferrer">Embedchain</a>: Framework to easily create LLM powered bots over any dataset. <img src="https://img.shields.io/github/stars/embedchain/embedchain?style=social" alt="GitHub Repo stars" /></li>
-</ul>
 <h3><p>Open Source Projects / Knowledge Management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vgulerianb/DocNavigator" rel="noopener noreferrer">DocNavigator (⭐131)</a>: AI-powered chatbot builder that is designed to improve the user experience on product documentation/support websites <img src="https://img.shields.io/github/stars/vgulerianb/DocNavigator?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/vgulerianb/DocNavigator" rel="noopener noreferrer">DocNavigator (⭐130)</a>: AI-powered chatbot builder that is designed to improve the user experience on product documentation/support websites <img src="https://img.shields.io/github/stars/vgulerianb/DocNavigator?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
@@ -599,15 +719,7 @@
 <h3><p>Open Source Projects / Other / Chatbots</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yvann-hub/Robby-chatbot" rel="noopener noreferrer">Robby-Chatbot (⭐813)</a>: AI chatbot 🤖 for chat with CSV, PDF, TXT files 📄 and YTB videos 🎥 | using Langchain🦜 | OpenAI | Streamlit ⚡.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/vercel-labs/ai-chatbot" rel="noopener noreferrer">AI Chatbot (⭐20k)</a>: A full-featured, hackable Next.js AI chatbot built by Vercel Labs <img src="https://img.shields.io/github/stars/vercel-labs/ai-chatbot?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/blob42/Instrukt" rel="noopener noreferrer">Instrukt (⭐326)</a>: A fully-fledged AI environment in the terminal. Build, test and instruct agents. <img src="https://img.shields.io/github/stars/blob42/Instrukt?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/blob42/Instrukt" rel="noopener noreferrer">Instrukt (⭐330)</a>: A fully-fledged AI environment in the terminal. Build, test and instruct agents. <img src="https://img.shields.io/github/stars/blob42/Instrukt?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
@@ -629,15 +741,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/n4ze3m/dialoqbase" rel="noopener noreferrer">Dialoqbase (⭐1.8k)</a>: web application that allows you to create custom chatbots with your own knowledge base <img src="https://img.shields.io/github/stars/n4ze3m/dialoqbase?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
 <li><a href="https://python.langchain.com/en/latest/modules/indexes/document_loaders/examples/snowflake.html" rel="noopener noreferrer">CSV-AI 🧠</a>: CSV-AI is the ultimate app powered by LangChain that allows you to unlock hidden insights in your CSV files.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/xianjianlf2/MindGeniusAI" rel="noopener noreferrer">MindGeniusAI (⭐274)</a>: Auto generate MindMap with ChatGPT <img src="https://img.shields.io/github/stars/xianjianlf2/MindGeniusAI?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/xianjianlf2/MindGeniusAI" rel="noopener noreferrer">MindGeniusAI (⭐280)</a>: Auto generate MindMap with ChatGPT <img src="https://img.shields.io/github/stars/xianjianlf2/MindGeniusAI?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/23/">Jun 05 - Jun 11, 2023</a></h2><h3><p>Tools / Services</p>
 </h3>
@@ -647,15 +755,11 @@
 <h3><p>Tools / Agents</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hpcaitech/ColossalAI/tree/main/applications/Chat" rel="noopener noreferrer">CollosalAI Chat (⭐41k)</a>: implement LLM with RLHF, powered by the Colossal-AI project <img src="https://img.shields.io/github/stars/hpcaitech/ColossalAI?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
 <li><a href="https://github.com/PromtEngineer/localGPT" rel="noopener noreferrer">Local GPT (⭐22k)</a>: Inspired on Private GPT with the GPT4ALL model replaced with the Vicuna-7B model and using the InstructorEmbeddings instead of LlamaEmbeddings <img src="https://img.shields.io/github/stars/PromtEngineer/localGPT?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/MineDojo/Voyager" rel="noopener noreferrer">Voyager (⭐6.9k)</a>: An Open-Ended Embodied Agent with Large Language Models <img src="https://img.shields.io/github/stars/MineDojo/Voyager?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/MineDojo/Voyager" rel="noopener noreferrer">Voyager (⭐7.1k)</a>: An Open-Ended Embodied Agent with Large Language Models <img src="https://img.shields.io/github/stars/MineDojo/Voyager?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
@@ -664,40 +768,36 @@
 <h3><p>Open Source Projects / Knowledge Management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/StanGirard/quiver" rel="noopener noreferrer">Quiver</a>: Dump your brain into your GenerativeAI Vault <img src="https://img.shields.io/github/stars/StanGirard/quiver?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/Mintplex-Labs/anything-llm" rel="noopener noreferrer">Anything LLM (⭐59k)</a>: A full-stack application that turns any documents into an intelligent chatbot with a sleek UI and easier way to manage your workspaces. <img src="https://img.shields.io/github/stars/Mintplex-Labs/anything-llm?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/Mintplex-Labs/anything-llm" rel="noopener noreferrer">Anything LLM (⭐64k)</a>: A full-stack application that turns any documents into an intelligent chatbot with a sleek UI and easier way to manage your workspaces. <img src="https://img.shields.io/github/stars/Mintplex-Labs/anything-llm?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Open Source Projects / Other / Chatbots</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cheshire-cat-ai/core" rel="noopener noreferrer">Cheshire Cat (⭐3k)</a>: Custom AGI boT with ready-to-use chat integration and plugins development platform. <img src="https://img.shields.io/github/stars/cheshire-cat-ai/core?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/cheshire-cat-ai/core" rel="noopener noreferrer">Cheshire Cat (⭐3.1k)</a>: Custom AGI boT with ready-to-use chat integration and plugins development platform. <img src="https://img.shields.io/github/stars/cheshire-cat-ai/core?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/r2d4/rellm" rel="noopener noreferrer">ReLLM (⭐513)</a>: Regular Expressions for Language Model Completions. <img src="https://img.shields.io/github/stars/r2d4/rellm?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/r2d4/rellm" rel="noopener noreferrer">ReLLM (⭐511)</a>: Regular Expressions for Language Model Completions. <img src="https://img.shields.io/github/stars/r2d4/rellm?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/fiatrete/OpenDAN-Personal-AI-OS" rel="noopener noreferrer">OpenDAN (⭐2k)</a>: open source Personal AI OS , which consolidates various AI modules in one place for your personal use. <img src="https://img.shields.io/github/stars/fiatrete/OpenDAN-Personal-AI-OS?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/fiatrete/OpenDAN-Personal-AI-OS" rel="noopener noreferrer">OpenDAN (⭐2.1k)</a>: open source Personal AI OS , which consolidates various AI modules in one place for your personal use. <img src="https://img.shields.io/github/stars/fiatrete/OpenDAN-Personal-AI-OS?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/22/">May 29 - Jun 04, 2023</a></h2><h3><p>Tools / Agents</p>
 </h3>
 <ul>
-<li><a href="https://github.com/TransformerOptimus/SuperAGI" rel="noopener noreferrer">SuperAGI (⭐17k)</a>: SuperAGI - A dev-first open source autonomous AI agent framework <img src="https://img.shields.io/github/stars/TransformerOptimus/SuperAGI?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/TransformerOptimus/SuperAGI" rel="noopener noreferrer">SuperAGI (⭐18k)</a>: SuperAGI - A dev-first open source autonomous AI agent framework <img src="https://img.shields.io/github/stars/TransformerOptimus/SuperAGI?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Open Source Projects / Other / Chatbots</p>
 </h3>
 <ul>
-<li><a href="https://github.com/plastic-labs/tutor-gpt" rel="noopener noreferrer">TutorGPT (⭐900)</a>: Dynamic few-shot metaprompting for the task of tutoring. <img src="https://img.shields.io/github/stars/plastic-labs/tutor-gpt?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/plastic-labs/tutor-gpt" rel="noopener noreferrer">TutorGPT (⭐921)</a>: Dynamic few-shot metaprompting for the task of tutoring. <img src="https://img.shields.io/github/stars/plastic-labs/tutor-gpt?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/e2b-dev/e2b" rel="noopener noreferrer">e2b (⭐12k)</a>: Open-source platform for building &amp; deploying virtual developers’ agents</li>
+<li><a href="https://github.com/e2b-dev/e2b" rel="noopener noreferrer">e2b (⭐13k)</a>: Open-source platform for building &amp; deploying virtual developers’ agents</li>
 </ul>
 
 <ul>
@@ -705,14 +805,9 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Sentdex/TermGPT" rel="noopener noreferrer">TermGPT (⭐414)</a>: Giving LLMs like GPT-4 the ability to plan and execute terminal commands <img src="https://img.shields.io/github/stars/Sentdex/TermGPT?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/Sentdex/TermGPT" rel="noopener noreferrer">TermGPT (⭐412)</a>: Giving LLMs like GPT-4 the ability to plan and execute terminal commands <img src="https://img.shields.io/github/stars/Sentdex/TermGPT?style=social" alt="GitHub Repo stars" /></li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2023/21/">May 22 - May 28, 2023</a></h2><h3><p>LangChain Framework</p>
-</h3>
-<ul>
-<li><a href="https://github.com/hwchase17/langchain" rel="noopener noreferrer">LangChain</a>: the original 🐍 <img src="https://img.shields.io/github/stars/hwchase17/langchain?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h3><p>Tools / Services</p>
+<h2><a href="https://www.trackawesomelist.com/2023/21/">May 22 - May 28, 2023</a></h2><h3><p>Tools / Services</p>
 </h3>
 <ul>
 <li><a href="https://github.com/Chainlit/chainlit" rel="noopener noreferrer">Chainlit (⭐12k)</a>: Build Python LLM apps in minutes ⚡️ <img src="https://img.shields.io/github/stars/Chainlit/chainlit?style=social" alt="GitHub Repo stars" /></li>
@@ -720,57 +815,31 @@
 <h3><p>Tools / Agents</p>
 </h3>
 <ul>
-<li><a href="https://github.com/homanp/superagent" rel="noopener noreferrer">SuperAgent</a>: Deploy LLM Agents to production <img src="https://img.shields.io/github/stars/homanp/superagent?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/kristoferlund/duet-gpt" rel="noopener noreferrer">DuetGPT (⭐167)</a>: A conversational semi-autonomous developer assistant, AI pair programming without the copypasta. <img src="https://img.shields.io/github/stars/kristoferlund/duet-gpt?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/kristoferlund/duet-gpt" rel="noopener noreferrer">DuetGPT (⭐168)</a>: A conversational semi-autonomous developer assistant, AI pair programming without the copypasta. <img src="https://img.shields.io/github/stars/kristoferlund/duet-gpt?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Open Source Projects / Knowledge Management</p>
 </h3>
 <ul>
 <li><a href="https://github.com/arc53/docsgpt" rel="noopener noreferrer">DocsGPT (⭐18k)</a>: GPT-powered chat for documentation search &amp; assistance. <img src="https://img.shields.io/github/stars/arc53/docsgpt?style=social" alt="GitHub Repo stars" /></li>
 </ul>
-<h3><p>Open Source Projects / Other / Chatbots</p>
-</h3>
-<ul>
-<li><a href="https://github.com/akshata29/chatpdf" rel="noopener noreferrer">ChatPDF (⭐866)</a>: ChatGPT + Enterprise data with Azure OpenAI <img src="https://img.shields.io/github/stars/akshata29/chatpdf?style=social" alt="GitHub Repo stars" /></li>
-</ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dust-tt/dust" rel="noopener noreferrer">Dust (⭐1.3k)</a>: Design and Deploy Large Language Model Apps <img src="https://img.shields.io/github/stars/dust-tt/dust?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/dust-tt/dust" rel="noopener noreferrer">Dust (⭐1.4k)</a>: Design and Deploy Large Language Model Apps <img src="https://img.shields.io/github/stars/dust-tt/dust?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/20/">May 15 - May 21, 2023</a></h2><h3><p>Tools / Services</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zilliztech/GPTCache" rel="noopener noreferrer">GPTCache (⭐8k)</a>: A Library for Creating Semantic Cache for LLM Queries <img src="https://img.shields.io/github/stars/zilliztech/GPTCache?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/zilliztech/GPTCache" rel="noopener noreferrer">GPTCache (⭐8.1k)</a>: A Library for Creating Semantic Cache for LLM Queries <img src="https://img.shields.io/github/stars/zilliztech/GPTCache?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jina-ai/langchain-serve" rel="noopener noreferrer">Jina (⭐1.6k)</a>: Langchain Apps on Production with Jina <img src="https://img.shields.io/github/stars/jina-ai/langchain-serve?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/langgenius/dify" rel="noopener noreferrer">Dify (⭐139k)</a>: One API for plugins and datasets, one interface for prompt engineering and visual operation, all for creating powerful AI applications. <img src="https://img.shields.io/github/stars/langgenius/dify?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h3><p>Open Source Projects / Knowledge Management</p>
-</h3>
-<ul>
-<li><a href="https://github.com/mmz-001/knowledge_gpt" rel="noopener noreferrer">Knowledge GPT (⭐1.6k)</a>: Accurate answers and instant citations for your documents. <img src="https://img.shields.io/github/stars/mmz-001/knowledge_gpt?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/KnowledgeCanvas/knowledge" rel="noopener noreferrer">Knowledge (⭐1.5k)</a>: Knowledge is a tool for saving, searching, accessing, and exploring all of your favorite websites, documents and files. <img src="https://img.shields.io/github/stars/KnowledgeCanvas/knowledge?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/langgenius/dify" rel="noopener noreferrer">Dify (⭐152k)</a>: One API for plugins and datasets, one interface for prompt engineering and visual operation, all for creating powerful AI applications. <img src="https://img.shields.io/github/stars/langgenius/dify?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Open Source Projects / Other / Chatbots</p>
 </h3>
 <ul>
 <li><a href="https://github.com/OpenBioLink/ThoughtSource" rel="noopener noreferrer">ThoughtSource⚡ (⭐1k)</a>: A framework for the science of machine thinking <img src="https://img.shields.io/github/stars/OpenBioLink/ThoughtSource?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://huggingface.co/spaces/JavaFXpert/Chat-GPT-LangChain" rel="noopener noreferrer">ChatGPT Langchain</a>: ChatGPT clone using langchain on Huggingface</li>
 </ul>
 
 <ul>
@@ -786,16 +855,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/kaarthik108/snowChat" rel="noopener noreferrer">snowChat ❄️ (⭐552)</a>: Chat with you're snowflake database <img src="https://img.shields.io/github/stars/kaarthik108/snowChat?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/kaarthik108/snowChat" rel="noopener noreferrer">snowChat ❄️ (⭐553)</a>: Chat with you're snowflake database <img src="https://img.shields.io/github/stars/kaarthik108/snowChat?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Learn / Notebooks</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gkamradt/langchain-tutorials" rel="noopener noreferrer">Langchain Tutorials (⭐7.4k)</a>: overview and tutorial of the LangChain Library <img src="https://img.shields.io/github/stars/gkamradt/langchain-tutorials?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/gkamradt/langchain-tutorials" rel="noopener noreferrer">Langchain Tutorials (⭐7.5k)</a>: overview and tutorial of the LangChain Library <img src="https://img.shields.io/github/stars/gkamradt/langchain-tutorials?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide" rel="noopener noreferrer">LangChain Chinese Getting Started Guide (⭐8.9k)</a>: Chinese LangChain Tutorial for Beginners <img src="https://img.shields.io/github/stars/liaokongVFX/LangChain-Chinese-Getting-Started-Guide?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide" rel="noopener noreferrer">LangChain Chinese Getting Started Guide (⭐9.1k)</a>: Chinese LangChain Tutorial for Beginners <img src="https://img.shields.io/github/stars/liaokongVFX/LangChain-Chinese-Getting-Started-Guide?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
@@ -803,15 +872,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/pinecone-io/examples/tree/master/generation/langchain/handbook" rel="noopener noreferrer">LangChain Handbook (⭐3k)</a>: Pinecone / James Briggs' LangChain handbook</li>
-</ul>
-
-<ul>
 <li><a href="https://colab.research.google.com/drive/1sKSTjt9cPstl_WMZ86JsgEqFG-aSAwkn?usp=sharing" rel="noopener noreferrer">Query the YouTube video transcripts</a>: Query the YouTube video transcripts, returning timestamps as sources to legitimize the answers</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/JohnNay/llm-lobbyist" rel="noopener noreferrer">llm-lobbyist (⭐173)</a>: Large Language Models as Corporate Lobbyists</li>
+<li><a href="https://github.com/JohnNay/llm-lobbyist" rel="noopener noreferrer">llm-lobbyist (⭐174)</a>: Large Language Models as Corporate Lobbyists</li>
 </ul>
 
 <ul>
@@ -823,19 +888,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/JavaFXpert/llm-grovers-search-party" rel="noopener noreferrer">llm-grovers-search-party</a>: Leveraging Qiskit, OpenAI and LangChain to demonstrate Grover's algorithm</li>
-</ul>
-
-<ul>
 <li><a href="https://colab.research.google.com/drive/19WTIWC3prw5LDMHmRMvqNV2loD9FHls6?usp=sharing" rel="noopener noreferrer">TextWorld ReAct Agent</a></li>
 </ul>
 
 <ul>
 <li><a href="https://colab.research.google.com/drive/1AAyEdTz-Z6ShKvewbt1ZHUICqak0MiwR?usp=sharing" rel="noopener noreferrer">LangChain &lt;&gt; Wolfram Alpha</a></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/prof-frink-lab/slangchain/blob/main/docs/modules/knowledge_graph/examples/byo_knowledge_graph.ipynb" rel="noopener noreferrer">BYO Knowledge Graph (⭐199)</a></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
@@ -844,20 +901,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/deepset-ai/haystack" rel="noopener noreferrer">Haystack (⭐25k)</a>: NLP framework to interact with your data using Transformer models and LLMs <img src="https://img.shields.io/github/stars/deepset-ai/haystack?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/deepset-ai/haystack" rel="noopener noreferrer">Haystack (⭐26k)</a>: NLP framework to interact with your data using Transformer models and LLMs <img src="https://img.shields.io/github/stars/deepset-ai/haystack?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/19/">May 08 - May 14, 2023</a></h2><h3><p>Tools / Agents</p>
 </h3>
 <ul>
-<li><a href="https://github.com/reworkd/AgentGPT" rel="noopener noreferrer">AgentGPT (⭐36k)</a>: AI Agents with Langchain &amp; OpenAI (Vercel / Nextjs) <img src="https://img.shields.io/github/stars/reworkd/AgentGPT?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
 <li><a href="https://github.com/paulpierre/RasaGPT" rel="noopener noreferrer">RasaGPT (⭐2.5k)</a>: RasaGPT is the first headless LLM chatbot platform built on top of Rasa and Langchain. <img src="https://img.shields.io/github/stars/paulpierre/RasaGPT?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/miurla/babyagi-ui" rel="noopener noreferrer">BabyAGI UI (⭐1.3k)</a>: Make it easier to run and develop with babyagi in a web app, like a ChatGPT <img src="https://img.shields.io/github/stars/miurla/babyagi-ui?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Open Source Projects / Other / Chatbots</p>
 </h3>
@@ -874,7 +923,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/venuv/langchain_yt_tools" rel="noopener noreferrer">langchain_yt_tools (⭐77)</a>: Langchain tools to search/extract/transcribe text transcripts of Youtube videos <img src="https://img.shields.io/github/stars/venuv/langchain_yt_tools?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/venuv/langchain_yt_tools" rel="noopener noreferrer">langchain_yt_tools (⭐76)</a>: Langchain tools to search/extract/transcribe text transcripts of Youtube videos <img src="https://img.shields.io/github/stars/venuv/langchain_yt_tools?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
@@ -883,11 +932,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mpaepper/llm_agents" rel="noopener noreferrer">LLM Agents (⭐1k)</a>: Build agents which are controlled by LLMs <img src="https://img.shields.io/github/stars/mpaepper/llm_agents?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/mpaepper/llm_agents" rel="noopener noreferrer">LLM Agents (⭐1.1k)</a>: Build agents which are controlled by LLMs <img src="https://img.shields.io/github/stars/mpaepper/llm_agents?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/r2d4/openlm" rel="noopener noreferrer">OpenLM (⭐369)</a>: a drop-in OpenAI-compatible library that can call LLMs from any other hosted inference API. Also <a href="https://github.com/r2d4/llm.ts" rel="noopener noreferrer">Typescript (⭐213)</a> <img src="https://img.shields.io/github/stars/r2d4/openlm?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/r2d4/openlm" rel="noopener noreferrer">OpenLM (⭐368)</a>: a drop-in OpenAI-compatible library that can call LLMs from any other hosted inference API. Also <a href="https://github.com/r2d4/llm.ts" rel="noopener noreferrer">Typescript (⭐214)</a> <img src="https://img.shields.io/github/stars/r2d4/openlm?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Complement to this list / Videos Playlists</p>
 </h3>
@@ -899,130 +948,79 @@
 <ul>
 <li><a href="https://www.youtube.com/channel/UCC-lyoTfSrcJzA1ab3APAgw" rel="noopener noreferrer">Youtube Channel</a></li>
 </ul>
-<h3><p>Tools / Services</p>
-</h3>
-<ul>
-<li><a href="https://github.com/langchain-ai/auto-evaluator" rel="noopener noreferrer">Auto Evaluator (⭐782)</a>: Langchain auto evaluator <img src="https://img.shields.io/github/stars/langchain-ai/auto-evaluator?style=social" alt="GitHub Repo stars" /></li>
-</ul>
 <h3><p>Tools / Agents</p>
 </h3>
 <ul>
-<li><a href="https://github.com/litanlitudan/skyagi" rel="noopener noreferrer">SkyAGI (⭐780)</a>: Emerging human-behavior simulation capability in LLM agents <img src="https://img.shields.io/github/stars/litanlitudan/skyagi?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/litanlitudan/skyagi" rel="noopener noreferrer">SkyAGI (⭐778)</a>: Emerging human-behavior simulation capability in LLM agents <img src="https://img.shields.io/github/stars/litanlitudan/skyagi?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Open Source Projects / Other / Chatbots</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AIGC-Audio/AudioGPT" rel="noopener noreferrer">AudioGPT</a>: Understanding and Generating Speech, Music, Sound, and Talking Head <img src="https://img.shields.io/github/stars/AIGC-Audio/AudioGPT?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/AIGC-Audio/AudioGPT" rel="noopener noreferrer">AudioGPT (⭐10k)</a>: Understanding and Generating Speech, Music, Sound, and Talking Head <img src="https://img.shields.io/github/stars/AIGC-Audio/AudioGPT?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
 <ul>
 <li><a href="https://github.com/sobelio/llm-chain" rel="noopener noreferrer">llm-chain (⭐1.6k)</a>: is a powerful rust crate for building chains in LLMs allowing you to summarise text and complete complex tasks. <img src="https://img.shields.io/github/stars/sobelio/llm-chain?style=social" alt="GitHub Repo stars" /></li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2023/17/">Apr 24 - Apr 30, 2023</a></h2><h3><p>LangChain Framework</p>
+<h2><a href="https://www.trackawesomelist.com/2023/17/">Apr 24 - Apr 30, 2023</a></h2><h3><p>Tools / Services</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hwchase17/langchainjs" rel="noopener noreferrer">LangChain.js (⭐18k)</a>: the js brother ✨ <img src="https://img.shields.io/github/stars/hwchase17/langchainjs?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h3><p>Tools / Low-code</p>
-</h3>
-<ul>
-<li><a href="https://github.com/logspace-ai/langflow" rel="noopener noreferrer">Langflow</a>: LangFlow is a UI for LangChain <img src="https://img.shields.io/github/stars/logspace-ai/langflow?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-<h3><p>Tools / Services</p>
-</h3>
-<ul>
-<li><a href="https://github.com/emptycrown/llama-hub" rel="noopener noreferrer">LlamaHub (⭐3.5k)</a>: a library of data loaders for LLMs made by the community <img src="https://img.shields.io/github/stars/emptycrown/llama-hub?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/amosjyng/langchain-visualizer" rel="noopener noreferrer">Langchain visualizer (⭐737)</a>: visualization and debugging tool for LangChain workflows <img src="https://img.shields.io/github/stars/amosjyng/langchain-visualizer?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/PineappleExpress808/auto-evaluator" rel="noopener noreferrer">Auto-evaluator (⭐1.1k)</a>: a lightweight evaluation tool for question-answering using Langchain <img src="https://img.shields.io/github/stars/PineappleExpress808/auto-evaluator?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/BlackHC/llm-strategy" rel="noopener noreferrer">LLM Strategy (⭐400)</a>: implementing the Strategy Pattern using LLMs <img src="https://img.shields.io/github/stars/BlackHC/llm-strategy?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/amosjyng/langchain-visualizer" rel="noopener noreferrer">Langchain visualizer (⭐740)</a>: visualization and debugging tool for LangChain workflows <img src="https://img.shields.io/github/stars/amosjyng/langchain-visualizer?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/BlackHC/llm-strategy" rel="noopener noreferrer">LLM Strategy (⭐398)</a>: implementing the Strategy Pattern using LLMs <img src="https://img.shields.io/github/stars/BlackHC/llm-strategy?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/radi-cho/datasetGPT" rel="noopener noreferrer">datasetGPT (⭐298)</a>: A command-line interface to generate textual and conversational datasets with LLMs. <img src="https://img.shields.io/github/stars/radi-cho/datasetGPT?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/radi-cho/datasetGPT" rel="noopener noreferrer">datasetGPT (⭐300)</a>: A command-line interface to generate textual and conversational datasets with LLMs. <img src="https://img.shields.io/github/stars/radi-cho/datasetGPT?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Tools / Agents</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alaeddine-13/thinkgpt" rel="noopener noreferrer">ThinkGPT (⭐1.6k)</a>: Agent techniques to augment your LLM and push it beyond its limits <img src="https://img.shields.io/github/stars/alaeddine-13/thinkgpt?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/SamurAIGPT/Camel-AutoGPT" rel="noopener noreferrer">Camel-AutoGPT</a>: role-playing approach for LLMs and auto-agents like BabyAGI &amp; AutoGPT <img src="https://img.shields.io/github/stars/SamurAIGPT/Camel-AutoGPT?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/chakkaradeep/pyCodeAGI" rel="noopener noreferrer">PyCodeAGI (⭐183)</a>: A small AGI experiment to generate a Python app given what app the user wants to build <img src="https://img.shields.io/github/stars/chakkaradeep/pyCodeAGI?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/chakkaradeep/pyCodeAGI" rel="noopener noreferrer">PyCodeAGI (⭐185)</a>: A small AGI experiment to generate a Python app given what app the user wants to build <img src="https://img.shields.io/github/stars/chakkaradeep/pyCodeAGI?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Tools / Templates</p>
 </h3>
 <ul>
-<li><a href="https://github.com/zckly/create-t3-turbo-ai" rel="noopener noreferrer">create-t3-turbo-ai</a>: t3 based, Langchain-friendly boilerplate for building type-safe, full-stack, LLM-powered web apps with Nextjs and Prisma <img src="https://img.shields.io/github/stars/zckly/create-t3-turbo-ai?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/zckly/create-t3-turbo-ai" rel="noopener noreferrer">create-t3-turbo-ai (⭐354)</a>: t3 based, Langchain-friendly boilerplate for building type-safe, full-stack, LLM-powered web apps with Nextjs and Prisma <img src="https://img.shields.io/github/stars/zckly/create-t3-turbo-ai?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Conner1115/LangChain.js-LLM-Template" rel="noopener noreferrer">LangChain.js LLM Template (⭐331)</a>: LangChain LLM template that allows you to train your own custom AI LLM model. <img src="https://img.shields.io/github/stars/Conner1115/LangChain.js-LLM-Template?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/hwchase17/langchain-streamlit-template" rel="noopener noreferrer">Streamlit Template (⭐297)</a>: template for how to deploy a LangChain on Streamlit <img src="https://img.shields.io/github/stars/hwchase17/langchain-streamlit-template?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/hwchase17/langchain-streamlit-template" rel="noopener noreferrer">Streamlit Template (⭐298)</a>: template for how to deploy a LangChain on Streamlit <img src="https://img.shields.io/github/stars/hwchase17/langchain-streamlit-template?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/lostintangent/codespaces-langchain" rel="noopener noreferrer">Codespaces Template (⭐113)</a>: a Codespaces template for getting up-and-running with LangChain in seconds! <img src="https://img.shields.io/github/stars/lostintangent/codespaces-langchain?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/lostintangent/codespaces-langchain" rel="noopener noreferrer">Codespaces Template (⭐112)</a>: a Codespaces template for getting up-and-running with LangChain in seconds! <img src="https://img.shields.io/github/stars/lostintangent/codespaces-langchain?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/hwchase17/langchain-gradio-template" rel="noopener noreferrer">Gradio Template (⭐137)</a>: template for how to deploy a LangChain on Gradio <img src="https://img.shields.io/github/stars/hwchase17/langchain-gradio-template?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/hwchase17/langchain-gradio-template" rel="noopener noreferrer">Gradio Template (⭐138)</a>: template for how to deploy a LangChain on Gradio <img src="https://img.shields.io/github/stars/hwchase17/langchain-gradio-template?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Open Source Projects / Other / Chatbots</p>
 </h3>
 <ul>
-<li><a href="https://github.com/whitead/paper-qa" rel="noopener noreferrer">Paper QA</a>: LLM Chain for answering questions from documents with citations <img src="https://img.shields.io/github/stars/whitead/paper-qa?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/fraserxu/book-gpt" rel="noopener noreferrer">Book GPT (⭐436)</a>: drop a book, start asking question. <img src="https://img.shields.io/github/stars/fraserxu/book-gpt?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/hwchase17/chat-langchain" rel="noopener noreferrer">Chat Langchain</a>: locally hosted chatbot specifically focused on question answering over the LangChain documentation <img src="https://img.shields.io/github/stars/hwchase17/chat-langchain?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/namuan/dr-doc-search" rel="noopener noreferrer">Doc Search (⭐598)</a>: converse with book - Built with GPT-3 <img src="https://img.shields.io/github/stars/namuan/dr-doc-search?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/fraserxu/book-gpt" rel="noopener noreferrer">Book GPT (⭐438)</a>: drop a book, start asking question. <img src="https://img.shields.io/github/stars/fraserxu/book-gpt?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/jagilley/fact-checker" rel="noopener noreferrer">Fact Checker (⭐312)</a>: fact-checking LLM outputs with langchain <img src="https://img.shields.io/github/stars/jagilley/fact-checker?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/namuan/dr-doc-search" rel="noopener noreferrer">Doc Search (⭐596)</a>: converse with book - Built with GPT-3 <img src="https://img.shields.io/github/stars/namuan/dr-doc-search?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/hardbyte/qabot" rel="noopener noreferrer">QABot (⭐245)</a>: Query local or remote files or databases with natural language queries powered by langchain and openai <img src="https://img.shields.io/github/stars/hardbyte/qabot?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jagilley/fact-checker" rel="noopener noreferrer">Fact Checker (⭐305)</a>: fact-checking LLM outputs with langchain <img src="https://img.shields.io/github/stars/jagilley/fact-checker?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/hardbyte/qabot" rel="noopener noreferrer">QABot (⭐246)</a>: Query local or remote files or databases with natural language queries powered by langchain and openai <img src="https://img.shields.io/github/stars/hardbyte/qabot?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/nilooy/flowgpt" rel="noopener noreferrer">FlowGPT (⭐306)</a>: Generate diagram with AI <img src="https://img.shields.io/github/stars/nilooy/flowgpt?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/alphasecio/langchain-text-summarizer" rel="noopener noreferrer">langchain-text-summarizer</a>: A sample streamlit application summarizing text using LangChain <img src="https://img.shields.io/github/stars/alphasecio/langchain-text-summarizer?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/nilooy/flowgpt" rel="noopener noreferrer">FlowGPT (⭐302)</a>: Generate diagram with AI <img src="https://img.shields.io/github/stars/nilooy/flowgpt?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Other LLM Frameworks / Videos Playlists</p>
 </h3>
-<ul>
-<li><a href="https://github.com/jerryjliu/llama_index" rel="noopener noreferrer">LlamaIndex (⭐49k)</a>: provides a central interface to connect your LLM's with external data. <img src="https://img.shields.io/github/stars/jerryjliu/llama_index?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
 <ul>
 <li><a href="https://github.com/microsoft/semantic-kernel" rel="noopener noreferrer">Semantic Kernel (⭐28k)</a>: Microsoft C# SDK to integrate cutting-edge LLM technology quickly and easily into your apps <img src="https://img.shields.io/github/stars/microsoft/semantic-kernel?style=social" alt="GitHub Repo stars" /></li>
 </ul>
@@ -1036,15 +1034,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Josh-XT/Agent-LLM" rel="noopener noreferrer">Agent-LLM (⭐3.2k)</a>: An Artificial Intelligence Automation Platform. <img src="https://img.shields.io/github/stars/Josh-XT/Agent-LLM?style=social" alt="GitHub Repo stars" /></li>
-</ul>
-
-<ul>
 <li><a href="https://github.com/srush/MiniChain" rel="noopener noreferrer">MiniChain (⭐1.2k)</a>: A tiny library for coding with large language models. <img src="https://img.shields.io/github/stars/srush/MiniChain?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/griptape-ai/griptape" rel="noopener noreferrer">Griptape (⭐2.5k)</a>: Python framework for AI workflows and pipelines with chain of thought reasoning, external tools, and memory. <img src="https://img.shields.io/github/stars/griptape-ai/griptape?style=social" alt="GitHub Repo stars" /></li>
+<li><a href="https://github.com/griptape-ai/griptape" rel="noopener noreferrer">Griptape (⭐2.6k)</a>: Python framework for AI workflows and pipelines with chain of thought reasoning, external tools, and memory. <img src="https://img.shields.io/github/stars/griptape-ai/griptape?style=social" alt="GitHub Repo stars" /></li>
 </ul>
 <h3><p>Complement to this list / Videos Playlists</p>
 </h3>
@@ -1070,10 +1064,6 @@
 <ul>
 <li><a href="https://docs.langchain.com/docs/" rel="noopener noreferrer">Concepts</a>: Langchain concepts doc</li>
 </ul>
-
-<ul>
-<li><a href="https://twitter.com/LangChainAI" rel="noopener noreferrer">Twitter account</a>: follow to get fresh updates</li>
-</ul>
 <h3><p>Learn / Videos Playlists</p>
 </h3>
 <ul>
@@ -1085,5 +1075,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
