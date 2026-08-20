@@ -16,22 +16,327 @@
     <meta property="og:title" content="Track Awesome Cropsteering Updates Weekly" />
     <meta property="og:description" content="Curated by IXYZ list of OpenSource projects in indoor&#x2F;outdoor agriculture automation, crop steering and cannabis cultivation" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Cropsteering Updates Weekly</h1>
 <p>Curated by IXYZ list of OpenSource projects in indoor/outdoor agriculture automation, crop steering and cannabis cultivation</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/Intergalactic-XYZ/awesome-cropsteering/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/Intergalactic-XYZ/awesome-cropsteering">😺 Intergalactic-XYZ/awesome-cropsteering</a><span> · </span><span>⭐ 9</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/Intergalactic-XYZ/awesome-cropsteering/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/Intergalactic-XYZ/awesome-cropsteering">😺 Intergalactic-XYZ/awesome-cropsteering</a><span> · </span><span>⭐ 12</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><a href="/Intergalactic-XYZ/awesome-cropsteering/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/Intergalactic-XYZ/awesome-cropsteering/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/34/">Aug 24 - Aug 30, 2026</a></h2><h3><p><strong>AI/ML</strong></p>
+</h3>
+<ul>
+<li><a href="https://github.com/danforthcenter/plantcv" rel="noopener noreferrer">PlantCV (⭐817)</a> - Open-source plant phenotyping and image analysis library from the Danforth Plant Science Center</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/spMohanty/PlantVillage-Dataset" rel="noopener noreferrer">PlantVillage Dataset (⭐952)</a> - Open dataset of 54k+ images of healthy and diseased plant leaves across 14 crop species and 26 diseases</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pratikkayal/PlantDoc-Dataset" rel="noopener noreferrer">PlantDoc Dataset (⭐429)</a> - Dataset for visual plant disease detection in real (non-lab) conditions</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Project-AgML/AgML" rel="noopener noreferrer">AgML (⭐328)</a> - Centralized framework for agricultural machine learning: public datasets, benchmarks, pretrained models and synthetic data generation</li>
+</ul>
+<h3><p><strong>Grow Automation</strong></p>
+</h3>
+<ul>
+<li><a href="https://github.com/FarmBot/farmbot_os" rel="noopener noreferrer">FarmBot OS (⭐1.2k)</a> - Operating system for FarmBot, the open-source CNC farming robot, running on Raspberry Pi</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/reef-pi/reef-pi" rel="noopener noreferrer">reef-pi (⭐438)</a> - Raspberry Pi based controller with pH monitoring, dosing pumps, ATO and timers. Aquarium-focused but directly reusable for hydroponic reservoir control</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/theyosh/TerrariumPI" rel="noopener noreferrer">TerrariumPI (⭐469)</a> - Raspberry Pi automation for enclosed environments: climate, lighting, watering and webcams</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/supergreenlab/SuperGreenOS" rel="noopener noreferrer">SuperGreenOS (⭐220)</a> - ESP32 all-in-one grow controller firmware with mobile app control</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/NachtRaveVL/Simple-Hydroponics-Arduino" rel="noopener noreferrer">Hydruino (⭐95)</a> - Fully configurable hydroponics automation controller for Arduino-compatible MCUs, offline with no cloud dependency</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dwot/isley" rel="noopener noreferrer">Isley (⭐84)</a> - Self-hosted cannabis grow journal with sensor tracking for AC Infinity controllers and Ecowitt soil sensors</li>
+</ul>
+<h3><p><strong>Calculators</strong></p>
+</h3>
+<ul>
+<li><a href="https://github.com/danielfppps/hydrobuddy" rel="noopener noreferrer">HydroBuddy (⭐128)</a> - Open-source hydroponic nutrient solution calculator</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/JakeTheRabbit/Athena-Batch-Tank-Nutrient-Calculator" rel="noopener noreferrer">Athena Batch Tank Nutrient Calculator (⭐5)</a> - Self-hosted offline dosing calculator for the Athena nutrient and foliar range</li>
+</ul>
+
+<ul>
+<li><a href="https://trym.io/vpd-calculator/" rel="noopener noreferrer">Trym VPD Calculator</a> - Free VPD calculator with leaf-temperature offset and stage-specific target charts</li>
+</ul>
+
+<ul>
+<li><a href="https://pulsegrow.com/blogs/learn/vpd" rel="noopener noreferrer">Pulse VPD Guide and Calculator</a> - Detailed VPD explainer with interactive calculator and charts</li>
+</ul>
+<h3><p>Node RED / Node RED flows</p>
+</h3>
+<ul>
+<li><a href="https://github.com/njhughes-01/nodeRed-HA-GrowingFunctions" rel="noopener noreferrer">Home Automation Repository (⭐1)</a> - repository contains configuration files for a home automation system, including various sensors, inputs, and automation scripts</li>
+</ul>
+<h3><p>Home Assistant / Home Assistant Automation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/JakeTheRabbit/HA-Irrigation-Strategy" rel="noopener noreferrer">HA-Irrigation-Strategy (⭐18)</a> - Crop steering irrigation strategy (P0-P3 phases) for Home Assistant with GUI blueprint configuration</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Olen/homeassistant-plant" rel="noopener noreferrer">Home Assistant Plant (⭐853)</a> - Alternative Plant component with thresholds, species data and daily light integral</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Olen/home-assistant-openplantbook" rel="noopener noreferrer">OpenPlantbook integration (⭐558)</a> - Fetches per-species care thresholds from OpenPlantbook.io</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/altmenorg/HAsmartirrigation" rel="noopener noreferrer">Smart Irrigation (⭐546)</a> - Calculates irrigation duration and volume from evapotranspiration data</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/rgc99/irrigation_unlimited" rel="noopener noreferrer">Irrigation Unlimited (⭐453)</a> - Feature-rich irrigation controller: unlimited zones, sequences, seasonal adjustment</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dalinicus/homeassistant-acinfinity" rel="noopener noreferrer">AC Infinity integration (⭐196)</a> - Home Assistant integration for AC Infinity UIS grow-tent controllers</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/OpenGrow-Box/OpenGrowBox-HA" rel="noopener noreferrer">OpenGrowBox-HA (⭐58)</a> - Autonomous grow-room control: VPD, climate, lighting, CO2 and irrigation over Zigbee/ESPHome/Tasmota/MQTT</li>
+</ul>
+<h3><p>Home Assistant / Home Assistant UI</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Olen/lovelace-flower-card" rel="noopener noreferrer">Lovelace Flower Card (⭐505)</a> - Flower card matching the custom plant integration</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/vpdchart/vpdchart-card" rel="noopener noreferrer">VPD Chart Card (⭐46)</a> - Lovelace VPD chart card for grow rooms</li>
+</ul>
+<h3><p><strong>Facility management</strong> / Home Assistant UI</p>
+</h3>
+<ul>
+<li><a href="https://github.com/farmOS/farmOS" rel="noopener noreferrer">farmOS (⭐1.3k)</a> - Web-based farm record keeping and management application</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/cannlytics/cannlytics" rel="noopener noreferrer">Cannlytics (⭐80)</a> - Open-source cannabis data pipelines and lab analytics tooling</li>
+</ul>
+<h3><p>ESPHome / ESPHome Configs</p>
+</h3>
+<ul>
+<li><a href="https://github.com/TheRealFalseReality/Aquaponics_Pool_Kit-AtlasScientific" rel="noopener noreferrer">Aquaponics-Kit (⭐6)</a> - Code for Atlas Scientific Wi-Fi Aquaponics Kit to be compatible with ESPHome and HomeAssistant using Adafruit HUZZAH32 – ESP32 Feather Board</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/fraxinas/sdi12-esphome" rel="noopener noreferrer">sdi12-esphome (⭐8)</a> - SDI-12 sensor interface component for ESPHome</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/JakeTheRabbit/Grownlink-Terralink-Substrate-Sensor-for-ESP-Home" rel="noopener noreferrer">Growlink Terralink for ESPHome (⭐0)</a> - ESP32/ESPHome reading a Growlink Terralink TDR substrate sensor over SDI-12, exposing VWC/pwEC/temp to Home Assistant for coco and rockwool</li>
+</ul>
+<h3><p>Tasmota / Tasmota Configs</p>
+</h3>
+<ul>
+<li><a href="https://github.com/LucidEye/Tasmota-Hydroponics-Controller" rel="noopener noreferrer">Tasmota-Hydroponics-Controller (⭐4)</a> - Tasmota Berry scripts for grow-tent and hydro VPD control: lights, pump, humidifier, PWM fans</li>
+</ul>
+<h3><p>Components / Tasmota Configs</p>
+</h3>
+<ul>
+<li><a href="https://www.seeedstudio.com/" rel="noopener noreferrer">Seeed Studio</a> - various modules and components based on ESP32 and other MCU</li>
+</ul>
+<h3><p>DIY / Modular systems</p>
+</h3>
+<ul>
+<li><a href="https://github.com/rbaron/b-parasite" rel="noopener noreferrer">b-parasite (⭐2.4k)</a> - Open-hardware wireless (BLE/Zigbee) soil moisture, temperature/humidity and light sensor with PCB and firmware</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Miceuz/i2c-moisture-sensor" rel="noopener noreferrer">Chirp i2c-moisture-sensor (⭐256)</a> - The canonical open-hardware I2C capacitive soil moisture sensor</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/Makerfabs/Lora-Soil-Moisture-Sensor" rel="noopener noreferrer">Makerfabs LoRa Soil Moisture Sensor (⭐62)</a> - Open hardware and firmware LoRa capacitive soil moisture node, LoRaWAN variant available</li>
+</ul>
+<h3><p><strong>Metrics and Logging</strong> / Modular systems</p>
+</h3>
+<ul>
+<li><a href="https://github.com/EnviroDIY/Arduino-SDI-12" rel="noopener noreferrer">Arduino-SDI-12 (⭐186)</a> - The de-facto Arduino library for SDI-12 communication with environmental sensors, no extra hardware needed</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/EnviroDIY/ModularSensors" rel="noopener noreferrer">ModularSensors (⭐89)</a> - Arduino library giving environmental sensors (including SDI-12 and Modbus soil probes) a common datalogger interface</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/HarveyBates/ESP32-SDI12" rel="noopener noreferrer">ESP32-SDI12 (⭐17)</a> - SDI-12 library for ESP32 microcontrollers</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/myduino/Industrial-Soil-Sensor-RS485" rel="noopener noreferrer">Industrial-Soil-Sensor-RS485 (⭐53)</a> - ESP32 sketches for industrial RS485 Modbus soil moisture/temp/EC/pH/NPK probes</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/influxdata/telegraf" rel="noopener noreferrer">Telegraf (⭐18k)</a> - Plugin-driven agent for collecting and shipping metrics (MQTT, Modbus, sensors) to InfluxDB and others</li>
+</ul>
+<h3><p><strong>MQTT</strong> / Modular systems</p>
+</h3>
+<ul>
+<li><a href="https://github.com/eclipse-mosquitto/mosquitto" rel="noopener noreferrer">Mosquitto (⭐11k)</a> - Mosquitto is an open source implementation of a server for version 5.0, 3.1.1, and 3.1 of the MQTT protocol</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/1technophile/OpenMQTTGateway" rel="noopener noreferrer">OpenMQTTGateway (⭐4.1k)</a> - ESP32 MQTT gateway bridging BLE (Mi Flora, b-parasite), 433MHz, IR and LoRa sensors to your broker</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/theengs/gateway" rel="noopener noreferrer">Theengs Gateway (⭐174)</a> - Multi-platform BLE-to-MQTT gateway decoding hundreds of sensors, with Home Assistant auto-discovery</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/ThomDietrich/miflora-mqtt-daemon" rel="noopener noreferrer">miflora-mqtt-daemon (⭐623)</a> - Linux daemon pushing Xiaomi Mi Flora plant sensor data to MQTT</li>
+</ul>
+<h3><p><strong>Storing Data</strong> / Modular systems</p>
+</h3>
+<ul>
+<li><a href="https://github.com/timescale/timescaledb" rel="noopener noreferrer">TimescaleDB (⭐23k)</a> - Time-series database packaged as a Postgres extension, well suited to sensor telemetry</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/VictoriaMetrics/VictoriaMetrics" rel="noopener noreferrer">VictoriaMetrics (⭐18k)</a> - Fast, cost-effective time-series database and monitoring solution</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/questdb/questdb" rel="noopener noreferrer">QuestDB (⭐17k)</a> - High-performance open-source time-series database with SQL and InfluxDB line protocol support</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/apache/iotdb" rel="noopener noreferrer">Apache IoTDB (⭐6.4k)</a> - Time-series database designed for IoT: edge-to-cloud sync and high-frequency sensor ingestion</li>
+</ul>
+<h3><p>Visualization platforms / Modular systems</p>
+</h3>
+<ul>
+<li><a href="https://github.com/thingsboard/thingsboard" rel="noopener noreferrer">ThingsBoard (⭐22k)</a> - Open-source IoT platform: device management, MQTT data collection, rule engine and dashboards</li>
+</ul>
+<h3><p>Crop Steering Guides / Modular systems</p>
+</h3>
+<ul>
+<li><a href="https://aroya.io/en/resources/crop-steering" rel="noopener noreferrer">AROYA Crop Steering Guide</a> - In-depth free guide on substrate sensors, dryback strategy and P1/P2/P3 irrigation phases from METER Group's AROYA team</li>
+</ul>
+
+<ul>
+<li><a href="https://cea.cals.cornell.edu/" rel="noopener noreferrer">Cornell CEA</a> - Cornell University's Controlled Environment Agriculture program: free research publications on greenhouse engineering, hydroponics and lighting</li>
+</ul>
+<h3><p><strong>Other Awesome Lists</strong> / Modular systems</p>
+</h3>
+<ul>
+<li><a href="https://github.com/px39n/Awesome-Precision-Agriculture" rel="noopener noreferrer">Awesome Precision Agriculture (⭐141)</a></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/awesome-mqtt/awesome-mqtt" rel="noopener noreferrer">Awesome MQTT (⭐2.4k)</a></li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2024/11/">Mar 11 - Mar 17, 2024</a></h2><h3><p>Components / Tasmota Configs</p>
 </h3>
 <ul>
@@ -40,17 +345,17 @@
 <h3><p>DIY / Modular systems</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hydromisc/hydromisc" rel="noopener noreferrer">Hydromisc (⭐517)</a> - A single PCBA with all the necessary I/O to automate a typical small to mid-size hydroponic grow, controllable over Wifi. It may also be suitable for aquariums, ponds, or any other biological or chemical process involving water treatment</li>
+<li><a href="https://github.com/hydromisc/hydromisc" rel="noopener noreferrer">Hydromisc (⭐524)</a> - A single PCBA with all the necessary I/O to automate a typical small to mid-size hydroponic grow, controllable over Wifi. It may also be suitable for aquariums, ponds, or any other biological or chemical process involving water treatment</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/9/">Feb 26 - Mar 03, 2024</a></h2><h3><p><strong>Grow Automation</strong></p>
 </h3>
 <ul>
-<li><a href="https://github.com/potnanny/application" rel="noopener noreferrer">Potnanny (⭐1)</a> - Potnanny turns your Raspberry Pi into powerful grow-room automation system using inexpensive, off-the-shelf Bluetooth sensors, power outlets, and other devices</li>
+<li><a href="https://github.com/potnanny/application" rel="noopener noreferrer">Potnanny (⭐0)</a> - Potnanny turns your Raspberry Pi into powerful grow-room automation system using inexpensive, off-the-shelf Bluetooth sensors, power outlets, and other devices</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/8/">Feb 19 - Feb 25, 2024</a></h2><h3><p>Components / Tasmota Configs</p>
 </h3>
 <ul>
-<li><a href="https://www.lilygo.cc/" rel="noopener noreferrer">LILYGO</a> - varous modiles and components. Good relay boards based on ESP32</li>
+<li><a href="https://www.lilygo.cc/" rel="noopener noreferrer">LILYGO</a> - various modules and components. Good relay boards based on ESP32</li>
 </ul>
 
 <ul>
@@ -59,105 +364,85 @@
 <h3><p>DIY / Modular systems</p>
 </h3>
 <ul>
-<li><a href="https://github.com/adamalfath/sentsor-core-esp32embed" rel="noopener noreferrer">SENTSOR Core ESP32-EMBED (⭐9)</a> - all-in-one, super low power development board based on latest revision of ESP32 chip. BOM, easyEDA PCB blueprints</li>
+<li><a href="https://github.com/adamalfath/sentsor-core-esp32embed" rel="noopener noreferrer">SENTSOR Core ESP32-EMBED (⭐10)</a> - all-in-one, super low power development board based on latest revision of ESP32 chip. BOM, easyEDA PCB blueprints</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/7/">Feb 12 - Feb 18, 2024</a></h2><h3><p><strong>AI/ML</strong></p>
 </h3>
 <ul>
-<li><a href="https://github.com/geezacoleman/OpenWeedLocator" rel="noopener noreferrer">OpenWeedLocator (⭐400)</a> - Opensource hardware and software weed detector that uses entirely off-the-shelf componentry, very simple green-detection algorithms (with capacity to upgrade to in-crop detection) and 3D printable parts</li>
+<li><a href="https://github.com/geezacoleman/OpenWeedLocator" rel="noopener noreferrer">OpenWeedLocator (⭐490)</a> - Opensource hardware and software weed detector that uses entirely off-the-shelf componentry, very simple green-detection algorithms (with capacity to upgrade to in-crop detection) and 3D printable parts</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/morenoh149/plantdisease" rel="noopener noreferrer">Plant disease (⭐41)</a> - Predictive model for cannabis sickness. One source identifies 30 types of cannabis ailments.</li>
+<li><a href="https://github.com/morenoh149/plantdisease" rel="noopener noreferrer">Plant disease (⭐48)</a> - Predictive model for cannabis sickness. One source identifies 30 types of cannabis ailments.</li>
 </ul>
 <h3><p><strong>Grow Automation</strong></p>
 </h3>
 <ul>
-<li><a href="https://github.com/drolsen/DRO-Matic" rel="noopener noreferrer">DROMatic OS (⭐324)</a> - The DRO-Matic OS has been built to automate nearly every aspect of hydroponic farming for you! From nutrient dosing to pH / EC drift fixing, feeding types to draining, top-offs and even timers; we have quantified everything you need to automate successful crops.</li>
+<li><a href="https://github.com/drolsen/DRO-Matic" rel="noopener noreferrer">DROMatic OS (⭐334)</a> - The DRO-Matic OS has been built to automate nearly every aspect of hydroponic farming for you! From nutrient dosing to pH / EC drift fixing, feeding types to draining, top-offs and even timers; we have quantified everything you need to automate successful crops.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/mudpi/mudpi-core" rel="noopener noreferrer">MudPi (⭐278)</a> - A python package to gather sensor readings, trigger components, control devices and more in an event based system that can be run on a linux SBC, including Raspberry Pi</li>
+<li><a href="https://github.com/mudpi/mudpi-core" rel="noopener noreferrer">MudPi (⭐281)</a> - A python package to gather sensor readings, trigger components, control devices and more in an event based system that can be run on a linux SBC, including Raspberry Pi</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/kizniche/Mycodo" rel="noopener noreferrer">Mycodo (⭐3.1k)</a> - Mycodo is open source software for the Raspberry Pi that couples inputs and outputs in interesting ways to sense and manipulate the environment</li>
+<li><a href="https://github.com/kizniche/Mycodo" rel="noopener noreferrer">Mycodo (⭐3.3k)</a> - Mycodo is open source software for the Raspberry Pi that couples inputs and outputs in interesting ways to sense and manipulate the environment</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ledgardener/gardenAutomation" rel="noopener noreferrer">gardenAutomation (⭐494)</a> - Garden Automation toolkit by <a href="https://ledgardener.com/category/builds/" rel="noopener noreferrer">LedGardener</a></li>
+<li><a href="https://github.com/ledgardener/gardenAutomation" rel="noopener noreferrer">gardenAutomation (⭐526)</a> - Garden Automation toolkit by <a href="https://ledgardener.com/category/builds/" rel="noopener noreferrer">LedGardener</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/WEGA-project/wegabox" rel="noopener noreferrer">WEGA-Box (⭐19)</a> - Hydroponic system management toolkit</li>
+<li><a href="https://github.com/WEGA-project/wegabox" rel="noopener noreferrer">WEGA-Box (⭐21)</a> - Hydroponic system management toolkit</li>
 </ul>
 <h3><p><strong>Calculators</strong></p>
 </h3>
 <ul>
-<li><a href="https://github.com/WEGA-project/wega-hpg" rel="noopener noreferrer">WEGA-HPG (⭐175)</a> - HPG Calculator</li>
+<li><a href="https://github.com/WEGA-project/wega-hpg" rel="noopener noreferrer">WEGA-HPG (⭐183)</a> - HPG Calculator</li>
 </ul>
 <h3><p>Node RED</p>
 </h3>
 <ul>
-<li><a href="https://github.com/node-red/node-red" rel="noopener noreferrer">Node-RED (⭐21k)</a> - Low-code programming for event-driven applications</li>
+<li><a href="https://github.com/node-red/node-red" rel="noopener noreferrer">Node-RED (⭐24k)</a> - Low-code programming for event-driven applications</li>
 </ul>
-<h3><p>Node RED / Node RED flows</p>
+<h3><p>Home Assistant / Node RED flows</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Killerherts/nodeRed-HA-GrowingFunctions" rel="noopener noreferrer">Home Automation Repository (⭐2)</a> - repository contains configuration files for a home automation system, including various sensors, inputs, and automation scripts</li>
-</ul>
-<h3><p>Tasmota / Tasmota Configs</p>
-</h3>
-<ul>
-<li>N/A</li>
-</ul>
-<h3><p>Home Assistant / Node RED plugins</p>
-</h3>
-<ul>
-<li><a href="https://github.com/home-assistant/core" rel="noopener noreferrer">Home Assistant (⭐80k)</a> - Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts</li>
+<li><a href="https://github.com/home-assistant/core" rel="noopener noreferrer">Home Assistant (⭐90k)</a> - Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts</li>
 </ul>
 <h3><p>Home Assistant / Home Assistant Automation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/JakeTheRabbit/HAGR" rel="noopener noreferrer">HAGR (⭐24)</a> - Home Assistant Grow Room is a repository for grow automation related things for Home Assistant</li>
+<li><a href="https://github.com/JakeTheRabbit/HAGR" rel="noopener noreferrer">HAGR (⭐58)</a> - Home Assistant Grow Room is a repository for grow automation related things for Home Assistant</li>
 </ul>
 <h3><p><strong>Facility management</strong> / Home Assistant UI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/openthc/docker" rel="noopener noreferrer">OpenTHC (⭐8)</a> - OpenTHC is an environment of web-based applications focused on helping Cannabis/Hemp and Organic Horticulture industry participants meet their regulatory requirements</li>
+<li><a href="https://github.com/openthc/docker" rel="noopener noreferrer">OpenTHC (⭐9)</a> - OpenTHC is an environment of web-based applications focused on helping Cannabis/Hemp and Organic Horticulture industry participants meet their regulatory requirements</li>
 </ul>
 <h3><p><strong>Irrigation</strong> / Home Assistant UI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/OpenSprinkler/OpenSprinkler-Firmware" rel="noopener noreferrer">OpenSprinkler AVR/RPI/BBB Firmware (⭐503)</a> - This is a unified OpenSprinkler firmware for Arduino, and Linux-based OpenSprinklers such as OpenSprinkler Pi</li>
+<li><a href="https://github.com/OpenSprinkler/OpenSprinkler-Firmware" rel="noopener noreferrer">OpenSprinkler AVR/RPI/BBB Firmware (⭐555)</a> - This is a unified OpenSprinkler firmware for Arduino, and Linux-based OpenSprinklers such as OpenSprinkler Pi</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/autogrow/openminder" rel="noopener noreferrer">OpenMinder (⭐42)</a> -  Allows anyone to build a device that can monitor the rootzone of their plants to make the most optimum use of water and fertigation ingredients to ensure a happy plant. This is done by measuring the water going into the plants on the irrigation side, as well as coming out on the runoff side, thus allowing comparisons</li>
+<li><a href="https://github.com/autogrow/openminder" rel="noopener noreferrer">OpenMinder (⭐46)</a> -  Allows anyone to build a device that can monitor the rootzone of their plants to make the most optimum use of water and fertigation ingredients to ensure a happy plant. This is done by measuring the water going into the plants on the irrigation side, as well as coming out on the runoff side, thus allowing comparisons</li>
 </ul>
 <h3><p>ESPHome / Home Assistant UI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/esphome/esphome" rel="noopener noreferrer">ESPHome (⭐9.6k)</a> - ESPHome is a system to control your microcontrollers by simple yet powerful configuration files and control them remotely through Home Automation systems</li>
+<li><a href="https://github.com/esphome/esphome" rel="noopener noreferrer">ESPHome (⭐12k)</a> - ESPHome is a system to control your microcontrollers by simple yet powerful configuration files and control them remotely through Home Automation systems</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/KaufHA/PLF10/tree/main" rel="noopener noreferrer">PLF10 (⭐28)</a> - KAUF Power Monitoring Smart Plug (PLF10)</li>
-</ul>
-<h3><p>ESPHome / ESPHome Configs</p>
-</h3>
-<ul>
-<li><a href="https://github.com/TheRealFalseReality/Aquaponics-Kit" rel="noopener noreferrer">Aquaponics-Kit (⭐3)</a> - Code for Atas Scientific Wi-Fi Aquaponics Kit to be compatable with ESPHome and HomeAssistant using Adafruit HUZZAH32 – ESP32 Feather Board</li>
+<li><a href="https://github.com/KaufHA/PLF10/tree/main" rel="noopener noreferrer">PLF10 (⭐29)</a> - KAUF Power Monitoring Smart Plug (PLF10)</li>
 </ul>
 <h3><p>Tasmota / ESPHome Configs</p>
 </h3>
 <ul>
-<li><a href="https://github.com/arendst/Tasmota" rel="noopener noreferrer">Tasmota (⭐23k)</a> - Alternative firmware for ESP8266 and ESP32 based devices with easy configuration using webUI, OTA updates, automation using timers or rules, expandability and entirely local control over MQTT, HTTP, Serial or KNX</li>
-</ul>
-<h3><p>Components / Tasmota Configs</p>
-</h3>
-<ul>
-<li><a href="https://www.seeedstudio.com/" rel="noopener noreferrer">Seed Studio</a> - various modules and components based on ESP32 and other MCU</li>
+<li><a href="https://github.com/arendst/Tasmota" rel="noopener noreferrer">Tasmota (⭐25k)</a> - Alternative firmware for ESP8266 and ESP32 based devices with easy configuration using webUI, OTA updates, automation using timers or rules, expandability and entirely local control over MQTT, HTTP, Serial or KNX</li>
 </ul>
 <h3><p>Components / Sensors</p>
 </h3>
@@ -181,7 +466,7 @@
 <h3><p>DIY / Modular systems</p>
 </h3>
 <ul>
-<li><a href="https://github.com/OpenSprinkler/OpenSprinkler-Hardware" rel="noopener noreferrer">OpenSprinkler Hardware (⭐70)</a> - OpenSprinkler Hardware Design files, made in EagleCAD software</li>
+<li><a href="https://github.com/OpenSprinkler/OpenSprinkler-Hardware" rel="noopener noreferrer">OpenSprinkler Hardware (⭐78)</a> - OpenSprinkler Hardware Design files, made in EagleCAD software</li>
 </ul>
 <h3><p><strong>Metrics and Logging</strong> / Modular systems</p>
 </h3>
@@ -190,25 +475,21 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/cropsteering/OS-SDI12" rel="noopener noreferrer">OpenSteering-SDI12 (⭐4)</a> - SDI-12 Data logger, up to 62 addresses</li>
+<li><a href="https://github.com/cropsteering/OS-SDI12" rel="noopener noreferrer">OpenSteering-SDI12 (⭐3)</a> - SDI-12 Data logger, up to 62 addresses</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Emperiusm/TDR-Sensor" rel="noopener noreferrer">TDR-Sensor (⭐5)</a> - A TDR sensor that measures moisture content, EC, and temperature for Rockwool Substrates or Soil Substrates</li>
+<li><a href="https://github.com/Emperiusm/TDR-Sensor" rel="noopener noreferrer">TDR-Sensor (⭐7)</a> - A TDR sensor that measures moisture content, EC, and temperature for Rockwool Substrates or Soil Substrates</li>
 </ul>
 <h3><p><strong>Mixers and Dosers</strong> / Modular systems</p>
 </h3>
 <ul>
-<li><a href="https://github.com/WEGA-project/wega-mixer" rel="noopener noreferrer">WEGA-Mixer (⭐29)</a> - WEGA-Mixer is a device for the automatic preparation of two-component complex fertilizers in liquids by precisely mixing their composition (RU, requires google translate).</li>
+<li><a href="https://github.com/WEGA-project/wega-mixer" rel="noopener noreferrer">WEGA-Mixer (⭐32)</a> - WEGA-Mixer is a device for the automatic preparation of two-component complex fertilizers in liquids by precisely mixing their composition (RU, requires google translate).</li>
 </ul>
 <h3><p><strong>MQTT</strong> / Modular systems</p>
 </h3>
 <ul>
-<li><a href="https://github.com/eclipse/mosquitto" rel="noopener noreferrer">Mosquitto (⭐9.9k)</a> - Mosquitto is an open source implementation of a server for version 5.0, 3.1.1, and 3.1 of the MQTT protocol</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/emqx/emqx" rel="noopener noreferrer">EMQX (⭐15k)</a> - EMQX is the world's most scalable open-source MQTT broker with a high performance that connects 100M+ IoT devices in 1 cluster, while maintaining 1M message per second throughput and sub-millisecond latency.</li>
+<li><a href="https://github.com/emqx/emqx" rel="noopener noreferrer">EMQX (⭐17k)</a> - EMQX is the world's most scalable open-source MQTT broker with a high performance that connects 100M+ IoT devices in 1 cluster, while maintaining 1M message per second throughput and sub-millisecond latency.</li>
 </ul>
 <h3><p><strong>Relay and power control</strong> / Modular systems</p>
 </h3>
@@ -218,11 +499,11 @@
 <h3><p>Visualization platforms / Modular systems</p>
 </h3>
 <ul>
-<li><a href="https://github.com/influxdata/influxdb" rel="noopener noreferrer">InfluxDB (⭐30k)</a> - InfluxDB is an open source time series database</li>
+<li><a href="https://github.com/influxdata/influxdb" rel="noopener noreferrer">InfluxDB (⭐32k)</a> - InfluxDB is an open source time series database</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/grafana/grafana" rel="noopener noreferrer">Grafana (⭐69k)</a> - The open-source platform for monitoring and observability</li>
+<li><a href="https://github.com/grafana/grafana" rel="noopener noreferrer">Grafana (⭐76k)</a> - The open-source platform for monitoring and observability</li>
 </ul>
 <h3><p><strong>Storing Data</strong> / Modular systems</p>
 </h3>
@@ -233,16 +514,16 @@ top of HBase</li>
 <h3><p>Visualization Libraries / Modular systems</p>
 </h3>
 <ul>
-<li><a href="https://github.com/influxdata/giraffe" rel="noopener noreferrer">Giraffe (⭐186)</a> - A React-based visualization library powering the data visualizations in the InfluxDB 2.0 UI</li>
+<li><a href="https://github.com/influxdata/giraffe" rel="noopener noreferrer">Giraffe (⭐189)</a> - A React-based visualization library powering the data visualizations in the InfluxDB 2.0 UI</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/d3/d3" rel="noopener noreferrer">D3.js (⭐111k)</a> - D3 (or D3.js) is a free, open-source JavaScript library for visualizing data. Its low-level approach built on web standards offers unparalleled flexibility in authoring dynamic, data-driven graphics</li>
+<li><a href="https://github.com/d3/d3" rel="noopener noreferrer">D3.js (⭐113k)</a> - D3 (or D3.js) is a free, open-source JavaScript library for visualizing data. Its low-level approach built on web standards offers unparalleled flexibility in authoring dynamic, data-driven graphics</li>
 </ul>
 <h3><p><strong>Zigbee</strong> / Modular systems</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Koenkk/zigbee2mqtt" rel="noopener noreferrer">Zigbee2MQTT (⭐14k)</a> - It bridges events and allows you to control your Zigbee devices via MQTT. In this way you can integrate your Zigbee devices with whatever smart home infrastructure you are using.</li>
+<li><a href="https://github.com/Koenkk/zigbee2mqtt" rel="noopener noreferrer">Zigbee2MQTT (⭐16k)</a> - It bridges events and allows you to control your Zigbee devices via MQTT. In this way you can integrate your Zigbee devices with whatever smart home infrastructure you are using.</li>
 </ul>
 <h3><p>Crop Steering Guides / Modular systems</p>
 </h3>
@@ -260,45 +541,83 @@ top of HBase</li>
 <h3><p><strong>Other Awesome Lists</strong> / Modular systems</p>
 </h3>
 <ul>
-<li><a href="https://github.com/brycejohnston/awesome-agriculture" rel="noopener noreferrer">Awesome Agriculture (⭐1.5k)</a></li>
+<li><a href="https://github.com/brycejohnston/awesome-agriculture" rel="noopener noreferrer">Awesome Agriculture (⭐1.9k)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/agucova/awesome-esp" rel="noopener noreferrer">Awesome ESP (⭐1.4k)</a></li>
+<li><a href="https://github.com/agucova/awesome-esp" rel="noopener noreferrer">Awesome ESP (⭐2.6k)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/frenck/awesome-home-assistant" rel="noopener noreferrer">Awesome Home Assistant (⭐6.8k)</a></li>
+<li><a href="https://github.com/frenck/awesome-home-assistant" rel="noopener noreferrer">Awesome Home Assistant (⭐8.3k)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/mark-rushakoff/awesome-influxdb" rel="noopener noreferrer">Awesome InfluxDB (⭐811)</a></li>
+<li><a href="https://github.com/mark-rushakoff/awesome-influxdb" rel="noopener noreferrer">Awesome InfluxDB (⭐819)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/HQarroum/awesome-iot" rel="noopener noreferrer">Awesome IoT (⭐3.5k)</a></li>
+<li><a href="https://github.com/HQarroum/awesome-iot" rel="noopener noreferrer">Awesome IoT (⭐4.5k)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/weblancaster/awesome-IoT-hybrid" rel="noopener noreferrer">Awesome IoT &amp; Hybrid (⭐574)</a></li>
+<li><a href="https://github.com/weblancaster/awesome-IoT-hybrid" rel="noopener noreferrer">Awesome IoT &amp; Hybrid (⭐610)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Agile-IoT/awesome-open-iot" rel="noopener noreferrer">Awesome Open IoT (⭐661)</a></li>
+<li><a href="https://github.com/Agile-IoT/awesome-open-iot" rel="noopener noreferrer">Awesome Open IoT (⭐706)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/hobbyquaker/awesome-mqtt" rel="noopener noreferrer">Awesome MQTT (⭐2.2k)</a></li>
+<li><a href="https://github.com/delftopenhardware/awesome-open-hardware" rel="noopener noreferrer">Awesome Open Hardware (⭐1k)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/delftopenhardware/awesome-open-hardware" rel="noopener noreferrer">Awesome Open Hardware (⭐574)</a></li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/thibmaek/awesome-raspberry-pi" rel="noopener noreferrer">Awesome Raspberry Pi (⭐15k)</a></li>
+<li><a href="https://github.com/thibmaek/awesome-raspberry-pi" rel="noopener noreferrer">Awesome Raspberry Pi (⭐17k)</a></li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
