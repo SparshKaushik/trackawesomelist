@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Awesome Userscripts (bvolpato/awesome-userscripts) Overview - Track Awesome List</title>
+    <meta property="og:url" content="https://www.trackawesomelist.com/bvolpato/awesome-userscripts/readme/" />
+    <meta property="og:type" content="summary" />
+    <meta property="og:title" content="Awesome Userscripts Overview" />
+    <meta property="og:description" content="📖  A curated list of Awesome Userscripts." />
+    <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
+    <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
+      main {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
+      }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
+      :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
+    </style>
+  </head>
+  <body>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+      <h1>Awesome Userscripts Overview</h1>
+<p>📖  A curated list of Awesome Userscripts.</p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/bvolpato/awesome-userscripts/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/awesome-scripts/awesome-userscripts">😺 bvolpato/awesome-userscripts</a><span> · </span><span>⭐ 3.5K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><span>[ </span><a href="/bvolpato/awesome-userscripts/">Daily</a><span> / </span><a href="/bvolpato/awesome-userscripts/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
+<div>
+
+<a href="#">
+    <img width="333" height="auto" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/awesome/shades/400x200.png" /></a>
+
+<h1>Awesome Userscripts</h1>
+
+
+
+<a href="https://github.com/sindresorhus/awesome">
+    <img height="31" alt="Awesome" src="https://img.shields.io/badge/Awesome-fc60a9.svg?logo=awesomelists&amp;logoColor=white&amp;labelColor=464646&amp;style=for-the-badge" /></a>
+<a href="#license">
+    <img height="31" alt="Awesome" src="https://img.shields.io/badge/License-CC0_1.0-orange.svg?logo=internetarchive&amp;logoColor=white&amp;labelColor=464646&amp;style=for-the-badge" /></a>
+<a href="https://github.com/awesome-scripts/awesome-userscripts/blob/master/CONTRIBUTING.md">
+    <img height="31" alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=github&amp;logoColor=white&amp;labelColor=464646&amp;style=for-the-badge" /></a>
+
+<h3>A curated list of Awesome Userscripts.</h3>
+
+<p>Userscripts can improve your browsing experience, and open a lot of possibilities to make the sites you visit better by adding features, making them easier to use, or taking out the annoying bits.</p>
+</div>
+
+<img height="6px" width="100%" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/separators/rainbow-blue-to-red.png" />
+
+<h1 id="contents"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contents"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contents</h1><ul>
+<li><a href="#compatibility">Compatibility</a></li>
+<li><a href="#scripts">Scripts</a><ul>
+<li><a href="#-ad-blocking">Ad blocking</a></li>
+<li><a href="#-amazon">Amazon</a></li>
+<li><a href="#-brave">Brave</a></li>
+<li><a href="#-chatgpt">ChatGPT</a></li>
+<li><a href="#-discord">Discord</a></li>
+<li><a href="#-display">Display</a></li>
+<li><a href="#-duckduckgo">DuckDuckGo</a></li>
+<li><a href="#-github">GitHub</a></li>
+<li><a href="#-google">Google</a></li>
+<li><a href="#-instagram">Instagram</a></li>
+<li><a href="#-links">Links</a></li>
+<li><a href="#-media">Media</a></li>
+<li><a href="#-navigation">Navigation</a></li>
+<li><a href="#-passwords">Passwords</a></li>
+<li><a href="#-privacy">Privacy</a></li>
+<li><a href="#-quora">Quora</a></li>
+<li><a href="#-reddit">Reddit</a></li>
+<li><a href="#-stremio">Stremio</a></li>
+<li><a href="#-text-to-speech">Text-to-speech</a></li>
+<li><a href="#-translation">Translation</a></li>
+<li><a href="#-xbox">Xbox</a></li>
+<li><a href="#-youtube">YouTube</a></li>
+</ul>
+</li>
+<li><a href="#tutorials">Tutorials</a></li>
+<li><a href="#community">Community</a></li>
+<li><a href="#additional-catalogues">Additional Catalogues</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<img height="6px" width="100%" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/separators/gradient-aqua.png" />
+
+<h2 id="compatibility"><a class="anchor" aria-hidden="true" tabindex="-1" href="#compatibility"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Compatibility</h2><p>Userscripts can be used w/ the following browsers:</p>
+<table>
+    <thead><th>Browser</th><th>Userscript manager</th><th>Install browser</th></thead>
+    <tbody>
+        <tr> 
+            <td> 
+                <a href="https://www.google.com/chrome/">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/chrome/icon16.png" width="16" alt="[Install]" /></a>
+                Chrome, dev builds or Chromium-based browsers (Windows, macOS, Linux)
+            </td>
+            <td> 
+                <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/tampermonkey/icon28.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">
+                        Tampermonkey</a><sup>1</sup>
+                <a href="https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/violentmonkey/icon25.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag">
+                        Violentmonkey</a><sup>2</sup>
+                <a href="https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/scriptcat/icon16.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf">
+                        ScriptCat</a>
+                or
+                <a href="https://chromewebstore.google.com/detail/orangemonkey/ekmeppjgajofkpiofbebgcbohbmfldaf">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/orangemonkey/icon16.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/orangemonkey/ekmeppjgajofkpiofbebgcbohbmfldaf">
+                        OrangeMonkey</a><sup>1,2</sup>
+            </td>
+            <td> 
+                <a href="https://www.google.com/chrome/">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/chrome/icon16.png" width="16" alt="[Chrome]" /></a>
+                <a href="https://www.google.com/chrome/beta/">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/chrome/beta/icon16.svg" width="16" alt="[Chrome Beta]" /></a>
+                <a href="https://www.google.com/chrome/dev/">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/chrome/dev/icon16.svg" width="16" alt="[Chrome Dev]" /></a>
+                <a href="https://www.google.com/chrome/canary/">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/chrome/canary/icon16.svg" width="16" alt="[Chrome Canary]" /></a>
+                <a href="https://www.opera.com">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/opera/icon16.png" width="16" alt="[Opera]" /></a><sup>3</sup>
+                <a href="https://www.opera.com/gx">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/opera/gx/icon16.png" width="16" alt="[Opera GX]" /></a><sup>3</sup>
+                <a href="https://www.opera.com/air">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/opera/air/icon16.png" width="16" alt="[Opera Air]" /></a><sup>3</sup>
+                <a href="https://brave.com">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/brave/icon16.png" width="16" alt="[Brave]" /></a>
+                <a href="https://vivaldi.com">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/vivaldi/icon16.png" width="16" alt="[Vivaldi]" /></a>
+                <a href="https://ghostbrowser.com">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/ghost/icon16.png" width="16" alt="[Ghost Browser]" /></a>
+                <a href="https://whale.naver.com">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/whale/tiled/icon16.png" width="16" alt="[Whale]" /></a>
+            </td>
+        </tr>
+        <tr> 
+            <td> 
+                <a href="https://www.apple.com/safari/">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/safari/icon16.png" width="16" alt="[Install]" /></a>
+                Safari (macOS, iOS, iPadOS, visionOS)
+            </td>
+            <td> 
+                <a href="https://apps.apple.com/app/stay-for-safari/id1591620171">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/stay/icon16.png" /></a>
+                <a href="https://apps.apple.com/app/stay-for-safari/id1591620171">
+                        Stay</a>
+                or
+                <a href="https://apps.apple.com/app/userscripts/id1463298887">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/userscripts/icon16.png" /></a>
+                <a href="https://apps.apple.com/app/userscripts/id1463298887">
+                        Userscripts</a>
+            </td>
+            <td> 
+                <a href="https://www.apple.com/safari/">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/safari/icon16.png" width="16" alt="[Safari]" /></a>
+            </td>
+        </tr>
+        <tr> 
+            <td> 
+                <a href="https://www.microsoft.com/edge">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/edge/icon16.png" width="16" alt="[Install]" /></a>
+                Edge or dev builds (Windows, macOS, Linux)
+            </td>
+            <td> 
+                <a href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/tampermonkey/icon28.png" /></a>
+                <a href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd">
+                        Tampermonkey</a><sup>1</sup>
+                <a href="https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/violentmonkey/icon25.png" /></a>
+                <a href="https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao">
+                        Violentmonkey</a><sup>2</sup>
+                <a href="https://microsoftedge.microsoft.com/addons/detail/scriptcat/liilgpjgabokdklappibcjfablkpcekh">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/scriptcat/icon16.png" /></a>
+                <a href="https://microsoftedge.microsoft.com/addons/detail/scriptcat/liilgpjgabokdklappibcjfablkpcekh">
+                        ScriptCat</a>
+                or
+                <a href="https://chromewebstore.google.com/detail/orangemonkey/ekmeppjgajofkpiofbebgcbohbmfldaf">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/orangemonkey/icon16.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/orangemonkey/ekmeppjgajofkpiofbebgcbohbmfldaf">
+                        OrangeMonkey</a><sup>1,2</sup>
+            </td>
+            <td> 
+                <a href="https://www.microsoft.com/edge/download">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/edge/icon16.png" width="16" alt="[Edge]" /></a>
+                <a href="https://www.microsoft.com/edge/download/insider">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/edge/beta/icon16.png" width="16" alt="[Edge Beta]" /></a>
+                <a href="https://www.microsoft.com/edge/download/insider">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/edge/dev/icon16.png" width="16" alt="[Edge Dev]" /></a>
+                <a href="https://www.microsoft.com/edge/download/insider">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/edge/canary/icon16.png" width="16" alt="[Edge Canary]" /></a>
+            </td>
+        </tr>
+        <tr> 
+            <td> 
+                <a href="https://play.google.com/store/apps/details?id=com.microsoft.emmx">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/edge/icon16.png" width="16" alt="[Install]" /></a>
+                Edge or dev builds (Android)
+            </td>
+            <td> 
+                <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/tampermonkey/icon28.png" />
+                    Tampermonkey
+                <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/violentmonkey/icon25.png" />
+                    Violentmonkey
+                or
+                <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/scriptcat/icon16.png" />
+                    ScriptCat
+                <i>(install from ≡ &gt; Extensions)</i>
+            </td>
+            <td> 
+                <a href="https://play.google.com/store/apps/details?id=com.microsoft.emmx">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/edge/icon16.png" width="16" alt="[Edge for Android]" /></a>
+                <a href="https://play.google.com/store/apps/details?id=com.microsoft.emmx.beta">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/edge/beta/icon16.png" width="16" alt="[Edge Beta for Android]" /></a>
+                <a href="https://play.google.com/store/apps/details?id=com.microsoft.emmx.dev">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/edge/dev/icon16.png" width="16" alt="[Edge Dev for Android]" /></a>
+                <a href="https://play.google.com/store/apps/details?id=com.microsoft.emmx.canary">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/edge/canary/icon16.png" width="16" alt="[Edge Canary for Android]" /></a>
+            </td>
+        </tr>
+        <tr> 
+            <td> 
+                <a href="https://www.firefox.com">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/firefox/icon16.png" width="16" alt="[Install]" /></a>
+                Firefox, dev builds or Gecko-based browsers (Windows, macOS, Linux)
+            </td>
+            <td> 
+                <a href="https://addons.mozilla.org/firefox/addon/tampermonkey/">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/tampermonkey/icon28.png" /></a>
+                <a href="https://addons.mozilla.org/firefox/addon/tampermonkey/">
+                        Tampermonkey</a>
+                <a href="https://addons.mozilla.org/firefox/addon/violentmonkey/">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/violentmonkey/icon25.png" /></a>
+                <a href="https://addons.mozilla.org/firefox/addon/violentmonkey/">
+                        Violentmonkey</a><sup>2</sup>
+                or
+                <a href="https://addons.mozilla.org/firefox/addon/scriptcat/">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/scriptcat/icon16.png" /></a>
+                <a href="https://addons.mozilla.org/firefox/addon/scriptcat/">
+                        ScriptCat</a>
+            </td>
+            <td> 
+                <a href="https://www.firefox.com">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/firefox/icon16.png" width="16" alt="[Firefox]" /></a>
+                <a href="https://download.mozilla.org/?product=firefox-beta-stub">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/firefox/beta/icon16.png" width="16" alt="[Firefox Beta]" /></a>
+                <a href="https://download.mozilla.org/?product=firefox-nightly-stub">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/firefox/nightly/icon16.png" width="16" alt="[Firefox Nightly]" /></a>
+                <a href="https://www.waterfox.com/">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/waterfox/icon16.png" width="16" alt="[Waterfox]" /></a>
+                <a href="https://librewolf.net">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/librewolf/icon16.svg" width="16" alt="[LibreWolf]" /></a>
+            </td>
+        </tr>
+        <tr> 
+            <td> 
+                <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/firefox/icon16.png" width="16" alt="[Install]" /></a>
+                Firefox, dev builds or Gecko-based browsers (Android)
+            </td>
+            <td> 
+                <a href="https://addons.mozilla.org/firefox/addon/tampermonkey/">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/tampermonkey/icon28.png" /></a>
+                <a href="https://addons.mozilla.org/firefox/addon/tampermonkey/">
+                        Tampermonkey</a>
+                <a href="https://addons.mozilla.org/firefox/addon/violentmonkey/">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/violentmonkey/icon25.png" /></a>
+                <a href="https://addons.mozilla.org/firefox/addon/violentmonkey/">
+                        Violentmonkey</a><sup>2</sup>
+                or
+                <a href="https://addons.mozilla.org/firefox/addon/scriptcat/">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/scriptcat/icon16.png" /></a>
+                <a href="https://addons.mozilla.org/firefox/addon/scriptcat/">
+                        ScriptCat</a>
+            </td>
+            <td> 
+                <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/firefox/icon16.png" width="16" alt="[Firefox for Android]" /></a>
+                <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox_beta">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/firefox/beta/icon16.png" width="16" alt="[Firefox Beta for Android]" /></a>
+                <a href="https://play.google.com/store/apps/details?id=org.mozilla.fenix">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/firefox/nightly/icon16.png" width="16" alt="[Firefox Nightly for Android]" /></a>
+                <a href="https://play.google.com/store/apps/details?id=net.waterfox.android.release">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/waterfox/icon16.png" width="16" alt="[Waterfox for Android]" /></a>
+                <a href="https://f-droid.org/packages/org.mozilla.fennec_fdroid/">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/fennec/icon16.png" width="16" alt="[Fennec]" /></a>
+                <a href="https://github.com/fork-maintainers/iceraven-browser/releases">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/iceraven/icon16.png" width="16" alt="[Iceraven]" /></a>
+                <a href="https://gitlab.com/ironfox-oss/IronFox/-/releases">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/ironfox/icon16.png" width="16" alt="[IronFox]" /></a>
+            </td>
+        </tr>
+        <tr> 
+            <td> 
+                <a href="https://browser.qq.com">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/qq/gradient-bg/bluer/icon16.png" width="16" alt="[Install]" /></a>
+                QQ Browser (Windows, macOS)
+            </td>
+            <td> 
+                Not required <i>(Tampermonkey &amp; Violentmonkey pre-installed)</i>
+            </td>
+            <td> 
+                <a href="https://browser.qq.com">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/qq/gradient-bg/bluer/icon16.png" width="16" alt="[QQ Browser]" /></a>
+            </td>
+        </tr>
+        <tr> 
+            <td> 
+                <a href="https://www.mises.site">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/mises/icon16.png" width="16" alt="[Install]" /></a>
+                Mises (Android, iOS, iPadOS)
+            </td>
+            <td> 
+                <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/tampermonkey/icon28.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">
+                        Tampermonkey</a><sup>1</sup>
+                or
+                <a href="https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/scriptcat/icon16.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf">
+                        ScriptCat</a>
+            </td>
+            <td> 
+                
+                    Show QR code
+                    <a href="https://www.mises.site/download">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/qr-codes/browsers/mises/download-page/with-icon/purple.png" width="125" alt="[Download Mises]" /></a>
+                
+            </td>
+        </tr>
+        <tr> 
+            <td> 
+                <a href="https://www.lemurbrowser.com">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/lemur/icon16.png" width="16" alt="[Install]" /></a>
+                Lemur (Android, iOS)
+            </td>
+            <td> 
+                <a href="https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/scriptcat/icon16.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf">
+                        ScriptCat</a>
+            </td>
+            <td> 
+                
+                    Show QR code
+                    <a href="https://www.lemurbrowser.com">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/qr-codes/browsers/lemur/homepage/with-icon/teal.png" width="125" alt="[Lemur]" /></a>
+                
+            </td>
+        </tr>
+        <tr> 
+            <td> 
+                <a href="https://www.quetta.net">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/quetta/circled/icon16.png" width="16" alt="[Install]" /></a>
+                Quetta (Android, iOS, iPadOS)
+            </td>
+            <td> 
+                <a href="https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/scriptcat/icon16.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf">
+                        ScriptCat</a>
+            </td>
+            <td> 
+                
+                    Show QR code
+                    <a href="https://www.quetta.net">
+                        <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/qr-codes/browsers/quetta/homepage/with-icon/red.png" width="125" alt="[Quetta]" /></a>
+                
+            </td>
+        </tr>
+        <tr> 
+            <td> 
+                <a href="https://apps.apple.com/app/orion-browser-by-kagi/id1484498200">
+                    <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/icons/browsers/orion/icon16.png" width="16" alt="[Install]" /></a>
+                Orion (iOS, iPadOS)
+            </td>
+            <td> 
+                <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/tampermonkey/icon28.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">
+                        Tampermonkey</a><sup>1</sup>
+                <a href="https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/scriptcat/icon16.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf">
+                        ScriptCat</a>
+                or
+                <a href="https://chromewebstore.google.com/detail/orangemonkey/ekmeppjgajofkpiofbebgcbohbmfldaf">
+                        <img width="16" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/9cbcecc/assets/images/icons/userscript-managers/orangemonkey/icon16.png" /></a>
+                <a href="https://chromewebstore.google.com/detail/orangemonkey/ekmeppjgajofkpiofbebgcbohbmfldaf">
+                        OrangeMonkey</a><sup>1,2</sup>
+            </td>
+            <td> 
+                
+                    Show QR code
+                    <a href="https://apps.apple.com/app/orion-browser-by-kagi/id1484498200">
+                            <img src="https://cdn.staticdelivr.com/gl/adamlui/ai-web-extensions/52d26ee3fb5b6f6bb92498f0e82c0d226b621fb0/assets/images/qr-codes/browsers/orion/apple-app-store/with-icon/purple.png" width="125" alt="[Orion on Apple App Store]" /></a>
+                
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h5>
+    <i>1. If you are installing Tampermonkey or OrangeMonkey for a Chromium browser, you must enable Developer Mode in chrome://extensions for userscripts to function</i><br /><br />
+    <i>2. Violentmonkey &amp; OrangeMonkey do not support Streaming Mode in AmazonGPT + BraveGPT + DuckDuckGPT + GoogleGPT</i><br /><br />
+    <i>3. If you are installing a userscript manager for an Opera browser, you must allow it access to search page results in opera://extensions for search page userscripts to function</i>
+</h5>
+
+<img height="6px" width="100%" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/separators/gradient-aqua.png" />
+
+<h2 id="scripts"><a class="anchor" aria-hidden="true" tabindex="-1" href="#scripts"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Scripts</h2><blockquote>
+<p>[!TIP]
+To show screenshots/links, click the ▸ or userscript descriptions.</p>
+</blockquote>
+<h3 id="-ad-blocking"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-ad-blocking"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="14" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/symbols/cancel/black/icon32.png" /> Ad blocking</h3> 
+    <a href="https://github.com/AdguardTeam/AdGuardExtra">AdGuard Extra</a> - Fight ad blocking circumvention attempts.<br />
+    <blockquote>
+        <a href="https://github.com/AdguardTeam/AdGuardExtra">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@5d22849/assets/images/screenshots/scripts/adguard-extra.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://userscripts.adtidy.org/release/adguard-extra/1.0/adguard-extra.user.js">
+            Install Stable Build</a> /
+        💾 <a href="https://userscripts.adtidy.org/beta/adguard-extra/1.0/adguard-extra.user.js">
+            Install Beta Build</a> /
+        📖 <a href="https://github.com/AdguardTeam/AdGuardExtra/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/AdguardTeam/AdGuardExtra/issues">
+            Discuss</a> /
+        🐛 <a href="https://github.com/AdguardTeam/AdGuardExtra/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://adsbypasser.github.io">AdsBypasser</a> - Bypass Ads, Popups and count-down ads.<br />
+    <blockquote>
+        <a href="https://adsbypasser.github.io">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@00884ad/assets/images/screenshots/scripts/adsbypasser.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://github.com/adsbypasser/adsbypasser/releases/latest/download/adsbypasser.full.user.js">
+            Install Full Edition</a> /
+        💾 <a href="https://github.com/adsbypasser/adsbypasser/releases/latest/download/adsbypasser.lite.user.js">
+            Install Lite Edition</a> /
+        📖 <a href="https://github.com/adsbypasser/adsbypasser/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/adsbypasser/adsbypasser/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/adsbypasser/adsbypasser/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://codeberg.org/adamlui/userscripts/src/branch/master/block-quora-poe/#readme">Block Quora Poe</a> - Blocks low-quality AI + Promoted/Sponsored answers from Quora.<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/userscripts/src/branch/master/block-quora-poe/#readme">
+            <img width="511" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/a1eefef/block-quora-poe/assets/images/screenshots/demo.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/6906/block-quora-poe.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/userscripts/src/branch/master/block-quora-poe/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/userscripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://codeberg.org/adamlui/chatgpt-widescreen/#readme">ChatGPT Widescreen</a> - Enhances ChatGPT with wide/full/tall-screen + spamblock modes. Also works on poe.com!<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/chatgpt-widescreen/#readme">
+            <img width="600" src="https://cdn.staticdelivr.com/gl/adamlui/chatgpt-widescreen/0ba78c7/assets/images/tiles/marquee/tile-625x250.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/6328/chatgpt-widescreen.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/chatgpt-widescreen/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/chatgpt-widescreen/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://greasyfork.org/scripts/453320-simple-sponsor-skipper">Simple Sponsor Skipper</a> - Skips annoying intros, sponsors and filler using the SponsorBlock API. Compatible w/ YouTube, Invidious, CloudTube &amp; Odysee.<br />
+    <blockquote>
+        <a href="https://greasyfork.org/scripts/453320-simple-sponsor-skipper">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/screenshots/scripts/simple-sponsor-skipper.png?v=96092ef" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://codeberg.org/mthsk/userscripts/raw/branch/master/simple-sponsor-skipper/simple-sponsor-skipper.user.js">
+            Install</a> /
+        📖 <a href="https://greasyfork.org/scripts/453320-simple-sponsor-skipper">
+            Readme</a> /
+        📢 <a href="https://codeberg.org/mthsk/userscripts">
+            Discuss</a> /
+        🐛 <a href="https://codeberg.org/mthsk/userscripts">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://codeberg.org/adamlui/youtube-classic/#readme">YouTube Classic</a> - Reverts YouTube to its classic design (unround corners, restore dislikes + remove/redirect Shorts) + block thumbnail/masthead ads.<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/youtube-classic/#readme">
+            <img width="511" src="https://cdn.staticdelivr.com/gl/adamlui/youtube-classic/6de3a93/assets/images/screenshots/youtube-classic-ui.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/6345/youtube-classic.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/youtube-classic/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/youtube-classic/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-amazon"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-amazon"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="17" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/sites/amazon/icon32.png" /> Amazon</h3> 
+    <a href="https://github.com/jhyland87/userscript-amazon-wishlist-search/#readme">Amazon Wishlist Search</a> - Adds a search input field to the wishlist dropdown (supports regex search).<br />
+    <blockquote>
+        <a href="https://github.com/jhyland87/userscript-amazon-wishlist-search/#readme">
+            <img width="511" src="https://raw.githubusercontent.com/jhyland87/userscript-amazon-wishlist-search/refs/heads/main/assets/amazon-wishlist-search-demo-480.gif" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://github.com/jhyland87/userscript-amazon-wishlist-search/releases/latest/download/amazon-wishlist-search.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/jhyland87/userscript-amazon-wishlist-search/#readme">
+            Readme</a> /
+        🐛 <a href="https://github.com/jhyland87/userscript-amazon-wishlist-search/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/KudoAI/amazongpt/#readme">AmazonGPT</a> - Adds AI chat &amp; product/category summaries to Amazon shopping, powered by the latest LLMs.<br />
+    <blockquote>
+        <a href="https://github.com/KudoAI/amazongpt/#readme">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/KudoAI/amazongpt@80bceab/assets/images/screenshots/desktop/mice-md-reply-darkmode.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/7318/amazongpt.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/KudoAI/amazongpt/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/KudoAI/amazongpt/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/KudoAI/amazongpt/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-brave"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-brave"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="16" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/sites/brave/icon32.png" /> Brave</h3> 
+    <a href="https://github.com/KudoAI/bravegpt/#readme">BraveGPT</a> - Adds AI chat &amp; search summaries to Brave Search, powered by the latest LLMs.<br />
+    <blockquote>
+        <a href="https://github.com/KudoAI/bravegpt/#readme">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/KudoAI/bravegpt@a0dd1de/assets/images/screenshots/desktop/bitcoin-query/darkmode.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/7229/bravegpt.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/KudoAI/bravegpt/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/KudoAI/bravegpt/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/KudoAI/bravegpt/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-chatgpt"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-chatgpt"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="21" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/sites/chatgpt/black-on-white/icon50.png" /> ChatGPT</h3> 
+    <a href="https://github.com/KudoAI/amazongpt/#readme">AmazonGPT</a> - Adds AI chat &amp; product/category summaries to Amazon shopping, powered by the latest LLMs.<br />
+    <blockquote>
+        <a href="https://github.com/KudoAI/amazongpt/#readme">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/KudoAI/amazongpt@80bceab/assets/images/screenshots/desktop/mice-md-reply-darkmode.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/7318/amazongpt.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/KudoAI/amazongpt/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/KudoAI/amazongpt/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/KudoAI/amazongpt/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://codeberg.org/adamlui/autoclear-chatgpt-history/#readme">Autoclear ChatGPT History</a> - Auto-clears chat history when visiting chatgpt.com for maximum privacy.<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/autoclear-chatgpt-history/#readme">
+            <img width="511" src="https://cdn.staticdelivr.com/gl/adamlui/autoclear-chatgpt-history/30efed0/assets/images/screenshots/demo.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://codeberg.org/adamlui/autoclear-chatgpt-history/raw/branch/main/greasemonkey/autoclear-chatgpt-history.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/autoclear-chatgpt-history/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/autoclear-chatgpt-history/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/KudoAI/bravegpt/#readme">BraveGPT</a> - Adds AI chat &amp; search summaries to Brave Search, powered by the latest LLMs.<br />
+    <blockquote>
+        <a href="https://github.com/KudoAI/bravegpt/#readme">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/KudoAI/bravegpt@a0dd1de/assets/images/screenshots/desktop/bitcoin-query/darkmode.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/7229/bravegpt.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/KudoAI/bravegpt/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/KudoAI/bravegpt/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/KudoAI/bravegpt/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://codeberg.org/adamlui/ai-web-extensions/src/branch/main/chatgpt-auto-continue/#readme">ChatGPT Auto-Continue</a> - Automatically continue generating answers when ChatGPT responses get cut-off.<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/ai-web-extensions/src/branch/main/chatgpt-auto-continue/#readme">
+            <img width="600" src="https://cdn.staticdelivr.com/gl/adamlui/chatgpt-auto-continue/3d5b5b0/assets/images/tiles/marquee/tile625x250.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://codeberg.org/adamlui/ai-web-extensions/raw/branch/main/chatgpt-auto-continue/greasemonkey/chatgpt-auto-continue.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/ai-web-extensions/src/branch/main/chatgpt-auto-continue/docs/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/ai-web-extensions/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://codeberg.org/adamlui/chatgpt-auto-refresh/#readme">ChatGPT Auto Refresh</a> - Auto-sends background requests to keep sessions fresh &amp; prevent Cloudflare checks + network errors.<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/chatgpt-auto-refresh/#readme">
+            <img width="600" src="https://cdn.staticdelivr.com/gl/adamlui/chatgpt-auto-refresh/e624f14/assets/images/screenshots/gm-toggle%2Bnotification.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://codeberg.org/adamlui/chatgpt-auto-refresh/raw/branch/main/greasemonkey/chatgpt-auto-refresh.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/chatgpt-auto-refresh/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/chatgpt-auto-refresh/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/#readme">ChatGPT Auto-Talk</a> - Automatically play ChatGPT responses.<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/#readme">
+            <img width="300" src="https://cdn.staticdelivr.com/gl/adamlui/chatgpt-auto-talk/165096f/assets/images/screenshots/auto-talk-sidebar-toggle-enabled.png" /></a>
+        <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/#readme">
+            <img width="300" src="https://cdn.staticdelivr.com/gl/adamlui/chatgpt-auto-talk/165096f/assets/images/screenshots/auto-talk-on-notif.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/raw/branch/main/greasemonkey/chatgpt-auto-talk.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/pionxzh/chatgpt-exporter">ChatGPT Exporter</a> - Export and share your ChatGPT conversation history (Markdown, JSON, PNG, PDF).<br />
+    <blockquote>
+        <a href="https://github.com/pionxzh/chatgpt-exporter">
+            <img width="511" src="https://github.com/pionxzh/chatgpt-exporter/assets/9910706/1c864670-7912-4484-b4be-bdf5dde51557" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/456055/ChatGPT%20Exporter.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/pionxzh/chatgpt-exporter#readme">
+            Readme</a> /
+        🐛 <a href="https://github.com/pionxzh/chatgpt-exporter/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://codeberg.org/adamlui/chatgpt-infinity/#readme">ChatGPT Infinity</a> - Generate endless answers from all-knowing ChatGPT (on any topic!)<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/chatgpt-infinity/#readme">
+            <img width="600" src="https://cdn.staticdelivr.com/gl/adamlui/chatgpt-infinity/34fb8e5/assets/images/tiles/marquee/tile-625x250.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/6419/chatgpt-infinity.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/chatgpt-infinity/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/chatgpt-infinity/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://greasyfork.org/scripts/564339-chatgpt-play-sound-when-finish-generating">ChatGPT play sound when finish generating</a> - Plays the medkit sound from Half-Life 2 when ChatGPT finishes answering.<br />
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/564339/ChatGPT%20play%20sound%20when%20finish%20generating.user.js">
+            Install</a>
+    </blockquote>
+
+
+ 
+    <a href="https://codeberg.org/adamlui/chatgpt-widescreen/#readme">ChatGPT Widescreen</a> - Enhances ChatGPT with wide/full/tall-screen + spamblock modes. Also works on poe.com!<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/chatgpt-widescreen/#readme">
+            <img width="600" src="https://cdn.staticdelivr.com/gl/adamlui/chatgpt-widescreen/91656d3/assets/images/tiles/marquee/tile-625x250.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/6328/chatgpt-widescreen.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/chatgpt-widescreen/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/chatgpt-widescreen/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/KudoAI/duckduckgpt/#readme">DuckDuckGPT</a> - Adds AI chat &amp; search summaries to DuckDuckGo, powered by the latest LLMs.<br />
+    <blockquote>
+        <a href="https://github.com/KudoAI/duckduckgpt/#readme">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/KudoAI/duckduckgpt@702c716/assets/images/screenshots/desktop/how-to-becum-rich-query/lightmode.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/7197/duckduckgpt.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/KudoAI/duckduckgpt/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/KudoAI/duckduckgpt/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/KudoAI/duckduckgpt/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/KudoAI/googlegpt/#readme">GoogleGPT</a> - Adds AI chat &amp; search summaries to Google Search, powered by the latest LLMs.<br />
+    <blockquote>
+        <a href="https://github.com/KudoAI/googlegpt/#readme">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/KudoAI/googlegpt@a363ecf/assets/images/screenshots/desktop/javascript-arrays-query/darkmode.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/6371/googlegpt.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/KudoAI/googlegpt/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/KudoAI/googlegpt/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/KudoAI/googlegpt/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/xcanwin/KeepChatGPT">KeepChatGPT</a> - Auto-refresh, session keep-alive, data security, audit cancellation, conversation cloning, unlimited characters, page purification, full-screen display, and more.<br />
+    <blockquote>
+        <a href="https://github.com/xcanwin/KeepChatGPT">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/xcanwin/KeepChatGPT@f65c751/assets/chat_light.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/462804/KeepChatGPT.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/xcanwin/KeepChatGPT#readme">
+            Readme</a> /
+        🐛 <a href="https://github.com/xcanwin/KeepChatGPT/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-discord"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-discord"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="17" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/sites/discord/icon256.png" /> Discord</h3> 
+    <a href="https://victornpb.github.io/undiscord/">Undiscord</a> - Delete all messages in a Discord channel or DM.<br />
+    <blockquote>
+        <a href="https://victornpb.github.io/undiscord/">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@14311cb/assets/images/screenshots/scripts/undiscord.gif" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/406540/Undiscord.user.js">
+            Install</a> /
+        📖 <a href="https://victornpb.github.io/undiscord/">
+            Readme</a> /
+        📢 <a href="https://github.com/victornpb/undiscord/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/victornpb/undiscord/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-display"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-display"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="17" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@438649d/assets/images/icons/symbols/display/black/icon256.png" /> Display</h3> 
+    <a href="https://greasyfork.org/scripts/424595-night-mode">Night Mode</a> - Adds a transparent dark layer depending on the time of the day to any website to make it less bright.<br />
+    <blockquote>
+        <a href="https://greasyfork.org/scripts/424595-night-mode">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@438649d/assets/images/screenshots/scripts/night-mode.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/424595/Night%20Mode.user.js">
+            Install</a> /
+        📖 <a href="https://greasyfork.org/scripts/424595-night-mode">
+            Readme</a> /
+        📢 <a href="https://greasyfork.org/scripts/424595-night-mode/feedback">
+            Discuss</a> /
+        🐛 <a href="https://greasyfork.org/scripts/424595-night-mode/feedback">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://greasyfork.org/scripts/528895-fandom-focus">Fandom Focus</a> - Removes all distractions and unnecessary clutter from Fandom.<br />
+    <blockquote>
+        <a href="https://greasyfork.org/scripts/528895-fandom-focus">
+            <img width="720" src="https://raw.githubusercontent.com/samerop/fandom-focus/main/after.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/528895/Fandom%20Focus.user.js">
+            Install</a> /
+        📖 <a href="https://greasyfork.org/scripts/528895-fandom-focus">
+            Readme</a> /
+        📢 <a href="https://greasyfork.org/scripts/528895-fandom-focus/feedback">
+            Discuss</a> /
+        🐛 <a href="https://greasyfork.org/scripts/528895-fandom-focus/feedback">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/F9y4ng/GreasyFork-Scripts/blob/master/README_EN.md#font-rendering-customized-font-renderinguserjs">Font Rendering (Customized)</a> - Customize font rendering on any website: font replacement, anti-aliasing, stroke, shadow, and more.<br />
+    <blockquote>
+        <a href="https://github.com/F9y4ng/GreasyFork-Scripts/blob/master/README_EN.md#font-rendering-customized-font-renderinguserjs">
+            <img width="720" src="https://raw.githubusercontent.com/F9y4ng/GreasyFork-Scripts/master/images/Font%20Rendering/preview_en.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/416688/%E5%AD%97%E4%BD%93%E6%B8%B2%E6%9F%93%EF%BC%88%E8%87%AA%E7%94%A8%E8%84%9A%E6%9C%AC%EF%BC%89.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/F9y4ng/GreasyFork-Scripts/blob/master/README_EN.md#font-rendering-customized-font-renderinguserjs">
+            Readme</a> /
+        🐛 <a href="https://github.com/F9y4ng/GreasyFork-Scripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-duckduckgo"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-duckduckgo"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="18" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/sites/duckduckgo/icon32.png" /> DuckDuckGo</h3> 
+    <a href="https://github.com/KudoAI/duckduckgpt/#readme">DuckDuckGPT</a> - Adds AI chat &amp; search summaries to DuckDuckGo, powered by the latest LLMs.<br />
+    <blockquote>
+        <a href="https://github.com/KudoAI/duckduckgpt/#readme">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/KudoAI/duckduckgpt@702c716/assets/images/screenshots/desktop/how-to-becum-rich-query/lightmode.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/7197/duckduckgpt.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/KudoAI/duckduckgpt/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/KudoAI/duckduckgpt/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/KudoAI/duckduckgpt/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-github"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-github"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="17" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/sites/github/black/icon32.png" /> GitHub</h3> 
+    <a href="https://github.com/nazdridoy/github-commit-labels">GitHub Commit Labels</a> - Add beautiful labels to conventional commits on GitHub.<br />
+    <blockquote>
+        <a href="https://github.com/nazdridoy/github-commit-labels">
+            <img width="600" src="https://cdn.jsdelivr.net/gh/nazdridoy/github-commit-labels@fa5457b/previews/commit-history.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/526153/GitHub%20Commit%20Labels.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/nazdridoy/github-commit-labels/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/nazdridoy/github-commit-labels/issues">
+            Discuss</a> /
+        🐛 <a href="https://github.com/nazdridoy/github-commit-labels/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://greasyfork.org/scripts/22194-github-make-tooltips">GitHub Make Tooltips</a> - Convert all titles into GitHub tooltips.<br />
+    <blockquote>
+        <a href="https://greasyfork.org/scripts/22194-github-make-tooltips">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@00884ad/assets/images/screenshots/scripts/github-make-tooltips.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/22194/GitHub%20Make%20Tooltips.user.js">
+            Install</a> /
+        📖 <a href="https://greasyfork.org/scripts/22194-github-make-tooltips">
+            Readme</a> /
+        📢 <a href="https://greasyfork.org/scripts/22194-github-make-tooltips/feedback">
+            Discuss</a> /
+        🐛 <a href="https://greasyfork.org/scripts/22194-github-make-tooltips/feedback">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/Mottie/GitHub-userscripts/wiki/GitHub-sort-content">GitHub sort content</a> - Sort lists and tables on GitHub.<br />
+    <blockquote>
+        <a href="https://github.com/Mottie/GitHub-userscripts/wiki/GitHub-sort-content">
+            <img width="411" src="https://cdn.jsdelivr.net/gh/Mottie/GitHub-userscripts@575e466/images/github-sort-content-table.gif" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/Mottie/GitHub-userscripts/master/github-sort-content.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/Mottie/GitHub-userscripts/wiki/GitHub-sort-content">
+            Readme</a> /
+        📢 <a href="https://github.com/Mottie/GitHub-userscripts/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/Mottie/GitHub-userscripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/Mottie/GitHub-userscripts/wiki/GitHub-static-time">GitHub static time</a> - Convert time ago into a time format of your choice.<br />
+    <blockquote>
+        <a href="https://github.com/Mottie/GitHub-userscripts/wiki/GitHub-static-time">
+            <img width="600" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@00884ad/assets/images/screenshots/scripts/github-static-time.gif" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/Mottie/GitHub-userscripts/master/github-static-time.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/Mottie/GitHub-userscripts/wiki/GitHub-static-time">
+            Readme</a> /
+        📢 <a href="https://github.com/Mottie/GitHub-userscripts/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/Mottie/GitHub-userscripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/Mottie/GitHub-userscripts/wiki/GitHub-toggle-wiki-sidebar">GitHub toggle wiki sidebar</a> - Toggle wiki sidebar view.<br />
+    <blockquote>
+        <a href="https://github.com/Mottie/GitHub-userscripts/wiki/GitHub-toggle-wiki-sidebar">
+            <img width="600" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@00884ad/assets/images/screenshots/scripts/github-toggle-wiki-sidebar.gif" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/Mottie/GitHub-userscripts/master/github-toggle-wiki-sidebar.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/Mottie/GitHub-userscripts/wiki/GitHub-toggle-wiki-sidebar">
+            Readme</a> /
+        📢 <a href="https://github.com/Mottie/GitHub-userscripts/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/Mottie/GitHub-userscripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://greasyfork.org/zh-CN/scripts/522083">Sort Github Commits By Last Edited</a> - Add a button to sort GitHub commits by last edited time.<br />
+    <blockquote>
+        <a href="https://greasyfork.org/zh-CN/scripts/522083">
+            <img width="600" src="https://raw.githubusercontent.com/xiaohuohumax/userscripts/main/apps/github/sort-commits-by-last-edited/images/sort.gif" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/522083/sort-github-commits-by-last-edited.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/xiaohuohumax/userscripts/tree/main/apps/github/sort-commits-by-last-edited#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/xiaohuohumax/userscripts/issues">
+            Discuss</a> /
+        🐛 <a href="https://github.com/xiaohuohumax/userscripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-google"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-google"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="20" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/sites/google/icon32.png" /> Google</h3> 
+    <a href="https://github.com/Kirlovon/classic-google-tabs">Classic Google Tabs</a> - Brings back the "Maps" tab and removes the "AI Mode" tab in Google Search.<br />
+    <blockquote>
+        <a href="https://github.com/Kirlovon/classic-google-tabs">
+            <img src="https://raw.githubusercontent.com/Kirlovon/classic-google-tabs/main/assets/poster.webp" /></a>
+        <p>This is a simple Userscript that reworks Google Search navigation tabs by removing the "AI Mode" tab, restoring the "Maps" tab, and optionally removing the "Short videos" tab.</p>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/Kirlovon/classic-google-tabs/main/classic-google-tabs.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/Kirlovon/classic-google-tabs/blob/main/README.md">
+            Readme</a> /
+        🐛 <a href="https://github.com/Kirlovon/classic-google-tabs/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/Rob--W/dont-track-me-google">Don't track me Google</a> - Removes link conversion in Google Search/Maps links.<br />
+    <blockquote>
+        <a href="https://github.com/Rob--W/dont-track-me-google">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/Rob--W/dont-track-me-google@a73ab8b/screenshot.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/428243/Don%27t%20track%20me%20Google.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/Rob--W/dont-track-me-google/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/Rob--W/dont-track-me-google/issues">
+            Discuss</a> /
+        🐛 <a href="https://github.com/Rob--W/dont-track-me-google/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/KudoAI/googlegpt/#readme">GoogleGPT</a> - Adds AI chat &amp; search summaries to Google Search, powered by the latest LLMs.<br />
+    <blockquote>
+        <a href="https://github.com/KudoAI/googlegpt/#readme">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/KudoAI/googlegpt@a363ecf/assets/images/screenshots/desktop/javascript-arrays-query/darkmode.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/KudoAI/googlegpt/refs/heads/main/greasemonkey/googlegpt.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/KudoAI/googlegpt/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/KudoAI/googlegpt/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/KudoAI/googlegpt/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/LostInBrittany/share-google-slides-control">Share Google Slides controls</a> - Remotely share the control of a Google Slides presentation.<br />
+    <blockquote>
+        <a href="https://github.com/LostInBrittany/share-google-slides-control">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@00884ad/assets/images/screenshots/scripts/share-google-slides-controls.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/LostInBrittany/share-google-slides-control/main/userscript/shared-google-slides-control.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/LostInBrittany/share-google-slides-control/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/LostInBrittany/share-google-slides-control/issues">
+            Discuss</a> /
+        🐛 <a href="https://github.com/LostInBrittany/share-google-slides-control/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-instagram"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-instagram"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="19" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@master/assets/images/icons/sites/instagram/icon32.png" /> Instagram</h3> 
+    <a href="https://github.com/Zingzy/instagram-background-play#readme">Instagram Background Play</a> - Keeps Instagram videos and reels playing when you switch tabs or windows, and keeps picture-in-picture live instead of frozen.<br />
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/Zingzy/instagram-background-play/main/instagram-background-play.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/Zingzy/instagram-background-play#readme">
+            Readme</a> /
+        🐛 <a href="https://github.com/Zingzy/instagram-background-play/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-links"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-links"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="17" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/symbols/link/black/icon32.png" /> Links</h3> 
+    <a href="https://github.com/Rob--W/dont-track-me-google">Don't track me Google</a> - Removes link conversion in Google Search/Maps links.<br />
+    <blockquote>
+        <a href="https://github.com/Rob--W/dont-track-me-google">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/Rob--W/dont-track-me-google@a73ab8b/screenshot.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/428243/Don%27t%20track%20me%20Google.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/Rob--W/dont-track-me-google/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/Rob--W/dont-track-me-google/issues">
+            Discuss</a> /
+        🐛 <a href="https://github.com/Rob--W/dont-track-me-google/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/eight04/linkify-plus-plus">Linkify Plus Plus</a> - Turn plain text URLs into links.<br />
+    <blockquote>
+        <a href="https://github.com/eight04/linkify-plus-plus">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@00884ad/assets/images/screenshots/scripts/linkify-plus-plus.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/4255/Linkify%20Plus%20Plus.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/eight04/linkify-plus-plus/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/eight04/linkify-plus-plus/issues">
+            Discuss</a> /
+        🐛 <a href="https://github.com/eight04/linkify-plus-plus/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-media"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-media"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="17" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/symbols/play/black/icon32.png" /> Media</h3> 
+    <a href="https://greasyfork.org/scripts/469594-double-click-image-downloader">Double-click Image Downloader</a> - Double-click images to download them.<br />
+    <blockquote>
+        <a href="https://greasyfork.org/scripts/469594-double-click-image-downloader">
+            <img width="115" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@7ab5796/assets/images/screenshots/scripts/double-click-image-downloader/double-click-img.gif" /></a>
+        <a href="https://greasyfork.org/scripts/469594-double-click-image-downloader">
+            <img width="313" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@7ab5796/assets/images/screenshots/scripts/double-click-image-downloader/download-notif.gif" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/469594/Double-click%20Image%20Downloader.user.js">
+            Install</a> /
+        📖 <a href="https://greasyfork.org/scripts/469594-double-click-image-downloader">
+            Readme</a> /
+        📢 <a href="https://greasyfork.org/scripts/469594-double-click-image-downloader/feedback">
+            Discuss</a> /
+        🐛 <a href="https://greasyfork.org/scripts/469594-double-click-image-downloader/feedback">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/xxxily/h5player">HTML5 Video Player Tools</a> - Variable speed playback, screenshot, video download, picture-in-picture, full-screen, and keyboard shortcuts for all HTML5 video sites (YouTube, Bilibili, TikTok, etc).<br />
+    <blockquote>
+        <a href="https://github.com/xxxily/h5player">
+            <img width="511" src="https://h5player.anzz.top/assets/img/h5player_ui.jpg" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/381682/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%A2%9E%E5%BC%BA%E8%84%9A%E6%9C%AC%EF%BC%9A%E6%97%A0%E6%9E%81%E8%B0%83%E9%80%9F%7C%E5%80%8D%E9%80%9F%E5%BF%AB%E5%AD%A6%7C%E5%BF%AB%E4%B9%90%E5%88%B7%E5%89%A7%7C%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%7C%E7%94%BB%E9%9D%A2%E6%88%AA%E5%9B%BE%E7%AD%89%E3%80%8C%E9%80%82%E7%94%A8%E5%A4%A7%E9%83%A8%E5%88%86%E7%BD%91%E7%AB%99%E3%80%8D.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/xxxily/h5player#readme">
+            Readme</a> /
+        🐛 <a href="https://github.com/xxxily/h5player/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/qsniyg/maxurl">Image Max URL</a> - Finds larger or original versions of images/videos for thousands of supported websites, including a customizable image popup feature.<br />
+    <blockquote>
+        <a href="https://github.com/qsniyg/maxurl">
+            <img width="511" src="https://i.imgur.com/cGtifHN.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/qsniyg/maxurl/master/userscript_smaller.user.js">
+            Install Stable Build</a> /
+        💾 <a href="https://raw.githubusercontent.com/qsniyg/maxurl/master/userscript.user.js">
+            Install Dev Build</a> /
+        📖 <a href="https://github.com/qsniyg/maxurl/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/qsniyg/maxurl/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/qsniyg/maxurl/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/tophf/mpiv">Mouseover Popup Image Viewer</a> - An updated fork of MPIV, maintained by one of Violentmonkey's developers.<br />
+    <blockquote>
+        <a href="https://github.com/tophf/mpiv">
+            <img width="311" src="https://i.imgur.com/A7hplWg.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/394820/Mouseover%20Popup%20Image%20Viewer.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/tophf/mpiv/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/tophf/mpiv/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/tophf/mpiv/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://greasyfork.org/scripts/24204-picviewer-ce">Picviewer CE+</a> - Powerful picture viewing tool which can popup/scale/rotate/batch save pictures automatically.<br />
+    <blockquote>
+        <a href="https://greasyfork.org/scripts/24204-picviewer-ce">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@00884ad/assets/images/screenshots/scripts/picviewer-ce+.gif" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/24204/Picviewer%20CE%2B.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/hoothin/UserScripts/tree/master/Picviewer%20CE%2B/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/hoothin/UserScripts/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/hoothin/UserScripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-navigation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-navigation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="12" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/symbols/nav/black/icon32.png" /> Navigation</h3> 
+    <a href="https://pagetual.hoothin.com">Pagetual</a> - Add seamless infinite scrolling to thousands of sites.<br />
+    <blockquote>
+        <a href="https://pagetual.hoothin.com">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@04d117d/assets/images/screenshots/scripts/pagetual.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/438684/Pagetual.user.js">
+            Install</a> /
+        📖 <a href="https://pagetual.hoothin.com/infinite-scrolling-auto-page.html">
+            Readme</a> /
+        📢 <a href="https://github.com/hoothin/UserScripts/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/hoothin/UserScripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-passwords"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-passwords"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="15" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/symbols/password/black/icon32.png" /> Passwords</h3> 
+    <a href="https://greasyfork.org/scripts/32-show-password-onmouseover">Show Password onMouseOver</a> - Show password when mouseover on password field.<br />
+    <blockquote>
+        <a href="https://greasyfork.org/scripts/32-show-password-onmouseover">
+            <img width="311" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@00884ad/assets/images/screenshots/scripts/show-password-onmouseover.gif" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/32/Show%20Password%20onMouseOver.user.js">
+            Install</a> /
+        📢 <a href="https://greasyfork.org/scripts/32-show-password-onmouseover/feedback#post-discussion">
+            Discuss</a> /
+        🐛 <a href="https://greasyfork.org/scripts/32-show-password-onmouseover/feedback#post-discussion">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-privacy"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-privacy"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="17" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/symbols/incognito/black/icon32.png" /> Privacy</h3> 
+    <a href="https://codeberg.org/adamlui/autoclear-chatgpt-history/#readme">Autoclear ChatGPT History</a> - Auto-clears chat history when visiting chatgpt.com for maximum privacy.<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/autoclear-chatgpt-history/#readme">
+            <img width="511" src="https://cdn.staticdelivr.com/gl/adamlui/autoclear-chatgpt-history/30efed0/assets/images/screenshots/demo.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://codeberg.org/adamlui/autoclear-chatgpt-history/raw/branch/main/greasemonkey/autoclear-chatgpt-history.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/autoclear-chatgpt-history/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/autoclear-chatgpt-history/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/Rob--W/dont-track-me-google">Don't track me Google</a> - Removes link conversion in Google Search/Maps links.<br />
+    <blockquote>
+        <a href="https://github.com/Rob--W/dont-track-me-google">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/Rob--W/dont-track-me-google@a73ab8b/screenshot.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/428243/Don%27t%20track%20me%20Google.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/Rob--W/dont-track-me-google/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/Rob--W/dont-track-me-google/issues">
+            Discuss</a> /
+        🐛 <a href="https://github.com/Rob--W/dont-track-me-google/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://victornpb.github.io/undiscord/">Undiscord</a> - Delete all messages in a Discord channel or DM.<br />
+    <blockquote>
+        <a href="https://victornpb.github.io/undiscord/">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@14311cb/assets/images/screenshots/scripts/undiscord.gif" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/406540/Undiscord.user.js">
+            Install</a> /
+        📖 <a href="https://victornpb.github.io/undiscord/">
+            Readme</a> /
+        📢 <a href="https://github.com/victornpb/undiscord/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/victornpb/undiscord/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-quora"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-quora"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="19" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@4594000/assets/images/icons/sites/quora/icon32.png" /> Quora</h3> 
+    <a href="https://codeberg.org/adamlui/userscripts/src/branch/master/block-quora-poe/#readme">Block Quora Poe</a> - Blocks low-quality AI + Promoted/Sponsored answers from Quora.<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/userscripts/src/branch/master/block-quora-poe/#readme">
+            <img width="511" src="https://cdn.staticdelivr.com/gl/adamlui/userscripts/a1eefef/block-quora-poe/assets/images/screenshots/demo.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/6906/block-quora-poe.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/userscripts/src/branch/master/block-quora-poe/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/userscripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-reddit"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-reddit"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="17" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@66d5192/assets/images/icons/sites/reddit/icon32.png" /> Reddit</h3> 
+    <a href="https://github.com/sinazadeh/userscripts/blob/main/Reddit_Tab_Icons_Title_Prefix.readme.md">Reddit Tab Icons &amp; Title Prefix</a> - Adds subreddit icons to Reddit tabs and prefixes the tab title with the subreddit name (e.g., `r/SubredditName`) for easier tab identification and navigation.<br />
+    <blockquote>
+        <a href="https://github.com/sinazadeh/userscripts/blob/main/Reddit_Tab_Icons_Title_Prefix.readme.md">
+            <img src="https://github.com/user-attachments/assets/5c1d4f50-45f4-4ee2-a3ee-08fd4acbc5a1" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/sinazadeh/userscripts/refs/heads/main/Reddit_Tab_Icons_Title_Prefix.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/sinazadeh/userscripts/blob/main/Reddit_Tab_Icons_Title_Prefix.readme.md">
+            Readme</a> /
+        📢 <a href="https://github.com/sinazadeh/userscripts/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/sinazadeh/userscripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-stremio"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-stremio"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="19" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@ec34eea/assets/images/icons/sites/stremio/icon32.png" /> Stremio</h3> 
+    <a href="https://github.com/sinazadeh/userscripts/blob/main/Google_Search_Stremio_Links.readme.md">Google Search: Stremio Links</a> - Adds convenient "Watch on Stremio" buttons (App &amp; Web) next to IMDb links in Google search results.<br />
+    <blockquote>
+        <a href="https://github.com/sinazadeh/userscripts/blob/main/Google_Search_Stremio_Links.readme.md">
+            <img src="https://github.com/user-attachments/assets/106e9aeb-b649-4096-b3c6-ffc3ad23490f" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/sinazadeh/userscripts/refs/heads/main/Google_Search_Stremio_Links.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/sinazadeh/userscripts/blob/main/Google_Search_Stremio_Links.readme.md">
+            Readme</a> /
+        📢 <a href="https://github.com/sinazadeh/userscripts/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/sinazadeh/userscripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/sinazadeh/userscripts/blob/main/Letterboxd_Link_Badges.readme.md">Letterboxd Link Badges</a> - Enhances Letterboxd film pages by replacing IMDb/TMDb text links with icons and adding direct "Watch on Stremio" badges.<br />
+    <blockquote>
+        <a href="https://github.com/sinazadeh/userscripts/blob/main/Letterboxd_Link_Badges.readme.md">
+            <img src="https://github.com/user-attachments/assets/c389af0c-6dd7-41d6-8695-d1bbfc7c5004" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/sinazadeh/userscripts/refs/heads/main/Letterboxd_Link_Badges.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/sinazadeh/userscripts/blob/main/Letterboxd_Link_Badges.readme.md">
+            Readme</a> /
+        📢 <a href="https://github.com/sinazadeh/userscripts/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/sinazadeh/userscripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-text-to-speech"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-text-to-speech"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="18" width="21" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/symbols/soundwaves/black/icon32.png" /> Text-to-speech</h3> 
+    <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/#readme">ChatGPT Auto-Talk</a> - Automatically play ChatGPT responses.<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/#readme">
+            <img width="300" src="https://cdn.staticdelivr.com/gl/adamlui/chatgpt-auto-talk/165096f/assets/images/screenshots/auto-talk-sidebar-toggle-enabled.png" /></a>
+        <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/#readme">
+            <img width="300" src="https://cdn.staticdelivr.com/gl/adamlui/chatgpt-auto-talk/165096f/assets/images/screenshots/auto-talk-on-notif.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/raw/branch/main/greasemonkey/chatgpt-auto-talk.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/chatgpt-auto-talk/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-translation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-translation"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="16" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/symbols/translate/black/icon32.png" /> Translation</h3> 
+    <a href="https://immersivetranslate.com/">Immersive Translate</a> - Translates text on any page.<br />
+    <blockquote>
+        <a href="https://immersivetranslate.com/">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@00884ad/assets/images/screenshots/scripts/immersive-translate.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://github.com/immersive-translate/immersive-translate/releases/latest/download/immersive-translate.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/immersive-translate/immersive-translate/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/immersive-translate/immersive-translate/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/immersive-translate/immersive-translate/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/DREwX-code/Ultimate-Text-Selection-Translator">Ultimate Text Selection Translator</a> - Instantly translates selected text on any website using a shortcut and one-click button.<br />
+    <blockquote>
+        <a href="https://github.com/DREwX-code/Ultimate-Text-Selection-Translator">
+            <img width="511" src="https://raw.githubusercontent.com/DREwX-code/Ultimate-Text-Selection-Translator/main/assets/UTST_poster.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/536284/Ultimate-Text-Selection-Translator.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/DREwX-code/Ultimate-Text-Selection-Translator#readme">
+            Readme</a> /
+        📢 <a href="https://greasyfork.org/scripts/536284-ultimate-text-selection-translator-instantly-translate-any-selected-text/feedback">
+            Discuss</a> /
+        🐛 <a href="https://github.com/DREwX-code/Ultimate-Text-Selection-Translator/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-xbox"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-xbox"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="16" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@5c23f68/assets/images/icons/sites/xbox/icon32.png" /> Xbox</h3> 
+<a href="https://github.com/sinazadeh/userscripts/blob/main/Xbox_PriceLens.readme.md">Xbox PriceLens</a> - Add prices to Xbox game pages for every country.<br />
+    <blockquote>
+        <a href="https://github.com/sinazadeh/userscripts/blob/main/Xbox_PriceLens.readme.md">
+            <img alt="image" src="https://github.com/user-attachments/assets/0a187c6a-ffa4-44de-9e06-02b9837a4fd7" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/sinazadeh/userscripts/refs/heads/main/Xbox_PriceLens.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/sinazadeh/userscripts/blob/main/Xbox_PriceLens.readme.md">
+            Readme</a> /
+        📢 <a href="https://github.com/sinazadeh/userscripts/discussions">
+            Discuss</a> /
+        🐛 <a href="https://github.com/sinazadeh/userscripts/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<h3 id="-youtube"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-youtube"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><img height="17" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@f11c95f/assets/images/icons/sites/youtube/icon32.png" /> YouTube</h3> 
+    <a href="https://greasyfork.org/scripts/453320-simple-sponsor-skipper">Simple Sponsor Skipper</a> - Skips annoying intros, sponsors &amp; filler using the SponsorBlock API. Compatible w/ YouTube, Invidious, CloudTube &amp; Odysee.<br />
+    <blockquote>
+        <a href="https://greasyfork.org/scripts/453320-simple-sponsor-skipper">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/screenshots/scripts/simple-sponsor-skipper.png?v=96092ef" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://codeberg.org/mthsk/userscripts/raw/branch/master/simple-sponsor-skipper/simple-sponsor-skipper.user.js">
+            Install</a> /
+        📖 <a href="https://greasyfork.org/scripts/453320-simple-sponsor-skipper">
+            Readme</a> /
+        📢 <a href="https://codeberg.org/mthsk/userscripts">
+            Discuss</a> /
+        🐛 <a href="https://codeberg.org/mthsk/userscripts">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/Black0S/Youtube-Loop-UserScript/#readme">YouTube A/B Loop</a> - A lightweight userscript that adds a native A/B loop panel directly into the YouTube player.<br />
+    <blockquote>
+        <a href="https://github.com/Black0S/Youtube-Loop-UserScript/#readme">
+            <img width="588" src="https://cdn.jsdelivr.net/gh/Black0S/Youtube-Loop-UserScript@66f435b8e98f404291fc0cb57f0fe78e7045aa92/Images/CleanShot 2026-03-10 at 21.39.37%402x.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/Black0S/Youtube-Loop-UserScript-/refs/heads/main/youtube-loop.js">
+            Install</a> /
+        📖 <a href="https://github.com/Black0S/Youtube-Loop-UserScript/#readme">
+            Readme</a> /
+        🐛 <a href="https://github.com/Black0S/Youtube-Loop-UserScript/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://codeberg.org/adamlui/youtube-classic/#readme">YouTube Classic</a> - Reverts YouTube to its classic design (unround corners, restore dislikes + remove/redirect Shorts) + block thumbnail/masthead ads.<br />
+    <blockquote>
+        <a href="https://codeberg.org/adamlui/youtube-classic/#readme">
+            <img width="511" src="https://cdn.staticdelivr.com/gl/adamlui/youtube-classic/6de3a93/assets/images/screenshots/youtube-classic-ui.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://scriptcat.org/scripts/code/6345/youtube-classic.user.js">
+            Install</a> /
+        📖 <a href="https://codeberg.org/adamlui/youtube-classic/#readme">
+            Readme</a> /
+        🐛 <a href="https://codeberg.org/adamlui/youtube-classic/issues">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://gist.github.com/lumynou5/74bcbab54cd9d8fcd3c873fffbac5d3d">YouTube Commenter Names</a> - Make YouTube display the names of commenters instead of their handles.<br />
+    <blockquote>
+        <a href="https://gist.github.com/lumynou5/74bcbab54cd9d8fcd3c873fffbac5d3d">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@00884ad/assets/images/screenshots/scripts/youtube-commenter-names.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://gist.githubusercontent.com/lumynou5/74bcbab54cd9d8fcd3c873fffbac5d3d/raw/youtube-commenter-names.user.js">
+            Install</a> /
+        📢 <a href="https://gist.github.com/lumynou5/74bcbab54cd9d8fcd3c873fffbac5d3d">
+            Discuss</a> /
+        🐛 <a href="https://gist.github.com/lumynou5/74bcbab54cd9d8fcd3c873fffbac5d3d">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://gist.github.com/lumynou5/b036f405a0888bf9c3b9a3f560e36f3d">YouTube Disable Autoplaying</a> - Disable YouTube autoplaying everywhere.<br />
+    <blockquote>
+        <p>This prevents playlists, shorts, and hovered videos on the home page from autoplaying.</p>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://gist.githubusercontent.com/lumynou5/b036f405a0888bf9c3b9a3f560e36f3d/raw/youtube-disable-autoplaying.user.js">
+            Install</a> /
+        📢 <a href="https://gist.github.com/lumynou5/b036f405a0888bf9c3b9a3f560e36f3d">
+            Discuss</a> /
+        🐛 <a href="https://gist.github.com/lumynou5/b036f405a0888bf9c3b9a3f560e36f3d">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://greasyfork.org/scripts/498145-youtube-hd-premium">YouTube HD Premium</a> - Automatically switches to your pre-selected resolution. Enables premium when possible.<br />
+    <blockquote>
+        <a href="https://greasyfork.org/scripts/498145-youtube-hd-premium">
+            <img width="511" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@ac8f308/assets/images/screenshots/scripts/youtube-hd-premium.png" /></a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://update.greasyfork.org/scripts/498145/Youtube%20HD%20Premium.user.js">
+            Install</a> /
+        📢 <a href="https://greasyfork.org/scripts/498145-youtube-hd-premium/feedback">
+            Discuss</a> /
+        🐛 <a href="https://greasyfork.org/scripts/498145-youtube-hd-premium/feedback">
+            Report bug</a>
+    </blockquote>
+
+
+ 
+    <a href="https://github.com/RobertWesner/YouTube-Play-All">YouTube Play All</a> - Returns the classic "Play All" button for not just videos, but also shorts and livestreams.<br />
+    <blockquote>
+        <a href="https://github.com/RobertWesner/YouTube-Play-All">
+            
+                
+                <img width="511" src="https://cdn.jsdelivr.net/gh/RobertWesner/YouTube-Play-All@213bbb8/readme/screenshot.png" />
+            
+        </a>
+    </blockquote>
+    <blockquote>
+        💾 <a href="https://raw.githubusercontent.com/RobertWesner/YouTube-Play-All/main/script.user.js">
+            Install</a> /
+        📖 <a href="https://github.com/RobertWesner/YouTube-Play-All/#readme">
+            Readme</a> /
+        📢 <a href="https://github.com/RobertWesner/YouTube-Play-All/issues">
+            Discuss</a> /
+        🐛 <a href="https://github.com/RobertWesner/YouTube-Play-All/issues">
+            Report bug</a>
+    </blockquote>
+
+
+<img height="6px" width="100%" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/separators/gradient-aqua.png" />
+
+<h2 id="tutorials"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tutorials"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tutorials</h2><ul>
+<li><a href="https://www.oreilly.com/library/view/greasemonkey-hacks/0596101651/pr05s02.html" rel="noopener noreferrer">Greasemonkey Hacks</a> - Complete wiki book on Userscripts.</li>
+<li><a href="https://hayageek.com/greasemonkey-tutorial/" rel="noopener noreferrer">Greasemonkey Tutorial for Beginners</a> - How to create simple Userscripts and installing it using Greasemonkey.</li>
+<li><a href="https://www.youtube.com/watch?v=hAeWOOJPp0o" rel="noopener noreferrer">Video - GreaseMonkey Userscript Development</a></li>
+<li><a href="https://github.com/lisonge/vite-plugin-monkey" rel="noopener noreferrer">vite-plugin-monkey (⭐2k)</a> - A Vite plugin to develop and build userscripts for Tampermonkey, Violentmonkey, Greasemonkey, and ScriptCat.</li>
+</ul>
+<img height="6px" width="100%" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/separators/gradient-aqua.png" />
+
+<h2 id="additional-catalogues"><a class="anchor" aria-hidden="true" tabindex="-1" href="#additional-catalogues"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Additional Catalogues</h2><ul>
+<li><a href="https://userscripts-mirror.org/" rel="noopener noreferrer">UserScripts Mirror</a> - Mirror of the original Userscripts.org repository (that is currently down).</li>
+<li><a href="https://greasyfork.org/" rel="noopener noreferrer">Greasy Fork</a></li>
+<li><a href="https://openuserjs.org/" rel="noopener noreferrer">OpenUserJS</a></li>
+</ul>
+<img height="6px" width="100%" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/separators/gradient-aqua.png" />
+
+<h2 id="community"><a class="anchor" aria-hidden="true" tabindex="-1" href="#community"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Community</h2><ul>
+<li><a href="https://stackoverflow.com/questions/tagged/userscripts" rel="noopener noreferrer">Stack Overflow</a></li>
+<li><a href="https://www.reddit.com/r/userscripts/" rel="noopener noreferrer"><code>r/userscripts</code> on Reddit</a></li>
+</ul>
+<img height="6px" width="100%" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/separators/gradient-aqua.png" />
+
+<h2 id="contributing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contributing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contributing</h2><p>Contributions are very welcome!</p>
+<p>Please have a look at <a href="https://github.com/awesome-scripts/awesome-userscripts/blob/master/CONTRIBUTING.md" rel="noopener noreferrer">CONTRIBUTING (⭐3.5k)</a> for guidelines.</p>
+<img height="6px" width="100%" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/separators/gradient-aqua.png" />
+
+<h2 id="top-contributors"><a class="anchor" aria-hidden="true" tabindex="-1" href="#top-contributors"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Top Contributors</h2><p><img src="https://embeddables.devactivity.com/orgs/awesome-scripts/a53c359f-f5a4-4f42-8542-4d0c78d27fad.svg" alt="Top Contributors widget" /></p>
+<p><sup><sub>Check also our <a href="https://app.devactivity.com/public/?organizationLogin=awesome-scripts" rel="noopener noreferrer">Public Dashboard</a> powered by <a href="https://devactivity.com/?ref=public_widget" rel="noopener noreferrer">devActivity</a></sub></sup></p>
+<img height="6px" width="100%" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/separators/gradient-aqua.png" />
+
+<h2 id="license"><a class="anchor" aria-hidden="true" tabindex="-1" href="#license"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>License</h2><p><a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts@8e22f63/assets/images/badges/zero-1.0/88x31.png" alt="CC0" /></a></p>
+<p>To the extent possible under law, contributors have waived all copyright and related or neighboring rights to this work.</p>
+<img height="6px" width="100%" src="https://cdn.jsdelivr.net/gh/awesome-scripts/awesome-userscripts/assets/images/separators/rainbow-blue-to-red.png" />
+
+<p><a href="#top">Back to top ↑</a></p>
+
+
+    </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
+  </body>
+</html>
