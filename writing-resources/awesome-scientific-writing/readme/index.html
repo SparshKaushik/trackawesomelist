@@ -16,20 +16,100 @@
     <meta property="og:title" content="Awesome Scientific Writing Overview" />
     <meta property="og:description" content=":keyboard: A curated list of awesome tools, demos and resources to go beyond LaTeX " />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Scientific Writing Overview</h1>
 <p>:keyboard: A curated list of awesome tools, demos and resources to go beyond LaTeX </p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/writing-resources/awesome-scientific-writing/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/writing-resources/awesome-scientific-writing">😺 writing-resources/awesome-scientific-writing</a><span> · </span><span>⭐ 840</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/writing-resources/awesome-scientific-writing/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/writing-resources/awesome-scientific-writing">😺 writing-resources/awesome-scientific-writing</a><span> · </span><span>⭐ 998</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><a href="/writing-resources/awesome-scientific-writing/">Daily</a><span> / </span><a href="/writing-resources/awesome-scientific-writing/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
 <h1 id="awesome-scientific-writing-awesome"><a class="anchor" aria-hidden="true" tabindex="-1" href="#awesome-scientific-writing-awesome"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Awesome Scientific Writing <a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer"><img src="https://awesome.re/badge-flat.svg" alt="Awesome" /></a></h1><blockquote>
 <p>Scientific writing can extend beyond LaTeX, made possible by formats,
@@ -49,7 +129,6 @@ document</strong>.</p>
 <li><a href="#spell-checking-and-linting">Spell Checking and Linting</a></li>
 <li><a href="#templates">Templates</a><ul>
 <li><a href="#articles">Articles</a></li>
-<li><a href="#presentations">Presentations</a></li>
 <li><a href="#books">Books</a></li>
 </ul>
 </li>
@@ -57,25 +136,23 @@ document</strong>.</p>
 <li><a href="#other-lists">Other Lists</a></li>
 </ul>
 <h2 id="word-processors"><a class="anchor" aria-hidden="true" tabindex="-1" href="#word-processors"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Word Processors</h2><ul>
-<li><a href="https://github.com/marktext/marktext" rel="noopener noreferrer">Marktext (⭐51k)</a> - Markdown text editor.</li>
-<li><a href="https://github.com/rstudio/rstudio" rel="noopener noreferrer">R Studio (⭐4.9k)</a> - IDE for R.<ul>
-<li><a href="https://github.com/rstudio/bookdown" rel="noopener noreferrer">bookdown (⭐4k)</a> - R package to facilitate writing books and long-form articles, reports with R Markdown 🔖 🔗.</li>
-<li><a href="https://rmarkdown.rstudio.com/" rel="noopener noreferrer">R Markdown</a> - R package to write R next to Markdown
-🔖
-🔗.</li>
+<li><a href="https://github.com/marktext/marktext" rel="noopener noreferrer">Marktext (⭐60k)</a> - Markdown text editor.</li>
+<li><a href="https://github.com/rstudio/rstudio" rel="noopener noreferrer">R Studio (⭐5k)</a> - IDE for R.<ul>
+<li><a href="https://github.com/rstudio/bookdown" rel="noopener noreferrer">bookdown (⭐4.1k)</a> - R package to facilitate writing books and long-form articles, reports with R Markdown 🔖 🔗.</li>
+<li><a href="https://rmarkdown.rstudio.com/" rel="noopener noreferrer">R Markdown</a> - R package to write R next to Markdown 🔖 🔗.</li>
 </ul>
 </li>
 <li><a href="https://www.vim.org/" rel="noopener noreferrer">Vim</a> - Command line text editor.<ul>
-<li><a href="https://github.com/msprev/fzf-bibtex/#readme" rel="noopener noreferrer">fzf-bibtex (⭐131)</a> - BibTeX source
+<li><a href="https://github.com/msprev/fzf-bibtex/#readme" rel="noopener noreferrer">fzf-bibtex (⭐132)</a> - BibTeX source
 with Vim integration which uses fzf (a fuzzy finder implemented in Go).</li>
-<li><a href="https://github.com/vim-pandoc/vim-pandoc" rel="noopener noreferrer">vim-pandoc (⭐964)</a> - Pandoc integration and utilities for Vim.</li>
-<li><a href="https://github.com/vim-pandoc/vim-pandoc-syntax" rel="noopener noreferrer">vim-pandoc-syntax (⭐424)</a> - Pandoc syntax highlighting for Vim.</li>
+<li><a href="https://github.com/vim-pandoc/vim-pandoc" rel="noopener noreferrer">vim-pandoc (⭐966)</a> - Pandoc integration and utilities for Vim.</li>
+<li><a href="https://github.com/vim-pandoc/vim-pandoc-syntax" rel="noopener noreferrer">vim-pandoc-syntax (⭐427)</a> - Pandoc syntax highlighting for Vim.</li>
 </ul>
 </li>
 <li><a href="https://code.visualstudio.com/" rel="noopener noreferrer">Visual Studio Code</a> - Popular IDE with Markdown support.<ul>
-<li><a href="https://github.com/yzhang-gh/vscode-markdown/#readme" rel="noopener noreferrer">Markdown All in One (⭐3.1k)</a> - Extension for enhanced
+<li><a href="https://github.com/yzhang-gh/vscode-markdown/#readme" rel="noopener noreferrer">Markdown All in One (⭐3.3k)</a> - Extension for enhanced
 Markdown support in VSCode, such as preview and auto completion to name a few.</li>
-<li><a href="https://github.com/shd101wyy/markdown-preview-enhanced" rel="noopener noreferrer">Markdown Preview Enhanced (⭐4.3k)</a> - Pandoc
+<li><a href="https://github.com/shd101wyy/markdown-preview-enhanced" rel="noopener noreferrer">Markdown Preview Enhanced (⭐4.4k)</a> - Pandoc
 integration and utilities.</li>
 </ul>
 </li>
@@ -89,11 +166,13 @@ integrates CSL, BibLaTeX, Pandoc and many other tools
 repository with over 9000 free CSL citation styles and an online
 editor to create new ones.</li>
 <li><a href="https://www.jabref.org/" rel="noopener noreferrer">JabRef</a> - Open source bibliography reference manager.</li>
+<li><a href="https://github.com/brodie-neuro/ScholarRef" rel="noopener noreferrer">ScholarRef (⭐1)</a> - Convert citation styles
+(APA 7, Harvard, Vancouver) directly inside Word <code>.docx</code> files.</li>
 <li><a href="https://www.zotero.org/" rel="noopener noreferrer">Zotero</a> - FOSS tool to collect, organize, cite, and
 share research.<ul>
 <li><a href="https://retorque.re/zotero-better-bibtex/" rel="noopener noreferrer">Better BibTeX for Zotero</a> - Enhanced
 BibTeX / BibLaTeX integration for Zotero.</li>
-<li><a href="http://zotfile.com/" rel="noopener noreferrer">ZotFile for Zotero</a> - Enhanced PDF file management for Zotero.</li>
+<li><a href="https://github.com/UB-Mannheim/zotero-ocr" rel="noopener noreferrer">Zotero OCR (⭐821)</a> - Plugin that makes scanned PDFs searchable using Tesseract OCR and Poppler.</li>
 </ul>
 </li>
 <li><a href="https://zbib.org/" rel="noopener noreferrer">ZoteroBib</a> - Online bibliography reference manager.</li>
@@ -118,18 +197,20 @@ convert reStructuredText into various formats and provides command-line
 tools to do it 🔗.</li>
 <li><a href="https://jupyterbook.org/en/stable/" rel="noopener noreferrer">Jupyter Book</a> - A static site generator which converts
 a collection of CommonMark, MyST markdown and Jupyter notebooks into a HTML website.</li>
+<li><a href="https://manubot.org/" rel="noopener noreferrer">Manubot</a> - Workflow for writing and publishing scholarly manuscripts with Markdown, persistent-identifier citations, and reproducible builds.</li>
+<li><a href="https://github.com/YuZh98/latex2arxiv" rel="noopener noreferrer">latex2arxiv (⭐5)</a> - Command-line tool which converts
+a LaTeX project into an arXiv-ready ZIP: prunes unused files, strips comments and
+draft markup, and flags arXiv submission blockers before upload.</li>
 <li><a href="https://myst-parser.readthedocs.io/en/latest/" rel="noopener noreferrer">MyST</a> - Markedly Structured Text,
 a superset of CommonMark markdown with reStructuredText like features.</li>
+<li><a href="https://mystmd.org/" rel="noopener noreferrer">MyST Markdown CLI</a> - Command-line tools for building scientific documents from MyST Markdown with citations, cross-references, and HTML, PDF, and Word output.</li>
 <li><a href="https://nbconvert.readthedocs.io/en/latest/" rel="noopener noreferrer">nbconvert</a> - Convert Jupyter
 notebooks into <code>reveal.js</code> presentations, PDF, HTML, Markdown,
 reStructuredText and more.</li>
 <li><a href="https://pandoc.org/MANUAL" rel="noopener noreferrer">pandoc</a> - Haskell library for converting from
 one markup format to another, and a command-line tool that uses this
 library 🔖 🔗.<ul>
-<li><a href="https://github.com/smathot/academicmarkdown#readme" rel="noopener noreferrer">Academic Markdown (⭐352)</a> - Python wrapper over Pandoc with specialized extensions to parse certain
-elements, making it a superset of Pandoc Markdown flavour 🔖
-🔗.</li>
-<li><a href="https://github.com/jgm/pandoc/wiki/Pandoc-Filters" rel="noopener noreferrer">Pandoc filters (⭐39k)</a> - List of
+<li><a href="https://github.com/jgm/pandoc/wiki/Pandoc-Filters" rel="noopener noreferrer">Pandoc filters (⭐46k)</a> - List of
 addons to pandoc which implement extra features such as citations and
 cross-references.</li>
 <li><a href="http://scorreia.com/software/panflute/" rel="noopener noreferrer">Panflute</a> - Pythonic alternative
@@ -137,74 +218,50 @@ to John MacFarlane's pandocfilters.</li>
 </ul>
 </li>
 <li><a href="https://quarto.org" rel="noopener noreferrer">Quarto</a> - Compile R Markdown, and Jupyter Notebooks to PDFs, Slides and Websites. Supports R, Python, and Julia 🔖 🔗.</li>
+<li><a href="https://github.com/typst/typst" rel="noopener noreferrer">Typst (⭐56k)</a> - Markup-based typesetting system with math, bibliography management, and fast incremental compilation to PDF.</li>
 </ul>
 <h2 id="spell-checking-and-linting"><a class="anchor" aria-hidden="true" tabindex="-1" href="#spell-checking-and-linting"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Spell Checking and Linting</h2><ul>
 <li><a href="http://aspell.net/" rel="noopener noreferrer">GNU Aspell</a> - Command line spell checker.</li>
 <li><a href="http://hunspell.github.io/" rel="noopener noreferrer">Hunspell</a> - Command line spell checker.</li>
 <li><a href="https://languagetool.org/" rel="noopener noreferrer">LanguageTool</a> - Open source grammar, style and
 spell Checker.</li>
-<li><a href="https://github.com/JohannesBuchner/languagecheck" rel="noopener noreferrer">LanguageCheck (⭐108)</a> - Analyses scientific LaTeX papers, suggesting improvements from a list of common mistakes/ambiguities, tense consistency, a vs. an, spell check, and paragraph topic sentences.</li>
-<li><a href="https://github.com/markdownlint/markdownlint" rel="noopener noreferrer">Markdown lint tool (⭐1.9k)</a> - Markdown linter.</li>
-<li><a href="https://github.com/amperser/proselint" rel="noopener noreferrer">proselint (⭐4.4k)</a> - Linter for prose.</li>
-<li><a href="https://github.com/remarkjs/remark-lint" rel="noopener noreferrer">remarklint (⭐993)</a> - Markdown linter.</li>
-<li><a href="https://github.com/twolfson/restructuredtext-lint" rel="noopener noreferrer">restructuredtext-lint (⭐180)</a> - reStructuredText linter.</li>
+<li><a href="https://github.com/JohannesBuchner/languagecheck" rel="noopener noreferrer">LanguageCheck (⭐111)</a> - Analyses scientific LaTeX papers, suggesting improvements from a list of common mistakes/ambiguities, tense consistency, a vs. an, spell check, and paragraph topic sentences.</li>
+<li><a href="https://github.com/markdownlint/markdownlint" rel="noopener noreferrer">Markdown lint tool (⭐2.1k)</a> - Markdown linter.</li>
+<li><a href="https://github.com/amperser/proselint" rel="noopener noreferrer">proselint (⭐4.6k)</a> - Linter for prose.</li>
+<li><a href="https://github.com/remarkjs/remark-lint" rel="noopener noreferrer">remarklint (⭐1k)</a> - Markdown linter.</li>
+<li><a href="https://github.com/twolfson/restructuredtext-lint" rel="noopener noreferrer">restructuredtext-lint (⭐183)</a> - reStructuredText linter.</li>
 <li><a href="https://textlint.github.io/" rel="noopener noreferrer">textlint</a> - Pluggable linting tool for text
 and Markdown.</li>
 <li><a href="https://sylvainhalle.github.io/textidote/" rel="noopener noreferrer">textidote</a> - Spelling, grammar and
 style checking on LaTeX documents.</li>
-<li><a href="https://github.com/errata-ai/vale" rel="noopener noreferrer">Vale (⭐4.9k)</a> - Free, open-source linter for
+<li><a href="https://github.com/errata-ai/vale" rel="noopener noreferrer">Vale (⭐6.1k)</a> - Free, open-source linter for
 prose built with speed and extensibility in mind.</li>
-<li><a href="https://github.com/btford/write-good" rel="noopener noreferrer">write-good (⭐5k)</a> - Naive linter for English
+<li><a href="https://github.com/btford/write-good" rel="noopener noreferrer">write-good (⭐5.1k)</a> - Naive linter for English
 prose.</li>
 </ul>
 <h2 id="templates"><a class="anchor" aria-hidden="true" tabindex="-1" href="#templates"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Templates</h2><p>Reusable minimalist examples.</p>
 <h3 id="articles"><a class="anchor" aria-hidden="true" tabindex="-1" href="#articles"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Articles</h3><ul>
-<li><a href="https://github.com/davecap/markdown-latex-boilerplate/#readme" rel="noopener noreferrer">Pandoc Markdown-LaTeX
-Boilerplate (⭐102)</a> - Demonstrate
-how to integrate Pandoc with an existing LaTeX template which
-requires some boilerplate code (i.e. LaTeX preamble), thus avoiding the
-<code>latexmk</code> dependency.</li>
-<li><a href="https://github.com/dev-onejun/paper-templates-for-github-pages" rel="noopener noreferrer">Paper Templates for GitHub Pages (⭐1)</a> - Markdown-based templates for papers and RESUME/CVs, publishing with GitHub Pages.</li>
-<li><a href="https://github.com/JensErat/scientific-markdown/#readme" rel="noopener noreferrer">scientific-markdown (⭐51)</a> - Example
-for use of Markdown for scientific publications using Pandoc and
-<code>latexmk</code>.</li>
-<li><a href="https://github.com/svmiller/svm-r-markdown-templates/" rel="noopener noreferrer">Steve's R Markdown Templates (⭐925)</a> - Academic manuscript, memos, Beamer presentation, syllabus and CV.</li>
-</ul>
-<h3 id="presentations"><a class="anchor" aria-hidden="true" tabindex="-1" href="#presentations"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Presentations</h3><ul>
-<li><a href="https://github.com/jez/pandoc-starter/#readme" rel="noopener noreferrer">pandoc-starter (⭐535)</a> - Templates for
-articles, Beamer presentations etc. using Markdown files and Makefiles for
-getting started with Pandoc.</li>
-<li><a href="https://github.com/cgroll/slides/#readme" rel="noopener noreferrer">slides (⭐3)</a> - Demo for generating <code>reveal.js</code>
-presentations using Pandoc.</li>
+<li><a href="https://github.com/dev-onejun/paper-templates-for-github-pages" rel="noopener noreferrer">Paper Templates for GitHub Pages (⭐2)</a> - Markdown-based templates for papers and RESUME/CVs, publishing with GitHub Pages.</li>
 </ul>
 <h3 id="books"><a class="anchor" aria-hidden="true" tabindex="-1" href="#books"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Books</h3><ul>
-<li><a href="https://github.com/rstudio/bookdown-demo/#readme" rel="noopener noreferrer">bookdown-demo (⭐524)</a> - Minimal
+<li><a href="https://github.com/rstudio/bookdown-demo/#readme" rel="noopener noreferrer">bookdown-demo (⭐533)</a> - Minimal
 example of a book based on R Markdown and bookdown.</li>
-<li><a href="https://github.com/Wandmalfarbe/pandoc-latex-template" rel="noopener noreferrer">Eisvogel (⭐6.8k)</a> - Clean academic pandoc LaTeX template.</li>
+<li><a href="https://github.com/Wandmalfarbe/pandoc-latex-template" rel="noopener noreferrer">Eisvogel (⭐7.2k)</a> - Clean academic pandoc LaTeX template.</li>
 <li><a href="https://github.com/tompollard/phd_thesis_markdown#readme" rel="noopener noreferrer">Template for writing a PhD thesis in
-Markdown (⭐1.2k)</a> - Clean
+Markdown (⭐1.3k)</a> - Clean
 organization of files to provide a framework for writing a PhD thesis in
 mostly Markdown with a little bit of LaTeX, and compiled with Pandoc.</li>
 </ul>
 <h2 id="tutorials"><a class="anchor" aria-hidden="true" tabindex="-1" href="#tutorials"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Tutorials</h2><p>How to generate articles and presentations for scientific purposes.</p>
 <ul>
 <li><a href="https://blog.devgenius.io/write-your-whole-paper-in-r-it-is-better-77e1843f0c09" rel="noopener noreferrer">3 frameworks into one — Write your next paper with R Studio!</a> - Article provides an overview to a workflow that combines R Markdown (bookdown), Zotero (literature management), and Notion (note taking on research papers) to write academic papers.</li>
-<li><a href="https://github.com/clawpack/riemann_book/#readme" rel="noopener noreferrer">Book on Riemann solvers (⭐279)</a> - This
+<li><a href="https://github.com/clawpack/riemann_book/#readme" rel="noopener noreferrer">Book on Riemann solvers (⭐294)</a> - This
 example uses a custom <code>nbconvert</code> template and shows how to store your
 notebooks with no output (for version control) while automatically executing
 them before running <code>bookbook</code>, so that PDF and HTML versions include the
 output.</li>
 <li><a href="https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown" rel="noopener noreferrer">Dennis Tenen and Grant Wythoff</a> - Sustainable Authorship in Plain Text using Pandoc and Markdown.</li>
 <li><a href="https://blog.devgenius.io/heads-up-quarto-is-here-to-stay-aa861ef87491" rel="noopener noreferrer">Heads up! Quarto is here to stay. Immediately combine R &amp; Python in your next document</a> - Summary of the capabilities of Quarto, why to use it, and how it compares to R Markdown. Also contains tips for M1 Mac users on how to fix a common problem with reticulate.</li>
-<li><a href="https://github.com/katrinleinweber/PhD-thesis/#readme" rel="noopener noreferrer">Katrin Leinweber's Ph.D.
-thesis (⭐47)</a> - Automated
-work flow involving several tools, but primarily Pandoc, <code>latexmk</code> and
-Academic Markdown.</li>
-<li><a href="https://u.arizona.edu/~selisker/post/workflow/" rel="noopener noreferrer">Scott Selisker</a> - Plain Text Workflow for Academic Writing with Atom.</li>
-<li><a href="https://github.com/jupyter4edu/jupyter-edu-book/#readme" rel="noopener noreferrer">Teaching and learning with
-Jupyter (⭐454)</a> - Book
-written in R Markdown, bookdown and also rendered as HTML, PDF and
-EPUB.</li>
 <li><a href="https://ourcodingclub.github.io/tutorials/rmarkdown-dissertation/" rel="noopener noreferrer">Write your dissertation in RMarkdown</a> - Step-by-step guide on creating a complex pdf document, including text, figures, references, images, formatting, and more.</li>
 <li><a href="https://www.draketo.de/english/emacs/writing-papers-in-org-mode-acpd" rel="noopener noreferrer">Writing scientific papers for ACPD using Emacs
 Org-mode</a> - Detailed
@@ -212,14 +269,56 @@ tutorial on authoring a paper by seamlessly integrating with LaTeX
 commands within Org-mode.</li>
 </ul>
 <h2 id="other-lists"><a class="anchor" aria-hidden="true" tabindex="-1" href="#other-lists"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Other Lists</h2><ul>
-<li><a href="https://github.com/markusschanta/awesome-jupyter/#renderingpublishingconversion" rel="noopener noreferrer">Awesome Jupyter (⭐4.4k)</a></li>
-<li><a href="https://github.com/egeerardyn/awesome-LaTeX/#readme" rel="noopener noreferrer">Awesome LaTeX (⭐1.5k)</a></li>
-<li><a href="https://github.com/BubuAnabelas/awesome-markdown/#readme" rel="noopener noreferrer">Awesome Markdown (⭐875)</a></li>
+<li><a href="https://github.com/markusschanta/awesome-jupyter/#renderingpublishingconversion" rel="noopener noreferrer">Awesome Jupyter (⭐4.7k)</a></li>
+<li><a href="https://github.com/egeerardyn/awesome-LaTeX/#readme" rel="noopener noreferrer">Awesome LaTeX (⭐1.7k)</a></li>
+<li><a href="https://github.com/BubuAnabelas/awesome-markdown/#readme" rel="noopener noreferrer">Awesome Markdown (⭐955)</a></li>
 <li><a href="https://codeberg.org/teaserbot-labs/delightful-open-science" rel="noopener noreferrer">Delightful Open Science</a></li>
 </ul>
 <h3 id="contribute"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contribute"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contribute</h3><p>Contributions welcome! Read the <a href="https://github.com/writing-resources/awesome-scientific-writing/blob/main/README.md/CONTRIBUTING.md" rel="noopener noreferrer">contribution guidelines</a> first.</p>
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
