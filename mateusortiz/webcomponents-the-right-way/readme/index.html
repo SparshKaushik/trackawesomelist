@@ -130,6 +130,7 @@ This project was previously named "Web Components the Right Way"</p>
 <li><a href="#guides">Guides</a><ul>
 <li><a href="#accessibility">Accessibility</a></li>
 <li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#usage-patterns">Usage Patterns</a></li>
 <li><a href="#codelabs">Codelabs</a></li>
 <li><a href="#examples">Examples</a></li>
 </ul>
@@ -206,7 +207,6 @@ This project was previously named "Web Components the Right Way"</p>
 <li><a href="https://javascript.info/custom-elements" rel="noopener noreferrer">Custom elements</a></li>
 <li><a href="https://web.dev/custom-elements-v1/" rel="noopener noreferrer">Custom Elements v1: Reusable Web Components</a></li>
 <li><a href="https://nolanlawson.com/2021/08/03/handling-properties-in-custom-element-upgrades/" rel="noopener noreferrer">Handling properties in custom element upgrades</a></li>
-<li><a href="https://gist.github.com/WebReflection/ec9f6687842aa385477c4afca625bbf4" rel="noopener noreferrer">Handy Custom Elements' Patterns</a></li>
 <li><a href="https://html.spec.whatwg.org/multipage/custom-elements.html" rel="noopener noreferrer">HTML Living Standard: Custom elements</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements" rel="noopener noreferrer">MDN - Using Custom Elements</a></li>
 <li><a href="https://github.com/web-platform-tests/wpt/tree/master/custom-elements" rel="noopener noreferrer">web-platform-tests (⭐6.1k)</a></li>
@@ -226,8 +226,6 @@ This project was previously named "Web Components the Right Way"</p>
 <li><a href="https://medium.com/@rgndunes/the-shadow-dom-explained-achieving-true-encapsulation-in-web-components-e3422f5957cd" rel="noopener noreferrer">The Shadow DOM Explained: Achieving True Encapsulation in Web Components</a></li>
 <li><a href="https://coryrylan.com/blog/understanding-slot-updates-with-web-components" rel="noopener noreferrer">Understanding Slot Updates with Web Components</a></li>
 <li><a href="https://bitsofco.de/what-is-the-shadow-dom/" rel="noopener noreferrer">What is the Shadow DOM?</a></li>
-<li><a href="https://dev.to/westbrook/who-doesnt-love-some-s-3de0" rel="noopener noreferrer">Who doesn't love some slots?</a></li>
-<li><a href="https://dev.to/westbrook/your-content-in-shadow-dom-portals-3cdb" rel="noopener noreferrer">Your Content in Shadow DOM Portals</a></li>
 <li><a href="https://github.com/web-platform-tests/wpt/tree/master/shadow-dom" rel="noopener noreferrer">web-platform-tests (⭐6.1k)</a></li>
 </ul>
 <h3 id="html-templates"><a class="anchor" aria-hidden="true" tabindex="-1" href="#html-templates"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>HTML Templates</h3><p><code>&lt;template&gt;</code> element is used to declare fragments of HTML that can be cloned and inserted in the document by script.</p>
@@ -261,6 +259,7 @@ This project was previously named "Web Components the Right Way"</p>
 <li><a href="https://developer.salesforce.com/blogs/2020/01/accessibility-for-web-components" rel="noopener noreferrer">Accessibility for Web Components</a></li>
 <li><a href="https://coryrylan.com/blog/accessibility-with-id-referencing-and-shadow-dom" rel="noopener noreferrer">Accessibility with ID Referencing and Shadow DOM</a></li>
 <li><a href="https://nolanlawson.com/2022/06/14/dialogs-and-shadow-dom-can-we-make-it-accessible/" rel="noopener noreferrer">Dialogs and shadow DOM: can we make it accessible?</a></li>
+<li><a href="https://alice.pages.igalia.com/blog/how-shadow-dom-and-accessibility-are-in-conflict/" rel="noopener noreferrer">How Shadow DOM and accessibility are in conflict</a></li>
 <li><a href="https://www.sitepoint.com/accessible-web-components/" rel="noopener noreferrer">How to Make Accessible Web Components — a Brief Guide</a></li>
 <li><a href="https://nolanlawson.com/2021/02/13/managing-focus-in-the-shadow-dom/" rel="noopener noreferrer">Managing focus in the shadow DOM</a></li>
 <li><a href="https://blog.master.dev/shadow-dom-focus-delegation-getting-delegatesfocus-right/" rel="noopener noreferrer">Shadow DOM Focus Delegation: Getting delegatesFocus Right</a></li>
@@ -277,6 +276,12 @@ This project was previously named "Web Components the Right Way"</p>
 <li><a href="https://w3ctag.github.io/webcomponents-design-guidelines/" rel="noopener noreferrer">Guidelines for creating web platform compatible components</a></li>
 <li><a href="https://justinfagnani.com/2019/11/01/how-to-publish-web-components-to-npm/" rel="noopener noreferrer">How to Publish Web Components to NPM</a></li>
 <li><a href="https://open-wc.org" rel="noopener noreferrer">Open Web Components Recommendations</a></li>
+</ul>
+<h3 id="usage-patterns"><a class="anchor" aria-hidden="true" tabindex="-1" href="#usage-patterns"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Usage Patterns</h3><ul>
+<li><a href="https://gist.github.com/WebReflection/ec9f6687842aa385477c4afca625bbf4" rel="noopener noreferrer">Handy Custom Elements' Patterns</a></li>
+<li><a href="https://knowler.dev/blog/managing-event-listeners-in-custom-elements" rel="noopener noreferrer">Managing event listeners in custom elements</a></li>
+<li><a href="https://dev.to/westbrook/who-doesnt-love-some-s-3de0" rel="noopener noreferrer">Who doesn't love some slots?</a></li>
+<li><a href="https://dev.to/westbrook/your-content-in-shadow-dom-portals-3cdb" rel="noopener noreferrer">Your Content in Shadow DOM Portals</a></li>
 </ul>
 <h3 id="codelabs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#codelabs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Codelabs</h3><ul>
 <li><a href="https://dev.to/straversi/build-a-story-web-component-with-litelement-e59" rel="noopener noreferrer">Build a Story Web Component with LitElement</a></li>
@@ -369,6 +374,7 @@ This project was previously named "Web Components the Right Way"</p>
 <li><a href="https://bitworking.org/news/2019/07/looking-back-on-five-years-of-web-components" rel="noopener noreferrer">Looking back on five years of web components</a></li>
 <li><a href="https://dev.to/joe8bit/shipping-web-components-in-2020-2h54" rel="noopener noreferrer">Shipping Web Components in 2020</a></li>
 <li><a href="https://briangrinstead.com/blog/firefox-webcomponents/" rel="noopener noreferrer">The Firefox UI is now built with Web Components</a></li>
+<li><a href="https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/" rel="noopener noreferrer">Under the hood of MDN's new frontend</a></li>
 <li><a href="https://about.gitlab.com/blog/2021/05/03/using-web-components-to-encapsulate-css-and-resolve-design-system-conflicts/" rel="noopener noreferrer">Using web components to encapsulate CSS and resolve design system conflicts</a></li>
 <li><a href="https://www.infoq.com/news/2020/08/web-components-sf-meetup-2020/" rel="noopener noreferrer">Web Components at GitHub - Web Components SF Meetup</a></li>
 <li><a href="https://www.infoq.com/news/2020/03/web-components-salesforce-lwc/" rel="noopener noreferrer">Web Components at Scale at Salesforce: Challenges Encountered, Lessons Learnt</a></li>
@@ -625,6 +631,7 @@ This project was previously named "Web Components the Right Way"</p>
 <li><a href="https://www.youtube.com/watch?v=LPzYKrBzUoY" rel="noopener noreferrer">JSJ 424: UI5 and web components with Peter Muessig</a></li>
 <li><a href="https://www.devshows.dev/podcasts/web-rush/episode-7-custom-web-components-with-rob-wormald" rel="noopener noreferrer">Real Talk JavaScript, episode 7: Custom Web Components with Rob Wormald</a></li>
 <li><a href="https://www.devshows.dev/podcasts/web-rush/episode-101-back-to-basics-with-native-html-and-litelement" rel="noopener noreferrer">Real Talk JavaScript, episode 101: Back to Basics with Native HTML and LitElement</a></li>
+<li><a href="https://shoptalkshow.com/657/" rel="noopener noreferrer">ShopTalk Show, episode 657: David Darnes on Web Components and Design Systems</a></li>
 </ul>
 <h3 id="presentations"><a class="anchor" aria-hidden="true" tabindex="-1" href="#presentations"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Presentations</h3><ul>
 <li><a href="https://noti.st/lostinbrittany/EjUZyd/are-web-components-the-betamax-of-web-development" rel="noopener noreferrer">Are Web Components the Betamax of web development?</a> by <a href="https://twitter.com/lostinbrittany" rel="noopener noreferrer">@lostinbrittany</a></li>
