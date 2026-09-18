@@ -16,26 +16,111 @@
     <meta property="og:title" content="Track Awesome AutoHotkey Updates Daily" />
     <meta property="og:description" content="A curated list of awesome AutoHotkey libraries, library distributions, scripts, tools and resources." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome AutoHotkey Updates Daily</h1>
 <p>A curated list of awesome AutoHotkey libraries, library distributions, scripts, tools and resources.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/ahkscript/awesome-AutoHotkey/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/ahkscript/awesome-AutoHotkey">😺 ahkscript/awesome-AutoHotkey</a><span> · </span><span>⭐ 2.8K</span><span> · </span><span>🏷️ Programming Languages</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/ahkscript/awesome-AutoHotkey/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/ahkscript/awesome-AutoHotkey">😺 ahkscript/awesome-AutoHotkey</a><span> · </span><span>⭐ 3.1K</span><span> · </span><span>🏷️ Programming Languages</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/ahkscript/awesome-AutoHotkey/week/">Weekly</a><span> / </span><a href="/ahkscript/awesome-AutoHotkey/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/09/18/">Sep 18, 2026</a></h2><h3><p>Typing / Web</p>
+</h3>
+<ul>
+<li><a href="https://github.com/shokurov/ahk-layout-switch" rel="noopener noreferrer">Layout Switch (⭐0)</a> - Shows the keyboard-layout code (EN, DE, …) in a badge right under the text caret on every layout change, like macOS' input source indicator, and cycles through a chosen list of languages with a macOS-style hotkey. Works over Win+S and the Start menu, follows the system accent colour, per-monitor DPI aware.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2022/09/04/">Sep 04, 2022</a></h2><h3><p>Interpreter / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/phil294/AHK_X11" rel="noopener noreferrer">AHK_X11 (⭐928)</a> A rudimentary but functional implementation of AutoHotkey v1.0.24 for Linux by phil294. <a href="https://www.autohotkey.com/boards/viewtopic.php?f=81&amp;t=106640" rel="noopener noreferrer">Forum</a></li>
+<li><a href="https://github.com/phil294/AHK_X11" rel="noopener noreferrer">AHK_X11 (⭐1k)</a> A rudimentary but functional implementation of AutoHotkey v1.0.24 for Linux by phil294. <a href="https://www.autohotkey.com/boards/viewtopic.php?f=81&amp;t=106640" rel="noopener noreferrer">Forum</a></li>
 </ul>
 
 <ul>
@@ -49,7 +134,7 @@
 <h2><a href="https://www.trackawesomelist.com/2022/04/18/">Apr 18, 2022</a></h2><h3><p>Networking / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Xeo786/Rufaydium-Webdriver" rel="noopener noreferrer">Rufaydium WebDriver (⭐24)</a> - by Xeo786 - Webdriver Library to support any Chromium based browser only requiring webdriver (no selenium/websocket) - Forum <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;p=457302" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/Xeo786/Rufaydium-Webdriver" rel="noopener noreferrer">Rufaydium WebDriver (⭐30)</a> - by Xeo786 - Webdriver Library to support any Chromium based browser only requiring webdriver (no selenium/websocket) - Forum <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;p=457302" rel="noopener noreferrer">link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/11/28/">Nov 28, 2021</a></h2><h3><p>Filesystem / Web</p>
 </h3>
@@ -64,12 +149,12 @@
 <h2><a href="https://www.trackawesomelist.com/2021/11/08/">Nov 08, 2021</a></h2><h3><p>Filesystem / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/JnLlnd/QuickAccessPopup" rel="noopener noreferrer">QuickAccessPopup</a> - Multi purpose launcher and file switcher. Website <a href="https://www.quickaccesspopup.com/" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/JnLlnd/QuickAccessPopup" rel="noopener noreferrer">QuickAccessPopup (⭐7)</a> - Multi purpose launcher and file switcher. Website <a href="https://www.quickaccesspopup.com/" rel="noopener noreferrer">link</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/10/05/">Oct 05, 2021</a></h2><h3><p>Graphics</p>
 </h3>
 <ul>
-<li><a href="https://github.com/iseahound/ImagePut" rel="noopener noreferrer">ImagePut (⭐183)</a> - by iseahound - Image library for converting to files, streams, windows, base64, urls, cursors, screen coordinates, clipboard, pointers, handles, and more. Supports AutoHotkey v1 and v2. - Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=76301&amp;p=330615" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/iseahound/ImagePut" rel="noopener noreferrer">ImagePut (⭐230)</a> - by iseahound - Image library for converting to files, streams, windows, base64, urls, cursors, screen coordinates, clipboard, pointers, handles, and more. Supports AutoHotkey v1 and v2. - Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=76301&amp;p=330615" rel="noopener noreferrer">link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/09/02/">Sep 02, 2021</a></h2><h3><p>GUI WYSIWYG Builders / Web</p>
 </h3>
@@ -79,12 +164,12 @@
 <h2><a href="https://www.trackawesomelist.com/2021/08/30/">Aug 30, 2021</a></h2><h3><p>Typing / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/almogtavor/static-hands" rel="noopener noreferrer">Static Hands (⭐68)</a> - Super useful shortcuts with the CapsLock key that spare the need to move hands while typing. Super simple. No learning curve.</li>
+<li><a href="https://github.com/almogtavor/static-hands" rel="noopener noreferrer">Static Hands (⭐77)</a> - Super useful shortcuts with the CapsLock key that spare the need to move hands while typing. Super simple. No learning curve.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/08/07/">Aug 07, 2021</a></h2><h3><p>Typing / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tiuub/DateHotkey" rel="noopener noreferrer">DateHotkey (⭐21)</a> - Hotkey to easily receive current, past or upcomming date strings. Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=89929" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/tiuub/DateHotkey" rel="noopener noreferrer">DateHotkey (⭐23)</a> - Hotkey to easily receive current, past or upcomming date strings. Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=89929" rel="noopener noreferrer">link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/06/17/">Jun 17, 2021</a></h2><h3><p>Clipboard / Web</p>
 </h3>
@@ -94,7 +179,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/01/31/">Jan 31, 2021</a></h2><h3><p>(Use in) other programming languages / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Perlence/AutoHotkey.py" rel="noopener noreferrer">AutoHotkey.py (⭐81)</a> - Write AutoHotkey scripts in Python - Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=86025" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/Perlence/AutoHotkey.py" rel="noopener noreferrer">AutoHotkey.py (⭐82)</a> - Write AutoHotkey scripts in Python - Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=86025" rel="noopener noreferrer">link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/12/28/">Dec 28, 2020</a></h2><h3><p>AutoHotkey_H / Web</p>
 </h3>
@@ -108,17 +193,17 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/AHK-just-me/Class_TransparentListBox" rel="noopener noreferrer">TransparentListBox (⭐16)</a> - by just Me - Provides transparent listbox controls for AHK GUIs. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=108" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/AHK-just-me/Class_TransparentListBox" rel="noopener noreferrer">TransparentListBox (⭐15)</a> - by just Me - Provides transparent listbox controls for AHK GUIs. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=108" rel="noopener noreferrer">link</a></li>
 </ul>
 <h3><p>GUI / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/G33kDude/Neutron.ahk/" rel="noopener noreferrer">Neutron (⭐219)</a> - by G33kDude - Set of tools for build HTML-based user interfaces with AutoHotkey. Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=76865" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/G33kDude/Neutron.ahk/" rel="noopener noreferrer">Neutron (⭐242)</a> - by G33kDude - Set of tools for build HTML-based user interfaces with AutoHotkey. Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=76865" rel="noopener noreferrer">link</a></li>
 </ul>
 <h3><p>Networking / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/G33kDude/Chrome.ahk" rel="noopener noreferrer">Chrome.ahk (⭐365)</a> - by G33kDude - Automate Google Chrome using native AutoHotkey - Forum <a href="https://www.autohotkey.com/boards/viewtopic.php?t=42890" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/G33kDude/Chrome.ahk" rel="noopener noreferrer">Chrome.ahk (⭐393)</a> - by G33kDude - Automate Google Chrome using native AutoHotkey - Forum <a href="https://www.autohotkey.com/boards/viewtopic.php?t=42890" rel="noopener noreferrer">link</a></li>
 </ul>
 
 <ul>
@@ -127,27 +212,27 @@
 <h2><a href="https://www.trackawesomelist.com/2020/04/04/">Apr 04, 2020</a></h2><h3><p>Database</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AHKDb/AHKDb" rel="noopener noreferrer">AHKDb (⭐28)</a> - by AHKDb - A database library for tab-separated data.</li>
+<li><a href="https://github.com/AHKDb/AHKDb" rel="noopener noreferrer">AHKDb (⭐31)</a> - by AHKDb - A database library for tab-separated data.</li>
 </ul>
 <h3><p>Window Management / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/JuanmaMenendez/AutoHotkey-script-Open-Show-Apps" rel="noopener noreferrer">Open-Show-Apps (⭐147)</a> - Open, restore or minimize the desired Window's or Chrome's Apps. Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=63579&amp;p=272220#p272220" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/JuanmaMenendez/AutoHotkey-script-Open-Show-Apps" rel="noopener noreferrer">Open-Show-Apps (⭐149)</a> - Open, restore or minimize the desired Window's or Chrome's Apps. Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=63579&amp;p=272220#p272220" rel="noopener noreferrer">link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/03/28/">Mar 28, 2019</a></h2><h3><p>(Use in) other programming languages / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/spyoungtech/ahk" rel="noopener noreferrer">ahk (⭐967)</a> - A Python wrapper for AutoHotkey - Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=63184" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/spyoungtech/ahk" rel="noopener noreferrer">ahk (⭐1k)</a> - A Python wrapper for AutoHotkey - Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=63184" rel="noopener noreferrer">link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/01/07/">Jan 07, 2019</a></h2><h3><p>Memory / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Kalamity/classMemory" rel="noopener noreferrer">classMemory (⭐65)</a> - by RHCP (Kalamity) - An AHK memory reading/writing class with pattern scans. Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?t=1177" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/Kalamity/classMemory" rel="noopener noreferrer">classMemory (⭐71)</a> - by RHCP (Kalamity) - An AHK memory reading/writing class with pattern scans. Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?t=1177" rel="noopener noreferrer">link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/12/13/">Dec 13, 2018</a></h2><h3><p>Data Structures and Algorithms</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Shambles-Dev/AutoHotkey-Facade" rel="noopener noreferrer">Facade (⭐29)</a> - by Shambles - A Set of Functional Programming Libraries. - Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=59253" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/Shambles-Dev/AutoHotkey-Facade" rel="noopener noreferrer">Facade (⭐30)</a> - by Shambles - A Set of Functional Programming Libraries. - Forum thread: <a href="https://www.autohotkey.com/boards/viewtopic.php?f=6&amp;t=59253" rel="noopener noreferrer">link</a></li>
 </ul>
 
 <ul>
@@ -155,7 +240,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ahkscript/LibCrypt.ahk" rel="noopener noreferrer">LibCrypt (⭐71)</a> - by different authors - A collection of crypting and encoding functions.</li>
+<li><a href="https://github.com/ahkscript/LibCrypt.ahk" rel="noopener noreferrer">LibCrypt (⭐73)</a> - by different authors - A collection of crypting and encoding functions.</li>
 </ul>
 
 <ul>
@@ -164,7 +249,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/11/05/">Nov 05, 2018</a></h2><h3><p>Database</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kevgk/Leya" rel="noopener noreferrer">Leya - MySQL API (⭐17)</a> - by kevgk - Work with MySQL databases in autohotkey, without exposing server credentials to the client.</li>
+<li><a href="https://github.com/kevgk/Leya" rel="noopener noreferrer">Leya - MySQL API (⭐18)</a> - by kevgk - Work with MySQL databases in autohotkey, without exposing server credentials to the client.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/11/03/">Nov 03, 2018</a></h2><h3><p>Integrated Development Environment / Web</p>
 </h3>
@@ -174,16 +259,16 @@
 <h2><a href="https://www.trackawesomelist.com/2018/10/11/">Oct 11, 2018</a></h2><h3><p>Clipboard / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hi5/CL3" rel="noopener noreferrer">CL3 (⭐95)</a> - A clipboard manager (text only) with plugins (Search, predefined Slots, ClipChain, FIFO, Editor and more). Forum thread <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=814" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/hi5/CL3" rel="noopener noreferrer">CL3 (⭐101)</a> - A clipboard manager (text only) with plugins (Search, predefined Slots, ClipChain, FIFO, Editor and more). Forum thread <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=814" rel="noopener noreferrer">link</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/09/28/">Sep 28, 2018</a></h2><h3><p>Data format</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hoppfrosch/AHK_cTable" rel="noopener noreferrer">AHK_ctable (⭐10)</a> - by hoppfrosch - Library to handle strings in tabular format - Forum thread: <a href="https://autohotkey.com/board/topic/61256-object-table/://autohotkey.com/board/topic/61256-object-table/page-2?&amp;#entry467816" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/hoppfrosch/AHK_cTable" rel="noopener noreferrer">AHK_ctable (⭐10)</a> - by hoppfrosch - Library to handle strings in tabular format - Forum thread: <a href="https://autohotkey.com/board/topic/61256-object-table/page-2#entry467816" rel="noopener noreferrer">link</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/hi5/CSV" rel="noopener noreferrer">CSV (⭐60)</a> - by trueski/kdoske - Library to work with CSV files and Listview functions. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=34853" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/hi5/CSV" rel="noopener noreferrer">CSV (⭐58)</a> - by trueski/kdoske - Library to work with CSV files and Listview functions. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=34853" rel="noopener noreferrer">link</a>.</li>
 </ul>
 
 <ul>
@@ -191,7 +276,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/JnLlnd/ObjCSV/" rel="noopener noreferrer">ObjCSV (⭐31)</a> - by JnLlnd - Library to load/save CSV files to Objects and  and Listview functions. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=41" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/JnLlnd/ObjCSV/" rel="noopener noreferrer">ObjCSV (⭐32)</a> - by JnLlnd - Library to load/save CSV files to Objects and  and Listview functions. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=41" rel="noopener noreferrer">link</a>.</li>
 </ul>
 
 <ul>
@@ -204,12 +289,12 @@
 <h2><a href="https://www.trackawesomelist.com/2018/09/12/">Sep 12, 2018</a></h2><h3><p>Graphics</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mmikeww/AHKv2-Gdip" rel="noopener noreferrer">AHKv2-GDIP (⭐137)</a> - Update of the above GDI+ library compatiable with both AHK v1.1 and AHK v2 - Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=6517" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/mmikeww/AHKv2-Gdip" rel="noopener noreferrer">AHKv2-GDIP (⭐159)</a> - Update of the above GDI+ library compatiable with both AHK v1.1 and AHK v2 - Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=6517" rel="noopener noreferrer">link</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/06/13/">Jun 13, 2018</a></h2><h3><p>Typing / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/marius-sucan/KeyPress-OSD" rel="noopener noreferrer">KeyPress OSD (⭐384)</a> - On-Screen Display which displays every key or mouse button press at a clearly visible text size. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=225" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/marius-sucan/KeyPress-OSD" rel="noopener noreferrer">KeyPress OSD (⭐413)</a> - On-Screen Display which displays every key or mouse button press at a clearly visible text size. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=225" rel="noopener noreferrer">link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/05/19/">May 19, 2018</a></h2><h3><p>Plotting (graphs, bars, charts and etc) / Web</p>
 </h3>
@@ -228,7 +313,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/04/30/">Apr 30, 2018</a></h2><h3><p>Games / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Uberi/ProgressPlatformer/releases" rel="noopener noreferrer">Achromatic - ProgressPlatformer (⭐18)</a> - Platform game. Forum thread: <a href="https://autohotkey.com/board/topic/64529-achromatic-progressplatformer-refined/" rel="noopener noreferrer">link</a>, GitHub: <a href="https://github.com/Uberi/ProgressPlatformer" rel="noopener noreferrer">link (⭐18)</a></li>
+<li><a href="https://github.com/Uberi/ProgressPlatformer/releases" rel="noopener noreferrer">Achromatic - ProgressPlatformer (⭐17)</a> - Platform game. Forum thread: <a href="https://autohotkey.com/board/topic/64529-achromatic-progressplatformer-refined/" rel="noopener noreferrer">link</a>, GitHub: <a href="https://github.com/Uberi/ProgressPlatformer" rel="noopener noreferrer">link (⭐17)</a></li>
 </ul>
 
 <ul>
@@ -244,7 +329,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/flibioahk/ishido/archive/master.zip" rel="noopener noreferrer">Ishido (⭐4)</a> - Retro puzzle game. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?t=31825https://github.com/flibioahk/ishido" rel="noopener noreferrer">link</a>, GitHub: <a href="https://github.com/flibioahk/ishido" rel="noopener noreferrer">link (⭐4)</a></li>
+<li><a href="https://github.com/flibioahk/ishido/archive/master.zip" rel="noopener noreferrer">Ishido (⭐3)</a> - Retro puzzle game. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?t=31825" rel="noopener noreferrer">link</a>, GitHub: <a href="https://github.com/flibioahk/ishido" rel="noopener noreferrer">link (⭐3)</a></li>
 </ul>
 
 <ul>
@@ -256,7 +341,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/bichlepa/PABI-Logical/releases" rel="noopener noreferrer">PABI Logical (⭐3)</a> - Remake of the amiga game Logical. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=33267" rel="noopener noreferrer">link</a>, GitHub: <a href="https://github.com/bichlepa/PABI-Logical" rel="noopener noreferrer">link (⭐3)</a></li>
+<li><a href="https://github.com/bichlepa/PABI-Logical/releases" rel="noopener noreferrer">PABI Logical (⭐2)</a> - Remake of the amiga game Logical. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=33267" rel="noopener noreferrer">link</a>, GitHub: <a href="https://github.com/bichlepa/PABI-Logical" rel="noopener noreferrer">link (⭐2)</a></li>
 </ul>
 
 <ul>
@@ -270,21 +355,21 @@
 <h2><a href="https://www.trackawesomelist.com/2017/07/31/">Jul 31, 2017</a></h2><h3><p>System / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ahkscript/VistaAudio" rel="noopener noreferrer">Vista Audio Control Functions (⭐25)</a> - by Lexikos - Provides alternatives to some SoundSet/SoundGet subcommands, as well as some additional features that SoundSet/SoundGet do not support. Forum thread: <a href="https://autohotkey.com/board/topic/21984-vista-audio-control-functions/?p=143564" rel="noopener noreferrer">Link</a></li>
+<li><a href="https://github.com/ahkscript/VistaAudio" rel="noopener noreferrer">Vista Audio Control Functions (⭐27)</a> - by Lexikos - Provides alternatives to some SoundSet/SoundGet subcommands, as well as some additional features that SoundSet/SoundGet do not support. Forum thread: <a href="https://autohotkey.com/board/topic/21984-vista-audio-control-functions/?p=143564" rel="noopener noreferrer">Link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/07/28/">Jul 28, 2017</a></h2><h3><p>Networking / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/G33kDude/Socket.ahk" rel="noopener noreferrer">Socket.ahk (⭐65)</a> - by GeekDude - Socket library based on Bentschi's - Forum <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=35120" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/G33kDude/Socket.ahk" rel="noopener noreferrer">Socket.ahk (⭐71)</a> - by GeekDude - Socket library based on Bentschi's - Forum <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=35120" rel="noopener noreferrer">link</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/G33kDude/WebSocket.ahk" rel="noopener noreferrer">WebSocket.ahk (⭐78)</a> - by GeekDude - Class based WebSocket library - Forum <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=35117" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/G33kDude/WebSocket.ahk" rel="noopener noreferrer">WebSocket.ahk (⭐86)</a> - by GeekDude - Class based WebSocket library - Forum <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=35117" rel="noopener noreferrer">link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/04/20/">Apr 20, 2017</a></h2><h3><p>Others / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/joedf/AEI.ahk" rel="noopener noreferrer">AEI (⭐16)</a> - by joedf - Displays AutoHotkey Environment Information and AHK support relevant System Information with a fancy update checker that auto-downloads with a progress bar. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=5825" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/joedf/AEI.ahk" rel="noopener noreferrer">AEI (⭐17)</a> - by joedf - Displays AutoHotkey Environment Information and AHK support relevant System Information with a fancy update checker that auto-downloads with a progress bar. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=5825" rel="noopener noreferrer">link</a>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/04/12/">Apr 12, 2017</a></h2><h3><p>Graphics</p>
 </h3>
@@ -333,7 +418,7 @@
 <h3><p>Integrated Development Environment / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vim-scripts/autohotkey-ahk" rel="noopener noreferrer">Vim autohotkey-ahk (⭐15)</a> - Vim plugin to add syntax highlighting for AutoHotkey.</li>
+<li><a href="https://github.com/vim-scripts/autohotkey-ahk" rel="noopener noreferrer">Vim autohotkey-ahk (⭐14)</a> - Vim plugin to add syntax highlighting for AutoHotkey.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/02/06/">Feb 06, 2017</a></h2><h3><p>COM / Web</p>
 </h3>
@@ -353,7 +438,7 @@
 <h3><p>Networking / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lipkau/WinSCP.ahk" rel="noopener noreferrer">WinSCP.ahk (⭐18)</a> - by Lipkau - Lib allows the use of WinSCP in AHK</li>
+<li><a href="https://github.com/lipkau/WinSCP.ahk" rel="noopener noreferrer">WinSCP.ahk (⭐17)</a> - by Lipkau - Lib allows the use of WinSCP in AHK</li>
 </ul>
 <h3><p>Maths / Web</p>
 </h3>
@@ -378,21 +463,21 @@
 <h2><a href="https://www.trackawesomelist.com/2016/11/20/">Nov 20, 2016</a></h2><h3><p>(Use in) other programming languages / Web</p>
 </h3>
 <ul>
-<li><a href="https://hotkeyit.github.io/v2/docs/AutoHotkeyDll.htm" rel="noopener noreferrer">AutoHotkey.dll</a> - Part of the <a href="#autohotkey_h">AutoHotkey_H</a> distribution. Load the autohotkey.dll from your other language, and pass normal AHK code to the dll file for execution. See here for a list of the <a href="https://hotkeyit.github.io/v2/docs/AHKH_Features.htm" rel="noopener noreferrer">exported functions</a>. Some older links: <a href="https://autohotkey.com/board/topic/56938-simple-python-intergration-example/" rel="noopener noreferrer">python example</a>, <a href="https://autohotkey.com/board/topic/39588-autohotkeydll/://autohotkey.com/board/topic/39588-autohotkeydll/page-10?&amp;#entry321945" rel="noopener noreferrer">c/c++ example</a>, <a href="https://autohotkey.com/board/topic/39588-autohotkeydll/" rel="noopener noreferrer">forum link</a></li>
+<li><a href="https://hotkeyit.github.io/v2/docs/AutoHotkeyDll.htm" rel="noopener noreferrer">AutoHotkey.dll</a> - Part of the <a href="#autohotkey_h">AutoHotkey_H</a> distribution. Load the autohotkey.dll from your other language, and pass normal AHK code to the dll file for execution. See here for a list of the <a href="https://hotkeyit.github.io/v2/docs/AHKH_Features.htm" rel="noopener noreferrer">exported functions</a>. Some older links: <a href="https://autohotkey.com/board/topic/56938-simple-python-intergration-example/" rel="noopener noreferrer">python example</a>, <a href="https://autohotkey.com/board/topic/39588-autohotkeydll/page-10#entry321945" rel="noopener noreferrer">c/c++ example</a>, <a href="https://autohotkey.com/board/topic/39588-autohotkeydll/" rel="noopener noreferrer">forum link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/06/13/">Jun 13, 2016</a></h2><h3><p>GUI / Combobox</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pulover/cbautocomplete" rel="noopener noreferrer">CbAutoComplete (⭐28)</a> - by Pulover - Auto-completes typed values in an AHK ComboBox. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=15002" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/pulover/cbautocomplete" rel="noopener noreferrer">CbAutoComplete (⭐27)</a> - by Pulover - Auto-completes typed values in an AHK ComboBox. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=15002" rel="noopener noreferrer">link</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/05/19/">May 19, 2016</a></h2><h3><p>GUI / Custom Controls</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Pulover/Class_Rebar" rel="noopener noreferrer">Rebar (⭐17)</a> - by Pulover - AHK class for AutoHotkey Rebar custom controls. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=139" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/Pulover/Class_Rebar" rel="noopener noreferrer">Rebar (⭐16)</a> - by Pulover - AHK class for AutoHotkey Rebar custom controls. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=139" rel="noopener noreferrer">link</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Pulover/Class_Toolbar" rel="noopener noreferrer">Toolbar (⭐37)</a> - by Pulover - AHK Class for AutoHotkey Toolbar custom controls. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=138" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/Pulover/Class_Toolbar" rel="noopener noreferrer">Toolbar (⭐39)</a> - by Pulover - AHK Class for AutoHotkey Toolbar custom controls. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=138" rel="noopener noreferrer">link</a></li>
 </ul>
 <h3><p>GUI / ListView</p>
 </h3>
@@ -427,7 +512,7 @@
 <h3><p>Window Management / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hoppfrosch/WindowPadX" rel="noopener noreferrer">WindowPadX (⭐229)</a> - tool which provides some useful functionality within multi monitor environments. <em>WindowPadX is an enhancement of WindowPad, originally released by Lexikos, see original forum thread: <a href="https://autohotkey.com/board/topic/19990-windowpad-window-moving-tool/" rel="noopener noreferrer">link</a></em></li>
+<li><a href="https://github.com/hoppfrosch/WindowPadX" rel="noopener noreferrer">WindowPadX (⭐233)</a> - tool which provides some useful functionality within multi monitor environments. <em>WindowPadX is an enhancement of WindowPad, originally released by Lexikos, see original forum thread: <a href="https://autohotkey.com/board/topic/19990-windowpad-window-moving-tool/" rel="noopener noreferrer">link</a></em></li>
 </ul>
 <h3><p>(Use in) other programming languages / Web</p>
 </h3>
@@ -437,7 +522,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/04/05/">Apr 05, 2016</a></h2><h3><p>GUI / ListView</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AHK-just-me/Class_LV_InCellEdit/" rel="noopener noreferrer">LV_InCellEdit (⭐14)</a> - by just Me - In-cell editing for ListView controls. Forum thread: <a href="http://https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=1076" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/AHK-just-me/Class_LV_InCellEdit/" rel="noopener noreferrer">LV_InCellEdit (⭐13)</a> - by just Me - In-cell editing for ListView controls. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=1076" rel="noopener noreferrer">link</a></li>
 </ul>
 <h3><p>Decompilers / Web</p>
 </h3>
@@ -447,7 +532,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/03/16/">Mar 16, 2016</a></h2><h3><p>Filesystem / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/adampash/belvedere" rel="noopener noreferrer">Belvedere (⭐168)</a> - sets up rules for taking actions on files (move, copy, delete, etc) based on the name of a file, its extension, size, age, and more. More info <a href="http://lifehacker.com/341950/belvedere-automates-your-self-cleaning-pc" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/adampash/belvedere" rel="noopener noreferrer">Belvedere (⭐171)</a> - sets up rules for taking actions on files (move, copy, delete, etc) based on the name of a file, its extension, size, age, and more. More info <a href="http://lifehacker.com/341950/belvedere-automates-your-self-cleaning-pc" rel="noopener noreferrer">link</a>.</li>
 </ul>
 <h3><p>Window Management / Web</p>
 </h3>
@@ -466,7 +551,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/01/14/">Jan 14, 2016</a></h2><h3><p>Window Management / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/benallred/SnapX/releases" rel="noopener noreferrer">SnapX (⭐42)</a> - Enhances Windows/Aero Snap by taking over its hotkeys (Win+Left/Right, etc) and providing more fine-grained control over snap location and size. Works with multiple monitors, resolutions, and DPI levels.</li>
+<li><a href="https://github.com/benallred/SnapX/releases" rel="noopener noreferrer">SnapX (⭐43)</a> - Enhances Windows/Aero Snap by taking over its hotkeys (Win+Left/Right, etc) and providing more fine-grained control over snap location and size. Works with multiple monitors, resolutions, and DPI levels.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/01/05/">Jan 05, 2016</a></h2><h3><p>Clipboard</p>
 </h3>
@@ -476,16 +561,16 @@
 <h3><p>Console</p>
 </h3>
 <ul>
-<li><a href="https://github.com/G33kDude/Console" rel="noopener noreferrer">AHKonsole (⭐32)</a> - by G33kdude - Class based AutoHotkey library for console support. This library enables you to create an object representing a console to interact with, as well as multiple console buffer objects to facilitate in double buffering. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=4955" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/G33kDude/Console" rel="noopener noreferrer">AHKonsole (⭐33)</a> - by G33kdude - Class based AutoHotkey library for console support. This library enables you to create an object representing a console to interact with, as well as multiple console buffer objects to facilitate in double buffering. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=4955" rel="noopener noreferrer">link</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/joedf/LibCon.ahk" rel="noopener noreferrer">LibCon (⭐59)</a> - by joedf - AutoHotkey Library For Console Support. This library enables you to write console applications and interact with other console instances. Basically, this library facilitates anything that has to do with writing and interacting with consoles. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?t=17" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/joedf/LibCon.ahk" rel="noopener noreferrer">LibCon (⭐61)</a> - by joedf - AutoHotkey Library For Console Support. This library enables you to write console applications and interact with other console instances. Basically, this library facilitates anything that has to do with writing and interacting with consoles. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?t=17" rel="noopener noreferrer">link</a>.</li>
 </ul>
 <h3><p>Data format</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cocobelgica/AutoHotkey-JSON" rel="noopener noreferrer">AutoHotkey-JSON (⭐271)</a> - by cocobelgica - JSON lib for AutoHotkey. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=627" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/cocobelgica/AutoHotkey-JSON" rel="noopener noreferrer">AutoHotkey-JSON (⭐288)</a> - by cocobelgica - JSON lib for AutoHotkey. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=627" rel="noopener noreferrer">link</a>.</li>
 </ul>
 
 <ul>
@@ -493,7 +578,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/cocobelgica/AutoHotkey-SerDes" rel="noopener noreferrer">SerDes (⭐13)</a> - by cocobelgica - Serialize / de-serialize an AutoHotkey object structure. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=4212" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/cocobelgica/AutoHotkey-SerDes" rel="noopener noreferrer">SerDes (⭐15)</a> - by cocobelgica - Serialize / de-serialize an AutoHotkey object structure. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=4212" rel="noopener noreferrer">link</a>.</li>
 </ul>
 <h3><p>Database</p>
 </h3>
@@ -502,7 +587,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/AHK-just-me/Class_SQLiteDB" rel="noopener noreferrer">Class_SQLiteDB (⭐107)</a> - by just Me - AHK SQLite API wrapper class. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?t=1064" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/AHK-just-me/Class_SQLiteDB" rel="noopener noreferrer">Class_SQLiteDB (⭐110)</a> - by just Me - AHK SQLite API wrapper class. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?t=1064" rel="noopener noreferrer">link</a>.</li>
 </ul>
 <h3><p>Filesystem</p>
 </h3>
@@ -512,11 +597,11 @@
 <h3><p>Graphics</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tariqporter/Gdip/" rel="noopener noreferrer">GDIp (⭐152)</a> - by tic - Full featured library that helps in interaction with Microsoft's gdiplus.dll - Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=6517" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/tariqporter/Gdip/" rel="noopener noreferrer">GDIp (⭐158)</a> - by tic - Full featured library that helps in interaction with Microsoft's gdiplus.dll - Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=6517" rel="noopener noreferrer">link</a>.</li>
 </ul>
 
 <ul>
-<li><a href="https://autohotkey.com/board/topic/71100-" rel="noopener noreferrer">GDIp_ImageSearch</a> - by tic - Library using gdiplus.dll for searching image instances on the screen. See the end of that thread for MasterFocus' improved version, or see his <a href="https://github.com/MasterFocus/AutoHotkey/tree/master/Functions/Gdip_ImageSearch" rel="noopener noreferrer">GitHub repo here (⭐206)</a></li>
+<li><a href="https://autohotkey.com/board/topic/71100-" rel="noopener noreferrer">GDIp_ImageSearch</a> - by tic - Library using gdiplus.dll for searching image instances on the screen. See the end of that thread for MasterFocus' improved version, or see his <a href="https://github.com/MasterFocus/AutoHotkey/tree/master/Functions/Gdip_ImageSearch" rel="noopener noreferrer">GitHub repo here (⭐213)</a></li>
 </ul>
 
 <ul>
@@ -529,20 +614,20 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/AHK-just-me/TaskDialog" rel="noopener noreferrer">TaskDialog (⭐12)</a> - by just Me - enhanced MsgBox for Win Vista+ - <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=4635" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/AHK-just-me/TaskDialog" rel="noopener noreferrer">TaskDialog (⭐11)</a> - by just Me - enhanced MsgBox for Win Vista+ - <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=4635" rel="noopener noreferrer">link</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/cocobelgica/AutoHotkey-Util/blob/master/OnWin.ahk" rel="noopener noreferrer">OnWin (⭐98)</a> - by cocobelgica - Call function on window event (WinWaitXXX async). Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=6463" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/cocobelgica/AutoHotkey-Util/blob/master/OnWin.ahk" rel="noopener noreferrer">OnWin (⭐105)</a> - by cocobelgica - Call function on window event (WinWaitXXX async). Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=6463" rel="noopener noreferrer">link</a></li>
 </ul>
 <h3><p>GUI / ListView</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AHK-just-me/Class_LV_Colors/" rel="noopener noreferrer">LV_Colors (⭐29)</a> - by just Me - Individual background and/or text colours for a GUI ListView's cells or rows. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=1081" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/AHK-just-me/Class_LV_Colors/" rel="noopener noreferrer">LV_Colors (⭐30)</a> - by just Me - Individual background and/or text colours for a GUI ListView's cells or rows. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=1081" rel="noopener noreferrer">link</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/AHK-just-me/LV_EX" rel="noopener noreferrer">LV_EX (⭐17)</a> - by just me - Some additional functions for AHK GUI ListView controls. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=1256" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/AHK-just-me/LV_EX" rel="noopener noreferrer">LV_EX (⭐16)</a> - by just me - Some additional functions for AHK GUI ListView controls. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=1256" rel="noopener noreferrer">link</a></li>
 </ul>
 <h3><p>GUI / Menu</p>
 </h3>
@@ -579,11 +664,11 @@
 <h3><p>Networking / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Skiouros/AHKhttp" rel="noopener noreferrer">AHKhttp (⭐83)</a> - Basic HTTP Server. Forum <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=4890" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/Skiouros/AHKhttp" rel="noopener noreferrer">AHKhttp (⭐85)</a> - Basic HTTP Server. Forum <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=4890" rel="noopener noreferrer">link</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jleb/AHKsock" rel="noopener noreferrer">AHKsock (⭐79)</a> - by TheGood - Function based sockets library. Supports TCP. Forum <a href="https://autohotkey.com/board/topic/53827-ahksock-a-simple-ahk-implementation-of-winsock-tcpip/" rel="noopener noreferrer">link</a></li>
+<li><a href="https://github.com/jleb/AHKsock" rel="noopener noreferrer">AHKsock (⭐83)</a> - by TheGood - Function based sockets library. Supports TCP. Forum <a href="https://autohotkey.com/board/topic/53827-ahksock-a-simple-ahk-implementation-of-winsock-tcpip/" rel="noopener noreferrer">link</a></li>
 </ul>
 <h3><p>Plotting (graphs, bars, charts and etc) / Web</p>
 </h3>
@@ -606,12 +691,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/hi5/TF" rel="noopener noreferrer">TF (⭐144)</a> - by hi5 - Functions for manipulation of text files such as *.txt, *.ahk, *.html, *.css etc and Strings (or variables). Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=576" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/hi5/TF" rel="noopener noreferrer">TF (⭐143)</a> - by hi5 - Functions for manipulation of text files such as *.txt, *.ahk, *.html, *.css etc and Strings (or variables). Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=576" rel="noopener noreferrer">link</a>.</li>
 </ul>
 <h3><p>Clipboard / Web</p>
 </h3>
 <ul>
-<li><a href="http://clipjump.sourceforge.net/" rel="noopener noreferrer">Clipjump</a> - is a Multiple-Clipboard management utility for Windows. Source code: <a href="https://github.com/aviaryan/Clipjump" rel="noopener noreferrer">GitHub (⭐385)</a>. Forum threads: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=401" rel="noopener noreferrer">link 1</a>, <a href="https://autohotkey.com/board/topic/91488-clipjump-the-ultimate-clipboard-manager-updated-0708/" rel="noopener noreferrer">link 2</a>.</li>
+<li><a href="http://clipjump.sourceforge.net/" rel="noopener noreferrer">Clipjump</a> - is a Multiple-Clipboard management utility for Windows. Source code: <a href="https://github.com/aviaryan/Clipjump" rel="noopener noreferrer">GitHub (⭐397)</a>. Forum threads: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=401" rel="noopener noreferrer">link 1</a>, <a href="https://autohotkey.com/board/topic/91488-clipjump-the-ultimate-clipboard-manager-updated-0708/" rel="noopener noreferrer">link 2</a>.</li>
 </ul>
 <h3><p>Graphics / Web</p>
 </h3>
@@ -635,7 +720,7 @@
 <h3><p>Typing / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Uberi/Autocomplete" rel="noopener noreferrer">AutoComplete (⭐205)</a> - Suggests and completes words as you type. Forum thread: <a href="https://autohotkey.com/board/topic/60998-autocomplete/" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/Uberi/Autocomplete" rel="noopener noreferrer">AutoComplete (⭐218)</a> - Suggests and completes words as you type. Forum thread: <a href="https://autohotkey.com/board/topic/60998-autocomplete/" rel="noopener noreferrer">link</a>.</li>
 </ul>
 
 <ul>
@@ -651,7 +736,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ManiacDC/TypingAid/releases" rel="noopener noreferrer">TypingAid (⭐149)</a> - Suggests and completes words as you type. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=5644" rel="noopener noreferrer">link</a> GitHub <a href="https://github.com/ManiacDC/TypingAid" rel="noopener noreferrer">link (⭐149)</a>.</li>
+<li><a href="https://github.com/ManiacDC/TypingAid/releases" rel="noopener noreferrer">TypingAid (⭐160)</a> - Suggests and completes words as you type. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=5644" rel="noopener noreferrer">link</a> GitHub <a href="https://github.com/ManiacDC/TypingAid" rel="noopener noreferrer">link (⭐160)</a>.</li>
 </ul>
 <h3><p>Window Management / Web</p>
 </h3>
@@ -665,12 +750,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/HotKeyIt/ahkdll-v1-release/" rel="noopener noreferrer">AutoHotkey DLL (⭐66)</a> - AutoHotkey.dll opens the world of AutoHotkey to other programming and scripting languages. Forum thread: <a href="https://autohotkey.com/board/topic/39588-autohotkeydll/" rel="noopener noreferrer">link</a>. Documentation <a href="http://hotkeyit.ahk4.net/files/AutoHotkey-txt.html" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/HotKeyIt/ahkdll-v1-release/" rel="noopener noreferrer">AutoHotkey DLL (⭐69)</a> - AutoHotkey.dll opens the world of AutoHotkey to other programming and scripting languages. Forum thread: <a href="https://autohotkey.com/board/topic/39588-autohotkeydll/" rel="noopener noreferrer">link</a>. Documentation <a href="http://hotkeyit.ahk4.net/files/AutoHotkey-txt.html" rel="noopener noreferrer">link</a>.</li>
 </ul>
 <h3><p>Debugging / Web</p>
 </h3>
 <ul>
-<li><a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=2116" rel="noopener noreferrer">[Class] Console</a> - This class is meant to simplify debugging for scripts from simple text handling, to outputting and logging data &amp; arrays. GitHub <a href="https://github.com/AfterLemon/Class_Console" rel="noopener noreferrer">link (⭐20)</a>.</li>
+<li><a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=2116" rel="noopener noreferrer">[Class] Console</a> - This class is meant to simplify debugging for scripts from simple text handling, to outputting and logging data &amp; arrays. GitHub <a href="https://github.com/AfterLemon/Class_Console" rel="noopener noreferrer">link (⭐19)</a>.</li>
 </ul>
 
 <ul>
@@ -688,7 +773,7 @@
 </ul>
 
 <ul>
-<li><a href="https://www.dropbox.com/s/99cwiqpzlx4mtuz/AutoHotFlow%20Installation.exe?dl=1" rel="noopener noreferrer">AutoHotFlow</a> - Draw your applications. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=6399" rel="noopener noreferrer">link</a>. GitHub <a href="https://github.com/bichlepa/AutoHotFlow" rel="noopener noreferrer">link (⭐71)</a>.</li>
+<li><a href="https://www.dropbox.com/s/99cwiqpzlx4mtuz/AutoHotFlow%20Installation.exe?dl=1" rel="noopener noreferrer">AutoHotFlow</a> - Draw your applications. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=6399" rel="noopener noreferrer">link</a>. GitHub <a href="https://github.com/bichlepa/AutoHotFlow" rel="noopener noreferrer">link (⭐73)</a>.</li>
 </ul>
 
 <ul>
@@ -706,7 +791,7 @@
 <h3><p>Script Recorders and Writers / Web</p>
 </h3>
 <ul>
-<li><a href="http://www.macrocreator.com/" rel="noopener noreferrer">Pulover’s Macro Creator</a> - a Free Automation Tool and Script Generator. Recommended for beginners. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=143" rel="noopener noreferrer">link</a>. GitHub <a href="https://github.com/Pulover/PuloversMacroCreator" rel="noopener noreferrer">link (⭐1.8k)</a>.</li>
+<li><a href="http://www.macrocreator.com/" rel="noopener noreferrer">Pulover’s Macro Creator</a> - a Free Automation Tool and Script Generator. Recommended for beginners. Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=143" rel="noopener noreferrer">link</a>. GitHub <a href="https://github.com/Pulover/PuloversMacroCreator" rel="noopener noreferrer">link (⭐2k)</a>.</li>
 </ul>
 <h3><p>Web Syntax Highlighters / Web</p>
 </h3>
@@ -737,7 +822,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Aurelain/Exo" rel="noopener noreferrer">Exo-Javascript (⭐117)</a> - Write AHK with JavaScript - Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=5714" rel="noopener noreferrer">link</a>, Exo-CLI (Interactive Command-line) <a href="https://github.com/joedf/Exo-CLI.ahk" rel="noopener noreferrer">link (⭐10)</a>.</li>
+<li><a href="https://github.com/Aurelain/Exo" rel="noopener noreferrer">Exo-Javascript (⭐116)</a> - Write AHK with JavaScript - Forum thread: <a href="https://autohotkey.com/boards/viewtopic.php?f=6&amp;t=5714" rel="noopener noreferrer">link</a>, Exo-CLI (Interactive Command-line) <a href="https://github.com/joedf/Exo-CLI.ahk" rel="noopener noreferrer">link (⭐10)</a>.</li>
 </ul>
 
 <ul>
@@ -764,7 +849,7 @@
 <h3><p>Documentation / Web</p>
 </h3>
 <ul>
-<li><a href="https://autohotkey.com/docs/AutoHotkey.htm" rel="noopener noreferrer">Official documentation</a> - Official uptodate AutoHotkey documentation. GitHub <a href="https://github.com/Lexikos/AutoHotkey_L-Docs" rel="noopener noreferrer">link (⭐428)</a>.</li>
+<li><a href="https://autohotkey.com/docs/AutoHotkey.htm" rel="noopener noreferrer">Official documentation</a> - Official uptodate AutoHotkey documentation. GitHub <a href="https://github.com/Lexikos/AutoHotkey_L-Docs" rel="noopener noreferrer">link (⭐495)</a>.</li>
 </ul>
 <h3><p>Books / Web</p>
 </h3>
@@ -789,7 +874,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/10/21/">Oct 21, 2015</a></h2><h3><p>Debugging / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Uberi/Yunit" rel="noopener noreferrer">Yunit (⭐53)</a> - by Uberi and infogulch - Simple unit testing framework for AutoHotkey.</li>
+<li><a href="https://github.com/Uberi/Yunit" rel="noopener noreferrer">Yunit (⭐56)</a> - by Uberi and infogulch - Simple unit testing framework for AutoHotkey.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/10/20/">Oct 20, 2015</a></h2><h3><p>Mouse / Web</p>
 </h3>
@@ -799,7 +884,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/08/27/">Aug 27, 2015</a></h2><h3><p>Library Distributions / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ahkscript/ASPDM" rel="noopener noreferrer">ASPDM (⭐63)</a> - package/stdlib distribution and management from the <a href="https://github.com/ahkscript" rel="noopener noreferrer">ahkscript</a> folks. Trello <a href="https://trello.com/b/XVP4M76d/package-stdlib-distribution-and-management" rel="noopener noreferrer">link</a>.</li>
+<li><a href="https://github.com/ahkscript/ASPDM" rel="noopener noreferrer">ASPDM (⭐67)</a> - package/stdlib distribution and management from the <a href="https://github.com/ahkscript" rel="noopener noreferrer">ahkscript</a> folks. Trello <a href="https://trello.com/b/XVP4M76d/package-stdlib-distribution-and-management" rel="noopener noreferrer">link</a>.</li>
 </ul>
 
 <ul>
@@ -813,12 +898,12 @@
 <h2><a href="https://www.trackawesomelist.com/2015/04/07/">Apr 07, 2015</a></h2><h3><p>Interpreter / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/polyethene/IronAHK" rel="noopener noreferrer">IronAHK (⭐414)</a> - Cross platform .NET rewrite - <em>unfinished</em>.</li>
+<li><a href="https://github.com/polyethene/IronAHK" rel="noopener noreferrer">IronAHK (⭐415)</a> - Cross platform .NET rewrite - <em>unfinished</em>.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/02/28/">Feb 28, 2015</a></h2><h3><p>Integrated Development Environment / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ahkscript/SublimeAutoHotkey" rel="noopener noreferrer">SublimeAutoHotkey (⭐209)</a> - AutoHotkey AHK language package for SublimeText including syntax highlighting, comments toggling, auto-completions, build system definitions, commands for ahkrun, ahkcompile, ahkrunpiped.</li>
+<li><a href="https://github.com/ahkscript/SublimeAutoHotkey" rel="noopener noreferrer">SublimeAutoHotkey (⭐212)</a> - AutoHotkey AHK language package for SublimeText including syntax highlighting, comments toggling, auto-completions, build system definitions, commands for ahkrun, ahkcompile, ahkrunpiped.</li>
 </ul>
 <h3><p>Web Syntax Highlighters / Web</p>
 </h3>
@@ -828,7 +913,7 @@
 <h2><a href="https://www.trackawesomelist.com/2014/11/30/">Nov 30, 2014</a></h2><h3><p>Library Distributions / Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rshipp/ahk-libs" rel="noopener noreferrer">ahk-libs (⭐157)</a> - Ryan Shipp's collection of libraries.</li>
+<li><a href="https://github.com/rshipp/ahk-libs" rel="noopener noreferrer">ahk-libs (⭐162)</a> - Ryan Shipp's collection of libraries.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2014/08/04/">Aug 04, 2014</a></h2><h3><p>Integrated Development Environment / Web</p>
 </h3>
@@ -837,5 +922,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
