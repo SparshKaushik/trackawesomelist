@@ -16,31 +16,116 @@
     <meta property="og:title" content="Track Awesome Opensource Documents Updates Daily" />
     <meta property="og:description" content=":blue_book: A curated list of awesome open source or open source licensed documents, guides, books." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Opensource Documents Updates Daily</h1>
 <p>:blue_book: A curated list of awesome open source or open source licensed documents, guides, books.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/44bits/awesome-opensource-documents/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/44bits/awesome-opensource-documents">😺 44bits/awesome-opensource-documents</a><span> · </span><span>⭐ 2.1K</span><span> · </span><span>🏷️ Media</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/44bits/awesome-opensource-documents/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/44bits/awesome-opensource-documents">😺 44bits/awesome-opensource-documents</a><span> · </span><span>⭐ 2.3K</span><span> · </span><span>🏷️ Media</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/44bits/awesome-opensource-documents/week/">Weekly</a><span> / </span><a href="/44bits/awesome-opensource-documents/readme/">Overview</a><span> ]</span></p>
 
-<h2><a href="https://www.trackawesomelist.com/2025/10/29/">Oct 29, 2025</a></h2><h3><p>Other Languages / Chinese</p>
+<h2><a href="https://www.trackawesomelist.com/2026/09/19/">Sep 19, 2026</a></h2><h3><p>Subjects / Programming</p>
 </h3>
 <ul>
-<li><a href="https://github.com/44bits/awesome-opensource-documents/blob/master/README.md/repo-freebsdask-book-cn" rel="noopener noreferrer">FreeBSD 从入门到跑路</a> (<a href="https://book.bsdcn.org" rel="noopener noreferrer">Site</a>, cc-by) - 这是一本 FreeBSD 操作系统书籍，还包含一些 OpenBSD、NetBSD、DragonFly BSD、TwinCAT/BSD 等 BSD 家族操作系统的快速入门章节</li>
+<li><a href="https://github.com/gibbok/typescript-book" rel="noopener noreferrer">The Concise TypeScript Book (⭐10k)</a> (<a href="https://github.com/gibbok/typescript-book" rel="noopener noreferrer">Site (⭐10k)</a>, cc-by) - A free and open-source TypeScript guide covering fundamentals through advanced concepts.</li>
+</ul>
+<h3><p>Other Languages / Chinese</p>
+</h3>
+<ul>
+<li><a href="https://github.com/FreeBSD-Ask/FreeBSD-Ask" rel="noopener noreferrer">FreeBSD 从入门到跑路 (⭐270)</a> (<a href="https://book.bsdcn.org" rel="noopener noreferrer">Site</a>, cc-by) - 这是一本 FreeBSD 操作系统书籍，还包含一些 OpenBSD、NetBSD、DragonFly BSD、TwinCAT/BSD 等 BSD 家族操作系统的快速入门章节</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/10/06/">Oct 06, 2022</a></h2><h3><p>Programming Languages / Assembly</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hackclub/some-assembly-required/" rel="noopener noreferrer">Some Assembly Required (⭐3.4k)</a> (cc-sa) - An approachable introduction to Assembly</li>
+<li><a href="https://github.com/hackclub/some-assembly-required/" rel="noopener noreferrer">Some Assembly Required (⭐3.5k)</a> (cc-sa) - An approachable introduction to Assembly</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/05/30/">May 30, 2020</a></h2><h3><p>Programming Languages / C</p>
 </h3>
@@ -59,12 +144,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/learnbyexample/learn_js_regexp" rel="noopener noreferrer">JavaScript RegExp (⭐117)</a> (<a href="https://github.com/learnbyexample/learn_js_regexp/blob/master/js_regexp.md" rel="noopener noreferrer">Site (⭐117)</a>, cc-nc-sa) - step by step guide to JavaScript regular expressions</li>
+<li><a href="https://github.com/learnbyexample/learn_js_regexp" rel="noopener noreferrer">JavaScript RegExp (⭐116)</a> (<a href="https://github.com/learnbyexample/learn_js_regexp/blob/master/js_regexp.md" rel="noopener noreferrer">Site (⭐116)</a>, cc-nc-sa) - step by step guide to JavaScript regular expressions</li>
 </ul>
 <h3><p>Programming Languages / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AllenDowney/ThinkPython" rel="noopener noreferrer">Think Python (⭐2.4k)</a> (<a href="https://greenteapress.com/wp/think-python-2e/" rel="noopener noreferrer">Site</a>, cc-nc) - How to Think Like a Computer Scientist</li>
+<li><a href="https://github.com/AllenDowney/ThinkPython" rel="noopener noreferrer">Think Python (⭐2.7k)</a> (<a href="https://greenteapress.com/wp/think-python-2e/" rel="noopener noreferrer">Site</a>, cc-nc) - How to Think Like a Computer Scientist</li>
 </ul>
 
 <ul>
@@ -72,11 +157,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dabeaz-course/practical-python" rel="noopener noreferrer">Practical Python Programming (⭐10k)</a> (<a href="https://dabeaz-course.github.io/practical-python/" rel="noopener noreferrer">Site</a>, cc-sa) - covers foundational aspects of Python programming with an emphasis on script writing, data manipulation, and program organization</li>
+<li><a href="https://github.com/dabeaz-course/practical-python" rel="noopener noreferrer">Practical Python Programming (⭐11k)</a> (<a href="https://dabeaz-course.github.io/practical-python/" rel="noopener noreferrer">Site</a>, cc-sa) - covers foundational aspects of Python programming with an emphasis on script writing, data manipulation, and program organization</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/learnbyexample/Python_Basics" rel="noopener noreferrer">Python Basics (⭐579)</a> (<a href="https://learnbyexample.gitbooks.io/python-basics/content/index.html" rel="noopener noreferrer">Site</a>, cc-nc-sa) - Introduction to Python</li>
+<li><a href="https://github.com/learnbyexample/Python_Basics" rel="noopener noreferrer">Python Basics (⭐610)</a> (<a href="https://learnbyexample.gitbooks.io/python-basics/content/index.html" rel="noopener noreferrer">Site</a>, cc-nc-sa) - Introduction to Python</li>
 </ul>
 
 <ul>
@@ -84,7 +169,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/AllenDowney/ThinkDSP" rel="noopener noreferrer">Think DSP (⭐4.3k)</a> (<a href="https://greenteapress.com/wp/think-dsp/" rel="noopener noreferrer">Site</a>, cc-nc) - introduction to Digital Signal Processing in Python</li>
+<li><a href="https://github.com/AllenDowney/ThinkDSP" rel="noopener noreferrer">Think DSP (⭐4.6k)</a> (<a href="https://greenteapress.com/wp/think-dsp/" rel="noopener noreferrer">Site</a>, cc-nc) - introduction to Digital Signal Processing in Python</li>
 </ul>
 
 <ul>
@@ -97,7 +182,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/learnbyexample/Linux_command_line" rel="noopener noreferrer">Linux Command Line (⭐598)</a> (<a href="https://learnbyexample.gitbooks.io/linux-command-line/content/index.html" rel="noopener noreferrer">Site</a>, cc-nc-sa) - Introduction to Linux commands and Shell scripting</li>
+<li><a href="https://github.com/learnbyexample/Linux_command_line" rel="noopener noreferrer">Linux Command Line (⭐699)</a> (<a href="https://learnbyexample.gitbooks.io/linux-command-line/content/index.html" rel="noopener noreferrer">Site</a>, cc-nc-sa) - Introduction to Linux commands and Shell scripting</li>
 </ul>
 <h3><p>Programming Languages / Ruby</p>
 </h3>
@@ -107,17 +192,17 @@
 <h3><p>Programming Languages / Perl</p>
 </h3>
 <ul>
-<li><a href="https://github.com/learnbyexample/Perl_intro" rel="noopener noreferrer">Perl intro (⭐51)</a> (<a href="https://learnbyexample.gitbooks.io/perl-introduction/content/" rel="noopener noreferrer">Site</a>, cc-nc-sa) - Introductory course for Perl 5 through examples</li>
+<li><a href="https://github.com/learnbyexample/Perl_intro" rel="noopener noreferrer">Perl intro (⭐54)</a> (<a href="https://learnbyexample.gitbooks.io/perl-introduction/content/" rel="noopener noreferrer">Site</a>, cc-nc-sa) - Introductory course for Perl 5 through examples</li>
 </ul>
 <h3><p>Programming Languages / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jakevdp/WhirlwindTourOfPython" rel="noopener noreferrer">A Whirlwind Tour of Python (⭐3.9k)</a> (<a href="https://nbviewer.jupyter.org/github/jakevdp/WhirlwindTourOfPython/blob/master/Index.ipynb" rel="noopener noreferrer">Site</a>, cc0) - fast-paced introduction to essential components of the Python language for researchers and developers who are already familiar with programming in another language</li>
+<li><a href="https://github.com/jakevdp/WhirlwindTourOfPython" rel="noopener noreferrer">A Whirlwind Tour of Python (⭐4k)</a> (<a href="https://nbviewer.jupyter.org/github/jakevdp/WhirlwindTourOfPython/blob/master/Index.ipynb" rel="noopener noreferrer">Site</a>, cc0) - fast-paced introduction to essential components of the Python language for researchers and developers who are already familiar with programming in another language</li>
 </ul>
 <h3><p>Tools / Editor</p>
 </h3>
 <ul>
-<li><a href="https://github.com/learnbyexample/vim_reference" rel="noopener noreferrer">Vim Reference (⭐378)</a> (<a href="https://learnbyexample.gitbooks.io/vim-reference/content/index.html" rel="noopener noreferrer">Site</a>, cc-nc-sa) - guide for beginner to intermediate users</li>
+<li><a href="https://github.com/learnbyexample/vim_reference" rel="noopener noreferrer">Vim Reference (⭐380)</a> (<a href="https://learnbyexample.gitbooks.io/vim-reference/content/index.html" rel="noopener noreferrer">Site</a>, cc-nc-sa) - guide for beginner to intermediate users</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/11/01/">Nov 01, 2018</a></h2><h3><p>Subjects / Writing and Documentation</p>
 </h3>
@@ -135,17 +220,17 @@
 <h2><a href="https://www.trackawesomelist.com/2018/06/05/">Jun 05, 2018</a></h2><h3><p>Subjects / Computer Science</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ErikRHanson/Problem-Solving-with-Algorithms-and-Data-Structures-Using-Python" rel="noopener noreferrer">Problem Solving with Algorithms and Data Structures (⭐328)</a> (<a href="http://interactivepython.org/runestone/static/pythonds/index.html" rel="noopener noreferrer">Site</a>, cc-nc-sa) - Examples and work from Problem Solving with Algorithms and Data Structures Using Python</li>
+<li><a href="https://github.com/ErikRHanson/Problem-Solving-with-Algorithms-and-Data-Structures-Using-Python" rel="noopener noreferrer">Problem Solving with Algorithms and Data Structures (⭐332)</a> (<a href="http://interactivepython.org/runestone/static/pythonds/index.html" rel="noopener noreferrer">Site</a>, cc-nc-sa) - Examples and work from Problem Solving with Algorithms and Data Structures Using Python</li>
 </ul>
 <h3><p>Subjects / Devops</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jlevy/the-art-of-command-line" rel="noopener noreferrer">The Art of Command Line (⭐159k)</a> (cc-sa) - Master the command line, in one page</li>
+<li><a href="https://github.com/jlevy/the-art-of-command-line" rel="noopener noreferrer">The Art of Command Line (⭐162k)</a> (cc-sa) - Master the command line, in one page</li>
 </ul>
 <h3><p>Subjects / Mathematics &amp; Physics</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jeffThompson/CollisionDetection" rel="noopener noreferrer">Collision Detection (⭐439)</a> (<a href="http://www.jeffreythompson.org/collision-detection/" rel="noopener noreferrer">Site</a>, cc-nc-sa) - A book and examples on collision detection</li>
+<li><a href="https://github.com/jeffThompson/CollisionDetection" rel="noopener noreferrer">Collision Detection (⭐452)</a> (<a href="http://www.jeffreythompson.org/collision-detection/" rel="noopener noreferrer">Site</a>, cc-nc-sa) - A book and examples on collision detection</li>
 </ul>
 <h3><p>Subjects / Journalism and Visualization</p>
 </h3>
@@ -159,7 +244,7 @@
 <h3><p>Subjects / Android Development</p>
 </h3>
 <ul>
-<li><a href="https://github.com/futurice/android-best-practices" rel="noopener noreferrer">Best practices in Android development (⭐21k)</a> (cc) - Do's and Don'ts for Android development, by Futurice developers</li>
+<li><a href="https://github.com/futurice/android-best-practices" rel="noopener noreferrer">Best practices in Android development (⭐20k)</a> (cc) - Do's and Don'ts for Android development, by Futurice developers</li>
 </ul>
 <h3><p>Subjects / ETC</p>
 </h3>
@@ -169,7 +254,7 @@
 <h3><p>Programming Languages / Ruby</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mislav/poignant-guide" rel="noopener noreferrer">Why's Poignant Guide to Ruby (⭐789)</a> (<a href="http://poignant.guide/book/" rel="noopener noreferrer">Site</a>, cc-sa) - This is just a small Ruby book. It won’t crush you. It’s light as a feather</li>
+<li><a href="https://github.com/mislav/poignant-guide" rel="noopener noreferrer">Why's Poignant Guide to Ruby (⭐815)</a> (<a href="http://poignant.guide/book/" rel="noopener noreferrer">Site</a>, cc-sa) - This is just a small Ruby book. It won’t crush you. It’s light as a feather</li>
 </ul>
 
 <ul>
@@ -201,7 +286,7 @@
 <h3><p>Programming Languages / Lisp</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kvalle/diy-lisp" rel="noopener noreferrer">DIY Lisp (⭐553)</a> (BSD) - A hands-on, test driven guide to implementing a simple programming language.</li>
+<li><a href="https://github.com/kvalle/diy-lisp" rel="noopener noreferrer">DIY Lisp (⭐549)</a> (BSD) - A hands-on, test driven guide to implementing a simple programming language.</li>
 </ul>
 <h3><p>Programming Languages / Objective-C</p>
 </h3>
@@ -216,7 +301,7 @@
 <h3><p>Tools / Server</p>
 </h3>
 <ul>
-<li><a href="https://github.com/h5bp/server-configs-nginx" rel="noopener noreferrer">Nginx Server Configs (⭐11k)</a> (MIT) - Nginx HTTP server boilerplate configs</li>
+<li><a href="https://github.com/h5bp/server-configs-nginx" rel="noopener noreferrer">Nginx Server Configs (⭐12k)</a> (MIT) - Nginx HTTP server boilerplate configs</li>
 </ul>
 <h3><p>Other Languages / Chinese</p>
 </h3>
@@ -231,15 +316,15 @@
 <h3><p>Another Documents List / References / Chinese</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">Awesome (⭐407k)</a> - A curated list of awesome lists</li>
+<li><a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">Awesome (⭐504k)</a> - A curated list of awesome lists</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/rasbt/python_reference" rel="noopener noreferrer">Python Reference (⭐3.8k)</a> - Useful functions, tutorials, and other Python-related things</li>
+<li><a href="https://github.com/rasbt/python_reference" rel="noopener noreferrer">Python Reference (⭐3.9k)</a> - Useful functions, tutorials, and other Python-related things</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/vhf/free-programming-books" rel="noopener noreferrer">List of Free Learning Resources (⭐373k)</a> - Freely available programming books</li>
+<li><a href="https://github.com/vhf/free-programming-books" rel="noopener noreferrer">List of Free Learning Resources (⭐397k)</a> - Freely available programming books</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/05/18/">May 18, 2018</a></h2><h3><p>Other Languages / Chinese</p>
 </h3>
@@ -254,12 +339,12 @@
 <h2><a href="https://www.trackawesomelist.com/2015/09/29/">Sep 29, 2015</a></h2><h3><p>Programming Languages / Lisp</p>
 </h3>
 <ul>
-<li><a href="https://github.com/orangeduck/BuildYourOwnLisp" rel="noopener noreferrer">Build Your Own Lisp (⭐3.1k)</a> (<a href="http://www.buildyourownlisp.com/" rel="noopener noreferrer">Site</a>, cc-nc-sa) - Learn C and build your own programming language in under 1000 lines of code!</li>
+<li><a href="https://github.com/orangeduck/BuildYourOwnLisp" rel="noopener noreferrer">Build Your Own Lisp (⭐3.3k)</a> (<a href="http://www.buildyourownlisp.com/" rel="noopener noreferrer">Site</a>, cc-nc-sa) - Learn C and build your own programming language in under 1000 lines of code!</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/09/28/">Sep 28, 2015</a></h2><h3><p>Subjects / Computer Science</p>
 </h3>
 <ul>
-<li><a href="https://github.com/patmorin/ods" rel="noopener noreferrer">Open Data Structures (⭐1.2k)</a> (<a href="http://opendatastructures.org/" rel="noopener noreferrer">Site</a>, cc) - To provide a high-quality open content data structures textbook that is both mathematically rigorous and provides complete implementation</li>
+<li><a href="https://github.com/patmorin/ods" rel="noopener noreferrer">Open Data Structures (⭐1.3k)</a> (<a href="http://opendatastructures.org/" rel="noopener noreferrer">Site</a>, cc) - To provide a high-quality open content data structures textbook that is both mathematically rigorous and provides complete implementation</li>
 </ul>
 
 <ul>
@@ -279,7 +364,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Max-Hailperin/Operating-Systems-and-Middleware--Supporting-Controlled-Interaction" rel="noopener noreferrer">Operating Systems and Middleware: Supporting Controlled Interaction (⭐121)</a> (<a href="https://gustavus.edu/+max/os-book/" rel="noopener noreferrer">Site</a> cc-sa) - free, modifiable textbook on operating systems principles</li>
+<li><a href="https://github.com/Max-Hailperin/Operating-Systems-and-Middleware--Supporting-Controlled-Interaction" rel="noopener noreferrer">Operating Systems and Middleware: Supporting Controlled Interaction (⭐125)</a> (<a href="https://gustavus.edu/+max/os-book/" rel="noopener noreferrer">Site</a> cc-sa) - free, modifiable textbook on operating systems principles</li>
 </ul>
 
 <ul>
@@ -303,7 +388,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ianw/bottomupcs" rel="noopener noreferrer">Computer Science from the Bottom Up (⭐1.5k)</a> (<a href="http://www.bottomupcs.com/" rel="noopener noreferrer">Site</a>, cc-sa) - Computer Science from the Bottom Up — A free, online book designed to teach computer science from the bottom end up. Topics covered include binary and binary logic, operating systems internals, toolchain fundamentals and system library fundamentals</li>
+<li><a href="https://github.com/ianw/bottomupcs" rel="noopener noreferrer">Computer Science from the Bottom Up (⭐1.6k)</a> (<a href="http://www.bottomupcs.com/" rel="noopener noreferrer">Site</a>, cc-sa) - Computer Science from the Bottom Up — A free, online book designed to teach computer science from the bottom end up. Topics covered include binary and binary logic, operating systems internals, toolchain fundamentals and system library fundamentals</li>
 </ul>
 
 <ul>
@@ -316,7 +401,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Carreau/jupyter-book" rel="noopener noreferrer">The Book Of Jupyter (⭐19)</a> (<a href="https://carreau.gitbooks.io/jupyter-book/content/" rel="noopener noreferrer">Site</a>, cc) - This is some of the material that covers the advanced Jupyter/IPython SciPy tutorial that is/was/will be given in July 2015</li>
+<li><a href="https://github.com/Carreau/jupyter-book" rel="noopener noreferrer">The Book Of Jupyter (⭐20)</a> (<a href="https://carreau.gitbooks.io/jupyter-book/content/" rel="noopener noreferrer">Site</a>, cc) - This is some of the material that covers the advanced Jupyter/IPython SciPy tutorial that is/was/will be given in July 2015</li>
 </ul>
 <h3><p>Subjects / Devops</p>
 </h3>
@@ -325,7 +410,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/heroku/12factor" rel="noopener noreferrer">Twelve Factor App (⭐3.7k)</a> (<a href="http://12factor.net/" rel="noopener noreferrer">Site</a>, MIT) - The twelve-factor app is a methodology for building software-as-a-service apps</li>
+<li><a href="https://github.com/heroku/12factor" rel="noopener noreferrer">Twelve Factor App (⭐3.8k)</a> (<a href="http://12factor.net/" rel="noopener noreferrer">Site</a>, MIT) - The twelve-factor app is a methodology for building software-as-a-service apps</li>
 </ul>
 
 <ul>
@@ -337,11 +422,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/travis-ci/docs-travis-ci-com" rel="noopener noreferrer">Travis CI (⭐621)</a> (<a href="https://docs.travis-ci.com/" rel="noopener noreferrer">Site</a>, MIT) - Documentation for Travis</li>
+<li><a href="https://github.com/travis-ci/docs-travis-ci-com" rel="noopener noreferrer">Travis CI (⭐647)</a> (<a href="https://docs.travis-ci.com/" rel="noopener noreferrer">Site</a>, MIT) - Documentation for Travis</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/mitchellh/packer/tree/master/website/source/docs" rel="noopener noreferrer">Packer Documentation (⭐15k)</a> (<a href="https://www.packer.io/docs/" rel="noopener noreferrer">Site</a>, MPL) - Documentation for Packer</li>
+<li><a href="https://github.com/mitchellh/packer/tree/master/website/source/docs" rel="noopener noreferrer">Packer Documentation (⭐16k)</a> (<a href="https://www.packer.io/docs/" rel="noopener noreferrer">Site</a>, MPL) - Documentation for Packer</li>
 </ul>
 <h3><p>Subjects / Open Source</p>
 </h3>
@@ -360,7 +445,7 @@
 <h3><p>Subjects / World Wide Web</p>
 </h3>
 <ul>
-<li><a href="https://github.com/diveintomark/diveintohtml5" rel="noopener noreferrer">Dive Into HTML5 (⭐780)</a> (<a href="http://diveintohtml5.info/" rel="noopener noreferrer">Site</a>, cc) - Dive Into HTML5 elaborates on a hand-picked selection of features from the HTML5 specification and other fine standards</li>
+<li><a href="https://github.com/diveintomark/diveintohtml5" rel="noopener noreferrer">Dive Into HTML5 (⭐775)</a> (<a href="http://diveintohtml5.info/" rel="noopener noreferrer">Site</a>, cc) - Dive Into HTML5 elaborates on a hand-picked selection of features from the HTML5 specification and other fine standards</li>
 </ul>
 
 <ul>
@@ -368,7 +453,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/webcomponents/webcomponents.github.io" rel="noopener noreferrer">WebComponents.org (⭐731)</a> (<a href="http://webcomponents.org/" rel="noopener noreferrer">Site</a>, cc-sa) - A place to discuss and evolve Web Component best-practices</li>
+<li><a href="https://github.com/webcomponents/webcomponents.github.io" rel="noopener noreferrer">WebComponents.org (⭐727)</a> (<a href="http://webcomponents.org/" rel="noopener noreferrer">Site</a>, cc-sa) - A place to discuss and evolve Web Component best-practices</li>
 </ul>
 
 <ul>
@@ -385,7 +470,7 @@
 <h3><p>Subjects / Writing and Documentation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jgm/CommonMark" rel="noopener noreferrer">CommonMark Spec (⭐5k)</a> (<a href="http://spec.commonmark.org/" rel="noopener noreferrer">Site</a>, cc-sa) - CommonMark is a rationalized version of Markdown syntax, with a spec and BSD-licensed reference implementations in C and JavaScript.</li>
+<li><a href="https://github.com/jgm/CommonMark" rel="noopener noreferrer">CommonMark Spec (⭐5.1k)</a> (<a href="http://spec.commonmark.org/" rel="noopener noreferrer">Site</a>, cc-sa) - CommonMark is a rationalized version of Markdown syntax, with a spec and BSD-licensed reference implementations in C and JavaScript.</li>
 </ul>
 <h3><p>Subjects / Journalism and Visualization</p>
 </h3>
@@ -394,7 +479,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/square/intro-to-d3" rel="noopener noreferrer">Intro to D3.js (⭐603)</a> (<a href="https://square.github.io/intro-to-d3/" rel="noopener noreferrer">Site</a>, Apache 2.0) - The tutorial provides a quick intro to D3.js, a Javascript library for creating data visualizations in the browser.</li>
+<li><a href="https://github.com/square/intro-to-d3" rel="noopener noreferrer">Intro to D3.js (⭐598)</a> (<a href="https://square.github.io/intro-to-d3/" rel="noopener noreferrer">Site</a>, Apache 2.0) - The tutorial provides a quick intro to D3.js, a Javascript library for creating data visualizations in the browser.</li>
 </ul>
 
 <ul>
@@ -402,11 +487,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/infoactive/data-design/" rel="noopener noreferrer">Data + Design (⭐368)</a> (<a href="https://infoactive.co/data-design" rel="noopener noreferrer">Site</a>,  cc-nc-sa) - A Simple Introduction to Preparing and Visualizing Information</li>
+<li><a href="https://github.com/infoactive/data-design/" rel="noopener noreferrer">Data + Design (⭐366)</a> (<a href="https://infoactive.co/data-design" rel="noopener noreferrer">Site</a>,  cc-nc-sa) - A Simple Introduction to Preparing and Visualizing Information</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/axismaps/thematic-cartography" rel="noopener noreferrer">Thematic Cartography Guide (⭐43)</a> (<a href="http://axismaps.github.io/thematic-cartography/" rel="noopener noreferrer">Site</a>, cc-nc) - A short, friendly guide to basic principles of thematic mapping.</li>
+<li><a href="https://github.com/axismaps/thematic-cartography" rel="noopener noreferrer">Thematic Cartography Guide (⭐44)</a> (<a href="http://axismaps.github.io/thematic-cartography/" rel="noopener noreferrer">Site</a>, cc-nc) - A short, friendly guide to basic principles of thematic mapping.</li>
 </ul>
 <h3><p>Subjects / Android Development</p>
 </h3>
@@ -424,15 +509,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/nprapps/bestpractices" rel="noopener noreferrer">NPR Visuals' Best Practices (⭐296)</a> (cc) - Best practices and coding conventions for the NPR Visuals team.</li>
+<li><a href="https://github.com/nprapps/bestpractices" rel="noopener noreferrer">NPR Visuals' Best Practices (⭐298)</a> (cc) - Best practices and coding conventions for the NPR Visuals team.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/10up/Engineering-Best-Practices" rel="noopener noreferrer">10up Engineering Best Practices (⭐770)</a> (<a href="https://10up.github.io/Engineering-Best-Practices/" rel="noopener noreferrer">Site</a>, MIT) - This guide dictates how we, as a company, engineer websites</li>
+<li><a href="https://github.com/10up/Engineering-Best-Practices" rel="noopener noreferrer">10up Engineering Best Practices (⭐778)</a> (<a href="https://10up.github.io/Engineering-Best-Practices/" rel="noopener noreferrer">Site</a>, MIT) - This guide dictates how we, as a company, engineer websites</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/peco/peco" rel="noopener noreferrer">Peco REAMDE (⭐7.8k)</a> (MIT) - Documenatation for Peco(Simplistic interactive filtering tool)</li>
+<li><a href="https://github.com/peco/peco" rel="noopener noreferrer">Peco REAMDE (⭐7.9k)</a> (MIT) - Documenatation for Peco(Simplistic interactive filtering tool)</li>
 </ul>
 
 <ul>
@@ -451,7 +536,7 @@
 <h3><p>Programming Languages / CSS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/twbs/bootstrap/tree/master/docs" rel="noopener noreferrer">Bootstrap (⭐174k)</a> (<a href="http://getbootstrap.com/" rel="noopener noreferrer">Site</a>, cc) - Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.</li>
+<li><a href="https://github.com/twbs/bootstrap/tree/master/docs" rel="noopener noreferrer">Bootstrap (⭐175k)</a> (<a href="http://getbootstrap.com/" rel="noopener noreferrer">Site</a>, cc) - Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.</li>
 </ul>
 <h3><p>Programming Languages / Fortran</p>
 </h3>
@@ -461,7 +546,7 @@
 <h3><p>Programming Languages / Ruby</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rails/rails/tree/master/guides" rel="noopener noreferrer">Rails Guide (⭐58k)</a> (<a href="http://guides.rubyonrails.org/" rel="noopener noreferrer">Site</a>, cc-sa) - Official Guide for Ruby on Rails</li>
+<li><a href="https://github.com/rails/rails/tree/master/guides" rel="noopener noreferrer">Rails Guide (⭐59k)</a> (<a href="http://guides.rubyonrails.org/" rel="noopener noreferrer">Site</a>, cc-sa) - Official Guide for Ruby on Rails</li>
 </ul>
 
 <ul>
@@ -477,15 +562,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/practicingruby/rbp-book" rel="noopener noreferrer">Ruby Best Practices (⭐314)</a> (cc-nc-sa) - Ruby Best Practices, by Gregory Brown</li>
+<li><a href="https://github.com/practicingruby/rbp-book" rel="noopener noreferrer">Ruby Best Practices (⭐313)</a> (cc-nc-sa) - Ruby Best Practices, by Gregory Brown</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/middleman/middleman-guides" rel="noopener noreferrer">Middleman (⭐265)</a> (<a href="https://middlemanapp.com/" rel="noopener noreferrer">Site</a>, cc) - Documentation for Middleman</li>
+<li><a href="https://github.com/middleman/middleman-guides" rel="noopener noreferrer">Middleman (⭐266)</a> (<a href="https://middlemanapp.com/" rel="noopener noreferrer">Site</a>, cc) - Documentation for Middleman</li>
 </ul>
 
 <ul>
-<li><a href="https://jekyllrb.com/" rel="noopener noreferrer">Jekyll</a> (<a href="https://github.com/jekyll/jekyll/tree/master/site" rel="noopener noreferrer">Site (⭐51k)</a>, MIT) - Documentation for Jekyll</li>
+<li><a href="https://jekyllrb.com/" rel="noopener noreferrer">Jekyll</a> (<a href="https://github.com/jekyll/jekyll/tree/master/site" rel="noopener noreferrer">Site (⭐52k)</a>, MIT) - Documentation for Jekyll</li>
 </ul>
 <h3><p>Programming Languages / Clojure</p>
 </h3>
@@ -494,22 +579,22 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/clojuredocs/guides" rel="noopener noreferrer">Clojure Documentation (⭐367)</a> (<a href="http://clojure-doc.org/" rel="noopener noreferrer">Site</a>, cc) - community-driven documentation site for the Clojure programming language</li>
+<li><a href="https://github.com/clojuredocs/guides" rel="noopener noreferrer">Clojure Documentation (⭐368)</a> (<a href="http://clojure-doc.org/" rel="noopener noreferrer">Site</a>, cc) - community-driven documentation site for the Clojure programming language</li>
 </ul>
 <h3><p>Programming Languages / Elixir</p>
 </h3>
 <ul>
-<li><a href="https://github.com/elixir-lang/elixir-lang.github.com" rel="noopener noreferrer">Elixir Getting Started (⭐359)</a> (<a href="http://elixir-lang.org/getting-started/introduction.html" rel="noopener noreferrer">Site</a>, Apache 2.0) - Official Elixir tutorial</li>
+<li><a href="https://github.com/elixir-lang/elixir-lang.github.com" rel="noopener noreferrer">Elixir Getting Started (⭐367)</a> (<a href="http://elixir-lang.org/getting-started/introduction.html" rel="noopener noreferrer">Site</a>, Apache 2.0) - Official Elixir tutorial</li>
 </ul>
 <h3><p>Programming Languages / Erlang</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lfe/sicp" rel="noopener noreferrer">Structure and Interpretation of Computer Program (⭐125)</a> (<a href="http://lfe.gitbooks.io/sicp/" rel="noopener noreferrer">Site</a>, cc-sa) - Structure and Interpretation of Computer Programs, the LFE edition</li>
+<li><a href="https://github.com/lfe/sicp" rel="noopener noreferrer">Structure and Interpretation of Computer Program (⭐126)</a> (<a href="http://lfe.gitbooks.io/sicp/" rel="noopener noreferrer">Site</a>, cc-sa) - Structure and Interpretation of Computer Programs, the LFE edition</li>
 </ul>
 <h3><p>Programming Languages / Go</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mmcgrana/gobyexample" rel="noopener noreferrer">Go by Example (⭐7.8k)</a> (cc) - Go by Example is a hands-on introduction to Go using annotated example programs</li>
+<li><a href="https://github.com/mmcgrana/gobyexample" rel="noopener noreferrer">Go by Example (⭐8.2k)</a> (cc) - Go by Example is a hands-on introduction to Go using annotated example programs</li>
 </ul>
 <h3><p>Programming Languages / Haskell</p>
 </h3>
@@ -522,7 +607,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/lotz84/haskellbyexample" rel="noopener noreferrer">Haskell By Example (⭐153)</a> (<a href="http://lotz84.github.io/haskellbyexample/" rel="noopener noreferrer">Site</a>, cc) - Haskell by Example is a port of Go by Example to Haskell</li>
+<li><a href="https://github.com/lotz84/haskellbyexample" rel="noopener noreferrer">Haskell By Example (⭐156)</a> (<a href="http://lotz84.github.io/haskellbyexample/" rel="noopener noreferrer">Site</a>, cc) - Haskell by Example is a port of Go by Example to Haskell</li>
 </ul>
 <h3><p>Programming Languages / Javascript</p>
 </h3>
@@ -531,7 +616,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/BonsaiDen/JavaScript-Garden" rel="noopener noreferrer">JavaScript-Garden (⭐3.5k)</a> (<a href="http://bonsaiden.github.io/JavaScript-Garden/" rel="noopener noreferrer">Site</a>, MIT) - A collection of documentation about the most quirky parts of the JavaScript language</li>
+<li><a href="https://github.com/BonsaiDen/JavaScript-Garden" rel="noopener noreferrer">JavaScript-Garden (⭐3.4k)</a> (<a href="http://bonsaiden.github.io/JavaScript-Garden/" rel="noopener noreferrer">Site</a>, MIT) - A collection of documentation about the most quirky parts of the JavaScript language</li>
 </ul>
 
 <ul>
@@ -559,7 +644,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/alanjames1987/Node.js-Best-Practices" rel="noopener noreferrer">Node.js Best Practices (⭐743)</a> (<a href="http://justbuildsomething.com/node-js-best-practices/" rel="noopener noreferrer">Site</a>, MIT) - This is a list of best practices for writing robust Node.js code. It is inspired by other guilds such as Felix Geisendörfer's Node Style Guide and what is popular within the community</li>
+<li><a href="https://github.com/alanjames1987/Node.js-Best-Practices" rel="noopener noreferrer">Node.js Best Practices (⭐736)</a> (<a href="http://justbuildsomething.com/node-js-best-practices/" rel="noopener noreferrer">Site</a>, MIT) - This is a list of best practices for writing robust Node.js code. It is inspired by other guilds such as Felix Geisendörfer's Node Style Guide and what is popular within the community</li>
 </ul>
 
 <ul>
@@ -583,11 +668,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/facebook/react/tree/master/docs" rel="noopener noreferrer">React Document (⭐240k)</a> (<a href="https://facebook.github.io/react/docs/getting-started.html" rel="noopener noreferrer">Site</a>, cc) - Documentation for React</li>
+<li><a href="https://github.com/facebook/react/tree/master/docs" rel="noopener noreferrer">React Document (⭐251k)</a> (<a href="https://facebook.github.io/react/docs/getting-started.html" rel="noopener noreferrer">Site</a>, cc) - Documentation for React</li>
 </ul>
 
 <ul>
-<li><a href="https://facebook.github.io/react/docs/flux-overview.html" rel="noopener noreferrer">Flux Application Architecture</a> (<a href="https://github.com/facebook/react/tree/master/docs" rel="noopener noreferrer">Site (⭐240k)</a>, cc) - Documenatiton for Flux application architecture</li>
+<li><a href="https://facebook.github.io/react/docs/flux-overview.html" rel="noopener noreferrer">Flux Application Architecture</a> (<a href="https://github.com/facebook/react/tree/master/docs" rel="noopener noreferrer">Site (⭐251k)</a>, cc) - Documenatiton for Flux application architecture</li>
 </ul>
 
 <ul>
@@ -596,7 +681,7 @@
 <h3><p>Programming Languages / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/django/django/tree/master/docs" rel="noopener noreferrer">Django Documentation (⭐85k)</a> (<a href="https://docs.djangoproject.com/en/1.8/" rel="noopener noreferrer">Site</a>, bsd) - Documenatiton for Django which is python web framework</li>
+<li><a href="https://github.com/django/django/tree/master/docs" rel="noopener noreferrer">Django Documentation (⭐90k)</a> (<a href="https://docs.djangoproject.com/en/1.8/" rel="noopener noreferrer">Site</a>, bsd) - Documenatiton for Django which is python web framework</li>
 </ul>
 
 <ul>
@@ -608,7 +693,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/swaroopch/byte-of-python" rel="noopener noreferrer">A Byte of Python (⭐2.4k)</a> (<a href="http://www.swaroopch.com/notes/python/" rel="noopener noreferrer">Site</a>, cc-sa) - "A Byte of Python" is a free book on programming using the Python language. It serves as a tutorial or guide to the Python language for a beginner audience</li>
+<li><a href="https://github.com/swaroopch/byte-of-python" rel="noopener noreferrer">A Byte of Python (⭐2.5k)</a> (<a href="http://www.swaroopch.com/notes/python/" rel="noopener noreferrer">Site</a>, cc-sa) - "A Byte of Python" is a free book on programming using the Python language. It serves as a tutorial or guide to the Python language for a beginner audience</li>
 </ul>
 
 <ul>
@@ -617,15 +702,15 @@
 <h3><p>Programming Languages / Rust</p>
 </h3>
 <ul>
-<li><a href="https://github.com/rust-lang/rust/tree/master/src/doc/trpl" rel="noopener noreferrer">The Rust Programming Language (⭐107k)</a> (<a href="http://doc.rust-lang.org/book/README.html" rel="noopener noreferrer">Site</a>, MIT) - Official Guide for Rust</li>
+<li><a href="https://github.com/rust-lang/rust/tree/master/src/doc/trpl" rel="noopener noreferrer">The Rust Programming Language (⭐119k)</a> (<a href="http://doc.rust-lang.org/book/README.html" rel="noopener noreferrer">Site</a>, MIT) - Official Guide for Rust</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/rust-lang/rust-by-example" rel="noopener noreferrer">Rust by Example (⭐7.7k)</a> (<a href="http://rustbyexample.com/" rel="noopener noreferrer">Site</a>, MIT) - Rust by Example is a collection of examples that illustrate various Rust concepts and the standard libraries</li>
+<li><a href="https://github.com/rust-lang/rust-by-example" rel="noopener noreferrer">Rust by Example (⭐8.1k)</a> (<a href="http://rustbyexample.com/" rel="noopener noreferrer">Site</a>, MIT) - Rust by Example is a collection of examples that illustrate various Rust concepts and the standard libraries</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/steveklabnik/rust_for_rubyists" rel="noopener noreferrer">Rust For Rubyists (⭐437)</a> (<a href="https://github.com/steveklabnik/rust_for_rubyists" rel="noopener noreferrer">Site (⭐437)</a>, AGPL) - Rust for Rubyists was the first community tutorial for Rust</li>
+<li><a href="https://github.com/steveklabnik/rust_for_rubyists" rel="noopener noreferrer">Rust For Rubyists (⭐438)</a> (<a href="https://github.com/steveklabnik/rust_for_rubyists" rel="noopener noreferrer">Site (⭐438)</a>, AGPL) - Rust for Rubyists was the first community tutorial for Rust</li>
 </ul>
 <h3><p>Programming Languages / R</p>
 </h3>
@@ -644,7 +729,7 @@
 <h3><p>Programming Languages / Scala</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alexandru/scala-best-practices" rel="noopener noreferrer">Scala Best Practices (⭐4.4k)</a> (cc) - A collection of best practices, friendly to people that want to contribute</li>
+<li><a href="https://github.com/alexandru/scala-best-practices" rel="noopener noreferrer">Scala Best Practices (⭐4.3k)</a> (cc) - A collection of best practices, friendly to people that want to contribute</li>
 </ul>
 
 <ul>
@@ -713,11 +798,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/docker/docker/tree/master/docs" rel="noopener noreferrer">Docker (⭐71k)</a> (<a href="https://docs.docker.com/" rel="noopener noreferrer">Site</a>, Apache 2.0) - Documentation for Docker</li>
+<li><a href="https://github.com/docker/docker/tree/master/docs" rel="noopener noreferrer">Docker (⭐72k)</a> (<a href="https://docs.docker.com/" rel="noopener noreferrer">Site</a>, Apache 2.0) - Documentation for Docker</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/phpmyadmin/localized_docs" rel="noopener noreferrer">phpMyAdmin (⭐71)</a> (<a href="https://phpmyadmin-english-united-kingdom.readthedocs.org/en/latest/" rel="noopener noreferrer">Site</a>, GPL) - Documentation for phpMyAdmin</li>
+<li><a href="https://github.com/phpmyadmin/localized_docs" rel="noopener noreferrer">phpMyAdmin (⭐73)</a> (<a href="https://phpmyadmin-english-united-kingdom.readthedocs.org/en/latest/" rel="noopener noreferrer">Site</a>, GPL) - Documentation for phpMyAdmin</li>
 </ul>
 
 <ul>
@@ -725,11 +810,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/sphinx-doc/sphinx/tree/master/doc" rel="noopener noreferrer">Sphinx documentation (⭐7.4k)</a> (<a href="http://www.sphinx-doc.org/en/stable/contents.html" rel="noopener noreferrer">Site</a>, BSD) - Documentation for Sphinx</li>
+<li><a href="https://github.com/sphinx-doc/sphinx/tree/master/doc" rel="noopener noreferrer">Sphinx documentation (⭐8k)</a> (<a href="http://www.sphinx-doc.org/en/stable/contents.html" rel="noopener noreferrer">Site</a>, BSD) - Documentation for Sphinx</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ansible/ansible/tree/devel/docsite" rel="noopener noreferrer">Ansible Documentation (⭐67k)</a> (<a href="http://docs.ansible.com/" rel="noopener noreferrer">Site</a>, GPL) - Documentation for Ansible</li>
+<li><a href="https://github.com/ansible/ansible/tree/devel/docsite" rel="noopener noreferrer">Ansible Documentation (⭐71k)</a> (<a href="http://docs.ansible.com/" rel="noopener noreferrer">Site</a>, GPL) - Documentation for Ansible</li>
 </ul>
 <h3><p>Other Languages / Korean</p>
 </h3>
@@ -755,7 +840,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/the5fire/backbonejs-learning-note" rel="noopener noreferrer">Backbone.js入门教程 (⭐944)</a> (MIT) - backbonejs学习笔记更新版，使用backbone1.1.0</li>
+<li><a href="https://github.com/the5fire/backbonejs-learning-note" rel="noopener noreferrer">Backbone.js入门教程 (⭐938)</a> (MIT) - backbonejs学习笔记更新版，使用backbone1.1.0</li>
 </ul>
 
 <ul>
@@ -764,19 +849,19 @@
 <h3><p>Another Documents List / References / Chinese</p>
 </h3>
 <ul>
-<li><a href="https://github.com/PharkMillups/beautiful-docs" rel="noopener noreferrer">Beautiful Docs (⭐9.4k)</a> - Pointers to useful, well-written, and otherwise beautiful documentation</li>
+<li><a href="https://github.com/PharkMillups/beautiful-docs" rel="noopener noreferrer">Beautiful Docs (⭐9.5k)</a> - Pointers to useful, well-written, and otherwise beautiful documentation</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/papers-we-love/papers-we-love" rel="noopener noreferrer">Papers We Love (⭐99k)</a> - Papers from the computer science community to read and discuss</li>
+<li><a href="https://github.com/papers-we-love/papers-we-love" rel="noopener noreferrer">Papers We Love (⭐109k)</a> - Papers from the computer science community to read and discuss</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/bayandin/awesome-awesomeness" rel="noopener noreferrer">Awesome Awesomeness (⭐33k)</a> - A curated list of amazingly awesome awesomeness</li>
+<li><a href="https://github.com/bayandin/awesome-awesomeness" rel="noopener noreferrer">Awesome Awesomeness (⭐34k)</a> - A curated list of amazingly awesome awesomeness</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/rxin/db-readings" rel="noopener noreferrer">Readings in Databases (⭐8k)</a> - A list of papers essential to understanding databases and building new data systems</li>
+<li><a href="https://github.com/rxin/db-readings" rel="noopener noreferrer">Readings in Databases (⭐8.1k)</a> - A list of papers essential to understanding databases and building new data systems</li>
 </ul>
 
 <ul>
@@ -792,12 +877,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/revolunet/PythonBooks" rel="noopener noreferrer">Python Books (⭐1.9k)</a> - PythonBooks is a showcase of the best free ebooks about Python</li>
+<li><a href="https://github.com/revolunet/PythonBooks" rel="noopener noreferrer">Python Books (⭐2k)</a> - PythonBooks is a showcase of the best free ebooks about Python</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/09/27/">Sep 27, 2015</a></h2><h3><p>Subjects / Computer Science</p>
 </h3>
 <ul>
-<li><a href="https://github.com/littleosbook/littleosbook" rel="noopener noreferrer">The little book about OS development (⭐2.6k)</a> (<a href="http://littleosbook.github.io/" rel="noopener noreferrer">Site</a>, cc-nc-sa) - This is the source code for the book "The little book about OS development"</li>
+<li><a href="https://github.com/littleosbook/littleosbook" rel="noopener noreferrer">The little book about OS development (⭐2.7k)</a> (<a href="http://littleosbook.github.io/" rel="noopener noreferrer">Site</a>, cc-nc-sa) - This is the source code for the book "The little book about OS development"</li>
 </ul>
 <h3><p>Subjects / Data Science and Statistics</p>
 </h3>
@@ -816,7 +901,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/thoughtbot/guides" rel="noopener noreferrer">Guides (⭐9.5k)</a> (cc) - Guides for getting things done, programming well, and programming in style.</li>
+<li><a href="https://github.com/thoughtbot/guides" rel="noopener noreferrer">Guides (⭐9.6k)</a> (cc) - Guides for getting things done, programming well, and programming in style.</li>
 </ul>
 
 <ul>
@@ -828,7 +913,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/sayanee/build-podcast" rel="noopener noreferrer">Build Podcast (⭐297)</a> (<a href="http://build-podcast.com/" rel="noopener noreferrer">Site</a>, Public Domain) - Build Podcast is a show about technology tools for design and development all in the fun spirit of hacking, creating and building stuff!</li>
+<li><a href="https://github.com/sayanee/build-podcast" rel="noopener noreferrer">Build Podcast (⭐296)</a> (<a href="http://build-podcast.com/" rel="noopener noreferrer">Site</a>, Public Domain) - Build Podcast is a show about technology tools for design and development all in the fun spirit of hacking, creating and building stuff!</li>
 </ul>
 
 <ul>
@@ -840,7 +925,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/programminghistorian/jekyll" rel="noopener noreferrer">The Programming Historian (⭐537)</a> (<a href="http://programminghistorian.org/" rel="noopener noreferrer">Site</a>, cc) - The Programming Historian is an online, open-access, peer-reviewed suite of tutorials that help humanists learn a wide range of digital tools, techniques, and workflows to facilitate their research.</li>
+<li><a href="https://github.com/programminghistorian/jekyll" rel="noopener noreferrer">The Programming Historian (⭐550)</a> (<a href="http://programminghistorian.org/" rel="noopener noreferrer">Site</a>, cc) - The Programming Historian is an online, open-access, peer-reviewed suite of tutorials that help humanists learn a wide range of digital tools, techniques, and workflows to facilitate their research.</li>
 </ul>
 
 <ul>
@@ -863,12 +948,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/getify/You-Dont-Know-JS" rel="noopener noreferrer">You Don't Know JS (⭐184k)</a> (<a href="https://www.kickstarter.com/projects/getify/you-dont-know-js-book-series" rel="noopener noreferrer">Site</a>, cc-nc-nd) - A book series on JavaScript. @YDKJS on twitter.</li>
+<li><a href="https://github.com/getify/You-Dont-Know-JS" rel="noopener noreferrer">You Don't Know JS (⭐185k)</a> (<a href="https://www.kickstarter.com/projects/getify/you-dont-know-js-book-series" rel="noopener noreferrer">Site</a>, cc-nc-nd) - A book series on JavaScript. @YDKJS on twitter.</li>
 </ul>
 <h3><p>Tools / Editor</p>
 </h3>
 <ul>
-<li><a href="https://github.com/picandocodigo/emacs.sexy" rel="noopener noreferrer">Emacs is sexy! (⭐98)</a> (<a href="http://emacs.sexy/" rel="noopener noreferrer">Site</a>, GNU) - Simple website to share the love for Emacs</li>
+<li><a href="https://github.com/picandocodigo/emacs.sexy" rel="noopener noreferrer">Emacs is sexy! (⭐99)</a> (<a href="http://emacs.sexy/" rel="noopener noreferrer">Site</a>, GNU) - Simple website to share the love for Emacs</li>
 </ul>
 <h3><p>Tools / Git</p>
 </h3>
@@ -892,7 +977,7 @@
 <h3><p>Another Documents List / References / Chinese</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NARKOZ/guides" rel="noopener noreferrer">Guides (⭐2.3k)</a> - Design and development guides</li>
+<li><a href="https://github.com/NARKOZ/guides" rel="noopener noreferrer">Guides (⭐2.4k)</a> - Design and development guides</li>
 </ul>
 
 <ul>
@@ -947,7 +1032,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/07/13/">Jul 13, 2015</a></h2><h3><p>Programming Languages / CSS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/FortAwesome/Font-Awesome/tree/master/src" rel="noopener noreferrer">Font Awesome (⭐76k)</a> (<a href="http://fortawesome.github.io/Font-Awesome/" rel="noopener noreferrer">Site</a>, cc) - The iconic font and CSS toolkit</li>
+<li><a href="https://github.com/FortAwesome/Font-Awesome/tree/master/src" rel="noopener noreferrer">Font Awesome (⭐77k)</a> (<a href="http://fortawesome.github.io/Font-Awesome/" rel="noopener noreferrer">Site</a>, cc) - The iconic font and CSS toolkit</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/07/03/">Jul 03, 2015</a></h2><h3><p>Subjects / Computer Science</p>
 </h3>
@@ -974,7 +1059,7 @@
 <h3><p>Subjects / Devops</p>
 </h3>
 <ul>
-<li><a href="https://github.com/coreos/docs/" rel="noopener noreferrer">CoreOS Documentation (⭐882)</a> (<a href="https://coreos.com/docs/" rel="noopener noreferrer">Site</a>, Apache 2.0) - Documentation for CoreOS</li>
+<li><a href="https://github.com/coreos/docs/" rel="noopener noreferrer">CoreOS Documentation (⭐878)</a> (<a href="https://coreos.com/docs/" rel="noopener noreferrer">Site</a>, Apache 2.0) - Documentation for CoreOS</li>
 </ul>
 <h3><p>Subjects / Open Source</p>
 </h3>
@@ -989,7 +1074,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/05/16/">May 16, 2015</a></h2><h3><p>Subjects / Computer Science</p>
 </h3>
 <ul>
-<li><a href="https://github.com/crypto101/book" rel="noopener noreferrer">Crypto 101 (⭐3.6k)</a> (<a href="https://www.crypto101.io/" rel="noopener noreferrer">Site</a>, cc-nc) - the introductory book on cryptography</li>
+<li><a href="https://github.com/crypto101/book" rel="noopener noreferrer">Crypto 101 (⭐3.8k)</a> (<a href="https://www.crypto101.io/" rel="noopener noreferrer">Site</a>, cc-nc) - the introductory book on cryptography</li>
 </ul>
 
 <ul>
@@ -1037,7 +1122,7 @@
 <h3><p>Programming Languages / CSS</p>
 </h3>
 <ul>
-<li><a href="https://github.com/necolas/idiomatic-css" rel="noopener noreferrer">idiomatic CSS (⭐6.7k)</a> (cc) - Principles of writing consistent</li>
+<li><a href="https://github.com/necolas/idiomatic-css" rel="noopener noreferrer">idiomatic CSS (⭐6.6k)</a> (cc) - Principles of writing consistent</li>
 </ul>
 <h3><p>Programming Languages / Elixir</p>
 </h3>
@@ -1056,11 +1141,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/daniellmb/angular-test-patterns" rel="noopener noreferrer">Angular Test Patterns (⭐864)</a> (MIT) - A High-Quality Guide for Testing Angular 1.x Applications</li>
+<li><a href="https://github.com/daniellmb/angular-test-patterns" rel="noopener noreferrer">Angular Test Patterns (⭐860)</a> (MIT) - A High-Quality Guide for Testing Angular 1.x Applications</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/BonsaiDen/JavaScript-Garden" rel="noopener noreferrer">JavaScript Garden (⭐3.5k)</a> (<a href="http://bonsaiden.github.io/JavaScript-Garden/" rel="noopener noreferrer">Site</a>, MIT) - A collection of documentation about the most quirky parts of the JavaScript language</li>
+<li><a href="https://github.com/BonsaiDen/JavaScript-Garden" rel="noopener noreferrer">JavaScript Garden (⭐3.4k)</a> (<a href="http://bonsaiden.github.io/JavaScript-Garden/" rel="noopener noreferrer">Site</a>, MIT) - A collection of documentation about the most quirky parts of the JavaScript language</li>
 </ul>
 <h3><p>Programming Languages / Python</p>
 </h3>
@@ -1085,18 +1170,60 @@
 <h3><p>Programming Languages / Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/python/peps" rel="noopener noreferrer">Python Enhancement Proposals (⭐4.8k)</a> (<a href="https://www.python.org/dev/peps/" rel="noopener noreferrer">Site</a>, Open Publication License)</li>
+<li><a href="https://github.com/python/peps" rel="noopener noreferrer">Python Enhancement Proposals (⭐5k)</a> (<a href="https://www.python.org/dev/peps/" rel="noopener noreferrer">Site</a>, Open Publication License)</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/kennethreitz/python-guide" rel="noopener noreferrer">The Hitchhiker’s Guide to Python! (⭐135)</a> (<a href="http://docs.python-guide.org/en/latest/" rel="noopener noreferrer">Site</a>, cc-nc-sa) -  Python best practices guidebook, written for Humans.</li>
+<li><a href="https://github.com/kennethreitz/python-guide" rel="noopener noreferrer">The Hitchhiker’s Guide to Python! (⭐141)</a> (<a href="http://docs.python-guide.org/en/latest/" rel="noopener noreferrer">Site</a>, cc-nc-sa) -  Python best practices guidebook, written for Humans.</li>
 </ul>
 <h3><p>Tools / Git</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tiimgreen/github-cheat-sheet" rel="noopener noreferrer">Github Cheatsheet (⭐53k)</a> (MIT) - A list of cool features of Git and GitHub</li>
+<li><a href="https://github.com/tiimgreen/github-cheat-sheet" rel="noopener noreferrer">Github Cheatsheet (⭐59k)</a> (MIT) - A list of cool features of Git and GitHub</li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
