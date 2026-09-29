@@ -16,17 +16,97 @@
     <meta property="og:title" content="Awesome Rest Overview" />
     <meta property="og:description" content="A collaborative list of great resources about RESTful API architecture, development, test, and performance" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Rest Overview</h1>
 <p>A collaborative list of great resources about RESTful API architecture, development, test, and performance</p>
 <p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/marmelab/awesome-rest/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/marmelab/awesome-rest">😺 marmelab/awesome-rest</a><span> · </span><span>⭐ 3.9K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
@@ -85,13 +165,13 @@
 <li><a href="https://github.com/shieldfy/API-Security-Checklist" rel="noopener noreferrer">API-Security-Checklist (⭐23k)</a> - Best practices about REST API security</li>
 </ul>
 <h3 id="guidelines"><a class="anchor" aria-hidden="true" tabindex="-1" href="#guidelines"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Guidelines</h3><ul>
-<li><a href="https://github.com/adidas/api-guidelines/blob/master/rest-api-guidelines/rest.md" rel="noopener noreferrer">Adidas REST API Guidelines (⭐400)</a> - Adidas REST API Guidelines define standards and guidelines for building REST APIs at adidas.</li>
+<li><a href="https://github.com/adidas/api-guidelines/blob/master/rest-api-guidelines/rest.md" rel="noopener noreferrer">Adidas REST API Guidelines (⭐404)</a> - Adidas REST API Guidelines define standards and guidelines for building REST APIs at adidas.</li>
 <li><a href="https://developer.atlassian.com/server/framework/atlassian-sdk/atlassian-rest-api-design-guidelines-version-1/" rel="noopener noreferrer">Atlassian REST API design guidelines version 1</a> - This document provides guidelines to Atlassian developers who are designing REST APIs for Atlassian applications.</li>
-<li><a href="https://github.com/CiscoDevNet/api-design-guide" rel="noopener noreferrer">Cisco REST API Guide (⭐119)</a> - Guidelines for designing REST APIs at Cisco.</li>
+<li><a href="https://github.com/CiscoDevNet/api-design-guide" rel="noopener noreferrer">Cisco REST API Guide (⭐122)</a> - Guidelines for designing REST APIs at Cisco.</li>
 <li><a href="https://cloud.google.com/apis/design/" rel="noopener noreferrer">Google Cloud API design guide</a> - Guidelines Google follows when designing Cloud APIs and other Google APIs (REST APIs and gRPC APIs).</li>
-<li><a href="https://github.com/Haufe-Lexware/api-style-guide" rel="noopener noreferrer">Haufe API Style Guide (⭐244)</a> - Guidelines created by Haufe-Lexware CTO team.</li>
+<li><a href="https://github.com/Haufe-Lexware/api-style-guide" rel="noopener noreferrer">Haufe API Style Guide (⭐247)</a> - Guidelines created by Haufe-Lexware CTO team.</li>
 <li><a href="https://github.com/microsoft/api-guidelines/blob/vNext/graph/GuidelinesGraph.md" rel="noopener noreferrer">Microsoft REST API Guidelines (⭐23k)</a> - The Microsoft REST API Guidelines, as a design principle, encourages application developers to have resources accessible to them via a RESTful HTTP interface.</li>
-<li><a href="https://github.com/zalando/restful-api-guidelines" rel="noopener noreferrer">Restful API Guidelines by Zalando (⭐3.2k)</a> - Developing Restful APIs: A Comprehensive Set of Guidelines.</li>
+<li><a href="https://github.com/zalando/restful-api-guidelines" rel="noopener noreferrer">Restful API Guidelines by Zalando (⭐3.3k)</a> - Developing Restful APIs: A Comprehensive Set of Guidelines.</li>
 </ul>
 <h2 id="standards"><a class="anchor" aria-hidden="true" tabindex="-1" href="#standards"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Standards</h2><ul>
 <li><a href="https://jsonapi.org/" rel="noopener noreferrer">JSON API</a> - Standard for building APIs in JSON.</li>
@@ -111,17 +191,17 @@
 </ul>
 <h3 id="javascript-clients"><a class="anchor" aria-hidden="true" tabindex="-1" href="#javascript-clients"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>JavaScript Clients</h3><ul>
 <li><a href="https://github.com/mgonto/restangular" rel="noopener noreferrer">restangular (⭐7.8k)</a> - AngularJS service to handle REST API properly and easily.</li>
-<li><a href="https://github.com/marmelab/restful.js" rel="noopener noreferrer">restful.js (⭐964)</a> - JS client for interacting with server-side RESTful resources.</li>
+<li><a href="https://github.com/marmelab/restful.js" rel="noopener noreferrer">restful.js (⭐961)</a> - JS client for interacting with server-side RESTful resources.</li>
 <li><a href="https://github.com/basti1302/traverson" rel="noopener noreferrer">traverson (⭐461)</a> - A Hypermedia API/HATEOAS Client for Node.js and the Browser</li>
 <li><a href="https://github.com/mulesoft/raml-client-generator" rel="noopener noreferrer">raml-client-generator (⭐121)</a> - Generates static client libs for js.</li>
 </ul>
 <h3 id="nodejs-clients"><a class="anchor" aria-hidden="true" tabindex="-1" href="#nodejs-clients"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Node.js Clients</h3><ul>
 <li><a href="https://github.com/danwrong/restler" rel="noopener noreferrer">restler (⭐2k)</a> - REST client library for node.js.</li>
-<li><a href="https://github.com/Mashape/unirest-nodejs" rel="noopener noreferrer">unirest for Node.js (⭐957)</a> - Simplified, lightweight HTTP client library.</li>
+<li><a href="https://github.com/Mashape/unirest-nodejs" rel="noopener noreferrer">unirest for Node.js (⭐953)</a> - Simplified, lightweight HTTP client library.</li>
 </ul>
 <h3 id="ruby-clients"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ruby-clients"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Ruby Clients</h3><ul>
 <li><a href="https://github.com/rest-client/rest-client" rel="noopener noreferrer">RESTClient (⭐5.2k)</a> - Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions.</li>
-<li><a href="https://github.com/balvig/spyke" rel="noopener noreferrer">Spyke (⭐904)</a> - Interact with REST services in an ActiveRecord-like manner.</li>
+<li><a href="https://github.com/balvig/spyke" rel="noopener noreferrer">Spyke (⭐902)</a> - Interact with REST services in an ActiveRecord-like manner.</li>
 <li><a href="https://github.com/excon/excon" rel="noopener noreferrer">excon (⭐1.2k)</a> - Usable, fast, simple Ruby HTTP 1.1. It works great as a general HTTP(s) client and is particularly well suited to usage in API clients.</li>
 <li><a href="https://github.com/jnunemaker/httparty" rel="noopener noreferrer">httparty (⭐5.9k)</a> - Makes HTTP fun again!</li>
 <li><a href="https://ruby-doc.org/3.2.0/stdlibs/net/Net/HTTP.html" rel="noopener noreferrer">Net::HTTP</a> - Net::HTTP provides a rich library which can be used to build HTTP user-agents.</li>
@@ -133,56 +213,56 @@
 </ul>
 <h3 id="net-clients"><a class="anchor" aria-hidden="true" tabindex="-1" href="#net-clients"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>.NET Clients</h3><ul>
 <li><a href="https://github.com/restsharp/RestSharp" rel="noopener noreferrer">RestSharp (⭐9.8k)</a> - Simple REST and HTTP API client for .NET</li>
-<li><a href="https://github.com/reactiveui/refit" rel="noopener noreferrer">Refit (⭐9.4k)</a> - The automatic type-safe REST library for Xamarin and .NET</li>
+<li><a href="https://github.com/reactiveui/refit" rel="noopener noreferrer">Refit (⭐9.6k)</a> - The automatic type-safe REST library for Xamarin and .NET</li>
 <li><a href="https://flurl.dev" rel="noopener noreferrer">Flurl</a> - Fluent, portable, testable REST/HTTP client library</li>
 <li><a href="https://github.com/canton7/RestEase" rel="noopener noreferrer">RestEase (⭐1.1k)</a> - Easy-to-use typesafe REST API client library, which is simple and customisable. Heavily inspired by Refit</li>
-<li><a href="https://github.com/jgiacomini/Tiny.RestClient" rel="noopener noreferrer">Tiny.RestClient (⭐209)</a> - Simpliest Fluent REST client for .NET.</li>
+<li><a href="https://github.com/jgiacomini/Tiny.RestClient" rel="noopener noreferrer">Tiny.RestClient (⭐208)</a> - Simpliest Fluent REST client for .NET.</li>
 <li><a href="https://github.com/letsar/RestLess" rel="noopener noreferrer">RestLess (⭐112)</a> - The automatic type-safe-reflectionless REST API client library for .Net Standard.</li>
-<li><a href="https://github.com/Respawnsive/Apizr" rel="noopener noreferrer">Apizr (⭐172)</a> - Refit-based web api client, but resilient (retry, connectivity, cache, auth, log, priority, etc...).</li>
+<li><a href="https://github.com/Respawnsive/Apizr" rel="noopener noreferrer">Apizr (⭐175)</a> - Refit-based web api client, but resilient (retry, connectivity, cache, auth, log, priority, etc...).</li>
 </ul>
 <h3 id="generators"><a class="anchor" aria-hidden="true" tabindex="-1" href="#generators"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Generators</h3><ul>
-<li><a href="https://github.com/OpenAPITools/openapi-generator" rel="noopener noreferrer">openapi-generator (⭐26k)</a> - OpenAPI Generator allows generation of API client libraries (SDK generation), server stubs, documentation and configuration automatically given an OpenAPI Spec (v2, v3).</li>
+<li><a href="https://github.com/OpenAPITools/openapi-generator" rel="noopener noreferrer">openapi-generator (⭐27k)</a> - OpenAPI Generator allows generation of API client libraries (SDK generation), server stubs, documentation and configuration automatically given an OpenAPI Spec (v2, v3).</li>
 </ul>
 <h2 id="servers"><a class="anchor" aria-hidden="true" tabindex="-1" href="#servers"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Servers</h2><h3 id="directly-on-top-of-a-rmdb"><a class="anchor" aria-hidden="true" tabindex="-1" href="#directly-on-top-of-a-rmdb"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Directly On Top Of A RMDB</h3><ul>
-<li><a href="https://github.com/begriffs/postgrest" rel="noopener noreferrer">postgrest (⭐27k)</a> - Serve a fully RESTful API directly from an existing PostgreSQL database.</li>
+<li><a href="https://github.com/begriffs/postgrest" rel="noopener noreferrer">postgrest (⭐28k)</a> - Serve a fully RESTful API directly from an existing PostgreSQL database.</li>
 <li><a href="http://blog.ulf-wendel.de/2014/mysql-5-7-http-plugin-mysql/" rel="noopener noreferrer">MySQL HTTP plugin</a> - Simple REST-like / CRUD server for any MySQL database.</li>
-<li><a href="https://github.com/prest/prest" rel="noopener noreferrer">pREST (⭐4.5k)</a> - A fully RESTful API from any existing PostgreSQL database written in Go.</li>
+<li><a href="https://github.com/prest/prest" rel="noopener noreferrer">pREST (⭐4.6k)</a> - A fully RESTful API from any existing PostgreSQL database written in Go.</li>
 </ul>
 <h3 id="nodejs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#nodejs"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Node.js</h3><ul>
 <li><a href="https://github.com/restify/node-restify" rel="noopener noreferrer">node-restify (⭐11k)</a> - Framework specifically meant for REST API.</li>
 <li><a href="https://sailsjs.org/" rel="noopener noreferrer">Sails.js</a> - Node.js Web framework embedding a command to generate automatically a REST API.</li>
 <li><a href="https://github.com/jspears/mers" rel="noopener noreferrer">mers (⭐343)</a> - Express service exposing Mongoose finders as RESTful API.</li>
-<li><a href="https://github.com/flatiron/resourceful" rel="noopener noreferrer">flatiron/resourceful (⭐355)</a> - Isomorphic Resource engine for JavaScript.</li>
+<li><a href="https://github.com/flatiron/resourceful" rel="noopener noreferrer">flatiron/resourceful (⭐354)</a> - Isomorphic Resource engine for JavaScript.</li>
 <li><a href="https://loopback.io/" rel="noopener noreferrer">loopback</a> - Powerful Node.js framework for creating APIs and easily connecting to backend data sources.</li>
 <li><a href="https://feathersjs.com/" rel="noopener noreferrer">Feathers</a> - is a real-time, micro-service web framework that gives you control over your data via RESTful resources, sockets and flexible plug-ins.</li>
-<li><a href="https://github.com/thomas4019/expressa" rel="noopener noreferrer">Expressa (⭐449)</a> - Express middleware for creating APIs from JSON schemas with a simple admin editor and permissions model.</li>
+<li><a href="https://github.com/thomas4019/expressa" rel="noopener noreferrer">Expressa (⭐452)</a> - Express middleware for creating APIs from JSON schemas with a simple admin editor and permissions model.</li>
 <li><a href="https://github.com/JKHeadley/rest-hapi" rel="noopener noreferrer">rest-hapi (⭐1.2k)</a> - Generate RESTful API based on mongoose models that supports relational data.</li>
 <li><a href="https://github.com/nestjsx/crud" rel="noopener noreferrer">Nestjsx/crud (⭐4.3k)</a> - Generate CRUD controllers and services for RESTful API with NestJS and TypeORM.</li>
 </ul>
 <h3 id="php"><a class="anchor" aria-hidden="true" tabindex="-1" href="#php"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>PHP</h3><ul>
-<li><a href="https://github.com/marmelab/microrest.php" rel="noopener noreferrer">Microrest (⭐185)</a> - Micro-web application providing a REST API on top of any relational database.</li>
+<li><a href="https://github.com/marmelab/microrest.php" rel="noopener noreferrer">Microrest (⭐184)</a> - Micro-web application providing a REST API on top of any relational database.</li>
 <li><a href="https://github.com/willdurand/Negotiation" rel="noopener noreferrer">Negotiation (⭐1.4k)</a> - Content negotiation library.</li>
 <li><a href="https://github.com/leedavis81/drest" rel="noopener noreferrer">Drest (⭐87)</a> - Library for exposing Doctrine entities as REST resource endpoints.</li>
 <li><a href="https://github.com/Luracast/Restler" rel="noopener noreferrer">Restler (⭐1.4k)</a> - Lightweight framework to expose PHP methods as RESTful web API.</li>
-<li><a href="https://github.com/blongden/hal" rel="noopener noreferrer">HAL (⭐201)</a> - Hypertext Application Language (HAL) builder library.</li>
-<li><a href="https://github.com/zfcampus/zf-apigility-skeleton" rel="noopener noreferrer">Apigility (⭐441)</a> - API builder built with Zend Framework 2.</li>
-<li><a href="https://github.com/phprest/phprest" rel="noopener noreferrer">phprest (⭐304)</a> - Specialized REST microframework for PHP.</li>
+<li><a href="https://github.com/blongden/hal" rel="noopener noreferrer">HAL (⭐202)</a> - Hypertext Application Language (HAL) builder library.</li>
+<li><a href="https://github.com/zfcampus/zf-apigility-skeleton" rel="noopener noreferrer">Apigility (⭐440)</a> - API builder built with Zend Framework 2.</li>
+<li><a href="https://github.com/phprest/phprest" rel="noopener noreferrer">phprest (⭐302)</a> - Specialized REST microframework for PHP.</li>
 <li><a href="https://github.com/willdurand/Hateoas" rel="noopener noreferrer">Hateoas (⭐1k)</a> - PHP library to support implementing representations for HATEOAS REST web services.</li>
 <li><a href="https://github.com/apioo/fusio" rel="noopener noreferrer">Fusio (⭐2.1k)</a> - Open source API management platform.</li>
 </ul>
 <h4 id="symfony2"><a class="anchor" aria-hidden="true" tabindex="-1" href="#symfony2"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Symfony2</h4><ul>
 <li><a href="https://williamdurand.fr/2012/08/02/rest-apis-with-symfony2-the-right-way/" rel="noopener noreferrer">REST APIs with Symfony2: the Right Way</a> - Complete guide to build a state-of-the-art REST API with Symfony2 framework.</li>
 <li><a href="https://github.com/FriendsOfSymfony/FOSRestBundle" rel="noopener noreferrer">FOSRestBundle (⭐2.8k)</a> - Bundle handling view, routing, error handling, etc. for your REST API.</li>
-<li><a href="https://github.com/stanlemon/rest-bundle" rel="noopener noreferrer">stanlemon/rest-bundle (⭐120)</a> - Build a REST API based on Doctrine entities using conventions over configuration.</li>
-<li><a href="https://github.com/willdurand/BazingaHateoasBundle" rel="noopener noreferrer">BazingaHateoasBundle (⭐298)</a> - Integrate the <a href="https://github.com/willdurand/Hateoas" rel="noopener noreferrer">Hateoas (⭐1k)</a> library into a Symfony2 application.</li>
-<li><a href="https://github.com/gimler/symfony-rest-edition" rel="noopener noreferrer">Symfony REST Edition (⭐636)</a> - Start with a Symfony2 application with all REST-friendly bundles pre-configured.</li>
+<li><a href="https://github.com/stanlemon/rest-bundle" rel="noopener noreferrer">stanlemon/rest-bundle (⭐121)</a> - Build a REST API based on Doctrine entities using conventions over configuration.</li>
+<li><a href="https://github.com/willdurand/BazingaHateoasBundle" rel="noopener noreferrer">BazingaHateoasBundle (⭐296)</a> - Integrate the <a href="https://github.com/willdurand/Hateoas" rel="noopener noreferrer">Hateoas (⭐1k)</a> library into a Symfony2 application.</li>
+<li><a href="https://github.com/gimler/symfony-rest-edition" rel="noopener noreferrer">Symfony REST Edition (⭐626)</a> - Start with a Symfony2 application with all REST-friendly bundles pre-configured.</li>
 <li><a href="https://github.com/marmelab/NgAdminGeneratorBundle" rel="noopener noreferrer">NgAdminGeneratorBundle (⭐75)</a> - Boostrap ng-admin configuration based on <code>stanlemon/rest-bundle</code>.</li>
 <li><a href="https://github.com/dunglas/DunglasApiBundle" rel="noopener noreferrer">DunglasApiBundle (⭐2.6k)</a> - Build a REST API which follow Hydra/JSON-LD specification.</li>
-<li><a href="https://github.com/api-platform/api-platform" rel="noopener noreferrer">API Platform (⭐9.1k)</a> - Specialize Symfony edition for the creation of hypermedia REST APIs.</li>
-<li><a href="https://github.com/nelmio/NelmioApiDocBundle" rel="noopener noreferrer">NelmioApiDocBundle (⭐2.3k)</a> - Generate documentation for your REST API from annotations.</li>
+<li><a href="https://github.com/api-platform/api-platform" rel="noopener noreferrer">API Platform (⭐9.2k)</a> - Specialize Symfony edition for the creation of hypermedia REST APIs.</li>
+<li><a href="https://github.com/nelmio/NelmioApiDocBundle" rel="noopener noreferrer">NelmioApiDocBundle (⭐2.4k)</a> - Generate documentation for your REST API from annotations.</li>
 </ul>
 <h3 id="powershell"><a class="anchor" aria-hidden="true" tabindex="-1" href="#powershell"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>PowerShell</h3><ul>
-<li><a href="https://github.com/Badgerati/Pode" rel="noopener noreferrer">Pode (⭐1k)</a> - Pode is an cross-platform, open-source, community-supported web server and REST API framework for PowerShell developers</li>
+<li><a href="https://github.com/Badgerati/Pode" rel="noopener noreferrer">Pode (⭐1.1k)</a> - Pode is an cross-platform, open-source, community-supported web server and REST API framework for PowerShell developers</li>
 </ul>
 <h3 id="python"><a class="anchor" aria-hidden="true" tabindex="-1" href="#python"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Python</h3><ul>
 <li><a href="https://www.django-rest-framework.org/" rel="noopener noreferrer">Django REST framework</a> - Powerful and flexible toolkit that makes it easy to build Web APIs.</li>
@@ -193,10 +273,10 @@
 <li><a href="https://restless.readthedocs.org/en/latest/" rel="noopener noreferrer">restless</a> - Framework agnostic REST framework based on lessons learned from TastyPie.</li>
 <li><a href="https://python-eve.org/" rel="noopener noreferrer">Python Eve</a> - Eve is an open source Python REST API framework designed for human beings. It allows to effortlessly build and deploy highly customizable, fully featured RESTful Web Services.</li>
 <li><a href="https://ramses.readthedocs.org/en/stable/" rel="noopener noreferrer">Ramses</a> - Makes RAML files executable by generating production-ready APIs from them at runtime.</li>
-<li><a href="https://github.com/biosustain/potion" rel="noopener noreferrer">Flask-Potion (⭐489)</a> - Flask-Potion is a powerful Flask extension for building RESTful JSON APIs. It also provides several Clients for easier access to the API.</li>
-<li><a href="https://github.com/encode/apistar" rel="noopener noreferrer">apistar (⭐5.6k)</a> - A smart Web API framework, designed for Python 3.</li>
+<li><a href="https://github.com/biosustain/potion" rel="noopener noreferrer">Flask-Potion (⭐487)</a> - Flask-Potion is a powerful Flask extension for building RESTful JSON APIs. It also provides several Clients for easier access to the API.</li>
+<li><a href="https://github.com/encode/apistar" rel="noopener noreferrer">apistar (⭐5.5k)</a> - A smart Web API framework, designed for Python 3.</li>
 <li><a href="https://github.com/falconry/falcon" rel="noopener noreferrer">Falcon (⭐9.8k)</a> - Falcon is a bare-metal Python web API framework for building high-performance microservices, app backends, and higher-level frameworks.</li>
-<li><a href="https://github.com/tiangolo/fastapi" rel="noopener noreferrer">FastAPI (⭐97k)</a> - FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints. With automatic API documentation using Swagger UI and ReDoc, based on OpenAPI and JSON Schema.</li>
+<li><a href="https://github.com/tiangolo/fastapi" rel="noopener noreferrer">FastAPI (⭐103k)</a> - FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints. With automatic API documentation using Swagger UI and ReDoc, based on OpenAPI and JSON Schema.</li>
 <li><a href="https://github.com/zatosource/zato/" rel="noopener noreferrer">Zato (⭐1k)</a> - Platform for building server-side integrations, automations and API backends in Python.</li>
 </ul>
 <h3 id="ruby"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ruby"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Ruby</h3><ul>
@@ -204,17 +284,17 @@
 <li><a href="https://guides.rubyonrails.org/api_app.html" rel="noopener noreferrer">Rails</a> - RailsGuides: Using Rails for API-only applications.</li>
 </ul>
 <h3 id="go"><a class="anchor" aria-hidden="true" tabindex="-1" href="#go"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Go</h3><ul>
-<li><a href="https://github.com/manishrjain/gocrud" rel="noopener noreferrer">gocrud (⭐306)</a>: Go library to simplify creating, updating and deleting arbitrary depth structured data — to make building REST services fast and easy.</li>
+<li><a href="https://github.com/manishrjain/gocrud" rel="noopener noreferrer">gocrud (⭐307)</a>: Go library to simplify creating, updating and deleting arbitrary depth structured data — to make building REST services fast and easy.</li>
 <li><a href="https://github.com/ant0ine/go-json-rest" rel="noopener noreferrer">go-json-rest (⭐3.5k)</a> - Thin layer on top of <code>net/http</code> that helps building RESTful APIs easily.</li>
-<li><a href="https://github.com/dougblack/sleepy" rel="noopener noreferrer">sleepy (⭐670)</a> - RESTful micro-framework written in Go.</li>
-<li><a href="https://github.com/yookoala/restit" rel="noopener noreferrer">restit (⭐55)</a> - Go micro framework to help writing RESTful API integration test.</li>
-<li><a href="https://github.com/codehack/go-relax" rel="noopener noreferrer">go-relax (⭐154)</a> - Framework of pluggable components to build RESTful API's.</li>
+<li><a href="https://github.com/dougblack/sleepy" rel="noopener noreferrer">sleepy (⭐669)</a> - RESTful micro-framework written in Go.</li>
+<li><a href="https://github.com/yookoala/restit" rel="noopener noreferrer">restit (⭐54)</a> - Go micro framework to help writing RESTful API integration test.</li>
+<li><a href="https://github.com/codehack/go-relax" rel="noopener noreferrer">go-relax (⭐153)</a> - Framework of pluggable components to build RESTful API's.</li>
 <li><a href="https://github.com/ungerik/go-rest" rel="noopener noreferrer">go-rest (⭐128)</a> - Small and evil REST framework for Go.</li>
 <li><a href="https://github.com/emicklei/go-restful" rel="noopener noreferrer">go-restful (⭐5.1k)</a> - A declarative highly readable framework for building restful API's.</li>
-<li><a href="https://github.com/resoursea/api" rel="noopener noreferrer">Resoursea (⭐35)</a> - REST framework for quickly writing resource based services.</li>
+<li><a href="https://github.com/resoursea/api" rel="noopener noreferrer">Resoursea (⭐34)</a> - REST framework for quickly writing resource based services.</li>
 </ul>
 <h3 id="java"><a class="anchor" aria-hidden="true" tabindex="-1" href="#java"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Java</h3><ul>
-<li><a href="https://github.com/RestExpress/RestExpress" rel="noopener noreferrer">RestExpress (⭐940)</a> - Netty-based, highly performant, lightweight, container-less, plugin-extensible, framework that is ideal for microservice architectures.</li>
+<li><a href="https://github.com/RestExpress/RestExpress" rel="noopener noreferrer">RestExpress (⭐938)</a> - Netty-based, highly performant, lightweight, container-less, plugin-extensible, framework that is ideal for microservice architectures.</li>
 <li><a href="https://github.com/vert-x3/vertx-web" rel="noopener noreferrer">Vertx-Web (⭐1.1k)</a> - Vert.x-Web is a set of building blocks for building web applications with Vert.x, a toolkit for building reactive applications on the JVM.</li>
 <li><a href="https://github.com/dropwizard/dropwizard" rel="noopener noreferrer">Dropwizard (⭐8.6k)</a> - A framework for developing ops-friendly, high-performance, RESTful web services.</li>
 </ul>
@@ -225,31 +305,31 @@
 <li><a href="https://github.com/silkapp/rest" rel="noopener noreferrer">Rest for Haskell (⭐386)</a> - This package allows you to create REST APIs in Haskell. These APIs can be run in different web frameworks. They can also be used to automatically generate documentation as well as client libraries.</li>
 </ul>
 <h2 id="testing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#testing"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Testing</h2><h3 id="querying"><a class="anchor" aria-hidden="true" tabindex="-1" href="#querying"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Querying</h3><ul>
-<li><a href="https://github.com/jkbrzt/httpie" rel="noopener noreferrer">httpie (⭐38k)</a> - Command line HTTP client, far more dev-friendly than <code>curl</code>.</li>
+<li><a href="https://github.com/jkbrzt/httpie" rel="noopener noreferrer">httpie (⭐39k)</a> - Command line HTTP client, far more dev-friendly than <code>curl</code>.</li>
 <li><a href="https://github.com/micha/resty" rel="noopener noreferrer">resty (⭐2.7k)</a> - Little command line REST client that you can use in pipelines (bash or zsh).</li>
-<li><a href="https://github.com/stedolan/jq" rel="noopener noreferrer">jq (⭐34k)</a> - Command line JSON processor, to use in combination with a command-line HTTP client like cURL.</li>
+<li><a href="https://github.com/stedolan/jq" rel="noopener noreferrer">jq (⭐36k)</a> - Command line JSON processor, to use in combination with a command-line HTTP client like cURL.</li>
 <li><a href="https://www.httpmaster.net" rel="noopener noreferrer">HttpMaster</a> - GUI tool for testing REST APIs and services. Windows OS only.</li>
-<li><a href="https://github.com/cloudhead/http-console" rel="noopener noreferrer">Http-console (⭐1.5k)</a> - Command line interface for HTTP that let you <em>speak HTTP like a local</em></li>
+<li><a href="https://github.com/cloudhead/http-console" rel="noopener noreferrer">Http-console (⭐1.4k)</a> - Command line interface for HTTP that let you <em>speak HTTP like a local</em></li>
 <li><a href="https://github.com/eliangcs/http-prompt" rel="noopener noreferrer">HTTP Prompt (⭐9.1k)</a> - HTTP Prompt is an interactive command-line HTTP client featuring autocomplete and syntax highlighting, built on HTTPie and prompt_toolkit.</li>
 <li><a href="https://github.com/rest-assured/rest-assured" rel="noopener noreferrer">rest-assured (⭐7.1k)</a> - Java DSL for easy testing of REST services.</li>
-<li><a href="https://github.com/getinsomnia/insomnia" rel="noopener noreferrer">Insomnia (⭐38k)</a> - Cross-platform HTTP and GraphQL Client</li>
+<li><a href="https://github.com/getinsomnia/insomnia" rel="noopener noreferrer">Insomnia (⭐40k)</a> - Cross-platform HTTP and GraphQL Client</li>
 <li><a href="https://extendsclass.com/rest-client-online.html" rel="noopener noreferrer">ExtendsClass</a> - Make HTTP requests with a simple web-based HTTP client.</li>
 <li><a href="https://testmace.com" rel="noopener noreferrer">TestMace</a> - Cross-platform simple but powerful IDE for API automation testing.</li>
 <li><a href="https://github.com/warmuuh/milkman" rel="noopener noreferrer">Milkman (⭐1.3k)</a> - Extensible cross-platform request/response workbench, not only for http calls.</li>
-<li><a href="https://github.com/schemathesis/schemathesis" rel="noopener noreferrer">Schemathesis (⭐3.2k)</a> - Property-based testing tool for web applications built with Open API and GraphQL specifications.</li>
-<li><a href="https://github.com/stepci/stepci" rel="noopener noreferrer">Step CI (⭐1.8k)</a> - Open-source framework for API Quality Assurance, which tests REST, GraphQL and gRPC automated and from Open API spec.</li>
+<li><a href="https://github.com/schemathesis/schemathesis" rel="noopener noreferrer">Schemathesis (⭐3.6k)</a> - Property-based testing tool for web applications built with Open API and GraphQL specifications.</li>
+<li><a href="https://github.com/stepci/stepci" rel="noopener noreferrer">Step CI (⭐1.9k)</a> - Open-source framework for API Quality Assurance, which tests REST, GraphQL and gRPC automated and from Open API spec.</li>
 <li><a href="https://github.com/restqa/restqa" rel="noopener noreferrer">RestQA (⭐93)</a> - A REST API testing Framework based on BDD / Gherkin to manage microservice local testing.</li>
 <li><a href="https://www.postman.com/" rel="noopener noreferrer">Postman</a> - Cross-platform API development and testing platform.</li>
 <li><a href="https://www.soapui.org/" rel="noopener noreferrer">SoapUI</a> - Cross-platform API testing tool for REST and SOAP APIs.</li>
 <li><a href="https://paw.cloud/" rel="noopener noreferrer">RapidAPI</a> - Full-featured HTTP client for macOS.</li>
 </ul>
 <h3 id="mocking"><a class="anchor" aria-hidden="true" tabindex="-1" href="#mocking"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Mocking</h3><ul>
-<li><a href="https://github.com/marmelab/FakeRest" rel="noopener noreferrer">FakeRest (⭐452)</a> - Redirect fetch() calls to a client-side fake REST API.</li>
+<li><a href="https://github.com/marmelab/FakeRest" rel="noopener noreferrer">FakeRest (⭐456)</a> - Redirect fetch() calls to a client-side fake REST API.</li>
 <li><a href="https://github.com/typicode/json-server" rel="noopener noreferrer">json-server (⭐76k)</a> - Serve a REST API from fixture files using quick prototyping.</li>
 <li><a href="https://requestbin.com/" rel="noopener noreferrer">RequestBin</a> - Inspect and debug webhook requests sent by your clients or third-party APIs.</li>
 <li><a href="https://httpbin.org" rel="noopener noreferrer">httpbin</a> - HTTP request and response service - a/k/a Swiss Army Knife for HTTP.</li>
 <li><a href="https://www.mock-server.com/" rel="noopener noreferrer">MockServer</a> - Easy mocking of any system you integrate with via HTTP or HTTPS.</li>
-<li><a href="https://github.com/darklynx/request-baskets" rel="noopener noreferrer">Request Baskets (⭐420)</a> - Service to collect HTTP requests and inspect them via RESTful API or web UI.</li>
+<li><a href="https://github.com/darklynx/request-baskets" rel="noopener noreferrer">Request Baskets (⭐428)</a> - Service to collect HTTP requests and inspect them via RESTful API or web UI.</li>
 <li><a href="https://github.com/iridakos/duckrails" rel="noopener noreferrer">DuckRails (⭐1.7k)</a> - Mock quickly &amp; dynamically API endpoints.</li>
 <li><a href="https://mockoon.com" rel="noopener noreferrer">Mockoon</a> - Easily create mock APIs locally. No remote deployment, no account required, open source.</li>
 <li><a href="https://mockintosh.io/" rel="noopener noreferrer">Mockintosh</a> - A mock server generator that's capable to generate RESTful APIs and communicate with the message queues to mimick asynchronous tasks.</li>
@@ -278,22 +358,22 @@
 <li><a href="https://zudoku.dev/" rel="noopener noreferrer">Zudoku</a> - Create clean, consistent API docs with Zudoku — open source, extensible, and developer-first</li>
 <li><a href="https://sourcey.com" rel="noopener noreferrer">Sourcey</a> - Open source documentation platform for OpenAPI specs and markdown. Static HTML output.</li>
 <li><a href="https://stoplight.io/" rel="noopener noreferrer">Stoplight</a> - Design-first API platform with visual OpenAPI editor, documentation, and mocking.</li>
+<li><a href="https://github.com/cortex-docs/cortex" rel="noopener noreferrer">Cortex (⭐3.2k)</a> - Generate interactive API documentation, typed SDKs, and MCP servers from OpenAPI and other API specification formats.</li>
 </ul>
 <h2 id="api-gateway"><a class="anchor" aria-hidden="true" tabindex="-1" href="#api-gateway"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>API Gateway</h2><ul>
-<li><a href="https://github.com/Kong/kong" rel="noopener noreferrer">Kong (⭐43k)</a> - Scalable, distributed, and plugin oriented API gateway backed by Nginx.</li>
+<li><a href="https://github.com/Kong/kong" rel="noopener noreferrer">Kong (⭐44k)</a> - Scalable, distributed, and plugin oriented API gateway backed by Nginx.</li>
 <li><a href="https://github.com/TykTechnologies/tyk" rel="noopener noreferrer">Tyk API Gateway (⭐11k)</a> - Lightweight API gateway with analytics logging, written in Go.</li>
 <li><a href="https://github.com/NREL/api-umbrella" rel="noopener noreferrer">API Umbrella (⭐2.2k)</a> - API management platform for exposing web services, with web interface and analytics, written in Lua.</li>
-<li><a href="https://github.com/wso2/product-apim" rel="noopener noreferrer">WSO2 API Management (⭐974)</a> - API management tool with lightweight gateway and API lifecycle management, written in Java.</li>
+<li><a href="https://github.com/wso2/product-apim" rel="noopener noreferrer">WSO2 API Management (⭐1k)</a> - API management tool with lightweight gateway and API lifecycle management, written in Java.</li>
 <li><a href="https://github.com/ExpressGateway/express-gateway" rel="noopener noreferrer">Express Gateway (⭐3k)</a> - Microservices API Gateway built on top of ExpressJS (Node.js).</li>
 <li><a href="https://github.com/luraproject/lura" rel="noopener noreferrer">Lura (⭐6.8k)</a> - Ultra performant API Gateway with middleware. Written in Go.</li>
 <li><a href="https://aws.amazon.com/api-gateway/" rel="noopener noreferrer">AWS API Gateway</a> - Fully managed service that helps developers to create, publish, maintain, monitor, and secure APIs at any scale.</li>
 <li><a href="https://zuplo.com/" rel="noopener noreferrer">Zuplo</a> - OpenAPI-Powered API &amp; MCP Management platform for Security, Deployment, and Documentation. Add auth, rate-limiting, and monetization to your API or MCP Server in minutes, written in TypeScript &amp; Go.</li>
 </ul>
 <h2 id="saas-tools"><a class="anchor" aria-hidden="true" tabindex="-1" href="#saas-tools"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>SaaS Tools</h2><ul>
-<li><a href="https://github.com/NangoHQ/nango" rel="noopener noreferrer">Nango (⭐7k)</a> - Native integrations framework to consume REST APIs (open-source).</li>
+<li><a href="https://github.com/NangoHQ/nango" rel="noopener noreferrer">Nango (⭐12k)</a> - Native integrations framework to consume REST APIs (open-source).</li>
 <li><a href="https://www.runscope.com/" rel="noopener noreferrer">Runscope</a> - Automated API Monitoring &amp; Testing.</li>
 <li><a href="https://keploy.io" rel="noopener noreferrer">Keploy</a> - Open-source API testing and data mocking tool that generates test cases and stubs automatically from real traffic, enabling end-to-end API testing and monitoring.</li>
-<li><a href="https://ping-api.com/" rel="noopener noreferrer">Ping-API</a> - Automated API Monitoring &amp; Testing.</li>
 <li><a href="https://apiary.io/" rel="noopener noreferrer">Apiary</a> - Collaborative design, instant API mock, generated documentation, integrated code samples, debugging and automated testing.</li>
 <li><a href="https://aws.amazon.com/api-gateway/" rel="noopener noreferrer">Amazon API Gateway</a> - Amazon API Gateway is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale.</li>
 <li><a href="https://apigee.com" rel="noopener noreferrer">Apigee</a> - Apigee is the leading provider of API technology and services for enterprises and developers.</li>
@@ -306,16 +386,58 @@
 <li><a href="https://loader.io/" rel="noopener noreferrer">Loader.io</a> - Free cloud-based load testing service for APIs.</li>
 </ul>
 <h2 id="miscellaneous"><a class="anchor" aria-hidden="true" tabindex="-1" href="#miscellaneous"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Miscellaneous</h2><ul>
-<li><a href="https://github.com/marmelab/shadcn-admin-kit" rel="noopener noreferrer">shadcn-admin-kit (⭐859)</a> - Build internal tools, admin panels, B2B apps, and dashboards on top of any REST API</li>
+<li><a href="https://github.com/marmelab/shadcn-admin-kit" rel="noopener noreferrer">shadcn-admin-kit (⭐1.1k)</a> - Build internal tools, admin panels, B2B apps, and dashboards on top of any REST API</li>
 <li><a href="https://github.com/marmelab/react-admin" rel="noopener noreferrer">react-admin (⭐27k)</a> - Add a ReactJS admin GUI to any RESTful API.</li>
 <li><a href="https://github.com/marmelab/ng-admin" rel="noopener noreferrer">ng-admin (⭐3.9k)</a> - Add an AngularJS admin GUI to any RESTful API.</li>
 <li><a href="https://github.com/swagger-api/swagger-codegen" rel="noopener noreferrer">swagger-codegen (⭐18k)</a> - Auto generation of client libraries or server stubs given an OpenAPI specification (formerly known as the Swagger Specification).</li>
 <li><a href="https://linx.software" rel="noopener noreferrer">Linx</a> - Low-code API platform. Build, debug and host REST APIs</li>
 </ul>
-<h2 id="license"><a class="anchor" aria-hidden="true" tabindex="-1" href="#license"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>License</h2><p><a rel="noopener noreferrer"><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons License" /></a></p>
+<h2 id="license"><a class="anchor" aria-hidden="true" tabindex="-1" href="#license"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>License</h2><p><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer"><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons License" /></a></p>
 <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer">Creative Commons Attribution 4.0 International License</a>.</p>
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
