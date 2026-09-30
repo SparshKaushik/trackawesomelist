@@ -16,50 +16,237 @@
     <meta property="og:title" content="Track Awesome for Beginners Updates Daily" />
     <meta property="og:description" content="A list of awesome beginners-friendly projects." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome for Beginners Updates Daily</h1>
 <p>A list of awesome beginners-friendly projects.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/MunGell/awesome-for-beginners/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/MunGell/awesome-for-beginners">😺 MunGell/awesome-for-beginners</a><span> · </span><span>⭐ 84K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/MunGell/awesome-for-beginners/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/MunGell/awesome-for-beginners">😺 MunGell/awesome-for-beginners</a><span> · </span><span>⭐ 90K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/MunGell/awesome-for-beginners/week/">Weekly</a><span> / </span><a href="/MunGell/awesome-for-beginners/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/09/30/">Sep 30, 2026</a></h2><h3><p>C++</p>
+</h3>
+<ul>
+<li><a href="https://github.com/moveit/moveit" rel="noopener noreferrer">MoveIt (⭐2.1k)</a> <em>(label: good first issue)</em> <br /> Easy-to-use open source robotics manipulation platform for developing commercial applications, prototyping designs, and benchmarking algorithms.</li>
+</ul>
+<h3><p>Go</p>
+</h3>
+<ul>
+<li><a href="https://github.com/dragonflyoss/dragonfly" rel="noopener noreferrer">Dragonfly (⭐3.3k)</a> <em>(label: good first issue)</em> <br /> Provide efficient, stable and secure file distribution and image acceleration based on p2p technology</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/helm/helm" rel="noopener noreferrer">Helm (⭐30k)</a> <em>(label: good first issue)</em> <br /> The Kubernetes Package Manager</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/lxc/incus" rel="noopener noreferrer">Incus (⭐6.2k)</a> <em>(label: easy)</em> <br /> System container and virtual machine manager.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/meshery/meshery" rel="noopener noreferrer">Meshery (⭐12k)</a> <em>(label: good first issue)</em> <br /> Meshery, the service mesh management plane.</li>
+</ul>
+<h3><p>JavaScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/altair-graphql/altair" rel="noopener noreferrer">altair (⭐5.4k)</a> <em>(label: good first issue)</em> <br /> A beautiful feature-rich GraphQL Client for all platforms.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/react/create-react-app" rel="noopener noreferrer">Create React App (⭐103k)</a> <em>(label: good first issue)</em> <br /> Create React apps with no build configuration.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/decaporg/decap-cms" rel="noopener noreferrer">Decap CMS (⭐19k)</a> <em>(label: good first issue)</em> <br /> Open source content management for your git workflow.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/croma-app/huehive-mobile-app" rel="noopener noreferrer">HueHive (⭐69)</a> <em>(label: good first issue)</em> <br /> An open source react native app iOS and android for color palette management</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jestjs/jest" rel="noopener noreferrer">Jest (⭐45k)</a> <em>(label: good first issue)</em> <br /> A complete and easy to set up JavaScript testing solution.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/pixijs/pixijs" rel="noopener noreferrer">pixi.js (⭐48k)</a> <em>(label: 🤩 Good First PR)</em> <br /> A 2D JavaScript Renderer</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/apache/pouchdb" rel="noopener noreferrer">PouchDB (⭐18k)</a> <em>(label: help-wanted)</em> <br /> PouchDB is a pocket-sized database.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/react/react" rel="noopener noreferrer">React (⭐251k)</a> <em>(label: good first issue)</em> <br /> A declarative, efficient, and flexible JavaScript library for building user interfaces.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/react/react-native" rel="noopener noreferrer">React Native (⭐127k)</a> <em>(label: Good-first-issue)</em> <br /> A framework for building native apps with React.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/stryker-mutator/stryker-js" rel="noopener noreferrer">stryker (⭐3.2k)</a> <em>(label: 👶 Good first issue)</em> <br /> The JavaScript mutation testing framework</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/warp-drive-data/warp-drive" rel="noopener noreferrer">WarpDrive (⭐3.2k)</a> <em>(label: Good-for-New-Contributors)</em> <br /> A data persistence library for Ember.js.</li>
+</ul>
+<h3><p>PHP</p>
+</h3>
+<ul>
+<li><a href="https://github.com/flarum/framework" rel="noopener noreferrer">Flarum (⭐6.8k)</a> <em>(label: Good-first-issue)</em> <br /> Simple forum software for building great communities.</li>
+</ul>
+<h3><p>Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/cookiecutter/cookiecutter-django" rel="noopener noreferrer">django cookiecutter (⭐14k)</a> <em>(label: hacktoberfest)</em> <br /> An implementation of Python for backend web development.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/fastapi/fastapi" rel="noopener noreferrer">FastAPI (⭐103k)</a> <em>(label: good first issue)</em> <br /> A modern, fast (high-performance) web framework for building APIs with Python 3.6+ based on standard Python type hints.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/mindsdb/minds" rel="noopener noreferrer">MindsDB (⭐40k)</a> <em>(label: good first issue)</em> <br /> MindsDB is an open source AI layer for existing databases.</li>
+</ul>
+<h3><p>Rust</p>
+</h3>
+<ul>
+<li><a href="https://github.com/build-trust/ockam" rel="noopener noreferrer">Ockam (⭐4.6k)</a> <em>(label: good first issue)</em> <br /> End-to-end encryption and mutual authentication for distributed applications.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/rust-lang/rustfmt" rel="noopener noreferrer">Rustfmt (⭐7k)</a> <em>(label: good first issue)</em> <br /> A tool for formatting Rust code according to style guidelines.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/security-union/videocall-rs" rel="noopener noreferrer">videocall-rs (⭐1.8k)</a> <em>(label: good first issue)</em> <br /> Teleconference system with a web based user interface written in Rust</li>
+</ul>
+<h3><p>TypeScript</p>
+</h3>
+<ul>
+<li><a href="https://github.com/reatom/reatom" rel="noopener noreferrer">reatom (⭐1.4k)</a> <em>(label: good first issue)</em> <br /> Reatom is declarative and reactive state manager, designed for both simple and complex applications.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/tinyhttp/tinyhttp" rel="noopener noreferrer">tinyhttp (⭐2.9k)</a> <em>(label: good first issue)</em> <br /> A 0-legacy, tiny &amp; fast web framework as a replacement of Express.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/04/10/">Apr 10, 2026</a></h2><h3><p>Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pyfenn/fenn" rel="noopener noreferrer">fenn (⭐43)</a> <em>(label: good first issue)</em> <br /> A simple framework that automates ML/DL workflows by providing prebuilt trainers, templates, logging, configuration management, and much more.</li>
+<li><a href="https://github.com/pyfenn/fenn" rel="noopener noreferrer">fenn (⭐82)</a> <em>(label: good first issue)</em> <br /> A simple framework that automates ML/DL workflows by providing prebuilt trainers, templates, logging, configuration management, and much more.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/04/06/">Apr 06, 2026</a></h2><h3><p>Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/beeware/briefcase" rel="noopener noreferrer">BeeWare Briefcase (⭐3.2k)</a> <em>(label: good first issue)</em> <br /> Turn Python projects into distributable native applications across desktop and mobile platforms.</li>
+<li><a href="https://github.com/beeware/briefcase" rel="noopener noreferrer">BeeWare Briefcase (⭐3.4k)</a> <em>(label: good first issue)</em> <br /> Turn Python projects into distributable native applications across desktop and mobile platforms.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/mem0ai/mem0/" rel="noopener noreferrer">Mem0 (⭐53k)</a> <em>(label: good first issue)</em> <br /> Mem0 is a memory framework for LLM applications.</li>
+<li><a href="https://github.com/mem0ai/mem0/" rel="noopener noreferrer">Mem0 (⭐66k)</a> <em>(label: good first issue)</em> <br /> Mem0 is a memory framework for LLM applications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/04/04/">Apr 04, 2026</a></h2><h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/SigNoz/signoz" rel="noopener noreferrer">SigNoz (⭐26k)</a> <em>(label: good first issue)</em> <br /> An Open Source observability platform that monitors your applications and services. It comes with out-of-box charts for key application metrics like p99 latency, error rate, Apdex, and operations per second. You can also monitor the database and external calls made from your application.</li>
+<li><a href="https://github.com/SigNoz/signoz" rel="noopener noreferrer">SigNoz (⭐32k)</a> <em>(label: good first issue)</em> <br /> An Open Source observability platform that monitors your applications and services. It comes with out-of-box charts for key application metrics like p99 latency, error rate, Apdex, and operations per second. You can also monitor the database and external calls made from your application.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/12/06/">Dec 06, 2025</a></h2><h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vitest-dev/vitest" rel="noopener noreferrer">Vitest (⭐16k)</a> <em>(label: good first issue)</em> <br /> A blazing fast unit test framework powered by Vite.</li>
+<li><a href="https://github.com/vitest-dev/vitest" rel="noopener noreferrer">Vitest (⭐17k)</a> <em>(label: good first issue)</em> <br /> A blazing fast unit test framework powered by Vite.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/11/12/">Nov 12, 2025</a></h2><h3><p>JavaScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/TTLApp/time-to-leave" rel="noopener noreferrer">Time to Leave (⭐487)</a> <em>(label: good first issue)</em> <br /> Working hours time tracker app based on Electron and Javascript.</li>
+<li><a href="https://github.com/TTLApp/time-to-leave" rel="noopener noreferrer">Time to Leave (⭐490)</a> <em>(label: good first issue)</em> <br /> Working hours time tracker app based on Electron and Javascript.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/08/18/">Aug 18, 2025</a></h2><h3><p>TypeScript</p>
 </h3>
@@ -69,21 +256,21 @@
 <h2><a href="https://www.trackawesomelist.com/2025/06/29/">Jun 29, 2025</a></h2><h3><p>Markdown</p>
 </h3>
 <ul>
-<li><a href="https://github.com/TheOdinProject/curriculum" rel="noopener noreferrer">The Odin Project Curriculum (⭐12k)</a> <em>(label: See Description)</em> <br /> An open-source curriculum for learning full-stack web development. There are a few "Type: Good First Issue" labelled issues, but any content addition/deletion issues seem reasonably beginner friendly.</li>
+<li><a href="https://github.com/TheOdinProject/curriculum" rel="noopener noreferrer">The Odin Project Curriculum (⭐13k)</a> <em>(label: See Description)</em> <br /> An open-source curriculum for learning full-stack web development. There are a few "Type: Good First Issue" labelled issues, but any content addition/deletion issues seem reasonably beginner friendly.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/06/27/">Jun 27, 2025</a></h2><h3><p>Rust</p>
 </h3>
 <ul>
-<li><a href="https://github.com/facebook/pyrefly" rel="noopener noreferrer">Pyrefly (⭐5.5k)</a> <em>(label: good first issue)</em> <br /> A fast Python typechecker and IDE written in Rust.</li>
+<li><a href="https://github.com/facebook/pyrefly" rel="noopener noreferrer">Pyrefly (⭐7k)</a> <em>(label: good first issue)</em> <br /> A fast Python typechecker and IDE written in Rust.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/06/13/">Jun 13, 2025</a></h2><h3><p>JavaScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mui/material-ui" rel="noopener noreferrer">material-ui (⭐98k)</a> <em>(label: good first issue)</em> <br /> React components for faster and easier web development. Build your own design system, or start with Material Design.</li>
+<li><a href="https://github.com/mui/material-ui" rel="noopener noreferrer">material-ui (⭐99k)</a> <em>(label: good first issue)</em> <br /> React components for faster and easier web development. Build your own design system, or start with Material Design.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/vercel/next.js" rel="noopener noreferrer">Next.js (⭐139k)</a> <em>(label: good first issue)</em> <br /> A minimalistic framework for universal server-rendered React applications</li>
+<li><a href="https://github.com/vercel/next.js" rel="noopener noreferrer">Next.js (⭐142k)</a> <em>(label: good first issue)</em> <br /> A minimalistic framework for universal server-rendered React applications</li>
 </ul>
 
 <ul>
@@ -91,61 +278,56 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/vuejs/router" rel="noopener noreferrer">Vue Router (⭐4.6k)</a> <em>(label: good first issue)</em> <br /> The official router for Vue.js.</li>
+<li><a href="https://github.com/vuejs/router" rel="noopener noreferrer">Vue Router (⭐4.7k)</a> <em>(label: good first issue)</em> <br /> The official router for Vue.js.</li>
 </ul>
 <h3><p>PHP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/codeigniter4/CodeIgniter4" rel="noopener noreferrer">CodeIgniter (⭐5.9k)</a> <em>(label: good first issue)</em> <br /> A lightweight, fast PHP framework, it is easy to install and perfect for learning MVC architecture.</li>
+<li><a href="https://github.com/codeigniter4/CodeIgniter4" rel="noopener noreferrer">CodeIgniter (⭐6k)</a> <em>(label: good first issue)</em> <br /> A lightweight, fast PHP framework, it is easy to install and perfect for learning MVC architecture.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/05/26/">May 26, 2025</a></h2><h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/supabase/supabase" rel="noopener noreferrer">supabase (⭐100k)</a> <em>(label: good first issue)</em> <br /> The open source Firebase alternative. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.</li>
+<li><a href="https://github.com/supabase/supabase" rel="noopener noreferrer">supabase (⭐111k)</a> <em>(label: good first issue)</em> <br /> The open source Firebase alternative. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/05/15/">May 15, 2025</a></h2><h3><p>Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/arviz-devs/arviz" rel="noopener noreferrer">ArviZ (⭐1.8k)</a> <em>(label: Beginner)</em> <br /> Exploratory Analysis of Bayesian Models.</li>
+<li><a href="https://github.com/arviz-devs/arviz" rel="noopener noreferrer">ArviZ (⭐1.9k)</a> <em>(label: Beginner)</em> <br /> Exploratory Analysis of Bayesian Models.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/python/mypy" rel="noopener noreferrer">mypy (⭐20k)</a> <em>(label: good first issue)</em> <br /> Optional static typing for Python.</li>
+<li><a href="https://github.com/python/mypy" rel="noopener noreferrer">mypy (⭐21k)</a> <em>(label: good first issue)</em> <br /> Optional static typing for Python.</li>
 </ul>
 <h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mnfst/manifest" rel="noopener noreferrer">Manifest (⭐4.3k)</a> <em>(label: good first issue)</em> <br /> Manifest is an open-source Backend-as-a-Service allowing developers to create a backend easily and quickly.</li>
+<li><a href="https://github.com/mnfst/manifest" rel="noopener noreferrer">Manifest (⭐7.5k)</a> <em>(label: good first issue)</em> <br /> Manifest is an open-source Backend-as-a-Service allowing developers to create a backend easily and quickly.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/04/24/">Apr 24, 2025</a></h2><h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/devopness/devopness" rel="noopener noreferrer">Devopness (⭐367)</a> <em>(label: good first issue)</em> <br /> Deploy any software to any cloud: automated DevOps workflows to save software teams time and money.</li>
+<li><a href="https://github.com/devopness/devopness" rel="noopener noreferrer">Devopness (⭐563)</a> <em>(label: good first issue)</em> <br /> Deploy any software to any cloud: automated DevOps workflows to save software teams time and money.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/04/20/">Apr 20, 2025</a></h2><h3><p>JavaScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/openstreetmap/iD" rel="noopener noreferrer">iD (⭐3.8k)</a> <em>(label: new contributor opportunity)</em> <br /> The easy-to-use OpenStreetMap editor in JavaScript.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2025/04/16/">Apr 16, 2025</a></h2><h3><p>JavaScript</p>
-</h3>
-<ul>
-<li><a href="https://github.com/croma-app/croma" rel="noopener noreferrer">HueHive (⭐64)</a> <em>(label: good first issue)</em> <br /> An open source react native app iOS and android for color palette management</li>
+<li><a href="https://github.com/openstreetmap/iD" rel="noopener noreferrer">iD (⭐3.9k)</a> <em>(label: new contributor opportunity)</em> <br /> The easy-to-use OpenStreetMap editor in JavaScript.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/02/09/">Feb 09, 2025</a></h2><h3><p>JavaScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/code-charity/youtube" rel="noopener noreferrer">ImprovedTube (⭐4.3k)</a> <em>(label: good first issue)</em> <br /> A powerful but lightweight extension, to enrich your video experience &amp; enable your content selection.</li>
+<li><a href="https://github.com/code-charity/youtube" rel="noopener noreferrer">ImprovedTube (⭐4.6k)</a> <em>(label: good first issue)</em> <br /> A powerful but lightweight extension, to enrich your video experience &amp; enable your content selection.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/02/07/">Feb 07, 2025</a></h2><h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Smoren/itertools-ts" rel="noopener noreferrer">IterTools TS (⭐78)</a> <em>(label: good first issue)</em> <br /> Extended itertools port for TypeScript and JavaScript. Provides a huge set of functions for working with iterable collections (including async ones).</li>
+<li><a href="https://github.com/Smoren/itertools-ts" rel="noopener noreferrer">IterTools TS (⭐92)</a> <em>(label: good first issue)</em> <br /> Extended itertools port for TypeScript and JavaScript. Provides a huge set of functions for working with iterable collections (including async ones).</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/02/01/">Feb 01, 2025</a></h2><h3><p>Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pymc-devs/pymc" rel="noopener noreferrer">PyMC (⭐9.6k)</a> <em>(label: beginner friendly)</em> <br /> A Python library for Bayesian statistical modeling and probabilistic machine learning. Beginner-friendly with 'good first issue' labels.</li>
+<li><a href="https://github.com/pymc-devs/pymc" rel="noopener noreferrer">PyMC (⭐9.8k)</a> <em>(label: beginner friendly)</em> <br /> A Python library for Bayesian statistical modeling and probabilistic machine learning. Beginner-friendly with 'good first issue' labels.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/01/28/">Jan 28, 2025</a></h2><h3><p>Go</p>
 </h3>
@@ -160,7 +342,7 @@
 <h3><p>JavaScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mattermost/mattermost" rel="noopener noreferrer">Mattermost (⭐36k)</a> <em>(label: Good First Issue, Difficulty/1:Easy)</em> <br /> Open source Slack-alternative in Golang and React<br />Look for issues labelled 'Up For Grabs'</li>
+<li><a href="https://github.com/mattermost/mattermost" rel="noopener noreferrer">Mattermost (⭐39k)</a> <em>(label: Good First Issue, Difficulty/1:Easy)</em> <br /> Open source Slack-alternative in Golang and React<br />Look for issues labelled 'Up For Grabs'</li>
 </ul>
 <h3><p>Go</p>
 </h3>
@@ -175,7 +357,7 @@
 <h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/readest/readest" rel="noopener noreferrer">Readest (⭐19k)</a> <em>(label: good first issue)</em> <br /> A modern, feature-rich ebook reader designed for avid readers offering seamless cross-platform access, powerful tools, and an intuitive interface.</li>
+<li><a href="https://github.com/readest/readest" rel="noopener noreferrer">Readest (⭐24k)</a> <em>(label: good first issue)</em> <br /> A modern, feature-rich ebook reader designed for avid readers offering seamless cross-platform access, powerful tools, and an intuitive interface.</li>
 </ul>
 <h3><p>Rust</p>
 </h3>
@@ -185,72 +367,52 @@
 <h2><a href="https://www.trackawesomelist.com/2025/01/10/">Jan 10, 2025</a></h2><h3><p>Java</p>
 </h3>
 <ul>
-<li><a href="https://github.com/CatimaLoyalty/Android" rel="noopener noreferrer">Catima - Android App (⭐1.5k)</a> <em>(label: good first issue)</em> <br /> Catima, a Loyalty Card &amp; Ticket Manager for Android</li>
+<li><a href="https://github.com/CatimaLoyalty/Android" rel="noopener noreferrer">Catima - Android App (⭐1.7k)</a> <em>(label: good first issue)</em> <br /> Catima, a Loyalty Card &amp; Ticket Manager for Android</li>
 </ul>
 <h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yarnpkg/berry" rel="noopener noreferrer">Berry - Active development trunk for Yarn (⭐8k)</a> <em>(label: good first issue)</em> <br /> Fast, reliable, and secure dependency management.</li>
+<li><a href="https://github.com/yarnpkg/berry" rel="noopener noreferrer">Berry - Active development trunk for Yarn (⭐8.1k)</a> <em>(label: good first issue)</em> <br /> Fast, reliable, and secure dependency management.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2025/01/02/">Jan 02, 2025</a></h2><h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/metabase/metabase" rel="noopener noreferrer">Metabase (⭐47k)</a> <em>(label: good first issue)</em> <br /> Open source business intelligence and analytics platform</li>
+<li><a href="https://github.com/metabase/metabase" rel="noopener noreferrer">Metabase (⭐49k)</a> <em>(label: good first issue)</em> <br /> Open source business intelligence and analytics platform</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/12/31/">Dec 31, 2024</a></h2><h3><p>Go</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pingcap/tidb" rel="noopener noreferrer">TiDB (⭐40k)</a> <em>(label: good first issue)</em> <br /> A distributed scalable Hybrid Transactional and Analytical Processing (HTAP) database</li>
+<li><a href="https://github.com/pingcap/tidb" rel="noopener noreferrer">TiDB (⭐41k)</a> <em>(label: good first issue)</em> <br /> A distributed scalable Hybrid Transactional and Analytical Processing (HTAP) database</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/12/15/">Dec 15, 2024</a></h2><h3><p>Kotlin</p>
 </h3>
 <ul>
-<li><a href="https://github.com/scribe-org/Scribe-Android" rel="noopener noreferrer">Scribe-Android (⭐94)</a> <em>(label: good first issue)</em> <br /> Android keyboards for language learners with translation, verb conjugation and more!</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2024/12/03/">Dec 03, 2024</a></h2><h3><p>Rust</p>
-</h3>
-<ul>
-<li><a href="https://github.com/tensorzero/tensorzero" rel="noopener noreferrer">TensorZero (⭐11k)</a> <em>(label: good-first-issue)</em> <br /> TensorZero creates a feedback loop for optimizing LLM applications — turning production data into smarter, faster, and cheaper models.</li>
+<li><a href="https://github.com/scribe-org/Scribe-Android" rel="noopener noreferrer">Scribe-Android (⭐107)</a> <em>(label: good first issue)</em> <br /> Android keyboards for language learners with translation, verb conjugation and more!</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/11/29/">Nov 29, 2024</a></h2><h3><p>C#</p>
 </h3>
 <ul>
-<li><a href="https://github.com/spectreconsole/spectre.console" rel="noopener noreferrer">Spectre.Console (⭐11k)</a> <em>(label: good first issue)</em> <br /> A .NET library that makes it easier to create beautiful console applications.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2024/11/21/">Nov 21, 2024</a></h2><h3><p>Python</p>
-</h3>
-<ul>
-<li><a href="https://github.com/tiangolo/fastapi" rel="noopener noreferrer">FastAPI (⭐97k)</a> <em>(label: good first issue)</em> <br /> A modern, fast (high-performance) web framework for building APIs with Python 3.6+ based on standard Python type hints.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2024/11/17/">Nov 17, 2024</a></h2><h3><p>Rust</p>
-</h3>
-<ul>
-<li><a href="https://github.com/security-union/zoom-rs" rel="noopener noreferrer">zoom-rs (⭐1.7k)</a> <em>(label: good first issue)</em> <br /> Teleconference system with a web based user interface written in Rust</li>
+<li><a href="https://github.com/spectreconsole/spectre.console" rel="noopener noreferrer">Spectre.Console (⭐12k)</a> <em>(label: good first issue)</em> <br /> A .NET library that makes it easier to create beautiful console applications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/11/16/">Nov 16, 2024</a></h2><h3><p>JavaScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/hmpl-language/hmpl" rel="noopener noreferrer">HMPL (⭐954)</a> <em>(label: good first issue)</em> <br /> Server-oriented customizable templating for JavaScript.</li>
+<li><a href="https://github.com/hmpl-language/hmpl" rel="noopener noreferrer">HMPL (⭐967)</a> <em>(label: good first issue)</em> <br /> Server-oriented customizable templating for JavaScript.</li>
 </ul>
 <h3><p>Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/harmonydata/harmony" rel="noopener noreferrer">Harmony (⭐54)</a> <em>(label: Good First Issue)</em> <br /> Natural language processing tool for psychologists to analyse and compare datasets with AI and LLMs.<br />Up for a challenge? Try <a href="https://harmonydata.ac.uk/doxa/" rel="noopener noreferrer">this LLM training competition</a> for a chance to win up to £500!</li>
+<li><a href="https://github.com/harmonydata/harmony" rel="noopener noreferrer">Harmony (⭐67)</a> <em>(label: Good First Issue)</em> <br /> Natural language processing tool for psychologists to analyse and compare datasets with AI and LLMs.<br />Up for a challenge? Try <a href="https://harmonydata.ac.uk/doxa/" rel="noopener noreferrer">this LLM training competition</a> for a chance to win up to £500!</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/11/04/">Nov 04, 2024</a></h2><h3><p>Pug</p>
 </h3>
 <ul>
 <li><a href="https://gitlab.com/rawsec/rawsec-cybersecurity-list" rel="noopener noreferrer">Rawsec Cybersecurity Inventory</a> <em>(label: difficulty::easy)</em> <br /> An inventory of tools and resources that aims to help people to find everything related to CyberSecurity.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2024/10/30/">Oct 30, 2024</a></h2><h3><p>Kotlin</p>
-</h3>
-<ul>
-<li><a href="https://github.com/Darkempire78/OpenCalc" rel="noopener noreferrer">OpenCalc (⭐1.4k)</a> <em>(label: good first issue)</em> <br /> A simple and beautiful calculator for Android.</li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2024/10/29/">Oct 29, 2024</a></h2><h3><p>Dart</p>
 </h3>
 <ul>
-<li><a href="https://github.com/openfoodfacts/smooth-app" rel="noopener noreferrer">OpenFoodFacts (⭐1.3k)</a> <em>(label: good first issue)</em> <br /> Collaborative, free and open database of food products from around the world. Scan barcode to get info or add a product</li>
+<li><a href="https://github.com/openfoodfacts/smooth-app" rel="noopener noreferrer">OpenFoodFacts (⭐1.4k)</a> <em>(label: good first issue)</em> <br /> Collaborative, free and open database of food products from around the world. Scan barcode to get info or add a product</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/10/26/">Oct 26, 2024</a></h2><h3><p>Julia</p>
 </h3>
@@ -265,20 +427,16 @@
 <h3><p>C#</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ppy/osu" rel="noopener noreferrer">osu! (⭐18k)</a> <em>(label: good first issue)</em> <br /> Music game. Rhythm is just a click away!</li>
+<li><a href="https://github.com/ppy/osu" rel="noopener noreferrer">osu! (⭐19k)</a> <em>(label: good first issue)</em> <br /> Music game. Rhythm is just a click away!</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/unoplatform/uno" rel="noopener noreferrer">Uno Platform (⭐9.9k)</a> <em>(label: good first issue)</em> <br /> OSS project for creating pixel-perfect, single-source C# and XAML apps which run natively on iOS, Android, macOS, Linux and Web via WebAssembly.</li>
+<li><a href="https://github.com/unoplatform/uno" rel="noopener noreferrer">Uno Platform (⭐10k)</a> <em>(label: good first issue)</em> <br /> OSS project for creating pixel-perfect, single-source C# and XAML apps which run natively on iOS, Android, macOS, Linux and Web via WebAssembly.</li>
 </ul>
 <h3><p>JavaScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/electron/electron" rel="noopener noreferrer">electron (⭐121k)</a> <em>(label: good first issue)</em> <br /> Build cross platform desktop apps with JavaScript, HTML, and CSS</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/imolorhe/altair" rel="noopener noreferrer">altair (⭐5.4k)</a> <em>(label: good first issue)</em> <br /> A beautiful feature-rich GraphQL Client for all platforms.</li>
+<li><a href="https://github.com/electron/electron" rel="noopener noreferrer">electron (⭐123k)</a> <em>(label: good first issue)</em> <br /> Build cross platform desktop apps with JavaScript, HTML, and CSS</li>
 </ul>
 
 <ul>
@@ -286,23 +444,19 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/brave/brave-browser" rel="noopener noreferrer">Brave Browser (⭐22k)</a> <em>(label: good first issue)</em> <br /> Desktop browser for macOS, Windows, and Linux.</li>
+<li><a href="https://github.com/brave/brave-browser" rel="noopener noreferrer">Brave Browser (⭐24k)</a> <em>(label: good first issue)</em> <br /> Desktop browser for macOS, Windows, and Linux.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/jwu910/check-it-out" rel="noopener noreferrer">Check It Out (⭐164)</a> <em>(label: good first issue)</em> <br /> Check It Out is an ncurses-like CLI to let the user interactively navigate and select a git branch to check out.</li>
+<li><a href="https://github.com/jwu910/check-it-out" rel="noopener noreferrer">Check It Out (⭐165)</a> <em>(label: good first issue)</em> <br /> Check It Out is an ncurses-like CLI to let the user interactively navigate and select a git branch to check out.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/facebook/create-react-app" rel="noopener noreferrer">Create React App (⭐104k)</a> <em>(label: good first issue)</em> <br /> Create React apps with no build configuration.</li>
+<li><a href="https://github.com/eslint/eslint" rel="noopener noreferrer">ESLint (⭐28k)</a> <em>(label: good first issue)</em> <br /> A fully pluggable tool for identifying and reporting on patterns in JavaScript.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/eslint/eslint" rel="noopener noreferrer">ESLint (⭐27k)</a> <em>(label: good first issue)</em> <br /> A fully pluggable tool for identifying and reporting on patterns in JavaScript.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/fastify/fastify" rel="noopener noreferrer">Fastify (⭐36k)</a> <em>(label: good first issue)</em> <br /> Fast and low overhead web framework, for Node.js.</li>
+<li><a href="https://github.com/fastify/fastify" rel="noopener noreferrer">Fastify (⭐37k)</a> <em>(label: good first issue)</em> <br /> Fast and low overhead web framework, for Node.js.</li>
 </ul>
 
 <ul>
@@ -310,11 +464,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/TryGhost/Ghost" rel="noopener noreferrer">Ghost (⭐52k)</a> <em>(label: good first issue)</em> <br /> Just a blogging platform</li>
+<li><a href="https://github.com/TryGhost/Ghost" rel="noopener noreferrer">Ghost (⭐55k)</a> <em>(label: good first issue)</em> <br /> Just a blogging platform</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/grommet/grommet" rel="noopener noreferrer">grommet (⭐8.4k)</a> <em>(label: good first issue)</em> <br /> a react-based framework that provides accessibility, modularity, responsiveness, and theming in a tidy package</li>
+<li><a href="https://github.com/grommet/grommet" rel="noopener noreferrer">grommet (⭐8.3k)</a> <em>(label: good first issue)</em> <br /> a react-based framework that provides accessibility, modularity, responsiveness, and theming in a tidy package</li>
 </ul>
 
 <ul>
@@ -322,7 +476,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/hoppscotch/hoppscotch" rel="noopener noreferrer">Hoppscotch (⭐79k)</a> <em>(label: good first issue)</em> <br /> A free, fast and beautiful API request builder.</li>
+<li><a href="https://github.com/hoppscotch/hoppscotch" rel="noopener noreferrer">Hoppscotch (⭐81k)</a> <em>(label: good first issue)</em> <br /> A free, fast and beautiful API request builder.</li>
 </ul>
 
 <ul>
@@ -330,11 +484,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/facebook/jest" rel="noopener noreferrer">Jest (⭐45k)</a> <em>(label: good first issue)</em> <br /> A complete and easy to set up JavaScript testing solution.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/Leaflet/Leaflet" rel="noopener noreferrer">Leaflet (⭐45k)</a> <em>(label: good first issue)</em> <br /> JavaScript library for mobile-friendly interactive maps.</li>
+<li><a href="https://github.com/Leaflet/Leaflet" rel="noopener noreferrer">Leaflet (⭐46k)</a> <em>(label: good first issue)</em> <br /> JavaScript library for mobile-friendly interactive maps.</li>
 </ul>
 
 <ul>
@@ -346,31 +496,23 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/osmlab/name-suggestion-index" rel="noopener noreferrer">name-suggestion-index (⭐823)</a> <em>(label: good first issue)</em> <br /> Canonical common brand names for OpenStreetMap</li>
+<li><a href="https://github.com/osmlab/name-suggestion-index" rel="noopener noreferrer">name-suggestion-index (⭐882)</a> <em>(label: good first issue)</em> <br /> Canonical common brand names for OpenStreetMap</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/NativeScript/NativeScript" rel="noopener noreferrer">NativeScript (⭐25k)</a> <em>(label: good first issue)</em> <br /> NativeScript is an open source framework for building truly native mobile apps with JavaScript. Use web skills, like Angular and Vue.js, FlexBox and CSS, and get native UI and performance on iOS and Android.</li>
+<li><a href="https://github.com/NativeScript/NativeScript" rel="noopener noreferrer">NativeScript (⭐26k)</a> <em>(label: good first issue)</em> <br /> NativeScript is an open source framework for building truly native mobile apps with JavaScript. Use web skills, like Angular and Vue.js, FlexBox and CSS, and get native UI and performance on iOS and Android.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/netlify/netlify-cms" rel="noopener noreferrer">netlify-cms (⭐19k)</a> <em>(label: good first issue)</em> <br /> Open source content management for your git workflow.</li>
+<li><a href="https://github.com/nodejs/node" rel="noopener noreferrer">Node.js core (⭐122k)</a> <em>(label: good first issue)</em> <br /> JavaScript runtime built on Chrome's V8 JavaScript engine</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/nodejs/node" rel="noopener noreferrer">Node.js core (⭐117k)</a> <em>(label: good first issue)</em> <br /> JavaScript runtime built on Chrome's V8 JavaScript engine</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/nukeop/nuclear" rel="noopener noreferrer">nuclear (⭐17k)</a> <em>(label: good first issue)</em> <br /> Multiplatform music player that streams from free sources.</li>
+<li><a href="https://github.com/nukeop/nuclear" rel="noopener noreferrer">nuclear (⭐19k)</a> <em>(label: good first issue)</em> <br /> Multiplatform music player that streams from free sources.</li>
 </ul>
 
 <ul>
 <li><a href="https://github.com/processing/p5.js" rel="noopener noreferrer">p5.js (⭐24k)</a> <em>(label: good first issue)</em> <br /> p5.js is a client-side JS platform that empowers artists, designers, students, and anyone to learn to code and express themselves creatively on the web.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/facebook/react" rel="noopener noreferrer">React (⭐244k)</a> <em>(label: good first issue)</em> <br /> A declarative, efficient, and flexible JavaScript library for building user interfaces.</li>
 </ul>
 
 <ul>
@@ -382,7 +524,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/sveltejs/svelte" rel="noopener noreferrer">Svelte (⭐86k)</a> <em>(label: good first issue)</em> <br /> Component framework that runs at build time, converting your components into highly efficient imperative code that surgically updates the DOM.</li>
+<li><a href="https://github.com/sveltejs/svelte" rel="noopener noreferrer">Svelte (⭐88k)</a> <em>(label: good first issue)</em> <br /> Component framework that runs at build time, converting your components into highly efficient imperative code that surgically updates the DOM.</li>
 </ul>
 
 <ul>
@@ -394,11 +536,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/whyboris/Video-Hub-App" rel="noopener noreferrer">Video Hub App (⭐693)</a> <em>(label: good first issue)</em> <br /> Angular &amp; Electron app for browsing and searching videos on your PC.</li>
+<li><a href="https://github.com/whyboris/Video-Hub-App" rel="noopener noreferrer">Video Hub App (⭐728)</a> <em>(label: good first issue)</em> <br /> Angular &amp; Electron app for browsing and searching videos on your PC.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/vuejs/vue" rel="noopener noreferrer">Vue.js (⭐210k)</a> <em>(label: good first issue)</em> <br /> The Progressive JavaScript Framework.</li>
+<li><a href="https://github.com/vuejs/vue" rel="noopener noreferrer">Vue.js (⭐213k)</a> <em>(label: good first issue)</em> <br /> The Progressive JavaScript Framework.</li>
 </ul>
 
 <ul>
@@ -407,40 +549,24 @@
 <h3><p>C++</p>
 </h3>
 <ul>
-<li><a href="https://github.com/oceanbase/miniob" rel="noopener noreferrer">MiniOB (⭐4.3k)</a> <em>(label: good first issue)</em> <br /> MiniOB is a compact database that assists developers in understanding the fundamental workings of a database(main language is Chinese).</li>
+<li><a href="https://github.com/oceanbase/miniob" rel="noopener noreferrer">MiniOB (⭐4.4k)</a> <em>(label: good first issue)</em> <br /> MiniOB is a compact database that assists developers in understanding the fundamental workings of a database(main language is Chinese).</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/ros-planning/moveit" rel="noopener noreferrer">MoveIt (⭐2k)</a> <em>(label: good first issue)</em> <br /> Easy-to-use open source robotics manipulation platform for developing commercial applications, prototyping designs, and benchmarking algorithms.</li>
+<li><a href="https://github.com/projectM-visualizer/projectm" rel="noopener noreferrer">projectM (⭐4.5k)</a> <em>(label: good first issue)</em> <br /> A music visualizer library using OpenGL and GLSL. Has applications using Qt5, SDL, emscripten, iTunes, Kodi.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/projectM-visualizer/projectm" rel="noopener noreferrer">projectM (⭐4.1k)</a> <em>(label: good first issue)</em> <br /> A music visualizer library using OpenGL and GLSL. Has applications using Qt5, SDL, emscripten, iTunes, Kodi.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/yugabyte/yugabyte-db" rel="noopener noreferrer">Yugabyte DB (⭐10k)</a> <em>(label: good first issue)</em> <br /> Distributed SQL database.</li>
+<li><a href="https://github.com/yugabyte/yugabyte-db" rel="noopener noreferrer">Yugabyte DB (⭐11k)</a> <em>(label: good first issue)</em> <br /> Distributed SQL database.</li>
 </ul>
 <h3><p>Go</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dragonflyoss/Dragonfly2" rel="noopener noreferrer">Dragonfly (⭐3.1k)</a> <em>(label: good first issue)</em> <br /> Provide efficient, stable and secure file distribution and image acceleration based on p2p technology</li>
+<li><a href="https://github.com/kanisterio/kanister" rel="noopener noreferrer">Kanister (⭐887)</a> <em>(label: good first issue)</em> <br /> A Data Protection Workflow Management Engine</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/kubernetes/helm" rel="noopener noreferrer">Helm (⭐30k)</a> <em>(label: good first issue)</em> <br /> The Kubernetes Package Manager</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/kanisterio/kanister" rel="noopener noreferrer">Kanister (⭐868)</a> <em>(label: good first issue)</em> <br /> A Data Protection Workflow Management Engine</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/kubernetes/kubernetes" rel="noopener noreferrer">Kubernetes (⭐122k)</a> <em>(label: good first issue)</em> <br /> Production-Grade Container Scheduling and Management System</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/layer5io/meshery" rel="noopener noreferrer">Meshery (⭐10k)</a> <em>(label: good first issue)</em> <br /> Meshery, the service mesh management plane.</li>
+<li><a href="https://github.com/kubernetes/kubernetes" rel="noopener noreferrer">Kubernetes (⭐128k)</a> <em>(label: good first issue)</em> <br /> Production-Grade Container Scheduling and Management System</li>
 </ul>
 
 <ul>
@@ -448,32 +574,32 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/hashicorp/terraform" rel="noopener noreferrer">Terraform (⭐48k)</a> <em>(label: good first issue)</em> <br /> A tool for building, changing, and versioning infrastructure safely and efficiently.</li>
+<li><a href="https://github.com/hashicorp/terraform" rel="noopener noreferrer">Terraform (⭐50k)</a> <em>(label: good first issue)</em> <br /> A tool for building, changing, and versioning infrastructure safely and efficiently.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/kashifkhan0771/utils" rel="noopener noreferrer">utils (⭐44)</a> <em>(label: good first issue)</em> <br /> Common Utilities library for Go</li>
+<li><a href="https://github.com/kashifkhan0771/utils" rel="noopener noreferrer">utils (⭐50)</a> <em>(label: good first issue)</em> <br /> Common Utilities library for Go</li>
 </ul>
 <h3><p>Java</p>
 </h3>
 <ul>
-<li><a href="https://github.com/codenameone/CodenameOne" rel="noopener noreferrer">Codename One (⭐1.8k)</a> <em>(label: good first issue)</em> <br /> Cross-platform mobile app development framework for Java developers</li>
+<li><a href="https://github.com/codenameone/CodenameOne" rel="noopener noreferrer">Codename One (⭐1.9k)</a> <em>(label: good first issue)</em> <br /> Cross-platform mobile app development framework for Java developers</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/abhishektripathi66/DSA" rel="noopener noreferrer">DSA (⭐118)</a> <em>(label: good first issue)</em> <br /> DSA questions practising repo for Java developers</li>
+<li><a href="https://github.com/abhishektripathi66/DSA" rel="noopener noreferrer">DSA (⭐143)</a> <em>(label: good first issue)</em> <br /> DSA questions practising repo for Java developers</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/elastic/elasticsearch" rel="noopener noreferrer">elasticsearch (⭐76k)</a> <em>(label: good first issue)</em> <br /> Open Source, Distributed, RESTful Search Engine.</li>
+<li><a href="https://github.com/elastic/elasticsearch" rel="noopener noreferrer">elasticsearch (⭐78k)</a> <em>(label: good first issue)</em> <br /> Open Source, Distributed, RESTful Search Engine.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/JabRef/jabref" rel="noopener noreferrer">JabRef (⭐4.3k)</a> <em>(label: good first issue)</em> <br /> Desktop application for managing literature references using modern Java features including JavaFX. Dedicated to code quality and constructive feedback: Each Pull Request is reviewed by two developers to provide high-quality feedback and to ensure high quality of new contributions.</li>
+<li><a href="https://github.com/JabRef/jabref" rel="noopener noreferrer">JabRef (⭐4.8k)</a> <em>(label: good first issue)</em> <br /> Desktop application for managing literature references using modern Java features including JavaFX. Dedicated to code quality and constructive feedback: Each Pull Request is reviewed by two developers to provide high-quality feedback and to ensure high quality of new contributions.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/TEAMMATES/teammates" rel="noopener noreferrer">TEAMMATES (⭐1.8k)</a> <em>(label: good first issue)</em> <br /> TEAMMATES is a free online tool for managing peer evaluations and other feedback paths of your students.</li>
+<li><a href="https://github.com/TEAMMATES/teammates" rel="noopener noreferrer">TEAMMATES (⭐1.9k)</a> <em>(label: good first issue)</em> <br /> TEAMMATES is a free online tool for managing peer evaluations and other feedback paths of your students.</li>
 </ul>
 
 <ul>
@@ -490,12 +616,12 @@
 <h3><p>Typescript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/appsmithorg/appsmith" rel="noopener noreferrer">appsmith (⭐40k)</a> <em>(label: good first issue)</em> <br /> Drag &amp; Drop internal tool builder</li>
+<li><a href="https://github.com/appsmithorg/appsmith" rel="noopener noreferrer">appsmith (⭐41k)</a> <em>(label: good first issue)</em> <br /> Drag &amp; Drop internal tool builder</li>
 </ul>
 <h3><p>Kotlin</p>
 </h3>
 <ul>
-<li><a href="https://github.com/robstoll/atrium" rel="noopener noreferrer">Atrium (⭐622)</a> <em>(label: good first issue)</em> <br /> Multiplatform assertion library for Kotlin</li>
+<li><a href="https://github.com/robstoll/atrium" rel="noopener noreferrer">Atrium (⭐632)</a> <em>(label: good first issue)</em> <br /> Multiplatform assertion library for Kotlin</li>
 </ul>
 
 <ul>
@@ -504,12 +630,12 @@
 <h3><p>Perl</p>
 </h3>
 <ul>
-<li><a href="https://github.com/UPC/ravada" rel="noopener noreferrer">Ravada (⭐626)</a> <em>(label: good first issue)</em> <br /> Remote Virtual Desktops Manager.</li>
+<li><a href="https://github.com/UPC/ravada" rel="noopener noreferrer">Ravada (⭐652)</a> <em>(label: good first issue)</em> <br /> Remote Virtual Desktops Manager.</li>
 </ul>
 <h3><p>PHP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/appwrite/appwrite" rel="noopener noreferrer">Appwrite (⭐56k)</a> <em>(label: good first issue)</em> <br /> An End-to-end backend server for frontend and mobile developers. 🚀</li>
+<li><a href="https://github.com/appwrite/appwrite" rel="noopener noreferrer">Appwrite (⭐57k)</a> <em>(label: good first issue)</em> <br /> An End-to-end backend server for frontend and mobile developers. 🚀</li>
 </ul>
 
 <ul>
@@ -517,11 +643,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/nextcloud/server" rel="noopener noreferrer">NextCloud Server (⭐35k)</a> <em>(label: good first issue)</em> <br /> Nextcloud server, a safe home for all your data.</li>
+<li><a href="https://github.com/nextcloud/server" rel="noopener noreferrer">NextCloud Server (⭐37k)</a> <em>(label: good first issue)</em> <br /> Nextcloud server, a safe home for all your data.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/PrestaShop/PrestaShop" rel="noopener noreferrer">PrestaShop (⭐9k)</a> <em>(label: good first issue)</em> <br /> The open source ecommerce solution to start your online business and start selling online.</li>
+<li><a href="https://github.com/PrestaShop/PrestaShop" rel="noopener noreferrer">PrestaShop (⭐9.2k)</a> <em>(label: good first issue)</em> <br /> The open source ecommerce solution to start your online business and start selling online.</li>
 </ul>
 
 <ul>
@@ -534,11 +660,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/CiviWiki/OpenCiviWiki" rel="noopener noreferrer">CiviWiki (⭐620)</a> <em>(label: good first issue)</em> <br /> Building a Better Democracy for the Internet Age</li>
+<li><a href="https://github.com/CiviWiki/OpenCiviWiki" rel="noopener noreferrer">CiviWiki (⭐630)</a> <em>(label: good first issue)</em> <br /> Building a Better Democracy for the Internet Age</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/data-8/datascience" rel="noopener noreferrer">datascience (⭐755)</a> <em>(label: good first issue)</em> <br /> A Jupyter notebook Python library for introductory data science.</li>
+<li><a href="https://github.com/data-8/datascience" rel="noopener noreferrer">datascience (⭐790)</a> <em>(label: good first issue)</em> <br /> A Jupyter notebook Python library for introductory data science.</li>
 </ul>
 
 <ul>
@@ -550,56 +676,52 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mindsdb/mindsdb" rel="noopener noreferrer">MindsDB (⭐39k)</a> <em>(label: good first issue)</em> <br /> MindsDB is an open source AI layer for existing databases.</li>
+<li><a href="https://github.com/opsdroid/opsdroid" rel="noopener noreferrer">opsdroid (⭐869)</a> <em>(label: good first issue)</em> <br /> An open source chat-ops bot framework.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/opsdroid/opsdroid" rel="noopener noreferrer">opsdroid (⭐863)</a> <em>(label: good first issue)</em> <br /> An open source chat-ops bot framework.</li>
+<li><a href="https://github.com/pandas-dev/pandas" rel="noopener noreferrer">pandas (⭐50k)</a> <em>(label: good first issue)</em> <br /> Flexible and powerful data analysis / manipulation library for Python, providing labeled data structures similar to R data.frame objects, statistical functions, and much more</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/pandas-dev/pandas" rel="noopener noreferrer">pandas (⭐48k)</a> <em>(label: good first issue)</em> <br /> Flexible and powerful data analysis / manipulation library for Python, providing labeled data structures similar to R data.frame objects, statistical functions, and much more</li>
+<li><a href="https://github.com/pytorch/pytorch" rel="noopener noreferrer">Pytorch</a> <em>(label: good first issue)</em> <br /> PyTorch is an open source machine learning library based on the Torch library, used for applications such as computer vision and natural language processing.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/pytorch/pytorch" rel="noopener noreferrer">Pytorch (⭐99k)</a> <em>(label: good first issue)</em> <br /> PyTorch is an open source machine learning library based on the Torch library, used for applications such as computer vision and natural language processing.</li>
+<li><a href="https://github.com/saltstack/salt" rel="noopener noreferrer">SaltStack (⭐16k)</a> <em>(label: good first issue)</em> <br /> Software to automate the management and configuration of any infrastructure or application at scale.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/saltstack/salt" rel="noopener noreferrer">SaltStack (⭐15k)</a> <em>(label: good first issue)</em> <br /> Software to automate the management and configuration of any infrastructure or application at scale.</li>
+<li><a href="https://github.com/scikit-learn/scikit-learn" rel="noopener noreferrer">scikit-learn (⭐67k)</a> <em>(label: good first issue)</em> <br /> Scikit-learn is a machine learning library for Python.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/scikit-learn/scikit-learn" rel="noopener noreferrer">scikit-learn (⭐66k)</a> <em>(label: good first issue)</em> <br /> Scikit-learn is a machine learning library for Python.</li>
+<li><a href="https://github.com/scrapy/scrapy" rel="noopener noreferrer">scrapy (⭐65k)</a> <em>(label: good first issue)</em> <br /> A fast high-level web crawling &amp; scraping framework for Python.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/scrapy/scrapy" rel="noopener noreferrer">scrapy (⭐61k)</a> <em>(label: good first issue)</em> <br /> A fast high-level web crawling &amp; scraping framework for Python.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/zulip/zulip" rel="noopener noreferrer">Zulip (⭐25k)</a> <em>(label: good first issue)</em> <br /> Powerful open source group chat.</li>
+<li><a href="https://github.com/zulip/zulip" rel="noopener noreferrer">Zulip (⭐26k)</a> <em>(label: good first issue)</em> <br /> Powerful open source group chat.</li>
 </ul>
 <h3><p>Ruby</p>
 </h3>
 <ul>
-<li><a href="https://github.com/chatwoot/chatwoot" rel="noopener noreferrer">chatwoot (⭐28k)</a> <em>(label: good first issue)</em> <br /> Opensource customer support platform which can be an alternative to Intercom, Zendesk, Drift, Crisp etc.</li>
+<li><a href="https://github.com/chatwoot/chatwoot" rel="noopener noreferrer">chatwoot (⭐37k)</a> <em>(label: good first issue)</em> <br /> Opensource customer support platform which can be an alternative to Intercom, Zendesk, Drift, Crisp etc.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Multiwoven/multiwoven" rel="noopener noreferrer">multiwoven (⭐1.6k)</a> <em>(label: good first issue)</em> <br /> The open-source reverse ETL, data activation platform for modern data teams.</li>
+<li><a href="https://github.com/Multiwoven/multiwoven" rel="noopener noreferrer">multiwoven (⭐1.7k)</a> <em>(label: good first issue)</em> <br /> The open-source reverse ETL, data activation platform for modern data teams.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/openSUSE/open-build-service" rel="noopener noreferrer">open-build-service (⭐1k)</a> <em>(label: good first issue-🥇)</em> <br /> A generic system to build and distribute packages from sources in an automatic, consistent and reproducible way.</li>
+<li><a href="https://github.com/openSUSE/open-build-service" rel="noopener noreferrer">open-build-service (⭐1.1k)</a> <em>(label: good first issue-🥇)</em> <br /> A generic system to build and distribute packages from sources in an automatic, consistent and reproducible way.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/openSUSE/osem" rel="noopener noreferrer">osem (⭐911)</a> <em>(label: good first issue)</em> <br /> Open Source Event Manager. An event management tool tailored to Free and Open Source Software conferences</li>
+<li><a href="https://github.com/openSUSE/osem" rel="noopener noreferrer">osem (⭐926)</a> <em>(label: good first issue)</em> <br /> Open Source Event Manager. An event management tool tailored to Free and Open Source Software conferences</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/rails/rails" rel="noopener noreferrer">Ruby on Rails (⭐58k)</a> <em>(label: good first issue)</em> <br /> Ruby on Rails (Rails) is an open source web application framework written in Ruby.</li>
+<li><a href="https://github.com/rails/rails" rel="noopener noreferrer">Ruby on Rails (⭐59k)</a> <em>(label: good first issue)</em> <br /> Ruby on Rails (Rails) is an open source web application framework written in Ruby.</li>
 </ul>
 
 <ul>
@@ -608,23 +730,15 @@
 <h3><p>Rust</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dotenv-linter/dotenv-linter" rel="noopener noreferrer">dotenv-linter (⭐2.1k)</a> <em>(label: good first issue)</em> <br /> Lightning-fast linter for .env files. Written in Rust</li>
+<li><a href="https://github.com/nushell/nushell" rel="noopener noreferrer">nushell (⭐41k)</a> <em>(label: good first issue)</em> <br /> A modern shell for the GitHub era written in Rust.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/nushell/nushell" rel="noopener noreferrer">nushell (⭐39k)</a> <em>(label: good first issue)</em> <br /> A modern shell for the GitHub era written in Rust.</li>
+<li><a href="https://github.com/rust-lang/rust-clippy" rel="noopener noreferrer">Rust-Clippy (⭐14k)</a> <em>(label: good first issue)</em> <br /> A bunch of lints to catch common mistakes and improve Rust code</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/rust-lang/rust-clippy" rel="noopener noreferrer">Rust-Clippy (⭐13k)</a> <em>(label: good first issue)</em> <br /> A bunch of lints to catch common mistakes and improve Rust code</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/rust-lang-nursery/rustfmt" rel="noopener noreferrer">Rustfmt (⭐6.8k)</a> <em>(label: good first issue)</em> <br /> A tool for formatting Rust code according to style guidelines.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/GyulyVGC/sniffnet" rel="noopener noreferrer">Sniffnet (⭐33k)</a> <em>(label: good first issue)</em> <br /> Application to comfortably monitor network traffic.</li>
+<li><a href="https://github.com/GyulyVGC/sniffnet" rel="noopener noreferrer">Sniffnet (⭐41k)</a> <em>(label: good first issue)</em> <br /> Application to comfortably monitor network traffic.</li>
 </ul>
 <h3><p>Scala</p>
 </h3>
@@ -638,55 +752,43 @@
 <h3><p>Smalltalk</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pharo-project/pharo" rel="noopener noreferrer">Pharo (⭐1.4k)</a> <em>(label: good first issue)</em> <br /> A dynamic reflective pure object-oriented language supporting live programming inspired by Smalltalk.</li>
+<li><a href="https://github.com/pharo-project/pharo" rel="noopener noreferrer">Pharo (⭐1.5k)</a> <em>(label: good first issue)</em> <br /> A dynamic reflective pure object-oriented language supporting live programming inspired by Smalltalk.</li>
 </ul>
 <h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/boostercloud/booster" rel="noopener noreferrer">Booster (⭐441)</a> <em>(label: good first issue)</em> <br /> A truly serverless framework, write your code and deploy it in seconds without any server configuration files.</li>
+<li><a href="https://github.com/boostercloud/booster" rel="noopener noreferrer">Booster (⭐447)</a> <em>(label: good first issue)</em> <br /> A truly serverless framework, write your code and deploy it in seconds without any server configuration files.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/aerogear/graphback" rel="noopener noreferrer">Graphback (⭐408)</a> <em>(label: good first issue)</em> <br /> A CLI and runtime framework to generate a GraphQL API in seconds.</li>
+<li><a href="https://github.com/implerhq/impler.io" rel="noopener noreferrer">Impler.io (⭐293)</a> <em>(label: good first issue)</em> <br /> 100% open source data import experience with readymade CSV &amp; Excel import widget 🚀</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/implerhq/impler.io" rel="noopener noreferrer">Impler.io (⭐279)</a> <em>(label: good first issue)</em> <br /> 100% open source data import experience with readymade CSV &amp; Excel import widget 🚀</li>
+<li><a href="https://github.com/litmuschaos/litmus" rel="noopener noreferrer">LitmusChaos (⭐5.6k)</a> <em>(label: good first issue)</em> <br /> Litmus is a toolset to do cloud-native chaos engineering.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/litmuschaos/litmus" rel="noopener noreferrer">LitmusChaos (⭐5.3k)</a> <em>(label: good first issue)</em> <br /> Litmus is a toolset to do cloud-native chaos engineering.</li>
+<li><a href="https://github.com/Microsoft/TypeScript" rel="noopener noreferrer">TypeScript (⭐111k)</a> <em>(label: good first issue)</em> <br /> A superset of JavaScript that compiles to clean JavaScript output.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/artalar/reatom" rel="noopener noreferrer">reatom (⭐1.3k)</a> <em>(label: good first issue)</em> <br /> Reatom is declarative and reactive state manager, designed for both simple and complex applications.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/talentlessguy/tinyhttp" rel="noopener noreferrer">tinyhttp (⭐2.9k)</a> <em>(label: good first issue)</em> <br /> A 0-legacy, tiny &amp; fast web framework as a replacement of Express.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/Microsoft/TypeScript" rel="noopener noreferrer">TypeScript (⭐108k)</a> <em>(label: good first issue)</em> <br /> A superset of JavaScript that compiles to clean JavaScript output.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/Microsoft/vscode" rel="noopener noreferrer">Visual Studio Code (⭐184k)</a> <em>(label: good first issue)</em> <br /> A code editor redefined and optimized for building and debugging modern web and cloud applications.</li>
+<li><a href="https://github.com/Microsoft/vscode" rel="noopener noreferrer">Visual Studio Code (⭐193k)</a> <em>(label: good first issue)</em> <br /> A code editor redefined and optimized for building and debugging modern web and cloud applications.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/10/21/">Oct 21, 2024</a></h2><h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/oppia/oppia" rel="noopener noreferrer">Oppia (⭐6.6k)</a> <em>(label: good first issue)</em> <br /> Oppia is an open-source project whose aim is to empower learners across the globe by providing access to high-quality, engaging education. We envision a society in which access to high-quality education is a human right rather than a privilege.</li>
+<li><a href="https://github.com/oppia/oppia" rel="noopener noreferrer">Oppia (⭐6.8k)</a> <em>(label: good first issue)</em> <br /> Oppia is an open-source project whose aim is to empower learners across the globe by providing access to high-quality, engaging education. We envision a society in which access to high-quality education is a human right rather than a privilege.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2024/10/19/">Oct 19, 2024</a></h2><h3><p>C++</p>
 </h3>
 <ul>
-<li><a href="https://github.com/f3d-app/f3d" rel="noopener noreferrer">F3D (⭐4.2k)</a> <em>(label: good first issue)</em> <br /> Fast and minimalist 3D viewer.</li>
+<li><a href="https://github.com/f3d-app/f3d" rel="noopener noreferrer">F3D (⭐4.7k)</a> <em>(label: good first issue)</em> <br /> Fast and minimalist 3D viewer.</li>
 </ul>
 <h3><p>Dart</p>
 </h3>
 <ul>
-<li><a href="https://github.com/flutter/flutter" rel="noopener noreferrer">flutter (⭐176k)</a> <em>(label: good first issue)</em> <br /> Flutter is Google's UI toolkit for building beautiful, natively compiled applications for mobile, web, desktop, and embedded devices from a single codebase.</li>
+<li><a href="https://github.com/flutter/flutter" rel="noopener noreferrer">flutter (⭐179k)</a> <em>(label: good first issue)</em> <br /> Flutter is Google's UI toolkit for building beautiful, natively compiled applications for mobile, web, desktop, and embedded devices from a single codebase.</li>
 </ul>
 <h3><p>Java</p>
 </h3>
@@ -696,33 +798,29 @@
 <h3><p>TypeScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/storybookjs/storybook" rel="noopener noreferrer">Storybook JS (⭐90k)</a> <em>(label: good first issue)</em> <br /> Storybook is a frontend workshop for building UI components and pages in isolation.</li>
+<li><a href="https://github.com/storybookjs/storybook" rel="noopener noreferrer">Storybook JS (⭐91k)</a> <em>(label: good first issue)</em> <br /> Storybook is a frontend workshop for building UI components and pages in isolation.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/vitejs/vite" rel="noopener noreferrer">Vite (⭐79k)</a> <em>(label: good first issue)</em> <br /> Next generation frontend tooling. It's fast! Alternative to Create React App</li>
+<li><a href="https://github.com/vitejs/vite" rel="noopener noreferrer">Vite (⭐83k)</a> <em>(label: good first issue)</em> <br /> Next generation frontend tooling. It's fast! Alternative to Create React App</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/activist-org/activist" rel="noopener noreferrer">activist (⭐653)</a> <em>(label: good first issue)</em> <br /> activist.org is a network for political action that allows people to coordinate and collaborate on the issues that matter most to them.</li>
+<li><a href="https://github.com/activist-org/activist" rel="noopener noreferrer">activist (⭐748)</a> <em>(label: good first issue)</em> <br /> activist.org is a network for political action that allows people to coordinate and collaborate on the issues that matter most to them.</li>
 </ul>
 
 <ul>
 <li><a href="https://github.com/rupali-codes/LinksHub" rel="noopener noreferrer">LinksHub (⭐1k)</a> <em>(label: good first issue)</em> <br /> LinksHub aims to provide developers with access to a wide range of free resources and tools that they can use in their work.</li>
 </ul>
-<h3><p>Python</p>
-</h3>
-<ul>
-<li><a href="https://github.com/SuperDuperDB/superduperdb" rel="noopener noreferrer">SuperDuperDB (⭐5.3k)</a> <em>(label: good first issue)</em> <br /> 🔮SuperDuperDB: Bring AI to your favourite database! Integrate, train and manage any AI models and APIs directly with your database and your data</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/Udayraj123/OMRChecker" rel="noopener noreferrer">OMRChecker (⭐1k)</a> <em>(label: good first issue)</em> <br /> OMRChecker helps to grade exams fast and accurately using a scanner 🖨 or your phone 🤳. Learn image processing with Python and OpenCV while contributing to one of the most popular repositories related to OMR topic on github.</li>
-</ul>
 <h3><p>PHP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/FreshRSS/FreshRSS" rel="noopener noreferrer">FreshRSS (⭐15k)</a> <em>(label: good first issue)</em> <br /> FreshRSS is a self-hosted RSS and Atom feed aggregator. It is lightweight, easy to work with, powerful, and customizable. Since 2012.</li>
+<li><a href="https://github.com/FreshRSS/FreshRSS" rel="noopener noreferrer">FreshRSS (⭐16k)</a> <em>(label: good first issue)</em> <br /> FreshRSS is a self-hosted RSS and Atom feed aggregator. It is lightweight, easy to work with, powerful, and customizable. Since 2012.</li>
+</ul>
+<h3><p>Python</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Udayraj123/OMRChecker" rel="noopener noreferrer">OMRChecker (⭐1.2k)</a> <em>(label: good first issue)</em> <br /> OMRChecker helps to grade exams fast and accurately using a scanner 🖨 or your phone 🤳. Learn image processing with Python and OpenCV while contributing to one of the most popular repositories related to OMR topic on github.</li>
 </ul>
 <h3><p>Ruby</p>
 </h3>
@@ -732,7 +830,7 @@
 <h3><p>Swift</p>
 </h3>
 <ul>
-<li><a href="https://github.com/mikaelacaron/Basic-Car-Maintenance" rel="noopener noreferrer">Basic-Car-Maintenance (⭐329)</a> <em>(label: good first issue)</em> <br /> A basic app to track your car's maintenance events, like fixes, oil changes, etc.</li>
+<li><a href="https://github.com/mikaelacaron/Basic-Car-Maintenance" rel="noopener noreferrer">Basic-Car-Maintenance (⭐336)</a> <em>(label: good first issue)</em> <br /> A basic app to track your car's maintenance events, like fixes, oil changes, etc.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/09/26/">Sep 26, 2022</a></h2><h3><p>TypeScript</p>
 </h3>
@@ -741,58 +839,48 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/open-metadata/OpenMetadata" rel="noopener noreferrer">OpenMetadata (⭐9.6k)</a> <em>(label: good first issue)</em> <br /> OpenMetadata is an all-in-one platform for data discovery, data quality, observability, governance, data lineage, and team collaboration.</li>
+<li><a href="https://github.com/open-metadata/OpenMetadata" rel="noopener noreferrer">OpenMetadata (⭐15k)</a> <em>(label: good first issue)</em> <br /> OpenMetadata is an all-in-one platform for data discovery, data quality, observability, governance, data lineage, and team collaboration.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/h2oai/wave" rel="noopener noreferrer">H2O Wave (⭐4.2k)</a> <em>(label: good first issue)</em> <br /> Realtime Web Apps and Dashboards framework for Python and R. Suited (not only) for AI audience.</li>
+<li><a href="https://github.com/h2oai/wave" rel="noopener noreferrer">H2O Wave (⭐4.3k)</a> <em>(label: good first issue)</em> <br /> Realtime Web Apps and Dashboards framework for Python and R. Suited (not only) for AI audience.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/09/19/">Sep 19, 2022</a></h2><h3><p>.NET</p>
 </h3>
 <ul>
-<li><a href="https://github.com/MADE-Apps/legerity" rel="noopener noreferrer">Legerity (⭐87)</a> <em>(label: good first issue)</em> <br /> A framework for speeding up the development of automated UI tests for Windows, Android, iOS, and Web with Appium/Selenium on .NET.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/MADE-Apps/legerity-uno" rel="noopener noreferrer">Legerity for Uno Platform (⭐19)</a> <em>(label: good first issue)</em> <br /> An extension framework to Legerity for speeding up the development of automated UI tests for Uno Platform applications with Appium/Selenium on .NET.</li>
+<li><a href="https://github.com/MADE-Apps/legerity" rel="noopener noreferrer">Legerity (⭐92)</a> <em>(label: good first issue)</em> <br /> A framework for speeding up the development of automated UI tests for Windows, Android, iOS, and Web with Appium/Selenium on .NET.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/08/30/">Aug 30, 2022</a></h2><h3><p>Python</p>
 </h3>
 <ul>
 <li><a href="https://github.com/cookiecutter/cookiecutter" rel="noopener noreferrer">cookiecutter (⭐25k)</a> <em>(label: good first issue)</em> <br /> A command-line utility that creates projects from cookiecutters (project templates). E.g. Python package projects, jQuery plugin projects.</li>
 </ul>
-<h3><p>Rust</p>
-</h3>
-<ul>
-<li><a href="https://github.com/ockam-network/ockam" rel="noopener noreferrer">Ockam (⭐4.6k)</a> <em>(label: good first issue)</em> <br /> End-to-end encryption and mutual authentication for distributed applications.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2022/08/29/">Aug 29, 2022</a></h2><h3><p>.NET</p>
+<h2><a href="https://www.trackawesomelist.com/2022/08/29/">Aug 29, 2022</a></h2><h3><p>C#</p>
 </h3>
 <ul>
 <li><a href="https://github.com/MvvmCross/MvvmCross" rel="noopener noreferrer">MvvmCross (⭐3.9k)</a> <em>(label: first-timers-only)</em> <br /> The .NET MVVM framework for cross-platform solutions, including Xamarin.iOS, Xamarin.Android, Windows and Mac.</li>
 </ul>
-<h3><p>C#</p>
-</h3>
+
 <ul>
 <li><a href="https://github.com/cake-build/cake" rel="noopener noreferrer">Cake (⭐4.2k)</a> <em>(label: Good-first-issue)</em> <br /> Cake (C# Make) is a free and open source cross-platform build automation system with a C# DSL for tasks such as compiling code, copying files and folders, running unit tests, compressing files and building NuGet packages.</li>
 </ul>
 <h3><p>C++</p>
 </h3>
 <ul>
-<li><a href="https://github.com/godotengine/godot" rel="noopener noreferrer">Godot Engine (⭐109k)</a> <em>(label: good first issue)</em> <br /> 2D and 3D cross-platform game engine. Also has C# and Python code.</li>
+<li><a href="https://github.com/godotengine/godot" rel="noopener noreferrer">Godot Engine (⭐117k)</a> <em>(label: good first issue)</em> <br /> 2D and 3D cross-platform game engine. Also has C# and Python code.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/roc-streaming/roc-toolkit" rel="noopener noreferrer">Roc Toolkit (⭐1.2k)</a> <em>(label: help-wanted)</em> <br /> A toolkit for real-time audio streaming over the network.</li>
+<li><a href="https://github.com/roc-streaming/roc-toolkit" rel="noopener noreferrer">Roc Toolkit (⭐1.3k)</a> <em>(label: help-wanted)</em> <br /> A toolkit for real-time audio streaming over the network.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/tensorflow/tensorflow" rel="noopener noreferrer">tensorflow (⭐194k)</a> <em>(label: stat:contributions-welcome)</em> <br /> Computation using data flow graphs for scalable machine learning</li>
+<li><a href="https://github.com/tensorflow/tensorflow" rel="noopener noreferrer">tensorflow (⭐201k)</a> <em>(label: stat:contributions-welcome)</em> <br /> Computation using data flow graphs for scalable machine learning</li>
 </ul>
 <h3><p>Dart</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dart-lang/site-www" rel="noopener noreferrer">dart.dev (⭐1k)</a> <em>(label: beginner)</em> <br /> A website covering Dart language and common libraries, for developers of Dart libraries, web apps, server-side code, and mobile (Flutter) apps.</li>
+<li><a href="https://github.com/dart-lang/site-www" rel="noopener noreferrer">dart.dev (⭐1.1k)</a> <em>(label: beginner)</em> <br /> A website covering Dart language and common libraries, for developers of Dart libraries, web apps, server-side code, and mobile (Flutter) apps.</li>
 </ul>
 <h3><p>Elixir</p>
 </h3>
@@ -801,7 +889,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/elixir-lang/elixir" rel="noopener noreferrer">Elixir (⭐26k)</a> <em>(label: Level:Starter)</em> <br /> Elixir is a dynamic, functional language designed for building scalable and maintainable applications</li>
+<li><a href="https://github.com/elixir-lang/elixir" rel="noopener noreferrer">Elixir (⭐27k)</a> <em>(label: Level:Starter)</em> <br /> Elixir is a dynamic, functional language designed for building scalable and maintainable applications</li>
 </ul>
 <h3><p>Go</p>
 </h3>
@@ -810,15 +898,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/docker/cli" rel="noopener noreferrer">Docker/CLI (⭐5.8k)</a> <em>(label: exp/beginner)</em> <br /> The Docker CLI</li>
+<li><a href="https://github.com/docker/cli" rel="noopener noreferrer">Docker/CLI (⭐6.1k)</a> <em>(label: exp/beginner)</em> <br /> The Docker CLI</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/gohugoio/hugo" rel="noopener noreferrer">Hugo (⭐87k)</a> <em>(label: GoodFirstIssue)</em> <br /> A Fast and Flexible Static Site Generator built with love in GoLang</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/lxc/lxd" rel="noopener noreferrer">lxd (⭐5.1k)</a> <em>(label: easy)</em> <br /> System container and virtual machine manager.</li>
+<li><a href="https://github.com/gohugoio/hugo" rel="noopener noreferrer">Hugo (⭐90k)</a> <em>(label: GoodFirstIssue)</em> <br /> A Fast and Flexible Static Site Generator built with love in GoLang</li>
 </ul>
 
 <ul>
@@ -827,11 +911,7 @@
 <h3><p>JavaScript</p>
 </h3>
 <ul>
-<li><a href="https://github.com/FreezingMoon/AncientBeast" rel="noopener noreferrer">Ancient Beast (⭐1.8k)</a> <em>(label: easy)</em> <br /> Turn based strategy game where you 3d print a squad of creatures with unique abilities in order to defeat your enemies.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/sindresorhus/ava" rel="noopener noreferrer">AVA (⭐21k)</a> <em>(label: good-for-beginner)</em> <br /> Futuristic test runner.</li>
+<li><a href="https://github.com/FreezingMoon/AncientBeast" rel="noopener noreferrer">Ancient Beast (⭐1.9k)</a> <em>(label: easy)</em> <br /> Turn based strategy game where you 3d print a squad of creatures with unique abilities in order to defeat your enemies.</li>
 </ul>
 
 <ul>
@@ -839,7 +919,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/cypress-io/cypress" rel="noopener noreferrer">cypress (⭐50k)</a> <em>(label: good first issue)</em> <br /> Fast, easy and reliable testing for anything that runs in a browser.</li>
+<li><a href="https://github.com/cypress-io/cypress" rel="noopener noreferrer">cypress (⭐51k)</a> <em>(label: good first issue)</em> <br /> Fast, easy and reliable testing for anything that runs in a browser.</li>
 </ul>
 
 <ul>
@@ -847,19 +927,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/emberjs/data" rel="noopener noreferrer">Ember.js Data (⭐3.1k)</a> <em>(label: Good-for-New-Contributors)</em> <br /> A data persistence library for Ember.js.</li>
+<li><a href="https://github.com/sindresorhus/eslint-plugin-unicorn" rel="noopener noreferrer">eslint-plugin-unicorn (⭐5.3k)</a> <em>(label: good-for-beginner)</em> <br /> Awesome ESLint rules.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/sindresorhus/eslint-plugin-unicorn" rel="noopener noreferrer">eslint-plugin-unicorn (⭐5k)</a> <em>(label: good-for-beginner)</em> <br /> Awesome ESLint rules.</li>
+<li><a href="https://github.com/freeCodeCamp/freeCodeCamp" rel="noopener noreferrer">freeCodeCamp (⭐457k)</a> <em>(label: first-timers-only)</em> <br /> Open source codebase and curriculum. Learn to code and help nonprofits.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/freeCodeCamp/freeCodeCamp" rel="noopener noreferrer">freeCodeCamp (⭐441k)</a> <em>(label: first-timers-only)</em> <br /> Open source codebase and curriculum. Learn to code and help nonprofits.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/Kinto/kinto.js" rel="noopener noreferrer">Kinto.js (⭐328)</a> <em>(label: easy-pick)</em> <br /> An offline-first JavaScript client leveraging the Kinto API for remote data synchronization.</li>
+<li><a href="https://github.com/Kinto/kinto.js" rel="noopener noreferrer">Kinto.js (⭐330)</a> <em>(label: easy-pick)</em> <br /> An offline-first JavaScript client leveraging the Kinto API for remote data synchronization.</li>
 </ul>
 
 <ul>
@@ -867,23 +943,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/pixijs/pixi.js" rel="noopener noreferrer">pixi.js (⭐47k)</a> <em>(label: 🤩 Good First PR)</em> <br /> A 2D JavaScript Renderer</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/pouchdb/pouchdb" rel="noopener noreferrer">PouchDB (⭐18k)</a> <em>(label: help-wanted)</em> <br /> PouchDB is a pocket-sized database.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/char0n/ramda-adjunct" rel="noopener noreferrer">ramda-adjunct (⭐685)</a> <em>(label: help-wanted)</em> <br /> Ramda Adjunct is the most popular and most comprehensive set of functional utilities for use with Ramda, providing a variety of useful, well tested functions with excellent documentation.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/facebook/react-native" rel="noopener noreferrer">React Native (⭐126k)</a> <em>(label: Good-first-issue)</em> <br /> A framework for building native apps with React.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/stryker-mutator/stryker" rel="noopener noreferrer">stryker (⭐2.8k)</a> <em>(label: 👶 Good first issue)</em> <br /> The JavaScript mutation testing framework</li>
+<li><a href="https://github.com/char0n/ramda-adjunct" rel="noopener noreferrer">ramda-adjunct (⭐687)</a> <em>(label: help-wanted)</em> <br /> Ramda Adjunct is the most popular and most comprehensive set of functional utilities for use with Ramda, providing a variety of useful, well tested functions with excellent documentation.</li>
 </ul>
 
 <ul>
@@ -893,15 +953,10 @@
 <ul>
 <li><a href="https://github.com/webdriverio/webdriverio" rel="noopener noreferrer">webdriver.io (⭐9.8k)</a> <em>(label: first-timers-only)</em> <br /> Next-gen browser and mobile automation test framework for Node.js</li>
 </ul>
-<h3><p>Kotlin</p>
-</h3>
-<ul>
-<li><a href="https://github.com/hexagonkt/hexagon" rel="noopener noreferrer">Hexagon (⭐609)</a> <em>(label: help-wanted)</em> <br /> A microservices toolkit written in Kotlin</li>
-</ul>
 <h3><p>Markdown</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tldr-pages/tldr" rel="noopener noreferrer">tldr-pages (⭐62k)</a> <em>(label: help-wanted)</em> <br /> Collaborative cheatsheets for console commands.</li>
+<li><a href="https://github.com/tldr-pages/tldr" rel="noopener noreferrer">tldr-pages (⭐64k)</a> <em>(label: help-wanted)</em> <br /> Collaborative cheatsheets for console commands.</li>
 </ul>
 <h3><p>PHP</p>
 </h3>
@@ -914,11 +969,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/flarum/core" rel="noopener noreferrer">Flarum (⭐6.7k)</a> <em>(label: Good-first-issue)</em> <br /> Simple forum software for building great communities.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/matomo-org/matomo" rel="noopener noreferrer">Matomo (⭐21k)</a> <em>(label: help-wanted)</em> <br /> Matomo is the leading Free/Libre open analytics platform.</li>
+<li><a href="https://github.com/matomo-org/matomo" rel="noopener noreferrer">Matomo (⭐22k)</a> <em>(label: help-wanted)</em> <br /> Matomo is the leading Free/Libre open analytics platform.</li>
 </ul>
 
 <ul>
@@ -926,20 +977,20 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/php-censor/php-censor" rel="noopener noreferrer">PHP Censor (⭐686)</a> <em>(label: good-for-beginner)</em> <br /> Open source self-hosted continuous integration server for PHP projects.</li>
+<li><a href="https://github.com/php-censor/php-censor" rel="noopener noreferrer">PHP Censor (⭐687)</a> <em>(label: good-for-beginner)</em> <br /> Open source self-hosted continuous integration server for PHP projects.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/phpmyadmin/phpmyadmin" rel="noopener noreferrer">phpMyAdmin (⭐7.8k)</a> <em>(label: newbie)</em> <br /> Admin interface for MySQL written in PHP.</li>
+<li><a href="https://github.com/phpmyadmin/phpmyadmin" rel="noopener noreferrer">phpMyAdmin (⭐7.9k)</a> <em>(label: newbie)</em> <br /> Admin interface for MySQL written in PHP.</li>
 </ul>
 <h3><p>Python</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ansible/ansible" rel="noopener noreferrer">Ansible (⭐68k)</a> <em>(label: easyfix)</em> <br /> A simple IT automation platform</li>
+<li><a href="https://github.com/ansible/ansible" rel="noopener noreferrer">Ansible (⭐71k)</a> <em>(label: easyfix)</em> <br /> A simple IT automation platform</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/borgbackup/borg" rel="noopener noreferrer">BorgBackup (⭐13k)</a> <em>(label: easy)</em> <br /> Deduplicating backup program with compression and authenticated encryption.</li>
+<li><a href="https://github.com/borgbackup/borg" rel="noopener noreferrer">BorgBackup (⭐14k)</a> <em>(label: easy)</em> <br /> Deduplicating backup program with compression and authenticated encryption.</li>
 </ul>
 
 <ul>
@@ -947,15 +998,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/pydanny/cookiecutter-django" rel="noopener noreferrer">django cookiecutter (⭐13k)</a> <em>(label: hacktoberfest)</em> <br /> An implementation of Python for backend web development.</li>
+<li><a href="https://github.com/fabric/fabric" rel="noopener noreferrer">Fabric (⭐16k)</a> <em>(label: Low-hanging-fruit)</em> <br /> Pythonic remote execution and deployment.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/fabric/fabric" rel="noopener noreferrer">Fabric (⭐15k)</a> <em>(label: Low-hanging-fruit)</em> <br /> Pythonic remote execution and deployment.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/sukeesh/Jarvis" rel="noopener noreferrer">jarvis (⭐3.4k)</a> <em>(label: difficulty/newcomer)</em> <br /> A personal assistant for Linux, MacOs and Windows based on Command line Interface.</li>
+<li><a href="https://github.com/sukeesh/Jarvis" rel="noopener noreferrer">jarvis (⭐3.7k)</a> <em>(label: difficulty/newcomer)</em> <br /> A personal assistant for Linux, MacOs and Windows based on Command line Interface.</li>
 </ul>
 
 <ul>
@@ -963,19 +1010,19 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mitmproxy/mitmproxy" rel="noopener noreferrer">mitmproxy (⭐43k)</a> <em>(label: help-wanted)</em> <br /> An interactive TLS-capable intercepting HTTP proxy for penetration testers and software developers</li>
+<li><a href="https://github.com/mitmproxy/mitmproxy" rel="noopener noreferrer">mitmproxy (⭐45k)</a> <em>(label: help-wanted)</em> <br /> An interactive TLS-capable intercepting HTTP proxy for penetration testers and software developers</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/gpodder/mygpo" rel="noopener noreferrer">mygpo (⭐302)</a> <em>(label: starter-issue)</em> <br /> The webservice for gpodder.net, a libre web service that allows users to manage their podcast subscriptions and discover new content.</li>
+<li><a href="https://github.com/gpodder/mygpo" rel="noopener noreferrer">mygpo (⭐309)</a> <em>(label: starter-issue)</em> <br /> The webservice for gpodder.net, a libre web service that allows users to manage their podcast subscriptions and discover new content.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/pytest-dev/pytest" rel="noopener noreferrer">Pytest (⭐14k)</a> <em>(label: status:-easy)</em> <br /> The pytest framework makes it easy to write small tests, yet scales to support complex functional testing.</li>
+<li><a href="https://github.com/pytest-dev/pytest" rel="noopener noreferrer">Pytest (⭐15k)</a> <em>(label: status:-easy)</em> <br /> The pytest framework makes it easy to write small tests, yet scales to support complex functional testing.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/python-babel/babel" rel="noopener noreferrer">Python Babel (⭐1.4k)</a> <em>(label: difficulty/low)</em> <br /> The Python Internationalization Library.</li>
+<li><a href="https://github.com/python-babel/babel" rel="noopener noreferrer">Python Babel (⭐1.5k)</a> <em>(label: difficulty/low)</em> <br /> The Python Internationalization Library.</li>
 </ul>
 
 <ul>
@@ -983,12 +1030,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/wemake-services/wemake-python-styleguide" rel="noopener noreferrer">wemake-python-styleguide (⭐2.8k)</a> <em>(label: level:starter)</em> <br /> The strictest and most opinionated python linter ever!</li>
+<li><a href="https://github.com/wemake-services/wemake-python-styleguide" rel="noopener noreferrer">wemake-python-styleguide (⭐2.9k)</a> <em>(label: level:starter)</em> <br /> The strictest and most opinionated python linter ever!</li>
 </ul>
 <h3><p>Ruby</p>
 </h3>
 <ul>
-<li><a href="https://github.com/chef/chef" rel="noopener noreferrer">chef (⭐8.3k)</a> <em>(label: Type:-Jump-In)</em> <br /> A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure</li>
+<li><a href="https://github.com/chef/chef" rel="noopener noreferrer">chef (⭐8.2k)</a> <em>(label: Type:-Jump-In)</em> <br /> A systems integration framework, built to bring the benefits of configuration management to your entire infrastructure</li>
 </ul>
 
 <ul>
@@ -1000,11 +1047,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/publiclab/mapknitter" rel="noopener noreferrer">mapknitter (⭐273)</a> <em>(label: first-timers-only)</em> <br /> Upload your own aerial images, position (rubbersheet) them in a web interface over existing map data, and share via web or composite and export for print.</li>
+<li><a href="https://github.com/publiclab/mapknitter" rel="noopener noreferrer">mapknitter (⭐274)</a> <em>(label: first-timers-only)</em> <br /> Upload your own aerial images, position (rubbersheet) them in a web interface over existing map data, and share via web or composite and export for print.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/chef/ohai" rel="noopener noreferrer">ohai (⭐687)</a> <em>(label: Type:-Jump-In)</em> <br /> Ohai profiles your system and emits JSON</li>
+<li><a href="https://github.com/chef/ohai" rel="noopener noreferrer">ohai (⭐690)</a> <em>(label: Type:-Jump-In)</em> <br /> Ohai profiles your system and emits JSON</li>
 </ul>
 <h3><p>Rust</p>
 </h3>
@@ -1013,7 +1060,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/servo/servo" rel="noopener noreferrer">Servo (⭐36k)</a> <em>(label: E-easy)</em> <br /> A browser engine designed for applications including embedded use.</li>
+<li><a href="https://github.com/servo/servo" rel="noopener noreferrer">Servo (⭐38k)</a> <em>(label: E-easy)</em> <br /> A browser engine designed for applications including embedded use.</li>
 </ul>
 
 <ul>
@@ -1030,5 +1077,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
