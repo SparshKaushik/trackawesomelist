@@ -16,120 +16,242 @@
     <meta property="og:title" content="Track Awesome Chrome Devtools Updates Weekly" />
     <meta property="og:description" content="Awesome tooling and resources in the Chrome DevTools &amp; DevTools Protocol ecosystem" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Chrome Devtools Updates Weekly</h1>
 <p>Awesome tooling and resources in the Chrome DevTools & DevTools Protocol ecosystem</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/ChromeDevTools/awesome-chrome-devtools/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/ChromeDevTools/awesome-chrome-devtools">😺 ChromeDevTools/awesome-chrome-devtools</a><span> · </span><span>⭐ 6.9K</span><span> · </span><span>🏷️ Front-End Development</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/ChromeDevTools/awesome-chrome-devtools/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/ChromeDevTools/awesome-chrome-devtools">😺 ChromeDevTools/awesome-chrome-devtools</a><span> · </span><span>⭐ 7.2K</span><span> · </span><span>🏷️ Front-End Development</span></p>
 <p><span>[ </span><a href="/ChromeDevTools/awesome-chrome-devtools/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/ChromeDevTools/awesome-chrome-devtools/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/41/">Oct 12 - Oct 18, 2026</a></h2><h3><p>Tracing &amp; Profiling</p>
+</h3>
+<ul>
+<li><a href="https://trace.cafe/" rel="noopener noreferrer">trace.cafe</a> - Share and view web performance traces directly in the DevTools Performance panel (<a href="https://github.com/paulirish/trace.cafe" rel="noopener noreferrer">source (⭐142)</a>).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/jlfwong/speedscope" rel="noopener noreferrer">speedscope (⭐6.8k)</a> - Fast, interactive flamegraph viewer that imports Chrome <code>.cpuprofile</code> and timeline traces.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/discoveryjs/cpupro" rel="noopener noreferrer">cpupro (⭐788)</a> - Deep V8/Chrome <code>.cpuprofile</code> analyzer with flamegraphs, call trees, and hot-spot diagnostics.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/google/perfetto" rel="noopener noreferrer">Perfetto (⭐6.6k)</a> - System profiling and trace analysis suite (<a href="https://ui.perfetto.dev/" rel="noopener noreferrer">ui.perfetto.dev</a>) with Chromium trace support and SQL trace querying.</li>
+</ul>
+<h3><p>Chrome DevTools Protocol / The big two automation libraries</p>
+</h3>
+<ul>
+<li><a href="https://github.com/puppeteer/puppeteer" rel="noopener noreferrer">Puppeteer (⭐96k)</a> - High-level Node.js API for controlling Chrome over CDP and WebDriver BiDi. See also <a href="https://github.com/transitive-bullshit/awesome-puppeteer" rel="noopener noreferrer">awesome-puppeteer (⭐2.6k)</a>.</li>
+</ul>
+<h3><p>Chrome DevTools Protocol / Libraries for driving the protocol (or a layer above)</p>
+</h3>
+<ul>
+<li>Rust: <a href="https://github.com/mattsse/chromiumoxide" rel="noopener noreferrer">chromiumoxide (⭐1.4k)</a> - Async/tokio library with generated types</li>
+</ul>
+
+<ul>
+<li>Rust: <a href="https://github.com/rust-headless-chrome/rust-headless-chrome" rel="noopener noreferrer">Rust Headless Chrome (⭐3k)</a> - High-level headless Chrome client</li>
+</ul>
+
+<ul>
+<li>Python: <a href="https://github.com/cdpdriver/zendriver" rel="noopener noreferrer">Zendriver (⭐1.5k)</a> - Async CDP browser automation</li>
+</ul>
+
+<ul>
+<li>Ruby: <a href="https://github.com/rubycdp/ferrum" rel="noopener noreferrer">Ferrum (⭐2.1k)</a> - High-level API to control Chrome</li>
+</ul>
+
+<ul>
+<li>Ruby: <a href="https://github.com/rubycdp/cuprite" rel="noopener noreferrer">Cuprite (⭐1.4k)</a> - Capybara driver</li>
+</ul>
+
+<ul>
+<li>Kotlin: <a href="https://github.com/cdpdriver/kdriver" rel="noopener noreferrer">kdriver (⭐108)</a> - High-level coroutine-based automation</li>
+</ul>
+<h3><p>Chrome DevTools Protocol / Agentic Browser Automation</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" rel="noopener noreferrer">chrome-devtools-mcp (⭐53k)</a> - Official MCP server for Chrome DevTools, which also includes a <a href="https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/skills/chrome-devtools-cli/SKILL.md" rel="noopener noreferrer">CLI (⭐53k)</a>.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/agentrhq/webcmd" rel="noopener noreferrer">Webcmd (⭐2.6k)</a> - Compiles site navigation into deterministic per-site CLI commands for AI agents.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/szymdzum/browser-debugger-cli" rel="noopener noreferrer">bdg (⭐152)</a> - Persistent background CDP session exposing DOM, network, console, and raw protocol methods as shell commands.</li>
+</ul>
+<h3><p>Using DevTools frontend with other platforms / Browser Adapters</p>
+</h3>
+<ul>
+<li><a href="https://github.com/ChromeDevTools/devtools-frontend" rel="noopener noreferrer">ChromeDevTools/devtools-frontend (⭐4.1k)</a> - Canonical source repo for the Chrome DevTools UI (published to npm as <a href="https://www.npmjs.com/package/chrome-devtools-frontend" rel="noopener noreferrer">chrome-devtools-frontend</a>).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/liriliri/chii" rel="noopener noreferrer">Chii (⭐2.2k)</a> &amp; <a href="https://github.com/liriliri/eruda" rel="noopener noreferrer">Eruda (⭐21k)</a> - Remote debugging server using the real <code>devtools-frontend</code> UI (<code>Chii</code>, a modern Weinre replacement) and in-page mobile DevTools console (<code>Eruda</code>).</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/microsoft/vscode-js-debug" rel="noopener noreferrer">vscode-js-debug (⭐2k)</a> - Official DAP-compliant JavaScript and Chrome CDP debugger powering VS Code.</li>
+</ul>
+<h3><p>DevTools Extensions / Browser Adapters</p>
+</h3>
+<ul>
+<li><a href="https://github.com/vuejs/devtools" rel="noopener noreferrer">Vue.js Developer Tools (⭐2.9k)</a> - Inspect Vue.js components, state, and routing.</li>
+</ul>
+<h3><p>Alumni / Browser Adapters</p>
+</h3>
+<ul>
+<li><a href="https://github.com/nojvek/noice-json-rpc" rel="noopener noreferrer">noice-json-rpc (⭐46)</a> - Proxy-based TypeScript/JS library exposing CDP domains directly as an API.</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/13/">Mar 30 - Apr 05, 2026</a></h2><h3><p>Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lala-hakobyan/front-end-debugging-handbook" rel="noopener noreferrer">Front-end Debugging Tools Handbook (⭐40)</a> - Practical guide to mastering front-end debugging tools, from Chrome DevTools and framework extensions to AI-enhanced IDE debugging.</li>
+<li><a href="https://github.com/lala-hakobyan/front-end-debugging-handbook" rel="noopener noreferrer">Front-end Debugging Tools Handbook (⭐60)</a> - Practical guide to front-end debugging across DevTools, framework extensions, and IDEs.</li>
 </ul>
-<h3><p>Libraries for driving the protocol (or a layer above)</p>
+<h3><p>Chrome DevTools Protocol / Agentic Browser Automation</p>
 </h3>
 <ul>
-<li>TypeScript/Node.js: <a href="https://github.com/omxyz/lumen" rel="noopener noreferrer">Lumen (⭐38)</a> - Vision-first browser agent with self-healing deterministic replay over CDP.</li>
+<li><a href="https://github.com/omxyz/lumen" rel="noopener noreferrer">Lumen (⭐57)</a> - Vision-first browser agent with self-healing deterministic replay over CDP.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2026/10/">Mar 09 - Mar 15, 2026</a></h2><h3><p>Workflow / Ruby</p>
+<h2><a href="https://www.trackawesomelist.com/2026/10/">Mar 09 - Mar 15, 2026</a></h2><h3><p>DevTools Extensions / Browser Adapters</p>
 </h3>
 <ul>
-<li><a href="https://chromewebstore.google.com/detail/clockwork/dmggabnehkmmfmdffgajcflpdjlnoemp?hl=en" rel="noopener noreferrer">Clockwork</a> - View PHP application profiling data.</li>
+<li><a href="https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi" rel="noopener noreferrer">React Developer Tools</a> - Inspect React component hierarchies, props, and profiler flamegraphs.</li>
 </ul>
 
 <ul>
-<li><a href="https://chromewebstore.google.com/detail/railspanel/gjpfobpafnhjhbajcjgccbbdofdckggg?hl=en-US" rel="noopener noreferrer">RailsPanel</a> - View Ruby on Rails application profiling data.</li>
+<li><a href="https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd" rel="noopener noreferrer">Redux Devtools</a> - Time-travel debugging and action history for Redux.</li>
 </ul>
 
 <ul>
-<li><a href="https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi" rel="noopener noreferrer">React Developer Tools</a> - Inspect the React component hierarchies.</li>
+<li><a href="https://chromewebstore.google.com/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi" rel="noopener noreferrer">Ember.js Inspector</a> - Inspect Ember.js objects, routes, and data.</li>
 </ul>
 
 <ul>
-<li><a href="https://chromewebstore.google.com/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi" rel="noopener noreferrer">Ember.js Inspector</a> - Allows you to inspect Ember.js objects in your application.</li>
+<li><a href="https://chromewebstore.google.com/detail/web-component-devtools/gdniinfdlmmmjpnhgnkmfpffipenjljo" rel="noopener noreferrer">Web Component DevTools</a> - Inspect, modify, and observe custom elements and shadow DOM on the page.</li>
 </ul>
 
 <ul>
-<li><a href="https://chromewebstore.google.com/detail/backbone-debugger/bhljhndlimiafopmmhjlgfpnnchjjbhd" rel="noopener noreferrer">Backbone Debugger</a> - Inspect a Backbone application's views, models, events, and routes.</li>
+<li><a href="https://chromewebstore.google.com/detail/clockwork/dmggabnehkmmfmdffgajcflpdjlnoemp?hl=en" rel="noopener noreferrer">Clockwork</a> - PHP application profiling and request inspection in DevTools.</li>
 </ul>
 
 <ul>
-<li><a href="https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd" rel="noopener noreferrer">Redux Devtools</a> - Inspect Redux with actions history, undo and replay.</li>
-</ul>
-
-<ul>
-<li><a href="https://chromewebstore.google.com/detail/web-component-devtools/gdniinfdlmmmjpnhgnkmfpffipenjljo" rel="noopener noreferrer">Web Component DevTools</a> - Inspect, modify and observe Web Components on page.</li>
-</ul>
-<h3><p>Themes / Ruby</p>
-</h3>
-<ul>
-<li><a href="https://chromewebstore.google.com/detail/material-devtools-theme-c/jmefikbdhgocdjeejjnnepgnfkkbpgjo" rel="noopener noreferrer">Material UI Theme</a> - Provides various Material Design inspired themes.</li>
+<li><a href="https://chromewebstore.google.com/detail/railspanel/gjpfobpafnhjhbajcjgccbbdofdckggg?hl=en-US" rel="noopener noreferrer">RailsPanel</a> - Ruby on Rails request and SQL profiling panel.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2026/3/">Jan 19 - Jan 25, 2026</a></h2><h3><p>Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/sparkyrider/chrome-secret-menus" rel="noopener noreferrer">Chrome Secret Menus (⭐63)</a> - Comprehensive guide to internal pages and diagnostic tools in Chrome.</li>
+<li><a href="https://github.com/sparkyrider/chrome-secret-menus" rel="noopener noreferrer">Chrome Secret Menus (⭐80)</a> - Guide to Chrome's internal <code>chrome://</code> pages and diagnostic tools.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2025/40/">Oct 06 - Oct 12, 2025</a></h2><h3><p>CPU profile</p>
+<h2><a href="https://www.trackawesomelist.com/2025/40/">Oct 06 - Oct 12, 2025</a></h2><h3><p>DevTools Extensions / Browser Adapters</p>
 </h3>
 <ul>
-<li><a href="https://wishbone.readthedocs.io/en/latest/misc/profiling.html" rel="noopener noreferrer">Wishbone Python framework</a> - Profiling data can export as <code>.cpuprofile</code>.</li>
+<li><a href="https://chromewebstore.google.com/detail/angular-devtools/ienfalfjdbdpebioblfackkekamfmbnh" rel="noopener noreferrer">Angular DevTools</a> - Component tree inspection and change-detection profiling for Angular.</li>
 </ul>
-<h3><p>Browsers / Ruby</p>
+<h2><a href="https://www.trackawesomelist.com/2025/2/">Jan 13 - Jan 19, 2025</a></h2><h3><p>Chrome DevTools Protocol / Libraries for driving the protocol (or a layer above)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/BrowserBox/BrowserBox" rel="noopener noreferrer">BrowserBox (⭐3.8k)</a> - Embed Chrome in a web page, largely powered by DevTools and supporting multiuser browsing, remote DevTools, audio, and documents like <code>.docx</code>, <code>.pdf</code>, and more.</li>
+<li>C#/.NET: <a href="https://github.com/seclerp/dotnet-chrome-protocol" rel="noopener noreferrer">dotnet-chrome-protocol (⭐31)</a> - Runtime library and schema codegen</li>
 </ul>
-
-<ul>
-<li><a href="https://github.com/dosyago/puppetromium" rel="noopener noreferrer">Puppetromium (⭐62)</a> - A proof-of-concept web browser built with Puppeteer, written in Node.js, HTML and CSS, with 0% client-side JavaScript.</li>
-</ul>
-<h3><p>Web Archivers and Indexers / Ruby</p>
+<h2><a href="https://www.trackawesomelist.com/2024/23/">Jun 03 - Jun 09, 2024</a></h2><h3><p>Chrome DevTools Protocol / Browser Adapters</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dosyago/dn" rel="noopener noreferrer">dn (⭐3.9k)</a> - Archive and index pages you browse for offline viewing and search, implemented using the <code>Fetch</code> domain's interceptions, and works with any Chromium-based browser.</li>
-</ul>
-<h3><p>Workflow / Ruby</p>
-</h3>
-<ul>
-<li><a href="https://github.com/vuejs/vue-devtools" rel="noopener noreferrer">Vue.js Developer Tools (⭐25k)</a> - Inspect Vue.js components and manipulate their data.</li>
-</ul>
-
-<ul>
-<li><a href="https://chromewebstore.google.com/detail/angular-devtools/ienfalfjdbdpebioblfackkekamfmbnh" rel="noopener noreferrer">Angular DevTools</a> - Debugging and Profiling for Angular applications.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2025/2/">Jan 13 - Jan 19, 2025</a></h2><h3><p>Libraries for driving the protocol (or a layer above)</p>
-</h3>
-<ul>
-<li>C#/.NET: <a href="https://github.com/seclerp/dotnet-chrome-protocol" rel="noopener noreferrer">dotnet-chrome-protocol (⭐28)</a> - A runtime library and schema code generation tools for Chrome DevTools Protocol support in C#/.NET.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2024/33/">Aug 12 - Aug 18, 2024</a></h2><h3><p>Automation / Ruby</p>
-</h3>
-<ul>
-<li><a href="https://github.com/grafana/xk6-browser" rel="noopener noreferrer">k6 browser (⭐360)</a> - Browser automation and end-to-end web testing tool that interacts with browsers and collects frontend performance metrics.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2024/23/">Jun 03 - Jun 09, 2024</a></h2><h3><p>Browser Adapters</p>
-</h3>
-<ul>
-<li><a href="https://github.com/Nice-PLQ/devtools-remote-debugger" rel="noopener noreferrer">devtools-remote-debugger (⭐411)</a> - Use devtools against a webpage; a CDP agent implemeted in client-side JS.</li>
+<li><a href="https://github.com/Nice-PLQ/devtools-remote-debugger" rel="noopener noreferrer">devtools-remote-debugger (⭐418)</a> - Debug a webpage remotely via a CDP agent implemented in client-side JS.</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/41/">Oct 10 - Oct 16, 2022</a></h2><h3><p>Learning</p>
 </h3>
-<ul>
-<li><a href="https://www.canidev.tools/" rel="noopener noreferrer">Can I DevTools?</a> - Various workflows, documented. Also a weekly tips &amp; tricks <a href="https://canidevtools.substack.com/" rel="noopener noreferrer">newsletter</a>.</li>
-</ul>
-
 <ul>
 <li><a href="https://codepo8.github.io/web-cheatcodes/" rel="noopener noreferrer">Web cheatcodes</a> - Browser developer tools for non-developers.</li>
 </ul>
@@ -137,7 +259,7 @@
 <ul>
 <li><a href="https://codepo8.github.io/dearconsole" rel="noopener noreferrer">Dear Console</a> - A collection of snippets to use in the browser console.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2022/33/">Aug 15 - Aug 21, 2022</a></h2><h3><p>Libraries for driving the protocol (or a layer above)</p>
+<h2><a href="https://www.trackawesomelist.com/2022/33/">Aug 15 - Aug 21, 2022</a></h2><h3><p>Chrome DevTools Protocol / Libraries for driving the protocol (or a layer above)</p>
 </h3>
 <ul>
 <li>C#/.NET: <a href="https://github.com/hardkoded/puppeteer-sharp" rel="noopener noreferrer">Puppeteer Sharp (⭐3.9k)</a> - Puppeteer port</li>
@@ -147,67 +269,39 @@
 <ul>
 <li><a href="https://devtoolstips.org/" rel="noopener noreferrer">DevTools Tips</a> - Collection of illustrated tips as mini tutorials.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2022/29/">Jul 18 - Jul 24, 2022</a></h2><h3><p>The big two automation libraries</p>
+<h2><a href="https://www.trackawesomelist.com/2022/29/">Jul 18 - Jul 24, 2022</a></h2><h3><p>Chrome DevTools Protocol / The big two automation libraries</p>
 </h3>
 <ul>
-<li><a href="https://github.com/GoogleChrome/puppeteer/" rel="noopener noreferrer">Puppeteer (⭐94k)</a> - Node.js offering a high-level API to control headless Chrome over the DevTools Protocol. See also <a href="https://github.com/transitive-bullshit/awesome-puppeteer" rel="noopener noreferrer">awesome-puppeteer (⭐2.5k)</a>.</li>
+<li><a href="https://github.com/microsoft/playwright" rel="noopener noreferrer">Playwright (⭐97k)</a> - Cross-browser automation for Chromium, Firefox, and WebKit across Node.js, Python, .NET, and Java. See also <a href="https://github.com/mxschmitt/awesome-playwright" rel="noopener noreferrer">awesome-playwright (⭐1.6k)</a>.</li>
 </ul>
-
-<ul>
-<li><a href="https://github.com/microsoft/playwright" rel="noopener noreferrer">Playwright (⭐85k)</a> - Library to automate Chromium, Firefox and WebKit with a single API. Available for Node.js, Python, .Net, Java. See also <a href="https://github.com/mxschmitt/awesome-playwright" rel="noopener noreferrer">awesome-playwright (⭐1.4k)</a>.</li>
-</ul>
-<h3><p>Libraries for driving the protocol (or a layer above)</p>
+<h3><p>Chrome DevTools Protocol / Libraries for driving the protocol (or a layer above)</p>
 </h3>
 <ul>
-<li>JavaScript/Node.js: <a href="https://github.com/cyrus-and/chrome-remote-interface" rel="noopener noreferrer">chrome-remote-interface (⭐4.5k)</a></li>
+<li>JavaScript/Node.js: <a href="https://github.com/cyrus-and/chrome-remote-interface" rel="noopener noreferrer">chrome-remote-interface (⭐4.6k)</a> - Low-level CDP client</li>
 </ul>
 
 <ul>
-<li>TypeScript/Node.js: <a href="https://github.com/TracerBench/chrome-debugging-client" rel="noopener noreferrer">chrome-debugging-client (⭐134)</a></li>
+<li>Clojure: <a href="https://github.com/milankinen/cuic" rel="noopener noreferrer">cuic (⭐38)</a> - High-level UI test automation</li>
 </ul>
-
-<ul>
-<li>TypeScript/Node.js: <a href="https://www.npmjs.com/package/noice-json-rpc" rel="noopener noreferrer">noice-json-rpc</a> - A proxy-based implementation to expose the CDP as its API.</li>
-</ul>
-
-<ul>
-<li>TypeScript/Node.js: <a href="https://github.com/getgauge/taiko/" rel="noopener noreferrer">Taiko (⭐3.7k)</a></li>
-</ul>
-
-<ul>
-<li>Rust: <a href="https://github.com/atroche/rust-headless-chrome/" rel="noopener noreferrer">Rust Headless Chrome (⭐25)</a></li>
-</ul>
-
-<ul>
-<li>Python: <a href="https://github.com/pyppeteer/pyppeteer" rel="noopener noreferrer">pyppeteer (⭐3.9k)</a> - Puppeteer port</li>
-</ul>
-
-<ul>
-<li>Ruby: <a href="https://github.com/route/ferrum" rel="noopener noreferrer">Ferrum (⭐2k)</a> - high-level API to control Chrome in Ruby</li>
-</ul>
-
-<ul>
-<li>Clojure: <a href="https://github.com/milankinen/cuic" rel="noopener noreferrer">cuic (⭐38)</a> - Providing a high-level API for UI test automation over the DevTools Protocol.</li>
-</ul>
-
-<ul>
-<li>PHP: <a href="https://github.com/rialto-php/puphpeteer" rel="noopener noreferrer">PuPHPeteer (⭐1.3k)</a> - PHP bridge to node Puppeteer</li>
-</ul>
-<h3><p>Browser Adapters</p>
+<h3><p>Chrome DevTools Protocol / Browser Adapters</p>
 </h3>
 <ul>
-<li><a href="https://inspect.dev/" rel="noopener noreferrer">Inspect</a> - Use devtools against iOS and Android, easily. Browser and Webviews. <strong>(closed source)</strong></li>
+<li><a href="https://inspect.dev/" rel="noopener noreferrer">Inspect</a> - Use DevTools against iOS and Android browsers and WebViews. <strong>(closed source)</strong></li>
 </ul>
-<h3><p>Using DevTools frontend with other platforms / Ruby</p>
+<h3><p>Using DevTools frontend with other platforms / Browser Adapters</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ruby/debug" rel="noopener noreferrer">ruby/debug (⭐1.3k)</a> - Debugging functionality for Ruby.</li>
+<li><a href="https://github.com/ruby/debug" rel="noopener noreferrer">ruby/debug (⭐1.3k)</a> - Ruby's official debugger, which supports connecting Chrome DevTools over CDP (<code>rdbg --open=chrome</code>).</li>
 </ul>
-<h3><p>Alumni / Ruby</p>
+<h3><p>Alumni / Browser Adapters</p>
 </h3>
 <ul>
-<li><a href="https://github.com/RemoteDebug/remotedebug-gateway" rel="noopener noreferrer">Remote Debug Gateway (⭐96)</a> - Allows you to connect a client to multiple browsers at once.<ul>
-<li>Multiuser DevTools: <a href="https://github.com/auchenberg/devtools-remote" rel="noopener noreferrer">DevTools Remote (⭐702)</a> - Remotely debug someone else's browser.</li>
+<li><a href="https://github.com/rialto-php/puphpeteer" rel="noopener noreferrer">PuPHPeteer (⭐1.3k)</a> - PHP bridge to Node Puppeteer.</li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/RemoteDebug/remotedebug-gateway" rel="noopener noreferrer">Remote Debug Gateway (⭐95)</a> - Connect a debugging client to multiple browsers at once.<ul>
+<li>Multiuser DevTools: <a href="https://github.com/auchenberg/devtools-remote" rel="noopener noreferrer">DevTools Remote (⭐700)</a> - Remotely debug someone else's browser.</li>
 </ul>
 </li>
 </ul>
@@ -217,230 +311,175 @@
 </ul>
 
 <ul>
-<li>Python CDP driver: <a href="https://github.com/fate0/pychrome" rel="noopener noreferrer">pychrome (⭐645)</a> - low level CDP transport handler</li>
+<li>Python CDP driver: <a href="https://github.com/fate0/pychrome" rel="noopener noreferrer">pychrome (⭐649)</a> - Low-level CDP transport handler.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/google/ios-webkit-debug-proxy" rel="noopener noreferrer">ios-webkit-debug-proxy (⭐6.2k)</a> - Exposes Mobile Safari &amp; UIWebView instances via the CDP.<ul>
-<li><a href="https://github.com/RemoteDebug/remotedebug-ios-webkit-adapter" rel="noopener noreferrer">Remote Debug iOS WebKit adapter (⭐2.7k)</a> - Builts upon ios-webkit-debug-proxy and translates WebKit's Remote Debugging Protocol API to the CDP.</li>
+<li><a href="https://github.com/google/ios-webkit-debug-proxy" rel="noopener noreferrer">ios-webkit-debug-proxy (⭐6.2k)</a> - Exposes Mobile Safari &amp; UIWebView instances via CDP.<ul>
+<li><a href="https://github.com/RemoteDebug/remotedebug-ios-webkit-adapter" rel="noopener noreferrer">Remote Debug iOS WebKit adapter (⭐2.7k)</a> - Builds on <code>ios-webkit-debug-proxy</code> and translates WebKit's Remote Debugging Protocol to CDP.</li>
 </ul>
 </li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/Microsoft/IEDiagnosticsAdapter" rel="noopener noreferrer">IE Diagnostics Adapter (⭐572)</a> - Protocol adaptor for Microsoft IE 11 to CDP.</li>
+<li><a href="https://github.com/Microsoft/IEDiagnosticsAdapter" rel="noopener noreferrer">IE Diagnostics Adapter (⭐569)</a> - Protocol adapter translating IE 11 to CDP.</li>
 </ul>
-
-<ul>
-<li><a href="https://github.com/allada/go-debugger-devtools" rel="noopener noreferrer">go-debugger-devtools (⭐42)</a></li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2022/2/">Jan 10 - Jan 16, 2022</a></h2><h3><p>Automation / Ruby</p>
+<h2><a href="https://www.trackawesomelist.com/2021/10/">Mar 08 - Mar 14, 2021</a></h2><h3><p>Chrome DevTools Protocol / Libraries for driving the protocol (or a layer above)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gajananpp/puppeteer-ide-extension" rel="noopener noreferrer">Puppeteer IDE (⭐241)</a> - Standalone Puppeteer playground in browser's developer tools.</li>
+<li>Kotlin: <a href="https://github.com/joffrey-bion/chrome-devtools-kotlin" rel="noopener noreferrer">chrome-devtools-kotlin (⭐62)</a> - Coroutine-based client library</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2021/10/">Mar 08 - Mar 14, 2021</a></h2><h3><p>Libraries for driving the protocol (or a layer above)</p>
+<h2><a href="https://www.trackawesomelist.com/2021/3/">Jan 18 - Jan 24, 2021</a></h2><h3><p>Chrome DevTools Protocol / Libraries for driving the protocol (or a layer above)</p>
 </h3>
 <ul>
-<li>Kotlin: <a href="https://github.com/joffrey-bion/chrome-devtools-kotlin" rel="noopener noreferrer">chrome-devtools-kotlin (⭐58)</a> - A coroutine-based client library, providing low-level CDP primitives and high-level extensions.</li>
+<li>Java: <a href="https://github.com/fanyong920/jvppeteer" rel="noopener noreferrer">jvppeteer (⭐805)</a> - Headless Chrome for Java</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2021/3/">Jan 18 - Jan 24, 2021</a></h2><h3><p>Libraries for driving the protocol (or a layer above)</p>
+
+<ul>
+<li>Go: <a href="https://github.com/go-rod/rod" rel="noopener noreferrer">Rod (⭐7.1k)</a> - High-level automation and scraping</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2019/36/">Sep 09 - Sep 15, 2019</a></h2><h3><p>Chrome DevTools Protocol</p>
 </h3>
 <ul>
-<li>Java: <a href="https://github.com/fanyong920/jvppeteer" rel="noopener noreferrer">jvppeteer (⭐806)</a>  - Headless Chrome For Java</li>
+<li><a href="https://github.com/chromedevtools/devtools-protocol" rel="noopener noreferrer">ChromeDevTools/devtools-protocol (⭐1.6k)</a> - <strong>Canonical location of the protocol JSON</strong>, TypeScript types, and issue tracker for protocol bugs.</li>
 </ul>
-
-<ul>
-<li>Go: <a href="https://github.com/go-rod/rod" rel="noopener noreferrer">Rod (⭐6.8k)</a></li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2019/46/">Nov 18 - Nov 24, 2019</a></h2><h3><p>Performance / Ruby</p>
+<h3><p>Chrome DevTools Protocol / Developing with the protocol</p>
 </h3>
 <ul>
-<li><a href="https://github.com/TracerBench/tracerbench" rel="noopener noreferrer">TracerBench (⭐250)</a> - A controlled performance benchmarking tool for web applications, providing clear, actionable and usable insights into performance deltas.</li>
+<li><a href="https://github.com/cyrus-and/chrome-remote-interface/wiki" rel="noopener noreferrer">chrome-remote-interface Wiki (⭐4.6k)</a> - Handy recipes for common raw-CDP tasks.</li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2019/36/">Sep 09 - Sep 15, 2019</a></h2><h3><p>Chrome Debugger integration with Editors</p>
+
+<ul>
+<li><a href="https://github.com/wendigo/chrome-protocol-proxy" rel="noopener noreferrer">Chrome Protocol Proxy (⭐253)</a> - Proxy for inspecting and debugging CDP client traffic.</li>
+</ul>
+<h3><p>Chrome DevTools Protocol / Libraries for driving the protocol (or a layer above)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Microsoft/vscode-chrome-debug/" rel="noopener noreferrer">VS Code - Debugger for Chrome (⭐2.2k)</a> - Breakpoint debugging in VS Code.</li>
+<li>Java: <a href="https://github.com/kklisura/chrome-devtools-java-client" rel="noopener noreferrer">chrome-devtools-java-client (⭐239)</a> - Low-level protocol client</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/microsoft/vscode-edge-devtools" rel="noopener noreferrer">VS Code - Elements for Microsoft Edge (⭐809)</a> - Elements panel inside VS Code.</li>
+<li>Python: <a href="https://github.com/hyperiongray/python-chrome-devtools-protocol" rel="noopener noreferrer">PyCDP (⭐147)</a> - Sans-IO wrappers (see also <a href="https://github.com/hyperiongray/trio-chrome-devtools-protocol" rel="noopener noreferrer">Trio driver (⭐72)</a>)</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/acarabott/ChromeREPL" rel="noopener noreferrer">ChromeREPL (⭐356)</a> - Within Sublime Text, use the Chrome console.</li>
+<li>Python: <a href="https://github.com/fake-name/ChromeController" rel="noopener noreferrer">ChromeController (⭐229)</a> - High-level browser mgmt</li>
 </ul>
 
 <ul>
-<li><a href="http://sokolovstas.github.io/SublimeWebInspector/" rel="noopener noreferrer">Sublime Web Inspector</a> - JavaScript Breakpoint debugging right in Sublime Text.</li>
+<li>Go: <a href="https://github.com/chromedp/chromedp" rel="noopener noreferrer">chromedp (⭐13k)</a> - High-level actions and tasks</li>
 </ul>
 
 <ul>
-<li><a href="https://www.jetbrains.com/help/webstorm/2017.1/configuring-javascript-debugger-and-jetbrains-chrome-extension.html" rel="noopener noreferrer">WebStorm/JetBrains Chrome Extension</a> - The WebStorm IDE can debug JavaScript, view the DOM tree, and edit HTML, CSS and JS live.</li>
+<li>Go: <a href="https://github.com/mafredri/cdp" rel="noopener noreferrer">cdp (⭐797)</a> - Type-safe bindings for CDP</li>
 </ul>
-<h3><p>Chrome DevTools Protocol</p>
+
+<ul>
+<li>Clojure: <a href="https://github.com/tatut/clj-chrome-devtools" rel="noopener noreferrer">clj-chrome-devtools (⭐134)</a> - Autogenerated CDP wrapper</li>
+</ul>
+<h3><p>Using DevTools frontend with other platforms / Browser Adapters</p>
 </h3>
 <ul>
-<li><a href="https://github.com/chromedevtools/devtools-protocol" rel="noopener noreferrer">ChromeDevTools/devtools-protocol (⭐1.5k)</a> - <strong>Canonical location of the protocol JSON</strong>. Issue tracker for protocol bugs. TypeScript types.</li>
+<li><a href="https://github.com/microsoft/vscode-edge-devtools" rel="noopener noreferrer">VS Code - Elements for Microsoft Edge (⭐829)</a> - Elements and Network panels embedded inside VS Code.</li>
 </ul>
-<h3><p>Developing with the protocol</p>
+<h3><p>Alumni / Browser Adapters</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cyrus-and/chrome-remote-interface/wiki" rel="noopener noreferrer">chrome-remote-interface Wiki (⭐4.5k)</a> - Many useful recipes.</li>
+<li><a href="https://github.com/GoogleChromeLabs/ndb" rel="noopener noreferrer">ndb (⭐11k)</a> - Improved Node.js debugging experience built on the DevTools frontend.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/wendigo/chrome-protocol-proxy" rel="noopener noreferrer">Chrome Protocol Proxy (⭐247)</a> - Tool for debugging clients using devtools protocol.</li>
+<li><a href="https://github.com/sfninja/thetool" rel="noopener noreferrer">thetool (⭐223)</a> - CPU, memory, coverage, and type profiling for Node.js.</li>
 </ul>
-<h3><p>Libraries for driving the protocol (or a layer above)</p>
+
+<ul>
+<li><a href="https://github.com/Microsoft/vscode-chrome-debug/" rel="noopener noreferrer">VS Code - Debugger for Chrome (⭐2.2k)</a> - Original Chrome debugger for VS Code (superseded by built-in <a href="https://github.com/microsoft/vscode-js-debug" rel="noopener noreferrer">vscode-js-debug (⭐2k)</a>, which has a rich CDP/DAP implementation).</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/44/">Oct 29 - Nov 04, 2018</a></h2><h3><p>Chrome DevTools Protocol</p>
 </h3>
 <ul>
-<li>Java: <a href="https://github.com/kklisura/chrome-devtools-java-client" rel="noopener noreferrer">chrome-devtools-java-client (⭐237)</a></li>
+<li><a href="https://chromedevtools.github.io/devtools-protocol/" rel="noopener noreferrer">DevTools Protocol API Docs</a> - Browsable UI for exploring the protocol's domains, methods, and events.</li>
 </ul>
-
-<ul>
-<li>Python: <a href="https://github.com/hyperiongray/python-chrome-devtools-protocol" rel="noopener noreferrer">PyCDP (⭐138)</a> - Pure-Python, sans-IO wrappers. See also the <a href="https://github.com/hyperiongray/trio-chrome-devtools-protocol" rel="noopener noreferrer">Trio CDP driver (⭐71)</a></li>
-</ul>
-
-<ul>
-<li>Python: <a href="https://github.com/chuckus/chromewhip" rel="noopener noreferrer">chromewhip (⭐121)</a> - drop-in replacement for the <code>splash</code> service</li>
-</ul>
-
-<ul>
-<li>Python: <a href="https://github.com/fake-name/ChromeController" rel="noopener noreferrer">ChromeController (⭐228)</a> - high-level browser mgmt</li>
-</ul>
-
-<ul>
-<li>Go: <a href="https://github.com/chromedp/chromedp" rel="noopener noreferrer">chromedp (⭐13k)</a> - High-level actions and tasks for driving browsers</li>
-</ul>
-
-<ul>
-<li>Go: <a href="https://github.com/mafredri/cdp" rel="noopener noreferrer">cdp (⭐789)</a></li>
-</ul>
-
-<ul>
-<li>Go: <a href="https://github.com/wirepair/gcd" rel="noopener noreferrer">gcd (⭐187)</a></li>
-</ul>
-
-<ul>
-<li>Go: <a href="https://github.com/raff/godet" rel="noopener noreferrer">godet (⭐401)</a></li>
-</ul>
-
-<ul>
-<li>Ruby: <a href="https://github.com/machinio/cuprite" rel="noopener noreferrer">Cuprite (⭐1.4k)</a> - Capybara driver</li>
-</ul>
-
-<ul>
-<li>Clojure: <a href="https://github.com/tatut/clj-chrome-devtools" rel="noopener noreferrer">clj-chrome-devtools (⭐133)</a> - The CDP wrapper API is autogenerated and will be updated when CDP protocol changes.</li>
-</ul>
-<h3><p>Using DevTools frontend with other platforms / Android</p>
+<h3><p>Using DevTools frontend with other platforms / Browser Adapters</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AlexTrotsenko/j2v8-debugger" rel="noopener noreferrer">j2v8-debugger (⭐94)</a> - Debugging JavaScript running in <a href="https://github.com/eclipsesource/J2V8" rel="noopener noreferrer">J2V8 (⭐2.6k)</a> with Chrome DevTools.</li>
+<li><a href="https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27" rel="noopener noreferrer">Debugging Node.js with Chrome DevTools</a> - Guide on debugging and profiling Node.js with <code>node --inspect</code>.</li>
 </ul>
-<h3><p>Using DevTools frontend with other platforms / Node.js</p>
-</h3>
-<ul>
-<li><a href="https://github.com/GoogleChromeLabs/ndb" rel="noopener noreferrer">ndb (⭐11k)</a> - An improved Node.js debugging experience with the DevTools Frontend.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/sfninja/thetool" rel="noopener noreferrer">thetool (⭐223)</a> - CPU, memory, coverage, type profiling with Node.</li>
-</ul>
-
-<ul>
-<li><a href="https://www.npmjs.com/package/chrome-devtools-frontend" rel="noopener noreferrer">chrome-devtools-frontend</a> - Mirror of the frontend that ships in Chrome.</li>
-</ul>
-<h3><p>Performance / Ruby</p>
-</h3>
-<ul>
-<li><a href="https://github.com/denar90/sloth" rel="noopener noreferrer">sloth (⭐200)</a> - Chrome extension allows to enable and save CPU and network throttling for selected tabs.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2018/44/">Oct 29 - Nov 04, 2018</a></h2><h3><p>Network Inspection</p>
-</h3>
-<ul>
-<li><a href="https://github.com/kdzwinel/betwixt" rel="noopener noreferrer">betwixt (⭐4.6k)</a> - System level network proxy, providing inspection via Network panel.</li>
-</ul>
-<h3><p>Chrome DevTools Protocol</p>
-</h3>
-<ul>
-<li><a href="https://chromedevtools.github.io/devtools-protocol/" rel="noopener noreferrer">DevTools Protocol API Docs</a> - Easy browsable UI for exploring the protocol's domains, methods and events.</li>
-</ul>
-<h3><p>Using DevTools frontend with other platforms / Android</p>
+<h3><p>Alumni / Browser Adapters</p>
 </h3>
 <ul>
 <li><a href="https://github.com/facebook/stetho" rel="noopener noreferrer">Facebook Stetho (⭐13k)</a> - Native Android debugging with Chrome DevTools.</li>
 </ul>
-<h3><p>Using DevTools frontend with other platforms / ClojureScript</p>
-</h3>
+
 <ul>
-<li><a href="https://github.com/binaryage/dirac" rel="noopener noreferrer">Dirac (⭐772)</a> - Debugging of ClojsureScript.</li>
-</ul>
-<h3><p>Using DevTools frontend with other platforms / iOS</p>
-</h3>
-<ul>
-<li><a href="https://github.com/square/PonyDebugger" rel="noopener noreferrer">PonyDebugger (⭐5.9k)</a> - Remote network and data debugging iOS apps with Chrome DevTools.</li>
-</ul>
-<h3><p>Using DevTools frontend with other platforms / Node.js</p>
-</h3>
-<ul>
-<li><a href="https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27" rel="noopener noreferrer">Debugging Node.js with Chrome DevTools</a> - Guide on using the full debugging and profiling support in Node v6.3+.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2018/10/">Mar 05 - Mar 11, 2018</a></h2><h3><p>Libraries for driving the protocol (or a layer above)</p>
-</h3>
-<ul>
-<li>PHP: <a href="https://github.com/jakubkulhan/chrome-devtools-protocol" rel="noopener noreferrer">chrome-devtools-protocol (⭐183)</a> - A PHP client library for the protocol.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2017/35/">Aug 28 - Sep 03, 2017</a></h2><h3><p>Libraries for driving the protocol (or a layer above)</p>
-</h3>
-<ul>
-<li>Kotlin: <a href="https://github.com/wendigo/chrome-reactive-kotlin" rel="noopener noreferrer">chrome-reactive-kotlin (⭐76)</a> - reactive (rxjava 2.x), low-level client library in Kotlin</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2017/27/">Jul 03 - Jul 09, 2017</a></h2><h3><p>Libraries for driving the protocol (or a layer above)</p>
-</h3>
-<ul>
-<li>C#/dotnet: <a href="https://github.com/BaristaLabs/chrome-dev-tools" rel="noopener noreferrer">chrome-dev-tools (⭐81)</a> - Protocol wrapper generator that can be customized by editing handlebars templates. Includes .Net Core template.</li>
-</ul>
-<h2><a href="https://www.trackawesomelist.com/2017/22/">May 29 - Jun 04, 2017</a></h2><h3><p>Object formatting</p>
-</h3>
-<ul>
-<li><a href="https://github.com/andrewdavey/immutable-devtools" rel="noopener noreferrer">immutable-devtools (⭐671)</a> - Custom formatter for Immutable-js values.</li>
-</ul>
-<h3><p>CPU profile</p>
-</h3>
-<ul>
-<li><a href="https://github.com/brendankenny/call-trace" rel="noopener noreferrer">call-trace (⭐43)</a> - Can instrument your JS with hooks, and then generate a <code>.cpuprofile</code>  of the of the complete (non-sampled) execution. View either time or call counts.</li>
+<li><a href="https://github.com/square/PonyDebugger" rel="noopener noreferrer">PonyDebugger (⭐5.8k)</a> - Remote network and Core Data debugging for iOS apps via Chrome DevTools.</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/thlorenz/cpuprofilify" rel="noopener noreferrer">cpuprofilify (⭐169)</a> - Converts output of various profiling/sampling tools to the <code>.cpuprofile</code> format.</li>
+<li><a href="https://github.com/kdzwinel/betwixt" rel="noopener noreferrer">betwixt (⭐4.6k)</a> - System-level network proxy inspected through a standalone DevTools Network panel.</li>
 </ul>
-<h3><p>Multimedia</p>
+
+<ul>
+<li><a href="https://github.com/binaryage/dirac" rel="noopener noreferrer">Dirac (⭐775)</a> - ClojureScript debugging with a custom DevTools fork.</li>
+</ul>
+<h2><a href="https://www.trackawesomelist.com/2018/10/">Mar 05 - Mar 11, 2018</a></h2><h3><p>Chrome DevTools Protocol / Libraries for driving the protocol (or a layer above)</p>
 </h3>
 <ul>
-<li><a href="https://github.com/pmdartus/snapline" rel="noopener noreferrer">snapline (⭐401)</a> - Converts timeline screenshots to gif.</li>
-</ul>
-<h3><p>Timeline, Tracing &amp; Profiling</p>
-</h3>
-<ul>
-<li><a href="https://chromedevtools.github.io/timeline-viewer/" rel="noopener noreferrer">DevTools Timeline Viewer</a> - Share URLs of your timeline recordings.</li>
+<li>PHP: <a href="https://github.com/jakubkulhan/chrome-devtools-protocol" rel="noopener noreferrer">chrome-devtools-protocol (⭐184)</a> - Client library</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/31/">Aug 01 - Aug 07, 2016</a></h2><h3><p>Learning</p>
 </h3>
 <ul>
 <li><a href="https://umaar.com/dev-tips/" rel="noopener noreferrer">Dev Tips</a> - Large collection of tips as animated gifs.</li>
 </ul>
-<h3><p>Workflow / Ruby</p>
+<h3><p>Alumni / Browser Adapters</p>
 </h3>
 <ul>
-<li><a href="https://github.com/3Dparallax/insight/" rel="noopener noreferrer">Insight (⭐918)</a> - A WebGL debugging toolkit which enables more productive WebGL development and more efficient WebGL applications.</li>
-</ul>
-
-<ul>
-<li><a href="https://github.com/escaton/bem-chrome-devtools" rel="noopener noreferrer">BEM devtools (⭐47)</a> - Inspect BEM entities expressed in <code>i-bem</code> framework.</li>
+<li><a href="https://github.com/3Dparallax/insight/" rel="noopener noreferrer">Insight (⭐915)</a> - WebGL debugging toolkit for Chrome DevTools.</li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
