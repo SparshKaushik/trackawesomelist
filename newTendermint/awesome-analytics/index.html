@@ -16,22 +16,347 @@
     <meta property="og:title" content="Track Awesome Analytics Updates Daily" />
     <meta property="og:description" content="A curated list of analytics frameworks, software and other tools." />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Analytics Updates Daily</h1>
 <p>A curated list of analytics frameworks, software and other tools.</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/newTendermint/awesome-analytics/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/oxnr/awesome-analytics">😺 newTendermint/awesome-analytics</a><span> · </span><span>⭐ 4.2K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/newTendermint/awesome-analytics/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/oxnr/awesome-analytics">😺 newTendermint/awesome-analytics</a><span> · </span><span>⭐ 4.3K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><span>Daily</span><span> / </span><a href="/newTendermint/awesome-analytics/week/">Weekly</a><span> / </span><a href="/newTendermint/awesome-analytics/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/10/21/">Oct 21, 2026</a></h2><h3><p>General analytics</p>
+</h3>
+<ul>
+<li><a href="https://stratif.io" rel="noopener noreferrer">stratif.io</a> - Open-source, self-hosted, warehouse-native product analytics. Runs funnels, retention, and path analysis directly on DuckDB, Postgres, Snowflake, or ClickHouse — no ingestion, no SDK. (<a href="https://github.com/stratif-io/stratif.io" rel="noopener noreferrer">Source Code (⭐10)</a>) <code>Apache-2.0</code> <code>Python/TypeScript</code></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/wordbricks/onequery" rel="noopener noreferrer">OneQuery (⭐17)</a> - Self-hosted gateway for safe, auditable queries for agents across approved data sources. <code>Apache-2.0</code> <code>Self-Hosted</code> <code>Rust</code></li>
+</ul>
+
+<ul>
+<li><a href="https://kirro.io/" rel="noopener noreferrer">Kirro</a> - A/B testing tool with visual editor and GA4 conversion tracking. 9KB script. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://experimentflow.com" rel="noopener noreferrer">ExperimentFlow</a> - A/B testing and AI personalisation platform. Features neural bandits, lightweight SDK, privacy-first (no cookies, no PII). Google Optimize alternative. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://www.usesequential.com/" rel="noopener noreferrer">Sequential</a> - session replay and product analytics with an AI judge that reviews each session and lists the findings to fix. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dataspoclab/dataspoc-lens" rel="noopener noreferrer">DataSpoc Lens (⭐3)</a> - Virtual warehouse over cloud Parquet (S3/GCS/Azure). SQL shell, Jupyter/Marimo notebooks, AI natural language queries, and local cache. (<a href="https://github.com/dataspoclab/dataspoc-lens" rel="noopener noreferrer">Source Code (⭐3)</a>) <code>Apache-2.0</code> <code>Python</code></li>
+</ul>
+
+<ul>
+<li><a href="https://greg-rg-git.github.io/stackdata-store/tools/compare/" rel="noopener noreferrer">StackData</a> - Free SaaS pricing comparison tool with pricing data; structured CSV datasets available for bulk analysis. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://klinky.io" rel="noopener noreferrer">Klinky</a> - A/B testing link shortener that splits one link between two destinations, with click counts. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://replayowl.com/" rel="noopener noreferrer">Replayowl</a> - Open source, self-hosted session replay that runs on Cloudflare Workers or Node. (<a href="https://github.com/replayowl/replayowl" rel="noopener noreferrer">Source Code (⭐1)</a>) <code>AGPL-3.0</code> <code>TypeScript</code></li>
+</ul>
+
+<ul>
+<li><a href="https://www.zoho.com/apptics" rel="noopener noreferrer">Zoho Apptics</a> – Cross-platfom analytics to monitor performance, analyze user behavior and collect feedback for mobile, web, and desktop apps.</li>
+</ul>
+
+<ul>
+<li><a href="https://rrweb.com" rel="noopener noreferrer">rrweb</a> - Open-source session replay library for the browser. Records the DOM and user interactions and replays them pixel-perfect. (<a href="https://github.com/rrweb-io/rrweb" rel="noopener noreferrer">Source Code (⭐20k)</a>) <code>MIT</code> <code>TypeScript</code></li>
+</ul>
+<h3><p>Analytics dashboards</p>
+</h3>
+<ul>
+<li><a href="https://www.edalitics.com" rel="noopener noreferrer">Edalitics</a> - Open source analytics/BI tool.  (<a href="https://github.com/jortilles/EDA" rel="noopener noreferrer">Source Code (⭐211)</a>) <code>©</code> <code>SaaS</code> <code>AGPL-3.0</code> <code>Angular/Nodejs</code></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/flowkraft/datapallas" rel="noopener noreferrer">DataPallas (⭐80)</a> - Business intelligence platform with interactive dashboards, pivot tables and pixel-perfect report generation. <code>SSPL-1.0</code> <code>Source Available</code></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/abhishekhsingh/goatcounter-dashboard" rel="noopener noreferrer">GoatCounter Dashboard (⭐14)</a> - Modern analytics dashboard for GoatCounter with interactive charts, choropleth world map, and demo mode. Single HTML file, no build step, no server. (<a href="https://abhishekhsingh.github.io/goatcounter-dashboard" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/abhishekhsingh/goatcounter-dashboard" rel="noopener noreferrer">Source Code (⭐14)</a>) <code>MIT</code> <code>JavaScript</code></li>
+</ul>
+
+<ul>
+<li><a href="https://conyso.com/lens.html?utm_source=github&amp;utm_medium=directory&amp;utm_campaign=listing" rel="noopener noreferrer">Conyso Lens</a> - General-purpose data-visualization studio: point it at any dataset and get publication-quality charts across 112 chart types, each with a plain-English, rule-based read (never AI-generated). Runs entirely in the browser; nothing you load ever leaves it. Self-host option available. <code>©</code> <code>SaaS</code> <code>Self-Hosted</code></li>
+</ul>
+
+<ul>
+<li><a href="https://getbruin.com/docs/dac/" rel="noopener noreferrer">DAC</a> - dashboard-as-code tool that defines dashboards in YAML and TSX, with a built-in semantic layer for metrics and dimensions. (<a href="https://github.com/bruin-data/dac" rel="noopener noreferrer">Source Code (⭐795)</a>) <code>AGPL-3.0</code> <code>Go</code> <code>Self-Hosted</code></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/zmsp/AppRankly" rel="noopener noreferrer">AppRankly (⭐28)</a> - Self-hosted dashboard bringing together iOS App Store Connect and Google Play Console metrics.</li>
+</ul>
+
+<ul>
+<li><a href="https://www.datahubpro.co.uk/" rel="noopener noreferrer">DataHub Pro</a> - AI analytics for spreadsheets: turn an Excel or CSV file into dashboards, forecasts and reports, with an audit trail for every number. Built for small teams without a data engineer. <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/dekart-xyz/geosql" rel="noopener noreferrer">GeoSQL (⭐678)</a> - AI-native geospatial analytics. Claude/Codex skill that turns natural language into validated SQL + maps on BigQuery and Snowflake. <code>MIT</code> <code>Python</code></li>
+</ul>
+
+<ul>
+<li><a href="https://dekart.xyz" rel="noopener noreferrer">Dekart</a> - Open-source geospatial analytics. Turn SQL on BigQuery/Snowflake/PostGIS into shareable interactive maps. (<a href="https://github.com/dekart-xyz/dekart" rel="noopener noreferrer">Source Code (⭐434)</a>) <code>AGPL-3.0</code> <code>Go</code> <code>Self-Hosted</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://www.analytics-compare.com/tools/compare/" rel="noopener noreferrer">Analytics Compare</a> - An independent, interactive database comparing 30+ analytics tools based on features, hidden costs, and scalability risks.</li>
+</ul>
+<h3><p>Mobile analytics</p>
+</h3>
+<ul>
+<li><a href="https://openpanel.dev" rel="noopener noreferrer">OpenPanel</a> - OpenPanel is an open-source web and product analytics platform, an open-source alternative to Mixpanel with optional self-hosting. <code>©</code> <code>Self-Hosted</code> <code>EU</code></li>
+</ul>
+<h3><p>Real-time</p>
+</h3>
+<ul>
+<li><a href="https://visitorping.com/" rel="noopener noreferrer">VisitorPing</a> - Live website visitor dashboard with iPhone notifications for incoming visits. <code>©</code> <code>SaaS</code></li>
+</ul>
+<h3><p>Website analytics</p>
+</h3>
+<ul>
+<li><a href="https://vectr4.com/" rel="noopener noreferrer">Vectr4</a> - Self-hosted web analytics with funnels and more. <code>©</code> <code>Self-Hosted</code> <code>Docker</code></li>
+</ul>
+<h3><p>Endpoints</p>
+</h3>
+<ul>
+<li><a href="https://rawbbit.one/" rel="noopener noreferrer">Rawbbit</a> - Self-hosted analytics pipeline that lands raw events as Parquet in your own object storage. Designed for teams that want to own their raw event data instead of feeding it into a SaaS vendor's pipeline. Alternative to Firebase Analytics and Amplitude. (<a href="https://github.com/mirlan-irokez/rawbbit" rel="noopener noreferrer">Source Code (⭐10)</a>) <code>Apache-2.0</code> <code>Python</code></li>
+</ul>
+<h3><p>SEO</p>
+</h3>
+<ul>
+<li><a href="https://landing-five-dusky-44.vercel.app" rel="noopener noreferrer">AuditorIA</a> - Free automated SEO audit for local businesses. Detects HTTPS, meta tags, Schema markup, viewport, and phone visibility in 30 seconds. No registration required. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://feed-pulse.com" rel="noopener noreferrer">FeedPulse</a> - Free SEO checkers: domain authority, domain rating, SERP position, Google index status, page speed, plus a schema generator. Also serves embeddable traffic and visitor-country widgets. No signup, no paid tier. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://vaneform.com/" rel="noopener noreferrer">Vaneform</a> - Free website traffic lookup: estimated monthly visits, traffic sources, top countries, search keywords and similar sites for any domain, no signup required. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://sitedata.dev/" rel="noopener noreferrer">SiteData</a> - website traffic estimation, reverse AdSense lookup, Google Ads advertiser analysis, and Domain Rating lookup. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://geobuddy.co/" rel="noopener noreferrer">GeoBuddy</a> - AI search analytics: tracks whether ChatGPT, Claude, Gemini and Perplexity mention your brand, with rank, share of voice and competitor tracking; free check without signup.</li>
+</ul>
+
+<ul>
+<li><a href="https://llmpulse.ai/" rel="noopener noreferrer">LLM Pulse</a> - AI search analytics for tracking brand mentions, citations, sentiment, and competitor share of voice across ChatGPT, Perplexity, Gemini, Google AI Overviews, and Google AI Mode. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/nowork-studio/NotFair" rel="noopener noreferrer">NotFair (⭐3.9k)</a> - Open-source Claude Code agent skills for SEO, Google Ads, and Meta Ads, connecting to live data via Google Ads MCP, Meta Ads MCP, Google Search Console MCP, and Google Analytics (GA4) MCP. Covers site audits, keyword research, meta tags, schema markup, GEO optimization, wasted-spend detection, and creative analysis. (<a href="https://github.com/nowork-studio/NotFair" rel="noopener noreferrer">Source Code (⭐3.9k)</a>) <code>MIT</code></li>
+</ul>
+<h3><p>Privacy focused analytics</p>
+</h3>
+<ul>
+<li><a href="https://logly.uk/" rel="noopener noreferrer">Logly</a> - Cookieless web analytics with a sub-1KB tracker. Bots are counted separately and labelled by type — search engines, AI crawlers, SEO tools, monitors — instead of being filtered out silently. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://stoma.top" rel="noopener noreferrer">Stomatopod</a> - Privacy-friendly, cookieless self-hosted web analytics. Single binary, embedded storage, no external DB. (<a href="https://github.com/kkir/stomatopod" rel="noopener noreferrer">Source Code (⭐1)</a>) <code>MIT</code> <code>Rust/Docker</code></li>
+</ul>
+
+<ul>
+<li><a href="https://respectlytics.com" rel="noopener noreferrer">Respectlytics</a> - Privacy-first, session-based mobile app analytics with strict 5-field storage and no persistent user tracking. (<a href="https://github.com/respectlytics/respectlytics" rel="noopener noreferrer">Source Code (⭐41)</a>) <code>AGPL-3.0</code> <code>Python/Docker</code></li>
+</ul>
+
+<ul>
+<li><a href="https://pagelens.io/" rel="noopener noreferrer">PageLens</a> - Cookieless, EU-hosted web analytics with revenue by traffic source and AI Visibility: which pages ChatGPT, Claude and Perplexity read, use in answers and send visitors to. (<a href="https://pagelens.io/demo" rel="noopener noreferrer">Demo</a>) <code>©</code> <code>SaaS</code> <code>EU</code></li>
+</ul>
+
+<ul>
+<li><a href="https://lomenanalytics.com/" rel="noopener noreferrer">Lomen</a> - Cookie-free website analytics with an AI you can ask about your traffic, revenue from Stripe, Shopify, Lemon Squeezy and Polar next to visitors, and tracking of visits from ChatGPT, Claude and Perplexity. (<a href="https://lomenanalytics.com/demo" rel="noopener noreferrer">Demo</a>) <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://measuremy.site/" rel="noopener noreferrer">measuremy.site</a> - Cookieless web analytics your AI agent can read: an MCP server lets Claude Code, Cursor and other agents install the script and answer traffic questions. (<a href="https://github.com/developeron29/measuremysite-mcp" rel="noopener noreferrer">Source Code (⭐1)</a> for the self-hosted version) <code>©</code> <code>SaaS</code> <code>MIT</code> <code>Self-Hosted</code></li>
+</ul>
+
+<ul>
+<li><a href="https://devdome.com/" rel="noopener noreferrer">DevDome Analytics</a> - Cookieless analytics for WordPress that separates human visitors from bots and AI crawlers. Free plan. (<a href="https://github.com/DevDomeFamily/devdome-analytics" rel="noopener noreferrer">Plugin Source Code (⭐0)</a>) <code>GPL-2.0</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://statable.com/" rel="noopener noreferrer">Statable</a> - Privacy-first, cookieless web analytics hosted in the EU. Import your Google Analytics 4 history and keep a unified timeline. <code>©</code> <code>SaaS</code> <code>EU</code></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/writerslogic/facet" rel="noopener noreferrer">Facet (⭐2)</a> - Cookieless, privacy-first web analytics &amp; experimentation that runs entirely on the Cloudflare edge (Workers + D1). No cookies, no cross-session identity, raw IP is never stored; GPC/DNT respecting and self-hosted with a one-command deploy. <code>AGPL-3.0</code> <code>Cloudflare Workers</code></li>
+</ul>
+
+<ul>
+<li><a href="https://insights.ucoder.in" rel="noopener noreferrer">Ucoder Insight</a> - Privacy-first, cookie-free web analytics SDK for developers. 7.4kb gzipped, zero dependencies, offline support via IndexDB. (<a href="https://github.com/soumydip/ucoder_insight_core" rel="noopener noreferrer">Source Code (⭐2)</a>) <code>MIT</code> <code>JavaScript</code></li>
+</ul>
+
+<ul>
+<li><a href="https://beam-privacy.com/" rel="noopener noreferrer">Beam</a> - Lightweight, cookie-free web analytics on Cloudflare Workers and D1. No cookies, no fingerprinting, GDPR-compliant by design. Free tier included. (<a href="https://github.com/scobb/beam.js" rel="noopener noreferrer">Source Code (⭐0)</a>) <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://measure.events" rel="noopener noreferrer">Measure.events</a> - Privacy-first web analytics with an agent-native API, MCP server, and natural language summaries. Built for AI-forward teams. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://d8a.tech/" rel="noopener noreferrer">d8a.tech</a> - Open-source, GA4/Matomo-compatible analytics. Warehouse-native storage in BigQuery, ClickHouse, or files (CSV/Parquet). Available as EU-hosted cloud or self-hosted. <code>MIT</code> <code>SaaS</code> <code>Self-Hosted</code> <code>Go/Docker</code></li>
+</ul>
+<h3><p>Heatmap analytics</p>
+</h3>
+<ul>
+<li><a href="https://getlupa.ru/" rel="noopener noreferrer">Lupa</a> - Self-hosted click heatmaps rendered directly on your page (no iframe), top clicked elements and scroll depth, plus session replay. (<a href="https://demo.getlupa.ru/" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/cutover-team/lupa" rel="noopener noreferrer">Source Code (⭐0)</a>) <code>AGPL-3.0</code> <code>Go</code> <code>Self-Hosted</code></li>
+</ul>
+
+<ul>
+<li><a href="https://hootlens.com/" rel="noopener noreferrer">Hoot Lens</a> - session replay, click heatmaps by device class and broken-click detection, readable by AI coding agents over MCP. <code>©</code> <code>SaaS</code></li>
+</ul>
+<h3><p>App store analytics</p>
+</h3>
+<ul>
+<li><a href="https://www.admapix.com/" rel="noopener noreferrer">AdMapix</a> - AI ad intelligence and app market research platform for searching competitor creatives and tracking app rankings, downloads, and revenue across markets. <code>©</code> <code>SaaS</code></li>
+</ul>
+<h3><p>Attribution tracking</p>
+</h3>
+<ul>
+<li><a href="https://www.npmjs.com/package/@vizuh/clicktrail" rel="noopener noreferrer">ClickTrail</a> - Deterministic first-party attribution engine for UTMs, ad click IDs, referrers, and first/last touch. (<a href="https://github.com/vizuh/clicktrail-js" rel="noopener noreferrer">Source Code (⭐3)</a>) <code>MIT</code> <code>TypeScript</code></li>
+</ul>
+
+<ul>
+<li><a href="https://whichpost.app/" rel="noopener noreferrer">WhichPost</a> - See which creator posts brought paying customers, from a read-only Stripe or RevenueCat connection, with a range on every result. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://github.com/virling/virling" rel="noopener noreferrer">Virling (⭐1)</a> - open-source revenue attribution that ties each visit to the Stripe, Dodo Payments or Polar payment that followed. <code>AGPL-3.0</code> <code>Self-Hosted</code></li>
+</ul>
+
+<ul>
+<li><a href="https://onelence.com/" rel="noopener noreferrer">OneLence</a> - Marketing analytics: what to scale, hold or stop across ads, SEO, AI search and affiliates. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://mbuzz.co/" rel="noopener noreferrer">mbuzz</a> - server-side multi-touch attribution platform with open-source SDKs for Ruby, Node, Python, and PHP, plus a SQL-like attribution DSL. <code>©</code> <code>SaaS</code></li>
+</ul>
+<h3><p>Social media analytics</p>
+</h3>
+<ul>
+<li><a href="https://openchannelstats.com" rel="noopener noreferrer">Open Channel Stats</a> - Browse real YouTube channels' full owner analytics — retention, CTR, traffic sources — published by the creators themselves, not estimated; connect your own free to compare. Daily refresh; each public channel exports as a documented SQLite file. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://socialbu.com/" rel="noopener noreferrer">SocialBu</a> - AI-powered social media management and analytics platform with scheduling, monitoring, and automation. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://tiktok.poviai.com/" rel="noopener noreferrer">AI TikTok Analyzer Pro</a> - TikTok content research: rank a creator's public videos by engagement, export comments, AI transcripts and sentiment analysis. <code>©</code> <code>SaaS</code></li>
+</ul>
+
+<ul>
+<li><a href="https://pulse.walls.sh" rel="noopener noreferrer">Pulse</a> - Social post metrics REST API — give it a public post URL and get back views, likes, comments, shares in JSON. Covers YouTube, X/Twitter, TikTok, Bluesky, Mastodon, Instagram. No API key to start. <code>Free</code> <code>SaaS</code></li>
+</ul>
+<h3><p>Developer analytics</p>
+</h3>
+<ul>
+<li><a href="https://devledger.site/" rel="noopener noreferrer">Dev Ledger</a> - Open-source GitHub analytics for developers — longitudinal development history across repositories: source growth, churn, activity, languages, and releases. (<a href="https://github.com/Aliferous3/dev-ledger" rel="noopener noreferrer">Source Code (⭐0)</a>) <code>AGPL-3.0</code> <code>SaaS</code></li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/02/13/">Feb 13, 2026</a></h2><h3><p>Privacy focused analytics</p>
 </h3>
 <ul>
@@ -40,12 +365,12 @@
 <h2><a href="https://www.trackawesomelist.com/2026/02/11/">Feb 11, 2026</a></h2><h3><p>General analytics</p>
 </h3>
 <ul>
-<li><a href="https://growthbook.io" rel="noopener noreferrer">GrowthBook</a> - Open-source A/B testing and feature flagging that uses your existing data sources.(<a href="https://github.com/growthbook/growthbook" rel="noopener noreferrer">Source Code (⭐7.3k)</a>) <code>MIT</code> <code>Typescript</code></li>
+<li><a href="https://growthbook.io" rel="noopener noreferrer">GrowthBook</a> - Open-source A/B testing and feature flagging that uses your existing data sources.(<a href="https://github.com/growthbook/growthbook" rel="noopener noreferrer">Source Code (⭐8.5k)</a>) <code>MIT</code> <code>Typescript</code></li>
 </ul>
 <h3><p>Website analytics</p>
 </h3>
 <ul>
-<li><a href="https://umami.is" rel="noopener noreferrer">Umami</a> - Umami is a simple, fast, privacy-focused alternative to Google Analytics. Umami is GDPR compliant. (<a href="https://github.com/umami-software/umami" rel="noopener noreferrer">Source Code (⭐35k)</a>) <code>MIT</code> <code>JavaScript</code></li>
+<li><a href="https://umami.is" rel="noopener noreferrer">Umami</a> - Umami is a simple, fast, privacy-focused alternative to Google Analytics. Umami is GDPR compliant. (<a href="https://github.com/umami-software/umami" rel="noopener noreferrer">Source Code (⭐40k)</a>) <code>MIT</code> <code>JavaScript</code></li>
 </ul>
 <h3><p>Privacy focused analytics</p>
 </h3>
@@ -54,15 +379,15 @@
 </ul>
 
 <ul>
-<li><a href="https://swetrix.com/" rel="noopener noreferrer">Swetrix</a> - European OSS product &amp; web analytics, (<a href="https://github.com/swetrix/swetrix" rel="noopener noreferrer">Source Code (⭐855)</a>) <code>MIT</code>/<code>AGPL-3.0</code> <code>NodeJS</code></li>
+<li><a href="https://swetrix.com/" rel="noopener noreferrer">Swetrix</a> - European OSS product &amp; web analytics, (<a href="https://github.com/swetrix/swetrix" rel="noopener noreferrer">Source Code (⭐1.2k)</a>) <code>MIT</code>/<code>AGPL-3.0</code> <code>NodeJS</code></li>
 </ul>
 
 <ul>
-<li><a href="https://www.goatcounter.com/" rel="noopener noreferrer">GoatCounter</a> - GoatCounter is an open source web analytics platform available as a hosted service (free for non-commercial use) or self-hosted app. (<a href="https://github.com/arp242/goatcounter" rel="noopener noreferrer">Source (⭐5.4k)</a>, <a href="https://stats.arp242.net/" rel="noopener noreferrer">Demo</a>) <code>MIT</code> <code>SaaS</code> <code>Self-Hosted</code></li>
+<li><a href="https://www.goatcounter.com/" rel="noopener noreferrer">GoatCounter</a> - GoatCounter is an open source web analytics platform available as a hosted service (free for non-commercial use) or self-hosted app. (<a href="https://github.com/arp242/goatcounter" rel="noopener noreferrer">Source (⭐6.1k)</a>, <a href="https://stats.arp242.net/" rel="noopener noreferrer">Demo</a>) <code>MIT</code> <code>SaaS</code> <code>Self-Hosted</code></li>
 </ul>
 
 <ul>
-<li><a href="https://rybbit.com/" rel="noopener noreferrer">Rybbit Analytics</a> - Rybbit is powerful, lightweight, and super easy to use analytics. Cookieless and GDPR compliant. Hosted on EU infrastructure in Germany. Self-hosting compatible <code>©</code> <code>SaaS</code> <code>self-hosted</code> <code>EU</code></li>
+<li><a href="https://rybbit.com/" rel="noopener noreferrer">Rybbit Analytics</a> - Rybbit is powerful, lightweight, and super easy to use analytics. Cookieless and GDPR compliant. Hosted on EU infrastructure in Germany. Self-hosting compatible <code>©</code> <code>SaaS</code> <code>Self-Hosted</code> <code>EU</code></li>
 </ul>
 <h3><p>Developer analytics</p>
 </h3>
@@ -89,7 +414,7 @@
 </ul>
 
 <ul>
-<li><a href="https://deepnote.com/" rel="noopener noreferrer">Deepnote</a> - Deepnote is a drop-in replacement for Jupyter and an AI-native data workspace for modern data teams. (<a href="https://github.com/deepnote/deepnote" rel="noopener noreferrer">GitHub (⭐2.6k)</a>) <code>Apache-2.0</code> <code>©</code> <code>SaaS</code> <code>TypeScript</code></li>
+<li><a href="https://deepnote.com/" rel="noopener noreferrer">Deepnote</a> - Deepnote is a drop-in replacement for Jupyter and an AI-native data workspace for modern data teams. (<a href="https://github.com/deepnote/deepnote" rel="noopener noreferrer">GitHub (⭐3k)</a>) <code>Apache-2.0</code> <code>©</code> <code>SaaS</code> <code>TypeScript</code></li>
 </ul>
 <h3><p>Analytics dashboards</p>
 </h3>
@@ -107,12 +432,12 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/frett27/superset-datafusion" rel="noopener noreferrer">Superset-Datafusion (⭐0)</a> - Superset integration for Datafusion</li>
+<li><a href="https://github.com/frett27/superset-datafusion" rel="noopener noreferrer">Superset-Datafusion (⭐1)</a> - Superset integration for Datafusion</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/06/09/">Jun 09, 2022</a></h2><h3><p>General analytics</p>
 </h3>
 <ul>
-<li><a href="https://posthog.com" rel="noopener noreferrer">PostHog</a> - Open-source product analytics to track users, events, funnels and trends. Alternative to Mixpanel/Amplitude/Heap. Also includes session recording (alternative to HotJar) and feature flag/experimentation tools (alternative to Optimizely).(<a href="https://github.com/posthog/posthog" rel="noopener noreferrer">Source Code (⭐31k)</a>) <code>MIT</code> <code>Python</code></li>
+<li><a href="https://posthog.com" rel="noopener noreferrer">PostHog</a> - Open-source product analytics to track users, events, funnels and trends. Alternative to Mixpanel/Amplitude/Heap. Also includes session recording (alternative to HotJar) and feature flag/experimentation tools (alternative to Optimizely).(<a href="https://github.com/posthog/posthog" rel="noopener noreferrer">Source Code (⭐40k)</a>) <code>MIT</code> <code>Python</code></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/06/06/">Jun 06, 2022</a></h2><h3><p>Developer analytics</p>
 </h3>
@@ -122,7 +447,7 @@
 <h2><a href="https://www.trackawesomelist.com/2021/03/15/">Mar 15, 2021</a></h2><h3><p>Privacy focused analytics</p>
 </h3>
 <ul>
-<li><a href="https://piwik.pro/" rel="noopener noreferrer">Piwik PRO</a> - A privacy-friendly alternative to Google Analytics with built-in consent management. Hosted in EU, in your private cloud or on-premises. <code>©</code> <code>SaaS</code> <code>self-hosted</code></li>
+<li><a href="https://piwik.pro/" rel="noopener noreferrer">Piwik PRO</a> - A privacy-friendly alternative to Google Analytics with built-in consent management. Hosted in EU, in your private cloud or on-premises. <code>©</code> <code>SaaS</code> <code>Self-Hosted</code></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/03/11/">Mar 11, 2021</a></h2><h3><p>Endpoints</p>
 </h3>
@@ -156,10 +481,6 @@
 
 <ul>
 <li><a href="https://plandek.com" rel="noopener noreferrer">Plandek</a> - Metrics and insights for software delivery <code>©</code> <code>SaaS</code></li>
-</ul>
-
-<ul>
-<li><a href="https://pullpanda.com/analytics" rel="noopener noreferrer">Pull Panda</a> - Metrics and insights for engineering teams <code>©</code> <code>SaaS</code></li>
 </ul>
 
 <ul>
@@ -495,25 +816,20 @@
 <ul>
 <li><a href="https://www.brandwatch.com/products/vizia/" rel="noopener noreferrer">Vizia</a> - Visual command center dashboarding solution <code>©</code> <code>SaaS</code></li>
 </ul>
-<h2><a href="https://www.trackawesomelist.com/2021/01/12/">Jan 12, 2021</a></h2><h3><p>Analytics dashboards</p>
-</h3>
-<ul>
-<li><a href="https://eda.jortilles.com/en/jortilles-english/" rel="noopener noreferrer">EDA</a> - EDA is an user friendly Analtical Tool specially designed for busines users.  (<a href="https://github.com/jortilles/EDA" rel="noopener noreferrer">Source Code (⭐177)</a>) <code>Apache-2.0</code> <code>Angular/Nodejs</code></li>
-</ul>
 <h2><a href="https://www.trackawesomelist.com/2020/12/02/">Dec 02, 2020</a></h2><h3><p>Analytics dashboards</p>
 </h3>
 <ul>
-<li><a href="https://chartbrew.com" rel="noopener noreferrer">Chartbrew</a> - Chartbrew allows you to query your databases and APIs to create live charts and visualize your data. Featuring automatic chart updates, sharing, embedding, printing, exporting, and team support with granular permissions. (<a href="https://app.chartbrew.com/live-demo" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/chartbrew/chartbrew" rel="noopener noreferrer">Source Code (⭐3.6k)</a>) <code>MIT</code> <code>NodeJS</code> <code>SaaS</code> <code>Self-Hosted</code></li>
+<li><a href="https://chartbrew.com" rel="noopener noreferrer">Chartbrew</a> - Chartbrew allows you to query your databases and APIs to create live charts and visualize your data. Featuring automatic chart updates, sharing, embedding, printing, exporting, and team support with granular permissions. (<a href="https://app.chartbrew.com/live-demo" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/chartbrew/chartbrew" rel="noopener noreferrer">Source Code (⭐4.1k)</a>) <code>MIT</code> <code>NodeJS</code> <code>SaaS</code> <code>Self-Hosted</code></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/11/16/">Nov 16, 2020</a></h2><h3><p>Endpoints</p>
 </h3>
 <ul>
-<li><a href="https://rudderstack.com/" rel="noopener noreferrer">RudderStack</a> - The warehouse-first customer data platform (CDP) that builds your CDP on your data warehouse for you. RudderStack makes it easy to collect, unify, transform, and store your customer data as well as route it securely to a wide range of common, popular marketing, sales, and product tools (open-source alternative to Segment et al.). (<a href="https://github.com/rudderlabs/rudder-server/" rel="noopener noreferrer">Source Code (⭐4.4k)</a>) <code>AGPL-3.0</code> <code>Go</code></li>
+<li><a href="https://rudderstack.com/" rel="noopener noreferrer">RudderStack</a> - The warehouse-first customer data platform (CDP) that builds your CDP on your data warehouse for you. RudderStack makes it easy to collect, unify, transform, and store your customer data as well as route it securely to a wide range of common, popular marketing, sales, and product tools (open-source alternative to Segment et al.). (<a href="https://github.com/rudderlabs/rudder-server/" rel="noopener noreferrer">Source Code (⭐4.5k)</a>) <code>AGPL-3.0</code> <code>Go</code></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/11/06/">Nov 06, 2020</a></h2><h3><p>Privacy focused analytics</p>
 </h3>
 <ul>
-<li><a href="https://www.piratepx.com/" rel="noopener noreferrer">piratepx</a> - Just a little analytics insight for your personal or indie project. 100% free and open source. (<a href="https://app.piratepx.com/shared/bGQbUJ-YADC_xIGZaYmyqp-J_PD6O1pkCdHmYdIjUvs53ExsImlzFeou4MCuZRbH" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/piratepx/app" rel="noopener noreferrer">Source (⭐85)</a>) <code>MIT</code> <code>Nodejs</code></li>
+<li><a href="https://www.piratepx.com/" rel="noopener noreferrer">piratepx</a> - Just a little analytics insight for your personal or indie project. 100% free and open source. (<a href="https://app.piratepx.com/shared/bGQbUJ-YADC_xIGZaYmyqp-J_PD6O1pkCdHmYdIjUvs53ExsImlzFeou4MCuZRbH" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/piratepx/app" rel="noopener noreferrer">Source (⭐87)</a>) <code>MIT</code> <code>Nodejs</code></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/10/05/">Oct 05, 2020</a></h2><h3><p>General analytics</p>
 </h3>
@@ -522,15 +838,15 @@
 </ul>
 
 <ul>
-<li><a href="http://www.openwebanalytics.com/" rel="noopener noreferrer">Open Web Analytics</a> - Google Analytics and Matomo alternative. (<a href="https://github.com/padams/Open-Web-Analytics" rel="noopener noreferrer">Source Code (⭐2.6k)</a>) <code>GPL-2.0</code> <code>PHP</code></li>
+<li><a href="http://www.openwebanalytics.com/" rel="noopener noreferrer">Open Web Analytics</a> - Google Analytics and Matomo alternative. (<a href="https://github.com/padams/Open-Web-Analytics" rel="noopener noreferrer">Source Code (⭐2.7k)</a>) <code>GPL-2.0</code> <code>PHP</code></li>
 </ul>
 
 <ul>
-<li><a href="https://rakam.io/" rel="noopener noreferrer">Rakam</a> - Custom analytics platform that lets you to create your own analytics service. Integrate with any data source (web, mobile, IoT etc.), analyze data with SQL and create dashboards. (<a href="https://github.com/rakam-io/rakam" rel="noopener noreferrer">Source Code (⭐795)</a>) <code>Apache-2.0</code> <code>Java</code></li>
+<li><a href="https://rakam.io/" rel="noopener noreferrer">Rakam</a> - Custom analytics platform that lets you to create your own analytics service. Integrate with any data source (web, mobile, IoT etc.), analyze data with SQL and create dashboards. (<a href="https://github.com/rakam-io/rakam" rel="noopener noreferrer">Source Code (⭐790)</a>) <code>Apache-2.0</code> <code>Java</code></li>
 </ul>
 
 <ul>
-<li><a href="http://www.awstats.org/" rel="noopener noreferrer">AWStats</a> - Generates web, streaming, ftp or mail server statistics graphically. (<a href="https://github.com/eldy/awstats" rel="noopener noreferrer">Source Code (⭐418)</a>) <code>GPL-3.0</code> <code>Perl</code></li>
+<li><a href="http://www.awstats.org/" rel="noopener noreferrer">AWStats</a> - Generates web, streaming, ftp or mail server statistics graphically. (<a href="https://github.com/eldy/awstats" rel="noopener noreferrer">Source Code (⭐437)</a>) <code>GPL-3.0</code> <code>Perl</code></li>
 </ul>
 
 <ul>
@@ -547,7 +863,7 @@
 <h3><p>Real-time</p>
 </h3>
 <ul>
-<li><a href="http://goaccess.io/" rel="noopener noreferrer">GoAccess</a> - Real-time web log analyzer and interactive viewer that runs in a terminal. (<a href="https://github.com/allinurl/goaccess" rel="noopener noreferrer">Source Code (⭐20k)</a>) <code>GPL-2.0</code> <code>C</code></li>
+<li><a href="http://goaccess.io/" rel="noopener noreferrer">GoAccess</a> - Real-time web log analyzer and interactive viewer that runs in a terminal. (<a href="https://github.com/allinurl/goaccess" rel="noopener noreferrer">Source Code (⭐21k)</a>) <code>GPL-2.0</code> <code>C</code></li>
 </ul>
 <h3><p>Website analytics</p>
 </h3>
@@ -562,84 +878,122 @@
 <h3><p>SEO</p>
 </h3>
 <ul>
-<li><a href="https://serposcope.serphacker.com/" rel="noopener noreferrer">Serposcope</a> - Serposcope is a free and open-source rank tracker to monitor websites ranking in Google and improve your SEO performances. (<a href="https://github.com/serphacker/serposcope" rel="noopener noreferrer">Source Code (⭐751)</a>) <code>MIT</code> <code>Java</code></li>
+<li><a href="https://serposcope.serphacker.com/" rel="noopener noreferrer">Serposcope</a> - Serposcope is a free and open-source rank tracker to monitor websites ranking in Google and improve your SEO performances. (<a href="https://github.com/serphacker/serposcope" rel="noopener noreferrer">Source Code (⭐755)</a>) <code>MIT</code> <code>Java</code></li>
 </ul>
 <h3><p>Privacy focused analytics</p>
 </h3>
 <ul>
-<li><a href="https://plausible.io/" rel="noopener noreferrer">Plausible Analytics</a> - Lightweight and <a href="https://github.com/plausible-insights/plausible" rel="noopener noreferrer">open source (⭐24k)</a> web analytics. Doesn’t use cookies and doesn't track personal data. A privacy-friendly alternative to Google Analytics. (<a href="https://plausible.io/plausible.io" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/plausible/analytics/" rel="noopener noreferrer">Source Code (⭐24k)</a>) <code>AGPL-3.0</code> <code>Elixir</code></li>
+<li><a href="https://plausible.io/" rel="noopener noreferrer">Plausible Analytics</a> - Lightweight and <a href="https://github.com/plausible-insights/plausible" rel="noopener noreferrer">open source (⭐30k)</a> web analytics. Doesn’t use cookies and doesn't track personal data. A privacy-friendly alternative to Google Analytics. (<a href="https://plausible.io/plausible.io" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/plausible/analytics/" rel="noopener noreferrer">Source Code (⭐30k)</a>) <code>AGPL-3.0</code> <code>Elixir</code></li>
 </ul>
 
 <ul>
-<li><a href="https://www.goatcounter.com" rel="noopener noreferrer">GoatCounter</a> - Easy web statistics without tracking of personal data; <code>SaaS</code> <code>Self-Hosted</code> (<a href="https://github.com/zgoat/goatcounter" rel="noopener noreferrer">Source Code (⭐5.4k)</a>) <code>EUPL-1.2</code> <code>Go</code></li>
+<li><a href="https://github.com/milesmcc/shynet" rel="noopener noreferrer">Shynet (⭐3.2k)</a> - Modern, privacy-friendly, and detailed web analytics that works without cookies or JS. Designed for self-hosting. <code>Apache-2.0</code> <code>Python</code></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/milesmcc/shynet" rel="noopener noreferrer">Shynet (⭐3.1k)</a> - Modern, privacy-friendly, and detailed web analytics that works without cookies or JS. Designed for self-hosting. <code>Apache-2.0</code> <code>Python</code></li>
+<li><a href="https://umami.is/" rel="noopener noreferrer">Umami</a> - Umami is a simple, easy to use, self-hosted web analytics solution. The goal is to provide you with a friendlier, privacy-focused alternative to Google Analytics and a free, open-sourced alternative to paid solutions. (<a href="https://app.umami.is/share/ISgW2qz8/flightphp.com" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/mikecao/umami" rel="noopener noreferrer">Source Code (⭐40k)</a>) <code>MIT</code> <code>Nodejs</code></li>
 </ul>
 
 <ul>
-<li><a href="https://umami.is/" rel="noopener noreferrer">Umami</a> - Umami is a simple, easy to use, self-hosted web analytics solution. The goal is to provide you with a friendlier, privacy-focused alternative to Google Analytics and a free, open-sourced alternative to paid solutions. (<a href="https://app.umami.is/share/ISgW2qz8/flightphp.com" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/mikecao/umami" rel="noopener noreferrer">Source Code (⭐35k)</a>) <code>MIT</code> <code>Nodejs</code></li>
+<li><a href="https://www.kokoanalytics.com/" rel="noopener noreferrer">Koko Analytics</a> - Privacy-friendly and open source analytics plugin for WordPress. (<a href="https://github.com/ibericode/koko-analytics/" rel="noopener noreferrer">Source Code (⭐399)</a>) <code>GPL-3.0</code> <code>PHP</code></li>
 </ul>
 
 <ul>
-<li><a href="https://www.kokoanalytics.com/" rel="noopener noreferrer">Koko Analytics</a> - Privacy-friendly and open source analytics plugin for WordPress. (<a href="https://github.com/ibericode/koko-analytics/" rel="noopener noreferrer">Source Code (⭐391)</a>) <code>GPL-3.0</code> <code>PHP</code></li>
+<li><a href="https://www.offen.dev/" rel="noopener noreferrer">Offen</a> - Offen is a fair and open web analytics tool. Gain insights while your users have full access to their data. Lightweight, self hosted and free. (<a href="https://www.offen.dev/try-demo/" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/offen/offen" rel="noopener noreferrer">Source Code (⭐981)</a>) <code>Apache-2.0</code> <code>Go/Docker</code></li>
 </ul>
 
 <ul>
-<li><a href="https://www.offen.dev/" rel="noopener noreferrer">Offen</a> - Offen is a fair and open web analytics tool. Gain insights while your users have full access to their data. Lightweight, self hosted and free. (<a href="https://www.offen.dev/try-demo/" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/offen/offen" rel="noopener noreferrer">Source Code (⭐966)</a>) <code>Apache-2.0</code> <code>Go/Docker</code></li>
+<li><a href="https://github.com/sheshbabu/freshlytics" rel="noopener noreferrer">Freshlytics (⭐362)</a> - Privacy respecting, cookie free and low resource usage analytics platform. <code>MIT</code> <code>Docker/Nodejs</code></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/sheshbabu/freshlytics" rel="noopener noreferrer">Freshlytics (⭐361)</a> - Privacy respecting, cookie free and low resource usage analytics platform. <code>MIT</code> <code>Docker/Nodejs</code></li>
+<li><a href="https://kindmetrics.io/" rel="noopener noreferrer">Kindmetrics</a> - Clean privacy-focused website analytics. (<a href="https://github.com/kindmetrics/kindmetrics" rel="noopener noreferrer">Source Code (⭐98)</a>) <code>MIT</code> <code>Crystal</code></li>
 </ul>
 
 <ul>
-<li><a href="https://kindmetrics.io/" rel="noopener noreferrer">Kindmetrics</a> - Clean privacy-focused website analytics. (<a href="https://github.com/kindmetrics/kindmetrics" rel="noopener noreferrer">Source Code (⭐96)</a>) <code>MIT</code> <code>Crystal</code></li>
-</ul>
-
-<ul>
-<li><a href="https://ackee.electerious.com" rel="noopener noreferrer">Ackee</a> - Self-hosted analytics tool for those who care about privacy. (<a href="http://demo.ackee.electerious.com" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/electerious/Ackee" rel="noopener noreferrer">Source Code (⭐4.6k)</a>) <code>MIT</code> <code>Nodejs</code></li>
+<li><a href="https://ackee.electerious.com" rel="noopener noreferrer">Ackee</a> - Self-hosted analytics tool for those who care about privacy. (<a href="http://demo.ackee.electerious.com" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/electerious/Ackee" rel="noopener noreferrer">Source Code (⭐4.7k)</a>) <code>MIT</code> <code>Nodejs</code></li>
 </ul>
 <h3><p>Analytics dashboards</p>
 </h3>
 <ul>
-<li><a href="https://metabase.com/" rel="noopener noreferrer">Metabase</a> - Metabase is the easy, open source way for everyone in your company to ask questions and learn from data. Simple Dashboarding and GUI Query tool, Nightly Emails and Slack Integration w/ PostgreSQL, MySQL, Redshift and other DBs. (<a href="https://github.com/metabase/metabase" rel="noopener noreferrer">Source Code (⭐46k)</a>) <code>AGPL-3.0</code> <code>Java</code></li>
+<li><a href="https://metabase.com/" rel="noopener noreferrer">Metabase</a> - Metabase is the easy, open source way for everyone in your company to ask questions and learn from data. Simple Dashboarding and GUI Query tool, Nightly Emails and Slack Integration w/ PostgreSQL, MySQL, Redshift and other DBs. (<a href="https://github.com/metabase/metabase" rel="noopener noreferrer">Source Code (⭐50k)</a>) <code>AGPL-3.0</code> <code>Java</code></li>
 </ul>
 
 <ul>
-<li><a href="http://redash.io" rel="noopener noreferrer">Redash</a> - connect to over 18 types of databases (SQL and "NoSQL"), query your data, visualize it and create dashboards. Everything has a URL that can be shared. Slack and HipChat integration. (<a href="https://demo.redash.io" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/getredash/redash" rel="noopener noreferrer">Source Code (⭐28k)</a>) <code>BSD-2-Clause</code> <code>Python</code></li>
+<li><a href="http://redash.io" rel="noopener noreferrer">Redash</a> - connect to over 18 types of databases (SQL and "NoSQL"), query your data, visualize it and create dashboards. Everything has a URL that can be shared. Slack and HipChat integration. (<a href="https://demo.redash.io" rel="noopener noreferrer">Demo</a>, <a href="https://github.com/getredash/redash" rel="noopener noreferrer">Source Code (⭐29k)</a>) <code>BSD-2-Clause</code> <code>Python</code></li>
 </ul>
 
 <ul>
-<li><a href="http://superset.apache.org/" rel="noopener noreferrer">Superset</a> - Modern, enterprise-ready business intelligence web application. (<a href="https://github.com/apache/incubator-superset" rel="noopener noreferrer">Source Code (⭐70k)</a>) <code>Apache-2.0</code> <code>Python</code></li>
+<li><a href="http://superset.apache.org/" rel="noopener noreferrer">Superset</a> - Modern, enterprise-ready business intelligence web application. (<a href="https://github.com/apache/incubator-superset" rel="noopener noreferrer">Source Code (⭐75k)</a>) <code>Apache-2.0</code> <code>Python</code></li>
 </ul>
 
 <ul>
-<li><a href="https://socioboard.org/" rel="noopener noreferrer">Socioboard</a> - <code>⚠</code> Social media management, analytics, and reporting platform supporting nine social media networks out-of-the-box. (<a href="https://github.com/socioboard/Socioboard-4.0" rel="noopener noreferrer">Source Code (⭐1.4k)</a>) <code>GPL-3.0</code> <code>C#/JavaScript</code></li>
+<li><a href="https://socioboard.org/" rel="noopener noreferrer">Socioboard</a> - <code>⚠</code> Social media management, analytics, and reporting platform supporting nine social media networks out-of-the-box. (<a href="https://github.com/socioboard/Socioboard-4.0" rel="noopener noreferrer">Source Code (⭐1.5k)</a>) <code>GPL-3.0</code> <code>C#/JavaScript</code></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2014/08/24/">Aug 24, 2014</a></h2><h3><p>Analytics dashboards</p>
 </h3>
 <ul>
-<li>Other awesome lists <a href="https://github.com/bayandin/awesome-awesomeness" rel="noopener noreferrer">awesome-awesomeness (⭐33k)</a>.</li>
+<li>Other awesome lists <a href="https://github.com/bayandin/awesome-awesomeness" rel="noopener noreferrer">awesome-awesomeness (⭐34k)</a>.</li>
 </ul>
 
 <ul>
-<li>Even more lists <a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">awesome (⭐435k)</a>.</li>
+<li>Even more lists <a href="https://github.com/sindresorhus/awesome" rel="noopener noreferrer">awesome (⭐516k)</a>.</li>
 </ul>
 
 <ul>
-<li>Another list? <a href="https://github.com/jnv/lists" rel="noopener noreferrer">list (⭐11k)</a>.</li>
+<li>Another list? <a href="https://github.com/jnv/lists" rel="noopener noreferrer">list (⭐12k)</a>.</li>
 </ul>
 
 <ul>
-<li>WTF! <a href="https://github.com/t3chnoboy/awesome-awesome-awesome" rel="noopener noreferrer">awesome-awesome-awesome (⭐2.1k)</a>.</li>
+<li>WTF! <a href="https://github.com/t3chnoboy/awesome-awesome-awesome" rel="noopener noreferrer">awesome-awesome-awesome (⭐2.3k)</a>.</li>
 </ul>
 
 <ul>
-<li>Analytics <a href="https://github.com/onurakpolat/awesome-bigdata" rel="noopener noreferrer">awesome-bigdata (⭐14k)</a>.</li>
+<li>Analytics <a href="https://github.com/onurakpolat/awesome-bigdata" rel="noopener noreferrer">awesome-bigdata (⭐15k)</a>.</li>
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
