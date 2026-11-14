@@ -16,32 +16,120 @@
     <meta property="og:title" content="Awesome Agriculture Overview" />
     <meta property="og:description" content="Open source technology for agriculture, farming, and gardening" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Awesome Agriculture Overview</h1>
 <p>Open source technology for agriculture, farming, and gardening</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/brycejohnston/awesome-agriculture/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/brycejohnston/awesome-agriculture">😺 brycejohnston/awesome-agriculture</a><span> · </span><span>⭐ 1.6K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/brycejohnston/awesome-agriculture/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/brycejohnston/awesome-agriculture">😺 brycejohnston/awesome-agriculture</a><span> · </span><span>⭐ 1.9K</span><span> · </span><span>🏷️ Miscellaneous</span></p>
 <p><span>[ </span><a href="/brycejohnston/awesome-agriculture/">Daily</a><span> / </span><a href="/brycejohnston/awesome-agriculture/week/">Weekly</a><span> / </span><span>Overview</span><span> ]</span></p>
 <h1 id="awesome-agriculture-awesome"><a class="anchor" aria-hidden="true" tabindex="-1" href="#awesome-agriculture-awesome"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Awesome Agriculture <a href="https://awesome.re" rel="noopener noreferrer"><img src="https://awesome.re/badge.svg" alt="Awesome" /></a></h1><blockquote>
 <p>A curated list of awesome open source technology for agriculture, farming, and gardening.</p>
 </blockquote>
 <p><a href="https://en.wikipedia.org/wiki/Agriculture" rel="noopener noreferrer">Agriculture</a> is the science and art of cultivating plants and livestock for food and materials.</p>
-<p>Contributions welcome! Please follow the <a href="https://github.com/beaorn/awesome-agriculture/blob/master/contributing.md" rel="noopener noreferrer">contributing guidelines (⭐1.6k)</a>.</p>
+<p>Contributions welcome! Please follow the <a href="https://github.com/brycejohnston/awesome-agriculture/blob/master/contributing.md" rel="noopener noreferrer">contributing guidelines (⭐1.9k)</a>.</p>
 <h2 id="contents"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contents"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contents</h2><ul>
 <li><a href="#automation-and-robotics">Automation and Robotics</a></li>
 <li><a href="#calculators">Calculators</a></li>
 <li><a href="#climate-environment-and-weather">Climate, Environment and Weather</a></li>
 <li><a href="#crop-modeling-phenotyping-and-pathology">Crop Modeling, Phenotyping, and Pathology</a></li>
-<li><a href="#datasets">Datasets</a></li>
+<li><a href="#datasets">Datasets</a><ul>
+<li><a href="#research-and-general-data">Research and General Data</a></li>
+<li><a href="#regional-data">Regional Data</a><ul>
+<li><a href="#india">India</a></li>
+<li><a href="#united-states">United States</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#data-standardization-interoperability-and-apis">Data Standardization, Interoperability and APIs</a></li>
 <li><a href="#farm-management-systems-and-record-keeping">Farm Management Systems and Record Keeping</a></li>
 <li><a href="#geospatial-and-gis">Geospatial and GIS</a></li>
@@ -51,112 +139,183 @@
 <li><a href="#remote-sensing-and-imagery">Remote Sensing and Imagery</a></li>
 </ul>
 <h2 id="automation-and-robotics"><a class="anchor" aria-hidden="true" tabindex="-1" href="#automation-and-robotics"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Automation and Robotics</h2><ul>
-<li><a href="https://antrobotics.de/" rel="noopener noreferrer">Ant Robotics</a> - development from Ecoterra bot</li>
 <li><a href="https://github.com/Twisted-Fields" rel="noopener noreferrer">Acorn Rover</a> - precision farming rover, Odrive, Python.</li>
+<li><a href="https://antrobotics.de/" rel="noopener noreferrer">Ant Robotics</a> - development from Ecoterra bot</li>
 <li><a href="https://github.com/earthrover" rel="noopener noreferrer">Earth Rover</a> - Ag AGV ROS1 precision farming rover</li>
-<li><a href="https://ecoterrabot.com/" rel="noopener noreferrer">EcoTerra Bot</a> - Delta &amp; Rover</li>
 <li><a href="https://github.com/farmbot" rel="noopener noreferrer">FarmBot</a> - Open source precision gardening project.</li>
 <li><a href="https://github.com/farmbot-ros/" rel="noopener noreferrer">FarmBot-ROS</a> - Open source farming robot.</li>
-<li><a href="https://github.com/Fields2Cover/Fields2Cover" rel="noopener noreferrer">Fields2Cover (⭐734)</a> - Robust and efficient coverage paths for autonomous agricultural vehicles.</li>
-<li><a href="https://github.com/zauberzeug/field_friend" rel="noopener noreferrer">Field Friend</a> - A Development Platform for Autonomous Weeding.</li>
+<li><a href="https://github.com/zauberzeug/feldfreund_devkit" rel="noopener noreferrer">Feldfreund Dev Kit (⭐11)</a> - Open source development platform for autonomous outdoor robotics and agricultural weeding.</li>
+<li><a href="https://github.com/tecelskyyivan-alt/ardu-field-planner" rel="noopener noreferrer">Field Mission Planner (⭐5)</a> - Open-source spraying route planner for ArduPilot drones (coverage routes around obstacles, MAVLink upload, offline).</li>
+<li><a href="https://github.com/Fields2Cover/Fields2Cover" rel="noopener noreferrer">Fields2Cover (⭐929)</a> - Robust and efficient coverage paths for autonomous agricultural vehicles.</li>
 <li><a href="https://media.romi-project.eu/documents/index.html" rel="noopener noreferrer">Romi project</a> - Europe-funded research project</li>
-<li><a href="http://rosagriculture.org/" rel="noopener noreferrer">ROS Agriculture</a> - Open Source community focusing on using Robot Operating System to empower farmers with robotics tools.</li>
+<li><a href="https://rosagriculture.org/" rel="noopener noreferrer">ROS Agriculture</a> - Open Source community focusing on using Robot Operating System to empower farmers with robotics tools.</li>
 <li><a href="https://hackaday.io/project/53896-weedinator-2019" rel="noopener noreferrer">Weedinator</a> - Line following weeding robot</li>
 </ul>
 <h2 id="calculators"><a class="anchor" aria-hidden="true" tabindex="-1" href="#calculators"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Calculators</h2><ul>
-<li><a href="https://github.com/brycejohnston/farm-calculators" rel="noopener noreferrer">farm-calculators (⭐21)</a> - WordPress plugin for calculating various farming and crop related information.</li>
+<li><a href="https://github.com/LydiaTools/covercalcpro-landscape-quantity-kit" rel="noopener noreferrer">CoverCalc Pro Landscape Quantity Kit (⭐0)</a> - MIT-licensed offline browser checker for landscape volumes and whole-bag counts.</li>
+<li><a href="https://github.com/cmhenry79/direct-beef-tools" rel="noopener noreferrer">Direct Beef Tools (⭐0)</a> - Browser-only worksheet for comparing another-sale net value with direct-to-customer beef break-even and target prices.</li>
+<li><a href="https://github.com/brycejohnston/farm-calculators" rel="noopener noreferrer">farm-calculators (⭐24)</a> - WordPress plugin for calculating various farming and crop related information.</li>
+<li><a href="https://github.com/SaschaHeyer/flower-farm-math" rel="noopener noreferrer">flower-farm-math (⭐0)</a> - Zero-dependency JavaScript library for flower farm and farmer-florist math: wedding stem counts, costs-up CSA bouquet pricing, and a bloom-to-sales weekly reconciliation of stems cut vs. promised by variety.</li>
+<li><a href="https://github.com/SaschaHeyer/mycro-grow" rel="noopener noreferrer">mycro-grow (⭐0)</a> - JavaScript library and CLI for gourmet mushroom cultivation math: substrate hydration, spawn ratio, biological-efficiency yield, and batch economics.</li>
+<li><a href="https://github.com/demi-valerith/yard-material-coverage-data" rel="noopener noreferrer">yard-material-coverage-data (⭐1)</a> - Open landscape material coverage, density, and bag conversion data with a reusable calculator component.</li>
 </ul>
 <h2 id="climate-environment-and-weather"><a class="anchor" aria-hidden="true" tabindex="-1" href="#climate-environment-and-weather"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Climate, Environment and Weather</h2><ul>
-<li><a href="https://github.com/brycejohnston/agroclimatology" rel="noopener noreferrer">agroclimatology (⭐17)</a> - Ruby client for interacting with the NASA (POWER) Agroclimatology Web Resource.</li>
-<li><a href="https://github.com/brycejohnston/evapotranspiration" rel="noopener noreferrer">evapotranspiration (⭐14)</a> - Ruby library for calculating reference crop evapotranspiration (ETo).</li>
-<li><a href="https://github.com/waldoj/frostline" rel="noopener noreferrer">frostline (⭐160)</a> - A dataset, API, and python parser for USDA plant hardiness zones.</li>
-<li><a href="https://github.com/ropensci/GSODR" rel="noopener noreferrer">GSODR (⭐97)</a> - Global summary daily weather data in R.</li>
-<li><a href="https://github.com/akrherz/iem" rel="noopener noreferrer">iem (⭐179)</a> - Code that makes the Iowa Environmental Mesonet run.</li>
-<li><a href="https://github.com/woodcrafty/PyETo" rel="noopener noreferrer">PyETo (⭐173)</a> - Python package for calculating reference/potential evapotranspiration (ETo).</li>
-<li><a href="https://github.com/hectornieto/pyTSEB" rel="noopener noreferrer">pyTSEB (⭐154)</a> - A python two source energy balance model for estimation of evapotranspiration with remote sensing data.</li>
-<li><a href="https://github.com/ncss-tech/soilDB" rel="noopener noreferrer">soilDB (⭐94)</a> - R library for simplified access to NCSS soil databases.</li>
+<li><a href="https://github.com/brycejohnston/agroclimatology" rel="noopener noreferrer">agroclimatology (⭐20)</a> - Ruby client for interacting with the NASA (POWER) Agroclimatology Web Resource.</li>
+<li><a href="https://github.com/brycejohnston/evapotranspiration" rel="noopener noreferrer">evapotranspiration (⭐15)</a> - Ruby library for calculating reference crop evapotranspiration (ETo).</li>
+<li><a href="https://github.com/waldoj/frostline" rel="noopener noreferrer">frostline (⭐165)</a> - A dataset, API, and python parser for USDA plant hardiness zones.</li>
+<li><a href="https://github.com/ropensci/GSODR" rel="noopener noreferrer">GSODR (⭐98)</a> - Global summary daily weather data in R.</li>
+<li><a href="https://github.com/akrherz/iem" rel="noopener noreferrer">iem (⭐196)</a> - Code that makes the Iowa Environmental Mesonet run.</li>
+<li><a href="https://github.com/woodcrafty/PyETo" rel="noopener noreferrer">PyETo (⭐179)</a> - Python package for calculating reference/potential evapotranspiration (ETo).</li>
+<li><a href="https://github.com/hectornieto/pyTSEB" rel="noopener noreferrer">pyTSEB (⭐172)</a> - A python two source energy balance model for estimation of evapotranspiration with remote sensing data.</li>
+<li><a href="https://github.com/ncss-tech/soilDB" rel="noopener noreferrer">soilDB (⭐102)</a> - R library for simplified access to NCSS soil databases.</li>
 </ul>
 <h2 id="crop-modeling-phenotyping-and-pathology"><a class="anchor" aria-hidden="true" tabindex="-1" href="#crop-modeling-phenotyping-and-pathology"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Crop Modeling, Phenotyping, and Pathology</h2><ul>
-<li><a href="https://www.openplantpathology.org/" rel="noopener noreferrer">Open Plant Pathology</a> - A community that values open data and computational tools for advancing epidemiology and pathogen population biology and ecology.</li>
+<li><a href="https://openplantpathology.netlify.app/" rel="noopener noreferrer">Open Plant Pathology</a> - A community that values open data and computational tools for advancing epidemiology and pathogen population biology and ecology.</li>
 </ul>
-<h2 id="datasets"><a class="anchor" aria-hidden="true" tabindex="-1" href="#datasets"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Datasets</h2><ul>
+<h2 id="datasets"><a class="anchor" aria-hidden="true" tabindex="-1" href="#datasets"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Datasets</h2><h3 id="research-and-general-data"><a class="anchor" aria-hidden="true" tabindex="-1" href="#research-and-general-data"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Research and General Data</h3><p>Research datasets and collections with broad agricultural applications.</p>
+<ul>
 <li><a href="https://lacunafund.org/datasets/agriculture/" rel="noopener noreferrer">Agriculture Datasets Collection</a> - Curated collection of machine learning datasets specifically designed to address food security challenges in developing regions.</li>
 <li><a href="https://ceaod.github.io/" rel="noopener noreferrer">CEAOD</a> - Controlled Environment Agriculture Open Data repository providing standardized datasets for greenhouse and indoor farming research with data analysis tools.</li>
-<li><a href="https://github.com/nasaharvest/cropharvest" rel="noopener noreferrer">CropHarvest (⭐218)</a> - Open source remote sensing dataset for global crop type mapping with 95,186 labeled datapoints from satellite imagery, supporting machine learning research for food security.</li>
-<li><a href="https://github.com/cwfid/dataset" rel="noopener noreferrer">CWFID (⭐155)</a> - Dataset comprising field images, vegetation segmentation masks and crop/weed plant type annotations.</li>
+<li><a href="https://github.com/nasaharvest/cropharvest" rel="noopener noreferrer">CropHarvest (⭐246)</a> - Open source remote sensing dataset for global crop type mapping with 95,186 labeled datapoints from satellite imagery, supporting machine learning research for food security.</li>
+<li><a href="https://github.com/cwfid/dataset" rel="noopener noreferrer">CWFID (⭐164)</a> - Dataset comprising field images, vegetation segmentation masks and crop/weed plant type annotations.</li>
 <li><a href="https://data.harvestportal.org/dataset/fao-bha-nasa-harvest-public-crop-type-datasets" rel="noopener noreferrer">FAO/NASA Harvest Crop Type Dataset</a> - Ground truth crop type observations dataset with geolocated field data for validation and training of cropland classification models.</li>
+<li><a href="https://furrow.land/farmland-price-index" rel="noopener noreferrer">Furrow</a> - Farmland prices in 37 countries on 6 continents from national statistics.</li>
 <li><a href="https://www.growstuff.org/crops" rel="noopener noreferrer">Growstuff</a> - Record keeping &amp; crop database, nice API</li>
 <li><a href="https://www.kaggle.com/datasets/emmarex/plantdisease" rel="noopener noreferrer">PlantVillage</a> - Dataset containing leaf images of healthy and diseased plants, covering 38 disease classes across 14 different crops.</li>
-<li><a href="https://github.com/saeedkhaki92/CNN-RNN-Yield-Prediction?tab=readme-ov-file" rel="noopener noreferrer">SoybeanYield (⭐163)</a> - A multimodal agricultural dataset for soybean yield forecasting, integrating yield performance, management practices, weather data, and soil parameters.</li>
+<li><a href="https://yumaheymans.github.io/robot-lawn-mower-specs/" rel="noopener noreferrer">Robot Lawn Mower Specs</a> - CC BY 4.0 dataset of robotic mower specifications with cited sources and CSV/JSON downloads.</li>
+<li><a href="https://github.com/saeedkhaki92/CNN-RNN-Yield-Prediction" rel="noopener noreferrer">SoybeanYield (⭐162)</a> - A multimodal agricultural dataset for soybean yield forecasting, integrating yield performance, management practices, weather data, and soil parameters.</li>
 <li><a href="https://terraref.org" rel="noopener noreferrer">TERRA REF</a> - 1PB public domain high resolution sensor data from sorghum breeding trials (<a href="https://doi.org/10.5061/dryad.4b8gtht99" rel="noopener noreferrer">data publication</a> with large files available on <a href="https://app.globus.org/file-manager?origin_id=e8feaff4-96cd-11ea-bf90-0e6cccbb0103&amp;origin_path=%2F" rel="noopener noreferrer">globus.org at ncsa#terra-public</a>)</li>
+</ul>
+<h3 id="regional-data"><a class="anchor" aria-hidden="true" tabindex="-1" href="#regional-data"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Regional Data</h3><p>Country and location-specific reference data for markets, land records, and growing conditions.</p>
+<h4 id="india"><a class="anchor" aria-hidden="true" tabindex="-1" href="#india"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>India</h4><ul>
+<li><a href="https://nidhi-bhai.github.io/india-agri-export-prices/" rel="noopener noreferrer">India Agri Export Price Index</a> - Weekly reference prices for Indian agri exports (USD/kg from UN Comtrade, INR/quintal mandi prices from Agmarknet) with sources, an append-only history and CSV/JSON downloads.</li>
+<li><a href="https://github.com/Vyzma-AI/india-land-data" rel="noopener noreferrer">India Land Data (⭐1)</a> - Official land-record portals for 11 Indian states and Indian land area units (gunta, bigha, kanal and others) with state variations, as CC BY 4.0 JSON.</li>
+<li><a href="https://www.varshakrishi.com/open-data" rel="noopener noreferrer">VarshaKrishi Field NDVI</a> - One year of Sentinel-2 NDVI for a farm field near Katol, India, with field-level cloud and haze flags (CC BY 4.0, CSV/JSON).</li>
+</ul>
+<h4 id="united-states"><a class="anchor" aria-hidden="true" tabindex="-1" href="#united-states"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>United States</h4><ul>
+<li><a href="https://github.com/sackio/massachusetts-frost-dates-zones" rel="noopener noreferrer">massachusetts-frost-dates-zones (⭐0)</a> - CC BY 4.0 CSV datasets of Massachusetts frost dates from NOAA normals and USDA hardiness zones for towns and villages.</li>
+<li><a href="https://harvestlymarkets.com/farmers-market-statistics/" rel="noopener noreferrer">US Farmers Market Statistics</a> - USDA-derived state-by-state farmers market counts and SNAP/EBT and organic-vendor statistics, with CC BY 4.0 CSV/JSON downloads.</li>
+<li><a href="https://juantorresmi.github.io/usda-market-prices/" rel="noopener noreferrer">USDA Market Prices</a> - Daily USDA boxed beef, pork and fed cattle prices by cut and region, with history since 2020 and free CSV downloads, in English and Spanish.</li>
 </ul>
 <h2 id="data-standardization-interoperability-and-apis"><a class="anchor" aria-hidden="true" tabindex="-1" href="#data-standardization-interoperability-and-apis"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Data Standardization, Interoperability and APIs</h2><ul>
 <li><a href="https://adaptframework.org" rel="noopener noreferrer">AgGateway’s ADAPT Toolkit</a> - Open Source project providing tools to simplify communication between growers, their machines, and their partners.</li>
+<li><a href="https://github.com/TheHiddenPandaDev/agro_gps_mcp" rel="noopener noreferrer">Agro GPS MCP (⭐0)</a> - MCP server exposing the official plant protection product registers of 30 European countries (authorisation status, active substances, authorised uses per crop) to AI assistants; free, no key.</li>
 <li><a href="https://github.com/agstack" rel="noopener noreferrer">Agstack</a> - Open-Source Digital Infrastructure for the Agriculture Ecosystem.</li>
 <li><a href="https://github.com/aWhereAPI/API-Code-Samples" rel="noopener noreferrer">API-Code-Samples (⭐9)</a> - Contains aWhere's API platform code samples.</li>
-<li><a href="https://github.com/Michael-A-Kuykendall/botanica" rel="noopener noreferrer">Botanica (⭐10)</a> - Production-ready Rust crate for professional botanical data management with taxonomic hierarchy, cultivation tracking, and Darwin Core compliance.</li>
-<li><a href="https://github.com/IterisClearAg/ClearAg-API-Examples" rel="noopener noreferrer">ClearAg-API-Examples (⭐1)</a> - A collection of code examples using the ClearAg APIs.</li>
+<li><a href="https://github.com/Michael-A-Kuykendall/botanica" rel="noopener noreferrer">Botanica (⭐21)</a> - Production-ready Rust crate for professional botanical data management with taxonomic hierarchy, cultivation tracking, and Darwin Core compliance.</li>
+<li><a href="https://github.com/DTNClearAg/clearag_api_examples" rel="noopener noreferrer">ClearAg API Examples (⭐2)</a> - A collection of code examples using the ClearAg APIs.</li>
 <li><a href="https://www.fiware.org/community/smart-agrifood/" rel="noopener noreferrer">Fiware AgriFood</a> - Open Source data standards and IoT framework that help connect farm systems and enable practical smart farming and agrifood solutions—part of the larger Fiware.org project.</li>
-<li><a href="https://github.com/JohnDeere/JDLinkMachineDataAPI-OAuth2-CSharp-Example" rel="noopener noreferrer">JDLinkMachineDataAPI-OAuth2-CSharp-Example (⭐0)</a> - CSharp JDLink Machine Data API client example.</li>
+<li><a href="https://github.com/JohnDeere/ISO-15143-3-API-OAuth2-CSharp-Example" rel="noopener noreferrer">ISO-15143-3-API-OAuth2-CSharp-Example (⭐0)</a> - C# example for the John Deere ISO 15143-3 machine data API.</li>
 <li><a href="https://github.com/oada" rel="noopener noreferrer">Open Ag Data Alliance</a> - OADA is an open project designed to bring interoperability, security, and privacy to agricultural data.</li>
-<li><a href="https://github.com/JohnDeere/MyJohnDeereAPI-OAuth2-Java-Example" rel="noopener noreferrer">MyJohnDeereAPI-OAuth2-Java-Example (⭐2)</a> - Java MyJohnDeere API client example.</li>
-<li><a href="https://github.com/JohnDeere/MyJohnDeereAPI-OAuth2-NodeJS-Example" rel="noopener noreferrer">MyJohnDeereAPI-OAuth2-NodeJS-Example (⭐3)</a> - Node.js MyJohnDeere API client example.</li>
-<li><a href="https://github.com/JohnDeere/MyJohnDeereAPI-OAuth2-Python-Example" rel="noopener noreferrer">MyJohnDeereAPI-OAuth2-Python-Example (⭐20)</a> - Python MyJohnDeere API client example.</li>
+<li><a href="https://github.com/agstack/OpenAgri-OCSM" rel="noopener noreferrer">Open Agri Common Semantic Model (OCSM) (⭐7)</a> - Ontology reusing existing standards to support semantic interoperability across smart farming solutions.</li>
+<li><a href="https://github.com/Open-Agriculture" rel="noopener noreferrer">Open-Agriculture</a> - Free and open source ISOBUS (ISO 11783) tools, including the AgIsoStack++ library, a Virtual Terminal, a DDOP editor and a VT object pool designer.</li>
 <li><a href="https://openteam.community/" rel="noopener noreferrer">OpenTeam</a> - Open Technology Ecosystem for Agricultural Management</li>
-<li><a href="https://github.com/JohnDeere/SampleData" rel="noopener noreferrer">SampleData (⭐33)</a> - Sample datacards, shapefiles, and other files you can use for testing.</li>
+<li><a href="https://github.com/JohnDeere/OperationsCenterAPI-OAuth2-Java-Example" rel="noopener noreferrer">OperationsCenterAPI-OAuth2-Java-Example (⭐3)</a> - Java example for the John Deere Operations Center API.</li>
+<li><a href="https://github.com/JohnDeere/OperationsCenterAPI-OAuth2-NodeJS-Example" rel="noopener noreferrer">OperationsCenterAPI-OAuth2-NodeJS-Example (⭐3)</a> - Node.js example for the John Deere Operations Center API.</li>
+<li><a href="https://github.com/JohnDeere/OperationsCenterAPI-OAuth2-Python-Example" rel="noopener noreferrer">OperationsCenterAPI-OAuth2-Python-Example (⭐22)</a> - Python example for the John Deere Operations Center API.</li>
+<li><a href="https://github.com/JohnDeere/SampleData" rel="noopener noreferrer">SampleData (⭐39)</a> - Sample datacards, shapefiles, and other files you can use for testing.</li>
 <li><a href="https://github.com/sencrop/sencrop-js-api-client" rel="noopener noreferrer">SencropAPI-JavaScript-Client (⭐3)</a> - Sencrop API Javascript client implementation. Read and manage Sencrop weather stations.</li>
+<li><a href="https://www.tilth.uk/data" rel="noopener noreferrer">Tilth</a> - Free daily UK fertiliser price index API for nine grades, CC BY 4.0 licensed.</li>
+<li><a href="https://github.com/treflehq/trefle-api" rel="noopener noreferrer">Trefle (⭐589)</a> - Open source botanical REST API for querying plant species, taxonomy, and growing information.</li>
 </ul>
 <h2 id="farm-management-systems-and-record-keeping"><a class="anchor" aria-hidden="true" tabindex="-1" href="#farm-management-systems-and-record-keeping"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Farm Management Systems and Record Keeping</h2><ul>
-<li><a href="https://github.com/ekylibre/ekylibre" rel="noopener noreferrer">Ekylibre (⭐462)</a> - Farm management information system for farmers and small enterprises built with Ruby on Rails and PostgreSQL/PostGIS.</li>
-<li><a href="https://github.com/farmOS/farmOS" rel="noopener noreferrer">farmOS (⭐1.2k)</a> - Web-based farm record keeping application built with Drupal and PHP.</li>
-<li><a href="https://gitlab.com/growgood" rel="noopener noreferrer">GrowGood</a>) - GrowGood is an open-source farm management platform using open standards like ValueFlows and JSON-LD to help track and share interoperable data across agricultural operations and marketplaces.</li>
-<li><a href="https://github.com/LiteFarmOrg/LiteFarm" rel="noopener noreferrer">LiteFarm (⭐193)</a> - LiteFarm is the world’s first community-led, not-for-profit, Farm management system</li>
-<li><a href="https://github.com/Open-Source-Agriculture/soil_mate" rel="noopener noreferrer">Soil Mate (⭐23)</a> - Helper app designed to assist the collection of soil data.</li>
-<li><a href="https://github.com/Tanibox/tania-core" rel="noopener noreferrer">Tania (⭐810)</a> - Free and open source farming management system for everyone built with Go and Vue.js.</li>
+<li><a href="https://github.com/ekylibre/ekylibre" rel="noopener noreferrer">Ekylibre (⭐496)</a> - Farm management information system for farmers and small enterprises built with Ruby on Rails and PostgreSQL/PostGIS.</li>
+<li><a href="https://github.com/farmOS/farmOS" rel="noopener noreferrer">farmOS (⭐1.4k)</a> - Web-based farm record keeping application built with Drupal and PHP.</li>
+<li><a href="https://github.com/aspinozaxxx-lab/growerhub" rel="noopener noreferrer">GrowerHub (⭐7)</a> - Greenhouse and small-farm management with Zigbee2MQTT monitoring, plant and watering journals, and lighting and irrigation automation.</li>
+<li><a href="https://gitlab.com/growgood" rel="noopener noreferrer">GrowGood</a> - GrowGood is an open-source farm management platform using open standards like ValueFlows and JSON-LD to help track and share interoperable data across agricultural operations and marketplaces.</li>
+<li><a href="https://github.com/danielbrendel/hortusfox-web" rel="noopener noreferrer">HortusFox (⭐1.7k)</a> - Self-hosted collaborative plant management system with plant records, care tasks, inventory, photos, and a calendar.</li>
+<li><a href="https://github.com/LiteFarmOrg/LiteFarm" rel="noopener noreferrer">LiteFarm (⭐253)</a> - LiteFarm is the world’s first community-led, not-for-profit, Farm management system</li>
+<li><a href="https://github.com/MDeLuise/plant-it" rel="noopener noreferrer">Plant-it (⭐1.4k)</a> - Android gardening companion for logging plant care, keeping photos, and setting reminders.</li>
+<li><a href="https://github.com/Open-Source-Agriculture/soil_logr" rel="noopener noreferrer">Soil Mate (⭐29)</a> - Helper app designed to assist the collection of soil data.</li>
+<li><a href="https://github.com/usetania/tania-core" rel="noopener noreferrer">Tania (⭐825)</a> - Free and open source farming management system for everyone built with Go and Vue.js.</li>
 </ul>
 <h2 id="geospatial-and-gis"><a class="anchor" aria-hidden="true" tabindex="-1" href="#geospatial-and-gis"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Geospatial and GIS</h2><h3 id="gis-resources"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gis-resources"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>GIS Resources</h3><ul>
-<li><a href="https://github.com/sshuair/awesome-gis" rel="noopener noreferrer">Awesome GIS (⭐5.1k)</a> - Awesome GIS is a list collecting abundant GIS related sources.</li>
+<li><a href="https://github.com/sshuair/awesome-gis" rel="noopener noreferrer">Awesome GIS (⭐5.6k)</a> - Awesome GIS is a list collecting abundant GIS related sources.</li>
 </ul>
 <h3 id="gis-platforms"><a class="anchor" aria-hidden="true" tabindex="-1" href="#gis-platforms"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>GIS Platforms</h3><ul>
+<li><a href="https://github.com/TerraLabAI/QGIS_AI-Segmentation" rel="noopener noreferrer">AI Segmentation by TerraLab (⭐45)</a> - QGIS imagery segmentation plugin with local interactive processing and optional hosted processing with free-tier limits.</li>
 <li><a href="https://qgis.org" rel="noopener noreferrer">QGIS</a> - QGIS is a free, open source, cross platform (lin/win/mac) geographical information system.</li>
 </ul>
 <h3 id="shapefiles"><a class="anchor" aria-hidden="true" tabindex="-1" href="#shapefiles"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Shapefiles</h3><ul>
-<li><a href="https://github.com/GeospatialPython/pyshp" rel="noopener noreferrer">pyshp (⭐1.1k)</a> - Reads and writes ESRI Shapefiles in pure Python.</li>
+<li><a href="https://github.com/GeospatialPython/pyshp" rel="noopener noreferrer">pyshp (⭐1.2k)</a> - Reads and writes ESRI Shapefiles in pure Python.</li>
 <li><a href="https://github.com/rgeo/rgeo-shapefile" rel="noopener noreferrer">rgeo-shapefile (⭐98)</a> - RGeo Shapefile is an optional module for RGeo for reading geospatial data from ESRI shapefiles in Ruby.</li>
 </ul>
 <h2 id="iot-hardware"><a class="anchor" aria-hidden="true" tabindex="-1" href="#iot-hardware"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>IoT, Hardware</h2><ul>
-<li><a href="https://github.com/farmerbriantee/AgOpenGPS" rel="noopener noreferrer">AgOpenGPS</a> - Ag precision mapping and section control software.</li>
-<li><a href="https://github.com/timmbogner/Farm-Data-Relay-System" rel="noopener noreferrer">Farm-Data-Relay-System (⭐583)</a> - System using ESP-NOW, LoRa, and other protocols to transport sensor data in remote areas without relying on WiFi.</li>
+<li><a href="https://github.com/AgOpenGPS-Official/AgOpenGPS" rel="noopener noreferrer">AgOpenGPS (⭐984)</a> - Ag precision mapping and section control software.</li>
 <li><a href="https://farmhack.org/tools" rel="noopener noreferrer">Farm Hack</a> - Worldwide community of farmers that build and modify our own tools.</li>
+<li><a href="https://github.com/timmbogner/Farm-Data-Relay-System" rel="noopener noreferrer">Farm-Data-Relay-System (⭐631)</a> - System using ESP-NOW, LoRa, and other protocols to transport sensor data in remote areas without relying on WiFi.</li>
 <li><a href="https://github.com/OpenAgricultureFoundation" rel="noopener noreferrer">Open Agriculture Foundation</a> -  Open Source ecosystem of technologies that enable and promote transparency, networked experimentation, education, and hyper-local production.</li>
 <li><a href="https://openhydroponics.com/" rel="noopener noreferrer">Open hydroponics</a> - Fully Automated Hydroponic OS</li>
-<li><a href="https://github.com/autogrow/openminder" rel="noopener noreferrer">OpenMinder (⭐45)</a> - Open Source Rootzone Monitoring, API and open source hat for the RaspberryPi.</li>
-<li><a href="https://github.com/geezacoleman/OpenWeedLocator" rel="noopener noreferrer">OpenWeedLocator (⭐432)</a> - Open Source, low-cost, image-based weed detection device for in-crop and fallow scenarios.</li>
-<li><a href="https://github.com/matmis/simplesteer" rel="noopener noreferrer">Simplesteer (⭐5)</a> - RTK GPS tractor autosteer system with a web interface that you can control with a smartphone and can run on a Raspberry Pi.</li>
-<li><a href="https://github.com/arifulmrislam/Smart-farming-dashboard-with-ThingsBoard" rel="noopener noreferrer">Smart Farming Thingsboard (⭐5)</a> - a demo smart farming project using ThingsBoard to collect sensor data and display it on real-time agricultural dashboards.</li>
+<li><a href="https://github.com/autogrow/openminder" rel="noopener noreferrer">OpenMinder (⭐47)</a> - Open Source Rootzone Monitoring, API and open source hat for the RaspberryPi.</li>
+<li><a href="https://github.com/geezacoleman/OpenWeedLocator" rel="noopener noreferrer">OpenWeedLocator (⭐509)</a> - Open Source, low-cost, image-based weed detection device for in-crop and fallow scenarios.</li>
+<li><a href="https://github.com/matmis/simplesteer" rel="noopener noreferrer">Simplesteer (⭐6)</a> - RTK GPS tractor autosteer system with a web interface that you can control with a smartphone and can run on a Raspberry Pi.</li>
+<li><a href="https://github.com/arifulmrislam/Smart-farming-dashboard-with-ThingsBoard" rel="noopener noreferrer">Smart Farming Thingsboard (⭐7)</a> - a demo smart farming project using ThingsBoard to collect sensor data and display it on real-time agricultural dashboards.</li>
 </ul>
 <h2 id="knowledgebases-and-learning-resources"><a class="anchor" aria-hidden="true" tabindex="-1" href="#knowledgebases-and-learning-resources"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Knowledgebases and Learning Resources</h2><ul>
-<li><a href="https://github.com/damwhit/harvest_helper" rel="noopener noreferrer">Harvest Helper (⭐88)</a> -  Provides growing, harvesting and recipe information for the 45 plants in the database as well as a JSON API.</li>
+<li><a href="https://github.com/damwhit/harvest_helper" rel="noopener noreferrer">Harvest Helper (⭐89)</a> -  Provides growing, harvesting and recipe information for the 45 plants in the database as well as a JSON API.</li>
 <li><a href="https://github.com/openfarmcc/OpenFarm" rel="noopener noreferrer">OpenFarm (⭐1.7k)</a> - A free and open database for farming and gardening knowledge built with Ruby on Rails.</li>
 </ul>
 <h2 id="machine-learning-and-ai"><a class="anchor" aria-hidden="true" tabindex="-1" href="#machine-learning-and-ai"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Machine Learning and AI</h2><ul>
-<li><a href="https://github.com/Project-AgML/AgML" rel="noopener noreferrer">AgML (⭐259)</a> - Centralized framework for agricultural machine learning.</li>
-<li><a href="https://github.com/kwstat/agridat" rel="noopener noreferrer">agridat (⭐139)</a> - R package providing an extensive collection of datasets from agricultural experiments.</li>
-<li><a href="https://github.com/JiaxuanYou/crop_yield_prediction" rel="noopener noreferrer">Crop Yield Prediction (⭐413)</a> - Deep gaussian process for crop yield prediction based on remote sensing data.</li>
-<li><a href="https://github.com/totti0223/deep_learning_for_biologists_with_keras" rel="noopener noreferrer">Deep Learning for Biologists with Keras (⭐106)</a> - Tutorials for deep learning based analysis (mainly) on biological relavent themes.</li>
-<li><a href="https://github.com/microsoft/farmvibes-ai" rel="noopener noreferrer">FarmVibes.AI (⭐821)</a> - Multi-Modal GeoSpatial ML Models for Agriculture and Sustainability.</li>
-<li><a href="https://github.com/danforthcenter/plantcv" rel="noopener noreferrer">PlantCV (⭐755)</a> - Plant phenotyping software using computer vision.</li>
+<li><a href="https://github.com/Project-AgML/AgML" rel="noopener noreferrer">AgML (⭐355)</a> - Centralized framework for agricultural machine learning.</li>
+<li><a href="https://github.com/kwstat/agridat" rel="noopener noreferrer">agridat (⭐150)</a> - R package providing an extensive collection of datasets from agricultural experiments.</li>
+<li><a href="https://github.com/JiaxuanYou/crop_yield_prediction" rel="noopener noreferrer">Crop Yield Prediction (⭐422)</a> - Deep gaussian process for crop yield prediction based on remote sensing data.</li>
+<li><a href="https://github.com/totti0223/deep_learning_for_biologists_with_keras" rel="noopener noreferrer">Deep Learning for Biologists with Keras (⭐108)</a> - Tutorials for deep learning based analysis (mainly) on biological relavent themes.</li>
+<li><a href="https://github.com/microsoft/farmvibes-ai" rel="noopener noreferrer">FarmVibes.AI (⭐912)</a> - Multi-Modal GeoSpatial ML Models for Agriculture and Sustainability.</li>
+<li><a href="https://github.com/keylorpineda/healthycropping" rel="noopener noreferrer">HealthyCropping (⭐4)</a> - Android crop disease diagnosis application in development, using on-device computer vision for offline use.</li>
+<li><a href="https://github.com/danforthcenter/plantcv" rel="noopener noreferrer">PlantCV (⭐841)</a> - Plant phenotyping software using computer vision.</li>
 </ul>
 <h2 id="remote-sensing-and-imagery"><a class="anchor" aria-hidden="true" tabindex="-1" href="#remote-sensing-and-imagery"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Remote Sensing and Imagery</h2><ul>
-<li><a href="https://github.com/Fernerkundung/awesome-sentinel" rel="noopener noreferrer">Awesome Sentinel (⭐570)</a> - A curated list of awesome tools, tutorials and APIs related to data from the Copernicus Sentinel Satellites.</li>
-<li><a href="https://github.com/px39n/Awesome-Vegetation-Index" rel="noopener noreferrer">Awesome Vegetation Index (⭐78)</a> - List of reference, applications of common Vegetation Indices for Multi-spectral, hyper-spectral and UAV images.</li>
+<li><a href="https://github.com/kr-stn/awesome-sentinel" rel="noopener noreferrer">Awesome Sentinel (⭐587)</a> - A curated list of awesome tools, tutorials and APIs related to data from the Copernicus Sentinel Satellites.</li>
+<li><a href="https://github.com/px39n/Awesome-Vegetation-Index" rel="noopener noreferrer">Awesome Vegetation Index (⭐85)</a> - List of reference, applications of common Vegetation Indices for Multi-spectral, hyper-spectral and UAV images.</li>
 <li><a href="https://github.com/azavea/raster-vision" rel="noopener noreferrer">Raster Vision (⭐2.2k)</a> - Deep learning for aerial/satellite imagery.</li>
-<li><a href="https://github.com/Sen2Agri/Sen2Agri-System" rel="noopener noreferrer">Sen2Agri (⭐123)</a> - Software system processing high resolution satellite images for agricultural purposes.</li>
+<li><a href="https://github.com/Sen2Agri/Sen2Agri-System" rel="noopener noreferrer">Sen2Agri (⭐133)</a> - Software system processing high resolution satellite images for agricultural purposes.</li>
 </ul>
-<h2 id="license"><a class="anchor" aria-hidden="true" tabindex="-1" href="#license"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>License</h2><p><a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener noreferrer"><img src="http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg" alt="CC0" /></a></p>
+<h2 id="license"><a class="anchor" aria-hidden="true" tabindex="-1" href="#license"><svg class="octicon octicon-link" viewbox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>License</h2><p><a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener noreferrer"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg" alt="CC0" /></a></p>
 <p>To the extent possible under law, <a href="https://github.com/brycejohnston" rel="noopener noreferrer">Bryce Johnston</a> has waived all copyright and related or neighboring rights to this work.</p>
 
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
