@@ -16,26 +16,111 @@
     <meta property="og:title" content="Track Awesome Clojure Updates Weekly" />
     <meta property="og:description" content="A curated list of awesome Clojure libraries and resources. Inspired by awesome-... stuff" />
     <meta property="og:site_name" content="Track Awesome List" />
+    <script>
+      // Apply theme BEFORE any CSS loads to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        const html = document.documentElement;
+        
+        if (theme === 'dark') {
+          html.setAttribute('data-theme', 'dark');
+          html.setAttribute('data-color-mode', 'dark');
+          // Force dark background immediately
+          html.style.backgroundColor = '#0d1117';
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.backgroundColor = '#0d1117';
+          });
+        } else {
+          html.setAttribute('data-color-mode', 'light');
+        }
+      })();
+    </script>
     <style>
+      /* Light mode variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --toggle-bg: #f6f8fa;
+        --toggle-border: #d0d7de;
+      }
+      
+      /* Dark mode variables */
+      [data-theme="dark"] {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color);
+      }
+      
       main {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5em;
+        padding: 1em 0.5em 0 0.5em;
+        min-height: 100vh;
+        background-color: var(--bg-color) !important;
       }
+      
+      /* Force dark backgrounds on markdown-body */
+      [data-theme="dark"] .markdown-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+      }
+      
+      /* Toggle switch styles */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--toggle-bg);
+        border: 1px solid var(--toggle-border);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+      
+      .theme-toggle:active {
+        transform: scale(0.95);
+      }
+      
       :root,[data-color-mode=light][data-light-theme=light],[data-color-mode=dark][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=light]{--color-canvas-default-transparent:rgba(255,255,255,0);--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-danger-fg:#cf222e}}[data-color-mode=light][data-light-theme=dark],[data-color-mode=dark][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}@media (prefers-color-scheme:light){[data-color-mode=auto][data-light-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}@media (prefers-color-scheme:dark){[data-color-mode=auto][data-dark-theme=dark]{--color-canvas-default-transparent:rgba(13,17,23,0);--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:rgba(110,118,129,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-danger-fg:#f85149}}.markdown-body{word-wrap:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5}.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both;content:"";display:table}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;margin-left:-20px;padding-right:4px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;background-color:var(--color-border-default);border:0;margin:24px 0;padding:0}.markdown-body blockquote{color:var(--color-fg-muted);border-left:.25em solid var(--color-border-default);padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size:inherit;padding:0 .2em}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:2em}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);padding-bottom:.3em;font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ul,.markdown-body ol{padding-left:2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{margin-top:16px;padding:0;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{width:100%;width:-webkit-max-content;width:-webkit-max-content;width:max-content;max-width:100%;display:block;overflow:auto}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:rgba(0,0,0,0)}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:var(--color-canvas-default)}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:rgba(0,0,0,0)}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{float:left;width:auto;border:1px solid var(--color-border-default);margin:13px 0 0;padding:7px;display:block;overflow:hidden}.markdown-body span.frame span img{float:left;display:block}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);padding:5px 0 0;display:block}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{text-align:center;margin:13px auto 0;display:block;overflow:hidden}.markdown-body span.align-center span img{text-align:center;margin:0 auto}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{text-align:right;margin:13px 0 0;display:block;overflow:hidden}.markdown-body span.align-right span img{text-align:right;margin:0}.markdown-body span.float-left{float:left;margin-right:13px;display:block;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{float:right;margin-left:13px;display:block;overflow:hidden}.markdown-body span.float-right>span{text-align:right;margin:13px auto 0;display:block;overflow:hidden}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;margin:0;padding:.2em .4em;font-size:85%}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre{word-wrap:normal}.markdown-body pre code{font-size:100%}.markdown-body pre>code{word-break:normal;white-space:pre;background:0 0;border:0;margin:0;padding:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{word-break:normal;margin-bottom:0}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;padding:16px;font-size:85%;line-height:1.45;overflow:auto}.markdown-body pre code,.markdown-body pre tt{max-width:auto;line-height:inherit;word-wrap:normal;background-color:rgba(0,0,0,0);border:0;margin:0;padding:0;display:inline;overflow:visible}.markdown-body .csv-data td,.markdown-body .csv-data th{text-align:left;white-space:nowrap;padding:5px;font-size:12px;line-height:1;overflow:hidden}.markdown-body .csv-data .blob-num{text-align:right;background:var(--color-canvas-default);border:0;padding:10px 8px 9px}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:600}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{color:var(--color-fg-muted);border-top:1px solid var(--color-border-default);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{pointer-events:none;content:"";border:2px solid var(--color-accent-emphasis);border-radius:6px;position:absolute;top:-8px;bottom:-8px;left:-24px;right:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body{background-color:var(--color-canvas-default);color:var(--color-fg-default)}.markdown-body a{color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body iframe{background-color:#fff;border:0;margin-bottom:16px}.markdown-body svg.octicon{fill:currentColor}.markdown-body .anchor>.octicon{display:inline}.markdown-body .highlight .token.keyword,.gfm-highlight .token.keyword{color:var(--color-prettylights-syntax-keyword)}.markdown-body .highlight .token.tag .token.class-name,.markdown-body .highlight .token.tag .token.script .token.punctuation,.gfm-highlight .token.tag .token.class-name,.gfm-highlight .token.tag .token.script .token.punctuation{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .highlight .token.operator,.markdown-body .highlight .token.number,.markdown-body .highlight .token.boolean,.markdown-body .highlight .token.tag .token.punctuation,.markdown-body .highlight .token.tag .token.script .token.script-punctuation,.markdown-body .highlight .token.tag .token.attr-name,.gfm-highlight .token.operator,.gfm-highlight .token.number,.gfm-highlight .token.boolean,.gfm-highlight .token.tag .token.punctuation,.gfm-highlight .token.tag .token.script .token.script-punctuation,.gfm-highlight .token.tag .token.attr-name{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.function,.gfm-highlight .token.function{color:var(--color-prettylights-syntax-entity)}.markdown-body .highlight .token.string,.gfm-highlight .token.string{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.comment,.gfm-highlight .token.comment{color:var(--color-prettylights-syntax-comment)}.markdown-body .highlight .token.class-name,.gfm-highlight .token.class-name{color:var(--color-prettylights-syntax-variable)}.markdown-body .highlight .token.regex,.gfm-highlight .token.regex{color:var(--color-prettylights-syntax-string)}.markdown-body .highlight .token.regex .regex-delimiter,.gfm-highlight .token.regex .regex-delimiter{color:var(--color-prettylights-syntax-constant)}.markdown-body .highlight .token.tag .token.tag,.markdown-body .highlight .token.property,.gfm-highlight .token.tag .token.tag,.gfm-highlight .token.property{color:var(--color-prettylights-syntax-entity-tag)}
     </style>
   </head>
   <body>
-    <main data-color-mode="light" data-light-theme="light" data-dark-theme="dark" class="markdown-body">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
+    
+    <main data-light-theme="light" data-dark-theme="dark" class="markdown-body">
       <h1>Track Awesome Clojure Updates Weekly</h1>
 <p>A curated list of awesome Clojure libraries and resources. Inspired by awesome-... stuff</p>
-<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/razum2um/awesome-clojure/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/razum2um/awesome-clojure">😺 razum2um/awesome-clojure</a><span> · </span><span>⭐ 2.8K</span><span> · </span><span>🏷️ Programming Languages</span></p>
+<p><a href="/">🏠 Home</a><span> · </span><a href="https://www.trackawesomelist.com/search/">🔍 Search</a><span> · </span><a href="https://www.trackawesomelist.com/razum2um/awesome-clojure/week/rss.xml">🔥 Feed</a><span> · </span><a href="https://trackawesomelist.us17.list-manage.com/subscribe?u=d2f0117aa829c83a63ec63c2f&id=36a103854c">📮 Subscribe</a><span> · </span><a href="https://github.com/sponsors/theowenyoung">❤️  Sponsor</a><span> · </span><a href="https://github.com/razum2um/awesome-clojure">😺 razum2um/awesome-clojure</a><span> · </span><span>⭐ 2.9K</span><span> · </span><span>🏷️ Programming Languages</span></p>
 <p><span>[ </span><a href="/razum2um/awesome-clojure/">Daily</a><span> / </span><span>Weekly</span><span> / </span><a href="/razum2um/awesome-clojure/readme/">Overview</a><span> ]</span></p>
 
+<h2><a href="https://www.trackawesomelist.com/2026/48/">Nov 30 - Dec 06, 2026</a></h2><h3><p>Machine Learning</p>
+</h3>
+<ul>
+<li><a href="https://github.com/Blockether/vis" rel="noopener noreferrer">vis (⭐20)</a>: open-source coding agent written in Clojure; the model writes Python, folds its own context and runs evals on your own tasks</li>
+</ul>
 <h2><a href="https://www.trackawesomelist.com/2026/15/">Apr 13 - Apr 19, 2026</a></h2><h3><p>Database</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tkaryadis/cmql-core" rel="noopener noreferrer">cmql (⭐14)</a>: for MongoDB</li>
+<li><a href="https://github.com/tkaryadis/cmql-core" rel="noopener noreferrer">cmql (⭐15)</a>: for MongoDB</li>
 </ul>
 <h3><p>Protocol Buffers and gRPC</p>
 </h3>
@@ -45,7 +130,7 @@
 <h3><p>Security</p>
 </h3>
 <ul>
-<li><a href="https://github.com/theronic/eacl" rel="noopener noreferrer">EACL (⭐76)</a>: ReBAC authorization library based on SpiceDB, backed by Datomic</li>
+<li><a href="https://github.com/theronic/eacl" rel="noopener noreferrer">EACL (⭐99)</a>: Situated ReBAC authorization library inspired by SpiceDB and backed by Datomic Pro, Datahike, Datalevin or DataScript.</li>
 </ul>
 <h3><p>Literate Programming</p>
 </h3>
@@ -65,11 +150,11 @@
 <h2><a href="https://www.trackawesomelist.com/2024/12/">Mar 18 - Mar 24, 2024</a></h2><h3><p>Data Validation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/fulcrologic/guardrails" rel="noopener noreferrer">Guardrails (⭐252)</a></li>
+<li><a href="https://github.com/fulcrologic/guardrails" rel="noopener noreferrer">Guardrails (⭐259)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/metosin/malli" rel="noopener noreferrer">Malli (⭐1.7k)</a></li>
+<li><a href="https://github.com/metosin/malli" rel="noopener noreferrer">Malli (⭐1.8k)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/52/">Dec 25 - Dec 31, 2023</a></h2><h3><p>Testing</p>
 </h3>
@@ -87,16 +172,16 @@
 <h3><p>Debugging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/flow-storm/flow-storm-debugger" rel="noopener noreferrer">flow-storm-debugger (⭐838)</a></li>
+<li><a href="https://github.com/flow-storm/flow-storm-debugger" rel="noopener noreferrer">flow-storm-debugger (⭐867)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/gnl/playback" rel="noopener noreferrer">playback (⭐109)</a></li>
+<li><a href="https://github.com/gnl/playback" rel="noopener noreferrer">playback (⭐110)</a></li>
 </ul>
 <h3><p>Exercises / YouTube</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gigasquid/wonderland-clojure-katas" rel="noopener noreferrer">Wonderland Clojure Katas (⭐874)</a></li>
+<li><a href="https://github.com/gigasquid/wonderland-clojure-katas" rel="noopener noreferrer">Wonderland Clojure Katas (⭐877)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/28/">Jul 10 - Jul 16, 2023</a></h2><h3><p>Web Framework</p>
 </h3>
@@ -111,17 +196,17 @@
 <h2><a href="https://www.trackawesomelist.com/2023/21/">May 22 - May 28, 2023</a></h2><h3><p>Debugging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/vvvvalvalval/scope-capture" rel="noopener noreferrer">scope-capture (⭐599)</a></li>
+<li><a href="https://github.com/vvvvalvalval/scope-capture" rel="noopener noreferrer">scope-capture (⭐603)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2023/14/">Apr 03 - Apr 09, 2023</a></h2><h3><p>Code Analysis and Linter</p>
 </h3>
 <ul>
-<li><a href="https://github.com/NoahTheDuke/splint" rel="noopener noreferrer">splint (⭐139)</a></li>
+<li><a href="https://github.com/NoahTheDuke/splint" rel="noopener noreferrer">splint (⭐147)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/36/">Sep 05 - Sep 11, 2022</a></h2><h3><p>Async processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/nilenso/goose" rel="noopener noreferrer">goose (⭐308)</a></li>
+<li><a href="https://github.com/nilenso/goose" rel="noopener noreferrer">goose (⭐316)</a></li>
 </ul>
 <h3><p>Graphviz</p>
 </h3>
@@ -135,16 +220,16 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/oakes/play-cljc" rel="noopener noreferrer">play-cljc (⭐566)</a> - A Clojure and ClojureScript game library</li>
+<li><a href="https://github.com/oakes/play-cljc" rel="noopener noreferrer">play-cljc (⭐571)</a> - A Clojure and ClojureScript game library</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2022/26/">Jun 27 - Jul 03, 2022</a></h2><h3><p>Protocol Buffers and gRPC</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AppsFlyer/pronto" rel="noopener noreferrer">pronto (⭐125)</a></li>
+<li><a href="https://github.com/AppsFlyer/pronto" rel="noopener noreferrer">pronto (⭐127)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/AppsFlyer/lein-protodeps" rel="noopener noreferrer">lein-protodeps (⭐30)</a></li>
+<li><a href="https://github.com/AppsFlyer/lein-protodeps" rel="noopener noreferrer">lein-protodeps (⭐31)</a></li>
 </ul>
 <h3><p>Testing</p>
 </h3>
@@ -154,7 +239,7 @@
 <h3><p>Rule-based Programming</p>
 </h3>
 <ul>
-<li><a href="https://github.com/oakes/odoyle-rules" rel="noopener noreferrer">O'Doyle Rules (⭐564)</a></li>
+<li><a href="https://github.com/oakes/odoyle-rules" rel="noopener noreferrer">O'Doyle Rules (⭐577)</a></li>
 </ul>
 <h3><p>Video tutorials / YouTube</p>
 </h3>
@@ -164,28 +249,28 @@
 <h2><a href="https://www.trackawesomelist.com/2022/18/">May 02 - May 08, 2022</a></h2><h3><p>Dependency injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/darkleaf/di" rel="noopener noreferrer">darkleaf/di (⭐55)</a></li>
+<li><a href="https://github.com/darkleaf/di" rel="noopener noreferrer">darkleaf/di (⭐59)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/44/">Nov 01 - Nov 07, 2021</a></h2><h3><p>Awesome macros usage</p>
 </h3>
 <ul>
-<li><a href="https://github.com/clojure/core.async" rel="noopener noreferrer">core.async (⭐2k)</a> - transforms AST into CSP programs</li>
+<li><a href="https://github.com/clojure/core.async" rel="noopener noreferrer">core.async (⭐2.1k)</a> - transforms AST into CSP programs</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/leonoel/cloroutine" rel="noopener noreferrer">cloroutine (⭐236)</a> - suspends and continuations (coroutines)</li>
+<li><a href="https://github.com/leonoel/cloroutine" rel="noopener noreferrer">cloroutine (⭐241)</a> - suspends and continuations (coroutines)</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/leonoel/missionary" rel="noopener noreferrer">missionary (⭐777)</a> - a reactive dataflow programming toolkit</li>
+<li><a href="https://github.com/leonoel/missionary" rel="noopener noreferrer">missionary (⭐801)</a> - a reactive dataflow programming toolkit</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/venantius/photon" rel="noopener noreferrer">photon (⭐7)</a> - realtime web, like Meteor, but for Clojure(Script)</li>
+<li><a href="https://github.com/venantius/photon" rel="noopener noreferrer">photon</a> - realtime web, like Meteor, but for Clojure(Script)</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/brandonbloom/metaclj" rel="noopener noreferrer">metaclj (⭐82)</a> - staged compilation</li>
+<li><a href="https://github.com/brandonbloom/metaclj" rel="noopener noreferrer">metaclj (⭐84)</a> - staged compilation</li>
 </ul>
 
 <ul>
@@ -194,22 +279,22 @@
 <h2><a href="https://www.trackawesomelist.com/2021/41/">Oct 11 - Oct 17, 2021</a></h2><h3><p>Advanced datastructures</p>
 </h3>
 <ul>
-<li><a href="https://github.com/noprompt/meander" rel="noopener noreferrer">meander (⭐971)</a>: transparent data transformation (defined as pattern-matching)</li>
+<li><a href="https://github.com/noprompt/meander" rel="noopener noreferrer">meander (⭐986)</a>: transparent data transformation (defined as pattern-matching)</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/38/">Sep 20 - Sep 26, 2021</a></h2><h3><p>Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/scicloj/scicloj.ml" rel="noopener noreferrer">scicloj.ml (⭐238)</a></li>
+<li><a href="https://github.com/scicloj/scicloj.ml" rel="noopener noreferrer">scicloj.ml (⭐236)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/36/">Sep 06 - Sep 12, 2021</a></h2><h3><p>HTTP</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gnarroway/hato" rel="noopener noreferrer">hato (⭐412)</a> : An HTTP client for Clojure, wrapping JDK 11's HttpClient</li>
+<li><a href="https://github.com/gnarroway/hato" rel="noopener noreferrer">hato (⭐422)</a> : An HTTP client for Clojure, wrapping JDK 11's HttpClient</li>
 </ul>
 <h3><p>Database</p>
 </h3>
 <ul>
-<li><a href="https://github.com/xtdb/xtdb" rel="noopener noreferrer">xtdb (⭐2.9k)</a>: bitemporal database for SQL, Datalog &amp; graph queries</li>
+<li><a href="https://github.com/xtdb/xtdb" rel="noopener noreferrer">xtdb (⭐3.1k)</a>: bitemporal database for SQL, Datalog &amp; graph queries</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/35/">Aug 30 - Sep 05, 2021</a></h2><h3><p>Machine Learning</p>
 </h3>
@@ -219,17 +304,17 @@
 <h2><a href="https://www.trackawesomelist.com/2021/30/">Jul 26 - Aug 01, 2021</a></h2><h3><p>Advanced datastructures</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jimpil/duratom" rel="noopener noreferrer">Duratom (⭐230)</a>: persisted atoms</li>
+<li><a href="https://github.com/jimpil/duratom" rel="noopener noreferrer">Duratom (⭐234)</a>: persisted atoms</li>
 </ul>
 <h3><p>Version Control Management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/clj-jgit/clj-jgit" rel="noopener noreferrer">clj-jgit (⭐258)</a></li>
+<li><a href="https://github.com/clj-jgit/clj-jgit" rel="noopener noreferrer">clj-jgit (⭐257)</a></li>
 </ul>
 <h3><p>GUI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/aaronc/fx-clj" rel="noopener noreferrer">fx-clj (⭐110)</a></li>
+<li><a href="https://github.com/aaronc/fx-clj" rel="noopener noreferrer">fx-clj (⭐111)</a></li>
 </ul>
 <h3><p>Database</p>
 </h3>
@@ -242,7 +327,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/apa512/clj-rethinkdb" rel="noopener noreferrer">clj-rethinkdb (⭐203)</a>: for RethinkDB</li>
+<li><a href="https://github.com/apa512/clj-rethinkdb" rel="noopener noreferrer">clj-rethinkdb (⭐204)</a>: for RethinkDB</li>
 </ul>
 
 <ul>
@@ -262,11 +347,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/mpenet/alia" rel="noopener noreferrer">Alia (⭐246)</a>: for Cassandra</li>
+<li><a href="https://github.com/mpenet/alia" rel="noopener noreferrer">Alia (⭐245)</a>: for Cassandra</li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/AppsFlyer/aerospike-clj" rel="noopener noreferrer">aerospike-clj (⭐29)</a>: for Aerospike</li>
+<li><a href="https://github.com/AppsFlyer/aerospike-clj" rel="noopener noreferrer">aerospike-clj (⭐32)</a>: for Aerospike</li>
 </ul>
 <h3><p>Security</p>
 </h3>
@@ -281,7 +366,7 @@
 <h3><p>Pattern Matching</p>
 </h3>
 <ul>
-<li><a href="https://github.com/WeshGuillaume/Verbal-Exprejon" rel="noopener noreferrer">Verbal-Exprejon (⭐92)</a></li>
+<li><a href="https://github.com/WeshGuillaume/Verbal-Exprejon" rel="noopener noreferrer">Verbal-Exprejon (⭐89)</a></li>
 </ul>
 <h3><p>Machine Learning</p>
 </h3>
@@ -290,15 +375,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/uncomplicate/clojurecuda" rel="noopener noreferrer">clojurecuda (⭐205)</a></li>
+<li><a href="https://github.com/uncomplicate/clojurecuda" rel="noopener noreferrer">clojurecuda (⭐210)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/uncomplicate/clojurecl" rel="noopener noreferrer">clojurecl (⭐283)</a></li>
+<li><a href="https://github.com/uncomplicate/clojurecl" rel="noopener noreferrer">clojurecl (⭐285)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/uncomplicate/bayadera" rel="noopener noreferrer">bayadera (⭐369)</a>: bayesian data analysis on the GPU</li>
+<li><a href="https://github.com/uncomplicate/bayadera" rel="noopener noreferrer">bayadera (⭐373)</a>: bayesian data analysis on the GPU</li>
 </ul>
 
 <ul>
@@ -310,15 +395,15 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/antoniogarrote/clj-ml" rel="noopener noreferrer">clj-ml (⭐147)</a></li>
+<li><a href="https://github.com/antoniogarrote/clj-ml" rel="noopener noreferrer">clj-ml (⭐144)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/rinuboney/clatern" rel="noopener noreferrer">Clatern (⭐67)</a></li>
+<li><a href="https://github.com/rinuboney/clatern" rel="noopener noreferrer">Clatern (⭐66)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/gigasquid/k9" rel="noopener noreferrer">k9 (⭐105)</a></li>
+<li><a href="https://github.com/gigasquid/k9" rel="noopener noreferrer">k9 (⭐106)</a></li>
 </ul>
 
 <ul>
@@ -326,7 +411,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/japonophile/synaptic" rel="noopener noreferrer">Synaptic (⭐88)</a></li>
+<li><a href="https://github.com/japonophile/synaptic" rel="noopener noreferrer">Synaptic (⭐89)</a></li>
 </ul>
 
 <ul>
@@ -345,7 +430,7 @@
 <h3><p>Documentation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/weavejester/codox" rel="noopener noreferrer">codox (⭐684)</a></li>
+<li><a href="https://github.com/weavejester/codox" rel="noopener noreferrer">codox (⭐687)</a></li>
 </ul>
 <h3><p>Miscellaneous</p>
 </h3>
@@ -355,12 +440,12 @@
 <h3><p>Terminal UI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/MultiMUD/clojure-lanterna" rel="noopener noreferrer">clojure-lanterna (⭐221)</a></li>
+<li><a href="https://github.com/MultiMUD/clojure-lanterna" rel="noopener noreferrer">clojure-lanterna (⭐222)</a></li>
 </ul>
 <h3><p>Exercises / YouTube</p>
 </h3>
 <ul>
-<li><a href="https://github.com/PEZ/rich4clojure" rel="noopener noreferrer">rich4clojure (⭐230)</a></li>
+<li><a href="https://github.com/PEZ/rich4clojure" rel="noopener noreferrer">rich4clojure (⭐240)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/26/">Jun 28 - Jul 04, 2021</a></h2><h3><p>Terminal UI</p>
 </h3>
@@ -380,12 +465,12 @@
 <h2><a href="https://www.trackawesomelist.com/2021/21/">May 24 - May 30, 2021</a></h2><h3><p>Editor Plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/Olical/conjure" rel="noopener noreferrer">Conjure (Neovim) (⭐2.1k)</a></li>
+<li><a href="https://github.com/Olical/conjure" rel="noopener noreferrer">Conjure (Neovim) (⭐2.2k)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/15/">Apr 12 - Apr 18, 2021</a></h2><h3><p>Dependency injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/piotr-yuxuan/closeable-map" rel="noopener noreferrer">piotr-yuxuan/closeable-map (⭐62)</a></li>
+<li><a href="https://github.com/piotr-yuxuan/closeable-map" rel="noopener noreferrer">piotr-yuxuan/closeable-map (⭐64)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/14/">Apr 05 - Apr 11, 2021</a></h2><h3><p>Editor Plugins</p>
 </h3>
@@ -395,26 +480,26 @@
 <h2><a href="https://www.trackawesomelist.com/2021/3/">Jan 18 - Jan 24, 2021</a></h2><h3><p>Database</p>
 </h3>
 <ul>
-<li><a href="https://github.com/seancorfield/next-jdbc" rel="noopener noreferrer">next.jdbc (⭐851)</a></li>
+<li><a href="https://github.com/seancorfield/next-jdbc" rel="noopener noreferrer">next.jdbc (⭐870)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/clojure/java.jdbc" rel="noopener noreferrer">clojure.java.jdbc (⭐732)</a></li>
+<li><a href="https://github.com/clojure/java.jdbc" rel="noopener noreferrer">clojure.java.jdbc (⭐731)</a></li>
 </ul>
 <h3><p>Text Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dainiusjocas/lucene-grep" rel="noopener noreferrer">lmgrep (⭐199)</a></li>
+<li><a href="https://github.com/dainiusjocas/lucene-grep" rel="noopener noreferrer">lmgrep (⭐201)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2021/1/">Jan 04 - Jan 10, 2021</a></h2><h3><p>Dependency injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/juxt/clip" rel="noopener noreferrer">clip (⭐237)</a></li>
+<li><a href="https://github.com/juxt/clip" rel="noopener noreferrer">clip (⭐239)</a></li>
 </ul>
 <h3><p>Date and Time</p>
 </h3>
 <ul>
-<li><a href="https://github.com/juxt/tick" rel="noopener noreferrer">tick (⭐640)</a>: Clojure(Script) library, intended as replacement for clj-time</li>
+<li><a href="https://github.com/juxt/tick" rel="noopener noreferrer">tick (⭐646)</a>: Clojure(Script) library, intended as replacement for clj-time</li>
 </ul>
 <h3><p>HTTP</p>
 </h3>
@@ -431,7 +516,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/nervous-systems/kvlt" rel="noopener noreferrer">kvlt (⭐69)</a> : Uniform, asychronous client interface for HTTP across JVM / Node / browsers</li>
+<li><a href="https://github.com/nervous-systems/kvlt" rel="noopener noreferrer">kvlt (⭐70)</a> : Uniform, asychronous client interface for HTTP across JVM / Node / browsers</li>
 </ul>
 
 <ul>
@@ -445,7 +530,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/44/">Nov 02 - Nov 08, 2020</a></h2><h3><p>Editor Plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/avli/clojureVSCode" rel="noopener noreferrer">clojureVSCode (VSCode) (⭐207)</a></li>
+<li><a href="https://github.com/avli/clojureVSCode" rel="noopener noreferrer">clojureVSCode (VSCode) (⭐208)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/43/">Oct 26 - Nov 01, 2020</a></h2><h3><p>Editor Plugins</p>
 </h3>
@@ -455,12 +540,12 @@
 <h2><a href="https://www.trackawesomelist.com/2020/41/">Oct 12 - Oct 18, 2020</a></h2><h3><p>Security</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lk-geimfari/secrets.clj" rel="noopener noreferrer">secrets.clj (⭐98)</a></li>
+<li><a href="https://github.com/lk-geimfari/secrets.clj" rel="noopener noreferrer">secrets.clj (⭐101)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/34/">Aug 24 - Aug 30, 2020</a></h2><h3><p>Database</p>
 </h3>
 <ul>
-<li><a href="https://github.com/juji-io/datalevin" rel="noopener noreferrer">Datalevin (⭐1.4k)</a></li>
+<li><a href="https://github.com/juji-io/datalevin" rel="noopener noreferrer">Datalevin (⭐1.5k)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/24/">Jun 15 - Jun 21, 2020</a></h2><h3><p>Web Framework</p>
 </h3>
@@ -470,7 +555,7 @@
 <h2><a href="https://www.trackawesomelist.com/2020/13/">Mar 30 - Apr 05, 2020</a></h2><h3><p>Data Validation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/funcool/struct" rel="noopener noreferrer">struct (⭐118)</a></li>
+<li><a href="https://github.com/funcool/struct" rel="noopener noreferrer">struct (⭐116)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2020/9/">Mar 02 - Mar 08, 2020</a></h2><h3><p>ORM and SQL generation</p>
 </h3>
@@ -480,7 +565,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/44/">Nov 04 - Nov 10, 2019</a></h2><h3><p>Parsing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alekseysotnikov/buran" rel="noopener noreferrer">buran (⭐32)</a> - RSS/Atom feed consumer and producer</li>
+<li><a href="https://github.com/alekseysotnikov/buran" rel="noopener noreferrer">buran (⭐33)</a> - RSS/Atom feed consumer and producer</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/42/">Oct 21 - Oct 27, 2019</a></h2><h3><p>Build Automation and Package management</p>
 </h3>
@@ -490,12 +575,12 @@
 <h3><p>Pattern Matching</p>
 </h3>
 <ul>
-<li><a href="https://github.com/noprompt/meander" rel="noopener noreferrer">Meander (⭐971)</a></li>
+<li><a href="https://github.com/noprompt/meander" rel="noopener noreferrer">Meander (⭐986)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/41/">Oct 14 - Oct 20, 2019</a></h2><h3><p>GUI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lambdaisland/trikl" rel="noopener noreferrer">trikl (⭐155)</a></li>
+<li><a href="https://github.com/lambdaisland/trikl" rel="noopener noreferrer">trikl (⭐156)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/38/">Sep 23 - Sep 29, 2019</a></h2><h3><p>Date and Time</p>
 </h3>
@@ -505,7 +590,7 @@
 <h2><a href="https://www.trackawesomelist.com/2019/37/">Sep 16 - Sep 22, 2019</a></h2><h3><p>Code Analysis and Linter</p>
 </h3>
 <ul>
-<li><a href="https://github.com/borkdude/clj-kondo" rel="noopener noreferrer">clj-kondo (⭐1.8k)</a></li>
+<li><a href="https://github.com/borkdude/clj-kondo" rel="noopener noreferrer">clj-kondo (⭐1.9k)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/36/">Sep 09 - Sep 15, 2019</a></h2><h3><p>Connection pools</p>
 </h3>
@@ -515,22 +600,22 @@
 <h2><a href="https://www.trackawesomelist.com/2019/34/">Aug 26 - Sep 01, 2019</a></h2><h3><p>Date and Time</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tokenmill/timewords" rel="noopener noreferrer">timewords (⭐31)</a></li>
+<li><a href="https://github.com/tokenmill/timewords" rel="noopener noreferrer">timewords (⭐35)</a></li>
 </ul>
 <h3><p>Text Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tokenmill/beagle" rel="noopener noreferrer">beagle (⭐54)</a></li>
+<li><a href="https://github.com/tokenmill/beagle" rel="noopener noreferrer">beagle (⭐56)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/32/">Aug 12 - Aug 18, 2019</a></h2><h3><p>Debugging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/AppsFlyer/mate-clj" rel="noopener noreferrer">mate-clj (⭐60)</a></li>
+<li><a href="https://github.com/AppsFlyer/mate-clj" rel="noopener noreferrer">mate-clj (⭐61)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/31/">Aug 05 - Aug 11, 2019</a></h2><h3><p>Security</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lvh/caesium" rel="noopener noreferrer">caesium (⭐183)</a> (libsodium bindings)</li>
+<li><a href="https://github.com/lvh/caesium" rel="noopener noreferrer">caesium (⭐185)</a> (libsodium bindings)</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/28/">Jul 15 - Jul 21, 2019</a></h2><h3><p>Rule-based Programming</p>
 </h3>
@@ -544,12 +629,12 @@
 <h2><a href="https://www.trackawesomelist.com/2019/23/">Jun 10 - Jun 16, 2019</a></h2><h3><p>Build Automation and Package management</p>
 </h3>
 <ul>
-<li><a href="https://github.com/clojurephant/clojurephant" rel="noopener noreferrer">clojurephant (⭐196)</a> (Gradle plugin)</li>
+<li><a href="https://github.com/clojurephant/clojurephant" rel="noopener noreferrer">clojurephant (⭐195)</a> (Gradle plugin)</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/19/">May 13 - May 19, 2019</a></h2><h3><p>Miscellaneous</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ztellman/potemkin" rel="noopener noreferrer">potemkin (⭐590)</a> - reexport vars in another ns / act like a clojure map</li>
+<li><a href="https://github.com/ztellman/potemkin" rel="noopener noreferrer">potemkin (⭐596)</a> - reexport vars in another ns / act like a clojure map</li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/16/">Apr 22 - Apr 28, 2019</a></h2><h3><p>Project Management</p>
 </h3>
@@ -559,11 +644,11 @@
 <h3><p>Terminal UI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lambdaisland/trikl" rel="noopener noreferrer">triki (⭐155)</a></li>
+<li><a href="https://github.com/lambdaisland/trikl" rel="noopener noreferrer">triki (⭐156)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/aaron-santos/zaffre" rel="noopener noreferrer">zaffre (⭐109)</a></li>
+<li><a href="https://github.com/aaron-santos/zaffre" rel="noopener noreferrer">zaffre (⭐111)</a></li>
 </ul>
 
 <ul>
@@ -588,7 +673,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/ztellman/rhizome" rel="noopener noreferrer">rhizome (⭐452)</a></li>
+<li><a href="https://github.com/ztellman/rhizome" rel="noopener noreferrer">rhizome (⭐453)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2019/3/">Jan 21 - Jan 27, 2019</a></h2><h3><p>Editor Plugins</p>
 </h3>
@@ -597,17 +682,17 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/venantius/vim-eastwood" rel="noopener noreferrer">vim-eastwood (Vim) (⭐85)</a></li>
+<li><a href="https://github.com/venantius/vim-eastwood" rel="noopener noreferrer">vim-eastwood (Vim) (⭐86)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/48/">Nov 26 - Dec 02, 2018</a></h2><h3><p>Science and Data Analysis</p>
 </h3>
 <ul>
-<li><a href="https://github.com/aysylu/loom" rel="noopener noreferrer">Loom - graph library for Clojure (⭐891)</a></li>
+<li><a href="https://github.com/aysylu/loom" rel="noopener noreferrer">Loom - graph library for Clojure (⭐893)</a></li>
 </ul>
 <h3><p>Editor Plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/liquidz/vim-iced" rel="noopener noreferrer">vim-iced (Vim) (⭐533)</a></li>
+<li><a href="https://github.com/liquidz/vim-iced" rel="noopener noreferrer">vim-iced (Vim) (⭐531)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/47/">Nov 19 - Nov 25, 2018</a></h2><h3><p>GraphQL API</p>
 </h3>
@@ -621,7 +706,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/clojure/data.finger-tree" rel="noopener noreferrer">Finger Tree (⭐221)</a>: double-list, counted-double-list, counted-sorted-set</li>
+<li><a href="https://github.com/clojure/data.finger-tree" rel="noopener noreferrer">Finger Tree (⭐222)</a>: double-list, counted-double-list, counted-sorted-set</li>
 </ul>
 
 <ul>
@@ -633,7 +718,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/amalloy/ordered" rel="noopener noreferrer">Ordered (⭐266)</a>: ordered sets and maps</li>
+<li><a href="https://github.com/amalloy/ordered" rel="noopener noreferrer">Ordered (⭐271)</a>: ordered sets and maps</li>
 </ul>
 
 <ul>
@@ -641,7 +726,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Factual/durable-queue" rel="noopener noreferrer">Durable Queue (⭐407)</a>: queue persisted on disk</li>
+<li><a href="https://github.com/Factual/durable-queue" rel="noopener noreferrer">Durable Queue (⭐408)</a>: queue persisted on disk</li>
 </ul>
 
 <ul>
@@ -664,17 +749,17 @@
 <h3><p>JSON</p>
 </h3>
 <ul>
-<li><a href="https://github.com/metosin/jsonista" rel="noopener noreferrer">jsonista (⭐468)</a></li>
+<li><a href="https://github.com/metosin/jsonista" rel="noopener noreferrer">jsonista (⭐477)</a></li>
 </ul>
 <h3><p>Async processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ztellman/manifold" rel="noopener noreferrer">manifold (⭐1k)</a></li>
+<li><a href="https://github.com/ztellman/manifold" rel="noopener noreferrer">manifold (⭐1.1k)</a></li>
 </ul>
 <h3><p>Monads</p>
 </h3>
 <ul>
-<li><a href="https://github.com/uncomplicate/fluokitten" rel="noopener noreferrer">Fluokitten (⭐475)</a></li>
+<li><a href="https://github.com/uncomplicate/fluokitten" rel="noopener noreferrer">Fluokitten (⭐476)</a></li>
 </ul>
 <h3><p>WebSocket</p>
 </h3>
@@ -684,11 +769,11 @@
 <h3><p>Science and Data Analysis</p>
 </h3>
 <ul>
-<li><a href="https://github.com/uncomplicate/bayadera" rel="noopener noreferrer">Bayadera - Bayesian Data Analysis on the GPU (⭐369)</a></li>
+<li><a href="https://github.com/uncomplicate/bayadera" rel="noopener noreferrer">Bayadera - Bayesian Data Analysis on the GPU (⭐373)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/uncomplicate/clojurecuda" rel="noopener noreferrer">ClojureCUDA (⭐205)</a></li>
+<li><a href="https://github.com/uncomplicate/clojurecuda" rel="noopener noreferrer">ClojureCUDA (⭐210)</a></li>
 </ul>
 
 <ul>
@@ -696,17 +781,17 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/uncomplicate/clojurecl" rel="noopener noreferrer">ClojureCL - parallel computations with OpenCL (⭐283)</a></li>
+<li><a href="https://github.com/uncomplicate/clojurecl" rel="noopener noreferrer">ClojureCL - parallel computations with OpenCL (⭐285)</a></li>
 </ul>
 <h3><p>Editor Plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/BetterThanTomorrow/calva" rel="noopener noreferrer">Calva (VSCode) (⭐2k)</a></li>
+<li><a href="https://github.com/BetterThanTomorrow/calva" rel="noopener noreferrer">Calva (VSCode) (⭐2.1k)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/40/">Oct 01 - Oct 07, 2018</a></h2><h3><p>Testing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lambdaisland/kaocha" rel="noopener noreferrer">kaocha (⭐858)</a></li>
+<li><a href="https://github.com/lambdaisland/kaocha" rel="noopener noreferrer">kaocha (⭐867)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/39/">Sep 24 - Sep 30, 2018</a></h2><h3><p>Machine Learning</p>
 </h3>
@@ -721,16 +806,16 @@
 <h3><p>Miscellaneous</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ertugrulcetin/kezban" rel="noopener noreferrer">kezban (⭐44)</a></li>
+<li><a href="https://github.com/ertugrulcetin/kezban" rel="noopener noreferrer">kezban (⭐46)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/35/">Aug 27 - Sep 02, 2018</a></h2><h3><p>Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/kieranbrowne/clojure-tensorflow" rel="noopener noreferrer">clojure-tensorflow (⭐113)</a></li>
+<li><a href="https://github.com/kieranbrowne/clojure-tensorflow" rel="noopener noreferrer">clojure-tensorflow (⭐114)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/yetanalytics/dl4clj" rel="noopener noreferrer">dl4clj (deeplearning4j to clojure) (⭐100)</a></li>
+<li><a href="https://github.com/yetanalytics/dl4clj" rel="noopener noreferrer">dl4clj (deeplearning4j to clojure) (⭐99)</a></li>
 </ul>
 <h3><p>Video tutorials / YouTube</p>
 </h3>
@@ -752,16 +837,16 @@
 <h2><a href="https://www.trackawesomelist.com/2018/30/">Jul 23 - Jul 29, 2018</a></h2><h3><p>Database</p>
 </h3>
 <ul>
-<li><a href="https://github.com/replikativ/datahike" rel="noopener noreferrer">Datahike (⭐1.8k)</a></li>
+<li><a href="https://github.com/replikativ/datahike" rel="noopener noreferrer">Datahike (⭐1.9k)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/tonsky/datascript" rel="noopener noreferrer">Datascript (⭐5.7k)</a></li>
+<li><a href="https://github.com/tonsky/datascript" rel="noopener noreferrer">Datascript (⭐5.8k)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/26/">Jun 25 - Jul 01, 2018</a></h2><h3><p>Debugging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/clojure/tools.trace" rel="noopener noreferrer">tools.trace (⭐365)</a></li>
+<li><a href="https://github.com/clojure/tools.trace" rel="noopener noreferrer">tools.trace (⭐366)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/20/">May 14 - May 20, 2018</a></h2><h3><p>Testing</p>
 </h3>
@@ -776,7 +861,7 @@
 <h3><p>Miscellaneous</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ztellman/riddley" rel="noopener noreferrer">riddley (⭐199)</a></li>
+<li><a href="https://github.com/ztellman/riddley" rel="noopener noreferrer">riddley (⭐202)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/17/">Apr 23 - Apr 29, 2018</a></h2><h3><p>Testing</p>
 </h3>
@@ -786,12 +871,12 @@
 <h2><a href="https://www.trackawesomelist.com/2018/16/">Apr 16 - Apr 22, 2018</a></h2><h3><p>Guides</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yogthos/clojure-error-message-catalog" rel="noopener noreferrer">Error message catalog (⭐441)</a></li>
+<li><a href="https://github.com/yogthos/clojure-error-message-catalog" rel="noopener noreferrer">Error message catalog (⭐440)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/15/">Apr 09 - Apr 15, 2018</a></h2><h3><p>ORM and SQL generation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/walkable-server/walkable" rel="noopener noreferrer">Walkable (⭐452)</a></li>
+<li><a href="https://github.com/walkable-server/walkable" rel="noopener noreferrer">Walkable (⭐453)</a></li>
 </ul>
 
 <ul>
@@ -804,7 +889,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/13/">Mar 26 - Apr 01, 2018</a></h2><h3><p>Redis</p>
 </h3>
 <ul>
-<li><a href="https://github.com/lerouxrgd/celtuce" rel="noopener noreferrer">celtuce (⭐50)</a></li>
+<li><a href="https://github.com/lerouxrgd/celtuce" rel="noopener noreferrer">celtuce (⭐49)</a></li>
 </ul>
 <h3><p>Exercises / YouTube</p>
 </h3>
@@ -814,21 +899,21 @@
 <h2><a href="https://www.trackawesomelist.com/2018/12/">Mar 19 - Mar 25, 2018</a></h2><h3><p>Dependency injection</p>
 </h3>
 <ul>
-<li><a href="https://github.com/weavejester/integrant" rel="noopener noreferrer">Integrant (⭐1.3k)</a></li>
+<li><a href="https://github.com/weavejester/integrant" rel="noopener noreferrer">Integrant (⭐1.4k)</a></li>
 </ul>
 <h3><p>Miscellaneous</p>
 </h3>
 <ul>
-<li><a href="https://github.com/ztellman/virgil" rel="noopener noreferrer">virgil (⭐351)</a></li>
+<li><a href="https://github.com/ztellman/virgil" rel="noopener noreferrer">virgil (⭐357)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/tailrecursion/javastar" rel="noopener noreferrer">javastar (⭐65)</a></li>
+<li><a href="https://github.com/tailrecursion/javastar" rel="noopener noreferrer">javastar (⭐66)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/11/">Mar 12 - Mar 18, 2018</a></h2><h3><p>Parsing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/blancas/kern" rel="noopener noreferrer">kern (⭐242)</a></li>
+<li><a href="https://github.com/blancas/kern" rel="noopener noreferrer">kern (⭐243)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/8/">Feb 19 - Feb 25, 2018</a></h2><h3><p>Web Framework</p>
 </h3>
@@ -843,7 +928,7 @@
 <h2><a href="https://www.trackawesomelist.com/2018/5/">Jan 29 - Feb 04, 2018</a></h2><h3><p>WebSocket</p>
 </h3>
 <ul>
-<li><a href="https://github.com/jarohen/chord" rel="noopener noreferrer">Chord (⭐440)</a></li>
+<li><a href="https://github.com/jarohen/chord" rel="noopener noreferrer">Chord (⭐441)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2018/1/">Jan 01 - Jan 07, 2018</a></h2><h3><p>Debugging</p>
 </h3>
@@ -873,11 +958,11 @@
 <h2><a href="https://www.trackawesomelist.com/2017/39/">Sep 25 - Oct 01, 2017</a></h2><h3><p>Code Analysis and Linter</p>
 </h3>
 <ul>
-<li><a href="https://github.com/venantius/yagni" rel="noopener noreferrer">yagni (⭐220)</a></li>
+<li><a href="https://github.com/venantius/yagni" rel="noopener noreferrer">yagni (⭐223)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/dakrone/lein-bikeshed" rel="noopener noreferrer">lein-bikeshed (⭐174)</a></li>
+<li><a href="https://github.com/dakrone/lein-bikeshed" rel="noopener noreferrer">lein-bikeshed (⭐175)</a></li>
 </ul>
 
 <ul>
@@ -885,7 +970,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/cloverage/cloverage" rel="noopener noreferrer">cloverage (⭐524)</a></li>
+<li><a href="https://github.com/cloverage/cloverage" rel="noopener noreferrer">cloverage (⭐532)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/33/">Aug 14 - Aug 20, 2017</a></h2><h3><p>Parsing</p>
 </h3>
@@ -895,16 +980,16 @@
 <h3><p>Exceptions and Error Handling</p>
 </h3>
 <ul>
-<li><a href="https://github.com/grammarly/perseverance" rel="noopener noreferrer">Perseverance (⭐188)</a></li>
+<li><a href="https://github.com/grammarly/perseverance" rel="noopener noreferrer">Perseverance (⭐191)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/MichaelDrogalis/dire" rel="noopener noreferrer">Dire (⭐481)</a></li>
+<li><a href="https://github.com/MichaelDrogalis/dire" rel="noopener noreferrer">Dire (⭐482)</a></li>
 </ul>
 <h3><p>Editor Plugins</p>
 </h3>
 <ul>
-<li><a href="https://github.com/clojure-emacs/cider" rel="noopener noreferrer">CIDER (Emacs) (⭐3.6k)</a></li>
+<li><a href="https://github.com/clojure-emacs/cider" rel="noopener noreferrer">CIDER (Emacs) (⭐3.7k)</a></li>
 </ul>
 
 <ul>
@@ -912,7 +997,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/Fanael/rainbow-delimiters" rel="noopener noreferrer">rainbow-delimiters (Emacs) (⭐746)</a></li>
+<li><a href="https://github.com/Fanael/rainbow-delimiters" rel="noopener noreferrer">rainbow-delimiters (Emacs) (⭐755)</a></li>
 </ul>
 
 <ul>
@@ -928,11 +1013,11 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/tpope/vim-salve" rel="noopener noreferrer">vim-leiningen (Vim) (⭐195)</a></li>
+<li><a href="https://github.com/tpope/vim-salve" rel="noopener noreferrer">vim-leiningen (Vim) (⭐197)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/junegunn/rainbow_parentheses.vim" rel="noopener noreferrer">rainbow_parentheses.vim (Vim) (⭐387)</a></li>
+<li><a href="https://github.com/junegunn/rainbow_parentheses.vim" rel="noopener noreferrer">rainbow_parentheses.vim (Vim) (⭐383)</a></li>
 </ul>
 
 <ul>
@@ -951,16 +1036,16 @@
 <h2><a href="https://www.trackawesomelist.com/2017/32/">Aug 07 - Aug 13, 2017</a></h2><h3><p>Science and Data Analysis</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gorillalabs/sparkling" rel="noopener noreferrer">sparklling (⭐446)</a></li>
+<li><a href="https://github.com/gorillalabs/sparkling" rel="noopener noreferrer">sparklling (⭐448)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/yieldbot/flambo" rel="noopener noreferrer">flambo (⭐601)</a></li>
+<li><a href="https://github.com/yieldbot/flambo" rel="noopener noreferrer">flambo (⭐599)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/24/">Jun 12 - Jun 18, 2017</a></h2><h3><p>Science and Data Analysis</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bigmlcom/histogram" rel="noopener noreferrer">Streaming Histograms (⭐160)</a></li>
+<li><a href="https://github.com/bigmlcom/histogram" rel="noopener noreferrer">Streaming Histograms (⭐159)</a></li>
 </ul>
 
 <ul>
@@ -979,7 +1064,7 @@
 <h2><a href="https://www.trackawesomelist.com/2017/18/">May 01 - May 07, 2017</a></h2><h3><p>Webdriver automation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/igrishaev/etaoin" rel="noopener noreferrer">Etaoin (⭐961)</a></li>
+<li><a href="https://github.com/igrishaev/etaoin" rel="noopener noreferrer">Etaoin (⭐976)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/11/">Mar 13 - Mar 19, 2017</a></h2><h3><p>Text Processing</p>
 </h3>
@@ -989,17 +1074,17 @@
 <h3><p>Debugging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/razum2um/clj-debugger" rel="noopener noreferrer">debugger (⭐270)</a></li>
+<li><a href="https://github.com/razum2um/clj-debugger" rel="noopener noreferrer">debugger (⭐271)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/9/">Feb 27 - Mar 05, 2017</a></h2><h3><p>RESTful API</p>
 </h3>
 <ul>
-<li><a href="https://github.com/darkleaf/router" rel="noopener noreferrer">router (⭐79)</a></li>
+<li><a href="https://github.com/darkleaf/router" rel="noopener noreferrer">router (⭐80)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2017/4/">Jan 23 - Jan 29, 2017</a></h2><h3><p>ORM and SQL generation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/metabase/toucan" rel="noopener noreferrer">Toucan (⭐574)</a></li>
+<li><a href="https://github.com/metabase/toucan" rel="noopener noreferrer">Toucan (⭐575)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/43/">Oct 24 - Oct 30, 2016</a></h2><h3><p>Machine Learning</p>
 </h3>
@@ -1028,7 +1113,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/35/">Aug 29 - Sep 04, 2016</a></h2><h3><p>Pattern Matching</p>
 </h3>
 <ul>
-<li><a href="https://github.com/missingfaktor/akar" rel="noopener noreferrer">Akar (⭐183)</a></li>
+<li><a href="https://github.com/missingfaktor/akar" rel="noopener noreferrer">Akar (⭐182)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/31/">Aug 01 - Aug 07, 2016</a></h2><h3><p>Pattern Matching</p>
 </h3>
@@ -1053,7 +1138,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/15/">Apr 11 - Apr 17, 2016</a></h2><h3><p>RESTful API</p>
 </h3>
 <ul>
-<li><a href="https://github.com/juxt/yada" rel="noopener noreferrer">yada (⭐732)</a></li>
+<li><a href="https://github.com/juxt/yada" rel="noopener noreferrer">yada (⭐733)</a></li>
 </ul>
 <h3><p>Dependency injection</p>
 </h3>
@@ -1068,7 +1153,7 @@
 <h2><a href="https://www.trackawesomelist.com/2016/14/">Apr 04 - Apr 10, 2016</a></h2><h3><p>CI</p>
 </h3>
 <ul>
-<li><a href="https://github.com/flosell/lambdacd" rel="noopener noreferrer">lambdacd (⭐675)</a></li>
+<li><a href="https://github.com/flosell/lambdacd" rel="noopener noreferrer">lambdacd (⭐671)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2016/11/">Mar 14 - Mar 20, 2016</a></h2><h3><p>Science and Data Analysis</p>
 </h3>
@@ -1093,22 +1178,22 @@
 <h2><a href="https://www.trackawesomelist.com/2015/46/">Nov 16 - Nov 22, 2015</a></h2><h3><p>Database</p>
 </h3>
 <ul>
-<li><a href="https://github.com/funcool/clojure.jdbc" rel="noopener noreferrer">clojure.jdbc (⭐105)</a></li>
+<li><a href="https://github.com/funcool/clojure.jdbc" rel="noopener noreferrer">clojure.jdbc (⭐106)</a></li>
 </ul>
 <h3><p>Structural Migrations</p>
 </h3>
 <ul>
-<li><a href="https://github.com/yogthos/migratus" rel="noopener noreferrer">Migratus (⭐681)</a></li>
+<li><a href="https://github.com/yogthos/migratus" rel="noopener noreferrer">Migratus (⭐691)</a></li>
 </ul>
 <h3><p>Security</p>
 </h3>
 <ul>
-<li><a href="https://github.com/funcool/buddy" rel="noopener noreferrer">Buddy (⭐838)</a></li>
+<li><a href="https://github.com/funcool/buddy" rel="noopener noreferrer">Buddy (⭐842)</a></li>
 </ul>
 <h3><p>Monads</p>
 </h3>
 <ul>
-<li><a href="https://github.com/funcool/cats" rel="noopener noreferrer">cats (⭐966)</a></li>
+<li><a href="https://github.com/funcool/cats" rel="noopener noreferrer">cats (⭐970)</a></li>
 </ul>
 <h3><p>Science and Data Analysis</p>
 </h3>
@@ -1123,7 +1208,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/44/">Nov 02 - Nov 08, 2015</a></h2><h3><p>Audio</p>
 </h3>
 <ul>
-<li><a href="https://github.com/alda-lang/alda" rel="noopener noreferrer">Alda (⭐5.9k)</a></li>
+<li><a href="https://github.com/alda-lang/alda" rel="noopener noreferrer">Alda (⭐6k)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/42/">Oct 19 - Oct 25, 2015</a></h2><h3><p>Web Framework</p>
 </h3>
@@ -1142,7 +1227,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/killme2008/defun" rel="noopener noreferrer">defun (⭐502)</a></li>
+<li><a href="https://github.com/killme2008/defun" rel="noopener noreferrer">defun (⭐501)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/35/">Aug 31 - Sep 06, 2015</a></h2><h3><p>GUI</p>
 </h3>
@@ -1152,7 +1237,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/25/">Jun 22 - Jun 28, 2015</a></h2><h3><p>Data Validation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/leonardoborges/bouncer" rel="noopener noreferrer">Bouncer (⭐363)</a></li>
+<li><a href="https://github.com/leonardoborges/bouncer" rel="noopener noreferrer">Bouncer (⭐361)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/11/">Mar 16 - Mar 22, 2015</a></h2><h3><p>Emails</p>
 </h3>
@@ -1162,7 +1247,7 @@
 <h2><a href="https://www.trackawesomelist.com/2015/10/">Mar 09 - Mar 15, 2015</a></h2><h3><p>Machine Learning</p>
 </h3>
 <ul>
-<li><a href="https://github.com/bigmlcom/clj-bigml" rel="noopener noreferrer">clj-bigml (⭐49)</a></li>
+<li><a href="https://github.com/bigmlcom/clj-bigml" rel="noopener noreferrer">clj-bigml (⭐50)</a></li>
 </ul>
 
 <ul>
@@ -1170,17 +1255,17 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/jimpil/enclog" rel="noopener noreferrer">Enclog (⭐138)</a></li>
+<li><a href="https://github.com/jimpil/enclog" rel="noopener noreferrer">Enclog (⭐136)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2015/5/">Feb 02 - Feb 08, 2015</a></h2><h3><p>Structural Migrations</p>
 </h3>
 <ul>
-<li><a href="https://github.com/juxt/joplin" rel="noopener noreferrer">Joplin (⭐314)</a></li>
+<li><a href="https://github.com/juxt/joplin" rel="noopener noreferrer">Joplin (⭐319)</a></li>
 </ul>
 <h3><p>HTML Manipulation</p>
 </h3>
 <ul>
-<li><a href="https://github.com/fhd/clostache" rel="noopener noreferrer">clostache (⭐324)</a></li>
+<li><a href="https://github.com/fhd/clostache" rel="noopener noreferrer">clostache (⭐326)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2014/50/">Dec 15 - Dec 21, 2014</a></h2><h3><p>Web Framework</p>
 </h3>
@@ -1195,7 +1280,7 @@
 <h2><a href="https://www.trackawesomelist.com/2014/46/">Nov 17 - Nov 23, 2014</a></h2><h3><p>Connection pools</p>
 </h3>
 <ul>
-<li><a href="https://github.com/tomekw/hikari-cp" rel="noopener noreferrer">hikari-cp (⭐431)</a></li>
+<li><a href="https://github.com/tomekw/hikari-cp" rel="noopener noreferrer">hikari-cp (⭐434)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2014/43/">Oct 27 - Nov 02, 2014</a></h2><h3><p>Dependency injection</p>
 </h3>
@@ -1204,7 +1289,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/danielsz/system" rel="noopener noreferrer">System (⭐605)</a></li>
+<li><a href="https://github.com/danielsz/system" rel="noopener noreferrer">System (⭐608)</a></li>
 </ul>
 <h3><p>Miscellaneous</p>
 </h3>
@@ -1213,7 +1298,7 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/scgilardi/slingshot" rel="noopener noreferrer">slingshot (⭐653)</a></li>
+<li><a href="https://github.com/scgilardi/slingshot" rel="noopener noreferrer">slingshot (⭐655)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2014/41/">Oct 13 - Oct 19, 2014</a></h2><h3><p>Debugging</p>
 </h3>
@@ -1238,15 +1323,15 @@
 <h3><p>Structural Migrations</p>
 </h3>
 <ul>
-<li><a href="https://github.com/budu/lobos" rel="noopener noreferrer">Lobos (⭐265)</a></li>
+<li><a href="https://github.com/budu/lobos" rel="noopener noreferrer">Lobos (⭐267)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/weavejester/ragtime" rel="noopener noreferrer">Ragtime (⭐639)</a></li>
+<li><a href="https://github.com/weavejester/ragtime" rel="noopener noreferrer">Ragtime (⭐643)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/macourtney/drift" rel="noopener noreferrer">Drift (⭐122)</a></li>
+<li><a href="https://github.com/macourtney/drift" rel="noopener noreferrer">Drift (⭐123)</a></li>
 </ul>
 <h3><p>Type System</p>
 </h3>
@@ -1256,12 +1341,12 @@
 <h2><a href="https://www.trackawesomelist.com/2014/36/">Sep 08 - Sep 14, 2014</a></h2><h3><p>Science and Data Analysis</p>
 </h3>
 <ul>
-<li><a href="https://github.com/incanter/incanter" rel="noopener noreferrer">Incanter (⭐2.3k)</a></li>
+<li><a href="https://github.com/incanter/incanter" rel="noopener noreferrer">Incanter (⭐2.2k)</a></li>
 </ul>
 <h3><p>Computer Vision</p>
 </h3>
 <ul>
-<li><a href="https://github.com/antoniogarrote/clj-tesseract" rel="noopener noreferrer">clj-tesseract (⭐55)</a></li>
+<li><a href="https://github.com/antoniogarrote/clj-tesseract" rel="noopener noreferrer">clj-tesseract (⭐57)</a></li>
 </ul>
 
 <ul>
@@ -1270,7 +1355,7 @@
 <h3><p>Debugging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/magnars/prone" rel="noopener noreferrer">prone (⭐514)</a></li>
+<li><a href="https://github.com/magnars/prone" rel="noopener noreferrer">prone (⭐511)</a></li>
 </ul>
 <h3><p>Guides</p>
 </h3>
@@ -1280,11 +1365,11 @@
 <h2><a href="https://www.trackawesomelist.com/2014/35/">Sep 01 - Sep 07, 2014</a></h2><h3><p>Debugging</p>
 </h3>
 <ul>
-<li><a href="https://github.com/GeorgeJahad/debug-repl" rel="noopener noreferrer">debug-repl (⭐151)</a></li>
+<li><a href="https://github.com/GeorgeJahad/debug-repl" rel="noopener noreferrer">debug-repl (⭐152)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/pallet/ritz" rel="noopener noreferrer">ritz (⭐320)</a></li>
+<li><a href="https://github.com/pallet/ritz" rel="noopener noreferrer">ritz (⭐319)</a></li>
 </ul>
 
 <ul>
@@ -1296,21 +1381,21 @@
 </ul>
 
 <ul>
-<li><a href="https://github.com/dgrnbrg/spyscope" rel="noopener noreferrer">spyscope (⭐588)</a></li>
+<li><a href="https://github.com/dgrnbrg/spyscope" rel="noopener noreferrer">spyscope (⭐586)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/AvisoNovate/pretty" rel="noopener noreferrer">pretty (⭐621)</a></li>
+<li><a href="https://github.com/AvisoNovate/pretty" rel="noopener noreferrer">pretty (⭐627)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2014/30/">Jul 28 - Aug 03, 2014</a></h2><h3><p>Database</p>
 </h3>
 <ul>
-<li><a href="https://github.com/robashton/cravendb" rel="noopener noreferrer">cravendb (⭐62)</a></li>
+<li><a href="https://github.com/robashton/cravendb" rel="noopener noreferrer">cravendb (⭐63)</a></li>
 </ul>
 <h3><p>Literate Programming</p>
 </h3>
 <ul>
-<li><a href="https://github.com/gdeer81/marginalia" rel="noopener noreferrer">marginalia (⭐839)</a></li>
+<li><a href="https://github.com/gdeer81/marginalia" rel="noopener noreferrer">marginalia (⭐841)</a></li>
 </ul>
 <h2><a href="https://www.trackawesomelist.com/2014/29/">Jul 21 - Jul 27, 2014</a></h2><h3><p>Guides</p>
 </h3>
@@ -1329,7 +1414,7 @@
 <h3><p>Date and Time</p>
 </h3>
 <ul>
-<li><a href="https://github.com/clj-time/clj-time" rel="noopener noreferrer">clj-time (⭐738)</a></li>
+<li><a href="https://github.com/clj-time/clj-time" rel="noopener noreferrer">clj-time (⭐735)</a></li>
 </ul>
 <h3><p>Audio</p>
 </h3>
@@ -1349,7 +1434,7 @@
 <h3><p>JSON</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dakrone/cheshire" rel="noopener noreferrer">cheshire (⭐1.5k)</a></li>
+<li><a href="https://github.com/dakrone/cheshire" rel="noopener noreferrer">cheshire (⭐1.6k)</a></li>
 </ul>
 <h3><p>ORM and SQL generation</p>
 </h3>
@@ -1367,7 +1452,7 @@
 <h3><p>Security</p>
 </h3>
 <ul>
-<li><a href="https://github.com/cemerick/friend" rel="noopener noreferrer">Friend (⭐1.2k)</a></li>
+<li><a href="https://github.com/cemerick/friend" rel="noopener noreferrer">Friend (⭐1.1k)</a></li>
 </ul>
 <h3><p>RESTful API</p>
 </h3>
@@ -1391,11 +1476,11 @@
 <h3><p>Async processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/clojure/core.async/" rel="noopener noreferrer">core.async (⭐2k)</a></li>
+<li><a href="https://github.com/clojure/core.async/" rel="noopener noreferrer">core.async (⭐2.1k)</a></li>
 </ul>
 
 <ul>
-<li><a href="https://github.com/puniverse/pulsar" rel="noopener noreferrer">pulsar (⭐918)</a></li>
+<li><a href="https://github.com/puniverse/pulsar" rel="noopener noreferrer">pulsar (⭐919)</a></li>
 </ul>
 <h3><p>Monads</p>
 </h3>
@@ -1433,7 +1518,7 @@
 <h3><p>Text Processing</p>
 </h3>
 <ul>
-<li><a href="https://github.com/dakrone/clojure-opennlp" rel="noopener noreferrer">clojure-opennlp (⭐758)</a></li>
+<li><a href="https://github.com/dakrone/clojure-opennlp" rel="noopener noreferrer">clojure-opennlp (⭐757)</a></li>
 </ul>
 <h3><p>Websites / YouTube</p>
 </h3>
@@ -1455,5 +1540,47 @@
 </ul>
 
     </main>
+    
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-icon');
+        const html = document.documentElement;
+        const main = document.querySelector('main');
+        
+        // Get saved theme or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function setTheme(theme) {
+          const colorMode = theme === 'dark' ? 'dark' : 'light';
+          
+          html.setAttribute('data-theme', theme);
+          html.setAttribute('data-color-mode', colorMode);
+          main.setAttribute('data-color-mode', colorMode);
+          
+          // Force background colors
+          if (theme === 'dark') {
+            html.style.backgroundColor = '#0d1117';
+            document.body.style.backgroundColor = '#0d1117';
+          } else {
+            html.style.backgroundColor = '#ffffff';
+            document.body.style.backgroundColor = '#ffffff';
+          }
+          
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Toggle theme on button click
+        toggle.addEventListener('click', () => {
+          const current = localStorage.getItem('theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
 </html>
